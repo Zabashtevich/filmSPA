@@ -5,7 +5,7 @@ import "normalize.css";
 import App from "./App";
 import { GlobalStyles } from "./theme/createGlobalStyle";
 import Theme from "./theme/theme";
-//TODO
+
 ReactDOM.render(
   <ThemeProvider theme={Theme}>
     <GlobalStyles />

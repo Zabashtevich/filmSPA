@@ -7,6 +7,7 @@ export const Container = styled.div`
   align-items: center;
   max-width: 1300px;
   margin: 0 auto;
+  height: 64px;
 `;
 export const Inner = styled.ul`
   display: flex;
@@ -18,8 +19,8 @@ export const Link = styled(ReactRouterLink)`
   color: #fff;
   text-decoration: none;
   margin: 20px;
-  font-size: ${({ theme }) => theme.fontSize.normal};
-  font-weight: ${({ theme }) => theme.fontWeight.normal};
+  font-size: ${({ theme }) => theme.fontSize.small};
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
   padding: 5px;
   display: block;
   transition: box-shadow 1s;
@@ -29,7 +30,16 @@ export const Link = styled(ReactRouterLink)`
   }
 `;
 export const Input = styled.input`
-  weight: 100px;
+  width: ${(props) => (props.widthActive ? "320px" : "160px")};
+  height: 30px;
+  border-radius: 50px;
+  outline: none;
+  transition: width 0.5s;
+  font-size: ${({ theme }) => theme.fontSize.normal};
+  color: ${({ theme }) => theme.colors.inputColor};
+  padding: 7px;
+  border: none;
+  flex: 1;
 `;
 export const Profile = styled.div`
   weight: 30px;
@@ -46,10 +56,20 @@ export const Background = styled.div`
 `;
 
 export const Icon = styled(FaSearch)`
-  color: #fff;
-  font-size: ${({ theme }) => theme.fontSize.huge};
+  font-size: ${({ theme }) => theme.fontSize.normal};
+  color: ${({ theme }) => theme.colors.headerIcon};
+  text-align: center;
+  margin-right: 7px;
 
   &:hover {
     cursor: pointer;
   }
+`;
+
+export const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+  background-color: #fff;
+  border-radius: 50px;
 `;

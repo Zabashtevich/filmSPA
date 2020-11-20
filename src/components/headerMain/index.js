@@ -8,6 +8,7 @@ import {
   Profile,
   Background,
   Icon,
+  Wrapper,
 } from "./styles/header-main";
 
 export default function HeaderMain({ children, ...rest }) {
@@ -35,9 +36,13 @@ HeaderMain.Profile = function HeaderMainProfile({ children, ...rest }) {
 };
 
 HeaderMain.Input = function HeaderMainInput({ children, ...rest }) {
-  return <Input {...rest}>{children}</Input>;
+  return <Input {...rest} />;
 };
 
 HeaderMain.Icon = function HeaderMainIcon({ children, ...rest }) {
   return <Icon {...rest}>{children}</Icon>;
+};
+
+HeaderMain.Wrapper = function HeaderMainWrapper({ children, ...rest }) {
+  return <Wrapper {...rest}>{children}</Wrapper>;
 };

@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
+import { FaSearch } from "react-icons/fa";
 
 import { HeaderMain } from "../components";
 
 export default function HeaderMainContainer() {
+  const [inputActive, setInputActive] = useState(false);
+
   return (
     <HeaderMain>
       <HeaderMain.Inner>
@@ -17,9 +20,15 @@ export default function HeaderMainContainer() {
         <HeaderMain.Link to={"/"}>Actors</HeaderMain.Link>
       </HeaderMain.Inner>
       <HeaderMain.Inner>
-        <HeaderMain.Icon>123</HeaderMain.Icon>
-        <HeaderMain.Link to={"/"}>Login In</HeaderMain.Link>
-        <HeaderMain.Link to={"/"}>Sign Up</HeaderMain.Link>
+        <HeaderMain.Wrapper>
+          <HeaderMain.Input
+            widthActive={inputActive}
+            onFocus={() => setInputActive(!inputActive)}
+            onBlur={() => setInputActive(!inputActive)}
+          />
+          <HeaderMain.Icon />
+        </HeaderMain.Wrapper>
+        <HeaderMain.Link to={"/"}>Login</HeaderMain.Link>
       </HeaderMain.Inner>
     </HeaderMain>
   );

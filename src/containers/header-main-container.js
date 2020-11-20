@@ -25,6 +25,7 @@ export default function HeaderMainContainer() {
             widthActive={inputActive}
             onFocus={() => setInputActive(!inputActive)}
             onBlur={() => setInputActive(!inputActive)}
+            placeholder="Search..."
           />
           <HeaderMain.Icon />
         </HeaderMain.Wrapper>

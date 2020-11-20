@@ -1,11 +1,12 @@
 import React from "react";
-import HeaderMainContainer from "./containers/headerMainContainer";
 import { BrowserRouter as Router } from "react-router-dom";
+
+import MainPage from "./pages/main-page";
 
 function App() {
   return (
     <Router>
-      <HeaderMainContainer />
+      <MainPage />
     </Router>
   );
 }

@@ -3,7 +3,7 @@ import { ThemeProvider } from "styled-components";
 import "normalize.css";
 
 import App from "./App";
-import { GlobalStyles } from "./theme/createGlobalStyle";
+import { GlobalStyles } from "./theme/global-style";
 import Theme from "./theme/theme";
 
 ReactDOM.render(

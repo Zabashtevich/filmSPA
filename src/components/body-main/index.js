@@ -1,15 +1,15 @@
 import React from "react";
 
-import { Main, TitleBackground } from "./styles/body-main";
+import { Main, Section, BodyWrapper } from "./styles/body-main";
 
 export default function BodyMain({ children, ...rest }) {
-  return <Main {...rest}>{children}</Main>;
+  return (
+    <BodyWrapper {...rest}>
+      <Main>{children}</Main>
+    </BodyWrapper>
+  );
 }
 
-// BodyMain.Section = function BodyMainSection({ children, ...rest }) {
-//   return <Section {...rest}>{children}</Section>;
-// };
-
-BodyMain.TitleBackground = function BodyMainTitleBackground({ ...rest }) {
-  return <TitleBackground {...rest} />;
+BodyMain.Section = function BodyMainSection({ children, ...rest }) {
+  return <Section {...rest}>{children}</Section>;
 };

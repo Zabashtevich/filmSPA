@@ -42,7 +42,7 @@ export const Input = styled.input`
   flex: 1;
 `;
 export const Profile = styled.div`
-  weight: 30px;
+  width: 30px;
 `;
 export const Logo = styled(ReactRouterLink)`
   color: #fff;
@@ -52,7 +52,7 @@ export const Logo = styled(ReactRouterLink)`
 `;
 
 export const Background = styled.div`
-  background-color: #032541;
+  background-color: transparent;
 `;
 
 export const Icon = styled(FaSearch)`

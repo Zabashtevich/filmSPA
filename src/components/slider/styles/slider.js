@@ -1,0 +1,13 @@
+export const Container = styled.div``;
+export const SliderButtonNext = styled.div``;
+export const SliderButtonPrev = styled.div``;
+export const SliderItem = styled.div``;
+export const SliderThumbnail = styled.div``;
+export const SliderImg = styled.div``;
+export const SliderGradient = styled.div``;
+export const SliderMetaData = styled.div``;
+export const SliderTitle = styled.div``;
+export const SliderGenreWrapper = styled.div``;
+export const SliderGenreItem = styled.div``;
+export const SliderDotsWrapper = styled.div``;
+export const SliderDot = styled.div``;

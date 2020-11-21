@@ -1,12 +1,7 @@
 import styled from "styled-components/macro";
 
-export const Main = styled.main`
-  width: 1300px;
-  height: auto;
-`;
+export const Main = styled.main``;
 
-export const TitleBackground = styled.div`
-  background-image: url(./assets/images/123.jpg);
-  width: 100px;
-  height: 100px;
-`;
+export const Section = styled.section``;
+
+export const BodyWrapper = styled.div``;

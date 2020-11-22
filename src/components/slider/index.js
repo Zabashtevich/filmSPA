@@ -1,9 +1,9 @@
 import React from "react";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 
 import {
   Container,
-  SliderButtonPrev,
-  SliderButtonNext,
+  SliderButton,
   SliderItem,
   SliderThumbnail,
   SliderImg,
@@ -16,15 +16,21 @@ import {
   SliderDot,
   SliderDescription,
   Wrapper,
+  SliderColor,
+  SliderItemContainer,
 } from "./styles/slider";
 
 export default function Slider({ children, ...rest }) {
   return (
     <Container {...rest}>
       <Wrapper>
-        <SliderButtonPrev />
+        <SliderButton direction={"left"}>
+          <FaAngleLeft />
+        </SliderButton>
         {children}
-        <SliderButtonNext />
+        <SliderButton direction={"right"}>
+          <FaAngleRight />
+        </SliderButton>
       </Wrapper>
     </Container>
   );
@@ -32,12 +38,14 @@ export default function Slider({ children, ...rest }) {
 
 Slider.Body = function SliderBody({ children, ...rest }) {
   return (
-    <>
+    <SliderItemContainer>
       <SliderItem>
         <SliderThumbnail>
           <SliderImg src={"./assets/images/slider/1.jpg"} />
           <SliderGradient />
+          <SliderColor />
         </SliderThumbnail>
+
         <SliderMetaData>
           <SliderTitle>Once Upon a Time... in Hollywood</SliderTitle>
           <SliderTagWrapper>
@@ -55,7 +63,6 @@ Slider.Body = function SliderBody({ children, ...rest }) {
       <SliderItem>
         <SliderThumbnail>
           <SliderImg src={"./assets/images/slider/2.jpg"} />
-          <SliderGradient />
         </SliderThumbnail>
         <SliderMetaData>
           <SliderTitle>123</SliderTitle>
@@ -104,13 +111,17 @@ Slider.Body = function SliderBody({ children, ...rest }) {
           <SliderDescription>sdfsdf</SliderDescription>
         </SliderMetaData>
       </SliderItem>
-    </>
+    </SliderItemContainer>
   );
 };
 
 Slider.Dots = function SliderDots({ ...rest }) {
   return (
     <SliderDotsWrapper>
+      <SliderDot active={true} />
+      <SliderDot />
+      <SliderDot />
+      <SliderDot />
       <SliderDot />
     </SliderDotsWrapper>
   );

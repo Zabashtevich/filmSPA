@@ -1,6 +1,7 @@
 import styled from "styled-components/macro";
 import { Link as ReactRouterLink } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
+
 export const Container = styled.div`
   display: flex;
   justify-content: space-between;
@@ -16,11 +17,11 @@ export const Inner = styled.ul`
   align-items: center;
 `;
 export const Link = styled(ReactRouterLink)`
-  color: #fff;
+  color: #000;
   text-decoration: none;
   margin: 20px;
   font-size: ${({ theme }) => theme.fontSize.small};
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  font-weight: ${({ theme }) => theme.fontWeightStandart.bold};
   padding: 5px;
   display: block;
   transition: box-shadow 1s;

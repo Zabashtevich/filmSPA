@@ -1,5 +1,7 @@
 import React from "react";
-import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 import {
   Container,
@@ -18,111 +20,84 @@ import {
   Wrapper,
   SliderColor,
   SliderItemContainer,
+  SliderLinkButton,
+  SliderLinkButtonIcon,
 } from "./styles/slider";
 
-export default function Slider({ children, ...rest }) {
+export default function Slider({
+  slidesLength,
+  sliderIndex,
+  setIndex,
+  children,
+  setAnimationRight,
+  ...rest
+}) {
   return (
     <Container {...rest}>
       <Wrapper>
-        <SliderButton direction={"left"}>
-          <FaAngleLeft />
-        </SliderButton>
+        {sliderIndex !== 0 ? (
+          <SliderButton
+            direction={"left"}
+            onClick={() => setIndex((prev) => --prev)}
+          >
+            <FaChevronLeft />
+          </SliderButton>
+        ) : null}
         {children}
-        <SliderButton direction={"right"}>
-          <FaAngleRight />
-        </SliderButton>
+        {sliderIndex !== slidesLength - 1 ? (
+          <SliderButton
+            direction={"right"}
+            onClick={() => {
+              setIndex((prev) => ++prev);
+              setAnimationRight(true);
+            }}
+          >
+            <FaChevronRight />
+          </SliderButton>
+        ) : null}
       </Wrapper>
     </Container>
   );
 }
 
-Slider.Body = function SliderBody({ children, ...rest }) {
+Slider.Body = function SliderBody({ animationRight, data, children, ...rest }) {
   return (
-    <SliderItemContainer>
-      <SliderItem>
-        <SliderThumbnail>
-          <SliderImg src={"./assets/images/slider/1.jpg"} />
-          <SliderGradient />
-          <SliderColor />
-        </SliderThumbnail>
-
-        <SliderMetaData>
-          <SliderTitle>Once Upon a Time... in Hollywood</SliderTitle>
-          <SliderTagWrapper>
-            <SliderTagItem>Commedy</SliderTagItem>
-            <SliderTagItem>Drama</SliderTagItem>
-            <SliderTagItem>2019</SliderTagItem>
-          </SliderTagWrapper>
-          <SliderDescription>
-            In 1969 Los Angeles, a former Western star and his longtime stunt
-            double struggle to find success in a Hollywood that they don't
-            recognize ...
-          </SliderDescription>
-        </SliderMetaData>
-      </SliderItem>
-      <SliderItem>
-        <SliderThumbnail>
-          <SliderImg src={"./assets/images/slider/2.jpg"} />
-        </SliderThumbnail>
-        <SliderMetaData>
-          <SliderTitle>123</SliderTitle>
-          <SliderTagWrapper>
-            <SliderTagItem>123</SliderTagItem>
-          </SliderTagWrapper>
-          <SliderDescription>sdfsdf</SliderDescription>
-        </SliderMetaData>
-      </SliderItem>
-      <SliderItem>
-        <SliderThumbnail>
-          <SliderImg src={"./assets/images/slider/3.jpg"} />
-          <SliderGradient />
-        </SliderThumbnail>
-        <SliderMetaData>
-          <SliderTitle>123</SliderTitle>
-          <SliderTagWrapper>
-            <SliderTagItem>123</SliderTagItem>
-          </SliderTagWrapper>
-          <SliderDescription>sdfsdf</SliderDescription>
-        </SliderMetaData>
-      </SliderItem>
-      <SliderItem>
-        <SliderThumbnail>
-          <SliderImg src={"./assets/images/slider/4.jpg"} />
-          <SliderGradient />
-        </SliderThumbnail>
-        <SliderMetaData>
-          <SliderTitle>123</SliderTitle>
-          <SliderTagWrapper>
-            <SliderTagItem>123</SliderTagItem>
-          </SliderTagWrapper>
-          <SliderDescription>sdfsdf</SliderDescription>
-        </SliderMetaData>
-      </SliderItem>
-      <SliderItem>
-        <SliderThumbnail>
-          <SliderImg src={"./assets/images/slider/5.jpg"} />
-          <SliderGradient />
-        </SliderThumbnail>
-        <SliderMetaData>
-          <SliderTitle>123</SliderTitle>
-          <SliderTagWrapper>
-            <SliderTagItem>123</SliderTagItem>
-          </SliderTagWrapper>
-          <SliderDescription>sdfsdf</SliderDescription>
-        </SliderMetaData>
-      </SliderItem>
+    <SliderItemContainer {...rest}>
+      {data.map((item) => {
+        return (
+          <CSSTransition classNames="fade" timeout={3000} key={item.image}>
+            <SliderItem animationRight={animationRight}>
+              <SliderThumbnail>
+                <SliderImg src={`./assets/images/slider/${item.image}.jpg`} />
+                <SliderGradient color={item.color} />
+                <SliderColor color={item.color} />
+              </SliderThumbnail>
+              <SliderMetaData>
+                <SliderTitle>{item.film}</SliderTitle>
+                <SliderTagWrapper>
+                  {item.genres.map((item, _) => (
+                    <SliderTagItem key={_}>{item}</SliderTagItem>
+                  ))}
+                </SliderTagWrapper>
+                <SliderDescription>{item.description}</SliderDescription>
+              </SliderMetaData>
+              <SliderLinkButton>
+                <SliderLinkButtonIcon />
+              </SliderLinkButton>
+            </SliderItem>
+          </CSSTransition>
+        );
+      })}
     </SliderItemContainer>
   );
 };
 
-Slider.Dots = function SliderDots({ ...rest }) {
+Slider.Dots = function SliderDots({ sliderIndex, data, ...rest }) {
   return (
-    <SliderDotsWrapper>
-      <SliderDot active={true} />
-      <SliderDot />
-      <SliderDot />
-      <SliderDot />
-      <SliderDot />
+    <SliderDotsWrapper {...rest}>
+      {data.map((item, _) => (
+        <SliderDot active={sliderIndex === _ ? true : null} key={_} />
+      ))}
     </SliderDotsWrapper>
   );
 };

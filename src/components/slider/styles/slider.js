@@ -1,4 +1,6 @@
 import styled, { css } from "styled-components/macro";
+import { Link as ReactRouterLink } from "react-router-dom";
+import { HiOutlineArrowRight } from "react-icons/hi";
 
 export const Container = styled.div`
   width: 1800px;
@@ -13,20 +15,22 @@ export const Wrapper = styled.div`
 `;
 
 export const SliderButton = styled.button`
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   position: absolute;
   border-radius: 50%;
   border: none;
-  top: 50%;
+  top: 40%;
   transform: translateY(-50%);
   z-index: 100;
   box-shadow: 2px 4px 30px 1px;
   cursor: pointer;
+  outline: none;
+
   ${({ direction }) =>
     direction &&
     css`
-      ${direction}: -30px;
+      ${direction}: -40px;
     `}
 `;
 
@@ -37,6 +41,7 @@ export const SliderThumbnail = styled.div`
   flex-direction: row;
   width: inherit;
   flex-wrap: nowrap;
+  z-index: 50;
 `;
 
 export const SliderImg = styled.img`
@@ -51,11 +56,15 @@ export const SliderGradient = styled.div`
   top: 0;
   left: 0;
   transition: all 3s linear;
-  background: linear-gradient(
-    15deg,
-    hsla(50, 50%, 40%, 1) 5%,
-    hsla(50, 50%, 40%, 0) 75%
-  );
+  ${({ color }) =>
+    color &&
+    css`
+      background: linear-gradient(
+        15deg,
+        hsla(${color}, 50%, 40%, 1) 5%,
+        hsla(50, 50%, 40%, 0) 75%
+      );
+    `}
 `;
 
 export const SliderColor = styled.div`
@@ -66,7 +75,7 @@ export const SliderColor = styled.div`
   left: 0;
   opacity: 0;
   transition: all 0.5s;
-  background-color: hsla(50, 50%, 40%, 1);
+  background-color: ${({ color }) => `hsla(${color}, 50%, 40%, 1)`};
 `;
 
 export const SliderMetaData = styled.div`
@@ -74,12 +83,13 @@ export const SliderMetaData = styled.div`
   position: absolute;
   display: flex;
   flex-direction: column;
-  top: 50%;
+  top: 55%;
   margin: 5px 30px;
   color: #fff;
   overflow: hidden;
   letter-spacing: 0.5px;
   transition: all 0.5s;
+  z-index: 50;
 `;
 
 export const SliderTitle = styled.div`
@@ -144,10 +154,27 @@ export const SliderItem = styled.div`
   width: 360px;
   height: 540px;
   z-index: 50;
-  transition: all 0.5s;
-  cursor: pointer;
+  transition: all 5s;
+
+  &.fade-enter {
+    opacity: 0.01;
+  }
+
+  &.fade-enter-active {
+    opacity: 1;
+  }
+
+  // exit from
+  &.fade-exit {
+    opacity: 1;
+  }
+
+  // exit to
+  &.fade-exit-active {
+    opacity: 0;
+  }
   &:hover {
-    transform: scale(1.1); //Own Hover
+    transform: scale(1.03); //Own Hover
     z-index: 75;
 
     ${SliderDescription} {
@@ -157,11 +184,32 @@ export const SliderItem = styled.div`
       top: 30%;
     }
     ${SliderColor} {
-      opacity: 0.4;
+      opacity: 0.6;
     }
   }
 `;
 export const SliderItemContainer = styled.div`
   display: flex;
   flex-direction: row;
+`;
+
+export const SliderLinkButton = styled(ReactRouterLink)`
+  width: 45px;
+  height: 45px;
+  z-index: 100;
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  border: 1px #fff solid;
+  border-radius: 50%;
+  cursor: pointer;
+`;
+
+export const SliderLinkButtonIcon = styled(HiOutlineArrowRight)`
+  color: #fff;
+  position: absolute;
+  font-size: ${({ theme }) => theme.fontSize.large};
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;

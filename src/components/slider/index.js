@@ -1,5 +1,5 @@
 import React from "react";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { CSSTransition } from "react-transition-group";
 
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
@@ -27,9 +27,9 @@ import {
 export default function Slider({
   slidesLength,
   sliderIndex,
-  setIndex,
+  setSliderIndex,
   children,
-  setAnimationRight,
+  setAnimationSide,
   ...rest
 }) {
   return (
@@ -38,7 +38,7 @@ export default function Slider({
         {sliderIndex !== 0 ? (
           <SliderButton
             direction={"left"}
-            onClick={() => setIndex((prev) => --prev)}
+            onClick={() => setSliderIndex((prev) => --prev)}
           >
             <FaChevronLeft />
           </SliderButton>
@@ -47,10 +47,7 @@ export default function Slider({
         {sliderIndex !== slidesLength - 1 ? (
           <SliderButton
             direction={"right"}
-            onClick={() => {
-              setIndex((prev) => ++prev);
-              setAnimationRight(true);
-            }}
+            onClick={() => setSliderIndex((prev) => ++prev)}
           >
             <FaChevronRight />
           </SliderButton>
@@ -60,13 +57,19 @@ export default function Slider({
   );
 }
 
-Slider.Body = function SliderBody({ animationRight, data, children, ...rest }) {
+Slider.Body = function SliderBody({ data, children, ...rest }) {
   return (
     <SliderItemContainer {...rest}>
       {data.map((item) => {
         return (
-          <CSSTransition classNames="fade" timeout={3000} key={item.image}>
-            <SliderItem animationRight={animationRight}>
+          <CSSTransition
+            in={!!data}
+            appear={true}
+            key={item.image}
+            timeout={100}
+            classNames="fade"
+          >
+            <SliderItem>
               <SliderThumbnail>
                 <SliderImg src={`./assets/images/slider/${item.image}.jpg`} />
                 <SliderGradient color={item.color} />
@@ -92,11 +95,20 @@ Slider.Body = function SliderBody({ animationRight, data, children, ...rest }) {
   );
 };
 
-Slider.Dots = function SliderDots({ sliderIndex, data, ...rest }) {
+Slider.Dots = function SliderDots({
+  setSliderIndex,
+  sliderIndex,
+  data,
+  ...rest
+}) {
   return (
     <SliderDotsWrapper {...rest}>
-      {data.map((item, _) => (
-        <SliderDot active={sliderIndex === _ ? true : null} key={_} />
+      {data.map((_, index) => (
+        <SliderDot
+          onClick={() => setSliderIndex(index)}
+          active={sliderIndex === index ? true : null}
+          key={index}
+        />
       ))}
     </SliderDotsWrapper>
   );

@@ -5,27 +5,21 @@ import Data from "./data.json";
 
 export default function BodyMainContainer() {
   const [sliderIndex, setSliderIndex] = useState(1);
-  const [animationRight, setAnimationRight] = useState(false);
 
-  useEffect(() => {
-    if (!animationRight) return;
-
-    setAnimationRight(false);
-  }, [animationRight]);
   return (
     <BodyMain>
       <BodyMain.Section>
         <Slider
-          setIndex={setSliderIndex}
+          setSliderIndex={setSliderIndex}
           sliderIndex={sliderIndex}
           slidesLength={Data.length}
-          setAnimationRight={setAnimationRight}
         >
-          <Slider.Body
-            data={Data[sliderIndex]}
-            animationRight={animationRight}
+          <Slider.Body data={Data[sliderIndex]} />
+          <Slider.Dots
+            data={Data}
+            sliderIndex={sliderIndex}
+            setSliderIndex={setSliderIndex}
           />
-          <Slider.Dots data={Data} sliderIndex={sliderIndex} />
         </Slider>
       </BodyMain.Section>
     </BodyMain>

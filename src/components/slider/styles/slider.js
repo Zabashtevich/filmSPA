@@ -154,29 +154,22 @@ export const SliderItem = styled.div`
   width: 360px;
   height: 540px;
   z-index: 50;
-  transition: all 5s;
+  transition: all 1s;
 
-  &.fade-enter {
-    opacity: 0.01;
-  }
-
-  &.fade-enter-active {
-    opacity: 1;
-  }
-
-  // exit from
-  &.fade-exit {
-    opacity: 1;
-  }
-
-  // exit to
-  &.fade-exit-active {
+  &.fade-appear {
     opacity: 0;
   }
-  &:hover {
-    transform: scale(1.03); //Own Hover
-    z-index: 75;
 
+  &.fade-appear-active {
+    opacity: 1;
+    transition: opacity 1500ms forwards;
+  }
+  &.fade-appear-done {
+    &:hover {
+      transform: scale(1.03); //Own Hover
+    }
+  }
+  &:hover {
     ${SliderDescription} {
       opacity: 1;
     }
@@ -188,6 +181,7 @@ export const SliderItem = styled.div`
     }
   }
 `;
+
 export const SliderItemContainer = styled.div`
   display: flex;
   flex-direction: row;

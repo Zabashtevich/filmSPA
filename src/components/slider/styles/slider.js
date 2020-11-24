@@ -164,9 +164,11 @@ export const SliderItem = styled.div`
     opacity: 1;
     transition: opacity 500ms forwards;
   }
-  &.fade-appear-done {
+  &.fade-appear-done,
+  &.fade-enter-done {
     &:hover {
       transform: scale(1.03); //Own Hover
+      z-index: 51;
     }
   }
 

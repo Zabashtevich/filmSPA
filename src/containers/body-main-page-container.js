@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
-import { BodyMain, Slider } from "../components";
+import { BodyMain, Slider, Tab } from "../components";
 import Data from "./data.json";
 
 export default function BodyMainContainer() {
@@ -21,6 +21,14 @@ export default function BodyMainContainer() {
             setSliderIndex={setSliderIndex}
           />
         </Slider>
+      </BodyMain.Section>
+      <BodyMain.Section container>
+        <Tab>
+          <Tab.Selector>
+            <Tab.Anchor color>Day</Tab.Anchor>
+            <Tab.Anchor>Week</Tab.Anchor>
+          </Tab.Selector>
+        </Tab>
       </BodyMain.Section>
     </BodyMain>
   );

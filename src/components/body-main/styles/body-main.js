@@ -3,6 +3,7 @@ import styled, { css } from "styled-components/macro";
 export const Main = styled.main`
   display: flex;
   justify-content: center;
+  flex-direction: column;
 `;
 
 export const Section = styled.section`

@@ -162,12 +162,32 @@ export const SliderItem = styled.div`
 
   &.fade-appear-active {
     opacity: 1;
-    transition: opacity 1500ms forwards;
+    transition: opacity 500ms forwards;
   }
   &.fade-appear-done {
     &:hover {
       transform: scale(1.03); //Own Hover
     }
+  }
+
+  &.fade-enter {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  &.fade-enter.fade-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 250ms linear, transform 250ms linear;
+  }
+
+  &.fade-exit {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  &.fade-exit-active {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 250ms linear, transform 250ms linear;
   }
   &:hover {
     ${SliderDescription} {

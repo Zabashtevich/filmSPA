@@ -1,5 +1,9 @@
 import React from "react";
-import { CSSTransition } from "react-transition-group";
+import {
+  CSSTransition,
+  TransitionGroup,
+  SwitchTransition,
+} from "react-transition-group";
 
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
@@ -59,39 +63,41 @@ export default function Slider({
 
 Slider.Body = function SliderBody({ data, children, ...rest }) {
   return (
-    <SliderItemContainer {...rest}>
-      {data.map((item) => {
-        return (
-          <CSSTransition
-            in={!!data}
-            appear={true}
-            key={item.image}
-            timeout={100}
-            classNames="fade"
-          >
-            <SliderItem>
-              <SliderThumbnail>
-                <SliderImg src={`./assets/images/slider/${item.image}.jpg`} />
-                <SliderGradient color={item.color} />
-                <SliderColor color={item.color} />
-              </SliderThumbnail>
-              <SliderMetaData>
-                <SliderTitle>{item.film}</SliderTitle>
-                <SliderTagWrapper>
-                  {item.genres.map((item, _) => (
-                    <SliderTagItem key={_}>{item}</SliderTagItem>
-                  ))}
-                </SliderTagWrapper>
-                <SliderDescription>{item.description}</SliderDescription>
-              </SliderMetaData>
-              <SliderLinkButton>
-                <SliderLinkButtonIcon />
-              </SliderLinkButton>
-            </SliderItem>
-          </CSSTransition>
-        );
-      })}
-    </SliderItemContainer>
+    <TransitionGroup component={SliderItemContainer}>
+      <SliderItemContainer>
+        {data.map((item) => {
+          return (
+            <CSSTransition
+              classNames="fade"
+              timeout={250}
+              appear={true}
+              in={!!data}
+              key={item.image}
+            >
+              <SliderItem>
+                <SliderThumbnail>
+                  <SliderImg src={`./assets/images/slider/${item.image}.jpg`} />
+                  <SliderGradient color={item.color} />
+                  <SliderColor color={item.color} />
+                </SliderThumbnail>
+                <SliderMetaData>
+                  <SliderTitle>{item.film}</SliderTitle>
+                  <SliderTagWrapper>
+                    {item.genres.map((item, _) => (
+                      <SliderTagItem key={_}>{item}</SliderTagItem>
+                    ))}
+                  </SliderTagWrapper>
+                  <SliderDescription>{item.description}</SliderDescription>
+                </SliderMetaData>
+                <SliderLinkButton>
+                  <SliderLinkButtonIcon />
+                </SliderLinkButton>
+              </SliderItem>
+            </CSSTransition>
+          );
+        })}
+      </SliderItemContainer>
+    </TransitionGroup>
   );
 };
 

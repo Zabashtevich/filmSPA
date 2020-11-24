@@ -5,6 +5,7 @@ import Data from "./data.json";
 
 export default function BodyMainContainer() {
   const [sliderIndex, setSliderIndex] = useState(1);
+  const [tabActive, setTabActive] = useState(1);
 
   return (
     <BodyMain>
@@ -25,8 +26,20 @@ export default function BodyMainContainer() {
       <BodyMain.Section container>
         <Tab>
           <Tab.Selector>
-            <Tab.Anchor color>Day</Tab.Anchor>
-            <Tab.Anchor>Week</Tab.Anchor>
+            <Tab.Anchor
+              color={tabActive === 1 ? true : false}
+              onClick={() => setTabActive(1)}
+              side={"left"}
+            >
+              Day
+            </Tab.Anchor>
+            <Tab.Anchor
+              color={tabActive === 2 ? true : false}
+              onClick={() => setTabActive(2)}
+              side={"right"}
+            >
+              Week
+            </Tab.Anchor>
           </Tab.Selector>
         </Tab>
       </BodyMain.Section>

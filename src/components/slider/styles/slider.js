@@ -92,9 +92,11 @@ export const SliderMetaData = styled.div`
   z-index: 50;
 `;
 
-export const SliderTitle = styled.div`
+export const SliderTitle = styled(ReactRouterLink)`
   font-weight: ${({ theme }) => theme.fontWeightCard.bold};
   font-size: ${({ theme }) => theme.fontSize.huge};
+  text-decoration: none;
+  color: #fff;
 `;
 
 export const SliderTagWrapper = styled.div`

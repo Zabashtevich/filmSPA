@@ -15,9 +15,9 @@ export default function HeaderMainContainer() {
             alt="Logo"
           />
         </HeaderMain.Logo>
-        <HeaderMain.Link to={"/"}>Films</HeaderMain.Link>
-        <HeaderMain.Link to={"/"}>Series</HeaderMain.Link>
-        <HeaderMain.Link to={"/"}>Actors</HeaderMain.Link>
+        <HeaderMain.Link to={"/"}>FILMS</HeaderMain.Link>
+        <HeaderMain.Link to={"/"}>SERIES</HeaderMain.Link>
+        <HeaderMain.Link to={"/"}>ACTORS</HeaderMain.Link>
       </HeaderMain.Inner>
       <HeaderMain.Inner>
         <HeaderMain.Wrapper>
@@ -29,7 +29,7 @@ export default function HeaderMainContainer() {
           />
           <HeaderMain.Icon />
         </HeaderMain.Wrapper>
-        <HeaderMain.Link to={"/"}>Login</HeaderMain.Link>
+        <HeaderMain.Link to={"/"}>LOGIN</HeaderMain.Link>
       </HeaderMain.Inner>
     </HeaderMain>
   );

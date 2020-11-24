@@ -10,9 +10,9 @@ Tab.Selector = function TabSelector({ children, ...rest }) {
   return <Selector {...rest}>{children}</Selector>;
 };
 
-Tab.Anchor = function TabAnchor({ active, children, ...rest }) {
+Tab.Anchor = function TabAnchor({ children, ...rest }) {
   return (
-    <Anchor active {...rest}>
+    <Anchor {...rest}>
       <Category>{children}</Category>
     </Anchor>
   );

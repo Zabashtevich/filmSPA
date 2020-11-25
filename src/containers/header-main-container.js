@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { FaSearch } from "react-icons/fa";
 
 import { HeaderMain } from "../components";
 
@@ -27,7 +26,7 @@ export default function HeaderMainContainer() {
             onBlur={() => setInputActive(!inputActive)}
             placeholder="Search..."
           />
-          <HeaderMain.Icon />
+          <HeaderMain.Icon onClick={() => setInputActive(!inputActive)} />
         </HeaderMain.Wrapper>
         <HeaderMain.Link to={"/"}>LOGIN</HeaderMain.Link>
       </HeaderMain.Inner>

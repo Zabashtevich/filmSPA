@@ -187,6 +187,7 @@ export const SliderItem = styled.div`
   &.fade-exit {
     opacity: 1;
     transform: translateY(0);
+    display: none;
   }
   &.fade-exit-active {
     opacity: 0;

@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 
+import useDoFetch from "../hooks/useFetchData";
+
 import { BodyMain, Slider, Tab, CardList } from "../components";
 import Data from "./data.json";
 
 export default function BodyMainContainer() {
   const [sliderIndex, setSliderIndex] = useState(1);
   const [tabActive, setTabActive] = useState(1);
-
+  const list = useDoFetch();
+  {
+    console.log(list);
+  }
   return (
     <BodyMain>
       <BodyMain.Section>
@@ -45,7 +50,6 @@ export default function BodyMainContainer() {
         <CardList>
           <CardList.ItemContainer>
             <CardList.ItemContent></CardList.ItemContent>
-            <CardList.MetaData></CardList.MetaData>
           </CardList.ItemContainer>
         </CardList>
       </BodyMain.Section>

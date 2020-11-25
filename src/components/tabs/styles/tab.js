@@ -30,6 +30,7 @@ export const Anchor = styled.div`
   padding: 10px;
   cursor: pointer;
   z-index: 50;
+  transition: all 500ms;
   ${({ side }) =>
     side === "left"
       ? "border-radius: 2rem 0 0 2rem"

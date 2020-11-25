@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { BodyMain, Slider, Tab } from "../components";
+import { BodyMain, Slider, Tab, CardList } from "../components";
 import Data from "./data.json";
 
 export default function BodyMainContainer() {
@@ -42,6 +42,12 @@ export default function BodyMainContainer() {
             </Tab.Anchor>
           </Tab.Selector>
         </Tab>
+        <CardList>
+          <CardList.ItemContainer>
+            <CardList.ItemContent></CardList.ItemContent>
+            <CardList.MetaData></CardList.MetaData>
+          </CardList.ItemContainer>
+        </CardList>
       </BodyMain.Section>
     </BodyMain>
   );

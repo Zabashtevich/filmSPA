@@ -1,6 +1,13 @@
 import React from "react";
 
-import { Container, Selector, Anchor, Category, Title } from "./styles/tab";
+import {
+  Container,
+  Selector,
+  Anchor,
+  Category,
+  Title,
+  TitleInner,
+} from "./styles/tab";
 
 export default function Tab({ children, ...rest }) {
   return <Container {...rest}>{children}</Container>;
@@ -19,8 +26,8 @@ Tab.Anchor = function TabAnchor({ children, ...rest }) {
 };
 Tab.Title = function TabTitle({ children, ...rest }) {
   return (
-    <TitleWrapper {...rest}>
+    <TitleInner {...rest}>
       <Title> {children}</Title>
-    </TitleWrapper>
+    </TitleInner>
   );
 };

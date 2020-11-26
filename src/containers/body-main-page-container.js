@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 
 import useDoFetch from "../hooks/useFetchData";
+import { anchorListType, anchorListPeriod } from "../constants/constants";
+import { range } from "../utils/utils";
 
-import { BodyMain, Slider, Tab, CardList } from "../components";
+import { BodyMain, Slider, Tab, CardList, Pagination } from "../components";
 import Data from "./data.json";
 
 export default function BodyMainContainer() {
   const [sliderIndex, setSliderIndex] = useState(1);
   const [typeTabByPopular, setTypeTabByPopularActive] = useState("Day");
-  const [tabListType, setTabListTypeActive] = useState("Movie");
-  const list = useDoFetch();
+  const [tabListType, setTabListTypeActive] = useState("All");
+  const list = useDoFetch(typeTabByPopular, tabListType);
+  const pagesAmount = range(1, 10);
 
   return (
     <BodyMain>
@@ -27,55 +30,56 @@ export default function BodyMainContainer() {
           />
         </Slider>
       </BodyMain.Section>
-      <BodyMain.Section container>
+      <BodyMain.Section>
         <Tab>
           <Tab.Title>Popular by:</Tab.Title>
           <Tab.Selector>
-            <Tab.Anchor
-              color={typeTabByPopular === "Day" ? true : false}
-              onClick={() => setTypeTabByPopularActive("Day")}
-              side={"left"}
-            >
-              Day
-            </Tab.Anchor>
-            <Tab.Anchor
-              color={typeTabByPopular === "Week" ? true : false}
-              onClick={() => setTypeTabByPopularActive("Week")}
-              side={"right"}
-            >
-              Week
-            </Tab.Anchor>
+            {anchorListPeriod.map((item) => {
+              return (
+                <Tab.Anchor
+                  selected={typeTabByPopular === item.name ? true : false}
+                  onClick={() => setTypeTabByPopularActive(item.name)}
+                  side={item.side}
+                >
+                  {item.name}
+                </Tab.Anchor>
+              );
+            })}
           </Tab.Selector>
           <Tab.Title>List type:</Tab.Title>
           <Tab.Selector>
-            <Tab.Anchor
-              side={"left"}
-              color={tabListType === "Movie" ? true : false}
-              onClick={() => setTabListTypeActive("Movie")}
-            >
-              Movie
-            </Tab.Anchor>
-            <Tab.Anchor
-              side={"middle"}
-              color={tabListType === "Siries" ? true : false}
-              onClick={() => setTabListTypeActive("Siries")}
-            >
-              Siries
-            </Tab.Anchor>
-            <Tab.Anchor
-              side={"right"}
-              color={tabListType === "TV" ? true : false}
-              onClick={() => setTabListTypeActive("TV")}
-            >
-              TV
-            </Tab.Anchor>
+            {anchorListType.map((item) => {
+              return (
+                <Tab.Anchor
+                  key={item.name}
+                  side={item.side}
+                  selected={tabListType === item.name ? true : false}
+                  onClick={() => setTabListTypeActive(item.name)}
+                >
+                  {item.name}
+                </Tab.Anchor>
+              );
+            })}
           </Tab.Selector>
         </Tab>
         <CardList>
-          <CardList.ItemContainer>
-            <CardList.ItemContent></CardList.ItemContent>
-          </CardList.ItemContainer>
+          {list &&
+            list.results.map((item) => {
+              return (
+                <CardList.ItemContainer key={item.id}>
+                  <CardList.ItemContent />
+                  <CardList.MetaData />
+                </CardList.ItemContainer>
+              );
+            })}
         </CardList>
+        <Pagination>
+          <Pagination.List>
+            {pagesAmount.map((item) => (
+              <Pagination.Item>{item}</Pagination.Item>
+            ))}
+          </Pagination.List>
+        </Pagination>
       </BodyMain.Section>
     </BodyMain>
   );

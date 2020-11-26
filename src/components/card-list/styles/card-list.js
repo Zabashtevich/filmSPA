@@ -2,17 +2,20 @@ import styled from "styled-components/macro";
 
 export const Container = styled.div`
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
-  width: 500px;
-  height: 500px;
+  width: 1800px;
   margin-top: 1rem;
+  justify-content: space-between;
+  margin: 1rem auto;
 `;
 export const ItemContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 360px;
-  height: 420px;
-  background-color: #fff;
+  width: 260px;
+  height: 320px;
+  background-color: #000;
+  margin: 1rem 1rem;
 `;
 export const ContentWrapper = styled.div`
   display: flex;

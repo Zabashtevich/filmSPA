@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components/macro";
+import styled from "styled-components/macro";
 
 export const Main = styled.main`
   display: flex;
@@ -7,11 +7,8 @@ export const Main = styled.main`
 `;
 
 export const Section = styled.section`
-  ${({ container }) =>
-    container &&
-    css`
-      max-width: 1300px;
-    `}
+  display: flex;
+  flex-direction: column;
   margin: 20px 40px;
 `;
 

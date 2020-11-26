@@ -2,7 +2,6 @@ import styled, { css } from "styled-components/macro";
 
 export const Container = styled.div`
   display: flex;
-  margin-left: 40px;
 `;
 
 export const Category = styled.h3`
@@ -20,7 +19,6 @@ export const Selector = styled.div`
   border: 2px #fff solid;
   border-radius: 2rem;
   align-items: center;
-  margin-left: 20px;
 `;
 
 export const Anchor = styled.div`
@@ -39,8 +37,8 @@ export const Anchor = styled.div`
       : side === "right"
       ? "border-radius: 0 2rem 2rem 0"
       : null};
-  ${({ color }) =>
-    color &&
+  ${({ selected }) =>
+    selected &&
     css`
       background-color: ${({ theme }) => theme.colors.headerIcon};
     `};
@@ -51,9 +49,14 @@ export const Title = styled.h4`
   margin: 0;
   align-self: center;
   color: #fff;
+  user-select: none;
 `;
 
-export const TitleWrapper = styled.div`
+export const TitleInner = styled.div`
   display: flex;
   font-size: ${({ theme }) => theme.fontSize.large};
+  margin-right: 20px;
+  &:nth-child(1n + 2) {
+    margin: 0 20px;
+  }
 `;

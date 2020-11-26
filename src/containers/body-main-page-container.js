@@ -7,11 +7,10 @@ import Data from "./data.json";
 
 export default function BodyMainContainer() {
   const [sliderIndex, setSliderIndex] = useState(1);
-  const [tabActive, setTabActive] = useState(1);
+  const [typeTabByPopular, setTypeTabByPopularActive] = useState("Day");
+  const [tabListType, setTabListTypeActive] = useState("Movie");
   const list = useDoFetch();
-  {
-    console.log(list);
-  }
+
   return (
     <BodyMain>
       <BodyMain.Section>
@@ -30,20 +29,45 @@ export default function BodyMainContainer() {
       </BodyMain.Section>
       <BodyMain.Section container>
         <Tab>
+          <Tab.Title>Popular by:</Tab.Title>
           <Tab.Selector>
             <Tab.Anchor
-              color={tabActive === 1 ? true : false}
-              onClick={() => setTabActive(1)}
+              color={typeTabByPopular === "Day" ? true : false}
+              onClick={() => setTypeTabByPopularActive("Day")}
               side={"left"}
             >
               Day
             </Tab.Anchor>
             <Tab.Anchor
-              color={tabActive === 2 ? true : false}
-              onClick={() => setTabActive(2)}
+              color={typeTabByPopular === "Week" ? true : false}
+              onClick={() => setTypeTabByPopularActive("Week")}
               side={"right"}
             >
               Week
+            </Tab.Anchor>
+          </Tab.Selector>
+          <Tab.Title>List type:</Tab.Title>
+          <Tab.Selector>
+            <Tab.Anchor
+              side={"left"}
+              color={tabListType === "Movie" ? true : false}
+              onClick={() => setTabListTypeActive("Movie")}
+            >
+              Movie
+            </Tab.Anchor>
+            <Tab.Anchor
+              side={"middle"}
+              color={tabListType === "Siries" ? true : false}
+              onClick={() => setTabListTypeActive("Siries")}
+            >
+              Siries
+            </Tab.Anchor>
+            <Tab.Anchor
+              side={"right"}
+              color={tabListType === "TV" ? true : false}
+              onClick={() => setTabListTypeActive("TV")}
+            >
+              TV
             </Tab.Anchor>
           </Tab.Selector>
         </Tab>

@@ -1,16 +1,17 @@
 import { useState, useEffect } from "react";
 
-export default function useDoFetch(type = 1) {
+export default function useFetch(
+  typeTabByPopular = "day",
+  tabListType = "all",
+) {
   const [list, setList] = useState("");
-
-  const periodType = type === 1 ? "day" : "week";
 
   useEffect(() => {
     fetch(
-      `https://api.themoviedb.org/3/trending/all/${periodType}?api_key=${process.env.REACT_APP_API_KEY}`,
+      `https://api.themoviedb.org/3/trending/${tabListType}/${typeTabByPopular}?api_key=${process.env.REACT_APP_API_KEY}`,
     )
       .then((response) => response.json())
       .then((data) => setList(data));
-  }, [periodType]);
+  }, [tabListType, typeTabByPopular]);
   return list;
 }

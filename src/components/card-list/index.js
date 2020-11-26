@@ -1,4 +1,5 @@
 import React from "react";
+import { baseImageLink } from "../../constants/constants";
 
 import {
   Container,
@@ -7,9 +8,9 @@ import {
   ItemImage,
   ItemTitle,
   ItemDate,
-  DataWrapper,
   VoteAverage,
   VoteCount,
+  ItemDescriptionInner,
 } from "./styles/card-list";
 
 export default function CardList({ movieList, children, ...rest }) {
@@ -20,21 +21,22 @@ CardList.ItemContainer = function CardListItemContainer({ children, ...rest }) {
   return <ItemContainer {...rest}>{children}</ItemContainer>;
 };
 
-CardList.ItemContent = function CardListItemContent({ ...rest }) {
+CardList.ItemContent = function CardListItemContent({
+  src,
+  title,
+  date,
+  voteAverage,
+  voteCount,
+}) {
   return (
-    <ContentWrapper {...rest}>
-      <ItemImage />
-      <ItemTitle></ItemTitle>
-      <ItemDate></ItemDate>
+    <ContentWrapper>
+      <ItemImage src={baseImageLink + src} />
+      <ItemDescriptionInner>
+        <ItemTitle>{title}</ItemTitle>
+        <ItemDate>{date}</ItemDate>
+        <VoteAverage>Vote average:&nbsp; {voteAverage}</VoteAverage>
+        <VoteCount>Vote count: &nbsp; {voteCount}</VoteCount>
+      </ItemDescriptionInner>
     </ContentWrapper>
-  );
-};
-
-CardList.MetaData = function CardListMetaData({ ...rest }) {
-  return (
-    <DataWrapper {...rest}>
-      <VoteAverage />
-      <VoteCount />
-    </DataWrapper>
   );
 };

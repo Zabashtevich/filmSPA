@@ -8,8 +8,7 @@ import {
   ItemImage,
   ItemTitle,
   ItemDate,
-  VoteAverage,
-  VoteCount,
+  MetaScore,
   ItemDescriptionInner,
 } from "./styles/card-list";
 
@@ -21,22 +20,18 @@ CardList.ItemContainer = function CardListItemContainer({ children, ...rest }) {
   return <ItemContainer {...rest}>{children}</ItemContainer>;
 };
 
-CardList.ItemContent = function CardListItemContent({
-  src,
-  title,
-  date,
-  voteAverage,
-  voteCount,
-}) {
+CardList.ItemContent = function CardListItemContent({ src, title, date }) {
   return (
     <ContentWrapper>
       <ItemImage src={baseImageLink + src} />
       <ItemDescriptionInner>
         <ItemTitle>{title}</ItemTitle>
         <ItemDate>{date}</ItemDate>
-        <VoteAverage>Vote average:&nbsp; {voteAverage}</VoteAverage>
-        <VoteCount>Vote count: &nbsp; {voteCount}</VoteCount>
       </ItemDescriptionInner>
     </ContentWrapper>
   );
+};
+
+CardList.MetaScore = function CardListMetaScore({ children }) {
+  return <MetaScore>{children}</MetaScore>;
 };

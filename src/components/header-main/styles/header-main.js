@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 import { Link as ReactRouterLink } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 
@@ -17,10 +17,10 @@ export const Inner = styled.ul`
   align-items: center;
 `;
 export const Link = styled(ReactRouterLink)`
-  color: #000;
+  color: gray;
   text-decoration: none;
   margin: 20px;
-  font-size: ${({ theme }) => theme.fontSize.small};
+  font-size: ${({ theme }) => theme.fontSize.normal};
   font-weight: ${({ theme }) => theme.fontWeightStandart.bold};
   padding: 5px;
   display: block;
@@ -33,14 +33,14 @@ export const Link = styled(ReactRouterLink)`
 export const Input = styled.input`
   width: ${(props) => (props.widthActive ? "320px" : "160px")};
   height: 30px;
-  border-radius: 50px;
   outline: none;
   transition: width 0.5s;
   font-size: ${({ theme }) => theme.fontSize.normal};
-  color: ${({ theme }) => theme.colors.inputColor};
-  padding: 7px;
+  padding: 0.5rem;
   border: none;
-  flex: 1;
+  border-radius: 50px;
+  background: none;
+  color: #fff;
 `;
 export const Profile = styled.div`
   width: 30px;
@@ -58,19 +58,26 @@ export const Background = styled.div`
 
 export const Icon = styled(FaSearch)`
   font-size: ${({ theme }) => theme.fontSize.normal};
-  color: ${({ theme }) => theme.colors.headerIcon};
   text-align: center;
-  margin-right: 7px;
-
-  &:hover {
-    cursor: pointer;
-  }
+  margin: 0 1rem;
+  cursor: pointer;
+  color: #fff;
+  ${({ activeColor }) =>
+    activeColor &&
+    css`
+      color: ${({ theme }) => theme.colors.secondary};
+    `};
 `;
 
 export const Wrapper = styled.div`
   display: flex;
   align-items: center;
-  position: relative;
-  background-color: #fff;
   border-radius: 50px;
+  background: ${({ theme }) => theme.colors.secondary};
+  color: ${({ theme }) => theme.colors.headerInputIcon};
+  ${({ activeColor }) =>
+    activeColor &&
+    css`
+      background-color: #fff;
+    `};
 `;

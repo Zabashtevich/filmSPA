@@ -26,7 +26,7 @@ export const PaginationLink = styled(ReactRouterLink)`
 
 export const Item = styled.li`
   height: 40px;
-  width: 40px;
+  width: 50px;
   background: #fff;
   border-radius: 10px;
   display: flex;
@@ -37,7 +37,7 @@ export const Item = styled.li`
   ${({ selected }) =>
     selected &&
     css`
-      background: ${({ theme }) => theme.colors.headerIcon};
+      background: ${({ theme }) => theme.colors.secondary};
       ${PaginationLink} {
         color: #fff;
       }

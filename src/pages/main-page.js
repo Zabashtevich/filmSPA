@@ -5,9 +5,8 @@ import BodyMainContainer from "../containers/body-main-page-container";
 
 export default function MainPage() {
   return (
-    <>
+    <BodyMainContainer>
       <HeaderMainContainer />
-      <BodyMainContainer />
-    </>
+    </BodyMainContainer>
   );
 }

@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 
 export const Main = styled.main`
   display: flex;
@@ -10,13 +10,15 @@ export const Section = styled.section`
   display: flex;
   flex-direction: column;
   margin: 0 auto;
+  padding: ${({ padding }) => padding};
+  ${({ background }) =>
+    background &&
+    css`
+      background: ${background};
+      border-radius: 1rem 1rem 0 0;
+    `};
 `;
 
 export const BodyWrapper = styled.div`
-  background-image: linear-gradient(
-    135deg,
-    #231437 0%,
-    #2c385e 50%,
-    #336e6b 100%
-  );
+  background: ${({ theme }) => theme.colors.appMainColor};
 `;

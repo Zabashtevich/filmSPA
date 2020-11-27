@@ -4,9 +4,6 @@ import { HeaderMain } from "../components";
 
 export default function HeaderMainContainer() {
   const [inputActive, setInputActive] = useState(false);
-  window.onscroll = function (event) {
-    console.log(event);
-  };
 
   return (
     <HeaderMain>
@@ -22,14 +19,17 @@ export default function HeaderMainContainer() {
         <HeaderMain.Link to={"/"}>ACTORS</HeaderMain.Link>
       </HeaderMain.Inner>
       <HeaderMain.Inner>
-        <HeaderMain.Wrapper>
+        <HeaderMain.Wrapper activeColor={inputActive}>
           <HeaderMain.Input
             widthActive={inputActive}
             onFocus={() => setInputActive(!inputActive)}
             onBlur={() => setInputActive(!inputActive)}
-            placeholder="Search..."
+            placeholder={inputActive ? "Search..." : null}
           />
-          <HeaderMain.Icon onClick={() => setInputActive(!inputActive)} />
+          <HeaderMain.Icon
+            onClick={() => setInputActive(!inputActive)}
+            activeColor={inputActive}
+          />
         </HeaderMain.Wrapper>
         <HeaderMain.Link to={"/"}>LOGIN</HeaderMain.Link>
       </HeaderMain.Inner>

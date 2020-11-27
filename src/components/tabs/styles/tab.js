@@ -42,7 +42,7 @@ export const Anchor = styled.div`
   ${({ selected }) =>
     selected &&
     css`
-      background-color: ${({ theme }) => theme.colors.headerIcon};
+      background-color: ${({ theme }) => theme.colors.secondary};
     `};
 `;
 

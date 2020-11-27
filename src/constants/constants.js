@@ -9,6 +9,6 @@ export const anchorListPeriod = [
   { name: "Week", id: "week", side: "right" },
 ];
 
-export const baseImageLink = "https://image.tmdb.org/t/p/w400";
+export const baseImageLink = "https://image.tmdb.org/t/p/w200";
 
 export const maxPagination = 1000;

@@ -16,10 +16,10 @@ import {
 } from "../constants/constants";
 
 import { range, getPaginator, getPaginatorStart } from "../utils/utils";
-import Data from "./data.json";
+import Data from "../constants/data.json";
 import useFetch from "../hooks/useFetchData";
 
-export default function BodyMainContainer() {
+export default function BodyMainContainer({ children }) {
   const [sliderIndex, setSliderIndex] = useState(1);
   const [typeTabByPopular, setTypeTabByPopularActive] = useState("day");
   const [tabListType, setTabListTypeActive] = useState("all");
@@ -33,9 +33,9 @@ export default function BodyMainContainer() {
     tabListType,
     currentPage,
   );
-
   return (
     <BodyMain>
+      {children}
       <BodyMain.Section>
         <Slider
           setSliderIndex={setSliderIndex}
@@ -50,7 +50,7 @@ export default function BodyMainContainer() {
           />
         </Slider>
       </BodyMain.Section>
-      <BodyMain.Section>
+      <BodyMain.Section padding="1rem" background="">
         <Tab.Wrapper>
           <Tab>
             <Tab.Title>Popular by:</Tab.Title>
@@ -97,9 +97,8 @@ export default function BodyMainContainer() {
                       src={item.poster_path}
                       title={item.title || item.name}
                       date={item.release_date || item.first_air_date}
-                      voteAverage={item.vote_average}
-                      voteCount={item.vote_count}
                     />
+                    <CardList.MetaScore>{item.vote_average}</CardList.MetaScore>
                   </CardList.ItemContainer>
                 );
               })}

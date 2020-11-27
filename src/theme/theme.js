@@ -23,7 +23,10 @@ export default {
   },
   colors: {
     header: "#032541",
-    headerIcon: "#00AEFF",
-    inputColor: "rgba(0,0,0,0.5)",
+    secondary: "gray",
+    inputColor: "gray",
+    appMainColor:
+      "radial-gradient(circle, #414141, #323232, #232323, #151515, #000000)",
+    headerInputIcon: "#fff",
   },
 };

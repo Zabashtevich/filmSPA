@@ -1,8 +1,19 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 
-import { BodyMain, Slider, Tab, CardList, Pagination } from "../components";
-import { anchorListType, anchorListPeriod } from "../constants/constants";
+import {
+  BodyMain,
+  Slider,
+  Tab,
+  CardList,
+  Pagination,
+  CardListSkeleton,
+} from "../components";
+import {
+  anchorListType,
+  anchorListPeriod,
+  maxPagination,
+} from "../constants/constants";
 
 import { range, getPaginator, getPaginatorStart } from "../utils/utils";
 import Data from "./data.json";
@@ -16,7 +27,8 @@ export default function BodyMainContainer() {
   const currentPage = getPaginator(location);
   const paginatorStart = getPaginatorStart(currentPage);
   const pagesAmount = range(paginatorStart, 10);
-  const { list, setPage } = useFetch(
+  const skeletonAmount = range(1, 40);
+  const { list, setPage, loading } = useFetch(
     typeTabByPopular,
     tabListType,
     currentPage,
@@ -72,26 +84,29 @@ export default function BodyMainContainer() {
           </Tab.Selector>
         </Tab>
         <CardList>
-          {list &&
-            list.results.map((item) => {
-              return (
-                <CardList.ItemContainer key={item.id}>
-                  <CardList.ItemContent
-                    src={item.poster_path}
-                    title={item.title || item.name}
-                    date={item.release_date || item.first_air_date}
-                    voteAverage={item.vote_average}
-                    voteCount={item.vote_count}
-                  />
-                </CardList.ItemContainer>
-              );
-            })}
+          {loading
+            ? skeletonAmount.map((_) => <CardListSkeleton key={_} />)
+            : list.results.map((item) => {
+                return (
+                  <CardList.ItemContainer key={item.id}>
+                    <CardList.ItemContent
+                      src={item.poster_path}
+                      title={item.title || item.name}
+                      date={item.release_date || item.first_air_date}
+                      voteAverage={item.vote_average}
+                      voteCount={item.vote_count}
+                    />
+                  </CardList.ItemContainer>
+                );
+              })}
         </CardList>
         <Pagination>
           <Pagination.List>
             {currentPage > 6 ? (
               <>
-                <Pagination.Item to={`/?page=1`}>1</Pagination.Item>
+                <Pagination.Item to={`/?page=1`} onClick={() => setPage(`1`)}>
+                  1
+                </Pagination.Item>
                 <Pagination.Etc>...</Pagination.Etc>
               </>
             ) : null}
@@ -107,7 +122,11 @@ export default function BodyMainContainer() {
               </Pagination.Item>
             ))}
             <Pagination.Etc>...</Pagination.Etc>
-            <Pagination.Max to={"/?page=1000"} selected={currentPage === 1000}>
+            <Pagination.Max
+              to={`/?page=${maxPagination}`}
+              onClick={() => setPage(maxPagination)}
+              selected={currentPage === 1000}
+            >
               1000
             </Pagination.Max>
           </Pagination.List>

@@ -10,3 +10,5 @@ export const anchorListPeriod = [
 ];
 
 export const baseImageLink = "https://image.tmdb.org/t/p/w400";
+
+export const maxPagination = 1000;

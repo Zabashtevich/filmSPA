@@ -4,6 +4,9 @@ import { HeaderMain } from "../components";
 
 export default function HeaderMainContainer() {
   const [inputActive, setInputActive] = useState(false);
+  window.onscroll = function (event) {
+    console.log(event);
+  };
 
   return (
     <HeaderMain>

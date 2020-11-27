@@ -9,7 +9,7 @@ export const Main = styled.main`
 export const Section = styled.section`
   display: flex;
   flex-direction: column;
-  margin: 20px 40px;
+  margin: 0 auto;
 `;
 
 export const BodyWrapper = styled.div`

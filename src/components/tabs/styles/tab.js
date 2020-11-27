@@ -2,6 +2,8 @@ import styled, { css } from "styled-components/macro";
 
 export const Container = styled.div`
   display: flex;
+  justify-content: space-between;
+  flex-direction: row;
 `;
 
 export const Category = styled.h3`
@@ -59,4 +61,9 @@ export const TitleInner = styled.div`
   &:nth-child(1n + 2) {
     margin: 0 20px;
   }
+`;
+
+export const Wrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;

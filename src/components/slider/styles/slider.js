@@ -4,7 +4,7 @@ import { HiOutlineArrowRight } from "react-icons/hi";
 
 export const Container = styled.div`
   width: 1800px;
-  margin: 20px 0;
+  margin: 20px auto;
 `;
 
 export const Wrapper = styled.div`

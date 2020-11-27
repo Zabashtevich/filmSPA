@@ -16,10 +16,7 @@ export const ContentWrapper = styled.div`
   position: relative;
   overflow: hidden;
 `;
-export const ItemImage = styled.img`
-  width: 400px;
-  height: 600px;
-`;
+
 export const ItemTitle = styled.h4`
   font-size: ${({ theme }) => theme.fontSize.huge};
 `;
@@ -46,7 +43,11 @@ export const ItemDescriptionInner = styled.div`
   bottom: 0;
 `;
 
+export const ItemImage = styled.img``;
+
 export const ItemContainer = styled.div`
+  width: 400px;
+  height: 600px;
   display: flex;
   flex-direction: column;
   margin: 1rem 0;

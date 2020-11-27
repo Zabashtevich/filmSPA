@@ -1,12 +1,12 @@
 import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import MainPage from "./pages/main-page";
 
 function App() {
   return (
     <Router>
-      <MainPage />
+      <Route path="/" component={MainPage}></Route>
     </Router>
   );
 }

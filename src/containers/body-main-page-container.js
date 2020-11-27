@@ -1,19 +1,22 @@
 import React, { useState } from "react";
-
-import useFetch from "../hooks/useFetchData";
-import { anchorListType, anchorListPeriod } from "../constants/constants";
-import { range } from "../utils/utils";
+import { useLocation } from "react-router-dom";
 
 import { BodyMain, Slider, Tab, CardList, Pagination } from "../components";
+import { anchorListType, anchorListPeriod } from "../constants/constants";
+
+import { range, getPaginator } from "../utils/utils";
 import Data from "./data.json";
+import useFetch from "../hooks/useFetchData";
 
 export default function BodyMainContainer() {
   const [sliderIndex, setSliderIndex] = useState(1);
   const [typeTabByPopular, setTypeTabByPopularActive] = useState("day");
   const [tabListType, setTabListTypeActive] = useState("all");
   const list = useFetch(typeTabByPopular, tabListType);
-  const pagesAmount = range(1, 10);
-  console.log(list.results);
+  const location = useLocation();
+  const currentPage = getPaginator(location);
+  const pagesAmount = range(currentPage, 10);
+
   return (
     <BodyMain>
       <BodyMain.Section>
@@ -81,9 +84,26 @@ export default function BodyMainContainer() {
         </CardList>
         <Pagination>
           <Pagination.List>
+            {currentPage > 1 ? (
+              <>
+                <Pagination.Item to={`/?page=1`}>1</Pagination.Item>
+                <Pagination.Etc>...</Pagination.Etc>
+              </>
+            ) : null}
+
             {pagesAmount.map((item) => (
-              <Pagination.Item>{item}</Pagination.Item>
+              <Pagination.Item
+                key={item}
+                selected={item === currentPage}
+                to={`/?page=${item}`}
+              >
+                {item}
+              </Pagination.Item>
             ))}
+            <Pagination.Etc>...</Pagination.Etc>
+            <Pagination.Max to={"/?page=1000"} selected={currentPage === 1000}>
+              1000
+            </Pagination.Max>
           </Pagination.List>
         </Pagination>
       </BodyMain.Section>

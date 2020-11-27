@@ -88,7 +88,7 @@ Slider.Body = function SliderBody({ data, children, ...rest }) {
                 </SliderTagWrapper>
                 <SliderDescription>{item.description}</SliderDescription>
               </SliderMetaData>
-              <SliderLinkButton>
+              <SliderLinkButton to={"/"}>
                 <SliderLinkButtonIcon />
               </SliderLinkButton>
             </SliderItem>

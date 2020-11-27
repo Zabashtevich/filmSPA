@@ -33,7 +33,6 @@ Pagination.Max = function PaginationMax({ children, to, ...rest }) {
 };
 
 Pagination.Etc = function PaginationEtc({ children }) {
-  console.log("hi");
   return (
     <Item>
       <ItemEtc>{children}</ItemEtc>

@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import { BodyMain, Slider, Tab, CardList, Pagination } from "../components";
 import { anchorListType, anchorListPeriod } from "../constants/constants";
 
-import { range, getPaginator } from "../utils/utils";
+import { range, getPaginator, getPaginatorStart } from "../utils/utils";
 import Data from "./data.json";
 import useFetch from "../hooks/useFetchData";
 
@@ -12,10 +12,15 @@ export default function BodyMainContainer() {
   const [sliderIndex, setSliderIndex] = useState(1);
   const [typeTabByPopular, setTypeTabByPopularActive] = useState("day");
   const [tabListType, setTabListTypeActive] = useState("all");
-  const list = useFetch(typeTabByPopular, tabListType);
   const location = useLocation();
   const currentPage = getPaginator(location);
-  const pagesAmount = range(currentPage, 10);
+  const paginatorStart = getPaginatorStart(currentPage);
+  const pagesAmount = range(paginatorStart, 10);
+  const { list, setPage } = useFetch(
+    typeTabByPopular,
+    tabListType,
+    currentPage,
+  );
 
   return (
     <BodyMain>
@@ -84,7 +89,7 @@ export default function BodyMainContainer() {
         </CardList>
         <Pagination>
           <Pagination.List>
-            {currentPage > 1 ? (
+            {currentPage > 6 ? (
               <>
                 <Pagination.Item to={`/?page=1`}>1</Pagination.Item>
                 <Pagination.Etc>...</Pagination.Etc>
@@ -96,6 +101,7 @@ export default function BodyMainContainer() {
                 key={item}
                 selected={item === currentPage}
                 to={`/?page=${item}`}
+                onClick={() => setPage(`${item}`)}
               >
                 {item}
               </Pagination.Item>

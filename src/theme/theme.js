@@ -23,7 +23,7 @@ export default {
   },
   colors: {
     header: "#032541",
-    secondary: "#6b6b6b",
+    secondary: "#434343",
     inputColor: "gray",
     appMainColor: "#f4f4f4",
     headerInputIcon: "#fff",

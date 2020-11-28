@@ -5,4 +5,4 @@ export { default as Tab } from "./tabs";
 export { default as CardList } from "./card-list";
 export { default as Pagination } from "./pagination";
 export { default as CardListSkeleton } from "./card-list-skeleton";
-export { default as Footer } from "./card-list-skeleton";
+export { default as Footer } from "./footer";

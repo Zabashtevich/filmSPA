@@ -28,10 +28,16 @@ export const ItemDate = styled.p`
 `;
 
 export const ItemDescriptionInner = styled.div`
+  position: absolute;
+  top: 70%;
+  left: 0;
+  right: 0;
+  background-color: ${({ theme }) => theme.colors.secondary};
+  opacity: 0;
   display: flex;
   flex-direction: column;
   padding: 0.6rem 0.6rem;
-  color: ${({ theme }) => theme.colors.secondary};
+  color: #fff;
 `;
 
 export const ItemImage = styled.img`
@@ -51,10 +57,19 @@ export const ItemContainer = styled.div`
   height: auto;
   overflow: hidden;
   cursor: pointer;
-  border: 1px solid #000;
   background: rgba(360, 360, 360, 0.9);
   border-radius: 1rem;
   position: relative;
+  &:hover {
+    ${ItemDescriptionInner} {
+      opacity: 1;
+      transition: opacity 500ms linear;
+    }
+    ${ItemImage} {
+      transform: scale(1.1);
+      transition: transform 2s linear;
+    }
+  }
 `;
 
 export const MetaScore = styled.span`

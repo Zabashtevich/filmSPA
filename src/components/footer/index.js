@@ -10,10 +10,10 @@ Footer.Section = function FooterSection({ children }) {
   return <Section>{children}</Section>;
 };
 
-Footer.SectionItem = function FooterSectionItem() {
+Footer.SectionItem = function FooterSectionItem({ children }) {
   return (
     <Item>
-      <ItemLink>{children}</ItemLink>
+      <ItemLink href="/">{children}</ItemLink>
     </Item>
   );
 };

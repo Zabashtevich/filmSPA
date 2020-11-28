@@ -102,7 +102,7 @@ export const SliderTitle = styled(ReactRouterLink)`
 export const SliderTagWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  margin: 20px 0;
+  margin: 1rem 0;
 `;
 
 export const SliderTagItem = styled.span`
@@ -123,16 +123,16 @@ export const SliderDescription = styled.div`
 export const SliderDotsWrapper = styled.div`
   display: flex;
   justify-content: center;
-  margin: 20px;
+  margin: 1rem;
 `;
 
 export const SliderDot = styled.div`
   position: relative;
-  width: 20px;
-  height: 20px;
-  border: #fff solid 2px;
+  width: 1rem;
+  height: 1rem;
+  border: solid 2px #6b6b6b;
   border-radius: 50%;
-  margin: 20px 5px;
+  margin: 1rem 0.5rem;
   cursor: pointer;
   ${({ active }) =>
     active &&
@@ -146,7 +146,7 @@ export const SliderDot = styled.div`
         left: 50%;
         transform: translate(-50%, -50%);
         border-radius: 50%;
-        background-color: #fff;
+        background-color: ${({ theme }) => theme.colors.secondary};
       }
     `}
 `;

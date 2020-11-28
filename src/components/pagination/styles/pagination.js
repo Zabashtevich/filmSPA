@@ -34,10 +34,12 @@ export const Item = styled.li`
   align-items: center;
   margin: 0.5rem;
   color: #000;
+  border: 1px solid #000;
   ${({ selected }) =>
     selected &&
     css`
       background: ${({ theme }) => theme.colors.secondary};
+      border: 1px solid #fff;
       ${PaginationLink} {
         color: #fff;
       }

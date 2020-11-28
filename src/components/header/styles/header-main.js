@@ -41,6 +41,11 @@ export const Input = styled.input`
   border-radius: 50px;
   background: none;
   color: #000;
+  ${({ selected }) =>
+    selected &&
+    css`
+      color: ${({ theme }) => theme.colors.secondary};
+    `};
   &::placeholder {
     color: #fff;
   }

@@ -1,38 +1,38 @@
 import React, { useState } from "react";
 
-import { HeaderMain } from "../components";
+import { Header } from "../components";
 
-export default function HeaderMainContainer() {
+export default function HeaderContainer() {
   const [inputActive, setInputActive] = useState(false);
 
   return (
-    <HeaderMain>
-      <HeaderMain.Inner>
-        <HeaderMain.Logo to={"/"}>
+    <Header>
+      <Header.Inner>
+        <Header.Logo to={"/"}>
           <img
             src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg"
             alt="Logo"
           />
-        </HeaderMain.Logo>
-        <HeaderMain.Link to={"/"}>FILMS</HeaderMain.Link>
-        <HeaderMain.Link to={"/"}>SERIES</HeaderMain.Link>
-        <HeaderMain.Link to={"/"}>ACTORS</HeaderMain.Link>
-      </HeaderMain.Inner>
-      <HeaderMain.Inner>
-        <HeaderMain.Wrapper selected={inputActive}>
-          <HeaderMain.Input
+        </Header.Logo>
+        <Header.Link to={"/"}>FILMS</Header.Link>
+        <Header.Link to={"/"}>SERIES</Header.Link>
+        <Header.Link to={"/"}>ACTORS</Header.Link>
+      </Header.Inner>
+      <Header.Inner>
+        <Header.Wrapper selected={inputActive}>
+          <Header.Input
             widthActive={inputActive}
             onFocus={() => setInputActive(!inputActive)}
             onBlur={() => setInputActive(!inputActive)}
             placeholder={"Search..."}
           />
-          <HeaderMain.Icon
+          <Header.Icon
             onClick={() => setInputActive(!inputActive)}
             selected={inputActive}
           />
-        </HeaderMain.Wrapper>
-        <HeaderMain.Link to={"/"}>LOGIN</HeaderMain.Link>
-      </HeaderMain.Inner>
-    </HeaderMain>
+        </Header.Wrapper>
+        <Header.Link to={"/"}>LOGIN</Header.Link>
+      </Header.Inner>
+    </Header>
   );
 }

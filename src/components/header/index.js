@@ -11,7 +11,7 @@ import {
   Wrapper,
 } from "./styles/header-main";
 
-export default function HeaderMain({ children, ...rest }) {
+export default function Header({ children, ...rest }) {
   return (
     <Background>
       <Container {...rest}>{children}</Container>
@@ -19,30 +19,30 @@ export default function HeaderMain({ children, ...rest }) {
   );
 }
 
-HeaderMain.Logo = function HeaderMainLogo({ children, ...rest }) {
+Header.Logo = function HeaderLogo({ children, ...rest }) {
   return <Logo {...rest}>{children}</Logo>;
 };
 
-HeaderMain.Link = function HeaderMainLink({ children, ...rest }) {
+Header.Link = function HeaderLink({ children, ...rest }) {
   return <Link {...rest}>{children}</Link>;
 };
 
-HeaderMain.Inner = function HeaderMainInner({ children, ...rest }) {
+Header.Inner = function HeaderInner({ children, ...rest }) {
   return <Inner {...rest}>{children}</Inner>;
 };
 
-HeaderMain.Profile = function HeaderMainProfile({ children, ...rest }) {
+Header.Profile = function HeaderProfile({ children, ...rest }) {
   return <Profile {...rest}>{children}</Profile>;
 };
 
-HeaderMain.Input = function HeaderMainInput({ children, ...rest }) {
+Header.Input = function HeaderInput({ children, ...rest }) {
   return <Input {...rest} />;
 };
 
-HeaderMain.Icon = function HeaderMainIcon({ children, ...rest }) {
+Header.Icon = function HeaderIcon({ children, ...rest }) {
   return <Icon {...rest}>{children}</Icon>;
 };
 
-HeaderMain.Wrapper = function HeaderMainWrapper({ children, ...rest }) {
+Header.Wrapper = function HeaderWrapper({ children, ...rest }) {
   return <Wrapper {...rest}>{children}</Wrapper>;
 };

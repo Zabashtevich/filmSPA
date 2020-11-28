@@ -31,7 +31,7 @@ export const ItemDescriptionInner = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0.6rem 0.6rem;
-  color: #000;
+  color: ${({ theme }) => theme.colors.secondary};
 `;
 
 export const ItemImage = styled.img`

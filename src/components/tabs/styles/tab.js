@@ -11,14 +11,13 @@ export const Category = styled.h3`
   align-self: center;
   font-size: ${({ theme }) => theme.fontSize.normal};
   user-select: none;
-  color: #fff;
 `;
 
 export const Selector = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  border: 2px #fff solid;
+  border: 2px #000 solid;
   border-radius: 2rem;
   align-items: center;
 `;
@@ -33,6 +32,7 @@ export const Anchor = styled.div`
   cursor: pointer;
   z-index: 50;
   transition: all 500ms;
+  color: #000;
   ${({ side }) =>
     side === "left"
       ? "border-radius: 2rem 0 0 2rem"
@@ -43,6 +43,7 @@ export const Anchor = styled.div`
     selected &&
     css`
       background-color: ${({ theme }) => theme.colors.secondary};
+      color: #fff;
     `};
 `;
 
@@ -50,7 +51,7 @@ export const Title = styled.h4`
   font-size: ${({ theme }) => theme.fontSize.large};
   margin: 0;
   align-self: center;
-  color: #fff;
+  color: #000;
   user-select: none;
 `;
 

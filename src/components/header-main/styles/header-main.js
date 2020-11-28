@@ -40,7 +40,10 @@ export const Input = styled.input`
   border: none;
   border-radius: 50px;
   background: none;
-  color: #fff;
+  color: #000;
+  &::placeholder {
+    color: #fff;
+  }
 `;
 export const Profile = styled.div`
   width: 30px;
@@ -62,8 +65,8 @@ export const Icon = styled(FaSearch)`
   margin: 0 1rem;
   cursor: pointer;
   color: #fff;
-  ${({ activeColor }) =>
-    activeColor &&
+  ${({ selected }) =>
+    selected &&
     css`
       color: ${({ theme }) => theme.colors.secondary};
     `};
@@ -75,8 +78,8 @@ export const Wrapper = styled.div`
   border-radius: 50px;
   background: ${({ theme }) => theme.colors.secondary};
   color: ${({ theme }) => theme.colors.headerInputIcon};
-  ${({ activeColor }) =>
-    activeColor &&
+  ${({ selected }) =>
+    selected &&
     css`
       background-color: #fff;
     `};

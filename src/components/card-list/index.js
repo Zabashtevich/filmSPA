@@ -1,5 +1,6 @@
 import React from "react";
 import { baseImageLink } from "../../constants/constants";
+import imageerror from "../../assets/404-error.svg";
 
 import {
   Container,
@@ -23,7 +24,10 @@ CardList.ItemContainer = function CardListItemContainer({ children, ...rest }) {
 CardList.ItemContent = function CardListItemContent({ src, title, date }) {
   return (
     <ContentWrapper>
-      <ItemImage src={baseImageLink + src} />
+      <ItemImage
+        src={src ? baseImageLink + src : imageerror}
+        error={src ? null : true}
+      />
       <ItemDescriptionInner>
         <ItemTitle>{title}</ItemTitle>
         <ItemDate>{date}</ItemDate>
@@ -32,6 +36,6 @@ CardList.ItemContent = function CardListItemContent({ src, title, date }) {
   );
 };
 
-CardList.MetaScore = function CardListMetaScore({ children }) {
-  return <MetaScore>{children}</MetaScore>;
+CardList.MetaScore = function CardListMetaScore({ children, ...rest }) {
+  return <MetaScore {...rest}>{children}</MetaScore>;
 };

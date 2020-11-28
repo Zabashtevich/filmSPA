@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 
 export const Container = styled.div`
   display: flex;
@@ -37,6 +37,11 @@ export const ItemDescriptionInner = styled.div`
 export const ItemImage = styled.img`
   width: 200px;
   height: 300px;
+  ${({ error }) =>
+    error &&
+    css`
+      background-color: #fff;
+    `}
 `;
 
 export const ItemContainer = styled.div`
@@ -46,7 +51,8 @@ export const ItemContainer = styled.div`
   height: auto;
   overflow: hidden;
   cursor: pointer;
-  background: rgba(360, 360, 360, 0.6);
+  border: 1px solid #000;
+  background: rgba(360, 360, 360, 0.9);
   border-radius: 1rem;
   position: relative;
 `;
@@ -61,4 +67,9 @@ export const MetaScore = styled.span`
   font-weight: ${({ theme }) => theme.fontWeightCard.bold};
   padding: 0.2rem 0.4rem;
   border-radius: 0.5rem;
+  ${({ error }) =>
+    error &&
+    css`
+      display: none;
+    `}
 `;

@@ -9,13 +9,20 @@ import {
   Pagination,
   CardListSkeleton,
 } from "../components";
+
 import {
   anchorListType,
   anchorListPeriod,
   maxPagination,
 } from "../constants/constants";
 
-import { range, getPaginator, getPaginatorStart } from "../utils/utils";
+import {
+  range,
+  getPaginator,
+  getPaginatorStart,
+  getPaginatorEnd,
+} from "../utils/utils";
+
 import Data from "../constants/data.json";
 import useFetch from "../hooks/useFetchData";
 
@@ -24,15 +31,22 @@ export default function BodyMainContainer({ children }) {
   const [typeTabByPopular, setTypeTabByPopularActive] = useState("day");
   const [tabListType, setTabListTypeActive] = useState("all");
   const location = useLocation();
+
   const currentPage = getPaginator(location);
   const paginatorStart = getPaginatorStart(currentPage);
-  const pagesAmount = range(paginatorStart, 10);
+  const paginatorEnd = getPaginatorEnd(currentPage, paginatorStart);
+  const pagesAmount = range(paginatorStart, paginatorEnd);
+
   const skeletonAmount = range(1, 40);
+  console.log(currentPage);
   const { list, setPage, loading } = useFetch(
     typeTabByPopular,
     tabListType,
     currentPage,
   );
+
+  console.log(list);
+
   return (
     <BodyMain>
       {children}
@@ -50,7 +64,7 @@ export default function BodyMainContainer({ children }) {
           />
         </Slider>
       </BodyMain.Section>
-      <BodyMain.Section padding="1rem" background="">
+      <BodyMain.Section padding="1rem" background="#fff">
         <Tab.Wrapper>
           <Tab>
             <Tab.Title>Popular by:</Tab.Title>
@@ -93,12 +107,16 @@ export default function BodyMainContainer({ children }) {
             : list.results.map((item) => {
                 return (
                   <CardList.ItemContainer key={item.id}>
+                    {item.poster_path === null ? console.log(item.id) : null}
                     <CardList.ItemContent
-                      src={item.poster_path}
+                      id={item.id}
                       title={item.title || item.name}
                       date={item.release_date || item.first_air_date}
+                      src={item.poster_path}
                     />
-                    <CardList.MetaScore>{item.vote_average}</CardList.MetaScore>
+                    <CardList.MetaScore error={item.poster_path ? null : true}>
+                      {item.vote_average}
+                    </CardList.MetaScore>
                   </CardList.ItemContainer>
                 );
               })}
@@ -124,14 +142,18 @@ export default function BodyMainContainer({ children }) {
                 {item}
               </Pagination.Item>
             ))}
-            <Pagination.Etc>...</Pagination.Etc>
-            <Pagination.Max
-              to={`/?page=${maxPagination}`}
-              onClick={() => setPage(maxPagination)}
-              selected={currentPage === 1000}
-            >
-              1000
-            </Pagination.Max>
+            {currentPage >= 994 ? null : (
+              <>
+                <Pagination.Etc>...</Pagination.Etc>
+                <Pagination.Max
+                  to={`/?page=${maxPagination}`}
+                  onClick={() => setPage(maxPagination)}
+                  selected={currentPage === 1000}
+                >
+                  1000
+                </Pagination.Max>
+              </>
+            )}
           </Pagination.List>
         </Pagination>
       </BodyMain.Section>

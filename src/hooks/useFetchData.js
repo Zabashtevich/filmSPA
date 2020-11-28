@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
-export default function useFetch(typeTabByPopular, tabListType) {
+export default function useFetch(typeTabByPopular, tabListType, currentPage) {
   const [list, setList] = useState("");
-  const [page, setPage] = useState("1");
+  const [page, setPage] = useState(currentPage);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

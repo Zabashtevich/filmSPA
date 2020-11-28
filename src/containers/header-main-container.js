@@ -19,16 +19,16 @@ export default function HeaderMainContainer() {
         <HeaderMain.Link to={"/"}>ACTORS</HeaderMain.Link>
       </HeaderMain.Inner>
       <HeaderMain.Inner>
-        <HeaderMain.Wrapper activeColor={inputActive}>
+        <HeaderMain.Wrapper selected={inputActive}>
           <HeaderMain.Input
             widthActive={inputActive}
             onFocus={() => setInputActive(!inputActive)}
             onBlur={() => setInputActive(!inputActive)}
-            placeholder={inputActive ? "Search..." : null}
+            placeholder={"Search..."}
           />
           <HeaderMain.Icon
             onClick={() => setInputActive(!inputActive)}
-            activeColor={inputActive}
+            selected={inputActive}
           />
         </HeaderMain.Wrapper>
         <HeaderMain.Link to={"/"}>LOGIN</HeaderMain.Link>

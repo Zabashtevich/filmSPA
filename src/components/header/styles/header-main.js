@@ -17,7 +17,7 @@ export const Inner = styled.ul`
   align-items: center;
 `;
 export const Link = styled(ReactRouterLink)`
-  color: gray;
+  color: ${({ theme }) => theme.colors.secondary};
   text-decoration: none;
   margin: 20px;
   font-size: ${({ theme }) => theme.fontSize.normal};
@@ -25,13 +25,19 @@ export const Link = styled(ReactRouterLink)`
   padding: 5px;
   display: block;
   transition: box-shadow 1s;
+  ${({ positionchanged }) =>
+    positionchanged &&
+    css`
+      color: #fff;
+      transition: color 500ms linear;
+    `};
 
   &:hover {
-    box-shadow: inset 0 -2px #fff;
+    box-shadow: inset 0 -2px currentColor;
   }
 `;
 export const Input = styled.input`
-  width: ${(props) => (props.widthActive ? "320px" : "160px")};
+  width: ${({ widthActive }) => (widthActive ? "320px" : "160px")};
   height: 30px;
   outline: none;
   transition: width 0.5s;
@@ -40,24 +46,53 @@ export const Input = styled.input`
   border: none;
   border-radius: 50px;
   background: none;
-  color: #000;
-  ${({ selected }) =>
-    selected &&
-    css`
-      color: ${({ theme }) => theme.colors.secondary};
-    `};
+  color: #fff;
   &::placeholder {
     color: #fff;
   }
+  ${({ positionStart }) =>
+    positionStart &&
+    css`
+      color: #fff;
+    `};
+  ${({ positionchanged }) =>
+    positionchanged &&
+    css`
+      color: #000;
+      &::placeholder {
+        color: #000;
+      }
+    `}
 `;
 export const Profile = styled.div`
   width: 30px;
 `;
 export const Logo = styled(ReactRouterLink)`
-  color: #fff;
-  height: auto;
+  font-size: ${({ theme }) => theme.fontSize.logo};
+  letter-spacing: 0.1rem;
+  font-weight: ${({ theme }) => theme.fontWeightStandart.bold};
   width: 200px;
-  margin-right: 1rem;
+  margin-right: 2rem;
+  text-decoration: none;
+  position: relative;
+  color: ${({ theme }) => theme.colors.secondary};
+  &::after {
+    content: "";
+    position: absolute;
+    width: 4rem;
+    height: 1.2rem;
+    background: ${({ theme }) => theme.colors.secondary};
+    top: 50%;
+    margin-left: 0.6rem;
+    transform: translateY(-50%);
+    border-radius: 1rem;
+  }
+  ${({ positionchanged }) =>
+    positionchanged &&
+    css`
+      color: #fff;
+      transition: color 500ms linear;
+    `};
 `;
 
 export const Background = styled.div`
@@ -67,17 +102,18 @@ export const Background = styled.div`
   background: ${({ theme }) => theme.colors.secondary};
   box-shadow: 4px 2px 6px 6px rgba(0, 0, 0, 0.3);
   transform: translateY(0);
-  transition: background 500ms linear, transform 50ms linear;
-  ${({ standardColor }) =>
-    standardColor &&
+  transition: background 500ms linear, transform 200ms linear;
+  background: #fff;
+  ${({ positionchanged }) =>
+    positionchanged &&
     css`
-      background: #fff;
-    `};
+      background: ${({ theme }) => theme.colors.secondary};
+    `}
   ${({ invisible }) =>
     invisible &&
     css`
       transform: translateY(-100%);
-      transition: transform 300ms linear;
+      transition: transform 100ms linear;
     `};
 `;
 
@@ -87,11 +123,11 @@ export const Icon = styled(FaSearch)`
   margin: 0 1rem;
   cursor: pointer;
   color: #fff;
-  ${({ selected }) =>
-    selected &&
+  ${({ positionchanged }) =>
+    positionchanged &&
     css`
       color: ${({ theme }) => theme.colors.secondary};
-    `};
+    `}
 `;
 
 export const Wrapper = styled.div`
@@ -100,9 +136,9 @@ export const Wrapper = styled.div`
   border-radius: 50px;
   background: ${({ theme }) => theme.colors.secondary};
   color: ${({ theme }) => theme.colors.headerInputIcon};
-  ${({ selected }) =>
-    selected &&
+  ${({ positionchanged }) =>
+    positionchanged &&
     css`
-      background-color: #fff;
-    `};
+      background: #fff;
+    `}
 `;

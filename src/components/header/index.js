@@ -20,7 +20,7 @@ export default function Header({ children, ...rest }) {
 }
 
 Header.Logo = function HeaderLogo({ children, ...rest }) {
-  return <Logo {...rest}>{children}</Logo>;
+  return <Logo {...rest}>TMDB</Logo>;
 };
 
 Header.Link = function HeaderLink({ children, ...rest }) {

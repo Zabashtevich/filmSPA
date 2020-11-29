@@ -20,6 +20,7 @@ export default {
     normal: "1.3rem",
     large: "1.5rem",
     huge: "2.5rem",
+    logo: "3.5rem",
   },
   colors: {
     header: "#032541",

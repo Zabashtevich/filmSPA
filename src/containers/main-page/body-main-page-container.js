@@ -1,15 +1,10 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 
-import {
-  BodyMain,
-  Slider,
-  CardList,
-  CardListSkeleton,
-} from "../../../components";
-import { range, getPaginator } from "../../../utils/utils";
-import Data from "../../../constants/data.json";
-import useFetch from "../../../hooks/useFetchData";
+import { BodyMain, Slider, CardList, CardListSkeleton } from "../../components";
+import { range, getPaginator } from "../../utils/utils";
+import Data from "../../constants/data.json";
+import useFetch from "../../hooks/useFetchData";
 import {
   PaginationMainPageContainer,
   TabsMainPageCotainer,
@@ -21,7 +16,7 @@ export default function BodyMainContainer() {
   const [tabListType, setTabListTypeActive] = useState("all");
   const location = useLocation();
 
-  const skeletonAmount = range(1, 40);
+  const skeletonAmount = range(1, 20);
   const currentPage = getPaginator(location);
   const { list, setPage, loading } = useFetch(
     typeTabByPopular,

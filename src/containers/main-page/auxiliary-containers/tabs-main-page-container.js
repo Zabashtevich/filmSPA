@@ -1,9 +1,6 @@
 import React from "react";
-import { Tab } from "../../../../components";
-import {
-  anchorListPeriod,
-  anchorListType,
-} from "../../../../constants/constants";
+import { Tab } from "../../../components";
+import { anchorListPeriod, anchorListType } from "../../../constants/constants";
 
 export default function TabsMainPageCotainer({
   typeTabByPopular,

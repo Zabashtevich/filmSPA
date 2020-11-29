@@ -1,15 +1,15 @@
 import React from "react";
-import { Pagination } from "../../../../components";
-import { maxPagination } from "../../../../constants/constants";
+import { Pagination } from "../../../components";
+import { maxPagination } from "../../../constants/constants";
 import {
   range,
   getPaginatorStart,
   getPaginatorEnd,
-} from "../../../../utils/utils";
+} from "../../../utils/utils";
 
 export default function PaginationMainPageContainer({ setPage, currentPage }) {
   const paginatorStart = getPaginatorStart(currentPage);
-  const paginatorEnd = getPaginatorEnd(currentPage, paginatorStart);
+  const paginatorEnd = getPaginatorEnd(currentPage);
   const pagesAmount = range(paginatorStart, paginatorEnd);
 
   return (

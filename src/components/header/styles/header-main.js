@@ -86,6 +86,7 @@ export const Logo = styled(ReactRouterLink)`
     margin-left: 0.6rem;
     transform: translateY(-50%);
     border-radius: 1rem;
+    ${({ positionchanged }) => positionchanged && "background: #fff"};
   }
   ${({ positionchanged }) =>
     positionchanged &&
@@ -101,7 +102,7 @@ export const Background = styled.div`
   z-index: 1000;
   background: ${({ theme }) => theme.colors.secondary};
   box-shadow: 4px 2px 6px 6px rgba(0, 0, 0, 0.3);
-  transform: translateY(0);
+  transform: translateY(-100%);
   transition: background 500ms linear, transform 200ms linear;
   background: #fff;
   ${({ positionchanged }) =>
@@ -109,10 +110,10 @@ export const Background = styled.div`
     css`
       background: ${({ theme }) => theme.colors.secondary};
     `}
-  ${({ invisible }) =>
-    invisible &&
+  ${({ visible }) =>
+    visible &&
     css`
-      transform: translateY(-100%);
+      transform: translateY(0);
       transition: transform 100ms linear;
     `};
 `;

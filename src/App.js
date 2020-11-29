@@ -6,7 +6,7 @@ import MainPage from "./pages/main-page";
 function App() {
   return (
     <Router>
-      <Route path="/" component={MainPage}></Route>
+      <Route path="/" component={MainPage} exact></Route>
     </Router>
   );
 }

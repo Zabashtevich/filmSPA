@@ -7,9 +7,8 @@ import FooterContainer from "../../containers/footer-container";
 export default function MainPage() {
   return (
     <>
-      <BodyMainContainer>
-        <HeaderMainContainer />
-      </BodyMainContainer>
+      <HeaderMainContainer />
+      <BodyMainContainer />
       <FooterContainer />
     </>
   );

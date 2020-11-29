@@ -1,12 +1,43 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Header } from "../components";
 
 export default function HeaderContainer() {
   const [inputActive, setInputActive] = useState(false);
+  const [headerProp, setHeaderProp] = useState({
+    scrollPost: 0,
+    standardPosition: true,
+    visible: true,
+  });
 
+  const listener = () => {
+    if (document.body.getBoundingClientRect().top < -200) {
+      setHeaderProp({
+        visible:
+          document.body.getBoundingClientRect().top >= headerProp.scrollPost,
+        scrollPost: document.body.getBoundingClientRect().top,
+        standardPosition: false,
+      });
+      return;
+    }
+    if (document.body.getBoundingClientRect().top < 0) {
+      setHeaderProp({
+        scrollPost: document.body.getBoundingClientRect().top,
+        standardPosition: false,
+        visible: true,
+      });
+      return;
+    }
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", listener);
+    return () => window.removeEventListener("scroll", listener, false);
+  });
   return (
-    <Header>
+    <Header
+      standardColor={headerProp.standardPosition}
+      invisible={!headerProp.visible}
+    >
       <Header.Inner>
         <Header.Logo to={"/"}>
           <img

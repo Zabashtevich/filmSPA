@@ -61,13 +61,11 @@ export const ItemContainer = styled.div`
   border-radius: 1rem;
   position: relative;
   &:hover {
+    transform: scale(1.03);
+    transition: transform 100ms linear;
     ${ItemDescriptionInner} {
       opacity: 1;
       transition: opacity 500ms linear;
-    }
-    ${ItemImage} {
-      transform: scale(1.1);
-      transition: transform 2s linear;
     }
   }
 `;

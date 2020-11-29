@@ -29,12 +29,13 @@ export const Item = styled.li`
   width: 50px;
   background: #fff;
   border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   margin: 0.5rem;
   color: #000;
   border: 1px solid #000;
+  &:hover {
+    background: rgba(0, 0, 0, 0.1);
+    transition: all 200ms linear;
+  }
   ${({ selected }) =>
     selected &&
     css`

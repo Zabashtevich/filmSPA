@@ -13,8 +13,8 @@ import {
 
 export default function Header({ children, ...rest }) {
   return (
-    <Background>
-      <Container {...rest}>{children}</Container>
+    <Background {...rest}>
+      <Container>{children}</Container>
     </Background>
   );
 }

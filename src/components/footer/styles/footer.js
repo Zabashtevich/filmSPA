@@ -4,21 +4,20 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
-  height: 400px;
-
+  height: 300px;
   background-color: ${({ theme }) => theme.colors.secondary};
 `;
 
 export const Section = styled.ul`
   list-style: none;
-  padding: 3rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
-  margin: 1rem auto;
+  margin: 5rem auto;
 `;
 
 export const Item = styled.li`
-  margin: 2rem;
+  margin: 0.5rem;
 `;
 
 export const ItemLink = styled.a`
@@ -26,6 +25,7 @@ export const ItemLink = styled.a`
   font-size: ${({ theme }) => theme.fontSize.normal};
   color: #fff;
   &:hover {
-    box-shadow: inset 0 -2px #fff;
+    box-shadow: inset 0 -1px #fff;
+    transition: box-shadow 200ms linear;
   }
 `;

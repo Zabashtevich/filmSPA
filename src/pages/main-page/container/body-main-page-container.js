@@ -15,7 +15,7 @@ import {
   TabsMainPageCotainer,
 } from "./auxiliary-containers";
 
-export default function BodyMainContainer({ children }) {
+export default function BodyMainContainer() {
   const [sliderIndex, setSliderIndex] = useState(1);
   const [typeTabByPopular, setTypeTabByPopularActive] = useState("day");
   const [tabListType, setTabListTypeActive] = useState("all");
@@ -31,7 +31,6 @@ export default function BodyMainContainer({ children }) {
 
   return (
     <BodyMain>
-      {children}
       <BodyMain.Section>
         <Slider
           setSliderIndex={setSliderIndex}

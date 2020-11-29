@@ -61,7 +61,24 @@ export const Logo = styled(ReactRouterLink)`
 `;
 
 export const Background = styled.div`
-  background-color: transparent;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: ${({ theme }) => theme.colors.secondary};
+  box-shadow: 4px 2px 6px 6px rgba(0, 0, 0, 0.3);
+  transform: translateY(0);
+  transition: background 500ms linear, transform 50ms linear;
+  ${({ standardColor }) =>
+    standardColor &&
+    css`
+      background: #fff;
+    `};
+  ${({ invisible }) =>
+    invisible &&
+    css`
+      transform: translateY(-100%);
+      transition: transform 300ms linear;
+    `};
 `;
 
 export const Icon = styled(FaSearch)`

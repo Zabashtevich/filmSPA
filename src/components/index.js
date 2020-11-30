@@ -6,3 +6,4 @@ export { default as CardList } from "./card-list";
 export { default as Pagination } from "./pagination";
 export { default as CardListSkeleton } from "./card-list-skeleton";
 export { default as Footer } from "./footer";
+export { default as CardDetails } from "./card-details";

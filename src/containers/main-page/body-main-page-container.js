@@ -15,13 +15,12 @@ export default function BodyMainContainer() {
   const [typeTabByPopular, setTypeTabByPopularActive] = useState("day");
   const [tabListType, setTabListTypeActive] = useState("all");
   const location = useLocation();
-
   const skeletonAmount = range(1, 20);
   const currentPage = getPaginator(location);
   const { list, loading } = useFetch(
+    ["trending", `${tabListType}`],
     typeTabByPopular,
-    tabListType,
-    currentPage,
+    [{ page: currentPage }],
   );
 
   return (

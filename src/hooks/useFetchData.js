@@ -1,19 +1,24 @@
 import { useState, useEffect } from "react";
 import { fetchBaseUrl } from "../constants/constants";
+import { getQuerry } from "../utils/utils";
 
-export default function useFetch(typeTabByPopular, tabListType, page) {
-  const [list, setList] = useState("");
+export default function useFetch(paths, searchParam, ...rest) {
+  const [list, setList] = useState();
   const [loading, setLoading] = useState(true);
+
+  const path = paths.join("/");
+  const querry = getQuerry(...rest);
+
   useEffect(() => {
     setLoading(true);
     fetch(
-      `${fetchBaseUrl}trending/${tabListType}/${typeTabByPopular}?api_key=${process.env.REACT_APP_API_KEY}&&page=${page}`,
+      `${fetchBaseUrl}${path}/${searchParam}?api_key=${process.env.REACT_APP_API_KEY}${querry}`,
     )
       .then((response) => response.json())
       .then((data) => {
         setList(data);
         setLoading(false);
       });
-  }, [tabListType, typeTabByPopular, page]);
+  }, [searchParam, path, querry]);
   return { list, loading };
 }

@@ -51,3 +51,13 @@ export const getHeaderProps = (setHeaderProp, headerProp) => {
       return;
   }
 };
+
+export const getQuerry = (data) => {
+  const processedData = data.map((item) => {
+    const key = Object.keys(item);
+    const value = Object.values(item);
+    return [`&&${key}=${value}`];
+  });
+  const querry = processedData.join("");
+  return querry;
+};

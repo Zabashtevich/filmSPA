@@ -18,7 +18,7 @@ export default function BodyMainContainer() {
 
   const skeletonAmount = range(1, 20);
   const currentPage = getPaginator(location);
-  const { list, setPage, loading } = useFetch(
+  const { list, loading } = useFetch(
     typeTabByPopular,
     tabListType,
     currentPage,
@@ -67,10 +67,7 @@ export default function BodyMainContainer() {
                 );
               })}
         </CardList>
-        <PaginationMainPageContainer
-          setPage={setPage}
-          currentPage={currentPage}
-        />
+        <PaginationMainPageContainer currentPage={currentPage} />
       </BodyMain.Section>
     </BodyMain>
   );

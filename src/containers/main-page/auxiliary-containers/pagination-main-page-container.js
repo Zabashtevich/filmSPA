@@ -17,9 +17,7 @@ export default function PaginationMainPageContainer({ setPage, currentPage }) {
       <Pagination.List>
         {currentPage > 6 ? (
           <>
-            <Pagination.Item to={`/?page=1`} onClick={() => setPage(`1`)}>
-              1
-            </Pagination.Item>
+            <Pagination.Item to={`/?page=1`}>1</Pagination.Item>
             <Pagination.Etc>...</Pagination.Etc>
           </>
         ) : null}
@@ -28,7 +26,6 @@ export default function PaginationMainPageContainer({ setPage, currentPage }) {
             key={item}
             selected={item === currentPage}
             to={`/?page=${item}`}
-            onClick={() => setPage(`${item}`)}
           >
             {item}
           </Pagination.Item>
@@ -38,7 +35,6 @@ export default function PaginationMainPageContainer({ setPage, currentPage }) {
             <Pagination.Etc>...</Pagination.Etc>
             <Pagination.Max
               to={`/?page=${maxPagination}`}
-              onClick={() => setPage(maxPagination)}
               selected={currentPage === 1000}
             >
               1000

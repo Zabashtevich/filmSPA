@@ -2,65 +2,103 @@ import React from "react";
 
 import {
   Container,
-  Inner,
+  BackgroundImageWrapper,
+  BackgroundImage,
+  ColumnContainer,
+  PosterWrapper,
+  Poster,
   HeaderContainer,
-  ImgContainer,
-  HeaderImg,
   DescriptionContainer,
-  HeaderTitle,
-  HeaderSubtitle,
-  HeaderDirector,
-  HeaderReview,
+  MainTitle,
+  SubTitle,
+  DescriptionLightTitle,
+  DescriptionDarkTitle,
+  Row,
+  VoteAverage,
+  VoteAmount,
+  CreditsList,
+  CreditsListItem,
+  ShortReview,
 } from "./styles/card-details";
 
 export default function CardDetails({ children }) {
   return <Container>{children}</Container>;
 }
 
-CardDetails.Header = function CardDetailsHeader({ children }) {
+CardDetails.BackgroundImage = function CardDetailsBackgroundImage() {
   return (
-    <Inner>
-      <HeaderContainer>{children}</HeaderContainer>
-    </Inner>
+    <BackgroundImageWrapper>
+      <BackgroundImage />
+    </BackgroundImageWrapper>
   );
 };
 
-CardDetails.HeaderImg = function CardDetailsHeaderImg() {
+CardDetails.Column = function CardDetailsColumn({ children }) {
+  return <ColumnContainer>{children}</ColumnContainer>;
+};
+
+CardDetails.Poster = function CardDetailsPoster() {
   return (
-    <ImgContainer>
-      <HeaderImg />
-    </ImgContainer>
+    <PosterWrapper>
+      <Poster />
+    </PosterWrapper>
   );
 };
 
-CardDetails.HeaderDescription = function CardDetailsHeaderDescription({
+CardDetails.DescriptionHeader = function CardDetailsDescriptionHeader({
+  children,
+}) {
+  return <HeaderContainer>{children}</HeaderContainer>;
+};
+
+CardDetails.DescriptionContent = function CardDetailsDescriptionContent({
   children,
 }) {
   return <DescriptionContainer>{children}</DescriptionContainer>;
 };
 
-CardDetails.HeaderTitle = function CardDetailHeaderTitle({ children }) {
-  return <HeaderTitle>{children}</HeaderTitle>;
+CardDetails.MainTitle = function CardDetailsMainTitle({ children }) {
+  return <MainTitle>{children}</MainTitle>;
 };
 
-CardDetails.HeaderTagsContainer = function CardDetailHeaderTagsContainer({
+CardDetails.SubTitle = function CardDetailsSubTitle({ children }) {
+  return <SubTitle>{children}</SubTitle>;
+};
+
+CardDetails.DescriptionLightTitle = function CardDetailsDescriptionLightTitle({
   children,
 }) {
-  return <TagsContainer>{children}</TagsContainer>;
+  return <DescriptionLightTitle>{children}</DescriptionLightTitle>;
 };
 
-CardDetails.HeaderSubtitle = function CardDetailHeaderSubtitle({ children }) {
-  return <HeaderSubtitle>{children}</HeaderSubtitle>;
+CardDetails.DescriptionDarkTitle = function CardDetailsDescriptionDarkTitle({
+  children,
+}) {
+  return <DescriptionDarkTitle>{children}</DescriptionDarkTitle>;
 };
 
-CardDetails.HeaderDirector = function CardDetailHeaderDirector({ children }) {
-  return <HeaderDirector>{children}</HeaderDirector>;
+CardDetails.Row = function CardDetailsRow({ children }) {
+  return <Row>{children}</Row>;
 };
 
-CardDetails.HeaderReview = function CardDetailHeaderReview({ children }) {
-  return <HeaderReview>{children}</HeaderReview>;
+CardDetails.VoteAverage = function CardDetailsVoteAverage({ children }) {
+  return <VoteAverage>{children}</VoteAverage>;
 };
 
-CardDetails.Content = function CardDetailsContent({ children }) {
-  return <Container>{children}</Container>;
+CardDetails.VoteAmount = function CardDetailsVoteAmount({ children }) {
+  return <VoteAmount>{children}</VoteAmount>;
+};
+
+CardDetails.CreditsList = function CardDetailsCreditsList({ children }) {
+  return <CreditsList>{children}</CreditsList>;
+};
+
+CardDetails.CreditsListItem = function CardDetailsCreditsListItem({
+  children,
+}) {
+  return <CreditsListItem>{children}</CreditsListItem>;
+};
+
+CardDetails.ShortReview = function CardDetailsShortReview({ children }) {
+  return <ShortReview>{children}</ShortReview>;
 };

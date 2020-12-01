@@ -11,19 +11,29 @@ export default function CardDetailsContainer() {
 
   return (
     <CardDetails>
-      <CardDetails.Header>
-        <CardDetails.HeaderImg />
-        <CardDetails.HeaderDescription>
-          <CardDetails.HeaderTitle>123</CardDetails.HeaderTitle>
-          <CardDetails.HeaderTagsContainer>
-            <CardDetails.HeaderTag />
-          </CardDetails.HeaderTagsContainer>
-          <CardDetails.HeaderSubtitle>123</CardDetails.HeaderSubtitle>
-          <CardDetails.HeaderReview>123</CardDetails.HeaderReview>
-          <CardDetails.HeaderDirector>123</CardDetails.HeaderDirector>
-        </CardDetails.HeaderDescription>
-      </CardDetails.Header>
-      <CardDetails.Content></CardDetails.Content>
+      <CardDetails.BackgroundImage />
+      <CardDetails.Column>
+        <CardDetails.Poster />
+      </CardDetails.Column>
+      <CardDetails.Column>
+        <CardDetails.DescriptionHeader>
+          <CardDetails.MainTitle></CardDetails.MainTitle>
+          <CardDetails.SubTitle></CardDetails.SubTitle>
+          <CardDetails.ShortReview></CardDetails.ShortReview>
+        </CardDetails.DescriptionHeader>
+        <CardDetails.DescriptionContent>
+          <CardDetails.SubTitle></CardDetails.SubTitle>
+          <CardDetails.Row>
+            <CardDetails.DescriptionDarkTitle></CardDetails.DescriptionDarkTitle>
+            <CardDetails.DescriptionLightTitle></CardDetails.DescriptionLightTitle>
+          </CardDetails.Row>
+        </CardDetails.DescriptionContent>
+      </CardDetails.Column>
+      <CardDetails.Column>
+        <CardDetails.CreditsList>
+          <CardDetails.CreditsListItem></CardDetails.CreditsListItem>
+        </CardDetails.CreditsList>
+      </CardDetails.Column>
     </CardDetails>
   );
 }

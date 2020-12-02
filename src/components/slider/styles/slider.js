@@ -79,7 +79,7 @@ export const SliderColor = styled.div`
 `;
 
 export const SliderMetaData = styled.div`
-  font-family: ${({ theme }) => theme.fontCardSlider.standart};
+  font-family: ${({ theme }) => theme.fontFamily.secondary};
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -93,7 +93,7 @@ export const SliderMetaData = styled.div`
 `;
 
 export const SliderTitle = styled(ReactRouterLink)`
-  font-weight: ${({ theme }) => theme.fontWeightCard.bold};
+  font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
   font-size: ${({ theme }) => theme.fontSize.huge};
   text-decoration: none;
   color: #fff;
@@ -107,7 +107,7 @@ export const SliderTagWrapper = styled.div`
 
 export const SliderTagItem = styled.span`
   font-size: ${({ theme }) => theme.fontSize.small};
-  font-weight: ${({ theme }) => theme.fontWeightCard.normal};
+  font-weight: ${({ theme }) => theme.fontFamily.main};
   &:nth-child(2n) {
     margin: 0 10px;
   }
@@ -116,7 +116,7 @@ export const SliderTagItem = styled.span`
 export const SliderDescription = styled.div`
   line-height: 1.5rem;
   transition: all 0.5s;
-  font-weight: ${({ theme }) => theme.fontWeightCard.light};
+  font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
   opacity: 0;
 `;
 

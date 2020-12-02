@@ -32,9 +32,6 @@ export default function DetailsContainer() {
           <DescritpionHeader.SubTitle>
             {list.tagline}
           </DescritpionHeader.SubTitle>
-          <DescritpionHeader.Overview>
-            {list.overview}
-          </DescritpionHeader.Overview>
         </DescritpionHeader>
         <DescriptionColumn.ContentWrapper>
           <DescriptionColumn.Title>About film</DescriptionColumn.Title>

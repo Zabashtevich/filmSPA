@@ -1,0 +1,42 @@
+import React from "react";
+
+import {
+  Container,
+  MainTitle,
+  ContentWrapper,
+  Row,
+  DarkTitle,
+  LightTitle,
+} from "./styles/description-column";
+
+export default function DescriptionColumn({ children }) {
+  return <Container>{children}</Container>;
+}
+
+DescriptionColumn.MainTitle = function DescriptionColumnMainTitle({
+  children,
+}) {
+  return <MainTitle>{children}</MainTitle>;
+};
+
+DescriptionColumn.ContentWrapper = function DescriptionColumnContentWrapper({
+  children,
+}) {
+  return <ContentWrapper>{children}</ContentWrapper>;
+};
+
+DescriptionColumn.Row = function DescriptionColumnRow({ children }) {
+  return <Row>{children}</Row>;
+};
+
+DescriptionColumn.DarkTitle = function DescriptionColumnDarkTitle({
+  children,
+}) {
+  return <DarkTitle>{children}</DarkTitle>;
+};
+
+DescriptionColumn.LightTitle = function DescriptionColumnLightTitle({
+  children,
+}) {
+  return <LightTitle>{children}</LightTitle>;
+};

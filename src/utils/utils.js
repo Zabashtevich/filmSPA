@@ -57,7 +57,6 @@ export const getQuerry = (data) => {
   const processedData = data.map((item) => {
     const key = Object.keys(item);
     const value = Object.values(item);
-    console.log(value);
     return [`&&${key}=${value}`];
   });
   const querry = processedData.join("");

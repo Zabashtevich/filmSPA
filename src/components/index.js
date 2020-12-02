@@ -7,3 +7,7 @@ export { default as Pagination } from "./pagination";
 export { default as CardListSkeleton } from "./card-list-skeleton";
 export { default as Footer } from "./footer";
 export { default as CardDetails } from "./card-details";
+export { default as ListColumn } from "./list-column";
+export { default as DescriptionColumn } from "./description-column";
+export { default as PosterColumn } from "./poster-column";
+export { default as DescriptionHeader } from "./description-header";

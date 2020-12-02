@@ -4,7 +4,6 @@ import {
   Container,
   Title,
   ItemContainer,
-  Miniature,
   MiniatureName,
   ItemLink,
 } from "./styles/list-column";
@@ -23,10 +22,6 @@ ListColumn.ItemContainer = function ListColumnItemContainer({ children }) {
       <ItemLink to={"/"}>{children}</ItemLink>
     </ItemContainer>
   );
-};
-
-ListColumn.Miniature = function ListColumnMiniature({ src }) {
-  return <Miniature src={src} />;
 };
 
 ListColumn.MiniatureName = function ListColumnMiniatureName({ children }) {

@@ -9,6 +9,4 @@ export const ItemContainer = styled.div``;
 
 export const ItemLink = styled(ReactRouterLink)``;
 
-export const Miniature = styled.img``;
-
 export const MiniatureName = styled.h4``;

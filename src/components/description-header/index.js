@@ -8,7 +8,7 @@ import {
 } from "./styles/description-header";
 
 export default function DescritpionHeader({ children }) {
-  <Container>{children}</Container>;
+  return <Container>{children}</Container>;
 }
 
 DescritpionHeader.Title = function DescriptionHeaderTitle({ children }) {

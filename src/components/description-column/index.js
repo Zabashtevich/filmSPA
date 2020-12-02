@@ -2,7 +2,7 @@ import React from "react";
 
 import {
   Container,
-  MainTitle,
+  Title,
   ContentWrapper,
   Row,
   DarkTitle,
@@ -13,10 +13,8 @@ export default function DescriptionColumn({ children }) {
   return <Container>{children}</Container>;
 }
 
-DescriptionColumn.MainTitle = function DescriptionColumnMainTitle({
-  children,
-}) {
-  return <MainTitle>{children}</MainTitle>;
+DescriptionColumn.Title = function DescriptionColumnTitle({ children }) {
+  return <Title>{children}</Title>;
 };
 
 DescriptionColumn.ContentWrapper = function DescriptionColumnContentWrapper({

@@ -8,6 +8,6 @@ export const DarkTitle = styled.h4``;
 
 export const LightTitle = styled.h4``;
 
-export const MainTitle = styled.h3``;
+export const Title = styled.h3``;
 
 export const Row = styled.div``;

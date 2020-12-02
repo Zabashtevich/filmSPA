@@ -62,3 +62,9 @@ export const getQuerry = (data) => {
   const querry = processedData.join("");
   return querry;
 };
+
+export const getGenres = (data) => {
+  const genres = [];
+  data.map((item) => genres.push(item.name));
+  return genres.join(", ");
+};

@@ -1,14 +1,14 @@
 import React from "react";
 
-import { Container, PosterWrapper, Poster } from "styles/poster-column";
+import { Container, PosterWrapper, Poster } from "./styles/poster-column";
 
 export default function PosterColumn({ children }) {
   return <Container>{children}</Container>;
 }
 
-PosterColumn.Poster = function PosterColumnPoster({ src, ...rest }) {
+PosterColumn.Poster = function PosterColumnPoster({ src }) {
   return (
-    <PosterWrapper {...rest}>
+    <PosterWrapper>
       <Poster src={src} />
     </PosterWrapper>
   );

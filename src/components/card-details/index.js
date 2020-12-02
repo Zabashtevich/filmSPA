@@ -10,10 +10,10 @@ export default function CardDetails({ children }) {
   return <Container>{children}</Container>;
 }
 
-CardDetails.BackgroundImage = function CardDetailsBackgroundImage() {
+CardDetails.BackgroundImage = function CardDetailsBackgroundImage({ src }) {
   return (
     <BackgroundImageWrapper>
-      <BackgroundImage />
+      <BackgroundImage src={src} />
     </BackgroundImageWrapper>
   );
 };

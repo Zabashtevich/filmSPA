@@ -1,16 +1,14 @@
 export default {
-  fontStandart: {
-    standart: "'Source Sans Pro', sans-serif",
+  fontFamily: {
+    main: "'Source Sans Pro', sans-serif",
+    secondary: "'Oswald', sans-serif",
   },
-  fontCardSlider: {
-    standart: "'Oswald', sans-serif",
-  },
-  fontWeightStandart: {
+  fontWeightMain: {
     light: "300",
     normal: "400",
     bold: "600",
   },
-  fontWeightCard: {
+  fontWeightSecondary: {
     light: "200",
     normal: "400",
     bold: "700",

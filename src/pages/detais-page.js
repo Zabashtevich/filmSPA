@@ -2,13 +2,13 @@ import React from "react";
 
 import HeaderMainContainer from "../containers/header-container";
 import FooterContainer from "../containers/footer-container";
-import CardDetailsContainer from "../containers/card-details/card-details-container";
+import DetailsContainer from "../containers/details/details-container";
 
-export default function CardDetails() {
+export default function DetailsPage() {
   return (
     <>
       <HeaderMainContainer />
-      <CardDetailsContainer />
+      <DetailsContainer />
       <FooterContainer />
     </>
   );

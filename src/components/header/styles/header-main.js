@@ -21,7 +21,7 @@ export const Link = styled(ReactRouterLink)`
   text-decoration: none;
   margin: 20px;
   font-size: ${({ theme }) => theme.fontSize.normal};
-  font-weight: ${({ theme }) => theme.fontWeightStandart.bold};
+  font-weight: ${({ theme }) => theme.fontWeightMain.bold};
   padding: 5px;
   display: block;
   transition: box-shadow 1s;
@@ -70,7 +70,7 @@ export const Profile = styled.div`
 export const Logo = styled(ReactRouterLink)`
   font-size: ${({ theme }) => theme.fontSize.logo};
   letter-spacing: 0.1rem;
-  font-weight: ${({ theme }) => theme.fontWeightStandart.bold};
+  font-weight: ${({ theme }) => theme.fontWeightMain.bold};
   width: 200px;
   margin-right: 2rem;
   text-decoration: none;

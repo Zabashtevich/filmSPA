@@ -1,6 +1,10 @@
 import styled from "styled-components/macro";
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  z-index: 200;
+  margin: 8rem 3rem;
+  color: #fff;
+`;
 
 export const ContentWrapper = styled.div``;
 

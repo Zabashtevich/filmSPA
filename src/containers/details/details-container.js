@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import {
-  CardDetails,
+  Details,
   DescriptionColumn,
   ListColumn,
   PosterColumn,
@@ -9,7 +9,7 @@ import DescritpionHeader from "../../components/description-header";
 import useFetch from "../../hooks/useFetchData";
 import { getGenres } from "../../utils/utils";
 
-export default function CardDetailsContainer() {
+export default function DetailsContainer() {
   const location = useParams();
 
   const { list, loading } = useFetch(["movie"], location.slug, [
@@ -19,8 +19,10 @@ export default function CardDetailsContainer() {
   console.log(list);
 
   return list ? (
-    <CardDetails>
-      <CardDetails.BackgroundImage src={list.backdrop_path} />
+    <Details>
+      <Details.BackgroundContainer>
+        <Details.BackgroundImage src={list.backdrop_path} />
+      </Details.BackgroundContainer>
       <PosterColumn>
         <PosterColumn.Poster src={list.poster_path} />
       </PosterColumn>
@@ -54,6 +56,6 @@ export default function CardDetailsContainer() {
           );
         })}
       </ListColumn>
-    </CardDetails>
+    </Details>
   ) : null;
 }

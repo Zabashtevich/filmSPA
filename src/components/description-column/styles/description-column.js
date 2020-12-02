@@ -14,13 +14,13 @@ export const DarkTitle = styled.h4`
   font-size: ${({ theme }) => theme.fontSize.small};
   font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
   color: ${({ theme }) => theme.colors.titleDark};
-  margin: 2rem 2rem 1rem 0;
+  margin: 0;
 `;
 
 export const LightTitle = styled.h4`
   font-size: ${({ theme }) => theme.fontSize.small};
   font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
-  margin: 2rem 2rem 1rem 0;
+  margin: 0;
 `;
 
 export const Title = styled.h3`
@@ -33,4 +33,14 @@ export const Row = styled.div`
   display: flex;
   flex-direction: row;
   border-bottom: 1px solid hsla(0, 0%, 100%, 0.1);
+`;
+
+export const TitleWrapperLight = styled.div`
+  width: 450px;
+  margin: 0.8rem 0 0.8rem 2rem;
+`;
+
+export const TitleWrapperDark = styled.div`
+  margin: 0.8rem 2rem 0.8rem 0;
+  width: 120px;
 `;

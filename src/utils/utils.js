@@ -63,8 +63,13 @@ export const getQuerry = (data) => {
   return querry;
 };
 
-export const getGenres = (data) => {
+export const getRowFormat = (data) => {
   const genres = [];
   data.map((item) => genres.push(item.name));
   return genres.join(", ");
+};
+
+export const getBudgetFormat = (data) => {
+  const budget = data.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  return budget + " $";
 };

@@ -7,6 +7,8 @@ import {
   Row,
   DarkTitle,
   LightTitle,
+  TitleWrapperDark,
+  TitleWrapperLight,
 } from "./styles/description-column";
 
 export default function DescriptionColumn({ children }) {
@@ -30,11 +32,19 @@ DescriptionColumn.Row = function DescriptionColumnRow({ children }) {
 DescriptionColumn.DarkTitle = function DescriptionColumnDarkTitle({
   children,
 }) {
-  return <DarkTitle>{children}</DarkTitle>;
+  return (
+    <TitleWrapperDark>
+      <DarkTitle>{children}</DarkTitle>
+    </TitleWrapperDark>
+  );
 };
 
 DescriptionColumn.LightTitle = function DescriptionColumnLightTitle({
   children,
 }) {
-  return <LightTitle>{children}</LightTitle>;
+  return (
+    <TitleWrapperLight>
+      <LightTitle>{children}</LightTitle>
+    </TitleWrapperLight>
+  );
 };

@@ -7,19 +7,19 @@ import {
   BackgroundImage,
   BackgroundContainer,
   BackgroundWrapper,
-} from "./styles/details";
+} from "./styles/details-header";
 
-export default function Details({ children }) {
+export default function DetailsHeader({ children }) {
   return <Container>{children}</Container>;
 }
 
-Details.BackgroundContainer = function DetailsBackgroundContainer({
+DetailsHeader.BackgroundContainer = function DetailsHeaderBackgroundContainer({
   children,
 }) {
   return <BackgroundContainer>{children}</BackgroundContainer>;
 };
 
-Details.BackgroundImage = function DetailsBackgroundImage({ src }) {
+DetailsHeader.BackgroundImage = function DetailsHeaderBackgroundImage({ src }) {
   return (
     <BackgroundWrapper>
       <BackgroundImage src={backdropImageLink + src} />

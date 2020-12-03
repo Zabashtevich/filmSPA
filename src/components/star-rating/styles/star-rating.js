@@ -3,7 +3,7 @@ import { IoIosStar } from "react-icons/io";
 
 export const Container = styled.div`
   display: flex;
-  color: #fff;
+  color: ${({ theme }) => theme.colors.secondary};
   font-size: ${({ theme }) => theme.fontSize.large};
   position: relative;
 `;
@@ -18,6 +18,8 @@ export const Star = styled(IoIosStar)`
   ${({ color }) =>
     color &&
     css`
-      color: ${({ theme }) => theme.colors.secondary};
+      color: grey;
     `}
 `;
+
+export const Title = styled.h3``;

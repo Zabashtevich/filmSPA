@@ -1,9 +1,9 @@
 import React from "react";
 
-import { Container, Wrapper, Star } from "./styles/star-rating";
+import { Container, Wrapper, Star, Title } from "./styles/star-rating";
 
-export default function StarRating({ children, innerWidth }) {
-  return <Container innerWidth={innerWidth}>{children}</Container>;
+export default function StarRating({ children }) {
+  return <Container>{children}</Container>;
 }
 
 StarRating.Star = function StarRatingStar({
@@ -19,4 +19,8 @@ StarRating.Star = function StarRatingStar({
       <Star color={starValue >= indexValue} />
     </Wrapper>
   );
+};
+
+StarRating.Title = function StarRatingTitle({ children }) {
+  return <Title>{children}</Title>;
 };

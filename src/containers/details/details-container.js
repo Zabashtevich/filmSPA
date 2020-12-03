@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import {
   Details,
@@ -6,17 +7,17 @@ import {
   PosterColumn,
 } from "../../components";
 import DescritpionHeader from "../../components/description-header";
+import StarRating from "../../components/star-rating";
 import useFetch from "../../hooks/useFetchData";
 import { getBudgetFormat, getRowFormat } from "../../utils/utils";
 
 export default function DetailsContainer() {
   const location = useParams();
+  const [starValue, setStarValue] = useState(0);
 
   const { list, loading } = useFetch(["movie"], location.slug, [
     { append_to_response: "credits,recommendations,images,videos,reviews" },
   ]);
-
-  console.log(list);
 
   return list ? (
     <Details>
@@ -25,6 +26,17 @@ export default function DetailsContainer() {
       </Details.BackgroundContainer>
       <PosterColumn>
         <PosterColumn.Poster src={list.poster_path} />
+        <StarRating innerWidth={"40%"}>
+          {[...Array(5)].map((_, i) => {
+            return (
+              <StarRating.Star
+                indexValue={i + 1}
+                starValue={starValue}
+                setStarValue={setStarValue}
+              />
+            );
+          })}
+        </StarRating>
       </PosterColumn>
       <DescriptionColumn>
         <DescritpionHeader>

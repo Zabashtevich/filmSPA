@@ -1,25 +1,22 @@
 import React from "react";
 
-import {
-  Container,
-  Wrapper,
-  LeftFilledStar,
-  RightFilledStar,
-  LeftEmptyStar,
-  RightEmptyStar,
-} from "./styles/star-rating";
+import { Container, Wrapper, Star } from "./styles/star-rating";
 
-export default function StarRating({ children }) {
-  return <Container>{children}</Container>;
+export default function StarRating({ children, innerWidth }) {
+  return <Container innerWidth={innerWidth}>{children}</Container>;
 }
 
-StarRating.Star = function StarRatingStar() {
+StarRating.Star = function StarRatingStar({
+  indexValue,
+  starValue,
+  setStarValue,
+}) {
   return (
-    <Wrapper>
-      <LeftFilledStar />
-      <RightFilledStar />
-      <LeftEmptyStar />
-      <RightEmptyStar />
+    <Wrapper
+      onMouseEnter={() => setStarValue(indexValue)}
+      onMouseLeave={() => setStarValue(0)}
+    >
+      <Star color={starValue >= indexValue} />
     </Wrapper>
   );
 };

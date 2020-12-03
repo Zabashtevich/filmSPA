@@ -1,14 +1,23 @@
-import styled from "styled-components";
-import { FaStarHalf, FaRegStarHalf } from "react-icons/fa";
+import styled, { css } from "styled-components/macro";
+import { IoIosStar } from "react-icons/io";
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  display: flex;
+  color: #fff;
+  font-size: ${({ theme }) => theme.fontSize.large};
+  position: relative;
+`;
 
-export const Span = styled.span``;
+export const Wrapper = styled.span`
+  padding: 0.2rem;
+  position: relative;
+`;
 
-export const LeftFilledStar = styled(FaStarHalf)``;
-
-export const RightFilledStar = styled(FaStarHalf)``;
-
-export const LeftEmptyStar = styled(FaRegStarHalf)``;
-
-export const RightEmptyStar = styled(FaRegStarHalf)``;
+export const Star = styled(IoIosStar)`
+  cursor: pointer;
+  ${({ color }) =>
+    color &&
+    css`
+      color: ${({ theme }) => theme.colors.secondary};
+    `}
+`;

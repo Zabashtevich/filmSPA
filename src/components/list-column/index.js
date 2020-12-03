@@ -18,7 +18,9 @@ ListColumn.Title = function ListColumnTitle({ children }) {
 ListColumn.ItemContainer = function ListColumnItemContainer({ children }) {
   return (
     <ItemContainer>
-      <ItemLink to={"/"}>{children}</ItemLink>
+      <ItemLink to={"/"} onMouseEnter={(e) => console.log(e)}>
+        {children}
+      </ItemLink>
     </ItemContainer>
   );
 };

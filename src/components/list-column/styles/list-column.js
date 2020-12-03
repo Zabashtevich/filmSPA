@@ -27,6 +27,6 @@ export const ItemLink = styled(ReactRouterLink)`
   transition: all 200ms linear;
   padding: 0.3rem;
   &:hover {
-    box-shadow: inset 0 -2px #fff;
+    box-shadow: inset 0 -1px hsla(0, 0%, 100%, 0.5);
   }
 `;

@@ -25,7 +25,7 @@ export const Wrapper = styled.div`
   padding: 1rem;
   display: flex;
   justify-content: start;
-  width: 100%;
+  width: 95%;
   border-bottom: 1px solid gray;
   margin: 0 1rem;
 `;

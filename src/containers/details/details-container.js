@@ -117,6 +117,7 @@ export default function DetailsHeaderContainer() {
         overview={list.overview}
         votesScore={list.vote_average}
         votesAmount={list.vote_count}
+        recommendationList={list.recommendations.results}
       />
     </>
   ) : null;

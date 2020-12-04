@@ -16,7 +16,7 @@ StarRating.Star = function StarRatingStar({
       onMouseEnter={() => setStarValue(indexValue)}
       onMouseLeave={() => setStarValue(0)}
     >
-      <Star color={starValue >= indexValue} />
+      <Star color={starValue >= indexValue ? "color" : null} />
     </Inner>
   );
 };

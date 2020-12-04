@@ -1,12 +1,12 @@
 import React from "react";
 
-import { Container, Wrapper, Amount, Score } from "./styles/votes";
+import { Container, Amount, Score, Wrapper } from "./styles/votes";
 
-export default function Votes({ children }) {
-  return <Container>{children}</Container>;
+export default function Votes({ children, ...rest }) {
+  return <Container {...rest}>{children}</Container>;
 }
 
-Votes.Wrapper = function Wrapper({ children }) {
+Votes.Wrapper = function VotesWrapper({ children }) {
   return <Wrapper>{children}</Wrapper>;
 };
 

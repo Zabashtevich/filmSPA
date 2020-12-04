@@ -15,13 +15,16 @@ export const Container = styled.div`
 export const Inner = styled.span`
   padding: 0.2rem;
   position: relative;
+  &:last-of-type {
+    margin-right: 2rem;
+  }
 `;
 
 export const Wrapper = styled.div`
   margin-top: 1rem;
   padding: 1rem;
   display: flex;
-  justify-content: center;
+  justify-content: start;
   width: 100%;
   border-bottom: 1px solid gray;
   margin: 0 1rem;

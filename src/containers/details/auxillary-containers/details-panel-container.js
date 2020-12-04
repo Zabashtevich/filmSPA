@@ -1,7 +1,11 @@
 import React, { useState } from "react";
-import { DetailsPanel, StarRating } from "../../../components";
+import { DetailsPanel, StarRating, Votes } from "../../../components";
 
-export default function DetailsPanelContainer({ overview }) {
+export default function DetailsPanelContainer({
+  overview,
+  votesScore,
+  votesAmount,
+}) {
   const [starValue, setStarValue] = useState(0);
   return (
     <DetailsPanel>
@@ -15,12 +19,21 @@ export default function DetailsPanelContainer({ overview }) {
           {[...Array(10)].map((_, i) => {
             return (
               <StarRating.Star
+                key={i}
                 indexValue={i + 1}
                 starValue={starValue}
                 setStarValue={setStarValue}
               />
             );
           })}
+          <Votes>
+            <Votes.Wrapper>
+              <Votes.VotesScore>{votesScore} /</Votes.VotesScore>
+            </Votes.Wrapper>
+            <Votes.Wrapper>
+              <Votes.VotesAmount>{votesAmount}</Votes.VotesAmount>
+            </Votes.Wrapper>
+          </Votes>
         </StarRating.Wrapper>
       </StarRating>
     </DetailsPanel>

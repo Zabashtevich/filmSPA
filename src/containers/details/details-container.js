@@ -6,6 +6,7 @@ import {
   ListColumn,
   PosterColumn,
   DescriptionHeader,
+  Votes,
 } from "../../components";
 import useFetch from "../../hooks/useFetchData";
 import { getBudgetFormat, getRowFormat } from "../../utils/utils";
@@ -18,6 +19,7 @@ export default function DetailsHeaderContainer() {
     { append_to_response: "credits,recommendations,images,videos,reviews" },
   ]);
 
+  console.log(list);
   return list ? (
     <>
       <DetailsHeader>
@@ -101,9 +103,21 @@ export default function DetailsHeaderContainer() {
               </ListColumn.ItemContainer>
             );
           })}
+          <Votes margin={true}>
+            <Votes.Wrapper>
+              <Votes.VotesScore>{list.vote_average} /</Votes.VotesScore>
+            </Votes.Wrapper>
+            <Votes.Wrapper>
+              <Votes.VotesAmount>{list.vote_count}</Votes.VotesAmount>
+            </Votes.Wrapper>
+          </Votes>
         </ListColumn>
       </DetailsHeader>
-      <DetailsPanelContainer overview={list.overview} />
+      <DetailsPanelContainer
+        overview={list.overview}
+        votesScore={list.vote_average}
+        votesAmount={list.vote_count}
+      />
     </>
   ) : null;
 }

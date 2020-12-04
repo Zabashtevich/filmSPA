@@ -13,3 +13,4 @@ export { default as PosterColumn } from "./poster-column";
 export { default as DescriptionHeader } from "./description-header";
 export { default as DetailsPanel } from "./details-panel";
 export { default as StarRating } from "./star-rating";
+export { default as Votes } from "./votes";

@@ -3,18 +3,33 @@ import { IoIosStar } from "react-icons/io";
 
 export const Container = styled.div`
   display: flex;
+  flex-direction: column;
   color: ${({ theme }) => theme.colors.secondary};
-  font-size: ${({ theme }) => theme.fontSize.large};
   position: relative;
+  max-width: 1000px;
+  align-items: flex-start;
+  margin: 4rem auto;
+  font-family: ${({ theme }) => theme.fontFamily.secondary};
 `;
 
-export const Wrapper = styled.span`
+export const Inner = styled.span`
   padding: 0.2rem;
   position: relative;
 `;
 
+export const Wrapper = styled.div`
+  margin-top: 1rem;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  border-bottom: 1px solid gray;
+  margin: 0 1rem;
+`;
+
 export const Star = styled(IoIosStar)`
   cursor: pointer;
+  font-size: ${({ theme }) => theme.fontSize.huge};
   ${({ color }) =>
     color &&
     css`
@@ -22,4 +37,7 @@ export const Star = styled(IoIosStar)`
     `}
 `;
 
-export const Title = styled.h3``;
+export const Title = styled.h3`
+  margin: 0;
+  font-size: ${({ theme }) => theme.fontSize.large};
+`;

@@ -6,19 +6,22 @@ export default function DetailsPanelContainer({ overview }) {
   return (
     <DetailsPanel>
       <DetailsPanel.ContentWrapper>
+        <DetailsPanel.Title>Overview</DetailsPanel.Title>
         <DetailsPanel.Overview>{overview}</DetailsPanel.Overview>
       </DetailsPanel.ContentWrapper>
       <StarRating>
         <StarRating.Title>Rating</StarRating.Title>
-        {[...Array(5)].map((_, i) => {
-          return (
-            <StarRating.Star
-              indexValue={i + 1}
-              starValue={starValue}
-              setStarValue={setStarValue}
-            />
-          );
-        })}
+        <StarRating.Wrapper>
+          {[...Array(10)].map((_, i) => {
+            return (
+              <StarRating.Star
+                indexValue={i + 1}
+                starValue={starValue}
+                setStarValue={setStarValue}
+              />
+            );
+          })}
+        </StarRating.Wrapper>
       </StarRating>
     </DetailsPanel>
   );

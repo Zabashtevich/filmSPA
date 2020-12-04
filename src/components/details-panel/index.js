@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Container, Wrapper, Overview } from "./styles/details-panel";
+import { Container, Wrapper, Overview, Title } from "./styles/details-panel";
 
 export default function DetailsPanel({ children }) {
   return <Container>{children}</Container>;
@@ -14,4 +14,8 @@ DetailsPanel.ContentWrapper = function DetailsPanelContentWrapper({
 
 DetailsPanel.Overview = function DetailsPanelOverview({ children }) {
   return <Overview>{children}</Overview>;
+};
+
+DetailsPanel.Title = function DetailsPanelTitle({ children }) {
+  return <Title>{children}</Title>;
 };

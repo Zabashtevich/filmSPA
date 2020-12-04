@@ -1,4 +1,5 @@
 import React from "react";
+import { baseAuthorImageLink } from "../../constants/constants";
 
 import {
   Nickname,
@@ -11,6 +12,7 @@ import {
   Avatar,
   Score,
   Title,
+  ContentWrapper,
 } from "./styles/reviews-list";
 
 export default function ReviewsList({ children }) {
@@ -26,7 +28,11 @@ ReviewsList.Author = function ReviewsListAuthor({ children }) {
 };
 
 ReviewsList.Content = function ReviewsListContent({ children }) {
-  return <Content>{children}</Content>;
+  return (
+    <ContentWrapper>
+      <Content>{children}</Content>
+    </ContentWrapper>
+  );
 };
 
 ReviewsList.ItemContainer = function ReviewsListContainer({ children }) {
@@ -42,7 +48,7 @@ ReviewsList.Nickname = function ReviewsListNickname({ children }) {
 };
 
 ReviewsList.Avatar = function ReviewsListAvatar({ src }) {
-  return <Avatar src={src} />;
+  return <Avatar src={baseAuthorImageLink + src} />;
 };
 
 ReviewsList.Score = function ReviewsListScore({ children }) {

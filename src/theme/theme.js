@@ -26,6 +26,6 @@ export default {
     titleDark: "hsla(0,0%,100%,.5)",
     inputColor: "gray",
     appMainColor: "#f4f4f4",
-    headerInputIcon: "#fff",
+    reviewsBackground: "#f2f2f2",
   },
 };

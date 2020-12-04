@@ -68,30 +68,32 @@ export default function DetailsPanelContainer() {
         </RecommendationsList.ListContainer>
       </RecommendationsList>
       <ReviewsList>
-        <ReviewsList.Title>Reviews</ReviewsList.Title>
-        {list.reviews.results.map((item) => {
-          return (
-            <ReviewsList.ItemContainer key={item.id}>
-              <ReviewsList.Author>
-                <ReviewsList.Wrapper>
-                  <ReviewsList.Nickname>
-                    {item.author_details.name}
-                  </ReviewsList.Nickname>
-                  <ReviewsList.Date>
-                    {new Date(item.created_at).toDateString()}
-                  </ReviewsList.Date>
-                </ReviewsList.Wrapper>
-                <ReviewsList.Avatar src={item.avatar_path}></ReviewsList.Avatar>
-              </ReviewsList.Author>
-              <ReviewsList.Wrapper>
-                <ReviewsList.Content>{item.content}</ReviewsList.Content>
-                <ReviewsList.Score>
-                  {item.author_details.rating}
-                </ReviewsList.Score>
-              </ReviewsList.Wrapper>
-            </ReviewsList.ItemContainer>
-          );
-        })}
+        {list.reviews.results.length !== 0 ? (
+          <>
+            <ReviewsList.Title>Reviews</ReviewsList.Title>
+            {list.reviews.results.map((item) => {
+              return (
+                <ReviewsList.ItemContainer key={item.id}>
+                  <ReviewsList.Author>
+                    <ReviewsList.Avatar src={item.author_details.avatar_path} />
+                    <ReviewsList.Score>
+                      {item.author_details.rating}
+                    </ReviewsList.Score>
+                    <ReviewsList.Wrapper>
+                      <ReviewsList.Nickname>
+                        {item.author_details.name}
+                      </ReviewsList.Nickname>
+                      <ReviewsList.Date>
+                        {new Date(item.created_at).toDateString()}
+                      </ReviewsList.Date>
+                    </ReviewsList.Wrapper>
+                  </ReviewsList.Author>
+                  <ReviewsList.Content>{item.content}</ReviewsList.Content>
+                </ReviewsList.ItemContainer>
+              );
+            })}
+          </>
+        ) : null}
       </ReviewsList>
     </DetailsPanel>
   ) : null;

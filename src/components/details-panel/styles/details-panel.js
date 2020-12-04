@@ -16,11 +16,11 @@ export const Overview = styled.h4`
   font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
   margin: 0 1rem;
   padding: 1rem;
-  border-bottom: 1px solid gray;
+  border-top: 1px solid gray;
 `;
 
 export const Title = styled.h3`
-  margin: 0;
+  margin-bottom: 1rem;
   font-size: ${({ theme }) => theme.fontSize.large};
   font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
 `;

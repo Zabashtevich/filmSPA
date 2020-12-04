@@ -26,7 +26,7 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: start;
   width: 95%;
-  border-bottom: 1px solid gray;
+  border-top: 1px solid gray;
   margin: 0 1rem;
 `;
 
@@ -41,6 +41,6 @@ export const Star = styled(IoIosStar)`
 `;
 
 export const Title = styled.h3`
-  margin: 0;
+  margin-bottom: 1rem;
   font-size: ${({ theme }) => theme.fontSize.large};
 `;

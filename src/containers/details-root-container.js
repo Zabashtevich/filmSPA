@@ -7,11 +7,11 @@ import {
   PosterColumn,
   DescriptionHeader,
   Votes,
-} from "../../components";
-import useFetch from "../../hooks/useFetchData";
-import { getBudgetFormat, getRowFormat } from "../../utils/utils";
+} from "../components";
+import useFetch from "../hooks/useFetchData";
+import { getBudgetFormat, getRowFormat } from "../utils/utils";
 
-export default function DetailsHeaderContainer() {
+export default function DetailsRootContainer() {
   const location = useParams();
 
   const { list, loading } = useFetch(["movie"], location.slug, [

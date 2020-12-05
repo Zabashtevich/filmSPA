@@ -6,8 +6,8 @@ import {
   ReviewsList,
   StarRating,
   Votes,
-} from "../../../components";
-import useFetch from "../../../hooks/useFetchData";
+} from "../components";
+import useFetch from "../hooks/useFetchData";
 
 export default function DetailsPanelContainer() {
   const [starValue, setStarValue] = useState(0);

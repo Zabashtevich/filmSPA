@@ -29,6 +29,7 @@ export const ItemContainer = styled.div`
   background: ${({ theme }) => theme.colors.reviewsBackground};
   border-radius: 1rem;
   border-top: 1rem;
+  margin-top: 2rem;
 `;
 
 export const ContentWrapper = styled.div`

@@ -22,13 +22,13 @@ export const Container = styled.div`
   flex-direction: column;
   font-family: ${({ theme }) => theme.fontFamily.secondary};
   overflow-y: hidden;
-  margin-top: 6rem;
+  margin: 0;
 `;
 
 export const Title = styled.h3`
   font-size: ${({ theme }) => theme.fontSize.large};
   font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
-  margin: 1rem;
+  margin-top: 1rem;
 `;
 
 export const ListContainer = styled.div`

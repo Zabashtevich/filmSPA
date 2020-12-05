@@ -73,3 +73,17 @@ export const getBudgetFormat = (data) => {
   const budget = data.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
   return budget + " $";
 };
+
+export const getCorrectSrc = (data) => {
+  const correctSrc = { changed: false, src: null };
+  if (data.includes("https")) {
+    correctSrc.src = data.split("").slice(1).join("");
+    correctSrc.changed = true;
+  }
+  if (data === null) {
+    correctSrc.changed = true;
+    correctSrc.src = "./assets/images/poster.jpg";
+  }
+
+  return correctSrc;
+};

@@ -8,6 +8,7 @@ import {
   Votes,
 } from "../components";
 import useFetch from "../hooks/useFetchData";
+import { getCorrectSrc } from "../utils/utils";
 
 export default function DetailsPanelContainer() {
   const [starValue, setStarValue] = useState(0);
@@ -49,8 +50,8 @@ export default function DetailsPanelContainer() {
           </Votes>
         </StarRating.Wrapper>
       </StarRating>
+      <RecommendationsList.Title>Reccomendations</RecommendationsList.Title>
       <RecommendationsList>
-        <RecommendationsList.Title>Reccomendations</RecommendationsList.Title>
         <RecommendationsList.ListContainer>
           {list.recommendations.results.map((item) => {
             return (
@@ -72,10 +73,19 @@ export default function DetailsPanelContainer() {
           <>
             <ReviewsList.Title>Reviews</ReviewsList.Title>
             {list.reviews.results.map((item) => {
+              const correctSrc =
+                item.author_details.avatar_path.includes("https") ||
+                item.author_details.avatar_path === null
+                  ? getCorrectSrc(item.author_details.avatar_path)
+                  : item.author_details.avatar_path;
+              console.log(correctSrc);
               return (
                 <ReviewsList.ItemContainer key={item.id}>
                   <ReviewsList.Author>
-                    <ReviewsList.Avatar src={item.author_details.avatar_path} />
+                    <ReviewsList.Avatar
+                      src={correctSrc.changed ? null : correctSrc}
+                      correctSrc={correctSrc.changed ? correctSrc.src : null}
+                    />
                     <ReviewsList.Score>
                       {item.author_details.rating}
                     </ReviewsList.Score>
@@ -93,7 +103,9 @@ export default function DetailsPanelContainer() {
               );
             })}
           </>
-        ) : null}
+        ) : (
+          <div>No reviews</div>
+        )}
       </ReviewsList>
     </DetailsPanel>
   ) : null;

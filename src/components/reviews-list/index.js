@@ -47,8 +47,8 @@ ReviewsList.Nickname = function ReviewsListNickname({ children }) {
   return <Nickname>{children}</Nickname>;
 };
 
-ReviewsList.Avatar = function ReviewsListAvatar({ src }) {
-  return <Avatar src={baseAuthorImageLink + src} />;
+ReviewsList.Avatar = function ReviewsListAvatar({ src, correctSrc }) {
+  return <Avatar src={src ? baseAuthorImageLink + src : correctSrc} />;
 };
 
 ReviewsList.Score = function ReviewsListScore({ children }) {

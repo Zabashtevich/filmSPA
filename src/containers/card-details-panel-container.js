@@ -10,7 +10,7 @@ import {
 import useFetch from "../hooks/useFetchData";
 import { getCorrectSrc } from "../utils/utils";
 
-export default function DetailsPanelContainer() {
+export default function CardDetailsPanelContainer() {
   const [starValue, setStarValue] = useState(0);
   const location = useParams();
 

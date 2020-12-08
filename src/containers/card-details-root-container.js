@@ -11,7 +11,7 @@ import {
 import useFetch from "../hooks/useFetchData";
 import { getBudgetFormat, getRowFormat } from "../utils/utils";
 
-export default function DetailsRootContainer() {
+export default function CardDetailsRootContainer() {
   const location = useParams();
 
   const { list, loading } = useFetch(["movie"], location.slug, [
@@ -21,7 +21,6 @@ export default function DetailsRootContainer() {
     },
   ]);
 
-  console.log(list);
   return list ? (
     <DetailsHeader>
       <DetailsHeader.BackgroundContainer>

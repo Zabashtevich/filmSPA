@@ -2,8 +2,9 @@ import styled from "styled-components/macro";
 
 export const Container = styled.div`
   max-width: 750px;
+
   margin: 0 auto;
-  width: 100%;
+  min-height: 30rem;
   font-family: ${({ theme }) => theme.fontFamily.secondary};
   color: ${({ theme }) => theme.colors.secondary};
 `;
@@ -30,6 +31,7 @@ export const ItemContainer = styled.div`
   border-radius: 1rem;
   border-top: 1rem;
   margin-top: 2rem;
+  min-height: 200px;
 `;
 
 export const ContentWrapper = styled.div`
@@ -68,4 +70,11 @@ export const Score = styled.span`
 export const Title = styled.h3`
   font-size: ${({ theme }) => theme.fontSize.huge};
   font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
+`;
+
+export const NoReviews = styled.div`
+  padding: 4rem;
+  text-align: center;
+  font-size: ${({ theme }) => theme.fontSize.large};
+  font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
 `;

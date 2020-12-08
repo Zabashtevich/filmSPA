@@ -69,9 +69,9 @@ export default function DetailsPanelContainer() {
         </RecommendationsList.ListContainer>
       </RecommendationsList>
       <ReviewsList>
+        <ReviewsList.Title>Reviews</ReviewsList.Title>
         {list.reviews.results.length !== 0 ? (
           <>
-            <ReviewsList.Title>Reviews</ReviewsList.Title>
             {list.reviews.results.map((item) => {
               const correctSrc =
                 item.author_details.avatar_path.includes("https") ||
@@ -104,7 +104,9 @@ export default function DetailsPanelContainer() {
             })}
           </>
         ) : (
-          <div>No reviews</div>
+          <ReviewsList.ItemContainer>
+            <ReviewsList.NoReviews />
+          </ReviewsList.ItemContainer>
         )}
       </ReviewsList>
     </DetailsPanel>

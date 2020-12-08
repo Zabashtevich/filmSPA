@@ -13,6 +13,7 @@ import {
   Score,
   Title,
   ContentWrapper,
+  NoReviews,
 } from "./styles/reviews-list";
 
 export default function ReviewsList({ children }) {
@@ -57,4 +58,8 @@ ReviewsList.Score = function ReviewsListScore({ children }) {
 
 ReviewsList.Title = function ReviewsListTitle({ children }) {
   return <Title>{children}</Title>;
+};
+
+ReviewsList.NoReviews = function ReviewsListNoReviews() {
+  return <NoReviews>{"No reviews"}</NoReviews>;
 };

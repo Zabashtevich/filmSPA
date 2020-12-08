@@ -70,6 +70,7 @@ export const getRowFormat = (data) => {
 };
 
 export const getBudgetFormat = (data) => {
+  if (data === 0) return "Unknown";
   const budget = data.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
   return budget + " $";
 };

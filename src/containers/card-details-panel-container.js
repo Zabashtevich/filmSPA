@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import {
   DetailsPanel,
-  RecommendationsList,
+  RelevantList,
   ReviewsList,
   StarRating,
   Votes,
@@ -50,24 +50,22 @@ export default function CardDetailsPanelContainer() {
           </Votes>
         </StarRating.Wrapper>
       </StarRating>
-      <RecommendationsList.Title>Reccomendations</RecommendationsList.Title>
-      <RecommendationsList>
-        <RecommendationsList.ListContainer>
+      <RelevantList.Title>Reccomendations</RelevantList.Title>
+      <RelevantList>
+        <RelevantList.ListContainer>
           {list.recommendations.results.map((item) => {
             return (
-              <RecommendationsList.ItemContainer key={item.id}>
-                <RecommendationsList.Miniature src={item.poster_path} />
-                <RecommendationsList.Name>
-                  {item.title}
-                </RecommendationsList.Name>
-                <RecommendationsList.VoteScore>
+              <RelevantList.ItemContainer key={item.id}>
+                <RelevantList.Miniature src={item.poster_path} />
+                <RelevantList.Name>{item.title}</RelevantList.Name>
+                <RelevantList.VoteScore>
                   {item.vote_average}
-                </RecommendationsList.VoteScore>
-              </RecommendationsList.ItemContainer>
+                </RelevantList.VoteScore>
+              </RelevantList.ItemContainer>
             );
           })}
-        </RecommendationsList.ListContainer>
-      </RecommendationsList>
+        </RelevantList.ListContainer>
+      </RelevantList>
       <ReviewsList>
         <ReviewsList.Title>Reviews</ReviewsList.Title>
         {list.reviews.results.length !== 0 ? (

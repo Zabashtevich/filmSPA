@@ -9,27 +9,29 @@ import {
   LightTitle,
   TitleWrapperDark,
   TitleWrapperLight,
-} from "./styles/description-column";
+} from "./styles/card-description-column";
 
-export default function DescriptionColumn({ children }) {
+export default function CardDescriptionColumn({ children }) {
   return <Container>{children}</Container>;
 }
 
-DescriptionColumn.Title = function DescriptionColumnTitle({ children }) {
+CardDescriptionColumn.Title = function CardDescriptionColumnTitle({
+  children,
+}) {
   return <Title>{children}</Title>;
 };
 
-DescriptionColumn.ContentWrapper = function DescriptionColumnContentWrapper({
+CardDescriptionColumn.ContentWrapper = function CardDescriptionColumnContentWrapper({
   children,
 }) {
   return <ContentWrapper>{children}</ContentWrapper>;
 };
 
-DescriptionColumn.Row = function DescriptionColumnRow({ children }) {
+CardDescriptionColumn.Row = function CardDescriptionColumnRow({ children }) {
   return <Row>{children}</Row>;
 };
 
-DescriptionColumn.DarkTitle = function DescriptionColumnDarkTitle({
+CardDescriptionColumn.DarkTitle = function CardDescriptionColumnDarkTitle({
   children,
 }) {
   return (
@@ -39,7 +41,7 @@ DescriptionColumn.DarkTitle = function DescriptionColumnDarkTitle({
   );
 };
 
-DescriptionColumn.LightTitle = function DescriptionColumnLightTitle({
+CardDescriptionColumn.LightTitle = function CardDescriptionColumnLightTitle({
   children,
 }) {
   return (

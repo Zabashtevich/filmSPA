@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import {
   DetailsHeader,
-  DescriptionColumn,
+  CardDescriptionColumn,
   ListColumn,
   PosterColumn,
   DescriptionHeader,
@@ -29,7 +29,7 @@ export default function CardDetailsRootContainer() {
       <PosterColumn>
         <PosterColumn.Poster src={list.poster_path} />
       </PosterColumn>
-      <DescriptionColumn>
+      <CardDescriptionColumn>
         <DescriptionHeader>
           <DescriptionHeader.Title>{list.title}</DescriptionHeader.Title>
           <DescriptionHeader.SubTitle>
@@ -37,7 +37,7 @@ export default function CardDetailsRootContainer() {
           </DescriptionHeader.SubTitle>
         </DescriptionHeader>
         <CardRows list={list} />
-      </DescriptionColumn>
+      </CardDescriptionColumn>
       <ListColumn>
         <ListColumn.Title>Credits list</ListColumn.Title>
         {list.credits.cast.slice(0, 10).map((item) => {

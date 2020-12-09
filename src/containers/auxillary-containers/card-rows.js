@@ -1,59 +1,71 @@
 import React from "react";
-import { DescriptionColumn } from "../../components";
+import { CardDescriptionColumn } from "../../components";
 import { getBudgetFormat, getRowFormat } from "../../utils/utils";
 
 export default function CardRows({ list }) {
   return (
-    <DescriptionColumn.ContentWrapper>
-      <DescriptionColumn.Title>About film</DescriptionColumn.Title>
-      <DescriptionColumn.Row>
-        <DescriptionColumn.DarkTitle>Genres</DescriptionColumn.DarkTitle>
-        <DescriptionColumn.LightTitle>
+    <CardDescriptionColumn.ContentWrapper>
+      <CardDescriptionColumn.Title>About film</CardDescriptionColumn.Title>
+      <CardDescriptionColumn.Row>
+        <CardDescriptionColumn.DarkTitle>
+          Genres
+        </CardDescriptionColumn.DarkTitle>
+        <CardDescriptionColumn.LightTitle>
           {getRowFormat(list.genres)}
-        </DescriptionColumn.LightTitle>
-      </DescriptionColumn.Row>
-      <DescriptionColumn.Row>
-        <DescriptionColumn.DarkTitle>Budget</DescriptionColumn.DarkTitle>
-        <DescriptionColumn.LightTitle>
+        </CardDescriptionColumn.LightTitle>
+      </CardDescriptionColumn.Row>
+      <CardDescriptionColumn.Row>
+        <CardDescriptionColumn.DarkTitle>
+          Budget
+        </CardDescriptionColumn.DarkTitle>
+        <CardDescriptionColumn.LightTitle>
           {getBudgetFormat(list.budget)}
-        </DescriptionColumn.LightTitle>
-      </DescriptionColumn.Row>
-      <DescriptionColumn.Row>
-        <DescriptionColumn.DarkTitle>Countries</DescriptionColumn.DarkTitle>
-        <DescriptionColumn.LightTitle>
+        </CardDescriptionColumn.LightTitle>
+      </CardDescriptionColumn.Row>
+      <CardDescriptionColumn.Row>
+        <CardDescriptionColumn.DarkTitle>
+          Countries
+        </CardDescriptionColumn.DarkTitle>
+        <CardDescriptionColumn.LightTitle>
           {getRowFormat(list.production_countries)}
-        </DescriptionColumn.LightTitle>
-      </DescriptionColumn.Row>
-      <DescriptionColumn.Row>
-        <DescriptionColumn.DarkTitle>Companies</DescriptionColumn.DarkTitle>
-        <DescriptionColumn.LightTitle>
+        </CardDescriptionColumn.LightTitle>
+      </CardDescriptionColumn.Row>
+      <CardDescriptionColumn.Row>
+        <CardDescriptionColumn.DarkTitle>
+          Companies
+        </CardDescriptionColumn.DarkTitle>
+        <CardDescriptionColumn.LightTitle>
           {getRowFormat(list.production_companies)}
-        </DescriptionColumn.LightTitle>
-      </DescriptionColumn.Row>
-      <DescriptionColumn.Row>
-        <DescriptionColumn.DarkTitle>Date</DescriptionColumn.DarkTitle>
-        <DescriptionColumn.LightTitle>
+        </CardDescriptionColumn.LightTitle>
+      </CardDescriptionColumn.Row>
+      <CardDescriptionColumn.Row>
+        <CardDescriptionColumn.DarkTitle>Date</CardDescriptionColumn.DarkTitle>
+        <CardDescriptionColumn.LightTitle>
           {list.release_date}
-        </DescriptionColumn.LightTitle>
-      </DescriptionColumn.Row>
-      <DescriptionColumn.Row>
-        <DescriptionColumn.DarkTitle>Language</DescriptionColumn.DarkTitle>
-        <DescriptionColumn.LightTitle>
+        </CardDescriptionColumn.LightTitle>
+      </CardDescriptionColumn.Row>
+      <CardDescriptionColumn.Row>
+        <CardDescriptionColumn.DarkTitle>
+          Language
+        </CardDescriptionColumn.DarkTitle>
+        <CardDescriptionColumn.LightTitle>
           {list.original_language}
-        </DescriptionColumn.LightTitle>
-      </DescriptionColumn.Row>
-      <DescriptionColumn.Row>
-        <DescriptionColumn.DarkTitle>Date</DescriptionColumn.DarkTitle>
-        <DescriptionColumn.LightTitle>
+        </CardDescriptionColumn.LightTitle>
+      </CardDescriptionColumn.Row>
+      <CardDescriptionColumn.Row>
+        <CardDescriptionColumn.DarkTitle>Date</CardDescriptionColumn.DarkTitle>
+        <CardDescriptionColumn.LightTitle>
           {getBudgetFormat(list.revenue)}
-        </DescriptionColumn.LightTitle>
-      </DescriptionColumn.Row>
-      <DescriptionColumn.Row>
-        <DescriptionColumn.DarkTitle>Runtime</DescriptionColumn.DarkTitle>
-        <DescriptionColumn.LightTitle>
+        </CardDescriptionColumn.LightTitle>
+      </CardDescriptionColumn.Row>
+      <CardDescriptionColumn.Row>
+        <CardDescriptionColumn.DarkTitle>
+          Runtime
+        </CardDescriptionColumn.DarkTitle>
+        <CardDescriptionColumn.LightTitle>
           {list.runtime}
-        </DescriptionColumn.LightTitle>
-      </DescriptionColumn.Row>
-    </DescriptionColumn.ContentWrapper>
+        </CardDescriptionColumn.LightTitle>
+      </CardDescriptionColumn.Row>
+    </CardDescriptionColumn.ContentWrapper>
   );
 }

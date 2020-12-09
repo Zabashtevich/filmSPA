@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  CSSTransition,
-  TransitionGroup,
-  SwitchTransition,
-} from "react-transition-group";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 

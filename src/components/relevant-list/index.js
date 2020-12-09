@@ -36,7 +36,7 @@ RelevantList.ListContainer = function RelevantListContainer({ children }) {
   return <ListContainer>{children}</ListContainer>;
 };
 
-RelevantList.VoteScore = function RecommendationsVoteScore({ children }) {
+RelevantList.VoteScore = function RelevantListVoteScore({ children }) {
   return (
     <Wrapper>
       <Score>{children}</Score>

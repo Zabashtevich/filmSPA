@@ -9,8 +9,8 @@ import {
   BackgroundWrapper,
 } from "./styles/details-header";
 
-export default function DetailsHeader({ children }) {
-  return <Container>{children}</Container>;
+export default function DetailsHeader({ children, background }) {
+  return <Container background={background}>{children}</Container>;
 }
 
 DetailsHeader.BackgroundContainer = function DetailsHeaderBackgroundContainer({

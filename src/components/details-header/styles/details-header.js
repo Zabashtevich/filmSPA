@@ -1,15 +1,19 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 
 export const Container = styled.div`
   display: flex;
   flex-direction: row;
-  background: linear-gradient(180deg, #000 724px, #232323 99%);
   max-width: 1300px;
   width: 100%;
   margin: 0 auto;
   position: relative;
   font-family: ${({ theme }) => theme.fontFamily.secondary};
   font-weight: ${({ theme }) => theme.fontWeightSecondary.normal};
+  ${({ background }) =>
+    background &&
+    css`
+      background: linear-gradient(180deg, #000 724px, #232323 99%);
+    `}
 `;
 
 export const BackgroundContainer = styled.div`

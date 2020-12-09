@@ -6,6 +6,7 @@ import {
   Subtitle,
   SubtitleValue,
   RowContainer,
+  ContentWrapper,
 } from "./styles/actor-poster-description";
 
 export default function ActorPosterDescription({ children }) {
@@ -34,4 +35,10 @@ ActorPosterDescription.RowContainer = function ActorPosterDescriptionRowContaine
   children,
 }) {
   return <RowContainer>{children}</RowContainer>;
+};
+
+ActorPosterDescription.ContentWrapper = function ActorPosterDescriptionContentWrapper({
+  children,
+}) {
+  return <ContentWrapper>{children}</ContentWrapper>;
 };

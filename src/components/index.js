@@ -16,3 +16,4 @@ export { default as StarRating } from "./star-rating";
 export { default as Votes } from "./votes";
 export { default as RecommendationsList } from "./recomendations-list";
 export { default as ReviewsList } from "./reviews-list";
+export { default as ActorPosterDescription } from "./actor-poster-description";

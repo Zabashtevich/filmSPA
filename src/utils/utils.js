@@ -93,6 +93,19 @@ export const getKnownFor = (data) => {
   const sortedData = data.sort(
     (prev, item) => item.popularity - prev.popularity,
   );
-  const resultArray = sortedData.splice(0, 5);
+  const resultArray = sortedData.splice(0, 10);
   return resultArray;
+};
+
+export const getRightReleasedDate = (data) => {
+  return data.substring(0, data.indexOf("-"));
+};
+
+export const getArrayOfMovies = (data) => {
+  const sortedArray = data.sort((prev, next) => {
+    const prevData = getRightReleasedDate(prev.release_date);
+    const nextData = getRightReleasedDate(next.release_date);
+    return nextData - prevData;
+  });
+  return sortedArray;
 };

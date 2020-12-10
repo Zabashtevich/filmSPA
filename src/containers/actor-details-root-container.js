@@ -10,7 +10,11 @@ import {
   ReviewsList,
 } from "../components";
 import useFetch from "../hooks/useFetchData";
-import { getKnownFor } from "../utils/utils";
+import {
+  getArrayOfMovies,
+  getKnownFor,
+  getRightReleasedDate,
+} from "../utils/utils";
 import ActorRows from "./auxillary-containers/actor-rows";
 
 export default function ActorDetailsRootContainer() {
@@ -23,7 +27,7 @@ export default function ActorDetailsRootContainer() {
   console.log(list);
 
   return list ? (
-    <DetailsHeader>
+    <DetailsHeader style={{ boxSizing: "border-box" }}>
       <PosterColumn>
         <PosterColumn.Poster src={list.profile_path} />
         <ActorPosterDescription>
@@ -37,8 +41,8 @@ export default function ActorDetailsRootContainer() {
         <ActorMainColumn.Name>{list.name}</ActorMainColumn.Name>
         <ActorMainColumn.Title>Overview</ActorMainColumn.Title>
         <ActorMainColumn.Overview>{list.biography}</ActorMainColumn.Overview>
-        <ReviewsList.Title>Known for</ReviewsList.Title>
         <RelevantList>
+          <ActorMainColumn.Title>Known for</ActorMainColumn.Title>
           <RelevantList.ListContainer>
             {getKnownFor(list.credits.cast).map((item) => {
               return (
@@ -53,11 +57,20 @@ export default function ActorDetailsRootContainer() {
             })}
           </RelevantList.ListContainer>
         </RelevantList>
+        <ActorMainColumn.Title>Credits list</ActorMainColumn.Title>
         <ActorMainColumn.CreditsWrapper>
-          <ActorMainColumn.CreditsRow>
-            <ActorMainColumn.Date>123</ActorMainColumn.Date>
-            <ActorMainColumn.ItemName>fsdfdsf</ActorMainColumn.ItemName>
-          </ActorMainColumn.CreditsRow>
+          {getArrayOfMovies(list.credits.cast).map((item, index) => {
+            return (
+              <ActorMainColumn.CreditsRow key={item.id}>
+                <ActorMainColumn.Date>
+                  {getRightReleasedDate(item.release_date)}
+                </ActorMainColumn.Date>
+                <ActorMainColumn.ItemName>
+                  {item.title}
+                </ActorMainColumn.ItemName>
+              </ActorMainColumn.CreditsRow>
+            );
+          })}
         </ActorMainColumn.CreditsWrapper>
       </ActorMainColumn>
     </DetailsHeader>

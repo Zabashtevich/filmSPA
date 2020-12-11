@@ -6,7 +6,6 @@ export const Container = styled.div`
   margin: 8rem 3rem;
   flex-direction: column;
   font-family: ${({ theme }) => theme.fontFamily.secondary};
-  flex: auto;
 `;
 
 export const Name = styled.h2`
@@ -35,13 +34,36 @@ export const CreditsWrapper = styled.div``;
 
 export const Row = styled.div`
   display: flex;
+  flex-direction: row;
   font-size: ${({ theme }) => theme.fontSize.small};
-  margin: 0.5rem 2rem;
+  padding: 2rem 0 2rem 1rem;
   cursor: pointer;
+  border-bottom: 1px solid gray;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    transition: all 0.1s linear;
+  }
 `;
 
-export const Date = styled.div`
-  width: 10%;
+export const Date = styled.span`
+  font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
+  margin: 0 1rem;
 `;
 
-export const ItemName = styled.div``;
+export const ItemName = styled.span``;
+
+export const Number = styled.div`
+  width: 5%;
+  font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
+`;
+
+export const Character = styled.div`
+  margin-top: 1rem;
+  font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
+  color: gray;
+`;
+
+export const DescriptionWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;

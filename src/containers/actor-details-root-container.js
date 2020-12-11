@@ -27,7 +27,7 @@ export default function ActorDetailsRootContainer() {
   console.log(list);
 
   return list ? (
-    <DetailsHeader style={{ boxSizing: "border-box" }}>
+    <DetailsHeader>
       <PosterColumn>
         <PosterColumn.Poster src={list.profile_path} />
         <ActorPosterDescription>
@@ -41,8 +41,8 @@ export default function ActorDetailsRootContainer() {
         <ActorMainColumn.Name>{list.name}</ActorMainColumn.Name>
         <ActorMainColumn.Title>Overview</ActorMainColumn.Title>
         <ActorMainColumn.Overview>{list.biography}</ActorMainColumn.Overview>
+        <ActorMainColumn.Title>Known for</ActorMainColumn.Title>
         <RelevantList>
-          <ActorMainColumn.Title>Known for</ActorMainColumn.Title>
           <RelevantList.ListContainer>
             {getKnownFor(list.credits.cast).map((item) => {
               return (
@@ -62,12 +62,18 @@ export default function ActorDetailsRootContainer() {
           {getArrayOfMovies(list.credits.cast).map((item, index) => {
             return (
               <ActorMainColumn.CreditsRow key={item.id}>
+                <ActorMainColumn.Number>{index + 1}</ActorMainColumn.Number>
+                <ActorMainColumn.DescriptionWrapper>
+                  <ActorMainColumn.ItemName>
+                    {item.title}
+                  </ActorMainColumn.ItemName>
+                  <ActorMainColumn.Character>
+                    {item.character}
+                  </ActorMainColumn.Character>
+                </ActorMainColumn.DescriptionWrapper>
                 <ActorMainColumn.Date>
                   {getRightReleasedDate(item.release_date)}
                 </ActorMainColumn.Date>
-                <ActorMainColumn.ItemName>
-                  {item.title}
-                </ActorMainColumn.ItemName>
               </ActorMainColumn.CreditsRow>
             );
           })}

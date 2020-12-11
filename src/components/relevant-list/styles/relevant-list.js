@@ -17,12 +17,9 @@ export const Miniature = styled.img`
 `;
 
 export const Container = styled.div`
-  display: flex;
   overflow: scroll;
-  flex-direction: column;
   font-family: ${({ theme }) => theme.fontFamily.secondary};
   overflow-y: hidden;
-  margin: 0;
 `;
 
 export const Title = styled.h3`

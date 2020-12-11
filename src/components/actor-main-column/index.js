@@ -9,6 +9,9 @@ import {
   Row,
   Date,
   ItemName,
+  Number,
+  Character,
+  DescriptionWrapper,
 } from "./styles/actor-main-column";
 
 export default function ActorMainColumn({ children }) {
@@ -43,4 +46,18 @@ ActorMainColumn.Date = function ActorMainColumnDate({ children }) {
 
 ActorMainColumn.ItemName = function ActorMainColumnItemName({ children }) {
   return <ItemName>{children}</ItemName>;
+};
+
+ActorMainColumn.Number = function ActorMainColumnNumber({ children }) {
+  return <Number>{children}</Number>;
+};
+
+ActorMainColumn.Character = function ActorMainColumnCharacter({ children }) {
+  return <Character>{children}</Character>;
+};
+
+ActorMainColumn.DescriptionWrapper = function ActorMainColumnDescriptionWrapper({
+  children,
+}) {
+  return <DescriptionWrapper>{children}</DescriptionWrapper>;
 };

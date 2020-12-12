@@ -101,11 +101,12 @@ export const getRightReleasedDate = (data) => {
   return data.substring(0, data.indexOf("-"));
 };
 
-export const getArrayOfMovies = (data, setArrayFilms) => {
-  const sortedArray = data.credits.cast.sort((prev, next) => {
+export const getArrayOfMovies = (data) => {
+  const sortedArray = data.sort((prev, next) => {
     const prevData = getRightReleasedDate(prev.release_date);
     const nextData = getRightReleasedDate(next.release_date);
     return nextData - prevData;
   });
-  setArrayFilms(sortedArray);
+  console.log(sortedArray);
+  return sortedArray;
 };

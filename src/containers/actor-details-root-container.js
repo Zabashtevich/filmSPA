@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import { useParams } from "react-router-dom";
 import {
@@ -18,17 +18,11 @@ import ActorRows from "./auxillary-containers/actor-rows";
 
 export default function ActorDetailsRootContainer() {
   const location = useParams();
-  const [arrayFilms, setArrayFilms] = useState();
   const [itemsCount, setItemsCount] = useState(10);
 
   const { list, loading } = useFetch(["person"], location.slug, [
     { append_to_response: "credits" },
   ]);
-
-  useEffect(() => {
-    if (loading) return;
-    getArrayOfMovies(list, setArrayFilms);
-  }, [list, loading]);
 
   return list ? (
     <DetailsHeader>
@@ -63,26 +57,26 @@ export default function ActorDetailsRootContainer() {
         </RelevantList>
         <ActorMainColumn.Title>Credits list</ActorMainColumn.Title>
         <ActorMainColumn.CreditsWrapper>
-          {arrayFilms
-            ? arrayFilms.slice(0, itemsCount).map((item, index) => {
-                return (
-                  <ActorMainColumn.CreditsRow key={item.id}>
-                    <ActorMainColumn.Number>{index + 1}</ActorMainColumn.Number>
-                    <ActorMainColumn.DescriptionWrapper>
-                      <ActorMainColumn.ItemName>
-                        {item.title}
-                      </ActorMainColumn.ItemName>
-                      <ActorMainColumn.Character>
-                        {item.character}
-                      </ActorMainColumn.Character>
-                    </ActorMainColumn.DescriptionWrapper>
-                    <ActorMainColumn.Date>
-                      {getRightReleasedDate(item.release_date)}
-                    </ActorMainColumn.Date>
-                  </ActorMainColumn.CreditsRow>
-                );
-              })
-            : null}
+          {getArrayOfMovies(list.credits.cast)
+            .slice(0, itemsCount)
+            .map((item, index) => {
+              return (
+                <ActorMainColumn.CreditsRow key={item.id}>
+                  <ActorMainColumn.Number>{index + 1}</ActorMainColumn.Number>
+                  <ActorMainColumn.DescriptionWrapper>
+                    <ActorMainColumn.ItemName>
+                      {item.title}
+                    </ActorMainColumn.ItemName>
+                    <ActorMainColumn.Character>
+                      {item.character}
+                    </ActorMainColumn.Character>
+                  </ActorMainColumn.DescriptionWrapper>
+                  <ActorMainColumn.Date>
+                    {getRightReleasedDate(item.release_date)}
+                  </ActorMainColumn.Date>
+                </ActorMainColumn.CreditsRow>
+              );
+            })}
         </ActorMainColumn.CreditsWrapper>
       </ActorMainColumn>
     </DetailsHeader>

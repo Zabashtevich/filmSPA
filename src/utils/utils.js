@@ -107,6 +107,6 @@ export const getArrayOfMovies = (data) => {
     const nextData = getRightReleasedDate(next.release_date);
     return nextData - prevData;
   });
-  console.log(sortedArray);
+
   return sortedArray;
 };

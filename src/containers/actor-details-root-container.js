@@ -5,6 +5,7 @@ import {
   ActorMainColumn,
   ActorPosterDescription,
   DetailsHeader,
+  LoadMore,
   PosterColumn,
   RelevantList,
 } from "../components";
@@ -24,6 +25,7 @@ export default function ActorDetailsRootContainer() {
     { append_to_response: "credits" },
   ]);
 
+  console.log(itemsCount);
   return list ? (
     <DetailsHeader>
       <PosterColumn>
@@ -77,6 +79,15 @@ export default function ActorDetailsRootContainer() {
                 </ActorMainColumn.CreditsRow>
               );
             })}
+          <LoadMore>
+            <LoadMore.Wrapper>
+              <LoadMore.Button
+                onclick={() => setItemsCount((prev) => prev + 10)}
+              >
+                Load more
+              </LoadMore.Button>
+            </LoadMore.Wrapper>
+          </LoadMore>
         </ActorMainColumn.CreditsWrapper>
       </ActorMainColumn>
     </DetailsHeader>

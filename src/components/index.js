@@ -18,3 +18,4 @@ export { default as RelevantList } from "./relevant-list";
 export { default as ReviewsList } from "./reviews-list";
 export { default as ActorPosterDescription } from "./actor-poster-description";
 export { default as ActorMainColumn } from "./actor-main-column";
+export { default as LoadMore } from "./load-more";

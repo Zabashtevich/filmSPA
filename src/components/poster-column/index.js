@@ -1,5 +1,6 @@
 import React from "react";
 import { basePosterLink } from "../../constants/constants";
+import imageerror from "../../assets/404-error.svg";
 
 import { Container, PosterWrapper, Poster } from "./styles/poster-column";
 
@@ -10,7 +11,7 @@ export default function PosterColumn({ children }) {
 PosterColumn.Poster = function PosterColumnPoster({ src }) {
   return (
     <PosterWrapper>
-      <Poster src={basePosterLink + src} />
+      <Poster src={src ? basePosterLink + src : imageerror} />
     </PosterWrapper>
   );
 };

@@ -23,9 +23,10 @@ export default function ActorDetailsRootContainer() {
   const [knownForList, setKnownForList] = useState();
 
   const { list, loading } = useFetch(["person"], location.slug, [
-    { append_to_response: "credits" },
+    { append_to_response: "credits,images" },
   ]);
 
+  console.log(list);
   useEffect(() => {
     if (!list) return;
     getKnownFor(list.credits.cast, setKnownForList);

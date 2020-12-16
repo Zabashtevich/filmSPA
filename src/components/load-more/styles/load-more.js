@@ -19,4 +19,10 @@ export const Button = styled.button`
   padding: 0.5rem 1rem;
   cursor: pointer;
   font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
+  &:hover {
+    background-color: #fff;
+    border: 1px solid gray;
+    color: ${({ theme }) => theme.colors.secondary};
+    transition: all 0.2s linear;
+  }
 `;

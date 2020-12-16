@@ -89,12 +89,12 @@ export const getCorrectSrc = (data) => {
   return correctSrc;
 };
 
-export const getKnownFor = (data) => {
+export const getKnownFor = (data, setKnownForList) => {
   const sortedData = data.sort(
     (prev, item) => item.popularity - prev.popularity,
   );
   const resultArray = sortedData.splice(0, 10);
-  return resultArray;
+  setKnownForList(resultArray);
 };
 
 export const getRightReleasedDate = (data) => {

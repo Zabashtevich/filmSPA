@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useParams } from "react-router-dom";
 import {
@@ -20,12 +20,18 @@ import ActorRows from "./auxillary-containers/actor-rows";
 export default function ActorDetailsRootContainer() {
   const location = useParams();
   const [itemsCount, setItemsCount] = useState(10);
+  const [knownForList, setKnownForList] = useState();
 
   const { list, loading } = useFetch(["person"], location.slug, [
     { append_to_response: "credits" },
   ]);
 
-  console.log(itemsCount);
+  useEffect(() => {
+    if (!list) return;
+    getKnownFor(list.credits.cast, setKnownForList);
+  }, [list]);
+
+  console.log(knownForList);
   return list ? (
     <DetailsHeader>
       <PosterColumn>
@@ -44,17 +50,19 @@ export default function ActorDetailsRootContainer() {
         <ActorMainColumn.Title>Known for</ActorMainColumn.Title>
         <RelevantList>
           <RelevantList.ListContainer>
-            {getKnownFor(list.credits.cast).map((item) => {
-              return (
-                <RelevantList.ItemContainer key={item.id}>
-                  <RelevantList.Miniature src={item.poster_path} />
-                  <RelevantList.Name>{item.title}</RelevantList.Name>
-                  <RelevantList.VoteScore>
-                    {item.vote_average}
-                  </RelevantList.VoteScore>
-                </RelevantList.ItemContainer>
-              );
-            })}
+            {knownForList
+              ? knownForList.map((item) => {
+                  return (
+                    <RelevantList.ItemContainer key={item.id}>
+                      <RelevantList.Miniature src={item.poster_path} />
+                      <RelevantList.Name>{item.title}</RelevantList.Name>
+                      <RelevantList.VoteScore>
+                        {item.vote_average}
+                      </RelevantList.VoteScore>
+                    </RelevantList.ItemContainer>
+                  );
+                })
+              : null}
           </RelevantList.ListContainer>
         </RelevantList>
         <ActorMainColumn.Title>Credits list</ActorMainColumn.Title>
@@ -81,9 +89,7 @@ export default function ActorDetailsRootContainer() {
             })}
           <LoadMore>
             <LoadMore.Wrapper>
-              <LoadMore.Button
-                onclick={() => setItemsCount((prev) => prev + 10)}
-              >
+              <LoadMore.Button setItemsCount={setItemsCount}>
                 Load more
               </LoadMore.Button>
             </LoadMore.Wrapper>

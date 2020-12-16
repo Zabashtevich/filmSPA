@@ -31,9 +31,8 @@ export default function ActorDetailsRootContainer() {
     getKnownFor(list.credits.cast, setKnownForList);
   }, [list]);
 
-  console.log(knownForList);
   return list ? (
-    <DetailsHeader>
+    <DetailsHeader background={"light"}>
       <PosterColumn>
         <PosterColumn.Poster src={list.profile_path} />
         <ActorPosterDescription>
@@ -89,9 +88,11 @@ export default function ActorDetailsRootContainer() {
             })}
           <LoadMore>
             <LoadMore.Wrapper>
-              <LoadMore.Button setItemsCount={setItemsCount}>
-                Load more
-              </LoadMore.Button>
+              {itemsCount < list.credits.cast.length ? (
+                <LoadMore.Button setItemsCount={setItemsCount}>
+                  Load more
+                </LoadMore.Button>
+              ) : null}
             </LoadMore.Wrapper>
           </LoadMore>
         </ActorMainColumn.CreditsWrapper>

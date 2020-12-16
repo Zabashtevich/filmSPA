@@ -2,10 +2,12 @@ import styled from "styled-components/macro";
 
 export const Container = styled.div`
   display: flex;
-  max-width: 70%;
-  margin: 8rem 3rem;
+  max-width: 65%;
+  margin: 8rem 0;
+  padding: 0 3rem;
   flex-direction: column;
   font-family: ${({ theme }) => theme.fontFamily.secondary};
+  border-left: 1px solid gray;
 `;
 
 export const Name = styled.h2`

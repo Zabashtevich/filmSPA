@@ -10,10 +10,13 @@ export const Container = styled.div`
   font-family: ${({ theme }) => theme.fontFamily.secondary};
   font-weight: ${({ theme }) => theme.fontWeightSecondary.normal};
   ${({ background }) =>
-    background &&
-    css`
-      background: linear-gradient(180deg, #000 724px, #232323 99%);
-    `}
+    background === "dark"
+      ? css`
+          background: linear-gradient(180deg, #000 724px, #232323 99%);
+        `
+      : css`
+          background: #f4f4f4;
+        `}
 `;
 
 export const BackgroundContainer = styled.div`

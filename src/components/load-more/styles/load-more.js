@@ -6,7 +6,6 @@ export const Container = styled.div`
   margin-top: 4rem;
   font-family: ${({ theme }) => theme.fontFamily.secondary};
   font-size: ${({ theme }) => theme.fontSize.normal};
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
 `;
 
 export const Wrapper = styled.div``;
@@ -19,4 +18,5 @@ export const Button = styled.button`
   border-radius: 1rem;
   padding: 0.5rem 1rem;
   cursor: pointer;
+  font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
 `;

@@ -22,7 +22,7 @@ export default function CardDetailsRootContainer() {
   ]);
 
   return list ? (
-    <DetailsHeader background={"gradient"}>
+    <DetailsHeader background={"dark"}>
       <DetailsHeader.BackgroundContainer>
         <DetailsHeader.BackgroundImage src={list.backdrop_path} />
       </DetailsHeader.BackgroundContainer>

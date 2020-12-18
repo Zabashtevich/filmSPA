@@ -6,6 +6,7 @@ import {
   ActorPosterDescription,
   DetailsHeader,
   LoadMore,
+  ModalGallery,
   PosterColumn,
   RelevantList,
 } from "../components";
@@ -36,6 +37,9 @@ export default function ActorDetailsRootContainer() {
     <DetailsHeader background={"light"}>
       <PosterColumn>
         <PosterColumn.Poster src={list.profile_path} />
+        <ModalGallery>
+          <ModalGallery.ImagePlaceholder />
+        </ModalGallery>
         <ActorPosterDescription>
           <ActorPosterDescription.Title>
             Personal information

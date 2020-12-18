@@ -1,7 +1,15 @@
-import React, { Children } from "react";
+import React from "react";
 
-import { Container } from "./styles/modal-gallery";
+import { Container, ImagePlaceholder, Wrapper } from "./styles/modal-gallery";
 
-export default function ModalGallery({ Container }) {
-  <Container>{Children}</Container>;
+export default function ModalGallery({ children }) {
+  return <Container>{children}</Container>;
 }
+
+ModalGallery.ImagePlaceholder = function ModalGalleryImagePlaceholder() {
+  return (
+    <Wrapper>
+      <ImagePlaceholder src={`../assets/images/gallery-placeholder.png`} />
+    </Wrapper>
+  );
+};

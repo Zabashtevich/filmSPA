@@ -28,17 +28,37 @@ export default function ActorDetailsRootContainer() {
     { append_to_response: "credits,images" },
   ]);
 
-  console.log(list);
   useEffect(() => {
     if (!list) return;
     getKnownFor(list.credits.cast, setKnownForList);
   }, [list]);
 
+  const showModal = () => {
+    document.body.style.overflow = "hidden";
+    setVisibleGallery(true);
+  };
+
+  const hideModal = () => {
+    document.body.style.overflow = "auto";
+    setVisibleGallery(false);
+  };
+
   return list ? (
     <DetailsHeader background={"light"}>
       <PosterColumn>
         <PosterColumn.Poster src={list.profile_path} />
-        <ModalGallery onClick={() => setVisibleGallery(true)}>
+        {visibleGallery ? (
+          <ModalGallery.Backdrop>
+            <ModalGallery.Content>
+              <ModalGallery.CloseIcon onClick={hideModal} />
+              <ModalGallery.Photo />
+              <ModalGallery.ListContainer>
+                <ModalGallery.ListItem />
+              </ModalGallery.ListContainer>
+            </ModalGallery.Content>
+          </ModalGallery.Backdrop>
+        ) : null}
+        <ModalGallery onClick={showModal}>
           <ModalGallery.Icon />
         </ModalGallery>
         <ActorPosterDescription>

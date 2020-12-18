@@ -28,14 +28,37 @@ export const Container = styled.div`
   }
 `;
 
-export const Content = styled.div``;
+export const Content = styled.div`
+  width: 800px;
+  height: 500px;
+  background-color: #fff;
+  position: relative;
+  z-index: 300;
+`;
 
 export const Photo = styled.img``;
 
-export const Close = styled(GrClose)``;
+export const Close = styled(GrClose)`
+  right: 5%;
+  top: 5%;
+  position: absolute;
+  font-size: 2rem;
+  cursor: pointer;
+`;
 
 export const ListContainer = styled.div``;
 
 export const ListItem = styled.img``;
 
-export const Backdrop = styled.div``;
+export const Backdrop = styled.div`
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 200;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

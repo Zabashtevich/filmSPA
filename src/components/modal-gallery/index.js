@@ -12,8 +12,8 @@ import {
   Backdrop,
 } from "./styles/modal-gallery";
 
-export default function ModalGallery({ children }) {
-  return <Container>{children}</Container>;
+export default function ModalGallery({ children, ...rest }) {
+  return <Container {...rest}>{children}</Container>;
 }
 
 ModalGallery.Icon = function ModalGalleryIcon() {
@@ -24,8 +24,8 @@ ModalGallery.Icon = function ModalGalleryIcon() {
   );
 };
 
-ModalGallery.Backdrop = function ModalGalleryBackdrop({ children }) {
-  return <Backdrop>{children}</Backdrop>;
+ModalGallery.Backdrop = function ModalGalleryBackdrop({ children, ...rest }) {
+  return <Backdrop {...rest}>{children}</Backdrop>;
 };
 
 ModalGallery.Content = function ModalGalleryContent({ children }) {
@@ -36,8 +36,8 @@ ModalGallery.Photo = function ModalGalleryPhoto({ src }) {
   return <Photo src={src} />;
 };
 
-ModalGallery.CloseIcon = function ModalGalleryCloseIcon() {
-  return <Close />;
+ModalGallery.CloseIcon = function ModalGalleryCloseIcon({ ...rest }) {
+  return <Close {...rest} />;
 };
 
 ModalGallery.ListContainer = function ModalGalleryListContainer({ children }) {

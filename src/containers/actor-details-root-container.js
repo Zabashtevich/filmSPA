@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-
 import { useParams } from "react-router-dom";
+
 import {
   ActorMainColumn,
   ActorPosterDescription,
@@ -46,14 +46,17 @@ export default function ActorDetailsRootContainer() {
     setVisibleGallery(false);
   };
 
-  console.log(list);
+  const hideModal1 = (e) => {
+    if (e.target.className.search("Backdrop") === -1) return;
+    setVisibleGallery(false);
+  };
 
   return list ? (
     <DetailsHeader background={"light"}>
       <PosterColumn>
         <PosterColumn.Poster src={list.profile_path} />
         {visibleGallery ? (
-          <ModalGallery.Backdrop>
+          <ModalGallery.Backdrop onClick={(e) => hideModal1(e)}>
             <ModalGallery.Photo
               src={
                 activeImage ? activeImage : list.images.profiles[0].file_path

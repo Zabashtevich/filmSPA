@@ -21,7 +21,8 @@ import ActorRows from "./auxillary-containers/actor-rows";
 export default function ActorDetailsRootContainer() {
   const location = useParams();
   const [itemsCount, setItemsCount] = useState(10);
-  const [knownForList, setKnownForList] = useState();
+  const [knownForList, setKnownForList] = useState(null);
+  const [visibleGallery, setVisibleGallery] = useState(false);
 
   const { list, loading } = useFetch(["person"], location.slug, [
     { append_to_response: "credits,images" },
@@ -37,8 +38,8 @@ export default function ActorDetailsRootContainer() {
     <DetailsHeader background={"light"}>
       <PosterColumn>
         <PosterColumn.Poster src={list.profile_path} />
-        <ModalGallery>
-          <ModalGallery.ImagePlaceholder />
+        <ModalGallery onClick={() => setVisibleGallery(true)}>
+          <ModalGallery.Icon />
         </ModalGallery>
         <ActorPosterDescription>
           <ActorPosterDescription.Title>

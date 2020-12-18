@@ -1,6 +1,8 @@
 import styled from "styled-components/macro";
 
-export const ImagePlaceholder = styled.img`
+import { GrClose } from "react-icons/gr";
+
+export const Icon = styled.img`
   width: 150px;
   height: 150px;
 `;
@@ -25,3 +27,15 @@ export const Container = styled.div`
     transition: all 0.2s linear;
   }
 `;
+
+export const Content = styled.div``;
+
+export const Photo = styled.img``;
+
+export const Close = styled(GrClose)``;
+
+export const ListContainer = styled.div``;
+
+export const ListItem = styled.img``;
+
+export const Backdrop = styled.div``;

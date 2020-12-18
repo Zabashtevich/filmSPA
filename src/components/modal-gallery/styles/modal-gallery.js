@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 
 import { GrClose } from "react-icons/gr";
 
@@ -28,27 +28,48 @@ export const Container = styled.div`
   }
 `;
 
-export const Content = styled.div`
-  width: 800px;
-  height: 500px;
-  background-color: #fff;
+export const Photo = styled.div`
   position: relative;
   z-index: 300;
+  top: 10%;
+  background: ${({ src }) => `url(${src})`} no-repeat;
+  width: 500px;
+  height: 750px;
+  display: flex;
+  align-items: flex-end;
 `;
 
-export const Photo = styled.img``;
-
 export const Close = styled(GrClose)`
-  right: 5%;
-  top: 5%;
+  right: 4%;
+  top: 3%;
   position: absolute;
   font-size: 2rem;
   cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5px;
+  border-radius: 1rem;
+  & > path {
+    stroke: #fff;
+  }
 `;
 
-export const ListContainer = styled.div``;
+export const ListContainer = styled.div`
+  margin: 1rem auto;
+  display: flex;
+`;
 
-export const ListItem = styled.img``;
+export const ListItem = styled.div`
+  width: 90px;
+  height: 90px;
+  background: ${({ src }) => `url(${src})`} no-repeat;
+  margin: 2px;
+  cursor: pointer;
+  ${({ active }) =>
+    active &&
+    css`
+      border: 2px solid #fff;
+    `}
+`;
 
 export const Backdrop = styled.div`
   position: fixed;
@@ -60,5 +81,4 @@ export const Backdrop = styled.div`
   z-index: 200;
   display: flex;
   justify-content: center;
-  align-items: center;
 `;

@@ -1,10 +1,10 @@
 import React from "react";
 
+import { baseAuthorImageLink, basePhotoLink } from "../../constants/constants";
 import {
   Container,
   Icon,
   Wrapper,
-  Content,
   Photo,
   Close,
   ListContainer,
@@ -28,12 +28,8 @@ ModalGallery.Backdrop = function ModalGalleryBackdrop({ children, ...rest }) {
   return <Backdrop {...rest}>{children}</Backdrop>;
 };
 
-ModalGallery.Content = function ModalGalleryContent({ children }) {
-  return <Content>{children}</Content>;
-};
-
-ModalGallery.Photo = function ModalGalleryPhoto({ src }) {
-  return <Photo src={src} />;
+ModalGallery.Photo = function ModalGalleryPhoto({ children, src }) {
+  return <Photo src={basePhotoLink + src}>{children}</Photo>;
 };
 
 ModalGallery.CloseIcon = function ModalGalleryCloseIcon({ ...rest }) {
@@ -44,6 +40,6 @@ ModalGallery.ListContainer = function ModalGalleryListContainer({ children }) {
   return <ListContainer>{children}</ListContainer>;
 };
 
-ModalGallery.ListItem = function ModalGalleryListItem({ src }) {
-  return <ListItem src={src} />;
+ModalGallery.ListItem = function ModalGalleryListItem({ src, ...rest }) {
+  return <ListItem src={baseAuthorImageLink + src} {...rest} />;
 };

@@ -20,9 +20,11 @@ import ActorRows from "./auxillary-containers/actor-rows";
 
 export default function ActorDetailsRootContainer() {
   const location = useParams();
+
   const [itemsCount, setItemsCount] = useState(10);
   const [knownForList, setKnownForList] = useState(null);
   const [visibleGallery, setVisibleGallery] = useState(false);
+  const [activeImage, setActiveImage] = useState(null);
 
   const { list, loading } = useFetch(["person"], location.slug, [
     { append_to_response: "credits,images" },
@@ -35,6 +37,7 @@ export default function ActorDetailsRootContainer() {
 
   const showModal = () => {
     document.body.style.overflow = "hidden";
+
     setVisibleGallery(true);
   };
 
@@ -43,24 +46,45 @@ export default function ActorDetailsRootContainer() {
     setVisibleGallery(false);
   };
 
+  console.log(list);
+
   return list ? (
     <DetailsHeader background={"light"}>
       <PosterColumn>
         <PosterColumn.Poster src={list.profile_path} />
         {visibleGallery ? (
           <ModalGallery.Backdrop>
-            <ModalGallery.Content>
+            <ModalGallery.Photo
+              src={
+                activeImage ? activeImage : list.images.profiles[0].file_path
+              }
+            >
               <ModalGallery.CloseIcon onClick={hideModal} />
-              <ModalGallery.Photo />
               <ModalGallery.ListContainer>
-                <ModalGallery.ListItem />
+                {list.images.profiles.slice(0, 5).map((item, i) => {
+                  return (
+                    <ModalGallery.ListItem
+                      key={i}
+                      src={item.file_path}
+                      active={
+                        activeImage === item.file_path ||
+                        (i === 0 && activeImage === null)
+                          ? "true"
+                          : null
+                      }
+                      onClick={() => setActiveImage(item.file_path)}
+                    />
+                  );
+                })}
               </ModalGallery.ListContainer>
-            </ModalGallery.Content>
+            </ModalGallery.Photo>
           </ModalGallery.Backdrop>
         ) : null}
-        <ModalGallery onClick={showModal}>
-          <ModalGallery.Icon />
-        </ModalGallery>
+        {list.images ? (
+          <ModalGallery onClick={showModal}>
+            <ModalGallery.Icon />
+          </ModalGallery>
+        ) : null}
         <ActorPosterDescription>
           <ActorPosterDescription.Title>
             Personal information

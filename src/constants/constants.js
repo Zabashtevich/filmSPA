@@ -23,3 +23,5 @@ export const basePosterLink =
 
 export const baseAuthorImageLink =
   "https://www.themoviedb.org/t/p/w90_and_h90_face";
+
+export const basePhotoLink = "https://image.tmdb.org/t/p/w500";

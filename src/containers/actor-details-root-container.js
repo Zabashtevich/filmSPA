@@ -46,8 +46,9 @@ export default function ActorDetailsRootContainer() {
     setVisibleGallery(false);
   };
 
-  const hideModal1 = (e) => {
+  const backdropClick = (e) => {
     if (e.target.className.search("Backdrop") === -1) return;
+    document.body.style.overflow = "auto";
     setVisibleGallery(false);
   };
 
@@ -56,7 +57,7 @@ export default function ActorDetailsRootContainer() {
       <PosterColumn>
         <PosterColumn.Poster src={list.profile_path} />
         {visibleGallery ? (
-          <ModalGallery.Backdrop onClick={(e) => hideModal1(e)}>
+          <ModalGallery.Backdrop onClick={(e) => backdropClick(e)}>
             <ModalGallery.Photo
               src={
                 activeImage ? activeImage : list.images.profiles[0].file_path

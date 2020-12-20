@@ -9,17 +9,15 @@ import {
   Button,
   ErrorContainer,
   ErrorMessage,
-  ContentContainer,
+  Form,
 } from "./styles/authentication-form";
 
 export default function AuthenticationForm({ children }) {
   return <Container>{children}</Container>;
 }
 
-AuthenticationForm.ContentContainer = function AuthenticationFormContentContainer({
-  children,
-}) {
-  return <ContentContainer>{children}</ContentContainer>;
+AuthenticationForm.Form = function AuthenticationFormForm({ children }) {
+  return <Form noValidate>{children}</Form>;
 };
 
 AuthenticationForm.Title = function AuthenticationFormTitle({ children }) {

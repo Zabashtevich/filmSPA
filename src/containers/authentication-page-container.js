@@ -8,23 +8,53 @@ export default function AuthenticationPageContainer() {
 
   return (
     <AuthenticationForm>
-      <AuthenticationForm.ContentContainer>
+      <AuthenticationForm.Form>
         <AuthenticationForm.ErrorContainer>
           <AuthenticationForm.ErrorMessage></AuthenticationForm.ErrorMessage>
         </AuthenticationForm.ErrorContainer>
         <AuthenticationForm.Title>
           {location.slug.toUpperCase()}
         </AuthenticationForm.Title>
-        <AuthenticationForm.Wrapper>
-          <AuthenticationForm.Label>Login</AuthenticationForm.Label>
-          <AuthenticationForm.Input />
-        </AuthenticationForm.Wrapper>
-        <AuthenticationForm.Wrapper>
-          <AuthenticationForm.Label>Password</AuthenticationForm.Label>
-          <AuthenticationForm.Input />
-        </AuthenticationForm.Wrapper>
-        <AuthenticationForm.Button>Register</AuthenticationForm.Button>
-      </AuthenticationForm.ContentContainer>
+        {location.slug === "login" ? (
+          <>
+            <AuthenticationForm.Wrapper>
+              <AuthenticationForm.Label>Email</AuthenticationForm.Label>
+              <AuthenticationForm.Input type={"email"} name={"email"} />
+            </AuthenticationForm.Wrapper>
+            <AuthenticationForm.Wrapper>
+              <AuthenticationForm.Label>Password</AuthenticationForm.Label>
+              <AuthenticationForm.Input type={"password"} name={"password"} />
+            </AuthenticationForm.Wrapper>
+          </>
+        ) : (
+          <>
+            <AuthenticationForm.Wrapper>
+              <AuthenticationForm.Label>Name</AuthenticationForm.Label>
+              <AuthenticationForm.Input type={"name"} name={"name"} />
+            </AuthenticationForm.Wrapper>
+            <AuthenticationForm.Wrapper>
+              <AuthenticationForm.Label>Email</AuthenticationForm.Label>
+              <AuthenticationForm.Input type={"email"} name={"email"} />
+            </AuthenticationForm.Wrapper>
+            <AuthenticationForm.Wrapper>
+              <AuthenticationForm.Label>Password</AuthenticationForm.Label>
+              <AuthenticationForm.Input type={"password"} name={"password"} />
+            </AuthenticationForm.Wrapper>
+            <AuthenticationForm.Wrapper>
+              <AuthenticationForm.Label>
+                Repeat password
+              </AuthenticationForm.Label>
+              <AuthenticationForm.Input
+                type={"password"}
+                name={"repeatPassword"}
+              />
+            </AuthenticationForm.Wrapper>
+          </>
+        )}
+        <AuthenticationForm.Button type={"submit"}>
+          {location.slug.toUpperCase()}
+        </AuthenticationForm.Button>
+      </AuthenticationForm.Form>
     </AuthenticationForm>
   );
 }

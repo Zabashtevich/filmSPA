@@ -72,11 +72,11 @@ export default function CardDetailsPanelContainer() {
           <>
             {list.reviews.results.map((item) => {
               const correctSrc =
-                item.author_details.avatar_path.includes("https") ||
-                item.author_details.avatar_path === null
+                item.author_details.avatar_path === null ||
+                item.author_details.avatar_path.includes("https")
                   ? getCorrectSrc(item.author_details.avatar_path)
                   : item.author_details.avatar_path;
-              console.log(correctSrc);
+
               return (
                 <ReviewsList.ItemContainer key={item.id}>
                   <ReviewsList.Author>

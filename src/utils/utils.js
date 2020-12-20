@@ -77,13 +77,14 @@ export const getBudgetFormat = (data) => {
 
 export const getCorrectSrc = (data) => {
   const correctSrc = { changed: false, src: null };
-  if (data.includes("https")) {
-    correctSrc.src = data.split("").slice(1).join("");
-    correctSrc.changed = true;
-  }
   if (data === null) {
     correctSrc.changed = true;
     correctSrc.src = "./assets/images/poster.jpg";
+  } else if (data.includes("https")) {
+    correctSrc.src = data.split("").slice(1).join("");
+    correctSrc.changed = true;
+  } else {
+    return;
   }
 
   return correctSrc;

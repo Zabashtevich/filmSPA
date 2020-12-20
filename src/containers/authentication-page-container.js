@@ -1,10 +1,17 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 import AuthenticationForm from "../components/authentication-form";
+import {
+  LoginFields,
+  RegisterFields,
+} from "./auxillary-containers/auth-fields";
 
 export default function AuthenticationPageContainer() {
   const location = useParams();
+
+  const { register, handleSubmit, errors } = useForm();
 
   return (
     <AuthenticationForm>
@@ -15,42 +22,7 @@ export default function AuthenticationPageContainer() {
         <AuthenticationForm.Title>
           {location.slug.toUpperCase()}
         </AuthenticationForm.Title>
-        {location.slug === "login" ? (
-          <>
-            <AuthenticationForm.Wrapper>
-              <AuthenticationForm.Label>Email</AuthenticationForm.Label>
-              <AuthenticationForm.Input type={"email"} name={"email"} />
-            </AuthenticationForm.Wrapper>
-            <AuthenticationForm.Wrapper>
-              <AuthenticationForm.Label>Password</AuthenticationForm.Label>
-              <AuthenticationForm.Input type={"password"} name={"password"} />
-            </AuthenticationForm.Wrapper>
-          </>
-        ) : (
-          <>
-            <AuthenticationForm.Wrapper>
-              <AuthenticationForm.Label>Name</AuthenticationForm.Label>
-              <AuthenticationForm.Input type={"name"} name={"name"} />
-            </AuthenticationForm.Wrapper>
-            <AuthenticationForm.Wrapper>
-              <AuthenticationForm.Label>Email</AuthenticationForm.Label>
-              <AuthenticationForm.Input type={"email"} name={"email"} />
-            </AuthenticationForm.Wrapper>
-            <AuthenticationForm.Wrapper>
-              <AuthenticationForm.Label>Password</AuthenticationForm.Label>
-              <AuthenticationForm.Input type={"password"} name={"password"} />
-            </AuthenticationForm.Wrapper>
-            <AuthenticationForm.Wrapper>
-              <AuthenticationForm.Label>
-                Repeat password
-              </AuthenticationForm.Label>
-              <AuthenticationForm.Input
-                type={"password"}
-                name={"repeatPassword"}
-              />
-            </AuthenticationForm.Wrapper>
-          </>
-        )}
+        {location.slug === "login" ? <LoginFields /> : <RegisterFields />}
         <AuthenticationForm.Button type={"submit"}>
           {location.slug.toUpperCase()}
         </AuthenticationForm.Button>

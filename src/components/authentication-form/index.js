@@ -29,7 +29,7 @@ AuthenticationForm.Wrapper = function AuthenticationFormWrapper({ children }) {
 };
 
 AuthenticationForm.Input = function AuthenticationFormInput({ ...rest }) {
-  return <Input {...rest} />;
+  return <Input {...rest} autoComplete="off" />;
 };
 
 AuthenticationForm.Label = function AuthenticationFormLabel({

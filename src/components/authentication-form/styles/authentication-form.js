@@ -38,7 +38,6 @@ export const Wrapper = styled.div`
 
 export const Input = styled.input`
   border-radius: 0.5rem;
-  outline: none;
   border: 1px solid gray;
   padding: 0.5rem 1rem;
   color: #fff;

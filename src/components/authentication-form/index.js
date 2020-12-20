@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
 import {
   Title,
@@ -12,25 +12,38 @@ import {
   Form,
 } from "./styles/authentication-form";
 
-export default function AuthenticationForm({ children }) {
-  return <Container>{children}</Container>;
+export default function AuthenticationForm({ children, ...rest }) {
+  return <Container {...rest}>{children}</Container>;
 }
 
-AuthenticationForm.Form = function AuthenticationFormForm({ children }) {
-  return <Form noValidate>{children}</Form>;
+AuthenticationForm.Form = function AuthenticationFormForm({
+  children,
+  ...rest
+}) {
+  return (
+    <Form noValidate {...rest}>
+      {children}
+    </Form>
+  );
 };
 
-AuthenticationForm.Title = function AuthenticationFormTitle({ children }) {
-  return <Title>{children}</Title>;
+AuthenticationForm.Title = function AuthenticationFormTitle({
+  children,
+  ...rest
+}) {
+  return <Title {...rest}>{children}</Title>;
 };
 
-AuthenticationForm.Wrapper = function AuthenticationFormWrapper({ children }) {
-  return <Wrapper>{children}</Wrapper>;
+AuthenticationForm.Wrapper = function AuthenticationFormWrapper({
+  children,
+  ...rest
+}) {
+  return <Wrapper {...rest}>{children}</Wrapper>;
 };
 
-AuthenticationForm.Input = function AuthenticationFormInput({ ...rest }) {
-  return <Input {...rest} autoComplete="off" />;
-};
+AuthenticationForm.Input = forwardRef((props, ref) => {
+  return <Input {...props} autoComplete="off" ref={ref} />;
+});
 
 AuthenticationForm.Label = function AuthenticationFormLabel({
   children,
@@ -39,18 +52,23 @@ AuthenticationForm.Label = function AuthenticationFormLabel({
   return <Label {...rest}>{children}</Label>;
 };
 
-AuthenticationForm.Button = function AuthenticationFormButton({ children }) {
-  return <Button>{children}</Button>;
+AuthenticationForm.Button = function AuthenticationFormButton({
+  children,
+  ...rest
+}) {
+  return <Button {...rest}>{children}</Button>;
 };
 
 AuthenticationForm.ErrorContainer = function AuthenticationFormErrorContainer({
   children,
+  ...rest
 }) {
-  return <ErrorContainer>{children}</ErrorContainer>;
+  return <ErrorContainer {...rest}>{children}</ErrorContainer>;
 };
 
 AuthenticationForm.ErrorMessage = function AuthenticationFormErrorMessage({
   children,
+  ...rest
 }) {
-  return <ErrorMessage>{children}</ErrorMessage>;
+  return <ErrorMessage {...rest}>{children}</ErrorMessage>;
 };

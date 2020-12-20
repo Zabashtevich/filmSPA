@@ -3,27 +3,83 @@ import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 import AuthenticationForm from "../components/authentication-form";
-import {
-  LoginFields,
-  RegisterFields,
-} from "./auxillary-containers/auth-fields";
 
 export default function AuthenticationPageContainer() {
   const location = useParams();
 
   const { register, handleSubmit, errors } = useForm();
 
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
   return (
     <AuthenticationForm>
-      <AuthenticationForm.Form>
+      <AuthenticationForm.Form onSubmit={handleSubmit(onSubmit)}>
         <AuthenticationForm.ErrorContainer>
           <AuthenticationForm.ErrorMessage></AuthenticationForm.ErrorMessage>
         </AuthenticationForm.ErrorContainer>
         <AuthenticationForm.Title>
           {location.slug.toUpperCase()}
         </AuthenticationForm.Title>
-        {location.slug === "login" ? <LoginFields /> : <RegisterFields />}
-        <AuthenticationForm.Button type={"submit"}>
+        {location.slug === "login" ? (
+          <>
+            <AuthenticationForm.Wrapper>
+              <AuthenticationForm.Label>Email</AuthenticationForm.Label>
+              <AuthenticationForm.Input
+                type={"email"}
+                name={"email"}
+                ref={register}
+              />
+            </AuthenticationForm.Wrapper>
+            <AuthenticationForm.Wrapper>
+              <AuthenticationForm.Label>Password</AuthenticationForm.Label>
+              <AuthenticationForm.Input
+                type={"password"}
+                name={"password"}
+                ref={register}
+              />
+            </AuthenticationForm.Wrapper>
+          </>
+        ) : (
+          <>
+            <AuthenticationForm.Wrapper>
+              <AuthenticationForm.Label>Name</AuthenticationForm.Label>
+              <AuthenticationForm.Input
+                type={"name"}
+                name={"name"}
+                ref={register({ required: true })}
+              />
+            </AuthenticationForm.Wrapper>
+            <AuthenticationForm.Wrapper>
+              <AuthenticationForm.Label>Email</AuthenticationForm.Label>
+              <AuthenticationForm.Input
+                type={"email"}
+                name={"email"}
+                ref={register({ required: true })}
+              />
+            </AuthenticationForm.Wrapper>
+            <AuthenticationForm.Wrapper>
+              <AuthenticationForm.Label>Password</AuthenticationForm.Label>
+              <AuthenticationForm.Input
+                type={"password"}
+                name={"password"}
+                ref={register({ required: true })}
+              />
+            </AuthenticationForm.Wrapper>
+            <AuthenticationForm.Wrapper>
+              <AuthenticationForm.Label>
+                Repeat password
+              </AuthenticationForm.Label>
+              <AuthenticationForm.Input
+                type={"password"}
+                name={"repeatPassword"}
+                ref={register({ required: true })}
+              />
+            </AuthenticationForm.Wrapper>
+          </>
+        )}
+        <AuthenticationForm.Button type="submit">
           {location.slug.toUpperCase()}
         </AuthenticationForm.Button>
       </AuthenticationForm.Form>

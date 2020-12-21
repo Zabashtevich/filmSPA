@@ -111,3 +111,15 @@ export const getArrayOfMovies = (data) => {
 
   return sortedArray;
 };
+
+export const getErrorsList = (data, setErrorsList) => {
+  const result = [];
+  if (typeof data === "object") {
+    Object.keys(data).map((item) => result.push(data[item].message));
+    setErrorsList(result);
+  } else {
+    console.log("567");
+    result.push("passwords doesnt match");
+    setErrorsList(result);
+  }
+};

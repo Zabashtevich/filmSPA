@@ -79,6 +79,7 @@ export const Button = styled.button`
 export const ErrorContainer = styled.ul`
   display: flex;
   justify-content: flex-start;
+  flex-direction: column;
   list-style-position: inside;
   margin-bottom: 2rem;
   color: #d8000c;

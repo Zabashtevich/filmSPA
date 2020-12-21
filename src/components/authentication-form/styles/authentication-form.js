@@ -1,4 +1,5 @@
 import styled from "styled-components/macro";
+import { BiErrorCircle } from "react-icons/bi";
 
 export const Container = styled.div`
   max-width: 600px;
@@ -16,7 +17,7 @@ export const Form = styled.form`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  padding-top: 6rem;
+  padding-top: 1rem;
 `;
 
 export const Title = styled.span`
@@ -75,6 +76,22 @@ export const Button = styled.button`
   }
 `;
 
-export const ErrorContainer = styled.div``;
+export const ErrorContainer = styled.ul`
+  display: flex;
+  justify-content: flex-start;
+  list-style-position: inside;
+  margin-bottom: 2rem;
+  color: #d8000c;
+  border: 1px solid #d8000c;
+  border-radius: 1rem;
+  background-color: #ffd2d2;
+  padding-left: 0.2rem;
+  font-size: ${({ theme }) => theme.fontSize.small};
+`;
 
-export const ErrorMessage = styled.span``;
+export const ErrorIcon = styled(BiErrorCircle)``;
+
+export const ErrorMessage = styled.li`
+  align-self: flex-start;
+  padding: 0.5rem;
+`;

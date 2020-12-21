@@ -17,7 +17,9 @@ export default function AuthenticationPageContainer() {
     <AuthenticationForm>
       <AuthenticationForm.Form onSubmit={handleSubmit(onSubmit)}>
         <AuthenticationForm.ErrorContainer>
-          <AuthenticationForm.ErrorMessage></AuthenticationForm.ErrorMessage>
+          <AuthenticationForm.ErrorMessage>
+            Ты че пес
+          </AuthenticationForm.ErrorMessage>
         </AuthenticationForm.ErrorContainer>
         <AuthenticationForm.Title>
           {location.slug.toUpperCase()}
@@ -29,7 +31,7 @@ export default function AuthenticationPageContainer() {
               <AuthenticationForm.Input
                 type={"email"}
                 name={"email"}
-                ref={register}
+                ref={register({ required: true })}
               />
             </AuthenticationForm.Wrapper>
             <AuthenticationForm.Wrapper>
@@ -37,7 +39,7 @@ export default function AuthenticationPageContainer() {
               <AuthenticationForm.Input
                 type={"password"}
                 name={"password"}
-                ref={register}
+                ref={register({ required: true })}
               />
             </AuthenticationForm.Wrapper>
           </>

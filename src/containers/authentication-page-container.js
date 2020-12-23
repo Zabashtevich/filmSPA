@@ -1,27 +1,45 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState, useContext } from "react";
+import { useHistory, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { CSSTransition } from "react-transition-group";
 
 import AuthenticationForm from "../components/authentication-form";
 import { getErrorsList } from "../utils/utils";
+import { AuthContext } from "../context/auth-context";
 
 export default function AuthenticationPageContainer() {
   const location = useParams();
+  const history = useHistory();
 
   const { register, handleSubmit, errors } = useForm();
   const [errorsList, setErrorsList] = useState(null);
 
+  const { firebase } = useContext(AuthContext);
+
   useEffect(() => {
-    console.log(errorsList);
     if (Object.keys(errors).length > 0) getErrorsList(errors, setErrorsList);
   }, [errors, setErrorsList, errorsList]);
 
-  const onSubmit = (data) => {
-    if (data.repeatPassword) {
-      data.repeatPassword !== data.password
-        ? getErrorsList(data.repeatPassword, setErrorsList)
+  const onSubmit = ({ nickname, email, password, repeatPassword }) => {
+    if (location.slug === "registration") {
+      repeatPassword !== password
+        ? getErrorsList(repeatPassword, setErrorsList)
         : setErrorsList(null);
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then((result) => {
+          result.user
+            .updateProfile({
+              displayName: nickname,
+            })
+            .then(() => {
+              history.push("/");
+            });
+        })
+        .catch(() => {
+          setErrorsList(["Something gone wrong"]);
+        });
     }
   };
 
@@ -86,14 +104,14 @@ export default function AuthenticationPageContainer() {
         ) : (
           <>
             <AuthenticationForm.Wrapper>
-              <AuthenticationForm.Label>Name</AuthenticationForm.Label>
+              <AuthenticationForm.Label>Nickname</AuthenticationForm.Label>
               <AuthenticationForm.Input
                 type={"name"}
-                name={"name"}
+                name={"nickname"}
                 ref={register({
                   required: {
                     value: true,
-                    message: "name field can not be empty",
+                    message: "nickname field can not be empty",
                   },
                   maxLength: 20,
                 })}

@@ -6,6 +6,10 @@ import { CSSTransition } from "react-transition-group";
 import AuthenticationForm from "../components/authentication-form";
 import { getErrorsList } from "../utils/utils";
 import { AuthContext } from "../context/auth-context";
+import {
+  LoginForm,
+  RegistrationForm,
+} from "./auxillary-containers/auth-pages-type";
 
 export default function AuthenticationPageContainer() {
   const location = useParams();
@@ -13,6 +17,7 @@ export default function AuthenticationPageContainer() {
 
   const { register, handleSubmit, errors } = useForm();
   const [errorsList, setErrorsList] = useState(null);
+  const [userLoading, setUserLoading] = useState(false);
 
   const { firebase } = useContext(AuthContext);
 
@@ -21,6 +26,7 @@ export default function AuthenticationPageContainer() {
   }, [errors, setErrorsList, errorsList]);
 
   const onSubmit = ({ nickname, email, password, repeatPassword }) => {
+    setUserLoading(true);
     if (location.slug === "registration") {
       repeatPassword !== password
         ? getErrorsList(repeatPassword, setErrorsList)
@@ -34,11 +40,13 @@ export default function AuthenticationPageContainer() {
               displayName: nickname,
             })
             .then(() => {
+              setUserLoading(false);
               history.push("/");
             });
         })
         .catch(() => {
           setErrorsList(["Something gone wrong"]);
+          setUserLoading(false);
         });
     }
   };
@@ -68,103 +76,9 @@ export default function AuthenticationPageContainer() {
           {location.slug.toUpperCase()}
         </AuthenticationForm.Title>
         {location.slug === "login" ? (
-          <>
-            <AuthenticationForm.Wrapper>
-              <AuthenticationForm.Label>Email</AuthenticationForm.Label>
-              <AuthenticationForm.Input
-                type={"email"}
-                name={"email"}
-                ref={register({
-                  required: {
-                    value: true,
-                    message: "email field can not be empty",
-                  },
-                  pattern: {
-                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: "invalid email address",
-                  },
-                })}
-              />
-            </AuthenticationForm.Wrapper>
-            <AuthenticationForm.Wrapper>
-              <AuthenticationForm.Label>Password</AuthenticationForm.Label>
-              <AuthenticationForm.Input
-                type={"password"}
-                name={"password"}
-                ref={register({
-                  required: {
-                    value: true,
-                    message: "password field can not be empty",
-                  },
-                  maxLength: 30,
-                })}
-              />
-            </AuthenticationForm.Wrapper>
-          </>
+          <LoginForm register={register} />
         ) : (
-          <>
-            <AuthenticationForm.Wrapper>
-              <AuthenticationForm.Label>Nickname</AuthenticationForm.Label>
-              <AuthenticationForm.Input
-                type={"name"}
-                name={"nickname"}
-                ref={register({
-                  required: {
-                    value: true,
-                    message: "nickname field can not be empty",
-                  },
-                  maxLength: 20,
-                })}
-              />
-            </AuthenticationForm.Wrapper>
-            <AuthenticationForm.Wrapper>
-              <AuthenticationForm.Label>Email</AuthenticationForm.Label>
-              <AuthenticationForm.Input
-                type={"email"}
-                name={"email"}
-                ref={register({
-                  required: {
-                    value: true,
-                    message: "email field can not be empty",
-                  },
-                  pattern: {
-                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: "invalid email address",
-                  },
-                })}
-              />
-            </AuthenticationForm.Wrapper>
-            <AuthenticationForm.Wrapper>
-              <AuthenticationForm.Label>Password</AuthenticationForm.Label>
-              <AuthenticationForm.Input
-                type={"password"}
-                name={"password"}
-                ref={register({
-                  required: {
-                    value: true,
-                    message: "password field can not be empty",
-                  },
-                  maxLength: 30,
-                })}
-              />
-            </AuthenticationForm.Wrapper>
-            <AuthenticationForm.Wrapper>
-              <AuthenticationForm.Label>
-                Repeat password
-              </AuthenticationForm.Label>
-              <AuthenticationForm.Input
-                type={"password"}
-                name={"repeatPassword"}
-                ref={register({
-                  required: {
-                    value: true,
-                    message: "password field can not be empty",
-                  },
-                  maxLength: 30,
-                })}
-              />
-            </AuthenticationForm.Wrapper>
-          </>
+          <RegistrationForm register={register} />
         )}
         <AuthenticationForm.Button type="submit">
           {location.slug.toUpperCase()}

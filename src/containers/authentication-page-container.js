@@ -10,6 +10,7 @@ import {
   LoginForm,
   RegistrationForm,
 } from "./auxillary-containers/auth-pages-type";
+import LoadingSpinner from "../components/loading-spinner";
 
 export default function AuthenticationPageContainer() {
   const location = useParams();
@@ -44,8 +45,8 @@ export default function AuthenticationPageContainer() {
               history.push("/");
             });
         })
-        .catch(() => {
-          setErrorsList(["Something gone wrong"]);
+        .catch(({ message }) => {
+          setErrorsList([message]);
           setUserLoading(false);
         });
     }
@@ -75,11 +76,13 @@ export default function AuthenticationPageContainer() {
         <AuthenticationForm.Title>
           {location.slug.toUpperCase()}
         </AuthenticationForm.Title>
-        {location.slug === "login" ? (
+        {location.slug === "login" && !userLoading && (
           <LoginForm register={register} />
-        ) : (
+        )}
+        {location.slug === "registration" && !userLoading && (
           <RegistrationForm register={register} />
         )}
+        {userLoading && <LoadingSpinner />}
         <AuthenticationForm.Button type="submit">
           {location.slug.toUpperCase()}
         </AuthenticationForm.Button>

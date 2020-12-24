@@ -44,7 +44,6 @@ export const Input = styled.input`
   color: #fff;
   background-color: ${({ theme }) => theme.colors.secondary};
   font-size: ${({ theme }) => theme.fontSize.small};
-  width: 300px;
   text-align: center;
   &:focus {
     color: ${({ theme }) => theme.colors.secondary};

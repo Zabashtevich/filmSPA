@@ -28,27 +28,43 @@ export default function AuthenticationPageContainer() {
 
   const onSubmit = ({ nickname, email, password, repeatPassword }) => {
     setUserLoading(true);
-    if (location.slug === "registration") {
-      repeatPassword !== password
-        ? getErrorsList(repeatPassword, setErrorsList)
-        : setErrorsList(null);
-      firebase
-        .auth()
-        .createUserWithEmailAndPassword(email, password)
-        .then((result) => {
-          result.user
-            .updateProfile({
-              displayName: nickname,
-            })
-            .then(() => {
-              setUserLoading(false);
-              history.push("/");
-            });
-        })
-        .catch(({ message }) => {
-          setErrorsList([message]);
-          setUserLoading(false);
-        });
+    switch (location.slug) {
+      case "login":
+        firebase
+          .auth()
+          .signInWithEmailAndPassword(email, password)
+          .then(() => {
+            history.push("/");
+          })
+          .catch(({ message }) => {
+            setErrorsList([message]);
+            setUserLoading(false);
+          });
+        break;
+      case "registration":
+        repeatPassword !== password
+          ? getErrorsList(repeatPassword, setErrorsList)
+          : setErrorsList(null);
+        firebase
+          .auth()
+          .createUserWithEmailAndPassword(email, password)
+          .then((result) => {
+            result.user
+              .updateProfile({
+                displayName: nickname,
+              })
+              .then(() => {
+                setUserLoading(false);
+                history.push("/");
+              });
+          })
+          .catch(({ message }) => {
+            setErrorsList([message]);
+            setUserLoading(false);
+          });
+        break;
+      default:
+        setErrorsList(["something gone wrong"]);
     }
   };
 

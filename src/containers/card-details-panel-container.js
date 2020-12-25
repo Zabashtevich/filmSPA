@@ -21,6 +21,10 @@ export default function CardDetailsPanelContainer() {
     },
   ]);
 
+  const handleRate = (rateScore) => {
+    console.log(rateScore);
+  };
+
   return list ? (
     <DetailsPanel>
       <DetailsPanel.ContentWrapper>
@@ -33,6 +37,7 @@ export default function CardDetailsPanelContainer() {
           {[...Array(10)].map((_, i) => {
             return (
               <StarRating.Star
+                onClick={() => handleRate(i + 1)}
                 key={i}
                 indexValue={i + 1}
                 starValue={starValue}

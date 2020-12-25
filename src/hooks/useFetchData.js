@@ -11,6 +11,7 @@ export default function useFetch(paths, searchParam, ...rest) {
 
   useEffect(() => {
     setLoading(true);
+    if (!loading) return;
     fetch(
       `${fetchBaseUrl}${path}/${searchParam}?api_key=${process.env.REACT_APP_API_KEY}${querry}`,
     )
@@ -19,6 +20,7 @@ export default function useFetch(paths, searchParam, ...rest) {
         setList(data);
         setLoading(false);
       });
+    return () => setLoading(false);
   }, [searchParam, path, querry]);
   return { list, loading };
 }

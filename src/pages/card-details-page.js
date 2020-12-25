@@ -5,7 +5,8 @@ import FooterContainer from "../containers/footer-container";
 import CardDetailsRootContainer from "../containers/card-details-root-container";
 import CardDetailsPanelContainer from "../containers/card-details-panel-container";
 
-export default function CardDetailsPage() {
+export default function CardDetailsPage({ user }) {
+  console.log(user);
   return (
     <>
       <HeaderMainContainer />

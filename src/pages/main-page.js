@@ -5,9 +5,9 @@ import BodyMainContainer from "../containers/body-main-page-container";
 import FooterContainer from "../containers/footer-container";
 import { AuthContext } from "../context/auth-context";
 
-export default function MainPage() {
+export default function MainPage(props) {
   const { firebase } = useContext(AuthContext);
-  console.log(firebase);
+  console.log(props);
   return (
     <>
       <HeaderMainContainer />

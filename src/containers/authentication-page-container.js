@@ -99,8 +99,8 @@ export default function AuthenticationPageContainer() {
           <RegistrationForm register={register} />
         )}
         {userLoading && <LoadingSpinner />}
-        <AuthenticationForm.Button type="submit">
-          {location.slug.toUpperCase()}
+        <AuthenticationForm.Button type="submit" disabled={userLoading}>
+          {(!userLoading && location.slug.toUpperCase()) || "LOADING"}
         </AuthenticationForm.Button>
       </AuthenticationForm.Form>
     </AuthenticationForm>

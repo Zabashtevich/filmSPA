@@ -74,6 +74,12 @@ export const Button = styled.button`
     color: #000;
     transition: all 0.2s linear;
   }
+  &:disabled {
+    color: ${({ theme }) => theme.colors.secondary};
+    background-color: ${({ theme }) => theme.colors.secondary};
+    cursor: wait;
+    color: #fff;
+  }
 `;
 
 export const ErrorContainer = styled.ul`

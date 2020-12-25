@@ -42,6 +42,7 @@ export const Input = styled.input`
   border: 1px solid gray;
   padding: 0.5rem 1rem;
   color: #fff;
+  min-width: 300px;
   background-color: ${({ theme }) => theme.colors.secondary};
   font-size: ${({ theme }) => theme.fontSize.small};
   text-align: center;

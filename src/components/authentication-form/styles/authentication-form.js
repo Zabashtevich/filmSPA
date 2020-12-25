@@ -95,6 +95,7 @@ export const ErrorContainer = styled.ul`
   background-color: #ffd2d2;
   padding-left: 0.2rem;
   font-size: ${({ theme }) => theme.fontSize.small};
+  max-width: 400px;
 `;
 
 export const ErrorIcon = styled(BiErrorCircle)``;

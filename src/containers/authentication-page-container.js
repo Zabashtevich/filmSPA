@@ -23,8 +23,10 @@ export default function AuthenticationPageContainer() {
   const { firebase } = useContext(AuthContext);
 
   useEffect(() => {
-    if (Object.keys(errors).length > 0) getErrorsList(errors, setErrorsList);
-  }, [errors, setErrorsList, errorsList]);
+    if (Object.keys(errors).length > 0) {
+      setErrorsList(getErrorsList(errors));
+    }
+  }, [errors, setErrorsList]);
 
   const onSubmit = ({ nickname, email, password, repeatPassword }) => {
     setUserLoading(true);

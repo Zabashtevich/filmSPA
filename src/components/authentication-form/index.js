@@ -10,6 +10,7 @@ import {
   ErrorContainer,
   ErrorMessage,
   Form,
+  TextLink,
 } from "./styles/authentication-form";
 
 export default function AuthenticationForm({ children, ...rest }) {
@@ -71,4 +72,11 @@ AuthenticationForm.ErrorMessage = function AuthenticationFormErrorMessage({
   ...rest
 }) {
   return <ErrorMessage {...rest}>{children}</ErrorMessage>;
+};
+
+AuthenticationForm.TextLink = function AuthenticationFormTextLink({
+  children,
+  ...rest
+}) {
+  return <TextLink {...rest}>{children}</TextLink>;
 };

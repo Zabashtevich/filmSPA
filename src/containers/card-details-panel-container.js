@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import {
   DetailsPanel,
   RelevantList,
@@ -10,9 +10,11 @@ import {
 import useFetch from "../hooks/useFetchData";
 import { getCorrectSrc } from "../utils/utils";
 
-export default function CardDetailsPanelContainer() {
+export default function CardDetailsPanelContainer({ user }) {
   const [starValue, setStarValue] = useState(0);
+
   const location = useParams();
+  const history = useHistory();
 
   const { list, loading } = useFetch(["movie"], location.slug, [
     {
@@ -22,7 +24,10 @@ export default function CardDetailsPanelContainer() {
   ]);
 
   const handleRate = (rateScore) => {
-    console.log(rateScore);
+    if (user === null) {
+      history.push("/authentication/login");
+    } else {
+    }
   };
 
   return list ? (

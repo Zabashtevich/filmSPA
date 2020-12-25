@@ -1,5 +1,6 @@
 import styled from "styled-components/macro";
 import { BiErrorCircle } from "react-icons/bi";
+import { Link as ReactRouterLink } from "react-router-dom";
 
 export const Container = styled.div`
   max-width: 600px;
@@ -101,4 +102,12 @@ export const ErrorIcon = styled(BiErrorCircle)``;
 export const ErrorMessage = styled.li`
   align-self: flex-start;
   padding: 0.5rem;
+`;
+
+export const TextLink = styled(ReactRouterLink)`
+  color: ${({ theme }) => theme.colors.secondary};
+  &:hover {
+    color: gray;
+    transition: all 0.2s linear;
+  }
 `;

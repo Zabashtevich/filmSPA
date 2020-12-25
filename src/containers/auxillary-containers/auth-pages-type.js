@@ -64,6 +64,11 @@ export function RegistrationForm({ register }) {
           })}
         />
       </AuthenticationForm.Wrapper>
+      <AuthenticationForm.Wrapper>
+        <AuthenticationForm.TextLink to={"/authentication/login"}>
+          Already have an account?
+        </AuthenticationForm.TextLink>
+      </AuthenticationForm.Wrapper>
     </>
   );
 }
@@ -101,6 +106,11 @@ export function LoginForm({ register }) {
             maxLength: 30,
           })}
         />
+      </AuthenticationForm.Wrapper>
+      <AuthenticationForm.Wrapper>
+        <AuthenticationForm.TextLink to={"/authentication/registration"}>
+          Want create an account?
+        </AuthenticationForm.TextLink>
       </AuthenticationForm.Wrapper>
     </>
   );

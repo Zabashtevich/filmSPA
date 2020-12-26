@@ -98,8 +98,10 @@ export const getKnownFor = (data, setKnownForList) => {
   setKnownForList(resultArray);
 };
 
-export const getRightReleasedDate = (data) => {
-  return data.substring(0, data.indexOf("-"));
+export const getRightReleasedDate = (date) => {
+  if (date === undefined) return "";
+  const correctDate = date.substring(0, date.indexOf("-"));
+  return correctDate;
 };
 
 export const getArrayOfMovies = (data) => {

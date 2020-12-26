@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 
 import { BodyMain, Slider, CardList, CardListSkeleton } from "../components";
-import { range, getPaginator } from "../utils/utils";
+import { range, getPaginator, getRightReleasedDate } from "../utils/utils";
 import Data from "../constants/data.json";
 import useFetch from "../hooks/useFetchData";
 import TabsMainPageCotainer from "./tabs-main-page-container";
@@ -51,12 +51,13 @@ export default function BodyMainContainer() {
                 return (
                   <CardList.ItemContainer key={item.id}>
                     {item.poster_path === null ? console.log(item.id) : null}
-                    <CardList.ItemContent
-                      id={item.id}
-                      title={item.title || item.name}
-                      date={item.release_date || item.first_air_date}
-                      src={item.poster_path}
-                    />
+                    <CardList.ItemContentWrapper>
+                      <CardList.ItemImage src={item.poster_path} />
+                      <CardList.ItemDescriptionInner
+                        title={item.title || item.name}
+                        date={getRightReleasedDate(item.release_date)}
+                      />
+                    </CardList.ItemContentWrapper>
                     <CardList.MetaScore error={item.poster_path ? null : true}>
                       {item.vote_average}
                     </CardList.MetaScore>

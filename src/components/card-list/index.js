@@ -21,18 +21,33 @@ CardList.ItemContainer = function CardListItemContainer({ children, ...rest }) {
   return <ItemContainer {...rest}>{children}</ItemContainer>;
 };
 
-CardList.ItemContent = function CardListItemContent({ src, title, date }) {
+CardList.ItemContentWrapper = function CardListItemContentWrapper({
+  children,
+  src,
+  title,
+  date,
+}) {
+  return <ContentWrapper>{children}</ContentWrapper>;
+};
+
+CardList.ItemImage = function CardListItemImage({ src }) {
   return (
-    <ContentWrapper>
-      <ItemImage
-        src={src ? baseImageLink + src : imageerror}
-        error={src ? null : true}
-      />
-      <ItemDescriptionInner>
-        <ItemTitle>{title}</ItemTitle>
-        <ItemDate>{date}</ItemDate>
-      </ItemDescriptionInner>
-    </ContentWrapper>
+    <ItemImage
+      src={src ? baseImageLink + src : imageerror}
+      error={src ? null : true}
+    />
+  );
+};
+
+CardList.ItemDescriptionInner = function CardListItemDescriptionInner({
+  title,
+  date,
+}) {
+  return (
+    <ItemDescriptionInner>
+      <ItemTitle>{title}</ItemTitle>
+      <ItemDate>{date}</ItemDate>
+    </ItemDescriptionInner>
   );
 };
 

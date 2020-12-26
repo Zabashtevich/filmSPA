@@ -24,7 +24,7 @@ export const Link = styled(ReactRouterLink)`
   font-weight: ${({ theme }) => theme.fontWeightMain.bold};
   padding: 5px;
   display: block;
-  transition: box-shadow 1s;
+  transition: box-shadow 500ms;
   ${({ positionchanged }) =>
     positionchanged &&
     css`
@@ -69,6 +69,8 @@ export const Profile = styled.div`
   color: ${({ theme }) => theme.colors.secondary};
   font-size: ${({ theme }) => theme.fontSize.normal};
   font-weight: ${({ theme }) => theme.fontWeightMain.bold};
+  transition: box-shadow 500ms;
+  padding: 5px;
   cursor: pointer;
   ${({ positionchanged }) =>
     positionchanged &&

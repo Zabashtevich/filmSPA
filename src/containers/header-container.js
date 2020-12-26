@@ -3,7 +3,8 @@ import React, { useEffect, useState } from "react";
 import { Header } from "../components";
 import { getHeaderProps } from "../utils/utils";
 
-export default function HeaderContainer() {
+export default function HeaderMainContainer({ user }) {
+  console.log(user);
   const [inputActive, setInputActive] = useState(false);
   const [headerProp, setHeaderProp] = useState({
     scrollPost: window.pageYOffset,
@@ -66,12 +67,29 @@ export default function HeaderContainer() {
             onClick={() => setInputActive(!inputActive)}
           />
         </Header.Wrapper>
-        <Header.Link
-          to={"/"}
-          positionchanged={headerProp.positionchanged ? "true" : null}
-        >
-          LOGIN
-        </Header.Link>
+        {user === null && (
+          <>
+            <Header.Link
+              to={"/authentication/logic"}
+              positionchanged={headerProp.positionchanged ? "true" : null}
+            >
+              LOGIN
+            </Header.Link>
+            <Header.Link
+              to={"/authentication/registration"}
+              positionchanged={headerProp.positionchanged ? "true" : null}
+            >
+              SIGN UP
+            </Header.Link>
+          </>
+        )}
+        {user !== null && (
+          <Header.Profile
+            positionchanged={headerProp.positionchanged ? "true" : null}
+          >
+            {user.displayName.toUpperCase()}
+          </Header.Profile>
+        )}
       </Header.Inner>
     </Header>
   );

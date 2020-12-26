@@ -14,7 +14,7 @@ function App() {
 
   return (
     <Router>
-      <HeaderMainContainer />
+      <HeaderMainContainer user={user} />
       <Switch>
         {/* <ProtectedRoute user={user} path="/details/:slug"></ProtectedRoute> */}
         <Route path="/" component={MainPage} exact />

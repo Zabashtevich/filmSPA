@@ -65,7 +65,21 @@ export const Input = styled.input`
     `}
 `;
 export const Profile = styled.div`
-  width: 30px;
+  margin-left: 1rem;
+  color: ${({ theme }) => theme.colors.secondary};
+  font-size: ${({ theme }) => theme.fontSize.normal};
+  font-weight: ${({ theme }) => theme.fontWeightMain.bold};
+  cursor: pointer;
+  ${({ positionchanged }) =>
+    positionchanged &&
+    css`
+      color: #fff;
+      transition: color 500ms linear;
+    `};
+
+  &:hover {
+    box-shadow: inset 0 -2px currentColor;
+  }
 `;
 export const Logo = styled(ReactRouterLink)`
   font-size: ${({ theme }) => theme.fontSize.logo};

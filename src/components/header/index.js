@@ -9,7 +9,7 @@ import {
   Background,
   Icon,
   Wrapper,
-} from "./styles/header-main";
+} from "./styles/header";
 
 export default function Header({ children, ...rest }) {
   return (
@@ -46,3 +46,5 @@ Header.Icon = function HeaderIcon({ children, ...rest }) {
 Header.Wrapper = function HeaderWrapper({ children, ...rest }) {
   return <Wrapper {...rest}>{children}</Wrapper>;
 };
+
+Header.

@@ -10,7 +10,6 @@ export default function MainPage(props) {
   console.log(props);
   return (
     <>
-      <HeaderMainContainer />
       <BodyMainContainer />
       <FooterContainer />
     </>

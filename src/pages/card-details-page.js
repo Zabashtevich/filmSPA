@@ -8,7 +8,6 @@ import CardDetailsPanelContainer from "../containers/card-details-panel-containe
 export default function CardDetailsPage({ user }) {
   return (
     <>
-      <HeaderMainContainer />
       <CardDetailsRootContainer />
       <CardDetailsPanelContainer user={user} />
       <FooterContainer />

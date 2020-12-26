@@ -7,7 +7,6 @@ import HeaderMainContainer from "../containers/header-container";
 export default function ActorDetailsPage() {
   return (
     <>
-      <HeaderMainContainer />
       <ActorDetailsRootContainer />
       <FooterContainer />
     </>

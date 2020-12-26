@@ -6,7 +6,6 @@ import HeaderContainer from "../containers/header-container";
 export default function AuthenticationPage() {
   return (
     <>
-      <HeaderContainer />
       <AuthenticationPageContainer />
     </>
   );

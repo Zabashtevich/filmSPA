@@ -57,11 +57,15 @@ export default function SliderBodyContainer({
             );
           })}
         </Slider.ContentContainer>
-        <Slider.Dots
-          data={Data}
-          sliderIndex={sliderIndex}
-          setSliderIndex={setSliderIndex}
-        />
+        <Slider.Dots>
+          {Data.map((_, index) => (
+            <Slider.Dot
+              onClick={() => setSliderIndex(index)}
+              active={sliderIndex === index ? true : null}
+              key={index}
+            />
+          ))}
+        </Slider.Dots>
         {sliderIndex !== Data.length - 1 && (
           <Slider.Button
             direction={"right"}

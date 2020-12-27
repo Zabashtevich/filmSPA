@@ -11,8 +11,8 @@ import {
   Title,
   TagWrapper,
   TagItem,
-  SliderDotsWrapper,
-  SliderDot,
+  Dots,
+  Dot,
   Description,
   Wrapper,
   Color,
@@ -92,21 +92,10 @@ Slider.ButtonIcon = function SliderButtonIcon() {
   return <ButtonIcon />;
 };
 
-Slider.Dots = function SliderDots({
-  setSliderIndex,
-  sliderIndex,
-  data,
-  ...rest
-}) {
-  return (
-    <SliderDotsWrapper {...rest}>
-      {data.map((_, index) => (
-        <SliderDot
-          onClick={() => setSliderIndex(index)}
-          active={sliderIndex === index ? true : null}
-          key={index}
-        />
-      ))}
-    </SliderDotsWrapper>
-  );
+Slider.Dots = function SliderDots({ children, ...rest }) {
+  return <Dots {...rest}>{children}</Dots>;
+};
+
+Slider.Dot = function SliderDot({ ...rest }) {
+  return <Dot {...rest} />;
 };

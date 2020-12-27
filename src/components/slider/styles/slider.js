@@ -121,13 +121,13 @@ export const Description = styled.div`
   opacity: 0;
 `;
 
-export const SliderDotsWrapper = styled.div`
+export const Dots = styled.div`
   display: flex;
   justify-content: center;
   margin: 1rem;
 `;
 
-export const SliderDot = styled.div`
+export const Dot = styled.div`
   position: relative;
   width: 1rem;
   height: 1rem;

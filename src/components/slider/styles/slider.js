@@ -47,6 +47,7 @@ export const Thumbnail = styled.div`
 export const Img = styled.img`
   width: 360px;
   height: 540px;
+  background-color: #fff;
 `;
 
 export const Gradient = styled.div`
@@ -78,7 +79,7 @@ export const Color = styled.div`
   background-color: ${({ color }) => `hsla(${color}, 50%, 40%, 1)`};
 `;
 
-export const SliderMetaData = styled.div`
+export const Metadata = styled.div`
   font-family: ${({ theme }) => theme.fontFamily.secondary};
   position: absolute;
   display: flex;
@@ -92,20 +93,20 @@ export const SliderMetaData = styled.div`
   z-index: 50;
 `;
 
-export const SliderTitle = styled(ReactRouterLink)`
+export const Title = styled(ReactRouterLink)`
   font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
   font-size: ${({ theme }) => theme.fontSize.huge};
   text-decoration: none;
   color: #fff;
 `;
 
-export const SliderTagWrapper = styled.div`
+export const TagWrapper = styled.div`
   display: flex;
   flex-direction: row;
   margin: 1rem 0;
 `;
 
-export const SliderTagItem = styled.span`
+export const TagItem = styled.span`
   font-size: ${({ theme }) => theme.fontSize.small};
   font-weight: ${({ theme }) => theme.fontFamily.main};
   &:nth-child(2n) {
@@ -113,7 +114,7 @@ export const SliderTagItem = styled.span`
   }
 `;
 
-export const SliderDescription = styled.div`
+export const Description = styled.div`
   line-height: 1.5rem;
   transition: all 0.5s;
   font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
@@ -195,13 +196,13 @@ export const Item = styled.div`
     transition: opacity 250ms linear, transform 250ms linear;
   }
   &:hover {
-    ${SliderDescription} {
+    ${Description} {
       opacity: 1;
     }
-    ${SliderMetaData} {
+    ${Metadata} {
       top: 30%;
     }
-    ${SliderColor} {
+    ${Color} {
       opacity: 0.6;
     }
   }
@@ -212,7 +213,7 @@ export const ContentContainer = styled.div`
   flex-direction: row;
 `;
 
-export const SliderLinkButton = styled(ReactRouterLink)`
+export const LinkButton = styled(ReactRouterLink)`
   width: 45px;
   height: 45px;
   z-index: 100;
@@ -224,7 +225,7 @@ export const SliderLinkButton = styled(ReactRouterLink)`
   cursor: pointer;
 `;
 
-export const SliderLinkButtonIcon = styled(HiOutlineArrowRight)`
+export const ButtonIcon = styled(HiOutlineArrowRight)`
   color: #fff;
   position: absolute;
   font-size: ${({ theme }) => theme.fontSize.large};

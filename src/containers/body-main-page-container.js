@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 import { BodyMain, Slider, CardList, CardListSkeleton } from "../components";
 import { range, getPaginator, getRightReleasedDate } from "../utils/utils";
@@ -26,32 +25,12 @@ export default function BodyMainContainer() {
   return (
     <BodyMain>
       <BodyMain.Section>
-        <Slider>
-          <Slider.ContentWrapper>
-            {sliderIndex !== 0 && (
-              <Slider.Button
-                direction={"left"}
-                onClick={() => setSliderIndex((prev) => --prev)}
-              >
-                <FaChevronLeft />
-              </Slider.Button>
-            )}
-            <SliderBodyContainer data={Data[sliderIndex]} />
-            <Slider.Dots
-              data={Data}
-              sliderIndex={sliderIndex}
-              setSliderIndex={setSliderIndex}
-            />
-            {sliderIndex !== Data.length - 1 && (
-              <Slider.Button
-                direction={"right"}
-                onClick={() => setSliderIndex((prev) => ++prev)}
-              >
-                <FaChevronRight />
-              </Slider.Button>
-            )}
-          </Slider.ContentWrapper>
-        </Slider>
+        <SliderBodyContainer
+          data={Data[sliderIndex]}
+          setSliderIndex={setSliderIndex}
+          sliderIndex={sliderIndex}
+          Data={Data}
+        />
       </BodyMain.Section>
       <BodyMain.Section padding="1rem" background="#fff">
         <TabsMainPageCotainer

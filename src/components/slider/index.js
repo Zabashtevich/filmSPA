@@ -1,4 +1,5 @@
 import React from "react";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import {
   Container,
@@ -6,18 +7,18 @@ import {
   Thumbnail,
   Img,
   Gradient,
-  SliderMetaData,
-  SliderTitle,
-  SliderTagWrapper,
-  SliderTagItem,
+  Metadata,
+  Title,
+  TagWrapper,
+  TagItem,
   SliderDotsWrapper,
   SliderDot,
-  SliderDescription,
+  Description,
   Wrapper,
   Color,
   ContentContainer,
-  SliderLinkButton,
-  SliderLinkButtonIcon,
+  LinkButton,
+  ButtonIcon,
   Button,
 } from "./styles/slider";
 
@@ -34,7 +35,9 @@ Slider.ContentWrapper = function SliderContentWrapper({ children, ...rest }) {
 };
 
 Slider.ContentContainer = function SliderContentContainer({ children }) {
-  return <ContentContainer>{children}</ContentContainer>;
+  return (
+    <TransitionGroup component={ContentContainer}>{children}</TransitionGroup>
+  );
 };
 
 Slider.Item = function SliderItem({ children }) {
@@ -46,34 +49,47 @@ Slider.Thumbnail = function SliderThumbnail({ children }) {
 };
 
 Slider.Img = function SliderImg({ ...rest }) {
-  <Img {...rest} />;
+  return <Img {...rest} />;
 };
 
 Slider.Gradient = function SliderGradient({ ...rest }) {
-  <Gradient {...rest} />;
+  return <Gradient {...rest} />;
 };
 
 Slider.Color = function SliderColor({ ...rest }) {
-  <Color {...rest} />;
+  return <Color {...rest} />;
 };
 
-Slider.Body = function SliderBody({ data, children, ...rest }) {
-  return (
-    <>
-      <SliderMetaData>
-        <SliderTitle to={"/"}>{item.film}</SliderTitle>
-        <SliderTagWrapper>
-          {item.genres.map((item, _) => (
-            <SliderTagItem key={_}>{item}</SliderTagItem>
-          ))}
-        </SliderTagWrapper>
-        <SliderDescription>{item.description}</SliderDescription>
-      </SliderMetaData>
-      <SliderLinkButton to={"/"}>
-        <SliderLinkButtonIcon />
-      </SliderLinkButton>
-    </>
-  );
+Slider.Metadata = function SliderMetadata({ children, ...rest }) {
+  return <Metadata {...rest}>{children}</Metadata>;
+};
+
+Slider.Metadata = function SliderMetadata({ children, ...rest }) {
+  return <Metadata {...rest}>{children}</Metadata>;
+};
+
+Slider.Title = function SliderTitle({ children, ...rest }) {
+  return <Title {...rest}>{children}</Title>;
+};
+
+Slider.TagWrapper = function SliderTagWrapper({ children, ...rest }) {
+  return <TagWrapper {...rest}>{children}</TagWrapper>;
+};
+
+Slider.TagItem = function SliderTagItem({ children, ...rest }) {
+  return <TagItem {...rest}>{children}</TagItem>;
+};
+
+Slider.Description = function SliderDescription({ children, ...rest }) {
+  return <Description {...rest}>{children}</Description>;
+};
+
+Slider.LinkButton = function SliderLinkButton({ children, ...rest }) {
+  return <LinkButton {...rest}>{children}</LinkButton>;
+};
+
+Slider.ButtonIcon = function SliderButtonIcon() {
+  return <ButtonIcon />;
 };
 
 Slider.Dots = function SliderDots({

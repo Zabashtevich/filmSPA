@@ -14,7 +14,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-export const SliderButton = styled.button`
+export const Button = styled.button`
   width: 50px;
   height: 50px;
   position: absolute;
@@ -34,7 +34,7 @@ export const SliderButton = styled.button`
     `}
 `;
 
-export const SliderThumbnail = styled.div`
+export const Thumbnail = styled.div`
   width: inherit;
   position: absolute;
   display: flex;
@@ -44,12 +44,12 @@ export const SliderThumbnail = styled.div`
   z-index: 50;
 `;
 
-export const SliderImg = styled.img`
+export const Img = styled.img`
   width: 360px;
   height: 540px;
 `;
 
-export const SliderGradient = styled.div`
+export const Gradient = styled.div`
   position: absolute;
   right: 0;
   bottom: 0;
@@ -67,7 +67,7 @@ export const SliderGradient = styled.div`
     `}
 `;
 
-export const SliderColor = styled.div`
+export const Color = styled.div`
   position: absolute;
   right: 0;
   bottom: 0;
@@ -151,7 +151,7 @@ export const SliderDot = styled.div`
     `}
 `;
 
-export const SliderItem = styled.div`
+export const Item = styled.div`
   position: relative;
   width: 360px;
   height: 540px;
@@ -207,7 +207,7 @@ export const SliderItem = styled.div`
   }
 `;
 
-export const SliderItemContainer = styled.div`
+export const ContentContainer = styled.div`
   display: flex;
   flex-direction: row;
 `;

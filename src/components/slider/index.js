@@ -1,15 +1,11 @@
 import React from "react";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
-
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 import {
   Container,
-  SliderButton,
-  SliderItem,
-  SliderThumbnail,
-  SliderImg,
-  SliderGradient,
+  Item,
+  Thumbnail,
+  Img,
+  Gradient,
   SliderMetaData,
   SliderTitle,
   SliderTagWrapper,
@@ -18,80 +14,65 @@ import {
   SliderDot,
   SliderDescription,
   Wrapper,
-  SliderColor,
-  SliderItemContainer,
+  Color,
+  ContentContainer,
   SliderLinkButton,
   SliderLinkButtonIcon,
+  Button,
 } from "./styles/slider";
 
-export default function Slider({
-  slidesLength,
-  sliderIndex,
-  setSliderIndex,
-  children,
-  setAnimationSide,
-  ...rest
-}) {
-  return (
-    <Container {...rest}>
-      <Wrapper>
-        {sliderIndex !== 0 ? (
-          <SliderButton
-            direction={"left"}
-            onClick={() => setSliderIndex((prev) => --prev)}
-          >
-            <FaChevronLeft />
-          </SliderButton>
-        ) : null}
-        {children}
-        {sliderIndex !== slidesLength - 1 ? (
-          <SliderButton
-            direction={"right"}
-            onClick={() => setSliderIndex((prev) => ++prev)}
-          >
-            <FaChevronRight />
-          </SliderButton>
-        ) : null}
-      </Wrapper>
-    </Container>
-  );
+export default function Slider({ children, ...rest }) {
+  return <Container {...rest}>{children}</Container>;
 }
+
+Slider.Button = function SliderButton({ children, ...rest }) {
+  return <Button {...rest}>{children}</Button>;
+};
+
+Slider.ContentWrapper = function SliderContentWrapper({ children, ...rest }) {
+  return <Wrapper {...rest}>{children}</Wrapper>;
+};
+
+Slider.ContentContainer = function SliderContentContainer({ children }) {
+  return <ContentContainer>{children}</ContentContainer>;
+};
+
+Slider.Item = function SliderItem({ children }) {
+  return <Item>{children}</Item>;
+};
+
+Slider.Thumbnail = function SliderThumbnail({ children }) {
+  return <Thumbnail>{children}</Thumbnail>;
+};
+
+Slider.Img = function SliderImg({ ...rest }) {
+  <Img {...rest} />;
+};
+
+Slider.Gradient = function SliderGradient({ ...rest }) {
+  <Gradient {...rest} />;
+};
+
+Slider.Color = function SliderColor({ ...rest }) {
+  <Color {...rest} />;
+};
 
 Slider.Body = function SliderBody({ data, children, ...rest }) {
   return (
-    <TransitionGroup component={SliderItemContainer}>
-      {data.map((item) => {
-        return (
-          <CSSTransition
-            classNames="fade"
-            timeout={250}
-            appear={true}
-            in={!!data}
-            key={item.image}
-          >
-            <SliderItem>
-              <SliderThumbnail>
-                <SliderImg src={`./assets/images/slider/${item.image}.jpg`} />
-                <SliderGradient color={item.color} />
-                <SliderColor color={item.color} />
-              </SliderThumbnail>
-              <SliderMetaData>
-                <SliderTitle to={"/"}>{item.film}</SliderTitle>
-                <SliderTagWrapper>
-                  {item.genres.map((item, _) => (
-                    <SliderTagItem key={_}>{item}</SliderTagItem>
-                  ))}
-                </SliderTagWrapper>
-                <SliderDescription>{item.description}</SliderDescription>
-              </SliderMetaData>
-              <SliderLinkButton to={"/"}>
-                <SliderLinkButtonIcon />
-              </SliderLinkButton>
-            </SliderItem>
-          </CSSTransition>
-        );
-      })}
-    </TransitionGroup>
+    <>
+      <SliderMetaData>
+        <SliderTitle to={"/"}>{item.film}</SliderTitle>
+        <SliderTagWrapper>
+          {item.genres.map((item, _) => (
+            <SliderTagItem key={_}>{item}</SliderTagItem>
+          ))}
+        </SliderTagWrapper>
+        <SliderDescription>{item.description}</SliderDescription>
+      </SliderMetaData>
+      <SliderLinkButton to={"/"}>
+        <SliderLinkButtonIcon />
+      </SliderLinkButton>
+    </>
   );
 };
 

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 import { BodyMain, Slider, CardList, CardListSkeleton } from "../components";
 import { range, getPaginator, getRightReleasedDate } from "../utils/utils";
@@ -7,6 +8,7 @@ import Data from "../constants/data.json";
 import useFetch from "../hooks/useFetchData";
 import TabsMainPageCotainer from "./tabs-main-page-container";
 import PaginationMainPageContainer from "./pagination-main-page-container";
+import SliderBodyContainer from "./auxillary-containers/slider-body-container";
 
 export default function BodyMainContainer() {
   const [sliderIndex, setSliderIndex] = useState(1);
@@ -24,17 +26,31 @@ export default function BodyMainContainer() {
   return (
     <BodyMain>
       <BodyMain.Section>
-        <Slider
-          setSliderIndex={setSliderIndex}
-          sliderIndex={sliderIndex}
-          slidesLength={Data.length}
-        >
-          <Slider.Body data={Data[sliderIndex]} />
-          <Slider.Dots
-            data={Data}
-            sliderIndex={sliderIndex}
-            setSliderIndex={setSliderIndex}
-          />
+        <Slider>
+          <Slider.ContentWrapper>
+            {sliderIndex !== 0 && (
+              <Slider.Button
+                direction={"left"}
+                onClick={() => setSliderIndex((prev) => --prev)}
+              >
+                <FaChevronLeft />
+              </Slider.Button>
+            )}
+            <SliderBodyContainer data={Data[sliderIndex]} />
+            <Slider.Dots
+              data={Data}
+              sliderIndex={sliderIndex}
+              setSliderIndex={setSliderIndex}
+            />
+            {sliderIndex !== Data.length - 1 && (
+              <Slider.Button
+                direction={"right"}
+                onClick={() => setSliderIndex((prev) => ++prev)}
+              >
+                <FaChevronRight />
+              </Slider.Button>
+            )}
+          </Slider.ContentWrapper>
         </Slider>
       </BodyMain.Section>
       <BodyMain.Section padding="1rem" background="#fff">

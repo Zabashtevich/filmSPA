@@ -30,6 +30,11 @@ export default function CardDetailsPanelContainer({ user }) {
     }
   };
 
+  const setWindowOffset = () => {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  };
+
   return list ? (
     <DetailsPanel>
       <DetailsPanel.ContentWrapper>
@@ -68,6 +73,7 @@ export default function CardDetailsPanelContainer({ user }) {
               <RelevantList.ItemContainer
                 key={item.id}
                 to={`/details/${item.id}`}
+                onClick={setWindowOffset}
               >
                 <RelevantList.Miniature src={item.poster_path} />
                 <RelevantList.Name>{item.title}</RelevantList.Name>

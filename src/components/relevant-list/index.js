@@ -16,8 +16,11 @@ export default function RelevantList({ children }) {
   return <Container>{children}</Container>;
 }
 
-RelevantList.ItemContainer = function RelevantListItemContainer({ children }) {
-  return <ItemContainer>{children}</ItemContainer>;
+RelevantList.ItemContainer = function RelevantListItemContainer({
+  children,
+  ...rest
+}) {
+  return <ItemContainer {...rest}>{children}</ItemContainer>;
 };
 
 RelevantList.Miniature = function RelevantListMiniature({ src }) {

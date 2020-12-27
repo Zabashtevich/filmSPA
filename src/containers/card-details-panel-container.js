@@ -65,7 +65,10 @@ export default function CardDetailsPanelContainer({ user }) {
         <RelevantList.ListContainer>
           {list.recommendations.results.map((item) => {
             return (
-              <RelevantList.ItemContainer key={item.id}>
+              <RelevantList.ItemContainer
+                key={item.id}
+                to={`/details/${item.id}`}
+              >
                 <RelevantList.Miniature src={item.poster_path} />
                 <RelevantList.Name>{item.title}</RelevantList.Name>
                 <RelevantList.VoteScore>

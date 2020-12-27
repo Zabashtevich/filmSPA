@@ -1,14 +1,19 @@
 import styled from "styled-components/macro";
+import { Link as ReactRouterLink } from "react-router-dom";
 
-export const Name = styled.h4`
+export const Name = styled.span`
   margin: 1rem 1rem 1rem 0;
+  font-size: ${({ theme }) => theme.fontSize.normal};
+  font-weight: ${({ theme }) => theme.fontWeightSecondary.normal};
+  color: ${({ theme }) => theme.colors.secondary};
 `;
 
-export const ItemContainer = styled.div`
+export const ItemContainer = styled(ReactRouterLink)`
   margin: 0.5rem;
   border-radius: 1rem;
   position: relative;
   cursor: pointer;
+  text-decoration: none;
 `;
 
 export const Miniature = styled.img`

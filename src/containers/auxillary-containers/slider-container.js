@@ -4,7 +4,7 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 import { Slider } from "../../components";
 
-export default function SliderBodyContainer({
+export default function SliderContainer({
   setSliderIndex,
   sliderIndex,
   data,

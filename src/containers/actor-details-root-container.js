@@ -41,15 +41,14 @@ export default function ActorDetailsRootContainer() {
     setVisibleGallery(true);
   };
 
-  const hideModal = () => {
-    document.body.style.overflow = "auto";
-    setVisibleGallery(false);
-  };
-
-  const backdropClick = (e) => {
-    if (e.target.className.search("Backdrop") === -1) return;
-    document.body.style.overflow = "auto";
-    setVisibleGallery(false);
+  const hideModal = (e) => {
+    if (
+      e.target.classList[0].search("Backdrop") > 0 ||
+      e.target.classList[0].search("Close") > 0
+    ) {
+      document.body.style.overflow = "auto";
+      setVisibleGallery(false);
+    }
   };
 
   return list ? (
@@ -57,13 +56,13 @@ export default function ActorDetailsRootContainer() {
       <PosterColumn>
         <PosterColumn.Poster src={list.profile_path} />
         {visibleGallery ? (
-          <ModalGallery.Backdrop onClick={(e) => backdropClick(e)}>
+          <ModalGallery.Backdrop onClick={(e) => hideModal(e)}>
             <ModalGallery.Photo
               src={
                 activeImage ? activeImage : list.images.profiles[0].file_path
               }
             >
-              <ModalGallery.CloseIcon onClick={hideModal} />
+              <ModalGallery.CloseIcon onClick={(e) => hideModal(e)} />
               <ModalGallery.ListContainer>
                 {list.images.profiles.slice(0, 5).map((item, i) => {
                   return (

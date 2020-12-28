@@ -4,7 +4,7 @@ import { Link as ReactRouterLink } from "react-router-dom";
 export const Container = styled.div`
   margin: 8rem 2rem;
   color: #fff;
-  z-index: 200;
+  z-index: 100;
 `;
 
 export const Title = styled.h3`

@@ -30,7 +30,7 @@ export const Container = styled.div`
 
 export const Photo = styled.div`
   position: relative;
-  z-index: 300;
+  z-index: 400;
   top: 10%;
   background: ${({ src }) => `url(${src})`} no-repeat;
   width: 500px;
@@ -85,7 +85,7 @@ export const Backdrop = styled.div`
   left: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 200;
+  z-index: 300;
   display: flex;
   justify-content: center;
 `;

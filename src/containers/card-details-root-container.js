@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import {
   DetailsHeader,
@@ -7,11 +7,15 @@ import {
   PosterColumn,
   DescriptionHeader,
   Votes,
+  ModalGallery,
 } from "../components";
 import useFetch from "../hooks/useFetchData";
 import CardRows from "./auxillary-containers/card-rows";
 
 export default function CardDetailsRootContainer() {
+  const [visibleGallery, setVisibleGallery] = useState(false);
+  const [activeImage, setActiveImage] = useState(null);
+
   const location = useParams();
 
   const { list, loading } = useFetch(["movie"], location.slug, [
@@ -21,6 +25,23 @@ export default function CardDetailsRootContainer() {
     },
   ]);
 
+  const showModal = () => {
+    document.body.style.overflow = "hidden";
+
+    setVisibleGallery(true);
+  };
+
+  const hideModal = () => {
+    document.body.style.overflow = "auto";
+    setVisibleGallery(false);
+  };
+
+  const backdropClick = (e) => {
+    if (e.target.className.search("Backdrop") === -1) return;
+    document.body.style.overflow = "auto";
+    setVisibleGallery(false);
+  };
+  console.log(list);
   return list ? (
     <DetailsHeader background={"dark"}>
       <DetailsHeader.BackgroundContainer>
@@ -28,6 +49,37 @@ export default function CardDetailsRootContainer() {
       </DetailsHeader.BackgroundContainer>
       <PosterColumn>
         <PosterColumn.Poster src={list.poster_path} />
+        {visibleGallery ? (
+          <ModalGallery.Backdrop onClick={(e) => backdropClick(e)}>
+            <ModalGallery.Photo
+              src={activeImage ? activeImage : list.images.posters[0].file_path}
+            >
+              <ModalGallery.CloseIcon onClick={hideModal} />
+              <ModalGallery.ListContainer>
+                {list.images.posters.slice(0, 5).map((item, i) => {
+                  return (
+                    <ModalGallery.ListItem
+                      key={i}
+                      src={item.file_path}
+                      active={
+                        activeImage === item.file_path ||
+                        (i === 0 && activeImage === null)
+                          ? "true"
+                          : null
+                      }
+                      onClick={() => setActiveImage(item.file_path)}
+                    />
+                  );
+                })}
+              </ModalGallery.ListContainer>
+            </ModalGallery.Photo>
+          </ModalGallery.Backdrop>
+        ) : null}
+        {list.images ? (
+          <ModalGallery onClick={showModal}>
+            <ModalGallery.Icon />
+          </ModalGallery>
+        ) : null}
       </PosterColumn>
       <CardDescriptionColumn>
         <DescriptionHeader>

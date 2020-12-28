@@ -15,12 +15,14 @@ export const Name = styled.h2`
   padding: 0 0.5rem;
   font-size: ${({ theme }) => theme.fontSize.huge};
   font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
+  z-index: 100;
 `;
 
 export const Title = styled.h3`
   margin: 1rem 0;
   padding: 1rem 0.5rem;
   font-size: ${({ theme }) => theme.fontSize.normal};
+  z-index: 100;
   font-weight: ${({ theme }) => theme.fontWeightSecondary.normal};
 `;
 
@@ -45,6 +47,7 @@ export const Row = styled.div`
     background-color: rgba(0, 0, 0, 0.1);
     transition: all 0.1s linear;
   }
+  z-index: 100;
 `;
 
 export const Date = styled.span`

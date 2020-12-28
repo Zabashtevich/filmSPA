@@ -28,6 +28,6 @@ export default function useFetch(paths, searchParam, ...rest) {
       setLoading(false);
       setFetchingData(true);
     };
-  }, [searchParam, path, querry]);
+  }, [searchParam, path, querry, fetchingData]);
   return { list, loading };
 }

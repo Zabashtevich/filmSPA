@@ -69,7 +69,7 @@ export default function HeaderMainContainer({ user }) {
         {user === null && (
           <>
             <Header.Link
-              to={"/authentication/logic"}
+              to={"/authentication/login"}
               positionchanged={headerProp.positionchanged ? "true" : null}
             >
               LOGIN

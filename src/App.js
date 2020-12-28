@@ -18,10 +18,7 @@ function App() {
       <Switch>
         {/* <ProtectedRoute user={user} path="/details/:slug"></ProtectedRoute> */}
         <Route path="/" component={MainPage} exact />
-        <Route
-          path="/details/:slug"
-          component={() => <CardDetailsPage user={user} />}
-        />
+        <Route path="/details/:slug" component={CardDetailsPage} />
         <Route path="/actor/:slug" component={ActorDetailsPage} />
         <Route path="/authentication/:slug" component={AuthenticationPage} />
       </Switch>

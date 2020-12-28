@@ -41,7 +41,7 @@ export default function CardDetailsRootContainer() {
     }
   };
 
-  return list ? (
+  return !loading ? (
     <DetailsHeader background={"dark"}>
       <DetailsHeader.BackgroundContainer>
         <DetailsHeader.BackgroundImage src={list.backdrop_path} />

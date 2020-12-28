@@ -26,6 +26,15 @@ export const Container = styled.div`
     background-color: rgba(0, 0, 0, 0.2);
     transition: all 0.2s linear;
   }
+  ${({ cardPage }) =>
+    cardPage &&
+    css`
+      background-color: rgba(255, 255, 255, 0.8);
+      &:hover {
+        background-color: #fff;
+        transition: all 0.2s linear;
+      }
+    `}
 `;
 
 export const Photo = styled.div`
@@ -66,8 +75,8 @@ export const ListContainer = styled.div`
 `;
 
 export const ListItem = styled.div`
-  width: 90px;
-  height: 90px;
+  width: 60px;
+  height: 60px;
   background: ${({ src }) => `url(${src})`} no-repeat;
   margin: 2px;
   cursor: pointer;

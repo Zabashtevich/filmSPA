@@ -75,7 +75,7 @@ export default function CardDetailsRootContainer() {
           </ModalGallery.Backdrop>
         ) : null}
         {list.images ? (
-          <ModalGallery onClick={showModal}>
+          <ModalGallery onClick={showModal} cardPage={true}>
             <ModalGallery.Icon />
           </ModalGallery>
         ) : null}

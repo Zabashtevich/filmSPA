@@ -47,7 +47,7 @@ export default function ActorDetailsRootContainer() {
   };
 
   const backdropClick = (e) => {
-    if (!e.target.className.contains("Backdrop")) return;
+    if (e.target.className.search("Backdrop") === -1) return;
     document.body.style.overflow = "auto";
     setVisibleGallery(false);
   };

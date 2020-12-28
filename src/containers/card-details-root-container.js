@@ -31,17 +31,19 @@ export default function CardDetailsRootContainer() {
     setVisibleGallery(true);
   };
 
-  const hideModal = () => {
-    document.body.style.overflow = "auto";
-    setVisibleGallery(false);
+  const hideModal = (e) => {
+    if (
+      e.target.className.search("Backdrop") > 0 ||
+      e.target.className.search("Close") > 0
+    ) {
+      document.body.style.overflow = "auto";
+      setVisibleGallery(false);
+    }
   };
 
   const backdropClick = (e) => {
-    if (e.target.className.search("Backdrop") === -1) return;
-    document.body.style.overflow = "auto";
-    setVisibleGallery(false);
+    console.log("1");
   };
-  console.log(list);
   return list ? (
     <DetailsHeader background={"dark"}>
       <DetailsHeader.BackgroundContainer>
@@ -50,7 +52,7 @@ export default function CardDetailsRootContainer() {
       <PosterColumn>
         <PosterColumn.Poster src={list.poster_path} />
         {visibleGallery ? (
-          <ModalGallery.Backdrop onClick={(e) => backdropClick(e)}>
+          <ModalGallery.Backdrop onClick={(e) => hideModal(e)}>
             <ModalGallery.Photo
               src={activeImage ? activeImage : list.images.posters[0].file_path}
             >

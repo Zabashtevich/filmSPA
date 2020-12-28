@@ -4,7 +4,6 @@ import { Header } from "../components";
 import { getHeaderProps } from "../utils/utils";
 
 export default function HeaderMainContainer({ user }) {
-  console.log(user);
   const [inputActive, setInputActive] = useState(false);
   const [headerProp, setHeaderProp] = useState({
     scrollPost: window.pageYOffset,

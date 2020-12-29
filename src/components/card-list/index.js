@@ -23,14 +23,12 @@ CardList.ItemContainer = function CardListItemContainer({ children, ...rest }) {
 
 CardList.ItemContentWrapper = function CardListItemContentWrapper({
   children,
-  src,
-  title,
-  date,
 }) {
   return <ContentWrapper>{children}</ContentWrapper>;
 };
 
 CardList.ItemImage = function CardListItemImage({ src }) {
+  console.log(src);
   return (
     <ItemImage
       src={src ? baseImageLink + src : imageerror}

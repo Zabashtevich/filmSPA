@@ -1,5 +1,6 @@
 import React from "react";
 import { baseImageLink } from "../../constants/constants";
+import imageerror from "../../assets/404-error.svg";
 
 import {
   ItemContainer,
@@ -24,7 +25,12 @@ RelevantList.ItemContainer = function RelevantListItemContainer({
 };
 
 RelevantList.Miniature = function RelevantListMiniature({ src }) {
-  return <Miniature src={baseImageLink + src} />;
+  return (
+    <Miniature
+      src={src ? baseImageLink + src : imageerror}
+      imageUndefined={src ? false : true}
+    />
+  );
 };
 
 RelevantList.Name = function RelevantListName({ children }) {

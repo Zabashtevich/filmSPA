@@ -32,10 +32,8 @@ export default function CardDetailsRootContainer() {
   };
 
   const hideModal = (e) => {
-    if (
-      e.target.classList[0].search("Backdrop") > 0 ||
-      e.target.classList[0].search("Close") > 0
-    ) {
+    console.log(e.target.className);
+    if (true) {
       document.body.style.overflow = "auto";
       setVisibleGallery(false);
     }

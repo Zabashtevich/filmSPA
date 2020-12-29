@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 import { Link as ReactRouterLink } from "react-router-dom";
 
 export const Name = styled.span`
@@ -19,6 +19,12 @@ export const ItemContainer = styled(ReactRouterLink)`
 export const Miniature = styled.img`
   border-radius: 1rem;
   border: 1px solid gray;
+  ${({ imageUndefined }) =>
+    imageUndefined &&
+    css`
+      width: 200px;
+      height: 300px;
+    `}
 `;
 
 export const Container = styled.div`

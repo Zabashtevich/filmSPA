@@ -56,17 +56,27 @@ export const Photo = styled.div`
 `;
 
 export const Close = styled(GrClose)`
+  width: 30px;
+  height: 30px;
+  & > path {
+    stroke: #fff;
+  }
+`;
+
+export const CloseWrapper = styled.button`
   right: 4%;
   top: 3%;
+  width: 40px;
+  height: 40px;
   position: absolute;
   font-size: 2rem;
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.5);
   padding: 5px;
   border-radius: 1rem;
-  & > path {
-    stroke: #fff;
-  }
+  outline: none;
+  border: none;
+  text-align: center;
 `;
 
 export const ListContainer = styled.div`

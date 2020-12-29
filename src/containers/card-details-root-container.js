@@ -32,10 +32,14 @@ export default function CardDetailsRootContainer() {
   };
 
   const hideModal = (e) => {
-    console.log(e.target.className);
-    if (true) {
+    if (
+      e.target.classList.value.includes("Backdrop") > 0 ||
+      e.target.classList.value.includes("Close") > 0 ||
+      e.target.classList.value === ""
+    ) {
       document.body.style.overflow = "auto";
       setVisibleGallery(false);
+      setActiveImage(null);
     }
   };
 

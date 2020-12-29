@@ -10,15 +10,16 @@ import {
   ListContainer,
   ListItem,
   Backdrop,
+  CloseWrapper,
 } from "./styles/modal-gallery";
 
 export default function ModalGallery({ children, ...rest }) {
   return <Container {...rest}>{children}</Container>;
 }
 
-ModalGallery.Icon = function ModalGalleryIcon() {
+ModalGallery.Icon = function ModalGalleryIcon({ ...rest }) {
   return (
-    <Wrapper>
+    <Wrapper {...rest}>
       <Icon src={`../assets/images/gallery-placeholder.png`} />
     </Wrapper>
   );
@@ -33,7 +34,11 @@ ModalGallery.Photo = function ModalGalleryPhoto({ children, src }) {
 };
 
 ModalGallery.CloseIcon = function ModalGalleryCloseIcon({ ...rest }) {
-  return <Close {...rest} />;
+  return (
+    <CloseWrapper>
+      <Close {...rest} />
+    </CloseWrapper>
+  );
 };
 
 ModalGallery.ListContainer = function ModalGalleryListContainer({ children }) {

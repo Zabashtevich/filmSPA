@@ -64,9 +64,12 @@ export const getQuerry = (data) => {
 };
 
 export const getRowFormat = (data) => {
-  const genres = [];
-  data.map((item) => genres.push(item.name));
-  return genres.join(", ");
+  if (data.length !== 0) {
+    const genres = [];
+    data.map((item) => genres.push(item.name));
+    return genres.join(", ");
+  }
+  return "Unknown";
 };
 
 export const getBudgetFormat = (data) => {

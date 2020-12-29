@@ -49,7 +49,7 @@ export default function CardDetailsRootContainer() {
         <DetailsHeader.BackgroundImage src={list.backdrop_path} />
       </DetailsHeader.BackgroundContainer>
       <PosterColumn>
-        <PosterColumn.Poster src={list.poster_path} />
+        <PosterColumn.Poster src={list.poster_path} cardPage={true} />
         {visibleGallery ? (
           <ModalGallery.Backdrop onClick={(e) => hideModal(e)}>
             <ModalGallery.Photo

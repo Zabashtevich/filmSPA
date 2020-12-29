@@ -8,9 +8,9 @@ export default function PosterColumn({ children }) {
   return <Container>{children}</Container>;
 }
 
-PosterColumn.Poster = function PosterColumnPoster({ src }) {
+PosterColumn.Poster = function PosterColumnPoster({ src, ...rest }) {
   return (
-    <PosterWrapper>
+    <PosterWrapper {...rest}>
       <Poster src={src ? basePosterLink + src : imageerror} />
     </PosterWrapper>
   );

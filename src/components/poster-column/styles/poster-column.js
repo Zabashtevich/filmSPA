@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 
 export const Container = styled.div`
   z-index: 200;
@@ -10,9 +10,17 @@ export const Container = styled.div`
 
 export const PosterWrapper = styled.div`
   margin-bottom: 1rem;
+  display: flex;
+  ${({ cardPage }) =>
+    cardPage &&
+    css`
+      background-color: gray;
+    `};
 `;
 
 export const Poster = styled.img`
   border-radius: 0.2rem;
+
+  height: 450px;
   width: 300px;
 `;

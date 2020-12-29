@@ -11,6 +11,8 @@ import {
   ListContainer,
   Wrapper,
   Score,
+  Error,
+  ErrorWrapper,
 } from "./styles/relevant-list";
 
 export default function RelevantList({ children }) {
@@ -51,4 +53,12 @@ RelevantList.VoteScore = function RelevantListVoteScore({ children }) {
       <Score>{children}</Score>
     </Wrapper>
   );
+};
+
+RelevantList.Error = function RelevantError({ children }) {
+  return <Error>{children}</Error>;
+};
+
+RelevantList.ErrorWrapper = function RelevantErrorWrapper({ children }) {
+  return <ErrorWrapper>{children}</ErrorWrapper>;
 };

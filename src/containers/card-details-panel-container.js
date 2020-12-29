@@ -68,21 +68,29 @@ export default function CardDetailsPanelContainer({ user }) {
       <RelevantList.Title>Reccomendations</RelevantList.Title>
       <RelevantList>
         <RelevantList.ListContainer>
-          {list.recommendations.results.map((item) => {
-            return (
-              <RelevantList.ItemContainer
-                key={item.id}
-                to={`/details/${item.id}`}
-                onClick={setWindowOffset}
-              >
-                <RelevantList.Miniature src={item.poster_path} />
-                <RelevantList.Name>{item.title}</RelevantList.Name>
-                <RelevantList.VoteScore>
-                  {item.vote_average}
-                </RelevantList.VoteScore>
-              </RelevantList.ItemContainer>
-            );
-          })}
+          {list.recommendations.result !== undefined ? (
+            list.recommendations.results.map((item) => {
+              return (
+                <RelevantList.ItemContainer
+                  key={item.id}
+                  to={`/details/${item.id}`}
+                  onClick={setWindowOffset}
+                >
+                  <RelevantList.Miniature src={item.poster_path} />
+                  <RelevantList.Name>{item.title}</RelevantList.Name>
+                  <RelevantList.VoteScore>
+                    {item.vote_average}
+                  </RelevantList.VoteScore>
+                </RelevantList.ItemContainer>
+              );
+            })
+          ) : (
+            <RelevantList.ErrorWrapper>
+              <RelevantList.Error>
+                We cant create reccomendation on this movie
+              </RelevantList.Error>
+            </RelevantList.ErrorWrapper>
+          )}
         </RelevantList.ListContainer>
       </RelevantList>
       <ReviewsList>

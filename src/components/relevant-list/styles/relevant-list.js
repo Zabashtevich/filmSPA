@@ -57,3 +57,16 @@ export const Score = styled.h4`
   font-size: ${({ theme }) => theme.fontSize.normal};
   margin: 0.2rem;
 `;
+
+export const Error = styled.span``;
+
+export const ErrorWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 200px;
+  font-size: ${({ theme }) => theme.fontSize.normal};
+  font-weight: ${({ theme }) => theme.fontWeightSecondary.normal};
+  color: ${({ theme }) => theme.colors.secondary};
+`;

@@ -95,7 +95,7 @@ export default function CardDetailsRootContainer() {
         <ListColumn.Title>Credits list</ListColumn.Title>
         {list.credits.cast.slice(0, 10).map((item) => {
           return (
-            <ListColumn.ItemContainer key={item.id}>
+            <ListColumn.ItemContainer key={item.id} to={`/actor/${item.id}`}>
               {item.name}
             </ListColumn.ItemContainer>
           );

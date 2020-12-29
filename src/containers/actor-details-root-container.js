@@ -83,7 +83,8 @@ export default function ActorDetailsRootContainer() {
             </ModalGallery.Photo>
           </ModalGallery.Backdrop>
         ) : null}
-        {list.images ? (
+
+        {list.images && list.images.profiles.length !== 1 ? (
           <ModalGallery onClick={showModal}>
             <ModalGallery.Icon />
           </ModalGallery>
@@ -105,7 +106,10 @@ export default function ActorDetailsRootContainer() {
             {knownForList
               ? knownForList.map((item) => {
                   return (
-                    <RelevantList.ItemContainer key={item.id}>
+                    <RelevantList.ItemContainer
+                      key={item.id}
+                      to={`/details/${item.id}`}
+                    >
                       <RelevantList.Miniature src={item.poster_path} />
                       <RelevantList.Name>{item.title}</RelevantList.Name>
                       <RelevantList.VoteScore>

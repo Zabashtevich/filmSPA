@@ -15,12 +15,13 @@ export const PosterWrapper = styled.div`
     cardPage &&
     css`
       background-color: gray;
+      border-radius: 0.5rem;
     `};
 `;
 
 export const Poster = styled.img`
   border-radius: 0.2rem;
-
+  padding: 0.2rem;
   height: 450px;
   width: 300px;
 `;

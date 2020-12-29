@@ -15,10 +15,13 @@ ListColumn.Title = function ListColumnTitle({ children }) {
   return <Title>{children}</Title>;
 };
 
-ListColumn.ItemContainer = function ListColumnItemContainer({ children }) {
+ListColumn.ItemContainer = function ListColumnItemContainer({
+  children,
+  ...rest
+}) {
   return (
     <ItemContainer>
-      <ItemLink to={"/"}>{children}</ItemLink>
+      <ItemLink {...rest}>{children}</ItemLink>
     </ItemContainer>
   );
 };

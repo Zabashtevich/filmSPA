@@ -5,13 +5,10 @@ import CardDetailsPage from "./pages/card-details-page";
 import MainPage from "./pages/main-page";
 import ActorDetailsPage from "./pages/actor-details-page";
 import AuthenticationPage from "./pages/authentication-page";
-import HeaderMainContainer from "./containers/header-container";
-import { ProtectedRoute } from "./helpers/private-routes";
 
 function App() {
   return (
     <Router>
-      <HeaderMainContainer />
       <Switch>
         {/* <ProtectedRoute user={user} path="/details/:slug"></ProtectedRoute> */}
         <Route path="/" component={MainPage} exact />

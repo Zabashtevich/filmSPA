@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import {
   DetailsPanel,
@@ -7,6 +7,7 @@ import {
   StarRating,
   Votes,
 } from "../components";
+import { AuthContext } from "../context/auth-context";
 import useFetch from "../hooks/useFetchData";
 import { getCorrectSrc } from "../utils/utils";
 
@@ -16,6 +17,8 @@ export default function CardDetailsPanelContainer({ user }) {
   const location = useParams();
   const history = useHistory();
 
+  const { firebase } = useContext(AuthContext);
+
   const { list, loading } = useFetch(["movie"], location.slug, [
     {
       append_to_response:
@@ -24,6 +27,7 @@ export default function CardDetailsPanelContainer({ user }) {
   ]);
 
   const handleRate = (rateScore) => {
+    firebase.firestore().collection("db").doc("bj").update({ title: "hello" });
     if (user === null) {
       history.push("/authentication/login");
     } else {

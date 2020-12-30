@@ -28,7 +28,6 @@ CardList.ItemContentWrapper = function CardListItemContentWrapper({
 };
 
 CardList.ItemImage = function CardListItemImage({ src }) {
-  console.log(src);
   return (
     <ItemImage
       src={src ? baseImageLink + src : imageerror}

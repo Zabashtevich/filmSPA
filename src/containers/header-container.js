@@ -1,17 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 
 import { Header } from "../components";
+import { AuthContext } from "../context/auth-context";
 import { getHeaderProps } from "../utils/utils";
 
-export default function HeaderMainContainer({ user }) {
+export default function HeaderMainContainer() {
   const [inputActive, setInputActive] = useState(false);
+  const [user, setUser] = useState(null);
   const [headerProp, setHeaderProp] = useState({
     scrollPost: window.pageYOffset,
     visible: true,
     positionchanged: window.pageYOffset !== 0,
   });
 
+  const { firebase } = useContext(AuthContext);
+
   useEffect(() => {
+    firebase.auth().onAuthStateChanged((data) => {
+      if (data) setUser(data);
+      console.log(data);
+    });
     const listener = () => {
       getHeaderProps(setHeaderProp, headerProp);
     };
@@ -66,6 +74,7 @@ export default function HeaderMainContainer({ user }) {
             onClick={() => setInputActive(!inputActive)}
           />
         </Header.Wrapper>
+
         {user === null && (
           <>
             <Header.Link
@@ -82,13 +91,8 @@ export default function HeaderMainContainer({ user }) {
             </Header.Link>
           </>
         )}
-        {user !== null && (
-          <Header.Profile
-            positionchanged={headerProp.positionchanged ? "true" : null}
-          >
-            {user.displayName.toUpperCase()}
-          </Header.Profile>
-        )}
+        {user && console.log(user)}
+        {user && <Header.Profile>{user.displayName}</Header.Profile>}
       </Header.Inner>
     </Header>
   );

@@ -11,6 +11,7 @@ export default function useFirestore({ collectionTarget, docTarget }) {
   useEffect(() => {
     if (gettingData) return;
     firebase
+      .firestore()
       .collection(`${collectionTarget}`)
       .doc(`${docTarget}`)
       .get()

@@ -8,16 +8,20 @@ import {
   Votes,
 } from "../components";
 import { AuthContext } from "../context/auth-context";
+import useAuthListener from "../hooks/useAuthListener";
 import useFetch from "../hooks/useFetchData";
+import useFirestore from "../hooks/useFirestore";
 import { getCorrectSrc } from "../utils/utils";
 
-export default function CardDetailsPanelContainer({ user }) {
+export default function CardDetailsPanelContainer() {
   const [starValue, setStarValue] = useState(0);
 
   const location = useParams();
   const history = useHistory();
 
   const { firebase } = useContext(AuthContext);
+  const { user } = useAuthListener();
+  const { data } = useFirestore(`${user.displayName}`, `moviesrated`);
 
   const { list, loading } = useFetch(["movie"], location.slug, [
     {
@@ -26,11 +30,18 @@ export default function CardDetailsPanelContainer({ user }) {
     },
   ]);
 
-  const handleRate = (rateScore) => {
-    firebase.firestore().collection("db").doc("bj").update({ title: "hello" });
+  const handleRate = (rateScore, itemID) => {
     if (user === null) {
       history.push("/authentication/login");
     } else {
+      const newData = [...data, { [`${itemID}`]: rateScore }];
+      console.log(newData);
+      console.log(user.displayName);
+      firebase
+        .firestore()
+        .collection(`${user.displayName}`)
+        .doc(`moviesrated`)
+        .update({ list: newData });
     }
   };
 
@@ -38,7 +49,6 @@ export default function CardDetailsPanelContainer({ user }) {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
   };
-
   return list ? (
     <DetailsPanel>
       <DetailsPanel.ContentWrapper>
@@ -51,7 +61,7 @@ export default function CardDetailsPanelContainer({ user }) {
           {[...Array(10)].map((_, i) => {
             return (
               <StarRating.Star
-                onClick={() => handleRate(i + 1)}
+                onClick={() => handleRate(i + 1, list.id)}
                 key={i}
                 indexValue={i + 1}
                 starValue={starValue}

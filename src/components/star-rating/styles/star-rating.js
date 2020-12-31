@@ -33,11 +33,17 @@ export const Wrapper = styled.div`
 export const Star = styled(IoIosStar)`
   cursor: pointer;
   font-size: ${({ theme }) => theme.fontSize.huge};
-  ${({ color }) =>
-    color &&
+  color: gray;
+  ${({ ratedColor }) =>
+    ratedColor &&
     css`
-      color: grey;
+      color: ${({ theme }) => theme.colors.secondary};
     `}
+  ${({ hoverColor }) =>
+    hoverColor &&
+    css`
+      color: ${({ theme }) => theme.colors.secondary};
+    `};
 `;
 
 export const Title = styled.h3`

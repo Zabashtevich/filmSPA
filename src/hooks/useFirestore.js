@@ -27,6 +27,5 @@ export default function useFirestore(collectionTarget, docTarget) {
     };
   }, []);
 
-  console.log(data);
   return { data };
 }

@@ -30,13 +30,22 @@ export default function CardDetailsPanelContainer() {
         "credits,recommendations,images,videos,reviews,account_states",
     },
   ]);
-  console.log(data);
 
+  useEffect(() => {
+    if (data && list) {
+      const rate = data.list.find((item) => item.id === list.id);
+      setRatedValue(rate.value);
+    }
+  }, [data, list]);
+
+  {
+    console.log(ratedValue);
+  }
   const handleRate = (rateScore, itemID) => {
     if (user === null) {
       history.push("/authentication/login");
     } else {
-      const newData = [...data, { [`${itemID}`]: rateScore }];
+      const newData = [...data.list, { id: itemID, value: rateScore }];
       firebase
         .firestore()
         .collection(`${user.displayName}`)
@@ -61,11 +70,15 @@ export default function CardDetailsPanelContainer() {
           {[...Array(10)].map((_, i) => {
             return (
               <StarRating.Star
-                onClick={() => handleRate(i + 1, list.id)}
+                onClick={() => {
+                  handleRate(i + 1, list.id);
+                  setRatedValue(i + 1);
+                }}
                 key={i}
                 indexValue={i + 1}
                 starValue={starValue}
                 setStarValue={setStarValue}
+                ratedValue={ratedValue}
               />
             );
           })}

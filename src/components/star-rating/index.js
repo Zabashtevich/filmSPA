@@ -10,6 +10,7 @@ StarRating.Star = function StarRatingStar({
   indexValue,
   starValue,
   setStarValue,
+  ratedValue,
   ...rest
 }) {
   return (
@@ -18,7 +19,10 @@ StarRating.Star = function StarRatingStar({
       onMouseLeave={() => setStarValue(0)}
       {...rest}
     >
-      <Star color={starValue >= indexValue ? "color" : null} />
+      <Star
+        hoverColor={starValue >= indexValue ? "color" : null}
+        ratedColor={ratedValue >= indexValue ? "color" : null}
+      />
     </Inner>
   );
 };

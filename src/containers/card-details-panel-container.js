@@ -17,8 +17,10 @@ import ErrorModalContainer from "./auxillary-containers/error-modal-container";
 export default function CardDetailsPanelContainer() {
   const [starValue, setStarValue] = useState(0);
   const [ratedValue, setRatedValue] = useState(0);
-  const [errorModalVisible, setErrorModalVisible] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [errorModalVisible, setErrorModalVisible] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(
+    "ты опять выходишь на связь мудила",
+  );
 
   const location = useParams();
   const history = useHistory();
@@ -42,8 +44,15 @@ export default function CardDetailsPanelContainer() {
   }, [data, list]);
 
   const showErrorModal = (errorText) => {
+    document.body.style.overflow = "hidden";
     setErrorMessage(errorText);
     setErrorModalVisible(true);
+  };
+
+  const hideErrorModal = (errorText) => {
+    document.body.style.overflow = "auto";
+    setErrorMessage(null);
+    setErrorModalVisible(false);
   };
 
   const handleRate = (rateScore, itemID) => {
@@ -170,7 +179,7 @@ export default function CardDetailsPanelContainer() {
       {errorModalVisible && (
         <ErrorModalContainer
           errorMessage={errorMessage}
-          setErrorModalVisible={setErrorModalVisible}
+          closeModal={hideErrorModal}
         />
       )}
     </DetailsPanel>

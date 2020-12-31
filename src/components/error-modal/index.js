@@ -3,9 +3,10 @@ import React from "react";
 import {
   Container,
   Wrapper,
-  Button,
+  CornerButton,
   CloseIcon,
   Message,
+  CloseButton,
 } from "./styles/error-modal";
 
 export default function ErrorModal({ children, ...rest }) {
@@ -16,8 +17,15 @@ ErrorModal.Wrapper = function ErrorModalWrapper({ children, ...rest }) {
   return <Wrapper {...rest}>{children}</Wrapper>;
 };
 
-ErrorModal.Button = function ErrorModalButton({ children, ...rest }) {
-  return <Button {...rest}>{children}</Button>;
+ErrorModal.CloseButton = function ErrorModalCloseButton({ children, ...rest }) {
+  return <CloseButton {...rest}>{children}</CloseButton>;
+};
+
+ErrorModal.CornerButton = function ErrorModalCornerButton({
+  children,
+  ...rest
+}) {
+  return <CornerButton {...rest}>{children}</CornerButton>;
 };
 
 ErrorModal.CloseIcon = function ErrorModalCloseIcon({ children, ...rest }) {

@@ -1,19 +1,16 @@
 import React from "react";
 import { ErrorModal } from "../../components";
 
-export default function ErrorModalContainer({
-  errorMessage,
-  setErrorModalVisible,
-}) {
+export default function ErrorModalContainer({ errorMessage, closeModal }) {
   return (
     <ErrorModal>
       <ErrorModal.Wrapper>
-        <ErrorModal.Button onClick={() => setErrorModalVisible(false)}>
+        <ErrorModal.CornerButton onClick={closeModal}>
           <ErrorModal.CloseIcon />
-        </ErrorModal.Button>
-        <ErrorModal.Button onClick={() => setErrorModalVisible(false)}>
+        </ErrorModal.CornerButton>
+        <ErrorModal.CloseButton onClick={closeModal}>
           <ErrorModal.CloseIcon />
-        </ErrorModal.Button>
+        </ErrorModal.CloseButton>
         <ErrorModal.Message>{errorMessage}</ErrorModal.Message>
       </ErrorModal.Wrapper>
     </ErrorModal>

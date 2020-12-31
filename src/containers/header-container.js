@@ -87,7 +87,13 @@ export default function HeaderMainContainer() {
           </>
         )}
 
-        {user && <Header.Profile>{user.displayName}</Header.Profile>}
+        {user && (
+          <Header.Profile
+            positionchanged={headerProp.positionchanged ? "true" : null}
+          >
+            {user.displayName}
+          </Header.Profile>
+        )}
       </Header.Inner>
     </Header>
   );

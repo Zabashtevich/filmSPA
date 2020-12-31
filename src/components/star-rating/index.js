@@ -20,8 +20,8 @@ StarRating.Star = function StarRatingStar({
       {...rest}
     >
       <Star
-        hoverColor={starValue >= indexValue ? "color" : null}
-        ratedColor={ratedValue >= indexValue ? "color" : null}
+        hovercolor={starValue >= indexValue ? "color" : null}
+        ratedcolor={ratedValue >= indexValue ? "color" : null}
       />
     </Inner>
   );

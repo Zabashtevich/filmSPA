@@ -34,13 +34,13 @@ export const Star = styled(IoIosStar)`
   cursor: pointer;
   font-size: ${({ theme }) => theme.fontSize.huge};
   color: gray;
-  ${({ ratedColor }) =>
-    ratedColor &&
+  ${({ ratedcolor }) =>
+    ratedcolor &&
     css`
       color: ${({ theme }) => theme.colors.secondary};
     `}
-  ${({ hoverColor }) =>
-    hoverColor &&
+  ${({ hovercolor }) =>
+    hovercolor &&
     css`
       color: ${({ theme }) => theme.colors.secondary};
     `};

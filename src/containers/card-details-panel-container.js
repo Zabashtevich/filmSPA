@@ -36,7 +36,7 @@ export default function CardDetailsPanelContainer() {
   useEffect(() => {
     if (data && list) {
       const rate = data.list.find((item) => item.id === list.id);
-      setRatedValue(rate.value);
+      if (rate) setRatedValue(rate.value);
     }
   }, [data, list]);
 

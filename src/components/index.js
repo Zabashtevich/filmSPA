@@ -21,3 +21,4 @@ export { default as ActorMainColumn } from "./actor-main-column";
 export { default as LoadMore } from "./load-more";
 export { default as ModalGallery } from "./modal-gallery";
 export { default as AuthenticationForm } from "./authentication-form";
+export { default as ErrorModal } from "./error-modal";

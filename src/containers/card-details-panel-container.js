@@ -16,6 +16,8 @@ import { getCorrectSrc } from "../utils/utils";
 export default function CardDetailsPanelContainer() {
   const [starValue, setStarValue] = useState(0);
   const [ratedValue, setRatedValue] = useState(0);
+  const [errorModalVisible, setErrorModalVisible] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const location = useParams();
   const history = useHistory();
@@ -38,9 +40,11 @@ export default function CardDetailsPanelContainer() {
     }
   }, [data, list]);
 
-  {
-    console.log(ratedValue);
-  }
+  const showErrorModal = (errorText) => {
+    setErrorMessage(errorText);
+    setErrorModalVisible(true);
+  };
+
   const handleRate = (rateScore, itemID) => {
     if (user === null) {
       history.push("/authentication/login");
@@ -50,7 +54,8 @@ export default function CardDetailsPanelContainer() {
         .firestore()
         .collection(`${user.displayName}`)
         .doc(`moviesrated`)
-        .update({ list: newData });
+        .update({ list: newData })
+        .catch((error) => showErrorModal(error));
     }
   };
 

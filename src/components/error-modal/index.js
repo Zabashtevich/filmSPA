@@ -21,7 +21,7 @@ ErrorModal.Button = function ErrorModalButton({ children, ...rest }) {
 };
 
 ErrorModal.CloseIcon = function ErrorModalCloseIcon({ children, ...rest }) {
-  return <CloseIcon {...rest}>{children}</CloseIcon>;
+  return <CloseIcon {...rest} />;
 };
 
 ErrorModal.Message = function ErrorModalMessage({ children, ...rest }) {

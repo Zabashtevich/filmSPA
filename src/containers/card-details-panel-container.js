@@ -12,6 +12,7 @@ import useAuthListener from "../hooks/useAuthListener";
 import useFetch from "../hooks/useFetchData";
 import useFirestore from "../hooks/useFirestore";
 import { getCorrectSrc } from "../utils/utils";
+import ErrorModalContainer from "./auxillary-containers/error-modal-container";
 
 export default function CardDetailsPanelContainer() {
   const [starValue, setStarValue] = useState(0);
@@ -166,6 +167,12 @@ export default function CardDetailsPanelContainer() {
           </ReviewsList.ItemContainer>
         )}
       </ReviewsList>
+      {errorModalVisible && (
+        <ErrorModalContainer
+          errorMessage={errorMessage}
+          setErrorModalVisible={setErrorModalVisible}
+        />
+      )}
     </DetailsPanel>
   ) : null;
 }

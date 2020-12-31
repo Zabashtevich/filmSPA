@@ -7,6 +7,10 @@ import {
   CloseIcon,
   Message,
   CloseButton,
+  MessageContainer,
+  Title,
+  TitleContainer,
+  Inner,
 } from "./styles/error-modal";
 
 export default function ErrorModal({ children, ...rest }) {
@@ -34,4 +38,26 @@ ErrorModal.CloseIcon = function ErrorModalCloseIcon({ children, ...rest }) {
 
 ErrorModal.Message = function ErrorModalMessage({ children, ...rest }) {
   return <Message {...rest}>{children}</Message>;
+};
+
+ErrorModal.MessageContainer = function ErrorModalMessageContainer({
+  children,
+  ...rest
+}) {
+  return <MessageContainer {...rest}>{children}</MessageContainer>;
+};
+
+ErrorModal.Title = function ErrorModalTitle({ children, ...rest }) {
+  return <Title {...rest}>{children}</Title>;
+};
+
+ErrorModal.TitleContainer = function ErrorModalTitleContainer({
+  children,
+  ...rest
+}) {
+  return <TitleContainer {...rest}>{children}</TitleContainer>;
+};
+
+ErrorModal.Inner = function ErrorModalInner({ children, ...rest }) {
+  return <Inner {...rest}>{children}</Inner>;
 };

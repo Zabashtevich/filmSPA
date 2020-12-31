@@ -2,7 +2,7 @@ import { useContext, useState, useEffect } from "react";
 
 import { AuthContext } from "../context/auth-context";
 
-export default function useFirestore({ collectionTarget, docTarget }) {
+export default function useFirestore(collectionTarget, docTarget) {
   const [data, setData] = useState(null);
   const [gettingData, setGettingData] = useState(false);
 
@@ -17,8 +17,7 @@ export default function useFirestore({ collectionTarget, docTarget }) {
       .get()
       .then((doc) => {
         if (doc.exists) {
-          console.log(doc);
-          setData(doc);
+          setData(doc.data());
         } else {
           setData([]);
         }
@@ -28,5 +27,6 @@ export default function useFirestore({ collectionTarget, docTarget }) {
     };
   }, []);
 
+  console.log(data);
   return { data };
 }

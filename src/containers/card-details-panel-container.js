@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import {
   DetailsPanel,
@@ -15,6 +15,7 @@ import { getCorrectSrc } from "../utils/utils";
 
 export default function CardDetailsPanelContainer() {
   const [starValue, setStarValue] = useState(0);
+  const [ratedValue, setRatedValue] = useState(0);
 
   const location = useParams();
   const history = useHistory();
@@ -29,14 +30,13 @@ export default function CardDetailsPanelContainer() {
         "credits,recommendations,images,videos,reviews,account_states",
     },
   ]);
+  console.log(data);
 
   const handleRate = (rateScore, itemID) => {
     if (user === null) {
       history.push("/authentication/login");
     } else {
       const newData = [...data, { [`${itemID}`]: rateScore }];
-      console.log(newData);
-      console.log(user.displayName);
       firebase
         .firestore()
         .collection(`${user.displayName}`)

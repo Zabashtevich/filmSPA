@@ -9,9 +9,6 @@ export default function ErrorModalContainer({ errorMessage, closeModal }) {
           <ErrorModal.CornerButton onClick={closeModal}>
             <ErrorModal.CloseIcon />
           </ErrorModal.CornerButton>
-          <ErrorModal.CloseButton onClick={closeModal}>
-            <ErrorModal.CloseIcon />
-          </ErrorModal.CloseButton>
           <ErrorModal.TitleContainer>
             <ErrorModal.Title>ERROR</ErrorModal.Title>
           </ErrorModal.TitleContainer>
@@ -19,6 +16,9 @@ export default function ErrorModalContainer({ errorMessage, closeModal }) {
             <ErrorModal.Message>{errorMessage}</ErrorModal.Message>
           </ErrorModal.MessageContainer>
         </ErrorModal.Wrapper>
+        <ErrorModal.CloseButton onClick={closeModal}>
+          CLOSE
+        </ErrorModal.CloseButton>
       </ErrorModal.Inner>
     </ErrorModal>
   );

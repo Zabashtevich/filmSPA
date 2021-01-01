@@ -18,9 +18,7 @@ export default function CardDetailsPanelContainer() {
   const [starValue, setStarValue] = useState(0);
   const [ratedValue, setRatedValue] = useState(0);
   const [errorModalVisible, setErrorModalVisible] = useState(true);
-  const [errorMessage, setErrorMessage] = useState(
-    "ты опять выходишь на связь мудила",
-  );
+  const [errorMessage, setErrorMessage] = useState("something went wrong");
 
   const location = useParams();
   const history = useHistory();

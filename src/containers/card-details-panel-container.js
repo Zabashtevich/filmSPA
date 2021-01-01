@@ -178,6 +178,7 @@ export default function CardDetailsPanelContainer() {
         <ErrorModalContainer
           errorMessage={errorMessage}
           closeModal={hideErrorModal}
+          errorModalVisible={errorModalVisible}
         />
       )}
     </DetailsPanel>

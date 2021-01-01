@@ -25,6 +25,8 @@ export const Inner = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: 150ms;
+  transform: translateX(${({ state }) => (state === "entering" ? -1400 : 0)}px);
 `;
 
 export const Wrapper = styled.div`

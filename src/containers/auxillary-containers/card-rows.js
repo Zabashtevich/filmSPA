@@ -1,6 +1,10 @@
 import React from "react";
 import { CardDescriptionColumn } from "../../components";
-import { getBudgetFormat, getRowFormat } from "../../utils/utils";
+import {
+  getBudgetFormat,
+  getRowFormat,
+  getRightReleasedDate,
+} from "../../utils/utils";
 
 export default function CardRows({ list }) {
   return (
@@ -41,7 +45,7 @@ export default function CardRows({ list }) {
       <CardDescriptionColumn.Row>
         <CardDescriptionColumn.DarkTitle>Date</CardDescriptionColumn.DarkTitle>
         <CardDescriptionColumn.LightTitle>
-          {list.release_date}
+          {getRightReleasedDate(list.release_date)}
         </CardDescriptionColumn.LightTitle>
       </CardDescriptionColumn.Row>
       <CardDescriptionColumn.Row>

@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components/macro";
 
+import { BsArrowLeft } from "react-icons/bs";
 import { GrClose } from "react-icons/gr";
 
 export const Icon = styled.img`
@@ -80,7 +81,6 @@ export const CloseWrapper = styled.button`
 `;
 
 export const ListContainer = styled.div`
-  margin: 1rem auto;
   display: flex;
 `;
 
@@ -107,4 +107,21 @@ export const Backdrop = styled.div`
   z-index: 300;
   display: flex;
   justify-content: center;
+`;
+
+export const BottomWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+`;
+
+export const Button = styled.button``;
+
+export const IconSlider = styled(BsArrowLeft)`
+  ${({ rightdirection }) =>
+    rightdirection &&
+    css`
+      transform: rotate(180deg);
+    `}
 `;

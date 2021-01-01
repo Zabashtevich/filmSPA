@@ -15,6 +15,8 @@ import CardRows from "./auxillary-containers/card-rows";
 export default function CardDetailsRootContainer() {
   const [visibleGallery, setVisibleGallery] = useState(false);
   const [activeImage, setActiveImage] = useState(null);
+  const [firstIndexImagesOffset, setFirstIndexImagesOffset] = useState(0);
+  const [lastIndexImagesOffset, setLastIndexImagesOffset] = useState(5);
 
   const location = useParams();
 
@@ -42,7 +44,9 @@ export default function CardDetailsRootContainer() {
       setActiveImage(null);
     }
   };
-
+  {
+    console.log(list);
+  }
   return !loading ? (
     <DetailsHeader background={"dark"}>
       <DetailsHeader.BackgroundContainer>
@@ -56,31 +60,41 @@ export default function CardDetailsRootContainer() {
               src={activeImage ? activeImage : list.images.posters[0].file_path}
             >
               <ModalGallery.CloseIcon onClick={(e) => hideModal(e)} />
-              <ModalGallery.ListContainer>
-                {list.images.posters.slice(0, 5).map((item, i) => {
-                  return (
-                    <ModalGallery.ListItem
-                      key={i}
-                      src={item.file_path}
-                      active={
-                        activeImage === item.file_path ||
-                        (i === 0 && activeImage === null)
-                          ? "true"
-                          : null
-                      }
-                      onClick={() => setActiveImage(item.file_path)}
-                    />
-                  );
-                })}
-              </ModalGallery.ListContainer>
+              <ModalGallery.BottomWrapper>
+                <ModalGallery.Button>
+                  <ModalGallery.IconSlider />
+                </ModalGallery.Button>
+                <ModalGallery.ListContainer>
+                  {list.images.posters
+                    .slice(firstIndexImagesOffset, lastIndexImagesOffset)
+                    .map((item, i) => {
+                      return (
+                        <ModalGallery.ListItem
+                          key={i}
+                          src={item.file_path}
+                          active={
+                            activeImage === item.file_path ||
+                            (i === 0 && activeImage === null)
+                              ? "true"
+                              : null
+                          }
+                          onClick={() => setActiveImage(item.file_path)}
+                        />
+                      );
+                    })}
+                </ModalGallery.ListContainer>
+                <ModalGallery.Button>
+                  <ModalGallery.IconSlider rightdirection={true} />
+                </ModalGallery.Button>
+              </ModalGallery.BottomWrapper>
             </ModalGallery.Photo>
           </ModalGallery.Backdrop>
         ) : null}
-        {list.images ? (
+        {list.images.posters.length > 1 && (
           <ModalGallery onClick={showModal} cardPage={true}>
             <ModalGallery.Icon />
           </ModalGallery>
-        ) : null}
+        )}
       </PosterColumn>
       <CardDescriptionColumn>
         <DescriptionHeader>

@@ -11,6 +11,9 @@ import {
   ListItem,
   Backdrop,
   CloseWrapper,
+  BottomWrapper,
+  IconSlider,
+  Button,
 } from "./styles/modal-gallery";
 
 export default function ModalGallery({ children, ...rest }) {
@@ -47,4 +50,22 @@ ModalGallery.ListContainer = function ModalGalleryListContainer({ children }) {
 
 ModalGallery.ListItem = function ModalGalleryListItem({ src, ...rest }) {
   return <ListItem src={baseAuthorImageLink + src} {...rest} />;
+};
+
+ModalGallery.BottomWrapper = function ModalGalleryBottomWrapper({
+  children,
+  ...rest
+}) {
+  return <BottomWrapper {...rest}>{children}</BottomWrapper>;
+};
+
+ModalGallery.Button = function ModalGalleryButton({ children, ...rest }) {
+  return <Button {...rest}>{children}</Button>;
+};
+
+ModalGallery.IconSlider = function ModalGalleryIconSlider({
+  children,
+  ...rest
+}) {
+  return <IconSlider {...rest}>{children}</IconSlider>;
 };

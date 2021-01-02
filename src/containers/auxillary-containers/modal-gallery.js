@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
+import { ModalGallery } from "../../components";
 
-export default function ModalGalleryContainer({
-  hideModal,
-  items,
-  setActiveImage,
-}) {
+export default function ModalGalleryContainer({ items, setVisibleGallery }) {
+  const [activeImage, setActiveImage] = useState(null);
+  const [firstIndexImagesOffset, setFirstIndexImagesOffset] = useState(0);
+  const [lastIndexImagesOffset, setLastIndexImagesOffset] = useState(5);
+
+  const hideModal = (e) => {
+    if (
+      e.target.classList.value.includes("Backdrop") > 0 ||
+      e.target.classList.value.includes("Close") > 0
+    ) {
+      document.body.style.overflow = "auto";
+      setActiveImage(null);
+      setVisibleGallery(false);
+    }
+  };
+
   const handleSlideLeft = () => {
     if (firstIndexImagesOffset - 5 < 0 && firstIndexImagesOffset > 0) {
       setFirstIndexImagesOffset(0);
@@ -16,23 +28,30 @@ export default function ModalGalleryContainer({
   };
 
   const handleSlideRight = () => {
-    const offset = list.images.posters.length - lastIndexImagesOffset;
-    if (offset > 0 && lastIndexImagesOffset + 5 > list.images.posters.length) {
+    const offset = items.length - lastIndexImagesOffset;
+    if (offset > 0 && lastIndexImagesOffset + 5 > items.length) {
       setFirstIndexImagesOffset((prev) => prev + offset);
       setLastIndexImagesOffset((prev) => prev + offset);
-    } else if (lastIndexImagesOffset + 5 > list.images.posters.length) {
+    } else if (lastIndexImagesOffset + 5 > items.length) {
       return;
     } else {
       setFirstIndexImagesOffset((prev) => prev + 5);
       setLastIndexImagesOffset((prev) => prev + 5);
     }
   };
+
   return (
-    <ModalGallery.Backdrop onClick={(e) => hideModal(e)}>
-      <ModalGallery.Photo
-        src={activeImage ? activeImage : list.images.posters[0].file_path}
-      >
-        <ModalGallery.CloseIcon onClick={(e) => hideModal(e)} />
+    <ModalGallery.Backdrop
+      onClick={(e) => {
+        hideModal(e);
+      }}
+    >
+      <ModalGallery.Photo src={activeImage ? activeImage : items[0].file_path}>
+        <ModalGallery.CloseIcon
+          onClick={(e) => {
+            hideModal(e);
+          }}
+        />
         <ModalGallery.BottomWrapper>
           <ModalGallery.Button
             onClick={handleSlideLeft}
@@ -41,7 +60,7 @@ export default function ModalGalleryContainer({
             <ModalGallery.IconSlider />
           </ModalGallery.Button>
           <ModalGallery.ListContainer>
-            {list.images.posters
+            {items
               .slice(firstIndexImagesOffset, lastIndexImagesOffset)
               .map((item, i) => {
                 return (
@@ -54,18 +73,19 @@ export default function ModalGalleryContainer({
                         ? "true"
                         : null
                     }
-                    onClick={() => setActiveImage(item.file_path)}
+                    onClick={() => {
+                      console.log(item.file_path);
+                      setActiveImage(item.file_path);
+                    }}
                   />
                 );
               })}
           </ModalGallery.ListContainer>
           <ModalGallery.Button
-            disabled={
-              list.images.posters.length - lastIndexImagesOffset === 0 ? 1 : 0
-            }
+            disabled={items.length - lastIndexImagesOffset === 0 ? 1 : 0}
           >
             <ModalGallery.IconSlider
-              rightdirection={true}
+              rightdirection={1}
               onClick={handleSlideRight}
             />
           </ModalGallery.Button>

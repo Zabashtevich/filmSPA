@@ -15,9 +15,6 @@ import ModalGalleryContainer from "./auxillary-containers/modal-gallery";
 
 export default function CardDetailsRootContainer() {
   const [visibleGallery, setVisibleGallery] = useState(false);
-  const [activeImage, setActiveImage] = useState(null);
-  const [firstIndexImagesOffset, setFirstIndexImagesOffset] = useState(0);
-  const [lastIndexImagesOffset, setLastIndexImagesOffset] = useState(5);
 
   const location = useParams();
 
@@ -30,20 +27,7 @@ export default function CardDetailsRootContainer() {
 
   const showModal = () => {
     document.body.style.overflow = "hidden";
-
     setVisibleGallery(true);
-  };
-
-  const hideModal = (e) => {
-    console.log(e.target.classList);
-    if (
-      e.target.classList.value.includes("Backdrop") > 0 ||
-      e.target.classList.value.includes("Close") > 0
-    ) {
-      document.body.style.overflow = "auto";
-      setVisibleGallery(false);
-      setActiveImage(null);
-    }
   };
 
   return !loading ? (
@@ -53,7 +37,12 @@ export default function CardDetailsRootContainer() {
       </DetailsHeader.BackgroundContainer>
       <PosterColumn>
         <PosterColumn.Poster src={list.poster_path} cardPage={true} />
-        {visibleGallery ? <ModalGalleryContainer /> : null}
+        {visibleGallery ? (
+          <ModalGalleryContainer
+            items={list.images.posters}
+            setVisibleGallery={setVisibleGallery}
+          />
+        ) : null}
         {list.images.posters.length > 1 && (
           <ModalGallery onClick={showModal} cardPage={true}>
             <ModalGallery.Icon />

@@ -25,7 +25,7 @@ export default function CardDetailsPanelContainer() {
 
   const { firebase } = useContext(AuthContext);
   const { user } = useAuthListener();
-  const { data } = useFirestore(`${user.displayName}`, `moviesrated`);
+  const { data } = useFirestore(user && `${user.displayName}`, `moviesrated`);
 
   const { list, loading } = useFetch(["movie"], location.slug, [
     {
@@ -35,7 +35,8 @@ export default function CardDetailsPanelContainer() {
   ]);
 
   useEffect(() => {
-    if (data && list) {
+    console.log(data);
+    if (data !== null && data.lenght > 0 && list) {
       const rate = data.list.find((item) => item.id === list.id);
       if (rate) setRatedValue(rate.value);
     }

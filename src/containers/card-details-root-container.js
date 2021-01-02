@@ -11,7 +11,6 @@ import {
 } from "../components";
 import useFetch from "../hooks/useFetchData";
 import CardRows from "./auxillary-containers/card-rows";
-import { CSSTransition } from "react-transition-group";
 
 export default function CardDetailsRootContainer() {
   const [visibleGallery, setVisibleGallery] = useState(false);
@@ -35,22 +34,19 @@ export default function CardDetailsRootContainer() {
   };
 
   const hideModal = (e) => {
+    console.log(e.target.classList);
     if (
       e.target.classList.value.includes("Backdrop") > 0 ||
-      e.target.classList.value.includes("Close") > 0 ||
-      e.target.classList.value === ""
+      e.target.classList.value.includes("Close") > 0
     ) {
       document.body.style.overflow = "auto";
       setVisibleGallery(false);
       setActiveImage(null);
     }
   };
-  {
-    console.log(firstIndexImagesOffset, lastIndexImagesOffset);
-  }
+
   const handleSlideLeft = () => {
     if (firstIndexImagesOffset - 5 < 0 && firstIndexImagesOffset > 0) {
-      console.log("hi");
       setFirstIndexImagesOffset(0);
       setLastIndexImagesOffset((prev) => prev - firstIndexImagesOffset);
     } else {
@@ -88,7 +84,7 @@ export default function CardDetailsRootContainer() {
               <ModalGallery.BottomWrapper>
                 <ModalGallery.Button
                   onClick={handleSlideLeft}
-                  disabled={firstIndexImagesOffset === 0}
+                  disabled={firstIndexImagesOffset === 0 ? 1 : 0}
                 >
                   <ModalGallery.IconSlider />
                 </ModalGallery.Button>
@@ -114,8 +110,8 @@ export default function CardDetailsRootContainer() {
                 <ModalGallery.Button
                   disabled={
                     list.images.posters.length - lastIndexImagesOffset === 0
-                      ? "disabled"
-                      : null
+                      ? 1
+                      : 0
                   }
                 >
                   <ModalGallery.IconSlider

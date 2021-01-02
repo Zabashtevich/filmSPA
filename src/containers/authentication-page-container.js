@@ -74,6 +74,15 @@ export default function AuthenticationPageContainer() {
                   .catch(() => {
                     setUserLoading(false);
                     setErrorsList([`something gone wrong`]);
+                  });
+                firebase
+                  .firestore()
+                  .collection(`${nickname}`)
+                  .doc(`reviews`)
+                  .set({ list: [] })
+                  .catch(() => {
+                    setUserLoading(false);
+                    setErrorsList([`something gone wrong`]);
                   })
                   .then(() => {
                     setUserLoading(false);

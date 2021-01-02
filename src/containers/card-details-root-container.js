@@ -61,7 +61,7 @@ export default function CardDetailsRootContainer() {
             >
               <ModalGallery.CloseIcon onClick={(e) => hideModal(e)} />
               <ModalGallery.BottomWrapper>
-                <ModalGallery.Button>
+                <ModalGallery.Button onClick={handleSlideLeft}>
                   <ModalGallery.IconSlider />
                 </ModalGallery.Button>
                 <ModalGallery.ListContainer>
@@ -84,7 +84,10 @@ export default function CardDetailsRootContainer() {
                     })}
                 </ModalGallery.ListContainer>
                 <ModalGallery.Button>
-                  <ModalGallery.IconSlider rightdirection={true} />
+                  <ModalGallery.IconSlider
+                    rightdirection={true}
+                    onClick={handleSlideRight}
+                  />
                 </ModalGallery.Button>
               </ModalGallery.BottomWrapper>
             </ModalGallery.Photo>
@@ -107,13 +110,24 @@ export default function CardDetailsRootContainer() {
       </CardDescriptionColumn>
       <ListColumn>
         <ListColumn.Title>Credits list</ListColumn.Title>
-        {list.credits.cast.slice(0, 10).map((item) => {
-          return (
-            <ListColumn.ItemContainer key={item.id} to={`/actor/${item.id}`}>
-              {item.name}
-            </ListColumn.ItemContainer>
-          );
-        })}
+        {list.credits &&
+          list.credits.cast
+            .slice(
+              0,
+              list.credits.cast.length >= 10
+                ? 10
+                : list.credits.cast.length - 1,
+            )
+            .map((item) => {
+              return (
+                <ListColumn.ItemContainer
+                  key={item.id}
+                  to={`/actor/${item.id}`}
+                >
+                  {item.name}
+                </ListColumn.ItemContainer>
+              );
+            })}
         <Votes margin={true}>
           <Votes.Wrapper>
             <Votes.VotesScore>{list.vote_average} /</Votes.VotesScore>

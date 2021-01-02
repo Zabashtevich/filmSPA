@@ -112,16 +112,39 @@ export const Backdrop = styled.div`
 export const BottomWrapper = styled.div`
   width: 100%;
   display: flex;
+  margin: 0;
   justify-content: space-around;
-  margin-bottom: 1rem;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 1rem 0;
+  align-items: center;
 `;
 
-export const Button = styled.button``;
-
 export const IconSlider = styled(BsArrowLeft)`
+  font-size: ${({ theme }) => theme.fontSize.huge};
   ${({ rightdirection }) =>
     rightdirection &&
     css`
       transform: rotate(180deg);
-    `}
+    `};
+`;
+
+export const Button = styled.button`
+  cursor: pointer;
+  border-radius: 2rem;
+  border: none;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.secondary};
+    border: 1px solid #fff;
+    transition: 0.2s;
+    ${IconSlider} > path {
+      fill: #fff;
+      transition: 0.2s;
+    }
+  }
 `;

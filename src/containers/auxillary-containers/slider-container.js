@@ -49,7 +49,7 @@ export default function SliderContainer({
                     </Slider.TagWrapper>
                     <Slider.Description>{item.description}</Slider.Description>
                   </Slider.Metadata>
-                  <Slider.LinkButton to={"/"}>
+                  <Slider.LinkButton to={`/details/${item.id}`}>
                     <Slider.ButtonIcon />
                   </Slider.LinkButton>
                 </Slider.Item>

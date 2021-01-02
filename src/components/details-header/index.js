@@ -22,7 +22,7 @@ DetailsHeader.BackgroundContainer = function DetailsHeaderBackgroundContainer({
 DetailsHeader.BackgroundImage = function DetailsHeaderBackgroundImage({ src }) {
   return (
     <BackgroundWrapper>
-      <BackgroundImage src={backdropImageLink + src} />
+      <BackgroundImage src={src ? backdropImageLink + src : null} />
       <BackgroundImageColor />
     </BackgroundWrapper>
   );

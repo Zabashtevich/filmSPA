@@ -14,50 +14,64 @@ import {
   DescriptionWrapper,
 } from "./styles/actor-main-column";
 
-export default function ActorMainColumn({ children }) {
-  return <Container>{children}</Container>;
+export default function ActorMainColumn({ children, ...rest }) {
+  return <Container {...rest}>{children}</Container>;
 }
 
-ActorMainColumn.Name = function ActorMainColumnName({ children }) {
-  return <Name>{children}</Name>;
+ActorMainColumn.Name = function ActorMainColumnName({ children, ...rest }) {
+  return <Name {...rest}>{children}</Name>;
 };
 
-ActorMainColumn.Title = function ActorMainColumnTitle({ children }) {
-  return <Title>{children}</Title>;
+ActorMainColumn.Title = function ActorMainColumnTitle({ children, ...rest }) {
+  return <Title {...rest}>{children}</Title>;
 };
 
-ActorMainColumn.Overview = function ActorMainColumnOverview({ children }) {
-  return <Overview>{children}</Overview>;
+ActorMainColumn.Overview = function ActorMainColumnOverview({
+  children,
+  ...rest
+}) {
+  return <Overview {...rest}>{children}</Overview>;
 };
 
 ActorMainColumn.CreditsWrapper = function ActorMainColumnCreditsWrapper({
   children,
+  ...rest
 }) {
-  return <CreditsWrapper>{children}</CreditsWrapper>;
+  return <CreditsWrapper {...rest}>{children}</CreditsWrapper>;
 };
 
-ActorMainColumn.CreditsRow = function ActorMainColumnCreditsRow({ children }) {
-  return <Row>{children}</Row>;
+ActorMainColumn.CreditsRow = function ActorMainColumnCreditsRow({
+  children,
+  ...rest
+}) {
+  return <Row {...rest}>{children}</Row>;
 };
 
-ActorMainColumn.Date = function ActorMainColumnDate({ children }) {
-  return <Date>{children}</Date>;
+ActorMainColumn.Date = function ActorMainColumnDate({ children, ...rest }) {
+  return <Date {...rest}>{children}</Date>;
 };
 
-ActorMainColumn.ItemName = function ActorMainColumnItemName({ children }) {
-  return <ItemName>{children}</ItemName>;
+ActorMainColumn.ItemName = function ActorMainColumnItemName({
+  children,
+  ...rest
+}) {
+  return <ItemName {...rest}>{children}</ItemName>;
 };
 
-ActorMainColumn.Number = function ActorMainColumnNumber({ children }) {
-  return <Number>{children}</Number>;
+ActorMainColumn.Number = function ActorMainColumnNumber({ children, ...rest }) {
+  return <Number {...rest}>{children}</Number>;
 };
 
-ActorMainColumn.Character = function ActorMainColumnCharacter({ children }) {
-  return <Character>{children}</Character>;
+ActorMainColumn.Character = function ActorMainColumnCharacter({
+  children,
+  ...rest
+}) {
+  return <Character {...rest}>{children}</Character>;
 };
 
 ActorMainColumn.DescriptionWrapper = function ActorMainColumnDescriptionWrapper({
   children,
+  ...rest
 }) {
-  return <DescriptionWrapper>{children}</DescriptionWrapper>;
+  return <DescriptionWrapper {...rest}>{children}</DescriptionWrapper>;
 };

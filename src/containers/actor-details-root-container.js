@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 import {
   ActorMainColumn,
@@ -20,6 +20,7 @@ import ActorRows from "./auxillary-containers/actor-rows";
 
 export default function ActorDetailsRootContainer() {
   const location = useParams();
+  const history = useHistory();
 
   const [itemsCount, setItemsCount] = useState(10);
   const [knownForList, setKnownForList] = useState(null);
@@ -127,7 +128,10 @@ export default function ActorDetailsRootContainer() {
             .slice(0, itemsCount)
             .map((item, index) => {
               return (
-                <ActorMainColumn.CreditsRow key={item.id}>
+                <ActorMainColumn.CreditsRow
+                  key={item.id}
+                  onClick={() => history.push(`/details/${item.id}`)}
+                >
                   <ActorMainColumn.Number>{index + 1}</ActorMainColumn.Number>
                   <ActorMainColumn.DescriptionWrapper>
                     <ActorMainColumn.ItemName>

@@ -45,11 +45,18 @@ export default function CardDetailsRootContainer() {
       setActiveImage(null);
     }
   };
-
+  {
+    console.log(firstIndexImagesOffset, lastIndexImagesOffset);
+  }
   const handleSlideLeft = () => {
-    if (firstIndexImagesOffset - 5 < 0) return;
-    setFirstIndexImagesOffset((prev) => prev - 5);
-    setLastIndexImagesOffset((prev) => prev - 5);
+    if (firstIndexImagesOffset - 5 < 0 && firstIndexImagesOffset > 0) {
+      console.log("hi");
+      setFirstIndexImagesOffset(0);
+      setLastIndexImagesOffset((prev) => prev - firstIndexImagesOffset);
+    } else {
+      setFirstIndexImagesOffset((prev) => prev - 5);
+      setLastIndexImagesOffset((prev) => prev - 5);
+    }
   };
 
   const handleSlideRight = () => {
@@ -104,7 +111,6 @@ export default function CardDetailsRootContainer() {
                       );
                     })}
                 </ModalGallery.ListContainer>
-                {console.log(list.images.posters.length, lastIndexImagesOffset)}
                 <ModalGallery.Button
                   disabled={
                     list.images.posters.length - lastIndexImagesOffset === 0

@@ -137,6 +137,7 @@ export const Button = styled.button`
   justify-content: center;
   align-items: center;
   outline: none;
+  z-index: 300;
   &:hover:enabled {
     background-color: ${({ theme }) => theme.colors.secondary};
     border: 1px solid #fff;

@@ -129,7 +129,6 @@ export const IconSlider = styled(BsArrowLeft)`
 `;
 
 export const Button = styled.button`
-  cursor: pointer;
   border-radius: 2rem;
   border: none;
   width: 60px;
@@ -138,10 +137,11 @@ export const Button = styled.button`
   justify-content: center;
   align-items: center;
   outline: none;
-  &:hover {
+  &:hover:enabled {
     background-color: ${({ theme }) => theme.colors.secondary};
     border: 1px solid #fff;
     transition: 0.2s;
+    cursor: pointer;
     ${IconSlider} > path {
       fill: #fff;
       transition: 0.2s;

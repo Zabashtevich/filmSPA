@@ -11,6 +11,7 @@ import {
 } from "../components";
 import useFetch from "../hooks/useFetchData";
 import CardRows from "./auxillary-containers/card-rows";
+import { CSSTransition } from "react-transition-group";
 
 export default function CardDetailsRootContainer() {
   const [visibleGallery, setVisibleGallery] = useState(false);
@@ -44,9 +45,26 @@ export default function CardDetailsRootContainer() {
       setActiveImage(null);
     }
   };
-  {
-    console.log(list);
-  }
+
+  const handleSlideLeft = () => {
+    if (firstIndexImagesOffset - 5 < 0) return;
+    setFirstIndexImagesOffset((prev) => prev - 5);
+    setLastIndexImagesOffset((prev) => prev - 5);
+  };
+
+  const handleSlideRight = () => {
+    const offset = list.images.posters.length - lastIndexImagesOffset;
+    if (offset > 0 && lastIndexImagesOffset + 5 > list.images.posters.length) {
+      setFirstIndexImagesOffset((prev) => prev + offset);
+      setLastIndexImagesOffset((prev) => prev + offset);
+    } else if (lastIndexImagesOffset + 5 > list.images.posters.length) {
+      return;
+    } else {
+      setFirstIndexImagesOffset((prev) => prev + 5);
+      setLastIndexImagesOffset((prev) => prev + 5);
+    }
+  };
+
   return !loading ? (
     <DetailsHeader background={"dark"}>
       <DetailsHeader.BackgroundContainer>
@@ -61,7 +79,10 @@ export default function CardDetailsRootContainer() {
             >
               <ModalGallery.CloseIcon onClick={(e) => hideModal(e)} />
               <ModalGallery.BottomWrapper>
-                <ModalGallery.Button onClick={handleSlideLeft}>
+                <ModalGallery.Button
+                  onClick={handleSlideLeft}
+                  disabled={firstIndexImagesOffset === 0}
+                >
                   <ModalGallery.IconSlider />
                 </ModalGallery.Button>
                 <ModalGallery.ListContainer>
@@ -83,7 +104,14 @@ export default function CardDetailsRootContainer() {
                       );
                     })}
                 </ModalGallery.ListContainer>
-                <ModalGallery.Button>
+                {console.log(list.images.posters.length, lastIndexImagesOffset)}
+                <ModalGallery.Button
+                  disabled={
+                    list.images.posters.length - lastIndexImagesOffset === 0
+                      ? "disabled"
+                      : null
+                  }
+                >
                   <ModalGallery.IconSlider
                     rightdirection={true}
                     onClick={handleSlideRight}

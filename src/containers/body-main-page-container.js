@@ -18,7 +18,7 @@ export default function BodyMainContainer() {
   const skeletonAmount = range(1, 20);
   const currentPage = getPaginator(location);
   const { list, loading } = useFetch(
-    ["trending", `${tabListType}`],
+    `trending/${tabListType}`,
     typeTabByPopular,
     [{ page: currentPage }],
   );

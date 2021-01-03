@@ -18,7 +18,7 @@ export default function CardDetailsRootContainer() {
 
   const location = useParams();
 
-  const { list, loading } = useFetch(["movie"], location.slug, [
+  const { list, loading, error } = useFetch("movie", location.slug, [
     {
       append_to_response:
         "credits,recommendations,images,videos,reviews,account_states",
@@ -32,7 +32,7 @@ export default function CardDetailsRootContainer() {
 
   console.log(list);
 
-  return list && list.success !== false ? (
+  return list && !error ? (
     <DetailsHeader background={"dark"}>
       <DetailsHeader.BackgroundContainer>
         <DetailsHeader.BackgroundImage src={list.backdrop_path} />

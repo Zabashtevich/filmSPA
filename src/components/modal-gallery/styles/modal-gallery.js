@@ -47,13 +47,8 @@ export const Photo = styled.div`
   height: 750px;
   display: flex;
   align-items: flex-end;
-  &.fade-appear {
-    transform: translateX(-300px);
-  }
-  &.fade-appear-active {
-    transform: translateX(0);
-    transition: transform 20000ms forwards;
-  }
+  transition: 150ms;
+  transform: translateX(${({ state }) => (state === "entering" ? -1400 : 0)}px);
 `;
 
 export const Close = styled(GrClose)`

@@ -45,12 +45,13 @@ export default function ActorDetailsRootContainer() {
     <DetailsHeader background={"light"}>
       <PosterColumn>
         <PosterColumn.Poster src={list.profile_path} />
-        {visibleGallery ? (
+        {visibleGallery && (
           <ModalGalleryContainer
             items={list.images.profiles}
             setVisibleGallery={setVisibleGallery}
+            visibleGallery={visibleGallery}
           />
-        ) : null}
+        )}
 
         {list.images && list.images.profiles.length !== 1 ? (
           <ModalGallery onClick={showModal}>

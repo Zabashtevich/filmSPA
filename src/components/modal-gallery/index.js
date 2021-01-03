@@ -32,8 +32,12 @@ ModalGallery.Backdrop = function ModalGalleryBackdrop({ children, ...rest }) {
   return <Backdrop {...rest}>{children}</Backdrop>;
 };
 
-ModalGallery.Photo = function ModalGalleryPhoto({ children, src }) {
-  return <Photo src={basePhotoLink + src}>{children}</Photo>;
+ModalGallery.Photo = function ModalGalleryPhoto({ children, src, ...rest }) {
+  return (
+    <Photo src={basePhotoLink + src} {...rest}>
+      {children}
+    </Photo>
+  );
 };
 
 ModalGallery.CloseIcon = function ModalGalleryCloseIcon({ ...rest }) {

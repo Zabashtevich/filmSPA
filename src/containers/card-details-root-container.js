@@ -30,20 +30,23 @@ export default function CardDetailsRootContainer() {
     setVisibleGallery(true);
   };
 
-  return !loading ? (
+  console.log(list);
+
+  return list && list.success !== false ? (
     <DetailsHeader background={"dark"}>
       <DetailsHeader.BackgroundContainer>
         <DetailsHeader.BackgroundImage src={list.backdrop_path} />
       </DetailsHeader.BackgroundContainer>
       <PosterColumn>
         <PosterColumn.Poster src={list.poster_path} cardPage={true} />
-        {visibleGallery ? (
+        {visibleGallery && list.images ? (
           <ModalGalleryContainer
             items={list.images.posters}
             setVisibleGallery={setVisibleGallery}
+            visibleGallery={visibleGallery}
           />
         ) : null}
-        {list.images.posters.length > 1 && (
+        {list.images.posters.lenght > 1 && (
           <ModalGallery onClick={showModal} cardPage={true}>
             <ModalGallery.Icon />
           </ModalGallery>
@@ -64,9 +67,9 @@ export default function CardDetailsRootContainer() {
           list.credits.cast
             .slice(
               0,
-              list.credits.cast.length >= 10
+              list.credits.cast.lenght >= 10
                 ? 10
-                : list.credits.cast.length - 1,
+                : list.credits.cast.lenght - 1,
             )
             .map((item) => {
               return (

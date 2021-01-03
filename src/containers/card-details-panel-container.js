@@ -13,6 +13,7 @@ import useFetch from "../hooks/useFetchData";
 import useFirestore from "../hooks/useFirestore";
 import { getCorrectSrc } from "../utils/utils";
 import ErrorModalContainer from "./auxillary-containers/error-modal-container";
+import RelevantListContainer from "./auxillary-containers/relevant-list-container";
 
 export default function CardDetailsPanelContainer() {
   const [starValue, setStarValue] = useState(0);
@@ -35,7 +36,6 @@ export default function CardDetailsPanelContainer() {
   ]);
 
   useEffect(() => {
-    console.log(data);
     if (data !== null && data.lenght > 0 && list) {
       const rate = data.list.find((item) => item.id === list.id);
       if (rate) setRatedValue(rate.value);
@@ -68,10 +68,6 @@ export default function CardDetailsPanelContainer() {
     }
   };
 
-  const setWindowOffset = () => {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-  };
   return list ? (
     <DetailsPanel>
       <DetailsPanel.ContentWrapper>
@@ -107,33 +103,7 @@ export default function CardDetailsPanelContainer() {
         </StarRating.Wrapper>
       </StarRating>
       <RelevantList.Title>Reccomendations</RelevantList.Title>
-      <RelevantList>
-        <RelevantList.ListContainer>
-          {list.recommendations.result !== undefined ? (
-            list.recommendations.results.map((item) => {
-              return (
-                <RelevantList.ItemContainer
-                  key={item.id}
-                  to={`/details/${item.id}`}
-                  onClick={setWindowOffset}
-                >
-                  <RelevantList.Miniature src={item.poster_path} />
-                  <RelevantList.Name>{item.title}</RelevantList.Name>
-                  <RelevantList.VoteScore>
-                    {item.vote_average}
-                  </RelevantList.VoteScore>
-                </RelevantList.ItemContainer>
-              );
-            })
-          ) : (
-            <RelevantList.ErrorWrapper>
-              <RelevantList.Error>
-                We cant create reccomendation on this movie
-              </RelevantList.Error>
-            </RelevantList.ErrorWrapper>
-          )}
-        </RelevantList.ListContainer>
-      </RelevantList>
+      <RelevantListContainer recommendations={list.recommendations.results} />
       <ReviewsList>
         <ReviewsList.Title>Reviews</ReviewsList.Title>
         {list.reviews.results.length !== 0 ? (

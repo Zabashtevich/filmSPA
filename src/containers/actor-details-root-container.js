@@ -18,6 +18,7 @@ import {
 } from "../utils/utils";
 import ActorRows from "./auxillary-containers/actor-rows";
 import ModalGalleryContainer from "./auxillary-containers/modal-gallery";
+import RelevantListContainer from "./auxillary-containers/relevant-list-container";
 
 export default function ActorDetailsRootContainer() {
   const location = useParams();
@@ -70,26 +71,7 @@ export default function ActorDetailsRootContainer() {
         <ActorMainColumn.Title>Overview</ActorMainColumn.Title>
         <ActorMainColumn.Overview>{list.biography}</ActorMainColumn.Overview>
         <ActorMainColumn.Title>Known for</ActorMainColumn.Title>
-        <RelevantList>
-          <RelevantList.ListContainer>
-            {knownForList
-              ? knownForList.map((item) => {
-                  return (
-                    <RelevantList.ItemContainer
-                      key={item.credit_id}
-                      to={`/details/movie/${item.id}`}
-                    >
-                      <RelevantList.Miniature src={item.poster_path} />
-                      <RelevantList.Name>{item.title}</RelevantList.Name>
-                      <RelevantList.VoteScore>
-                        {item.vote_average}
-                      </RelevantList.VoteScore>
-                    </RelevantList.ItemContainer>
-                  );
-                })
-              : null}
-          </RelevantList.ListContainer>
-        </RelevantList>
+        <RelevantListContainer recommendations={knownForList} />
         <ActorMainColumn.Title>Credits list</ActorMainColumn.Title>
         <ActorMainColumn.CreditsWrapper>
           {getArrayOfMovies(list.credits.cast)

@@ -9,7 +9,7 @@ export default function RelevantListContainer({ recommendations }) {
   return (
     <RelevantList>
       <RelevantList.ListContainer>
-        {recommendations !== undefined ? (
+        {recommendations ? (
           recommendations.map((item) => {
             return (
               <RelevantList.ItemContainer

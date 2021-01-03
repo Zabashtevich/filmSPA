@@ -41,7 +41,6 @@ export default function ActorDetailsRootContainer() {
 
     setVisibleGallery(true);
   };
-  console.log(list);
   return list ? (
     <DetailsHeader background={"light"}>
       <PosterColumn>

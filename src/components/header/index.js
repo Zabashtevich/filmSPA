@@ -35,8 +35,8 @@ Header.Profile = function HeaderProfile({ children, ...rest }) {
   return <Profile {...rest}>{children}</Profile>;
 };
 
-Header.Input = function HeaderInput({ children, ...rest }) {
-  return <Input {...rest} />;
+Header.Input = function HeaderInput({ children, inputRef, ...rest }) {
+  return <Input {...rest} ref={inputRef} />;
 };
 
 Header.Icon = function HeaderIcon({ children, ...rest }) {

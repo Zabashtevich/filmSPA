@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 import { Header } from "../components";
 import useAuthListener from "../hooks/useAuthListener";
@@ -11,6 +11,8 @@ export default function HeaderMainContainer() {
     visible: true,
     positionchanged: window.pageYOffset !== 0,
   });
+
+  const inputRef = useRef();
 
   const { user } = useAuthListener();
 
@@ -60,13 +62,24 @@ export default function HeaderMainContainer() {
             positionStart={headerProp.standardPosition}
             positionchanged={headerProp.positionchanged ? "true" : null}
             widthActive={inputActive}
-            onFocus={() => setInputActive(!inputActive)}
-            onBlur={() => setInputActive(!inputActive)}
             placeholder={"Search..."}
+            onFocus={() => setInputActive(true)}
+            onBlur={() => {
+              setTimeout(() => setInputActive(false), 100);
+            }}
+            inputRef={inputRef}
           />
           <Header.Icon
             positionchanged={headerProp.positionchanged ? "true" : null}
-            onClick={() => setInputActive(!inputActive)}
+            onClick={(e) => {
+              if (inputActive) {
+                console.log("hi");
+                inputRef.current.blur();
+              } else if (!inputActive) {
+                inputRef.current.focus();
+                setInputActive(true);
+              }
+            }}
           />
         </Header.Wrapper>
 

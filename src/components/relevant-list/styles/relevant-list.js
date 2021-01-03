@@ -14,6 +14,9 @@ export const ItemContainer = styled(ReactRouterLink)`
   position: relative;
   cursor: pointer;
   text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  width: 200px;
 `;
 
 export const Miniature = styled.img`

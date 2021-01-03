@@ -23,7 +23,7 @@ export default function ModalGallery({ children, ...rest }) {
 ModalGallery.Icon = function ModalGalleryIcon({ ...rest }) {
   return (
     <Wrapper {...rest}>
-      <Icon src={`../assets/images/gallery-placeholder.png`} />
+      <Icon src={`../../assets/images/gallery-placeholder.png`} />
     </Wrapper>
   );
 };

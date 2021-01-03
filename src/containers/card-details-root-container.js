@@ -60,7 +60,6 @@ export default function CardDetailsRootContainer() {
       </CardDescriptionColumn>
       <ListColumn>
         <ListColumn.Title>Credits list</ListColumn.Title>
-        {console.log(list.credits.cast)}
         {list.credits &&
           list.credits.cast
             .slice(

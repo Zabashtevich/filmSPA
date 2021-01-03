@@ -77,7 +77,7 @@ export default function ActorDetailsRootContainer() {
                   return (
                     <RelevantList.ItemContainer
                       key={item.credit_id}
-                      to={`/details/${item.id}`}
+                      to={`/details/movie/${item.id}`}
                     >
                       <RelevantList.Miniature src={item.poster_path} />
                       <RelevantList.Name>{item.title}</RelevantList.Name>
@@ -98,7 +98,7 @@ export default function ActorDetailsRootContainer() {
               return (
                 <ActorMainColumn.CreditsRow
                   key={item.credit_id}
-                  onClick={() => history.push(`/details/${item.id}`)}
+                  onClick={() => history.push(`/details/movie/${item.id}`)}
                 >
                   <ActorMainColumn.Number>{index + 1}</ActorMainColumn.Number>
                   <ActorMainColumn.DescriptionWrapper>

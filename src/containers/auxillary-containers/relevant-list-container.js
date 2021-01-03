@@ -14,7 +14,7 @@ export default function RelevantListContainer({ recommendations }) {
             return (
               <RelevantList.ItemContainer
                 key={item.id}
-                to={`/details/${item.id}`}
+                to={`/details/movie/${item.id}`}
                 onClick={setWindowOffset}
               >
                 <RelevantList.Miniature src={item.poster_path} />

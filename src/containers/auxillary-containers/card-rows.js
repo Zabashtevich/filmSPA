@@ -67,7 +67,7 @@ export default function CardRows({ list }) {
           Runtime
         </CardDescriptionColumn.DarkTitle>
         <CardDescriptionColumn.LightTitle>
-          {list.runtime}
+          {list.runtime || "Unknown"}
         </CardDescriptionColumn.LightTitle>
       </CardDescriptionColumn.Row>
     </CardDescriptionColumn.ContentWrapper>

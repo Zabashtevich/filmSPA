@@ -73,7 +73,7 @@ export const getRowFormat = (data) => {
 };
 
 export const getBudgetFormat = (data) => {
-  if (data === 0) return "Unknown";
+  if (!data) return "Unknown";
   const budget = data.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
   return budget + " $";
 };
@@ -102,7 +102,7 @@ export const getKnownFor = (data, setKnownForList) => {
 };
 
 export const getRightReleasedDate = (date) => {
-  if (date === undefined) return "";
+  if (!date) return "Unknown";
   const correctDate = date.substring(0, date.indexOf("-"));
   return correctDate;
 };

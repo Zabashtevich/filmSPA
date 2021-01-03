@@ -28,7 +28,7 @@ export default function CardDetailsPanelContainer() {
   const { user } = useAuthListener();
   const { data } = useFirestore(user && `${user.displayName}`, `moviesrated`);
 
-  const { list, loading } = useFetch(["movie"], location.slug, [
+  const { list, loading } = useFetch(location.direction, location.slug, [
     {
       append_to_response:
         "credits,recommendations,images,videos,reviews,account_states",

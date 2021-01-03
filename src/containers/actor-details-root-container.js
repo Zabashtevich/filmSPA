@@ -27,7 +27,7 @@ export default function ActorDetailsRootContainer() {
   const [knownForList, setKnownForList] = useState(null);
   const [visibleGallery, setVisibleGallery] = useState(false);
 
-  const { list, loading } = useFetch(["person"], location.slug, [
+  const { list, loading } = useFetch("person", location.slug, [
     { append_to_response: "credits,images" },
   ]);
 

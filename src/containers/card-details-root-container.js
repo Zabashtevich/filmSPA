@@ -17,8 +17,7 @@ export default function CardDetailsRootContainer() {
   const [visibleGallery, setVisibleGallery] = useState(false);
 
   const location = useParams();
-
-  const { list, loading, error } = useFetch("movie", location.slug, [
+  const { list, loading, error } = useFetch(location.direction, location.slug, [
     {
       append_to_response:
         "credits,recommendations,images,videos,reviews,account_states",
@@ -29,8 +28,6 @@ export default function CardDetailsRootContainer() {
     document.body.style.overflow = "hidden";
     setVisibleGallery(true);
   };
-
-  console.log(list);
 
   return list && !error ? (
     <DetailsHeader background={"dark"}>
@@ -46,7 +43,7 @@ export default function CardDetailsRootContainer() {
             visibleGallery={visibleGallery}
           />
         ) : null}
-        {list.images.posters.lenght > 1 && (
+        {list.images.posters.length > 1 && (
           <ModalGallery onClick={showModal} cardPage={true}>
             <ModalGallery.Icon />
           </ModalGallery>
@@ -63,13 +60,14 @@ export default function CardDetailsRootContainer() {
       </CardDescriptionColumn>
       <ListColumn>
         <ListColumn.Title>Credits list</ListColumn.Title>
+        {console.log(list.credits.cast)}
         {list.credits &&
           list.credits.cast
             .slice(
               0,
-              list.credits.cast.lenght >= 10
+              list.credits.cast.length >= 10
                 ? 10
-                : list.credits.cast.lenght - 1,
+                : list.credits.cast.length - 1,
             )
             .map((item) => {
               return (

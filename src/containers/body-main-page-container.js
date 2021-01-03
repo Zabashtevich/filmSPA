@@ -22,7 +22,7 @@ export default function BodyMainContainer() {
     typeTabByPopular,
     [{ page: currentPage }],
   );
-
+  console.log(list);
   return (
     <BodyMain>
       <BodyMain.Section>
@@ -47,7 +47,9 @@ export default function BodyMainContainer() {
                 return (
                   <CardList.ItemContainer
                     key={item.id}
-                    onClick={() => history.push(`/details/${item.id}`)}
+                    onClick={() =>
+                      history.push(`/details/${item.media_type}/${item.id}`)
+                    }
                   >
                     {item.poster_path === null ? console.log(item.id) : null}
                     <CardList.ItemContentWrapper>

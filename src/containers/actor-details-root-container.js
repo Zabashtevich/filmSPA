@@ -17,6 +17,7 @@ import {
   getRightReleasedDate,
 } from "../utils/utils";
 import ActorRows from "./auxillary-containers/actor-rows";
+import ModalGalleryContainer from "./auxillary-containers/modal-gallery";
 
 export default function ActorDetailsRootContainer() {
   const location = useParams();
@@ -25,7 +26,6 @@ export default function ActorDetailsRootContainer() {
   const [itemsCount, setItemsCount] = useState(10);
   const [knownForList, setKnownForList] = useState(null);
   const [visibleGallery, setVisibleGallery] = useState(false);
-  const [activeImage, setActiveImage] = useState(null);
 
   const { list, loading } = useFetch(["person"], location.slug, [
     { append_to_response: "credits,images" },
@@ -41,48 +41,16 @@ export default function ActorDetailsRootContainer() {
 
     setVisibleGallery(true);
   };
-
-  const hideModal = (e) => {
-    if (
-      e.target.classList[0].search("Backdrop") > 0 ||
-      e.target.classList[0].search("Close") > 0
-    ) {
-      document.body.style.overflow = "auto";
-      setVisibleGallery(false);
-    }
-  };
-
+  console.log(list);
   return list ? (
     <DetailsHeader background={"light"}>
       <PosterColumn>
         <PosterColumn.Poster src={list.profile_path} />
         {visibleGallery ? (
-          <ModalGallery.Backdrop onClick={(e) => hideModal(e)}>
-            <ModalGallery.Photo
-              src={
-                activeImage ? activeImage : list.images.profiles[0].file_path
-              }
-            >
-              <ModalGallery.CloseIcon onClick={(e) => hideModal(e)} />
-              <ModalGallery.ListContainer>
-                {list.images.profiles.slice(0, 5).map((item, i) => {
-                  return (
-                    <ModalGallery.ListItem
-                      key={i}
-                      src={item.file_path}
-                      active={
-                        activeImage === item.file_path ||
-                        (i === 0 && activeImage === null)
-                          ? "true"
-                          : null
-                      }
-                      onClick={() => setActiveImage(item.file_path)}
-                    />
-                  );
-                })}
-              </ModalGallery.ListContainer>
-            </ModalGallery.Photo>
-          </ModalGallery.Backdrop>
+          <ModalGalleryContainer
+            items={list.images.profiles}
+            setVisibleGallery={setVisibleGallery}
+          />
         ) : null}
 
         {list.images && list.images.profiles.length !== 1 ? (
@@ -108,7 +76,7 @@ export default function ActorDetailsRootContainer() {
               ? knownForList.map((item) => {
                   return (
                     <RelevantList.ItemContainer
-                      key={item.id}
+                      key={item.credit_id}
                       to={`/details/${item.id}`}
                     >
                       <RelevantList.Miniature src={item.poster_path} />
@@ -129,7 +97,7 @@ export default function ActorDetailsRootContainer() {
             .map((item, index) => {
               return (
                 <ActorMainColumn.CreditsRow
-                  key={item.id}
+                  key={item.credit_id}
                   onClick={() => history.push(`/details/${item.id}`)}
                 >
                   <ActorMainColumn.Number>{index + 1}</ActorMainColumn.Number>

@@ -74,7 +74,6 @@ export default function ModalGalleryContainer({ items, setVisibleGallery }) {
                         : null
                     }
                     onClick={() => {
-                      console.log(item.file_path);
                       setActiveImage(item.file_path);
                     }}
                   />
@@ -82,7 +81,7 @@ export default function ModalGalleryContainer({ items, setVisibleGallery }) {
               })}
           </ModalGallery.ListContainer>
           <ModalGallery.Button
-            disabled={items.length - lastIndexImagesOffset === 0 ? 1 : 0}
+            disabled={items.length - lastIndexImagesOffset <= 0 ? 1 : 0}
           >
             <ModalGallery.IconSlider
               rightdirection={1}

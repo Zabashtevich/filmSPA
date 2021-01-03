@@ -59,6 +59,7 @@ export const Photo = styled.div`
 export const Close = styled(GrClose)`
   width: 30px;
   height: 30px;
+  pointer-events: none;
   & > path {
     stroke: #fff;
   }

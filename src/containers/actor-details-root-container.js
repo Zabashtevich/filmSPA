@@ -8,7 +8,6 @@ import {
   LoadMore,
   ModalGallery,
   PosterColumn,
-  RelevantList,
 } from "../components";
 import useFetch from "../hooks/useFetchData";
 import {
@@ -31,15 +30,14 @@ export default function ActorDetailsRootContainer() {
   const { list, loading } = useFetch("person", location.slug, [
     { append_to_response: "credits,images" },
   ]);
-
   useEffect(() => {
     if (!list) return;
-    getKnownFor(list.credits.cast, setKnownForList);
+
+    setKnownForList(getKnownFor(list.credits.cast));
   }, [list]);
 
   const showModal = () => {
     document.body.style.overflow = "hidden";
-
     setVisibleGallery(true);
   };
   return list ? (
@@ -71,7 +69,10 @@ export default function ActorDetailsRootContainer() {
         <ActorMainColumn.Title>Overview</ActorMainColumn.Title>
         <ActorMainColumn.Overview>{list.biography}</ActorMainColumn.Overview>
         <ActorMainColumn.Title>Known for</ActorMainColumn.Title>
-        <RelevantListContainer recommendations={knownForList} />
+        <RelevantListContainer
+          recommendations={knownForList ? knownForList : []}
+          slug={"movie"}
+        />
         <ActorMainColumn.Title>Credits list</ActorMainColumn.Title>
         <ActorMainColumn.CreditsWrapper>
           {getArrayOfMovies(list.credits.cast)

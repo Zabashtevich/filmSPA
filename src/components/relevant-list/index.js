@@ -15,8 +15,8 @@ import {
   ErrorWrapper,
 } from "./styles/relevant-list";
 
-export default function RelevantList({ children }) {
-  return <Container>{children}</Container>;
+export default function RelevantList({ children, ...rest }) {
+  return <Container {...rest}>{children}</Container>;
 }
 
 RelevantList.ItemContainer = function RelevantListItemContainer({

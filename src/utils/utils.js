@@ -93,12 +93,12 @@ export const getCorrectSrc = (data) => {
   return correctSrc;
 };
 
-export const getKnownFor = (data, setKnownForList) => {
+export const getKnownFor = (data) => {
   const sortedData = data.sort(
     (prev, item) => item.popularity - prev.popularity,
   );
   const resultArray = sortedData.splice(0, 10);
-  setKnownForList(resultArray);
+  return resultArray;
 };
 
 export const getRightReleasedDate = (date) => {

@@ -31,8 +31,9 @@ export const Miniature = styled.img`
 `;
 
 export const Container = styled.div`
-  overflow: scroll;
+  overflow: ${({ overflow }) => overflow};
   font-family: ${({ theme }) => theme.fontFamily.secondary};
+
   overflow-y: hidden;
 `;
 
@@ -40,6 +41,8 @@ export const Title = styled.h3`
   font-size: ${({ theme }) => theme.fontSize.large};
   font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
   margin-top: 1rem;
+  max-width: 1000px;
+  margin: 0 auto;
 `;
 
 export const ListContainer = styled.div`

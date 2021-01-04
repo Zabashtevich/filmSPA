@@ -7,9 +7,9 @@ export default function RelevantListContainer({ recommendations, slug }) {
     document.documentElement.scrollTop = 0;
   };
   return (
-    <RelevantList>
+    <RelevantList overflow={recommendations.lenght > 0 ? "scroll" : "auto"}>
       <RelevantList.ListContainer>
-        {recommendations ? (
+        {recommendations.length > 0 ? (
           recommendations.map((item) => {
             return (
               <RelevantList.ItemContainer
@@ -28,7 +28,7 @@ export default function RelevantListContainer({ recommendations, slug }) {
         ) : (
           <RelevantList.ErrorWrapper>
             <RelevantList.Error>
-              We cant create reccomendation on this movie
+              We cant create reccomendations on this movie
             </RelevantList.Error>
           </RelevantList.ErrorWrapper>
         )}

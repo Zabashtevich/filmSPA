@@ -3,6 +3,7 @@ import { useParams, useHistory } from "react-router-dom";
 import {
   DetailsPanel,
   RelevantList,
+  ReviewPostForm,
   ReviewsList,
   StarRating,
   Votes,
@@ -148,6 +149,7 @@ export default function CardDetailsPanelContainer() {
           </ReviewsList.ItemContainer>
         )}
       </ReviewsList>
+
       {errorModalVisible && (
         <ErrorModalContainer
           errorMessage={errorMessage}
@@ -155,6 +157,37 @@ export default function CardDetailsPanelContainer() {
           errorModalVisible={errorModalVisible}
         />
       )}
+      <ReviewPostForm>
+        <ReviewPostForm.Title>Create your review</ReviewPostForm.Title>
+        <ReviewPostForm.Wrapper>
+          <ReviewPostForm.Nickname>
+            {user && user.displayName}
+          </ReviewPostForm.Nickname>
+        </ReviewPostForm.Wrapper>
+        <ReviewPostForm.Input />
+        <ReviewPostForm.RadioWrapper>
+          {Array(10)
+            .fill("_")
+            .map((_, i) => {
+              return (
+                <ReviewPostForm.RadioInner key={i + 1}>
+                  <ReviewPostForm.RadioElement
+                    type="radio"
+                    name={`${_}`}
+                    value={i + 1}
+                    htmlFor={i + 1}
+                    id={i + 1}
+                  />
+                  <ReviewPostForm.RadioLabel htmlFor={i + 1}>
+                    {i + 1}
+                  </ReviewPostForm.RadioLabel>
+                </ReviewPostForm.RadioInner>
+              );
+            })}
+        </ReviewPostForm.RadioWrapper>
+        <ReviewPostForm.Textfield />
+        <ReviewPostForm.Button>PUBLIC</ReviewPostForm.Button>
+      </ReviewPostForm>
     </DetailsPanel>
   ) : null;
 }

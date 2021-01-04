@@ -11,7 +11,6 @@ export default function RelevantListContainer({ recommendations, slug }) {
       <RelevantList.ListContainer>
         {recommendations.length > 0 ? (
           recommendations.map((item) => {
-            console.log(item);
             return (
               <RelevantList.ItemContainer
                 key={item.id}

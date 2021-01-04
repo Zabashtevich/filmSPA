@@ -82,7 +82,7 @@ export const getCorrectSrc = (data) => {
   const correctSrc = { changed: false, src: null };
   if (data === null) {
     correctSrc.changed = true;
-    correctSrc.src = "./assets/images/poster.jpg";
+    correctSrc.src = "./../../assets/images/poster.png";
   } else if (data.includes("https")) {
     correctSrc.src = data.split("").slice(1).join("");
     correctSrc.changed = true;

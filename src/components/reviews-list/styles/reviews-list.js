@@ -46,6 +46,7 @@ export const Date = styled.span`
 export const Avatar = styled.img`
   border-radius: 2rem;
   margin-right: 1rem;
+  width: 75px;
 `;
 
 export const Author = styled.div`

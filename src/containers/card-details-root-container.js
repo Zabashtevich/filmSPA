@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import {
   DetailsHeader,
   CardDescriptionColumn,
@@ -11,11 +11,13 @@ import {
 } from "../components";
 import useFetch from "../hooks/useFetchData";
 import CardRows from "./auxillary-containers/card-rows";
+import ErrorModalContainer from "./auxillary-containers/error-modal-container";
 import ModalGalleryContainer from "./auxillary-containers/modal-gallery";
 
 export default function CardDetailsRootContainer() {
   const [visibleGallery, setVisibleGallery] = useState(false);
 
+  const history = useHistory();
   const location = useParams();
   const { list, loading, error } = useFetch(location.direction, location.slug, [
     {
@@ -29,64 +31,79 @@ export default function CardDetailsRootContainer() {
     setVisibleGallery(true);
   };
 
-  return list && !error ? (
-    <DetailsHeader background={"dark"}>
-      <DetailsHeader.BackgroundContainer>
-        <DetailsHeader.BackgroundImage src={list.backdrop_path} />
-      </DetailsHeader.BackgroundContainer>
-      <PosterColumn>
-        <PosterColumn.Poster src={list.poster_path} cardPage={true} />
-        {visibleGallery && list.images ? (
-          <ModalGalleryContainer
-            items={list.images.posters}
-            setVisibleGallery={setVisibleGallery}
-            visibleGallery={visibleGallery}
-          />
-        ) : null}
-        {list.images.posters.length > 1 && (
-          <ModalGallery onClick={showModal} cardPage={true}>
-            <ModalGallery.Icon />
-          </ModalGallery>
-        )}
-      </PosterColumn>
-      <CardDescriptionColumn>
-        <DescriptionHeader>
-          <DescriptionHeader.Title>{list.title}</DescriptionHeader.Title>
-          <DescriptionHeader.SubTitle>
-            {list.tagline}
-          </DescriptionHeader.SubTitle>
-        </DescriptionHeader>
-        <CardRows list={list} />
-      </CardDescriptionColumn>
-      <ListColumn>
-        <ListColumn.Title>Credits list</ListColumn.Title>
-        {list.credits &&
-          list.credits.cast
-            .slice(
-              0,
-              list.credits.cast.length >= 10
-                ? 10
-                : list.credits.cast.length - 1,
-            )
-            .map((item) => {
-              return (
-                <ListColumn.ItemContainer
-                  key={item.id}
-                  to={`/actor/${item.id}`}
-                >
-                  {item.name}
-                </ListColumn.ItemContainer>
-              );
-            })}
-        <Votes margin={true}>
-          <Votes.Wrapper>
-            <Votes.VotesScore>{list.vote_average} /</Votes.VotesScore>
-          </Votes.Wrapper>
-          <Votes.Wrapper>
-            <Votes.VotesAmount>{list.vote_count}</Votes.VotesAmount>
-          </Votes.Wrapper>
-        </Votes>
-      </ListColumn>
-    </DetailsHeader>
-  ) : null;
+  const onRedirect = () => {
+    document.body.style.overflow = "auto";
+    history.push("/");
+  };
+  return (
+    <>
+      {list && (
+        <DetailsHeader background={"dark"}>
+          <DetailsHeader.BackgroundContainer>
+            <DetailsHeader.BackgroundImage src={list.backdrop_path} />
+          </DetailsHeader.BackgroundContainer>
+          <PosterColumn>
+            <PosterColumn.Poster src={list.poster_path} cardPage={true} />
+            {visibleGallery && list.images ? (
+              <ModalGalleryContainer
+                items={list.images.posters}
+                setVisibleGallery={setVisibleGallery}
+                visibleGallery={visibleGallery}
+              />
+            ) : null}
+            {list.images.posters.length > 1 && (
+              <ModalGallery onClick={showModal} cardPage={true}>
+                <ModalGallery.Icon />
+              </ModalGallery>
+            )}
+          </PosterColumn>
+          <CardDescriptionColumn>
+            <DescriptionHeader>
+              <DescriptionHeader.Title>{list.title}</DescriptionHeader.Title>
+              <DescriptionHeader.SubTitle>
+                {list.tagline}
+              </DescriptionHeader.SubTitle>
+            </DescriptionHeader>
+            <CardRows list={list} />
+          </CardDescriptionColumn>
+          <ListColumn>
+            <ListColumn.Title>Credits list</ListColumn.Title>
+            {list.credits &&
+              list.credits.cast
+                .slice(
+                  0,
+                  list.credits.cast.length >= 10
+                    ? 10
+                    : list.credits.cast.length - 1,
+                )
+                .map((item) => {
+                  return (
+                    <ListColumn.ItemContainer
+                      key={item.id}
+                      to={`/actor/${item.id}`}
+                    >
+                      {item.name}
+                    </ListColumn.ItemContainer>
+                  );
+                })}
+            <Votes margin={true}>
+              <Votes.Wrapper>
+                <Votes.VotesScore>{list.vote_average} /</Votes.VotesScore>
+              </Votes.Wrapper>
+              <Votes.Wrapper>
+                <Votes.VotesAmount>{list.vote_count}</Votes.VotesAmount>
+              </Votes.Wrapper>
+            </Votes>
+          </ListColumn>
+        </DetailsHeader>
+      )}
+      {error && (
+        <ErrorModalContainer
+          errorMessage={`Oops! We can not find the page you are looking for.`}
+          closeModal={onRedirect}
+          errorModalVisible={error}
+        />
+      )}
+    </>
+  );
 }

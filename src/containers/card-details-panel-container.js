@@ -103,7 +103,10 @@ export default function CardDetailsPanelContainer() {
         </StarRating.Wrapper>
       </StarRating>
       <RelevantList.Title>Reccomendations</RelevantList.Title>
-      <RelevantListContainer recommendations={list.recommendations.results} />
+      <RelevantListContainer
+        recommendations={list.recommendations.results}
+        slug={(location.direction = "movie")}
+      />
       <ReviewsList>
         <ReviewsList.Title>Reviews</ReviewsList.Title>
         {list.reviews.results.length !== 0 ? (

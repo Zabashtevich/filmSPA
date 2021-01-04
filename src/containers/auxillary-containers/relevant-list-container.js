@@ -1,7 +1,7 @@
 import React from "react";
 import { RelevantList } from "../../components";
 
-export default function RelevantListContainer({ recommendations }) {
+export default function RelevantListContainer({ recommendations, slug }) {
   const setWindowOffset = () => {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
@@ -14,7 +14,7 @@ export default function RelevantListContainer({ recommendations }) {
             return (
               <RelevantList.ItemContainer
                 key={item.id}
-                to={`/details/movie/${item.id}`}
+                to={`/details/${slug}/${item.id}`}
                 onClick={setWindowOffset}
               >
                 <RelevantList.Miniature src={item.poster_path} />

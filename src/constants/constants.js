@@ -11,6 +11,8 @@ export const anchorListPeriod = [
 
 export const baseImageLink = "https://image.tmdb.org/t/p/w200";
 
+export const relevantImageLink = "https://image.tmdb.org/t/p/w300";
+
 export const maxPagination = 1000;
 
 export const fetchBaseUrl = "https://api.themoviedb.org/3/";

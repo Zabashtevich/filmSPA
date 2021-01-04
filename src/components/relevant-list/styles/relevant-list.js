@@ -8,6 +8,18 @@ export const Name = styled.span`
   color: ${({ theme }) => theme.colors.secondary};
 `;
 
+export const Miniature = styled.img`
+  border-radius: 1rem;
+  border: 1px solid gray;
+  width: 280px;
+  ${({ imageUndefined }) =>
+    imageUndefined &&
+    css`
+      width: 280px;
+      height: 170px;
+    `}
+`;
+
 export const ItemContainer = styled(ReactRouterLink)`
   margin: 0.5rem;
   border-radius: 1rem;
@@ -16,25 +28,30 @@ export const ItemContainer = styled(ReactRouterLink)`
   text-decoration: none;
   display: flex;
   flex-direction: column;
-  width: 200px;
-`;
-
-export const Miniature = styled.img`
-  border-radius: 1rem;
-  border: 1px solid gray;
-  ${({ imageUndefined }) =>
-    imageUndefined &&
-    css`
-      width: 200px;
-      height: 300px;
-    `}
+  &:hover {
+    ${Miniature} {
+      transition: 100ms;
+      transform: scale(1.04);
+    }
+  }
 `;
 
 export const Container = styled.div`
   overflow: ${({ overflow }) => overflow};
   font-family: ${({ theme }) => theme.fontFamily.secondary};
-
   overflow-y: hidden;
+  &::-webkit-scrollbar {
+    width: 1em;
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.colors.secondary};
+    border-radius: 10px;
+  }
 `;
 
 export const Title = styled.h3`

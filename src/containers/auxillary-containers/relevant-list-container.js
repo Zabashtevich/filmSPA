@@ -11,13 +11,14 @@ export default function RelevantListContainer({ recommendations, slug }) {
       <RelevantList.ListContainer>
         {recommendations.length > 0 ? (
           recommendations.map((item) => {
+            console.log(item);
             return (
               <RelevantList.ItemContainer
                 key={item.id}
                 to={`/details/${slug}/${item.id}`}
                 onClick={setWindowOffset}
               >
-                <RelevantList.Miniature src={item.poster_path} />
+                <RelevantList.Miniature src={item.backdrop_path} />
                 <RelevantList.Name>{item.title}</RelevantList.Name>
                 <RelevantList.VoteScore>
                   {item.vote_average}

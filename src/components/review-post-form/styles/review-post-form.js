@@ -6,16 +6,18 @@ export const Container = styled.div`
   max-width: 750px;
   margin: 4rem auto;
   font-family: ${({ theme }) => theme.fontFamily.secondary};
+`;
+
+export const Nickname = styled.span``;
+
+export const Form = styled.form`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #f2f2f2;
   border-radius: 1rem;
 `;
-
-export const Nickname = styled.span``;
-
-export const Form = styled.form``;
 
 export const Input = styled.input`
   width: 75%;
@@ -51,15 +53,14 @@ export const Button = styled.button`
   padding: 0.5rem 1rem;
   color: #fff;
   background-color: ${({ theme }) => theme.colors.secondary};
-  border: none;
   border-radius: 1rem;
   cursor: pointer;
+  border: 1px solid darkgray;
   font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
   font-size: ${({ theme }) => theme.fontSize.large};
   &:hover {
     color: ${({ theme }) => theme.colors.secondary};
     background-color: #fff;
-    border: 1px solid darkgray;
     transition: 250ms;
   }
 `;
@@ -94,7 +95,7 @@ export const RadioInner = styled.div`
   margin: 1rem;
 `;
 
-export const RadioTitle = styled.div`
+export const RadioTitle = styled.input`
   font-size: ${({ theme }) => theme.fontSize.small};
   font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
   cursor: pointer;

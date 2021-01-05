@@ -33,8 +33,16 @@ ReviewPostForm.Form = function ReviewPostForm({ children, ...rest }) {
   return <Form {...rest}>{children}</Form>;
 };
 
-ReviewPostForm.Input = function ReviewPostFormInput({ children, ...rest }) {
-  return <Input {...rest}>{children}</Input>;
+ReviewPostForm.Input = function ReviewPostFormInput({
+  children,
+  inputRef,
+  ...rest
+}) {
+  return (
+    <Input ref={inputRef} {...rest}>
+      {children}
+    </Input>
+  );
 };
 
 ReviewPostForm.Textfield = function ReviewPostFormTextfield({
@@ -86,9 +94,14 @@ ReviewPostForm.RadioInner = function ReviewPostFormRadioInner({
 
 ReviewPostForm.RadioTitle = function ReviewPostFormRadioTitle({
   children,
+  radioRef,
   ...rest
 }) {
-  return <RadioTitle {...rest}>{children}</RadioTitle>;
+  return (
+    <RadioTitle ref={radioRef} {...rest}>
+      {children}
+    </RadioTitle>
+  );
 };
 
 ReviewPostForm.RadioElementsContainer = function ReviewPostFormRadioElementsContainer({

@@ -12,13 +12,16 @@ export default function ReviewPostFormContainer({ user }) {
     setVisibleDropdown((prev) => !prev);
   };
 
+  const handleReviewPost = (data) => {
+    console.log(data);
+  };
+
   const { register, handleSubmit, errors } = useForm();
 
-  const onSubmit = () => {};
-
+  console.log(errors);
   return (
     <ReviewPostForm>
-      <ReviewPostForm.Form onSubmit={handleSubmit(onSubmit)}>
+      <ReviewPostForm.Form onSubmit={handleSubmit(handleReviewPost)}>
         <ReviewPostForm.Title>Create your review</ReviewPostForm.Title>
         <ReviewPostForm.Wrapper>
           <ReviewPostForm.Nickname>
@@ -27,7 +30,7 @@ export default function ReviewPostFormContainer({ user }) {
         </ReviewPostForm.Wrapper>
         <ReviewPostForm.Input
           placeholder={"Title"}
-          name="Title"
+          name="title"
           inputRef={register({
             required: {
               value: true,
@@ -42,7 +45,7 @@ export default function ReviewPostFormContainer({ user }) {
             disabled
             value={ratingValue}
             radioRef={register({
-              required: { value: true, message: "hi" },
+              required: { value: true, message: "Choose rate score" },
             })}
           />
           <ReviewPostForm.Icon rotate={visibleDropdown ? "180deg" : "0"} />
@@ -77,7 +80,23 @@ export default function ReviewPostFormContainer({ user }) {
             </CSSTransition>
           )}
         </ReviewPostForm.RadioWrapper>
-        <ReviewPostForm.Textfield />
+        <ReviewPostForm.Textfield
+          name="textfield"
+          textfieldRef={register({
+            required: {
+              value: true,
+              message: "You dont write anything",
+            },
+            minLength: {
+              value: 100,
+              message: "Your review must be at least 100 characters long",
+            },
+            maxLength: {
+              value: 2000,
+              message: "Your review must contain a maximum of 2000 characters",
+            },
+          })}
+        />
         <ReviewPostForm.Button type="submit">PUBLIC</ReviewPostForm.Button>
       </ReviewPostForm.Form>
     </ReviewPostForm>

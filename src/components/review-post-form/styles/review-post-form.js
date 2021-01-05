@@ -20,6 +20,7 @@ export const Form = styled.form`
 `;
 
 export const Input = styled.input`
+  outline: none;
   width: 75%;
   margin-top: 2rem;
   font-weight: ${({ theme }) => theme.fontWeightSecondary.normal};
@@ -42,6 +43,7 @@ export const Textfield = styled.textarea`
   margin-bottom: 2rem;
   border-radius: 1rem;
   padding: 0.5rem 1rem;
+  outline: none;
 `;
 
 export const RadioElement = styled.input`

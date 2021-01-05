@@ -46,10 +46,10 @@ ReviewPostForm.Input = function ReviewPostFormInput({
 };
 
 ReviewPostForm.Textfield = function ReviewPostFormTextfield({
-  children,
+  textfieldRef,
   ...rest
 }) {
-  return <Textfield {...rest}>{children}</Textfield>;
+  return <Textfield ref={textfieldRef} {...rest} />;
 };
 
 ReviewPostForm.RadioWrapper = function ReviewPostFormRadioWrapper({

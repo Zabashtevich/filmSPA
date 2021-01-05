@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CSSTransition } from "react-transition-group";
 import { useForm } from "react-hook-form";
 
 import { ReviewPostForm } from "../../components";
+import ErrorModalContainer from "./error-modal-container";
 
 export default function ReviewPostFormContainer({ user }) {
   const [visibleDropdown, setVisibleDropdown] = useState(false);
   const [ratingValue, setRatingValue] = useState("");
+  const [errorModalVisible, setErrorModalVisible] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const onIconClick = () => {
     setVisibleDropdown((prev) => !prev);
@@ -19,8 +22,29 @@ export default function ReviewPostFormContainer({ user }) {
   const { register, handleSubmit, errors } = useForm();
 
   console.log(errors);
+  useEffect(() => {
+    if (Object.keys(errors).length > 0) {
+      setErrorMessage(Object.keys(errors).map((item) => errors[item].message));
+      setErrorModalVisible(true);
+    }
+    return () => {};
+  }, [errors]);
+
+  const hideErrorModal = () => {
+    document.body.style.overflow = "auto";
+    setErrorMessage(null);
+    setErrorModalVisible(false);
+  };
+
   return (
     <ReviewPostForm>
+      {errorModalVisible && (
+        <ErrorModalContainer
+          errorMessage={errorMessage}
+          closeModal={hideErrorModal}
+          errorModalVisible={errorModalVisible}
+        />
+      )}
       <ReviewPostForm.Form onSubmit={handleSubmit(handleReviewPost)}>
         <ReviewPostForm.Title>Create your review</ReviewPostForm.Title>
         <ReviewPostForm.Wrapper>

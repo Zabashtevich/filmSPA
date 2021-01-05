@@ -50,7 +50,7 @@ export default function CardDetailsPanelContainer() {
     setErrorModalVisible(true);
   };
 
-  const hideErrorModal = (errorText) => {
+  const hideErrorModal = () => {
     document.body.style.overflow = "auto";
     setErrorMessage(null);
     setErrorModalVisible(false);

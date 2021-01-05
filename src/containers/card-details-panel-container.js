@@ -3,7 +3,6 @@ import { useParams, useHistory } from "react-router-dom";
 import {
   DetailsPanel,
   RelevantList,
-  ReviewPostForm,
   ReviewsList,
   StarRating,
   Votes,
@@ -158,7 +157,7 @@ export default function CardDetailsPanelContainer() {
           errorModalVisible={errorModalVisible}
         />
       )}
-      <ReviewPostFormContainer user={user} />
+      <ReviewPostFormContainer user={user} firebase={firebase} id={list.id} />
     </DetailsPanel>
   ) : null;
 }

@@ -104,6 +104,7 @@ export const RadioTitle = styled.input`
   width: 100%;
   padding: 0.4rem 0.6rem;
   background-color: #fff;
+  outline: none;
   border: 1px solid gray;
   color: ${({ theme }) => theme.colors.secondary};
   border-radius: 0.5rem;

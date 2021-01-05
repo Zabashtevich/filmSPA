@@ -1,22 +1,44 @@
 import React, { useEffect, useState } from "react";
 import { CSSTransition } from "react-transition-group";
 import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
 
 import { ReviewPostForm } from "../../components";
+import useFirestore from "../../hooks/useFirestore";
+
 import ErrorModalContainer from "./error-modal-container";
 
-export default function ReviewPostFormContainer({ user }) {
+export default function ReviewPostFormContainer({ user, firebase, id }) {
   const [visibleDropdown, setVisibleDropdown] = useState(false);
   const [ratingValue, setRatingValue] = useState("");
   const [errorModalVisible, setErrorModalVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
 
+  const history = useHistory();
+  const { data } = useFirestore(user && `${user.displayName}`, `reviews`);
+
   const onIconClick = () => {
     setVisibleDropdown((prev) => !prev);
   };
-
-  const handleReviewPost = (data) => {
-    console.log(data);
+  const handleReviewPost = ({ title, rating, textfield }) => {
+    if (!user) {
+      setErrorMessage(["Please, log in to create review"]);
+      setErrorModalVisible(true);
+      setTimeout(() => history.push("/"), 3000);
+    }
+    const newData = [
+      ...data.list,
+      { id: id, rating: rating, title: title, textfield: textfield },
+    ];
+    firebase
+      .firestore()
+      .collection(`${user.displayName}`)
+      .doc(`reviews`)
+      .update({ list: newData })
+      .catch((error) => {
+        setErrorMessage([error]);
+        setErrorModalVisible(true);
+      });
   };
 
   const { register, handleSubmit, errors } = useForm();
@@ -34,7 +56,6 @@ export default function ReviewPostFormContainer({ user }) {
     setErrorMessage(null);
     setErrorModalVisible(false);
   };
-
   return (
     <ReviewPostForm>
       {errorModalVisible && (
@@ -65,8 +86,9 @@ export default function ReviewPostFormContainer({ user }) {
           <ReviewPostForm.RadioTitle
             placeholder="Rate score"
             name="rating"
-            disabled
+            readOnly
             value={ratingValue}
+            onChange={() => null}
             radioRef={register({
               required: { value: true, message: "Choose rate score" },
             })}
@@ -87,7 +109,9 @@ export default function ReviewPostFormContainer({ user }) {
                             value={i + 1}
                             htmlFor={i + 1}
                             id={i + 1}
-                            onClick={() => setRatingValue(i + 1)}
+                            onClick={() => {
+                              setRatingValue(i + 1);
+                            }}
                           />
                           <ReviewPostForm.RadioLabel
                             htmlFor={i + 1}

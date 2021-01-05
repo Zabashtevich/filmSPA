@@ -23,6 +23,8 @@ export const Input = styled.input`
   font-weight: ${({ theme }) => theme.fontWeightSecondary.normal};
   font-size: ${({ theme }) => theme.fontSize.small};
   color: ${({ theme }) => theme.colors.secondary};
+  border-radius: 0.5rem;
+  border: 1px solid gray;
   padding: 0.4rem 0.6rem;
   &::placeholder {
     color: ${({ theme }) => theme.colors.secondary};
@@ -31,12 +33,13 @@ export const Input = styled.input`
 `;
 
 export const Textfield = styled.textarea`
-  width: 75%;
+  width: 73%;
   resize: none;
   height: 450px;
   margin-top: 2rem;
   margin-bottom: 2rem;
   border-radius: 1rem;
+  padding: 0.5rem 1rem;
 `;
 
 export const RadioElement = styled.input`
@@ -84,6 +87,7 @@ export const Title = styled.span`
 export const RadioLabel = styled.label`
   margin-left: 0.2rem;
   cursor: pointer;
+  user-select: none;
 `;
 
 export const RadioInner = styled.div`
@@ -99,6 +103,7 @@ export const RadioTitle = styled.div`
   background-color: #fff;
   border: 1px solid gray;
   color: ${({ theme }) => theme.colors.secondary};
+  border-radius: 0.5rem;
 `;
 
 export const RadioElementsContainer = styled.div`
@@ -110,6 +115,10 @@ export const RadioElementsContainer = styled.div`
   position: absolute;
   top: 100%;
   padding: 0.4rem 0.6rem;
+  transition: 150ms;
+  transform: translateY(${({ state }) => (state === "entering" ? -200 : 0)}px);
+  opacity: ${({ state }) => (state === "entering" ? 0 : 1)};
+  border-radius: 1rem;
 `;
 
 export const Icon = styled(VscTriangleUp)`
@@ -117,4 +126,6 @@ export const Icon = styled(VscTriangleUp)`
   top: 13%;
   right: 2%;
   font-size: ${({ theme }) => theme.fontSize.normal};
+  transform: rotate(${({ rotate }) => rotate});
+  transition: 100ms;
 `;

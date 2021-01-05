@@ -15,6 +15,7 @@ import useFirestore from "../hooks/useFirestore";
 import { getCorrectSrc } from "../utils/utils";
 import ErrorModalContainer from "./auxillary-containers/error-modal-container";
 import RelevantListContainer from "./auxillary-containers/relevant-list-container";
+import ReviewPostFormContainer from "./auxillary-containers/review-post-form-container";
 
 export default function CardDetailsPanelContainer() {
   const [starValue, setStarValue] = useState(0);
@@ -157,37 +158,7 @@ export default function CardDetailsPanelContainer() {
           errorModalVisible={errorModalVisible}
         />
       )}
-      <ReviewPostForm>
-        <ReviewPostForm.Title>Create your review</ReviewPostForm.Title>
-        <ReviewPostForm.Wrapper>
-          <ReviewPostForm.Nickname>
-            {user && user.displayName}
-          </ReviewPostForm.Nickname>
-        </ReviewPostForm.Wrapper>
-        <ReviewPostForm.Input />
-        <ReviewPostForm.RadioWrapper>
-          {Array(10)
-            .fill("_")
-            .map((_, i) => {
-              return (
-                <ReviewPostForm.RadioInner key={i + 1}>
-                  <ReviewPostForm.RadioElement
-                    type="radio"
-                    name={`${_}`}
-                    value={i + 1}
-                    htmlFor={i + 1}
-                    id={i + 1}
-                  />
-                  <ReviewPostForm.RadioLabel htmlFor={i + 1}>
-                    {i + 1}
-                  </ReviewPostForm.RadioLabel>
-                </ReviewPostForm.RadioInner>
-              );
-            })}
-        </ReviewPostForm.RadioWrapper>
-        <ReviewPostForm.Textfield />
-        <ReviewPostForm.Button>PUBLIC</ReviewPostForm.Button>
-      </ReviewPostForm>
+      <ReviewPostFormContainer user={user} />
     </DetailsPanel>
   ) : null;
 }

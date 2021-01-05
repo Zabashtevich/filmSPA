@@ -13,6 +13,9 @@ import {
   Title,
   RadioLabel,
   RadioInner,
+  RadioTitle,
+  RadioElementsContainer,
+  Icon,
 } from "./styles/review-post-form";
 
 export default function ReviewPostForm({ children, ...rest }) {
@@ -79,4 +82,22 @@ ReviewPostForm.RadioInner = function ReviewPostFormRadioInner({
   ...rest
 }) {
   return <RadioInner {...rest}>{children}</RadioInner>;
+};
+
+ReviewPostForm.RadioTitle = function ReviewPostFormRadioTitle({
+  children,
+  ...rest
+}) {
+  return <RadioTitle {...rest}>{children}</RadioTitle>;
+};
+
+ReviewPostForm.RadioElementsContainer = function ReviewPostFormRadioElementsContainer({
+  children,
+  ...rest
+}) {
+  return <RadioElementsContainer {...rest}>{children}</RadioElementsContainer>;
+};
+
+ReviewPostForm.Icon = function ReviewPostFormIcon({ children, ...rest }) {
+  return <Icon {...rest}>{children}</Icon>;
 };

@@ -20,7 +20,11 @@ export default function ErrorModalContainer({
                 <ErrorModal.Title>ERROR</ErrorModal.Title>
               </ErrorModal.TitleContainer>
               <ErrorModal.MessageContainer>
-                <ErrorModal.Message>{errorMessage}</ErrorModal.Message>
+                {errorMessage.map((item) => {
+                  return (
+                    <ErrorModal.Message key={item}>{item}</ErrorModal.Message>
+                  );
+                })}
               </ErrorModal.MessageContainer>
             </ErrorModal.Wrapper>
             <ErrorModal.CloseButton onClick={closeModal}>

@@ -122,6 +122,7 @@ export const RadioElementsContainer = styled.div`
   transform: translateY(${({ state }) => (state === "entering" ? -200 : 0)}px);
   opacity: ${({ state }) => (state === "entering" ? 0 : 1)};
   border-radius: 1rem;
+  box-shadow: 1px 6px 3px 1px rgba(0, 0, 0, 0.2);
 `;
 
 export const Icon = styled(VscTriangleUp)`

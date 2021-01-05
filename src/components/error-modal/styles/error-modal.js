@@ -85,11 +85,11 @@ export const CloseButton = styled.button`
   }
 `;
 
-export const Message = styled.span`
+export const Message = styled.li`
   font-size: ${({ theme }) => theme.fontSize.large};
   color: #fff;
   width: 100%;
-  padding: 4rem;
+  margin: 1rem 2rem;
 `;
 
 export const Title = styled.span`
@@ -104,10 +104,9 @@ export const Title = styled.span`
   font-weight: ${({ theme }) => theme.fontWeightSecondary.normal};
 `;
 
-export const MessageContainer = styled.div`
-  width: 100%;
-  height: 80%;
+export const MessageContainer = styled.ul`
   display: flex;
+  flex-direction: column;
 `;
 
 export const TitleContainer = styled.div`

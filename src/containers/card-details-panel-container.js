@@ -46,7 +46,7 @@ export default function CardDetailsPanelContainer() {
 
   const showErrorModal = (errorText) => {
     document.body.style.overflow = "hidden";
-    setErrorMessage(errorText);
+    setErrorMessage([errorText]);
     setErrorModalVisible(true);
   };
 

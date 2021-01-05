@@ -21,13 +21,12 @@ export default function ReviewPostFormContainer({ user }) {
 
   const { register, handleSubmit, errors } = useForm();
 
-  console.log(errors);
   useEffect(() => {
     if (Object.keys(errors).length > 0) {
       setErrorMessage(Object.keys(errors).map((item) => errors[item].message));
       setErrorModalVisible(true);
+      document.body.style.overflow = "hidden";
     }
-    return () => {};
   }, [errors]);
 
   const hideErrorModal = () => {
@@ -58,7 +57,7 @@ export default function ReviewPostFormContainer({ user }) {
           inputRef={register({
             required: {
               value: true,
-              message: "title field can not be empty",
+              message: "Title field can not be empty",
             },
           })}
         />
@@ -109,7 +108,7 @@ export default function ReviewPostFormContainer({ user }) {
           textfieldRef={register({
             required: {
               value: true,
-              message: "You dont write anything",
+              message: "You dont write anything in your review",
             },
             minLength: {
               value: 100,

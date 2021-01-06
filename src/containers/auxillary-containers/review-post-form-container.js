@@ -23,7 +23,6 @@ export default function ReviewPostFormContainer({ user, firebase, id }) {
   const userData = useFirestore(user && `${user.displayName}`, `reviews`);
   const globalData = useFirestore(`Reviews`, `${id}`);
 
-  console.log(globalData);
   const onIconClick = () => {
     setVisibleDropdown((prev) => !prev);
   };

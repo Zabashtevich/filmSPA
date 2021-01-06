@@ -11,7 +11,7 @@ import { AuthContext } from "../context/auth-context";
 import useAuthListener from "../hooks/useAuthListener";
 import useFetch from "../hooks/useFetchData";
 import useFirestore from "../hooks/useFirestore";
-import { getCorrectSrc } from "../utils/utils";
+import { getCorrectReviewsArray, getCorrectSrc } from "../utils/utils";
 import ErrorModalContainer from "./auxillary-containers/error-modal-container";
 import RelevantListContainer from "./auxillary-containers/relevant-list-container";
 import ReviewPostFormContainer from "./auxillary-containers/review-post-form-container";
@@ -25,10 +25,6 @@ export default function CardDetailsPanelContainer() {
   const location = useParams();
   const history = useHistory();
 
-  const { firebase } = useContext(AuthContext);
-  const { user } = useAuthListener();
-  const data = useFirestore(user && `${user.displayName}`, `moviesrated`);
-
   const { list, loading } = useFetch(location.direction, location.slug, [
     {
       append_to_response:
@@ -36,12 +32,17 @@ export default function CardDetailsPanelContainer() {
     },
   ]);
 
+  const { firebase } = useContext(AuthContext);
+  const { user } = useAuthListener();
+  const [userData] = useFirestore(user && `${user.displayName}`, `moviesrated`);
+  const [reviewData] = useFirestore("Reviews", list && `${list.id}`);
+
   useEffect(() => {
-    if (data !== null && data.lenght > 0 && list) {
-      const rate = data.list.find((item) => item.id === list.id);
+    if (userData !== null && userData.length > 0 && list) {
+      const rate = userData.list.find((item) => item.id === list.id);
       if (rate) setRatedValue(rate.value);
     }
-  }, [data, list]);
+  }, [userData, list]);
 
   const showErrorModal = (errorText) => {
     document.body.style.overflow = "hidden";
@@ -59,16 +60,15 @@ export default function CardDetailsPanelContainer() {
     if (user === null) {
       history.push("/authentication/login");
     } else {
-      const newData = [...data.list, { id: itemID, value: rateScore }];
+      const newuserData = [...userData.list, { id: itemID, value: rateScore }];
       firebase
         .firestore()
         .collection(`${user.displayName}`)
         .doc(`moviesrated`)
-        .update({ list: newData })
+        .update({ list: newuserData })
         .catch((error) => showErrorModal(error));
     }
   };
-
   return list ? (
     <DetailsPanel>
       <DetailsPanel.ContentWrapper>
@@ -112,33 +112,30 @@ export default function CardDetailsPanelContainer() {
         <ReviewsList.Title>Reviews</ReviewsList.Title>
         {list.reviews.results.length !== 0 ? (
           <>
-            {list.reviews.results.map((item) => {
+            {getCorrectReviewsArray(list.reviews.results).map((item) => {
               const correctSrc =
-                item.author_details.avatar_path === null ||
-                item.author_details.avatar_path.includes("https")
-                  ? getCorrectSrc(item.author_details.avatar_path)
-                  : item.author_details.avatar_path;
+                item.avatar === null || item.avatar.includes("https")
+                  ? getCorrectSrc(item.avatar)
+                  : item.avatar;
 
               return (
-                <ReviewsList.ItemContainer key={item.id}>
+                <ReviewsList.ItemContainer key={item.nickname}>
                   <ReviewsList.Author>
                     <ReviewsList.Avatar
                       src={correctSrc.changed ? null : correctSrc}
                       correctSrc={correctSrc.changed ? correctSrc.src : null}
                     />
-                    <ReviewsList.Score>
-                      {item.author_details.rating}
-                    </ReviewsList.Score>
+                    <ReviewsList.Score>{item.rating}</ReviewsList.Score>
                     <ReviewsList.Wrapper>
                       <ReviewsList.Nickname>
-                        {item.author_details.name}
+                        {item.nickname}
                       </ReviewsList.Nickname>
                       <ReviewsList.Date>
-                        {new Date(item.created_at).toDateString()}
+                        {new Date(item.date).toDateString()}
                       </ReviewsList.Date>
                     </ReviewsList.Wrapper>
                   </ReviewsList.Author>
-                  <ReviewsList.Content>{item.content}</ReviewsList.Content>
+                  <ReviewsList.Content>{item.text}</ReviewsList.Content>
                 </ReviewsList.ItemContainer>
               );
             })}

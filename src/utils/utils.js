@@ -135,3 +135,17 @@ export const createUserReviewInfo = (id, rating, title, textfield) => {
 export const createGlobalReviewInfo = (rating, title, textfield, nickname) => {
   return { rating: rating, title: title, text: textfield, nickname: nickname };
 };
+
+export const getCorrectReviewsArray = (array) => {
+  const result = [];
+  array.map((item) => {
+    result.push({
+      nickname: item.author,
+      rating: item.author_details.rating,
+      text: item.content,
+      date: item.created_at,
+      avatar: item.author_details.avatar_path,
+    });
+  });
+  return result;
+};

@@ -3,10 +3,14 @@ import { CSSTransition } from "react-transition-group";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
-import { ReviewPostForm } from "../../components";
+import useFirestore from "../../hooks/useFirestore";
 
+import { ReviewPostForm } from "../../components";
 import ErrorModalContainer from "./error-modal-container";
-import useReview from "../../hooks/useReview";
+import {
+  createGlobalReviewInfo,
+  createUserReviewInfo,
+} from "../../utils/utils";
 
 export default function ReviewPostFormContainer({ user, firebase, id }) {
   const [visibleDropdown, setVisibleDropdown] = useState(false);
@@ -16,8 +20,10 @@ export default function ReviewPostFormContainer({ user, firebase, id }) {
 
   const history = useHistory();
 
-  useReview(id);
+  const userData = useFirestore(user && `${user.displayName}`, `reviews`);
+  const globalData = useFirestore(`Reviews`, `${id}`);
 
+  console.log(globalData);
   const onIconClick = () => {
     setVisibleDropdown((prev) => !prev);
   };
@@ -25,34 +31,37 @@ export default function ReviewPostFormContainer({ user, firebase, id }) {
     if (!user) {
       setErrorMessage(["Please, log in to create review"]);
       setErrorModalVisible(true);
-      setTimeout(() => history.push("/"), 3000);
+      setTimeout(() => history.push("/authentication/login"), 3000);
     }
-    const userReview = [
-      { id: id, rating: rating, title: title, textfield: textfield },
-    ];
 
-    const globalReviewInfo = [
-      {
-        rating: rating,
-        title: title,
-        textfield: textfield,
-        nickname: user.displayName,
-      },
-    ];
     firebase
       .firestore()
       .collection(`${user.displayName}`)
       .doc(`reviews`)
-      .update({ list: userReview })
+      .update({
+        list: [
+          ...userData.list,
+          createUserReviewInfo(id, rating, title, textfield),
+        ],
+      })
       .catch((error) => {
         setErrorMessage([error]);
         setErrorModalVisible(true);
       });
+
+    const globalReview = createGlobalReviewInfo(
+      rating,
+      title,
+      textfield,
+      user.displayName,
+    );
     firebase
       .firestore()
       .collection("Reviews")
       .doc(`${id}`)
-      .set({ list: globalReviewInfo })
+      .update({
+        list: [globalReview],
+      })
       .catch((error) => {
         setErrorMessage([error]);
         setErrorModalVisible(true);

@@ -27,7 +27,7 @@ export default function CardDetailsPanelContainer() {
 
   const { firebase } = useContext(AuthContext);
   const { user } = useAuthListener();
-  const { data } = useFirestore(user && `${user.displayName}`, `moviesrated`);
+  const data = useFirestore(user && `${user.displayName}`, `moviesrated`);
 
   const { list, loading } = useFetch(location.direction, location.slug, [
     {

@@ -127,3 +127,11 @@ export const getErrorsList = (data, setErrorsList) => {
   }
   return result;
 };
+
+export const createUserReviewInfo = (id, rating, title, textfield) => {
+  return { id: id, rating: rating, title: title, text: textfield };
+};
+
+export const createGlobalReviewInfo = (rating, title, textfield, nickname) => {
+  return { rating: rating, title: title, text: textfield, nickname: nickname };
+};

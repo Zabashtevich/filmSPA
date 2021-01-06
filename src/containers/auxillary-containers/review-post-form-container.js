@@ -4,9 +4,9 @@ import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
 import { ReviewPostForm } from "../../components";
-import useFirestore from "../../hooks/useFirestore";
 
 import ErrorModalContainer from "./error-modal-container";
+import useReview from "../../hooks/useReview";
 
 export default function ReviewPostFormContainer({ user, firebase, id }) {
   const [visibleDropdown, setVisibleDropdown] = useState(false);
@@ -15,26 +15,44 @@ export default function ReviewPostFormContainer({ user, firebase, id }) {
   const [errorMessage, setErrorMessage] = useState(null);
 
   const history = useHistory();
-  const { data } = useFirestore(user && `${user.displayName}`, `reviews`);
+
+  useReview(id);
 
   const onIconClick = () => {
     setVisibleDropdown((prev) => !prev);
   };
-  const handleReviewPost = ({ title, rating, textfield }) => {
+  const onCreateReview = ({ title, rating, textfield }) => {
     if (!user) {
       setErrorMessage(["Please, log in to create review"]);
       setErrorModalVisible(true);
       setTimeout(() => history.push("/"), 3000);
     }
-    const newData = [
-      ...data.list,
+    const userReview = [
       { id: id, rating: rating, title: title, textfield: textfield },
+    ];
+
+    const globalReviewInfo = [
+      {
+        rating: rating,
+        title: title,
+        textfield: textfield,
+        nickname: user.displayName,
+      },
     ];
     firebase
       .firestore()
       .collection(`${user.displayName}`)
       .doc(`reviews`)
-      .update({ list: newData })
+      .update({ list: userReview })
+      .catch((error) => {
+        setErrorMessage([error]);
+        setErrorModalVisible(true);
+      });
+    firebase
+      .firestore()
+      .collection("Reviews")
+      .doc(`${id}`)
+      .set({ list: globalReviewInfo })
       .catch((error) => {
         setErrorMessage([error]);
         setErrorModalVisible(true);
@@ -65,7 +83,7 @@ export default function ReviewPostFormContainer({ user, firebase, id }) {
           errorModalVisible={errorModalVisible}
         />
       )}
-      <ReviewPostForm.Form onSubmit={handleSubmit(handleReviewPost)}>
+      <ReviewPostForm.Form onSubmit={handleSubmit(onCreateReview)}>
         <ReviewPostForm.Title>Create your review</ReviewPostForm.Title>
         <ReviewPostForm.Wrapper>
           <ReviewPostForm.Nickname>

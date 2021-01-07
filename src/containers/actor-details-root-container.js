@@ -15,9 +15,15 @@ import {
   getKnownFor,
   getRightReleasedDate,
 } from "../utils/utils";
-import ActorRows from "./auxillary-containers/actor-rows";
-import ModalGalleryContainer from "./auxillary-containers/modal-gallery";
-import RelevantListContainer from "./auxillary-containers/relevant-list-container";
+
+import {
+  ModalGalleryContainer,
+  RelevantListContainer,
+  ActorRows,
+} from "./auxillary-containers";
+
+import useFirestore from "../hooks/useFirestore";
+import useAuthListener from "../hooks/useAuthListener";
 
 export default function ActorDetailsRootContainer() {
   const location = useParams();
@@ -26,6 +32,17 @@ export default function ActorDetailsRootContainer() {
   const [itemsCount, setItemsCount] = useState(10);
   const [knownForList, setKnownForList] = useState(null);
   const [visibleGallery, setVisibleGallery] = useState(false);
+  const [userData, setUserData] = useState(null);
+
+  const { user } = useAuthListener();
+
+  const [userLoading] = useFirestore(
+    user && `${user.displayName}`,
+    `moviesrated`,
+    setUserData,
+  );
+
+  console.log(userData);
 
   const { list, loading } = useFetch("person", location.slug, [
     { append_to_response: "credits,images" },
@@ -75,29 +92,34 @@ export default function ActorDetailsRootContainer() {
         />
         <ActorMainColumn.Title>Credits list</ActorMainColumn.Title>
         <ActorMainColumn.CreditsWrapper>
-          {getArrayOfMovies(list.credits.cast)
-            .slice(0, itemsCount)
-            .map((item, index) => {
-              return (
-                <ActorMainColumn.CreditsRow
-                  key={item.credit_id}
-                  onClick={() => history.push(`/details/movie/${item.id}`)}
-                >
-                  <ActorMainColumn.Number>{index + 1}</ActorMainColumn.Number>
-                  <ActorMainColumn.DescriptionWrapper>
-                    <ActorMainColumn.ItemName>
-                      {item.title}
-                    </ActorMainColumn.ItemName>
-                    <ActorMainColumn.Character>
-                      {item.character}
-                    </ActorMainColumn.Character>
-                  </ActorMainColumn.DescriptionWrapper>
-                  <ActorMainColumn.Date>
-                    {getRightReleasedDate(item.release_date)}
-                  </ActorMainColumn.Date>
-                </ActorMainColumn.CreditsRow>
-              );
-            })}
+          {!userLoading &&
+            getArrayOfMovies(list.credits.cast)
+              .slice(0, itemsCount)
+              .map((item, index) => {
+                console.log(item.id);
+                return (
+                  <ActorMainColumn.CreditsRow
+                    key={item.credit_id}
+                    onClick={() => history.push(`/details/movie/${item.id}`)}
+                    backgroundcolor={userData.find(
+                      (card) => card.id === item.id,
+                    )}
+                  >
+                    <ActorMainColumn.Number>{index + 1}</ActorMainColumn.Number>
+                    <ActorMainColumn.DescriptionWrapper>
+                      <ActorMainColumn.ItemName>
+                        {item.title}
+                      </ActorMainColumn.ItemName>
+                      <ActorMainColumn.Character>
+                        {item.character}
+                      </ActorMainColumn.Character>
+                    </ActorMainColumn.DescriptionWrapper>
+                    <ActorMainColumn.Date>
+                      {getRightReleasedDate(item.release_date)}
+                    </ActorMainColumn.Date>
+                  </ActorMainColumn.CreditsRow>
+                );
+              })}
           <LoadMore>
             <LoadMore.Wrapper>
               {itemsCount < list.credits.cast.length ? (

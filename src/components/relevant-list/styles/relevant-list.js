@@ -64,6 +64,7 @@ export const Title = styled.h3`
 
 export const ListContainer = styled.div`
   display: flex;
+  position: relative;
 `;
 
 export const Wrapper = styled.div`

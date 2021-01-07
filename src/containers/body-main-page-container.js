@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 
-import { BodyMain, Slider, CardList, CardListSkeleton } from "../components";
+import { BodyMain, CardList, CardListSkeleton } from "../components";
 import { range, getPaginator, getRightReleasedDate } from "../utils/utils";
 import Data from "../constants/data.json";
 import useFetch from "../hooks/useFetchData";
 import TabsMainPageCotainer from "./tabs-main-page-container";
 import PaginationMainPageContainer from "./pagination-main-page-container";
-import SliderContainer from "./auxillary-containers/slider-container";
+import { SliderContainer } from "./auxillary-containers";
 
 export default function BodyMainContainer() {
   const [sliderIndex, setSliderIndex] = useState(1);

@@ -6,10 +6,7 @@ import { CSSTransition } from "react-transition-group";
 import AuthenticationForm from "../components/authentication-form";
 import { authLogic, getErrorsList } from "../utils/utils";
 import { AuthContext } from "../context/auth-context";
-import {
-  LoginForm,
-  RegistrationForm,
-} from "./auxillary-containers/auth-pages-type";
+import { LoginForm, RegistrationForm } from "./auxillary-containers";
 import LoadingSpinner from "../components/loading-spinner";
 
 export default function AuthenticationPageContainer() {

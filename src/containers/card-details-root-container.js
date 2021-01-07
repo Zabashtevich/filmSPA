@@ -10,9 +10,11 @@ import {
   ModalGallery,
 } from "../components";
 import useFetch from "../hooks/useFetchData";
-import CardRows from "./auxillary-containers/card-rows";
-import ErrorModalContainer from "./auxillary-containers/error-modal-container";
-import ModalGalleryContainer from "./auxillary-containers/modal-gallery";
+import {
+  CardRows,
+  ErrorModalContainer,
+  ModalGalleryContainer,
+} from "./auxillary-containers";
 
 export default function CardDetailsRootContainer() {
   const [visibleGallery, setVisibleGallery] = useState(false);

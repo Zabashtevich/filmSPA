@@ -16,9 +16,11 @@ import {
   getCorrectSrc,
   offsetListener,
 } from "../utils/utils";
-import ErrorModalContainer from "./auxillary-containers/error-modal-container";
-import RelevantListContainer from "./auxillary-containers/relevant-list-container";
-import ReviewPostFormContainer from "./auxillary-containers/review-post-form-container";
+import {
+  ErrorModalContainer,
+  RelevantListContainer,
+  ReviewPostFormContainer,
+} from "./auxillary-containers";
 
 export default function CardDetailsPanelContainer() {
   const [starValue, setStarValue] = useState(0);

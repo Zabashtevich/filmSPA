@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 
 export const Container = styled.div`
   display: flex;
@@ -43,6 +43,11 @@ export const Row = styled.div`
   padding: 2rem 0 2rem 1rem;
   cursor: pointer;
   border-bottom: 1px solid gray;
+  ${({ backgroundcolor }) =>
+    backgroundcolor &&
+    css`
+      background-color: ${({ theme }) => theme.colors.negativeReview};
+    `}
   &:hover {
     background-color: rgba(0, 0, 0, 0.1);
     transition: all 0.1s linear;

@@ -242,7 +242,7 @@ export const authLogic = (
 
 export const offsetListener = () => {
   const offset = window.pageYOffset;
-  if (offset < 2000) {
+  if (offset < 1500) {
     document.body.style.backgroundColor = "#fff";
   } else {
     document.body.style.backgroundColor = "#f2f2f2";

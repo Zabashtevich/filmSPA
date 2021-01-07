@@ -169,7 +169,7 @@ export default function ReviewPostFormContainer({ user, firebase, id }) {
               message: "Your review must be at least 100 characters long",
             },
             maxLength: {
-              value: 2000,
+              value: 4000,
               message: "Your review must contain a maximum of 2000 characters",
             },
           })}

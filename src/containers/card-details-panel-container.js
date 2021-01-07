@@ -11,7 +11,11 @@ import { AuthContext } from "../context/auth-context";
 import useAuthListener from "../hooks/useAuthListener";
 import useFetch from "../hooks/useFetchData";
 import useFirestore from "../hooks/useFirestore";
-import { getCorrectReviewsArray, getCorrectSrc } from "../utils/utils";
+import {
+  getCorrectReviewsArray,
+  getCorrectSrc,
+  offsetListener,
+} from "../utils/utils";
 import ErrorModalContainer from "./auxillary-containers/error-modal-container";
 import RelevantListContainer from "./auxillary-containers/relevant-list-container";
 import ReviewPostFormContainer from "./auxillary-containers/review-post-form-container";
@@ -50,6 +54,8 @@ export default function CardDetailsPanelContainer() {
       const rate = userData.find((item) => item.id === list.id);
       if (rate) setRatedValue(rate.value);
     }
+    const listener = window.addEventListener("scroll", offsetListener);
+    return () => window.removeEventListener("scroll", offsetListener);
   }, [userData, list]);
 
   const showErrorModal = (errorText) => {

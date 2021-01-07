@@ -8,6 +8,7 @@ export const Container = styled.div`
   font-family: ${({ theme }) => theme.fontFamily.secondary};
   color: ${({ theme }) => theme.colors.secondary};
   border-radius: 1rem;
+  background-color: #fff;
 `;
 
 export const Wrapper = styled.div`

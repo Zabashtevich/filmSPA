@@ -3,7 +3,7 @@ import styled from "styled-components/macro";
 import { VscTriangleUp } from "react-icons/vsc";
 
 export const Container = styled.div`
-  max-width: 750px;
+  max-width: 68%;
   margin: 4rem auto;
   font-family: ${({ theme }) => theme.fontFamily.secondary};
 `;
@@ -15,7 +15,7 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #f2f2f2;
+  background-color: #fff;
   border-radius: 1rem;
 `;
 

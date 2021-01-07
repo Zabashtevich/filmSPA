@@ -239,3 +239,12 @@ export const authLogic = (
       setErrorsList(["something gone wrong"]);
   }
 };
+
+export const offsetListener = () => {
+  const offset = window.pageYOffset;
+  if (offset < 2000) {
+    document.body.style.backgroundColor = "#fff";
+  } else {
+    document.body.style.backgroundColor = "#f2f2f2";
+  }
+};

@@ -17,16 +17,15 @@ export default function ReviewPostFormContainer({ user, firebase, id }) {
   const [ratingValue, setRatingValue] = useState("");
   const [errorModalVisible, setErrorModalVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [userData, setUserData] = useState(null);
 
   const history = useHistory();
 
-  const [userData, userLoading] = useFirestore(
+  const [userLoading] = useFirestore(
     user && `${user.displayName}`,
     `reviews`,
+    setUserData,
   );
-  const [globalData, reviewLoading] = useFirestore(`Reviews`, `${id}`);
-
-  console.log(userLoading);
 
   const onIconClick = () => {
     setVisibleDropdown((prev) => !prev);

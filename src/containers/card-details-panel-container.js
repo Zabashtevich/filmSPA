@@ -21,6 +21,8 @@ export default function CardDetailsPanelContainer() {
   const [ratedValue, setRatedValue] = useState(0);
   const [errorModalVisible, setErrorModalVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [reviewData, setReviewData] = useState(null);
+  const [userData, setUserData] = useState(null);
 
   const location = useParams();
   const history = useHistory();
@@ -36,14 +38,12 @@ export default function CardDetailsPanelContainer() {
 
   const { user } = useAuthListener();
 
-  const [userData, userLoading] = useFirestore(
+  const [userLoading] = useFirestore(
     user && `${user.displayName}`,
     `moviesrated`,
+    setUserData,
   );
-  const [reviewData, reviewLoading] = useFirestore(
-    "Reviews",
-    list && `${list.id}`,
-  );
+  const [reviewLoading] = useFirestore("Reviews", location.slug, setReviewData);
 
   useEffect(() => {
     if (userData && userData.length > 0 && list) {
@@ -118,35 +118,37 @@ export default function CardDetailsPanelContainer() {
       />
       <ReviewsList>
         <ReviewsList.Title>Reviews</ReviewsList.Title>
-        {list.reviews.results.length !== 0 ? (
+        {!reviewLoading && list.reviews.results.length !== 0 ? (
           <>
-            {getCorrectReviewsArray(list.reviews.results).map((item) => {
-              const correctSrc =
-                item.avatar === null || item.avatar.includes("https")
-                  ? getCorrectSrc(item.avatar)
-                  : item.avatar;
+            {getCorrectReviewsArray(list.reviews.results)
+              .concat(reviewData)
+              .map((item) => {
+                const correctSrc =
+                  item.avatar === null || item.avatar.includes("https")
+                    ? getCorrectSrc(item.avatar)
+                    : item.avatar;
 
-              return (
-                <ReviewsList.ItemContainer key={item.nickname}>
-                  <ReviewsList.Author>
-                    <ReviewsList.Avatar
-                      src={correctSrc.changed ? null : correctSrc}
-                      correctSrc={correctSrc.changed ? correctSrc.src : null}
-                    />
-                    <ReviewsList.Score>{item.rating}</ReviewsList.Score>
-                    <ReviewsList.Wrapper>
-                      <ReviewsList.Nickname>
-                        {item.nickname}
-                      </ReviewsList.Nickname>
-                      <ReviewsList.Date>
-                        {new Date(item.date).toDateString()}
-                      </ReviewsList.Date>
-                    </ReviewsList.Wrapper>
-                  </ReviewsList.Author>
-                  <ReviewsList.Content>{item.text}</ReviewsList.Content>
-                </ReviewsList.ItemContainer>
-              );
-            })}
+                return (
+                  <ReviewsList.ItemContainer key={item.nickname}>
+                    <ReviewsList.Author>
+                      <ReviewsList.Avatar
+                        src={correctSrc.changed ? null : correctSrc}
+                        correctSrc={correctSrc.changed ? correctSrc.src : null}
+                      />
+                      <ReviewsList.Score>{item.rating}</ReviewsList.Score>
+                      <ReviewsList.Wrapper>
+                        <ReviewsList.Nickname>
+                          {item.nickname}
+                        </ReviewsList.Nickname>
+                        <ReviewsList.Date>
+                          {new Date(item.date).toDateString()}
+                        </ReviewsList.Date>
+                      </ReviewsList.Wrapper>
+                    </ReviewsList.Author>
+                    <ReviewsList.Content>{item.text}</ReviewsList.Content>
+                  </ReviewsList.ItemContainer>
+                );
+              })}
           </>
         ) : (
           <ReviewsList.ItemContainer>

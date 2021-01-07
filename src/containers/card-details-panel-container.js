@@ -127,15 +127,19 @@ export default function CardDetailsPanelContainer() {
                   item.avatar === null || item.avatar.includes("https")
                     ? getCorrectSrc(item.avatar)
                     : item.avatar;
-
                 return (
-                  <ReviewsList.ItemContainer key={item.nickname}>
+                  <ReviewsList.ItemContainer
+                    key={item.nickname}
+                    backdroundcolor={item.rating}
+                  >
                     <ReviewsList.Author>
                       <ReviewsList.Avatar
                         src={correctSrc.changed ? null : correctSrc}
                         correctSrc={correctSrc.changed ? correctSrc.src : null}
                       />
-                      <ReviewsList.Score>{item.rating}</ReviewsList.Score>
+                      {item.rating && (
+                        <ReviewsList.Score>{item.rating}</ReviewsList.Score>
+                      )}
                       <ReviewsList.Wrapper>
                         <ReviewsList.Nickname>
                           {item.nickname}

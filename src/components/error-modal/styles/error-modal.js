@@ -34,7 +34,7 @@ export const Wrapper = styled.div`
   height: 80%;
   display: flex;
   flex-direction: column;
-  background-color: #d45659;
+  background-color: ${({ theme }) => theme.colors.error};
   z-index: 100;
 `;
 

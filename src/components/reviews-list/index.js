@@ -16,50 +16,53 @@ import {
   NoReviews,
 } from "./styles/reviews-list";
 
-export default function ReviewsList({ children }) {
-  return <Container>{children}</Container>;
+export default function ReviewsList({ children, ...rest }) {
+  return <Container {...rest}>{children}</Container>;
 }
 
-ReviewsList.Wrapper = function ReviewsListWrapper({ children }) {
-  return <Wrapper>{children}</Wrapper>;
+ReviewsList.Wrapper = function ReviewsListWrapper({ children, ...rest }) {
+  return <Wrapper {...rest}>{children}</Wrapper>;
 };
 
-ReviewsList.Author = function ReviewsListAuthor({ children }) {
-  return <Author>{children}</Author>;
+ReviewsList.Author = function ReviewsListAuthor({ children, ...rest }) {
+  return <Author {...rest}>{children}</Author>;
 };
 
-ReviewsList.Content = function ReviewsListContent({ children }) {
+ReviewsList.Content = function ReviewsListContent({ children, ...rest }) {
   return (
-    <ContentWrapper>
+    <ContentWrapper {...rest}>
       <Content>{children}</Content>
     </ContentWrapper>
   );
 };
 
-ReviewsList.ItemContainer = function ReviewsListContainer({ children }) {
-  return <ItemContainer>{children}</ItemContainer>;
+ReviewsList.ItemContainer = function ReviewsListContainer({
+  children,
+  ...rest
+}) {
+  return <ItemContainer {...rest}>{children}</ItemContainer>;
 };
 
-ReviewsList.Date = function ReviewsListDate({ children }) {
-  return <Date>{children}</Date>;
+ReviewsList.Date = function ReviewsListDate({ children, ...rest }) {
+  return <Date {...rest}>{children}</Date>;
 };
 
-ReviewsList.Nickname = function ReviewsListNickname({ children }) {
-  return <Nickname>{children}</Nickname>;
+ReviewsList.Nickname = function ReviewsListNickname({ children, ...rest }) {
+  return <Nickname {...rest}>{children}</Nickname>;
 };
 
-ReviewsList.Avatar = function ReviewsListAvatar({ src, correctSrc }) {
+ReviewsList.Avatar = function ReviewsListAvatar({ src, correctSrc, ...rest }) {
   return <Avatar src={src ? baseAuthorImageLink + src : correctSrc} />;
 };
 
-ReviewsList.Score = function ReviewsListScore({ children }) {
-  return <Score>{children}</Score>;
+ReviewsList.Score = function ReviewsListScore({ children, ...rest }) {
+  return <Score {...rest}>{children}</Score>;
 };
 
-ReviewsList.Title = function ReviewsListTitle({ children }) {
-  return <Title>{children}</Title>;
+ReviewsList.Title = function ReviewsListTitle({ children, ...rest }) {
+  return <Title {...rest}>{children}</Title>;
 };
 
-ReviewsList.NoReviews = function ReviewsListNoReviews() {
-  return <NoReviews>{"No reviews"}</NoReviews>;
+ReviewsList.NoReviews = function ReviewsListNoReviews(...rest) {
+  return <NoReviews {...rest}>{"No reviews"}</NoReviews>;
 };

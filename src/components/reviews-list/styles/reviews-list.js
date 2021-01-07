@@ -1,12 +1,13 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 
 export const Container = styled.div`
+  padding: 1rem 4rem;
   max-width: 750px;
-
-  margin: 0 auto;
+  margin: 2rem auto;
   min-height: 30rem;
   font-family: ${({ theme }) => theme.fontFamily.secondary};
   color: ${({ theme }) => theme.colors.secondary};
+  border-radius: 1rem;
 `;
 
 export const Wrapper = styled.div`
@@ -27,11 +28,27 @@ export const Content = styled.span`
 `;
 
 export const ItemContainer = styled.div`
-  background: ${({ theme }) => theme.colors.reviewsBackground};
   border-radius: 1rem;
   border-top: 1rem;
   margin-top: 2rem;
   min-height: 200px;
+  background-color: #fff;
+  ${({ backdroundcolor }) =>
+    backdroundcolor <= 4 &&
+    css`
+      background-color: ${({ theme }) => theme.colors.negativeReview};
+    `}
+  ${({ backdroundcolor }) =>
+    backdroundcolor >= 6 &&
+    css`
+      background-color: ${({ theme }) => theme.colors.positiveReview};
+    `}
+    ${({ backdroundcolor }) =>
+    backdroundcolor === null ||
+    (backdroundcolor === 5 &&
+      css`
+        background-color: ${({ theme }) => theme.colors.reviewsBackground};
+      `)}
 `;
 
 export const ContentWrapper = styled.div`

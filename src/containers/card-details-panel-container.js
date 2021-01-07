@@ -33,13 +33,21 @@ export default function CardDetailsPanelContainer() {
   ]);
 
   const { firebase } = useContext(AuthContext);
+
   const { user } = useAuthListener();
-  const [userData] = useFirestore(user && `${user.displayName}`, `moviesrated`);
-  const [reviewData] = useFirestore("Reviews", list && `${list.id}`);
+
+  const [userData, userLoading] = useFirestore(
+    user && `${user.displayName}`,
+    `moviesrated`,
+  );
+  const [reviewData, reviewLoading] = useFirestore(
+    "Reviews",
+    list && `${list.id}`,
+  );
 
   useEffect(() => {
-    if (userData !== null && userData.length > 0 && list) {
-      const rate = userData.list.find((item) => item.id === list.id);
+    if (userData && userData.length > 0 && list) {
+      const rate = userData.find((item) => item.id === list.id);
       if (rate) setRatedValue(rate.value);
     }
   }, [userData, list]);
@@ -60,7 +68,7 @@ export default function CardDetailsPanelContainer() {
     if (user === null) {
       history.push("/authentication/login");
     } else {
-      const newuserData = [...userData.list, { id: itemID, value: rateScore }];
+      const newuserData = [...userData, { id: itemID, value: rateScore }];
       firebase
         .firestore()
         .collection(`${user.displayName}`)

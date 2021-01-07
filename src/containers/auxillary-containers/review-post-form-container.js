@@ -43,8 +43,8 @@ export default function ReviewPostFormContainer({ user, firebase, id }) {
       .doc(`reviews`)
       .update({
         list: [
-          ...userData.list,
-          createUserReviewInfo(id, rating, title, textfield),
+          ...userData,
+          createUserReviewInfo(id, +rating, title, textfield),
         ],
       })
       .catch((error) => {

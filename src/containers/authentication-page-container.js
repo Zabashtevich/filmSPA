@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { CSSTransition } from "react-transition-group";
 
 import AuthenticationForm from "../components/authentication-form";
-import { getErrorsList } from "../utils/utils";
+import { authLogic, getErrorsList } from "../utils/utils";
 import { AuthContext } from "../context/auth-context";
 import {
   LoginForm,
@@ -30,75 +30,18 @@ export default function AuthenticationPageContainer() {
   }, [errors, setErrorsList]);
 
   const onSubmit = ({ nickname, email, password, repeatPassword }) => {
-    setUserLoading(true);
-    switch (location.slug) {
-      case "login":
-        firebase
-          .auth()
-          .signInWithEmailAndPassword(email, password)
-          .then(() => {
-            history.push("/");
-          })
-          .catch(({ message }) => {
-            setErrorsList([message]);
-            setUserLoading(false);
-          });
-        break;
-      case "registration":
-        repeatPassword !== password
-          ? getErrorsList(repeatPassword, setErrorsList)
-          : setErrorsList(null);
-        firebase
-          .auth()
-          .createUserWithEmailAndPassword(email, password)
-          .then((result) => {
-            result.user
-              .updateProfile({
-                displayName: nickname,
-              })
-              .then(() => {
-                firebase
-                  .firestore()
-                  .collection(`${nickname}`)
-                  .doc(`moviesrated`)
-                  .set({ list: [] })
-                  .catch(() => {
-                    setUserLoading(false);
-                    setErrorsList([`something gone wrong`]);
-                  });
-                firebase
-                  .firestore()
-                  .collection(`${nickname}`)
-                  .doc(`collection`)
-                  .set({ list: [] })
-                  .catch(() => {
-                    setUserLoading(false);
-                    setErrorsList([`something gone wrong`]);
-                  });
-                firebase
-                  .firestore()
-                  .collection(`${nickname}`)
-                  .doc(`reviews`)
-                  .set({ list: [] })
-                  .catch(() => {
-                    setUserLoading(false);
-                    setErrorsList([`something gone wrong`]);
-                  })
-                  .then(() => {
-                    setUserLoading(false);
-                    setUserRedirect(true);
-                  });
-              });
-          })
-          .catch(({ message }) => {
-            setErrorsList([message]);
-            setUserLoading(false);
-          });
-
-        break;
-      default:
-        setErrorsList(["something gone wrong"]);
-    }
+    authLogic(
+      setUserLoading,
+      location.slug,
+      firebase,
+      nickname,
+      email,
+      password,
+      repeatPassword,
+      setErrorsList,
+      setUserRedirect,
+      history,
+    );
   };
 
   return (

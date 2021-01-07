@@ -133,7 +133,14 @@ export const createUserReviewInfo = (id, rating, title, textfield) => {
 };
 
 export const createGlobalReviewInfo = (rating, title, textfield, nickname) => {
-  return { rating: rating, title: title, text: textfield, nickname: nickname };
+  return {
+    rating: +rating,
+    title: title,
+    text: textfield,
+    nickname: nickname,
+    avatar: null,
+    date: 0,
+  };
 };
 
 export const getCorrectReviewsArray = (array) => {
@@ -148,4 +155,87 @@ export const getCorrectReviewsArray = (array) => {
     });
   });
   return result;
+};
+
+export const authLogic = (
+  setUserLoading,
+  slug,
+  firebase,
+  nickname,
+  email,
+  password,
+  repeatPassword,
+  setErrorsList,
+  setUserRedirect,
+  history,
+) => {
+  setUserLoading(true);
+  switch (slug) {
+    case "login":
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password)
+        .then(() => {
+          history.push("/");
+        })
+        .catch(({ message }) => {
+          setErrorsList([message]);
+          setUserLoading(false);
+        });
+      break;
+    case "registration":
+      repeatPassword !== password
+        ? getErrorsList(repeatPassword, setErrorsList)
+        : setErrorsList(null);
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then((result) => {
+          result.user
+            .updateProfile({
+              displayName: nickname,
+            })
+            .then(() => {
+              firebase
+                .firestore()
+                .collection(`${nickname}`)
+                .doc(`moviesrated`)
+                .set({ list: [] })
+                .catch(() => {
+                  setUserLoading(false);
+                  setErrorsList([`something gone wrong`]);
+                });
+              firebase
+                .firestore()
+                .collection(`${nickname}`)
+                .doc(`collection`)
+                .set({ list: [] })
+                .catch(() => {
+                  setUserLoading(false);
+                  setErrorsList([`something gone wrong`]);
+                });
+              firebase
+                .firestore()
+                .collection(`${nickname}`)
+                .doc(`reviews`)
+                .set({ list: [] })
+                .catch(() => {
+                  setUserLoading(false);
+                  setErrorsList([`something gone wrong`]);
+                })
+                .then(() => {
+                  setUserLoading(false);
+                  setUserRedirect(true);
+                });
+            });
+        })
+        .catch(({ message }) => {
+          setErrorsList([message]);
+          setUserLoading(false);
+        });
+
+      break;
+    default:
+      setErrorsList(["something gone wrong"]);
+  }
 };

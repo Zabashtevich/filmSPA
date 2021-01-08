@@ -7,10 +7,7 @@ import useFirestore from "../../../hooks/useFirestore";
 
 import { ReviewPostForm } from "../../../components";
 import ErrorModalContainer from "./error-modal-container";
-import {
-  createGlobalReviewInfo,
-  createUserReviewInfo,
-} from "../../../utils/utils";
+import { postReviewLogic } from "../../../utils/firebase";
 
 export default function ReviewPostFormContainer({ user, firebase, id }) {
   const [visibleDropdown, setVisibleDropdown] = useState(false);
@@ -18,6 +15,7 @@ export default function ReviewPostFormContainer({ user, firebase, id }) {
   const [errorModalVisible, setErrorModalVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const [userData, setUserData] = useState(null);
+  const [reviewData, setReviewData] = useState(null);
 
   const history = useHistory();
 
@@ -27,48 +25,24 @@ export default function ReviewPostFormContainer({ user, firebase, id }) {
     setUserData,
   );
 
+  const [reviewLoading] = useFirestore(`Reviews`, id, setReviewData);
+
   const onIconClick = () => {
     setVisibleDropdown((prev) => !prev);
   };
-  const onCreateReview = ({ title, rating, textfield }) => {
-    if (!user) {
-      setErrorMessage(["Please, log in to create review"]);
-      setErrorModalVisible(true);
-      setTimeout(() => history.push("/authentication/login"), 3000);
-    }
-
-    firebase
-      .firestore()
-      .collection(`${user.displayName}`)
-      .doc(`reviews`)
-      .update({
-        list: [
-          ...userData,
-          createUserReviewInfo(id, +rating, title, textfield),
-        ],
-      })
-      .catch((error) => {
-        setErrorMessage([error]);
-        setErrorModalVisible(true);
-      });
-
-    const globalReview = createGlobalReviewInfo(
+  const onPostReview = ({ title, rating, textfield }) => {
+    postReviewLogic(
+      user,
+      setErrorMessage,
+      setErrorModalVisible,
+      history,
+      firebase,
+      userData,
+      id,
+      textfield,
       rating,
       title,
-      textfield,
-      user.displayName,
     );
-    firebase
-      .firestore()
-      .collection("Reviews")
-      .doc(`${id}`)
-      .update({
-        list: [globalReview],
-      })
-      .catch((error) => {
-        setErrorMessage([error]);
-        setErrorModalVisible(true);
-      });
   };
 
   const { register, handleSubmit, errors } = useForm();
@@ -95,7 +69,7 @@ export default function ReviewPostFormContainer({ user, firebase, id }) {
           errorModalVisible={errorModalVisible}
         />
       )}
-      <ReviewPostForm.Form onSubmit={handleSubmit(onCreateReview)}>
+      <ReviewPostForm.Form onSubmit={handleSubmit(onPostReview)}>
         <ReviewPostForm.Title>Create your review</ReviewPostForm.Title>
         <ReviewPostForm.Wrapper>
           <ReviewPostForm.Nickname>
@@ -174,7 +148,9 @@ export default function ReviewPostFormContainer({ user, firebase, id }) {
             },
           })}
         />
-        <ReviewPostForm.Button type="submit">PUBLIC</ReviewPostForm.Button>
+        <ReviewPostForm.Button type="submit" disabled={!reviewLoading}>
+          PUBLIC
+        </ReviewPostForm.Button>
       </ReviewPostForm.Form>
     </ReviewPostForm>
   );

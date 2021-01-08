@@ -60,10 +60,14 @@ export const Button = styled.button`
   border: 1px solid darkgray;
   font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
   font-size: ${({ theme }) => theme.fontSize.large};
-  &:hover {
+  &:enabled:hover {
     color: ${({ theme }) => theme.colors.secondary};
     background-color: #fff;
     transition: 250ms;
+  }
+  &:disabled {
+    cursor: not-allowed;
+    background-color: darkgray;
   }
 `;
 

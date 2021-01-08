@@ -111,12 +111,13 @@ export const postReviewLogic = (
     textfield,
     user.displayName,
   );
+  console.log("id", id);
 
   const userInfo = createUserReviewInfo(id, +rating, title, textfield);
   if (userData.find((item) => item.id === id)) {
+    console.log("user est");
     const userIndex = userData.indexOf(userData.find((item) => item.id === id));
     userData[userIndex] = userInfo;
-    console.log(userData);
 
     firebase
       .firestore()
@@ -141,6 +142,7 @@ export const postReviewLogic = (
     //     setErrorModalVisible(true);
     //   });
   } else {
+    alert(userData, userInfo);
     firebase
       .firestore()
       .collection(`${user.displayName}`)
@@ -153,16 +155,16 @@ export const postReviewLogic = (
         setErrorModalVisible(true);
       });
 
-    firebase
-      .firestore()
-      .collection("Reviews")
-      .doc(`${id}`)
-      .update({
-        list: [...reviewData, globalReview],
-      })
-      .catch((error) => {
-        setErrorMessage([error]);
-        setErrorModalVisible(true);
-      });
+    // firebase
+    //   .firestore()
+    //   .collection("Reviews")
+    //   .doc(`${id}`)
+    //   .update({
+    //     list: [...reviewData, globalReview],
+    //   })
+    //   .catch((error) => {
+    //     setErrorMessage([error]);
+    //     setErrorModalVisible(true);
+    //   });
   }
 };

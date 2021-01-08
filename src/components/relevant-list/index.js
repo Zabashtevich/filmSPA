@@ -29,7 +29,9 @@ RelevantList.Miniature = function RelevantListMiniature({ src }) {
   return (
     <Miniature
       src={
-        src ? relevantImageLink + src : "../assets/images/image-not-found.jpg"
+        src
+          ? relevantImageLink + src
+          : "../../assets/images/image-not-found.jpg"
       }
       imageUndefined={src ? false : true}
     />

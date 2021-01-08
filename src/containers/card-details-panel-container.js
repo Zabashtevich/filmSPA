@@ -33,12 +33,7 @@ export default function CardDetailsPanelContainer() {
   const location = useParams();
   const history = useHistory();
 
-  const { list, loading } = useFetch(location.direction, location.slug, [
-    {
-      append_to_response:
-        "credits,recommendations,images,videos,reviews,account_states",
-    },
-  ]);
+  console.log(location.slug);
 
   const { firebase } = useContext(AuthContext);
 
@@ -51,7 +46,15 @@ export default function CardDetailsPanelContainer() {
   );
   const [reviewLoading] = useFirestore("Reviews", location.slug, setReviewData);
 
+  const { list, loading } = useFetch(location.direction, location.slug, [
+    {
+      append_to_response:
+        "credits,recommendations,images,videos,reviews,account_states",
+    },
+  ]);
+
   useEffect(() => {
+    console.log("sdfd");
     if (userData && userData.length > 0 && list) {
       const rate = userData.find((item) => item.id === list.id);
       if (rate) setRatedValue(rate.value);

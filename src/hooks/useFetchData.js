@@ -6,12 +6,11 @@ export default function useFetch(paths, searchParam, ...rest) {
   const [list, setList] = useState();
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [fetchingData, setFetchingData] = useState(false);
 
   const querry = getQuerry(...rest);
-
   useEffect(() => {
-    if (!fetchingData) {
+    let isMounted = true;
+    if (isMounted) {
       setLoading(true);
       fetch(
         `${fetchBaseUrl}${paths}/${searchParam}?api_key=${process.env.REACT_APP_API_KEY}${querry}`,
@@ -29,8 +28,8 @@ export default function useFetch(paths, searchParam, ...rest) {
 
     return () => {
       setLoading(false);
-      setFetchingData(true);
+      isMounted = false;
     };
-  }, [searchParam, paths, querry, fetchingData]);
+  }, [searchParam, paths, querry]);
   return { list, loading, error };
 }

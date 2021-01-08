@@ -32,17 +32,13 @@ export default function ActorDetailsRootContainer() {
   const [itemsCount, setItemsCount] = useState(10);
   const [knownForList, setKnownForList] = useState(null);
   const [visibleGallery, setVisibleGallery] = useState(false);
-  const [userData, setUserData] = useState(null);
 
   const { user } = useAuthListener();
 
-  const [userLoading] = useFirestore(
+  const [userLoading, userData] = useFirestore(
     user && `${user.displayName}`,
     `moviesrated`,
-    setUserData,
   );
-
-  console.log(userData);
 
   const { list, loading } = useFetch("person", location.slug, [
     { append_to_response: "credits,images" },

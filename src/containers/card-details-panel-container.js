@@ -27,24 +27,19 @@ export default function CardDetailsPanelContainer() {
   const [ratedValue, setRatedValue] = useState(0);
   const [errorModalVisible, setErrorModalVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
-  const [reviewData, setReviewData] = useState([]);
-  const [userData, setUserData] = useState([]);
 
   const location = useParams();
   const history = useHistory();
-
-  console.log(location.slug);
 
   const { firebase } = useContext(AuthContext);
 
   const { user } = useAuthListener();
 
-  const [userLoading] = useFirestore(
+  const [userLoading, userData] = useFirestore(
     user && `${user.displayName}`,
     `moviesrated`,
-    setUserData,
   );
-  const [reviewLoading] = useFirestore("Reviews", location.slug, setReviewData);
+  const [reviewLoading, reviewData] = useFirestore("Reviews", location.slug);
 
   const { list, loading } = useFetch(location.direction, location.slug, [
     {
@@ -54,7 +49,6 @@ export default function CardDetailsPanelContainer() {
   ]);
 
   useEffect(() => {
-    console.log("sdfd");
     if (userData && userData.length > 0 && list) {
       const rate = userData.find((item) => item.id === list.id);
       if (rate) setRatedValue(rate.value);
@@ -180,7 +174,12 @@ export default function CardDetailsPanelContainer() {
           errorModalVisible={errorModalVisible}
         />
       )}
-      <ReviewPostFormContainer user={user} firebase={firebase} id={list.id} />
+      <ReviewPostFormContainer
+        user={user}
+        firebase={firebase}
+        id={location.slug}
+        userData={userData}
+      />
     </DetailsPanel>
   ) : null;
 }

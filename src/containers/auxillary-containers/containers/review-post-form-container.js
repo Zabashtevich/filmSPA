@@ -9,24 +9,27 @@ import { ReviewPostForm } from "../../../components";
 import ErrorModalContainer from "./error-modal-container";
 import { postReviewLogic } from "../../../utils/firebase";
 
-export default function ReviewPostFormContainer({ user, firebase, id }) {
+export default function ReviewPostFormContainer({
+  user,
+  firebase,
+  id,
+  userData,
+}) {
   const [visibleDropdown, setVisibleDropdown] = useState(false);
   const [ratingValue, setRatingValue] = useState("");
   const [errorModalVisible, setErrorModalVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
-  const [reviewData, setReviewData] = useState([]);
 
   const history = useHistory();
 
-  const [userLoading, userData] = useFirestore(user.displayName, `reviews`);
-
-  const [reviewLoading] = useFirestore(`Reviews`, id, setReviewData);
+  const [reviewLoading, reviewData] = useFirestore(`Reviews`, id);
 
   const onIconClick = () => {
     setVisibleDropdown((prev) => !prev);
   };
 
   const onPostReview = ({ title, rating, textfield }) => {
+    console.log(id);
     postReviewLogic(
       user,
       setErrorMessage,

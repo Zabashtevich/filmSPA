@@ -3,12 +3,13 @@ import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../context/auth-context";
 
 export default function useFirestore(collectionTarget, docTarget) {
-  const [gettingData, setGettingData] = useState(false);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const { firebase } = useContext(AuthContext);
+  console.log(data, docTarget);
   useEffect(() => {
-    if (!loading) return;
+    let mounted = true;
+    if (!mounted) return;
     firebase
       .firestore()
       .collection(`${collectionTarget}`)
@@ -24,9 +25,9 @@ export default function useFirestore(collectionTarget, docTarget) {
         }
       });
     return () => {
-      setGettingData(true);
+      mounted = false;
     };
-  }, []);
+  }, [docTarget, collectionTarget]);
 
   return [loading, data];
 }

@@ -111,13 +111,19 @@ export const postReviewLogic = (
     textfield,
     user.displayName,
   );
-  console.log("id", id);
 
   const userInfo = createUserReviewInfo(id, +rating, title, textfield);
-  if (userData.find((item) => item.id === id)) {
-    console.log("user est");
+  if (
+    userData.find((item) => item.id === id) &&
+    reviewData.find((item) => item.nickname === user.displayName)
+  ) {
     const userIndex = userData.indexOf(userData.find((item) => item.id === id));
     userData[userIndex] = userInfo;
+
+    const globalIndex = reviewData.indexOf(
+      reviewData.find((item) => item.nickname === user.displayName),
+    );
+    reviewData[globalIndex] = globalReview;
 
     firebase
       .firestore()
@@ -130,19 +136,18 @@ export const postReviewLogic = (
         setErrorMessage([error]);
         setErrorModalVisible(true);
       });
-    // firebase
-    //   .firestore()
-    //   .collection("Reviews")
-    //   .doc(`${id}`)
-    //   .update({
-    //     list: [...reviewData, globalReview],
-    //   })
-    //   .catch((error) => {
-    //     setErrorMessage([error]);
-    //     setErrorModalVisible(true);
-    //   });
+    firebase
+      .firestore()
+      .collection("Reviews")
+      .doc(`${id}`)
+      .update({
+        list: reviewData,
+      })
+      .catch((error) => {
+        setErrorMessage([error]);
+        setErrorModalVisible(true);
+      });
   } else {
-    alert(userData, userInfo);
     firebase
       .firestore()
       .collection(`${user.displayName}`)
@@ -154,17 +159,16 @@ export const postReviewLogic = (
         setErrorMessage([error]);
         setErrorModalVisible(true);
       });
-
-    // firebase
-    //   .firestore()
-    //   .collection("Reviews")
-    //   .doc(`${id}`)
-    //   .update({
-    //     list: [...reviewData, globalReview],
-    //   })
-    //   .catch((error) => {
-    //     setErrorMessage([error]);
-    //     setErrorModalVisible(true);
-    //   });
+    firebase
+      .firestore()
+      .collection("Reviews")
+      .doc(`${id}`)
+      .set({
+        list: [...reviewData, globalReview],
+      })
+      .catch((error) => {
+        setErrorMessage([error]);
+        setErrorModalVisible(true);
+      });
   }
 };

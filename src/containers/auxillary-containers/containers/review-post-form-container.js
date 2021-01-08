@@ -3,14 +3,14 @@ import { CSSTransition } from "react-transition-group";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
-import useFirestore from "../../hooks/useFirestore";
+import useFirestore from "../../../hooks/useFirestore";
 
-import { ReviewPostForm } from "../../components";
+import { ReviewPostForm } from "../../../components";
 import ErrorModalContainer from "./error-modal-container";
 import {
   createGlobalReviewInfo,
   createUserReviewInfo,
-} from "../../utils/utils";
+} from "../../../utils/utils";
 
 export default function ReviewPostFormContainer({ user, firebase, id }) {
   const [visibleDropdown, setVisibleDropdown] = useState(false);

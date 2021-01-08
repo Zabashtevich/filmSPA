@@ -2,7 +2,7 @@ import React from "react";
 import { CSSTransition } from "react-transition-group";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
-import { Slider } from "../../components";
+import { Slider } from "../../../components";
 
 export default function SliderContainer({
   setSliderIndex,

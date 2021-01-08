@@ -27,8 +27,8 @@ export default function CardDetailsPanelContainer() {
   const [ratedValue, setRatedValue] = useState(0);
   const [errorModalVisible, setErrorModalVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
-  const [reviewData, setReviewData] = useState(null);
-  const [userData, setUserData] = useState(null);
+  const [reviewData, setReviewData] = useState([]);
+  const [userData, setUserData] = useState([]);
 
   const location = useParams();
   const history = useHistory();
@@ -85,6 +85,7 @@ export default function CardDetailsPanelContainer() {
         .catch((error) => showErrorModal(error));
     }
   };
+
   return list ? (
     <DetailsPanel>
       <DetailsPanel.ContentWrapper>

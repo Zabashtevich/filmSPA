@@ -98,40 +98,71 @@ export const postReviewLogic = (
   textfield,
   rating,
   title,
+  reviewData,
 ) => {
   if (!user) {
     setErrorMessage(["Please, log in to create review"]);
     setErrorModalVisible(true);
     setTimeout(() => history.push("/authentication/login"), 3000);
   }
-
-  firebase
-    .firestore()
-    .collection(`${user.displayName}`)
-    .doc(`reviews`)
-    .update({
-      list: [...userData, createUserReviewInfo(id, +rating, title, textfield)],
-    })
-    .catch((error) => {
-      setErrorMessage([error]);
-      setErrorModalVisible(true);
-    });
-
   const globalReview = createGlobalReviewInfo(
     rating,
     title,
     textfield,
     user.displayName,
   );
-  firebase
-    .firestore()
-    .collection("Reviews")
-    .doc(`${id}`)
-    .update({
-      list: [globalReview],
-    })
-    .catch((error) => {
-      setErrorMessage([error]);
-      setErrorModalVisible(true);
-    });
+
+  const userInfo = createUserReviewInfo(id, +rating, title, textfield);
+  if (userData.find((item) => item.id === id)) {
+    const userIndex = userData.indexOf(userData.find((item) => item.id === id));
+    userData[userIndex] = userInfo;
+    console.log(userData);
+
+    firebase
+      .firestore()
+      .collection(`${user.displayName}`)
+      .doc(`reviews`)
+      .update({
+        list: userData,
+      })
+      .catch((error) => {
+        setErrorMessage([error]);
+        setErrorModalVisible(true);
+      });
+    // firebase
+    //   .firestore()
+    //   .collection("Reviews")
+    //   .doc(`${id}`)
+    //   .update({
+    //     list: [...reviewData, globalReview],
+    //   })
+    //   .catch((error) => {
+    //     setErrorMessage([error]);
+    //     setErrorModalVisible(true);
+    //   });
+  } else {
+    firebase
+      .firestore()
+      .collection(`${user.displayName}`)
+      .doc(`reviews`)
+      .update({
+        list: [...userData, userInfo],
+      })
+      .catch((error) => {
+        setErrorMessage([error]);
+        setErrorModalVisible(true);
+      });
+
+    firebase
+      .firestore()
+      .collection("Reviews")
+      .doc(`${id}`)
+      .update({
+        list: [...reviewData, globalReview],
+      })
+      .catch((error) => {
+        setErrorMessage([error]);
+        setErrorModalVisible(true);
+      });
+  }
 };

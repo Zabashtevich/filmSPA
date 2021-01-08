@@ -14,22 +14,18 @@ export default function ReviewPostFormContainer({ user, firebase, id }) {
   const [ratingValue, setRatingValue] = useState("");
   const [errorModalVisible, setErrorModalVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
-  const [userData, setUserData] = useState(null);
-  const [reviewData, setReviewData] = useState(null);
+  const [reviewData, setReviewData] = useState([]);
 
   const history = useHistory();
 
-  const [userLoading] = useFirestore(
-    user && `${user.displayName}`,
-    `reviews`,
-    setUserData,
-  );
+  const [userLoading, userData] = useFirestore(user.displayName, `reviews`);
 
   const [reviewLoading] = useFirestore(`Reviews`, id, setReviewData);
 
   const onIconClick = () => {
     setVisibleDropdown((prev) => !prev);
   };
+
   const onPostReview = ({ title, rating, textfield }) => {
     postReviewLogic(
       user,
@@ -42,6 +38,7 @@ export default function ReviewPostFormContainer({ user, firebase, id }) {
       textfield,
       rating,
       title,
+      reviewData,
     );
   };
 
@@ -148,7 +145,7 @@ export default function ReviewPostFormContainer({ user, firebase, id }) {
             },
           })}
         />
-        <ReviewPostForm.Button type="submit" disabled={!reviewLoading}>
+        <ReviewPostForm.Button type="submit" disabled={reviewLoading}>
           PUBLIC
         </ReviewPostForm.Button>
       </ReviewPostForm.Form>

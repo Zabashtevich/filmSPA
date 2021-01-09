@@ -27,9 +27,9 @@ export default function ReviewPostFormContainer({
   const onIconClick = () => {
     setVisibleDropdown((prev) => !prev);
   };
+  console.log(reviewData);
 
   const onPostReview = ({ title, rating, textfield }) => {
-    console.log(id);
     postReviewLogic(
       user,
       setErrorMessage,

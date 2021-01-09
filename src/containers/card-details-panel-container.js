@@ -35,10 +35,16 @@ export default function CardDetailsPanelContainer() {
 
   const { user } = useAuthListener();
 
-  const [userLoading, userData] = useFirestore(
+  const [userRatingLoading, userRatingData] = useFirestore(
     user && `${user.displayName}`,
     `moviesrated`,
   );
+
+  const [userReviewLoading, userReviewData] = useFirestore(
+    user && `${user.displayName}`,
+    `reviews`,
+  );
+
   const [reviewLoading, reviewData] = useFirestore("Reviews", location.slug);
 
   const { list, loading } = useFetch(location.direction, location.slug, [
@@ -49,13 +55,13 @@ export default function CardDetailsPanelContainer() {
   ]);
 
   useEffect(() => {
-    if (userData && userData.length > 0 && list) {
-      const rate = userData.find((item) => item.id === list.id);
+    if (userRatingData && userRatingData.length > 0 && list) {
+      const rate = userRatingData.find((item) => item.id === list.id);
       if (rate) setRatedValue(rate.value);
     }
     const listener = window.addEventListener("scroll", offsetListener);
     return () => window.removeEventListener("scroll", offsetListener);
-  }, [userData, list]);
+  }, [userRatingData, list]);
 
   const showErrorModal = (errorText) => {
     document.body.style.overflow = "hidden";
@@ -73,12 +79,15 @@ export default function CardDetailsPanelContainer() {
     if (user === null) {
       history.push("/authentication/login");
     } else {
-      const newuserData = [...userData, { id: itemID, value: rateScore }];
+      const newUserRatingData = [
+        ...userRatingData,
+        { id: itemID, value: rateScore },
+      ];
       firebase
         .firestore()
         .collection(`${user.displayName}`)
         .doc(`moviesrated`)
-        .update({ list: newuserData })
+        .update({ list: newUserRatingData })
         .catch((error) => showErrorModal(error));
     }
   };
@@ -178,7 +187,7 @@ export default function CardDetailsPanelContainer() {
         user={user}
         firebase={firebase}
         id={location.slug}
-        userData={userData}
+        userData={userReviewData}
       />
     </DetailsPanel>
   ) : null;

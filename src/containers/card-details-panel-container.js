@@ -136,7 +136,7 @@ export default function CardDetailsPanelContainer() {
                 return (
                   <ReviewsList.ItemContainer
                     key={item.nickname}
-                    backdroundcolor={item.rating}
+                    backgroundcolor={item.rating}
                   >
                     <ReviewsList.Author>
                       <ReviewsList.Avatar

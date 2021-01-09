@@ -22,10 +22,11 @@ export const Nickname = styled.h3`
   font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
 `;
 
-export const Content = styled.span`
+export const Content = styled.div`
   line-height: 1.5rem;
   font-size: ${({ theme }) => theme.fontSize.normal};
   font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
+  display: inline-block;
 `;
 
 export const ItemContainer = styled.div`
@@ -34,22 +35,26 @@ export const ItemContainer = styled.div`
   margin-top: 2rem;
   min-height: 200px;
   background-color: #fff;
-  ${({ backdroundcolor }) =>
-    backdroundcolor <= 4 &&
+  ${({ backgroundcolor }) =>
+    backgroundcolor <= 4 &&
     css`
-      background-color: ${({ theme }) => theme.colors.negativeReview};
+      background: ${({ theme }) => theme.colors.negativeReview};
     `}
-  ${({ backdroundcolor }) =>
-    backdroundcolor >= 6 &&
+  ${({ backgroundcolor }) =>
+    backgroundcolor >= 6 &&
     css`
-      background-color: ${({ theme }) => theme.colors.positiveReview};
-    `}
-    ${({ backdroundcolor }) =>
-    backdroundcolor === null ||
-    (backdroundcolor === 5 &&
-      css`
-        background-color: ${({ theme }) => theme.colors.reviewsBackground};
-      `)}
+      background: ${({ theme }) => theme.colors.positiveReview};
+    `};
+  ${({ backgroundcolor }) =>
+    backgroundcolor === null &&
+    css`
+      background: ${({ theme }) => theme.colors.reviewsBackground};
+    `};
+  ${({ backgroundcolor }) =>
+    backgroundcolor === 5 &&
+    css`
+      background: ${({ theme }) => theme.colors.reviewsBackground};
+    `};
 `;
 
 export const ContentWrapper = styled.div`

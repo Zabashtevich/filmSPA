@@ -106,135 +106,70 @@ export const postReviewLogic = (
     setTimeout(() => history.push("/authentication/login"), 3000);
   }
 
+  const newReview = createNewReviewInfo(
+    rating,
+    title,
+    textfield,
+    user.displayName,
+  );
+
+  const userInfo = createUserReviewInfo(id, +rating, title, textfield);
+
   if (
     userData.find((item) => item.id === id) &&
     reviewData.find((item) => item.nickname === user.displayName)
   ) {
-    updateReview(
-      user,
-      setErrorMessage,
-      setErrorModalVisible,
-      firebase,
-      userData,
-      id,
-      textfield,
-      rating,
-      title,
-      reviewData,
+    const userIndex = userData.indexOf(userData.find((item) => item.id === id));
+    userData[userIndex] = userInfo;
+
+    const globalIndex = reviewData.indexOf(
+      reviewData.find((item) => item.nickname === user.displayName),
     );
+    reviewData[globalIndex] = newReview;
+    firebase
+      .firestore()
+      .collection(`${user.displayName}`)
+      .doc(`reviews`)
+      .update({
+        list: userData,
+      })
+      .catch((error) => {
+        setErrorMessage([error]);
+        setErrorModalVisible(true);
+      });
+    firebase
+      .firestore()
+      .collection("Reviews")
+      .doc(`${id}`)
+      .update({
+        list: reviewData,
+      })
+      .catch((error) => {
+        setErrorMessage([error]);
+        setErrorModalVisible(true);
+      });
   } else {
-    createReview(
-      user,
-      setErrorMessage,
-      setErrorModalVisible,
-      firebase,
-      userData,
-      id,
-      textfield,
-      rating,
-      title,
-      reviewData,
-    );
+    firebase
+      .firestore()
+      .collection(`${user.displayName}`)
+      .doc(`reviews`)
+      .update({
+        list: [...userData, userInfo],
+      })
+      .catch((error) => {
+        setErrorMessage([error]);
+        setErrorModalVisible(true);
+      });
+    firebase
+      .firestore()
+      .collection("Reviews")
+      .doc(`${id}`)
+      .set({
+        list: [...reviewData, newReview],
+      })
+      .catch((error) => {
+        setErrorMessage([error]);
+        setErrorModalVisible(true);
+      });
   }
-};
-
-const updateReview = (
-  user,
-  setErrorMessage,
-  setErrorModalVisible,
-  firebase,
-  userData,
-  id,
-  textfield,
-  rating,
-  title,
-  reviewData,
-) => {
-  console.log("hi");
-
-  const newReview = createNewReviewInfo(
-    rating,
-    title,
-    textfield,
-    user.displayName,
-  );
-
-  const userInfo = createUserReviewInfo(id, +rating, title, textfield);
-
-  const userIndex = userData.indexOf(userData.find((item) => item.id === id));
-  userData[userIndex] = userInfo;
-
-  const globalIndex = reviewData.indexOf(
-    reviewData.find((item) => item.nickname === user.displayName),
-  );
-  reviewData[globalIndex] = newReview;
-  firebase
-    .firestore()
-    .collection(`${user.displayName}`)
-    .doc(`reviews`)
-    .update({
-      list: userData,
-    })
-    .catch((error) => {
-      setErrorMessage([error]);
-      setErrorModalVisible(true);
-    });
-  firebase
-    .firestore()
-    .collection("Reviews")
-    .doc(`${id}`)
-    .update({
-      list: reviewData,
-    })
-    .catch((error) => {
-      setErrorMessage([error]);
-      setErrorModalVisible(true);
-    });
-};
-
-const createReview = (
-  user,
-  setErrorMessage,
-  setErrorModalVisible,
-  firebase,
-  userData,
-  id,
-  textfield,
-  rating,
-  title,
-  reviewData,
-) => {
-  console.log("he");
-
-  const newReview = createNewReviewInfo(
-    rating,
-    title,
-    textfield,
-    user.displayName,
-  );
-
-  const userInfo = createUserReviewInfo(id, +rating, title, textfield);
-
-  firebase
-    .firestore()
-    .collection(`${user.displayName}`)
-    .doc(`reviews`)
-    .update({
-      list: [...userData, userInfo],
-    })
-    .catch((error) => {
-      setErrorMessage([error]);
-      setErrorModalVisible(true);
-    });
-  firebase
-    .firestore()
-    .collection("Reviews")
-    .doc(`${id}`)
-    .set({
-      list: [...reviewData, newReview],
-    })
-    .catch((error) => {
-      setErrorMessage([error]);
-      setErrorModalVisible(true);
-    });
 };

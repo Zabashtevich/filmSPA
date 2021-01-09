@@ -9,6 +9,8 @@ export const Container = styled.div`
   color: ${({ theme }) => theme.colors.secondary};
   border-radius: 1rem;
   background-color: #fff;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const Wrapper = styled.div`

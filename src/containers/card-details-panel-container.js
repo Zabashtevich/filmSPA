@@ -174,6 +174,9 @@ export default function CardDetailsPanelContainer() {
             <ReviewsList.NoReviews />
           </ReviewsList.ItemContainer>
         )}
+        <DetailsPanel.LinkButton to={location.slug + "/review"}>
+          Create own review
+        </DetailsPanel.LinkButton>
       </ReviewsList>
 
       {errorModalVisible && (
@@ -183,12 +186,12 @@ export default function CardDetailsPanelContainer() {
           errorModalVisible={errorModalVisible}
         />
       )}
-      <ReviewPostFormContainer
+      {/* <ReviewPostFormContainer
         user={user}
         firebase={firebase}
         id={location.slug}
         userData={userReviewData}
-      />
+      /> */}
     </DetailsPanel>
   ) : null;
 }

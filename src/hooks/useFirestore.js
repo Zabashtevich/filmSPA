@@ -6,7 +6,6 @@ export default function useFirestore(collectionTarget, docTarget) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const { firebase } = useContext(AuthContext);
-  console.log(data, docTarget);
   useEffect(() => {
     let mounted = true;
     if (!mounted) return;
@@ -26,6 +25,7 @@ export default function useFirestore(collectionTarget, docTarget) {
       });
     return () => {
       mounted = false;
+      setData([]);
     };
   }, [docTarget, collectionTarget]);
 

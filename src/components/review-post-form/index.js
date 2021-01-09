@@ -9,13 +9,16 @@ import {
   Button,
   RadioWrapper,
   RadioElement,
-  Wrapper,
+  ProfileWrapper,
   Title,
   RadioLabel,
   RadioInner,
   RadioTitle,
   RadioElementsContainer,
   Icon,
+  ButtonsWrapper,
+  BackLink,
+  Avatar,
 } from "./styles/review-post-form";
 
 export default function ReviewPostForm({ children, ...rest }) {
@@ -39,7 +42,7 @@ ReviewPostForm.Input = function ReviewPostFormInput({
   ...rest
 }) {
   return (
-    <Input ref={inputRef} {...rest}>
+    <Input ref={inputRef} {...rest} autoComplete="off">
       {children}
     </Input>
   );
@@ -70,8 +73,18 @@ ReviewPostForm.Button = function ReviewPostFormButton({ children, ...rest }) {
   return <Button {...rest}>{children}</Button>;
 };
 
-ReviewPostForm.Wrapper = function ReviewPostFormWrapper({ children, ...rest }) {
-  return <Wrapper {...rest}>{children}</Wrapper>;
+ReviewPostForm.BackLink = function ReviewPostFormBackLink({
+  children,
+  ...rest
+}) {
+  return <BackLink {...rest}>{children}</BackLink>;
+};
+
+ReviewPostForm.ProfileWrapper = function ReviewPostFormProfileWrapper({
+  children,
+  ...rest
+}) {
+  return <ProfileWrapper {...rest}>{children}</ProfileWrapper>;
 };
 
 ReviewPostForm.Title = function ReviewPostFormTitle({ children, ...rest }) {
@@ -113,4 +126,15 @@ ReviewPostForm.RadioElementsContainer = function ReviewPostFormRadioElementsCont
 
 ReviewPostForm.Icon = function ReviewPostFormIcon({ children, ...rest }) {
   return <Icon {...rest}>{children}</Icon>;
+};
+
+ReviewPostForm.ButtonsWrapper = function ReviewPostFormButtonsWrapper({
+  children,
+  ...rest
+}) {
+  return <ButtonsWrapper {...rest}>{children}</ButtonsWrapper>;
+};
+
+ReviewPostForm.Avatar = function ReviewPostFormAvatar({ children, ...rest }) {
+  return <Avatar {...rest}>{children}</Avatar>;
 };

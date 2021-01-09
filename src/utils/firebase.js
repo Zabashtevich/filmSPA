@@ -147,7 +147,8 @@ export const postReviewLogic = (
       .catch((error) => {
         setErrorMessage([error]);
         setErrorModalVisible(true);
-      });
+      })
+      .then(() => history.push(`${id}`));
   } else {
     firebase
       .firestore()
@@ -170,6 +171,7 @@ export const postReviewLogic = (
       .catch((error) => {
         setErrorMessage([error]);
         setErrorModalVisible(true);
-      });
+      })
+      .then(() => history.push(`${id}`));
   }
 };

@@ -1,28 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { CSSTransition } from "react-transition-group";
 import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 import useFirestore from "../hooks/useFirestore";
+import useAuthListener from "../hooks/useAuthListener";
 
 import { ReviewPostForm } from "../components";
-import ErrorModalContainer from "./auxillary-containers/containers/error-modal-container";
+import { ErrorModalContainer } from "./auxillary-containers";
 import { postReviewLogic } from "../utils/firebase";
+import { AuthContext } from "../context/auth-context";
 
-export default function ReviewPostFormContainer({
-  user,
-  firebase,
-  id,
-  userData,
-}) {
+export default function ReviewPostFormContainer() {
   const [visibleDropdown, setVisibleDropdown] = useState(false);
   const [ratingValue, setRatingValue] = useState("");
   const [errorModalVisible, setErrorModalVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
 
   const history = useHistory();
+  const location = useLocation();
 
-  const [reviewLoading, reviewData] = useFirestore(`Reviews`, id);
+  const { firebase } = useContext(AuthContext);
+  const { user } = useAuthListener();
+
+  const [reviewLoading, reviewData] = useFirestore(`Reviews`, location.slug);
+  const [, userData] = useFirestore(user.displayName, "reviews");
 
   const onIconClick = () => {
     setVisibleDropdown((prev) => !prev);
@@ -36,7 +38,7 @@ export default function ReviewPostFormContainer({
       history,
       firebase,
       userData,
-      id,
+      location.slug,
       textfield,
       rating,
       title,
@@ -70,11 +72,12 @@ export default function ReviewPostFormContainer({
       )}
       <ReviewPostForm.Form onSubmit={handleSubmit(onPostReview)}>
         <ReviewPostForm.Title>Create your review</ReviewPostForm.Title>
-        <ReviewPostForm.Wrapper>
+        <ReviewPostForm.ProfileWrapper>
+          <ReviewPostForm.Avatar src={"./../../../assets/images/poster.png"} />
           <ReviewPostForm.Nickname>
             {user && user.displayName}
           </ReviewPostForm.Nickname>
-        </ReviewPostForm.Wrapper>
+        </ReviewPostForm.ProfileWrapper>
         <ReviewPostForm.Input
           placeholder={"Title"}
           name="title"
@@ -147,9 +150,14 @@ export default function ReviewPostFormContainer({
             },
           })}
         />
-        <ReviewPostForm.Button type="submit" disabled={reviewLoading}>
-          PUBLIC
-        </ReviewPostForm.Button>
+        <ReviewPostForm.ButtonsWrapper>
+          <ReviewPostForm.BackLink to={`${location.slug}`}>
+            GO BACK
+          </ReviewPostForm.BackLink>
+          <ReviewPostForm.Button type="submit" disabled={reviewLoading}>
+            PUBLIC
+          </ReviewPostForm.Button>
+        </ReviewPostForm.ButtonsWrapper>
       </ReviewPostForm.Form>
     </ReviewPostForm>
   );

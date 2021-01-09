@@ -1,10 +1,10 @@
 import styled from "styled-components/macro";
-
 import { VscTriangleUp } from "react-icons/vsc";
+import { Link as ReactRouterLink } from "react-router-dom";
 
 export const Container = styled.div`
-  max-width: 68%;
-  margin: 4rem auto;
+  max-width: 750px;
+  margin: 1rem auto;
   font-family: ${({ theme }) => theme.fontFamily.secondary};
 `;
 
@@ -17,6 +17,7 @@ export const Form = styled.form`
   align-items: center;
   background-color: #fff;
   border-radius: 1rem;
+  border: 1px solid black;
 `;
 
 export const Input = styled.input`
@@ -29,8 +30,8 @@ export const Input = styled.input`
   border-radius: 0.5rem;
   border: 1px solid gray;
   padding: 0.4rem 0.6rem;
+  background-color: ${({ theme }) => theme.colors.reviewsBackground};
   &::placeholder {
-    color: ${({ theme }) => theme.colors.secondary};
     font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
   }
 `;
@@ -44,6 +45,8 @@ export const Textfield = styled.textarea`
   border-radius: 1rem;
   padding: 0.5rem 1rem;
   outline: none;
+  background-color: ${({ theme }) => theme.colors.reviewsBackground};
+  font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
 `;
 
 export const RadioElement = styled.input`
@@ -80,7 +83,7 @@ export const RadioWrapper = styled.div`
   margin-top: 1rem;
 `;
 
-export const Wrapper = styled.div``;
+export const ProfileWrapper = styled.div``;
 
 export const Title = styled.span`
   font-size: ${({ theme }) => theme.fontSize.huge};
@@ -104,10 +107,10 @@ export const RadioInner = styled.div`
 export const RadioTitle = styled.input`
   font-size: ${({ theme }) => theme.fontSize.small};
   font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
+  background-color: ${({ theme }) => theme.colors.reviewsBackground};
   cursor: pointer;
   width: 100%;
   padding: 0.4rem 0.6rem;
-  background-color: #fff;
   outline: none;
   border: 1px solid gray;
   color: ${({ theme }) => theme.colors.secondary};
@@ -115,7 +118,6 @@ export const RadioTitle = styled.input`
 `;
 
 export const RadioElementsContainer = styled.div`
-  background-color: #fff;
   width: 100%;
   border: 1px solid gray;
   margin-top: 1rem;
@@ -128,6 +130,7 @@ export const RadioElementsContainer = styled.div`
   opacity: ${({ state }) => (state === "entering" ? 0 : 1)};
   border-radius: 1rem;
   box-shadow: 1px 6px 3px 1px rgba(0, 0, 0, 0.2);
+  background-color: ${({ theme }) => theme.colors.reviewsBackground};
 `;
 
 export const Icon = styled(VscTriangleUp)`
@@ -137,4 +140,12 @@ export const Icon = styled(VscTriangleUp)`
   font-size: ${({ theme }) => theme.fontSize.normal};
   transform: rotate(${({ rotate }) => rotate});
   transition: 100ms;
+`;
+
+export const ButtonsWrapper = styled.div``;
+
+export const BackLink = styled(ReactRouterLink)``;
+
+export const Avatar = styled.img`
+  width: 150px;
 `;

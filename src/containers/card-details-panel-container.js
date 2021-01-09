@@ -19,7 +19,6 @@ import {
 import {
   ErrorModalContainer,
   RelevantListContainer,
-  ReviewPostFormContainer,
 } from "./auxillary-containers";
 
 export default function CardDetailsPanelContainer() {
@@ -35,19 +34,14 @@ export default function CardDetailsPanelContainer() {
 
   const { user } = useAuthListener();
 
-  const [userRatingLoading, userRatingData] = useFirestore(
+  const [, userRatingData] = useFirestore(
     user && `${user.displayName}`,
     `moviesrated`,
   );
 
-  const [userReviewLoading, userReviewData] = useFirestore(
-    user && `${user.displayName}`,
-    `reviews`,
-  );
-
   const [reviewLoading, reviewData] = useFirestore("Reviews", location.slug);
 
-  const { list, loading } = useFetch(location.direction, location.slug, [
+  const { list } = useFetch(location.direction, location.slug, [
     {
       append_to_response:
         "credits,recommendations,images,videos,reviews,account_states",
@@ -59,7 +53,7 @@ export default function CardDetailsPanelContainer() {
       const rate = userRatingData.find((item) => item.id === list.id);
       if (rate) setRatedValue(rate.value);
     }
-    const listener = window.addEventListener("scroll", offsetListener);
+    window.addEventListener("scroll", offsetListener);
     return () => window.removeEventListener("scroll", offsetListener);
   }, [userRatingData, list]);
 
@@ -186,12 +180,6 @@ export default function CardDetailsPanelContainer() {
           errorModalVisible={errorModalVisible}
         />
       )}
-      {/* <ReviewPostFormContainer
-        user={user}
-        firebase={firebase}
-        id={location.slug}
-        userData={userReviewData}
-      /> */}
     </DetailsPanel>
   ) : null;
 }

@@ -1,4 +1,3 @@
-export { default as ReviewPostFormContainer } from "./containers/review-post-form-container";
 export { default as ActorRows } from "./containers/actor-rows";
 export { default as CardRows } from "./containers/card-rows";
 export { default as ErrorModalContainer } from "./containers/error-modal-container";

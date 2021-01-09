@@ -3,11 +3,11 @@ import { CSSTransition } from "react-transition-group";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
-import useFirestore from "../../../hooks/useFirestore";
+import useFirestore from "../hooks/useFirestore";
 
-import { ReviewPostForm } from "../../../components";
-import ErrorModalContainer from "./error-modal-container";
-import { postReviewLogic } from "../../../utils/firebase";
+import { ReviewPostForm } from "../components";
+import ErrorModalContainer from "./auxillary-containers/containers/error-modal-container";
+import { postReviewLogic } from "../utils/firebase";
 
 export default function ReviewPostFormContainer({
   user,

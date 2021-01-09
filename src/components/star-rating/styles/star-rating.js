@@ -6,6 +6,7 @@ export const Container = styled.div`
   flex-direction: column;
   color: ${({ theme }) => theme.colors.secondary};
   position: relative;
+  width: 100%;
   max-width: 1000px;
   align-items: flex-start;
   margin: 4rem auto;

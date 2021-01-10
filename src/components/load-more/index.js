@@ -2,18 +2,14 @@ import React from "react";
 
 import { Container, Wrapper, Button } from "./styles/load-more";
 
-export default function LoadMore({ children }) {
-  return <Container>{children}</Container>;
+export default function LoadMore({ children, ...rest }) {
+  return <Container {...rest}>{children}</Container>;
 }
 
-LoadMore.Wrapper = function LoadMoreWrapper({ children }) {
-  return <Wrapper>{children}</Wrapper>;
+LoadMore.Wrapper = function LoadMoreWrapper({ children, ...rest }) {
+  return <Wrapper {...rest}>{children}</Wrapper>;
 };
 
-LoadMore.Button = function LoadMoreButton({ children, setItemsCount }) {
-  return (
-    <Button onClick={() => setItemsCount((prev) => prev + 10)}>
-      {children}
-    </Button>
-  );
+LoadMore.Button = function LoadMoreButton({ children, ...rest }) {
+  return <Button {...rest}>{children}</Button>;
 };

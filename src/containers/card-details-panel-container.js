@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import {
   DetailsPanel,
+  LoadMore,
   RelevantList,
   ReviewsList,
   StarRating,
@@ -20,6 +21,7 @@ import {
   ErrorModalContainer,
   RelevantListContainer,
 } from "./auxillary-containers";
+import ReviewItemContainer from "./auxillary-containers/containers/review-item-container";
 
 export default function CardDetailsPanelContainer() {
   const [starValue, setStarValue] = useState(0);
@@ -85,7 +87,6 @@ export default function CardDetailsPanelContainer() {
         .catch((error) => showErrorModal(error));
     }
   };
-  console.log(reviewData);
 
   const reviewRedirectPage = () => {
     if (!user) {
@@ -155,29 +156,7 @@ export default function CardDetailsPanelContainer() {
                     ? getCorrectSrc(item.avatar)
                     : item.avatar;
                 return (
-                  <ReviewsList.ItemContainer
-                    key={item.nickname}
-                    backgroundcolor={item.rating}
-                  >
-                    <ReviewsList.Author>
-                      <ReviewsList.Avatar
-                        src={correctSrc.changed ? null : correctSrc}
-                        correctSrc={correctSrc.changed ? correctSrc.src : null}
-                      />
-                      {item.rating && (
-                        <ReviewsList.Score>{item.rating}</ReviewsList.Score>
-                      )}
-                      <ReviewsList.Wrapper>
-                        <ReviewsList.Nickname>
-                          {item.nickname}
-                        </ReviewsList.Nickname>
-                        <ReviewsList.Date>
-                          {new Date(item.date).toDateString()}
-                        </ReviewsList.Date>
-                      </ReviewsList.Wrapper>
-                    </ReviewsList.Author>
-                    <ReviewsList.Content>{item.text}</ReviewsList.Content>
-                  </ReviewsList.ItemContainer>
+                  <ReviewItemContainer correctSrc={correctSrc} item={item} />
                 );
               })}
           </>

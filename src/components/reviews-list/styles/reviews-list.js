@@ -26,7 +26,7 @@ export const Nickname = styled.h3`
 
 export const Content = styled.div`
   line-height: 1.5rem;
-  font-size: ${({ theme }) => theme.fontSize.normal};
+  font-size: ${({ theme }) => theme.fontSize.small};
   font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
   display: inline-block;
 `;

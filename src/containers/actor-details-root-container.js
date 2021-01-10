@@ -119,7 +119,9 @@ export default function ActorDetailsRootContainer() {
           <LoadMore>
             <LoadMore.Wrapper>
               {itemsCount < list.credits.cast.length ? (
-                <LoadMore.Button setItemsCount={setItemsCount}>
+                <LoadMore.Button
+                  onClick={() => setItemsCount((prev) => prev + 10)}
+                >
                   Load more
                 </LoadMore.Button>
               ) : null}

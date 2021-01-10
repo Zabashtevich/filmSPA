@@ -29,9 +29,17 @@ ReviewsList.Author = function ReviewsListAuthor({ children, ...rest }) {
 };
 
 ReviewsList.Content = function ReviewsListContent({ children, ...rest }) {
+  const [firstLine, ...rst] = children.split("\n");
   return (
     <ContentWrapper {...rest}>
-      <Content>{children}</Content>
+      <Content>
+        {firstLine}
+        {rst.map((item, i) => (
+          <p key={i} style={{ margin: 0 }}>
+            <br /> {item}
+          </p>
+        ))}
+      </Content>
     </ContentWrapper>
   );
 };

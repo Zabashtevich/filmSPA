@@ -86,8 +86,6 @@ export default function CardDetailsPanelContainer() {
     }
   };
 
-  console.log(location);
-
   return list ? (
     <DetailsPanel>
       <DetailsPanel.ContentWrapper>
@@ -170,7 +168,7 @@ export default function CardDetailsPanelContainer() {
             <ReviewsList.NoReviews />
           </ReviewsList.ItemContainer>
         )}
-        <DetailsPanel.LinkButton to={`/review/${location.slug}`}>
+        <DetailsPanel.LinkButton to={`${location.slug}/reviews`}>
           Create own review
         </DetailsPanel.LinkButton>
       </ReviewsList>

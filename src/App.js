@@ -19,8 +19,12 @@ function App() {
           exact
         />
         <Route path="/actor/:slug" component={ActorDetailsPage} />
-        <Route path="/authentication/:slug" component={AuthenticationPage} />
-        <Route path="/review/:slug" component={ReviewPage} exact />
+        <Route path="/authentication/:slu g" component={AuthenticationPage} />
+        <Route
+          path="/details/:direction/:slug/review"
+          component={ReviewPage}
+          exact
+        />
       </Switch>
     </Router>
   );

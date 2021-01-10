@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { CSSTransition } from "react-transition-group";
 import { useForm } from "react-hook-form";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory, useLocation, useParams } from "react-router-dom";
 
 import useFirestore from "../hooks/useFirestore";
 import useAuthListener from "../hooks/useAuthListener";
@@ -11,22 +11,19 @@ import { ErrorModalContainer } from "./auxillary-containers";
 import { postReviewLogic } from "../utils/firebase";
 import { AuthContext } from "../context/auth-context";
 
-export default function ReviewPostFormContainer({ match }) {
+export default function ReviewPostFormContainer() {
   const [visibleDropdown, setVisibleDropdown] = useState(false);
   const [ratingValue, setRatingValue] = useState("");
   const [errorModalVisible, setErrorModalVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
 
   const history = useHistory();
-  const location = useLocation();
+  const slug = useParams();
 
   const { firebase } = useContext(AuthContext);
   const { user } = useAuthListener();
 
-  const [reviewLoading, reviewData] = useFirestore(
-    `Reviews`,
-    match.params.slug,
-  );
+  const [reviewLoading, reviewData] = useFirestore(`Reviews`, slug.slug);
   const [, userData] = useFirestore(user.displayName, "reviews");
 
   const onIconClick = () => {
@@ -41,15 +38,13 @@ export default function ReviewPostFormContainer({ match }) {
       history,
       firebase,
       userData,
-      match.params.slug,
+      slug.slug,
       textfield,
       rating,
       title,
       reviewData,
     );
   };
-
-  console.log(location);
 
   const { register, handleSubmit, errors } = useForm();
 
@@ -156,7 +151,7 @@ export default function ReviewPostFormContainer({ match }) {
           })}
         />
         <ReviewPostForm.ButtonsWrapper>
-          <ReviewPostForm.BackLink to={`/${match.params.slug}`}>
+          <ReviewPostForm.BackLink to={`../${slug.slug}`}>
             <ReviewPostForm.IconLeft /> GO BACK
           </ReviewPostForm.BackLink>
           <ReviewPostForm.Button type="submit" disabled={reviewLoading}>

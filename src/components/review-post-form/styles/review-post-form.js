@@ -171,7 +171,7 @@ export const ButtonsWrapper = styled.div`
 export const BackLink = styled(ReactRouterLink)`
   display: flex;
   margin-bottom: 2rem;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.1rem;
   color: ${({ theme }) => theme.colors.secondary};
   background-color: #fff;
   border-radius: 1rem;

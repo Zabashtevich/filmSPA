@@ -156,7 +156,11 @@ export default function CardDetailsPanelContainer() {
                     ? getCorrectSrc(item.avatar)
                     : item.avatar;
                 return (
-                  <ReviewItemContainer correctSrc={correctSrc} item={item} />
+                  <ReviewItemContainer
+                    key={item.nickname}
+                    correctSrc={correctSrc}
+                    item={item}
+                  />
                 );
               })}
           </>

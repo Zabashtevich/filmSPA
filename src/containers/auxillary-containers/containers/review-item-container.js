@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { LoadMore, ReviewsList } from "../../../components";
 
 export default function ReviewItemContainer({ correctSrc, item }) {
+  const [loadMoreVisible, setLoadMoreVisible] = useState(false);
+  const [amountCharacters, setAmountCharacters] = useState(800);
+
+  useEffect(() => {
+    if (item.text.length > 800) {
+      setLoadMoreVisible(true);
+    }
+  }, []);
+
+  console.log(item.text.length);
   return (
     <ReviewsList.ItemContainer
       key={item.nickname}
@@ -20,12 +30,28 @@ export default function ReviewItemContainer({ correctSrc, item }) {
           </ReviewsList.Date>
         </ReviewsList.Wrapper>
       </ReviewsList.Author>
-      <ReviewsList.Content>{item.text}</ReviewsList.Content>
-      <LoadMore>
-        <LoadMore.Wrapper>
-          <LoadMore.Button>Load more</LoadMore.Button>
-        </LoadMore.Wrapper>
-      </LoadMore>
+      {!loadMoreVisible && (
+        <ReviewsList.Content>{item.text}</ReviewsList.Content>
+      )}
+      {loadMoreVisible && (
+        <ReviewsList.Content>
+          {item.text.slice(0, amountCharacters)}
+        </ReviewsList.Content>
+      )}
+      {loadMoreVisible && (
+        <LoadMore>
+          <LoadMore.Wrapper>
+            <LoadMore.Button
+              onClick={() => {
+                setAmountCharacters(item.text.length);
+                setLoadMoreVisible(false);
+              }}
+            >
+              Load more
+            </LoadMore.Button>
+          </LoadMore.Wrapper>
+        </LoadMore>
+      )}
     </ReviewsList.ItemContainer>
   );
 }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { CSSTransition } from "react-transition-group";
 import { useForm } from "react-hook-form";
-import { useHistory, useLocation, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 import useFirestore from "../hooks/useFirestore";
 import useAuthListener from "../hooks/useAuthListener";
@@ -16,6 +16,7 @@ export default function ReviewPostFormContainer() {
   const [ratingValue, setRatingValue] = useState("");
   const [errorModalVisible, setErrorModalVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [pushingReview, setPushingReview] = useState(false);
 
   const history = useHistory();
   const slug = useParams();
@@ -43,6 +44,7 @@ export default function ReviewPostFormContainer() {
       rating,
       title,
       reviewData,
+      setPushingReview,
     );
   };
 
@@ -154,7 +156,10 @@ export default function ReviewPostFormContainer() {
           <ReviewPostForm.BackLink to={`../${slug.slug}`}>
             <ReviewPostForm.IconLeft /> GO BACK
           </ReviewPostForm.BackLink>
-          <ReviewPostForm.Button type="submit" disabled={reviewLoading}>
+          <ReviewPostForm.Button
+            type="submit"
+            disabled={reviewLoading || pushingReview}
+          >
             PUBLIC
           </ReviewPostForm.Button>
         </ReviewPostForm.ButtonsWrapper>

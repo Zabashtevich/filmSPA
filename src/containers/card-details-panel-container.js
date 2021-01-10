@@ -85,6 +85,24 @@ export default function CardDetailsPanelContainer() {
         .catch((error) => showErrorModal(error));
     }
   };
+  console.log(reviewData);
+
+  const reviewRedirectPage = () => {
+    if (!user) {
+      setErrorMessage(["Please, log in to create review"]);
+      setErrorModalVisible(true);
+      setTimeout(() => history.push("/authentication/login"), 3000);
+    }
+    if (reviewData.find((item) => item.nickname === user.displayName)) {
+      setErrorMessage([
+        "Sorry, but you alreay have own review on this page",
+        "Please edit you review or delete it to create new",
+      ]);
+      setErrorModalVisible(true);
+    } else {
+      history.push(`${location.slug}/review`);
+    }
+  };
 
   return list ? (
     <DetailsPanel>
@@ -168,7 +186,7 @@ export default function CardDetailsPanelContainer() {
             <ReviewsList.NoReviews />
           </ReviewsList.ItemContainer>
         )}
-        <DetailsPanel.LinkButton to={`${location.slug}/reviews`}>
+        <DetailsPanel.LinkButton onClick={reviewRedirectPage}>
           Create own review
         </DetailsPanel.LinkButton>
       </ReviewsList>

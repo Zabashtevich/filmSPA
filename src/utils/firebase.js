@@ -99,12 +99,9 @@ export const postReviewLogic = (
   rating,
   title,
   reviewData,
+  setPushingReview,
 ) => {
-  if (!user) {
-    setErrorMessage(["Please, log in to create review"]);
-    setErrorModalVisible(true);
-    setTimeout(() => history.push("/authentication/login"), 3000);
-  }
+  setPushingReview(true);
 
   const newReview = createNewReviewInfo(
     rating,
@@ -148,7 +145,10 @@ export const postReviewLogic = (
         setErrorMessage([error]);
         setErrorModalVisible(true);
       })
-      .then(() => history.push(`${id}`));
+      .then(() => {
+        setPushingReview(false);
+        history.push(`../${id}`);
+      });
   } else {
     firebase
       .firestore()
@@ -172,6 +172,9 @@ export const postReviewLogic = (
         setErrorMessage([error]);
         setErrorModalVisible(true);
       })
-      .then(() => history.push(`${id}`));
+      .then(() => {
+        setPushingReview(false);
+        history.push(`../${id}`);
+      });
   }
 };

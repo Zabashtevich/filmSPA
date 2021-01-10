@@ -122,7 +122,6 @@ export const getErrorsList = (data, setErrorsList) => {
   if (typeof data === "object") {
     Object.keys(data).map((item) => result.push(data[item].message));
   } else {
-    console.log("567");
     result.push("passwords doesnt match");
   }
   return result;

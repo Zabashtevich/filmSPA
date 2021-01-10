@@ -19,6 +19,7 @@ import {
   ButtonsWrapper,
   BackLink,
   Avatar,
+  IconLeft,
 } from "./styles/review-post-form";
 
 export default function ReviewPostForm({ children, ...rest }) {
@@ -137,4 +138,11 @@ ReviewPostForm.ButtonsWrapper = function ReviewPostFormButtonsWrapper({
 
 ReviewPostForm.Avatar = function ReviewPostFormAvatar({ children, ...rest }) {
   return <Avatar {...rest}>{children}</Avatar>;
+};
+
+ReviewPostForm.IconLeft = function ReviewPostFormIconLeft({
+  children,
+  ...rest
+}) {
+  return <IconLeft {...rest}>{children}</IconLeft>;
 };

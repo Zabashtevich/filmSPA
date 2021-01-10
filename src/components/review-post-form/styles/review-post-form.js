@@ -1,5 +1,6 @@
 import styled from "styled-components/macro";
 import { VscTriangleUp } from "react-icons/vsc";
+import { AiOutlineDoubleLeft } from "react-icons/ai";
 import { Link as ReactRouterLink } from "react-router-dom";
 
 export const Container = styled.div`
@@ -7,8 +8,6 @@ export const Container = styled.div`
   margin: 1rem auto;
   font-family: ${({ theme }) => theme.fontFamily.secondary};
 `;
-
-export const Nickname = styled.span``;
 
 export const Form = styled.form`
   width: 100%;
@@ -39,7 +38,7 @@ export const Input = styled.input`
 export const Textfield = styled.textarea`
   width: 73%;
   resize: none;
-  height: 450px;
+  height: 350px;
   margin-top: 2rem;
   margin-bottom: 2rem;
   border-radius: 1rem;
@@ -62,7 +61,7 @@ export const Button = styled.button`
   cursor: pointer;
   border: 1px solid darkgray;
   font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
-  font-size: ${({ theme }) => theme.fontSize.large};
+  font-size: ${({ theme }) => theme.fontSize.normal};
   &:enabled:hover {
     color: ${({ theme }) => theme.colors.secondary};
     background-color: #fff;
@@ -83,13 +82,33 @@ export const RadioWrapper = styled.div`
   margin-top: 1rem;
 `;
 
-export const ProfileWrapper = styled.div``;
+export const Nickname = styled.span`
+  font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
+  font-size: ${({ theme }) => theme.fontSize.normal};
+  color: ${({ theme }) => theme.colors.secondary};
+  margin-top: 0.4rem;
+  border-bottom: 1px solid black;
+`;
+
+export const ProfileWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 4rem;
+  padding: 1rem 0.5rem;
+`;
+
+export const Avatar = styled.img`
+  width: 150px;
+  border-radius: 3rem;
+  border: 1px solid black;
+`;
 
 export const Title = styled.span`
-  font-size: ${({ theme }) => theme.fontSize.huge};
+  font-size: ${({ theme }) => theme.fontSize.large};
   font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
-  margin-bottom: 4rem;
-  margin-top: 2rem;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
   width: 100%;
   text-align: center;
 `;
@@ -142,10 +161,39 @@ export const Icon = styled(VscTriangleUp)`
   transition: 100ms;
 `;
 
-export const ButtonsWrapper = styled.div``;
+export const ButtonsWrapper = styled.div`
+  display: flex;
+  justify-content: space-around;
+  width: 50%;
+  align-items: center;
+`;
 
-export const BackLink = styled(ReactRouterLink)``;
+export const BackLink = styled(ReactRouterLink)`
+  display: flex;
+  margin-bottom: 2rem;
+  padding: 0.5rem 1rem;
+  color: ${({ theme }) => theme.colors.secondary};
+  background-color: #fff;
+  border-radius: 1rem;
+  cursor: pointer;
+  border: 1px solid darkgray;
+  font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
+  font-size: ${({ theme }) => theme.fontSize.normal};
+  text-decoration: none;
+  &:hover {
+    color: #fff;
+    background-color: ${({ theme }) => theme.colors.secondary};
+    transition: 250ms;
+  }
+  &:disabled {
+    cursor: not-allowed;
+    background-color: darkgray;
+  }
+`;
 
-export const Avatar = styled.img`
-  width: 150px;
+export const IconLeft = styled(AiOutlineDoubleLeft)`
+  text-align: center;
+  display: block;
+  align-self: center;
+  padding-right: 0.2rem;
 `;

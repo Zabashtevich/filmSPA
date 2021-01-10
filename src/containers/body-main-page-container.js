@@ -22,7 +22,6 @@ export default function BodyMainContainer() {
     typeTabByPopular,
     [{ page: currentPage }],
   );
-  console.log(list);
   return (
     <BodyMain>
       <BodyMain.Section>

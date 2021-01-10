@@ -11,7 +11,7 @@ import { ErrorModalContainer } from "./auxillary-containers";
 import { postReviewLogic } from "../utils/firebase";
 import { AuthContext } from "../context/auth-context";
 
-export default function ReviewPostFormContainer() {
+export default function ReviewPostFormContainer({ match }) {
   const [visibleDropdown, setVisibleDropdown] = useState(false);
   const [ratingValue, setRatingValue] = useState("");
   const [errorModalVisible, setErrorModalVisible] = useState(false);
@@ -23,7 +23,10 @@ export default function ReviewPostFormContainer() {
   const { firebase } = useContext(AuthContext);
   const { user } = useAuthListener();
 
-  const [reviewLoading, reviewData] = useFirestore(`Reviews`, location.slug);
+  const [reviewLoading, reviewData] = useFirestore(
+    `Reviews`,
+    match.params.slug,
+  );
   const [, userData] = useFirestore(user.displayName, "reviews");
 
   const onIconClick = () => {
@@ -38,13 +41,15 @@ export default function ReviewPostFormContainer() {
       history,
       firebase,
       userData,
-      location.slug,
+      match.params.slug,
       textfield,
       rating,
       title,
       reviewData,
     );
   };
+
+  console.log(location);
 
   const { register, handleSubmit, errors } = useForm();
 
@@ -151,8 +156,8 @@ export default function ReviewPostFormContainer() {
           })}
         />
         <ReviewPostForm.ButtonsWrapper>
-          <ReviewPostForm.BackLink to={`${location.slug}`}>
-            GO BACK
+          <ReviewPostForm.BackLink to={`/${match.params.slug}`}>
+            <ReviewPostForm.IconLeft /> GO BACK
           </ReviewPostForm.BackLink>
           <ReviewPostForm.Button type="submit" disabled={reviewLoading}>
             PUBLIC

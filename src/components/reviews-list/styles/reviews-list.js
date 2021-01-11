@@ -1,5 +1,7 @@
 import styled, { css } from "styled-components/macro";
 
+import { Link as ReactRouterLink } from "react-router-dom";
+
 export const Container = styled.div`
   padding: 1rem 4rem;
   max-width: 750px;
@@ -103,4 +105,8 @@ export const NoReviews = styled.div`
   text-align: center;
   font-size: ${({ theme }) => theme.fontSize.large};
   font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
+`;
+
+export const TextLink = styled.a`
+  color: gray;
 `;

@@ -11,7 +11,6 @@ export default function ReviewItemContainer({ correctSrc, item }) {
     }
   }, []);
 
-  console.log(item.text.length);
   return (
     <ReviewsList.ItemContainer
       key={item.nickname}

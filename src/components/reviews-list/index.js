@@ -14,6 +14,7 @@ import {
   Title,
   ContentWrapper,
   NoReviews,
+  TextLink,
 } from "./styles/reviews-list";
 
 export default function ReviewsList({ children, ...rest }) {
@@ -34,11 +35,29 @@ ReviewsList.Content = function ReviewsListContent({ children, ...rest }) {
     <ContentWrapper {...rest}>
       <Content>
         {firstLine}
-        {rst.map((item, i) => (
-          <p key={i} style={{ margin: 0 }}>
-            <br /> {item}
-          </p>
-        ))}
+        {rst.map((item, i) => {
+          if (item.length > 1) {
+            if (item.indexOf("https") > -1) {
+              console.log("hi");
+              return (
+                <TextLink
+                  key={i}
+                  style={{ margin: 0 }}
+                  href={item}
+                  target="_blank"
+                >
+                  {item}
+                </TextLink>
+              );
+            } else {
+              return (
+                <p key={i} style={{ margin: 0 }}>
+                  <br /> {item}
+                </p>
+              );
+            }
+          }
+        })}
       </Content>
     </ContentWrapper>
   );

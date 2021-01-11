@@ -8,7 +8,9 @@ export const Container = styled.div`
   font-size: ${({ theme }) => theme.fontSize.normal};
 `;
 
-export const Wrapper = styled.div``;
+export const Wrapper = styled.div`
+  margin-bottom: 1rem;
+`;
 
 export const Button = styled.button`
   outline: none;

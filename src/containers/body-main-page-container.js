@@ -6,8 +6,10 @@ import { range, getPaginator, getRightReleasedDate } from "../utils/utils";
 import Data from "../constants/data.json";
 import useFetch from "../hooks/useFetchData";
 import TabsMainPageCotainer from "./tabs-main-page-container";
-import PaginationMainPageContainer from "./pagination-main-page-container";
-import { SliderContainer } from "./auxillary-containers";
+import {
+  SliderContainer,
+  PaginationMainPageContainer,
+} from "./auxillary-containers";
 
 export default function BodyMainContainer() {
   const [sliderIndex, setSliderIndex] = useState(1);

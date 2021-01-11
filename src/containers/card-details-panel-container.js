@@ -6,7 +6,6 @@ import {
   ReviewsList,
   StarRating,
   Votes,
-  AuxillaryPagination,
 } from "../components";
 import { AuthContext } from "../context/auth-context";
 import useAuthListener from "../hooks/useAuthListener";
@@ -21,6 +20,7 @@ import {
   ErrorModalContainer,
   RelevantListContainer,
 } from "./auxillary-containers";
+import AuxillaryPaginationContainer from "./auxillary-containers/containers/auxillary-pagination-container";
 import ReviewItemContainer from "./auxillary-containers/containers/review-item-container";
 
 export default function CardDetailsPanelContainer() {
@@ -189,10 +189,11 @@ export default function CardDetailsPanelContainer() {
             <ReviewsList.NoReviews />
           </ReviewsList.ItemContainer>
         )}
-        <AuxillaryPagination>
-          <AuxillaryPagination.Item>123</AuxillaryPagination.Item>
-          <AuxillaryPagination.DummyItem>123</AuxillaryPagination.DummyItem>
-        </AuxillaryPagination>
+        {fullReviewsArray && (
+          <AuxillaryPaginationContainer
+            reviewsLength={fullReviewsArray.length}
+          />
+        )}
         <DetailsPanel.LinkButton onClick={reviewRedirectPage}>
           Create own review
         </DetailsPanel.LinkButton>

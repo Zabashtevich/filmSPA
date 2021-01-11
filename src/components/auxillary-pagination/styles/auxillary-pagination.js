@@ -11,10 +11,10 @@ export const Container = styled.div`
 
 export const Item = styled.span`
   display: block;
-  padding: 0.6rem;
+  padding: 0.6rem 0.8rem;
   color: #fff;
   background-color: ${({ theme }) => theme.colors.secondary};
-  border-radius: 1rem;
+  border-radius: 0.6rem;
   margin-right: 0.5rem;
   border: 1px solid hsla(0, 30%, 10%, 0.1);
   box-shadow: 1px 2px 1px 1px hsla(0, 0%, 50%, 0.1);
@@ -24,7 +24,7 @@ export const Item = styled.span`
 export const DummyItem = styled.span`
   background-color: ${({ theme }) => theme.colors.reviewsBackground};
   padding: 0.6rem;
-  border-radius: 1rem;
+  border-radius: 0.6rem;
   border: 1px solid hsla(0, 30%, 10%, 0.1);
   box-shadow: 1px 2px 1px 1px hsla(0, 0%, 50%, 0.1);
   cursor: pointer;

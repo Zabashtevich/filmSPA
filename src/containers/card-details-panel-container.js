@@ -145,9 +145,21 @@ export default function CardDetailsPanelContainer() {
         slug={(location.direction = "movie")}
       />
       <ReviewsList>
-        <ReviewsList.Title>Reviews</ReviewsList.Title>
         {!reviewLoading && list.reviews.results.length !== 0 ? (
           <>
+            <ReviewsList.HeaderWrapper>
+              <ReviewsList.Title>Reviews</ReviewsList.Title>
+              <ReviewsList.AmountWrapper>
+                <ReviewsList.AmountTitle>amount</ReviewsList.AmountTitle>
+                <ReviewsList.ReviewsAmount>
+                  {
+                    getCorrectReviewsArray(list.reviews.results).concat(
+                      reviewData,
+                    ).length
+                  }
+                </ReviewsList.ReviewsAmount>
+              </ReviewsList.AmountWrapper>
+            </ReviewsList.HeaderWrapper>
             {getCorrectReviewsArray(list.reviews.results)
               .concat(reviewData)
               .map((item) => {

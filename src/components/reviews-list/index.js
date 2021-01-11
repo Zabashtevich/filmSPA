@@ -15,6 +15,10 @@ import {
   ContentWrapper,
   NoReviews,
   TextLink,
+  HeaderWrapper,
+  ReviewsAmount,
+  AmountWrapper,
+  AmountTitle,
 } from "./styles/reviews-list";
 
 export default function ReviewsList({ children, ...rest }) {
@@ -38,7 +42,6 @@ ReviewsList.Content = function ReviewsListContent({ children, ...rest }) {
         {rst.map((item, i) => {
           if (item.length > 1) {
             if (item.indexOf("https") > -1) {
-              console.log("hi");
               return (
                 <TextLink
                   key={i}
@@ -92,4 +95,32 @@ ReviewsList.Title = function ReviewsListTitle({ children, ...rest }) {
 
 ReviewsList.NoReviews = function ReviewsListNoReviews(...rest) {
   return <NoReviews {...rest}>{"No reviews"}</NoReviews>;
+};
+
+ReviewsList.HeaderWrapper = function ReviewsListHeaderWrapper({
+  children,
+  ...rest
+}) {
+  return <HeaderWrapper {...rest}>{children}</HeaderWrapper>;
+};
+
+ReviewsList.ReviewsAmount = function ReviewsListReviewsAmount({
+  children,
+  ...rest
+}) {
+  return <ReviewsAmount {...rest}>{children}</ReviewsAmount>;
+};
+
+ReviewsList.AmountWrapper = function ReviewsListAmountWrapper({
+  children,
+  ...rest
+}) {
+  return <AmountWrapper {...rest}>{children}</AmountWrapper>;
+};
+
+ReviewsList.AmountTitle = function ReviewsListAmountTitle({
+  children,
+  ...rest
+}) {
+  return <AmountTitle {...rest}>{children}</AmountTitle>;
 };

@@ -110,3 +110,28 @@ export const NoReviews = styled.div`
 export const TextLink = styled.a`
   color: gray;
 `;
+
+export const HeaderWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const ReviewsAmount = styled.span`
+  display: block;
+  text-align: center;
+  font-size: ${({ theme }) => theme.fontSize.huge};
+  font-weight: ${({ theme }) => theme.fontWeightSecondary.weight};
+  margin-right: 2rem;
+`;
+
+export const AmountWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const AmountTitle = styled.span`
+  font-size: ${({ theme }) => theme.fontSize.large};
+  font-weight: ${({ theme }) => theme.fontWeightSecondary.normal};
+  margin-right: 3rem;
+`;

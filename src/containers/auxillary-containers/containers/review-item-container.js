@@ -9,7 +9,7 @@ export default function ReviewItemContainer({ correctSrc, item }) {
     if (item.text.length > 800) {
       setLoadMoreVisible(true);
     }
-  }, []);
+  }, [item.text]);
 
   return (
     <ReviewsList.ItemContainer
@@ -33,7 +33,7 @@ export default function ReviewItemContainer({ correctSrc, item }) {
         <ReviewsList.Content>{item.text}</ReviewsList.Content>
       )}
       {loadMoreVisible && (
-        <ReviewsList.Content>
+        <ReviewsList.Content loadMoreVisible={loadMoreVisible}>
           {item.text.slice(0, amountCharacters)}
         </ReviewsList.Content>
       )}
@@ -41,6 +41,7 @@ export default function ReviewItemContainer({ correctSrc, item }) {
         <LoadMore>
           <LoadMore.Wrapper>
             <LoadMore.Button
+              reviewpage
               onClick={() => {
                 setAmountCharacters(item.text.length);
                 setLoadMoreVisible(false);

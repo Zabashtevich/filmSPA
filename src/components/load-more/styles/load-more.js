@@ -1,9 +1,9 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 
 export const Container = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 4rem;
+  margin-top: 1rem;
   font-family: ${({ theme }) => theme.fontFamily.secondary};
   font-size: ${({ theme }) => theme.fontSize.normal};
 `;
@@ -21,10 +21,15 @@ export const Button = styled.button`
   padding: 0.5rem 1rem;
   cursor: pointer;
   font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
+  ${({ reviewpage }) =>
+    reviewpage &&
+    css`
+      background-color: ${({ theme }) => theme.colors.reviewsBackground};
+      color: ${({ theme }) => theme.colors.secondary};
+    `}
   &:hover {
     background-color: #fff;
     border: 1px solid gray;
-    color: ${({ theme }) => theme.colors.secondary};
     transition: all 0.2s linear;
   }
 `;

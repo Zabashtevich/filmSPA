@@ -33,7 +33,11 @@ ReviewsList.Author = function ReviewsListAuthor({ children, ...rest }) {
   return <Author {...rest}>{children}</Author>;
 };
 
-ReviewsList.Content = function ReviewsListContent({ children, ...rest }) {
+ReviewsList.Content = function ReviewsListContent({
+  children,
+  loadMoreVisible,
+  ...rest
+}) {
   const [firstLine, ...rst] = children.split("\n");
   return (
     <ContentWrapper {...rest}>
@@ -55,7 +59,10 @@ ReviewsList.Content = function ReviewsListContent({ children, ...rest }) {
             } else {
               return (
                 <p key={i} style={{ margin: 0 }}>
-                  <br /> {item}
+                  <br />{" "}
+                  {rst.length - 1 === i && loadMoreVisible
+                    ? `${item}...`
+                    : item}
                 </p>
               );
             }

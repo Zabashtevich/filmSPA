@@ -2,7 +2,6 @@ import React, { useState, useContext, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import {
   DetailsPanel,
-  LoadMore,
   RelevantList,
   ReviewsList,
   StarRating,
@@ -28,6 +27,7 @@ export default function CardDetailsPanelContainer() {
   const [ratedValue, setRatedValue] = useState(0);
   const [errorModalVisible, setErrorModalVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [fullReviewsArray, setFullReviewsArray] = useState([]);
 
   const location = useParams();
   const history = useHistory();
@@ -51,12 +51,25 @@ export default function CardDetailsPanelContainer() {
   ]);
 
   useEffect(() => {
+    if (!reviewLoading && list) {
+      if (list.reviews.results.length !== 0) {
+        setFullReviewsArray(
+          getCorrectReviewsArray(list.reviews.results).concat(reviewData),
+        );
+      }
+    }
+  }, [reviewData, list, reviewLoading]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", offsetListener);
+    return () => window.removeEventListener("scroll", offsetListener);
+  }, []);
+
+  useEffect(() => {
     if (userRatingData && userRatingData.length > 0 && list) {
       const rate = userRatingData.find((item) => item.id === list.id);
       if (rate) setRatedValue(rate.value);
     }
-    window.addEventListener("scroll", offsetListener);
-    return () => window.removeEventListener("scroll", offsetListener);
   }, [userRatingData, list]);
 
   const showErrorModal = (errorText) => {
@@ -152,29 +165,23 @@ export default function CardDetailsPanelContainer() {
               <ReviewsList.AmountWrapper>
                 <ReviewsList.AmountTitle>amount</ReviewsList.AmountTitle>
                 <ReviewsList.ReviewsAmount>
-                  {
-                    getCorrectReviewsArray(list.reviews.results).concat(
-                      reviewData,
-                    ).length
-                  }
+                  {fullReviewsArray.length}
                 </ReviewsList.ReviewsAmount>
               </ReviewsList.AmountWrapper>
             </ReviewsList.HeaderWrapper>
-            {getCorrectReviewsArray(list.reviews.results)
-              .concat(reviewData)
-              .map((item) => {
-                const correctSrc =
-                  item.avatar === null || item.avatar.includes("https")
-                    ? getCorrectSrc(item.avatar)
-                    : item.avatar;
-                return (
-                  <ReviewItemContainer
-                    key={item.nickname}
-                    correctSrc={correctSrc}
-                    item={item}
-                  />
-                );
-              })}
+            {fullReviewsArray.map((item) => {
+              const correctSrc =
+                item.avatar === null || item.avatar.includes("https")
+                  ? getCorrectSrc(item.avatar)
+                  : item.avatar;
+              return (
+                <ReviewItemContainer
+                  key={item.nickname}
+                  correctSrc={correctSrc}
+                  item={item}
+                />
+              );
+            })}
           </>
         ) : (
           <ReviewsList.ItemContainer>

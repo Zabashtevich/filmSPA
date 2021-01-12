@@ -18,6 +18,7 @@ export default function AuthenticationPageContainer() {
   const [errorsList, setErrorsList] = useState(null);
   const [userLoading, setUserLoading] = useState(false);
   const [userRedirect, setUserRedirect] = useState(false);
+  const [avatarLoading, setAvatarLoading] = useState(false);
   const [avatarSrc, setAvatarSrc] = useState("./../assets/images/poster.png");
 
   const { firebase } = useContext(AuthContext);
@@ -41,6 +42,16 @@ export default function AuthenticationPageContainer() {
       setUserRedirect,
       history,
     );
+  };
+
+  const fileValidation = (e) => {
+    setAvatarLoading(true);
+    if (e.target.files[0].type.includes("image")) {
+      setAvatarLoading(false);
+    } else {
+      setErrorsList(["Incorrect type of file"]);
+      setAvatarLoading(false);
+    }
   };
 
   return (
@@ -75,10 +86,17 @@ export default function AuthenticationPageContainer() {
               <LoginForm register={register} />
             )}
             {location.slug === "registration" && !userLoading && (
-              <RegistrationForm register={register} avatarSrc={avatarSrc} />
+              <RegistrationForm
+                register={register}
+                avatarSrc={avatarSrc}
+                fileValidation={fileValidation}
+              />
             )}
             {userLoading && <LoadingSpinner />}
-            <AuthenticationForm.Button type="submit" disabled={userLoading}>
+            <AuthenticationForm.Button
+              type="submit"
+              disabled={userLoading || avatarLoading}
+            >
               {(!userLoading && location.slug.toUpperCase()) || "LOADING"}
             </AuthenticationForm.Button>
           </AuthenticationForm.Form>

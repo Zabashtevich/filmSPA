@@ -12,7 +12,6 @@ import {
   Form,
   TextLink,
   AvatarPlaceholder,
-  InputFile,
 } from "./styles/authentication-form";
 
 export default function AuthenticationForm({ children, ...rest }) {
@@ -88,11 +87,4 @@ AuthenticationForm.AvatarPlaceholder = function AuthenticationFormAvatarPlacehol
   ...rest
 }) {
   return <AvatarPlaceholder {...rest} />;
-};
-
-AuthenticationForm.InputFile = function AuthenticationFormInputFile({
-  children,
-  ...rest
-}) {
-  return <InputFile {...rest} />;
 };

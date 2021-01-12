@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 import { BiErrorCircle } from "react-icons/bi";
 import { Link as ReactRouterLink } from "react-router-dom";
 
@@ -113,6 +113,9 @@ export const TextLink = styled(ReactRouterLink)`
   }
 `;
 
-export const AvatarPlaceholder = styled.img``;
-
-export const InputFile = styled.input``;
+export const AvatarPlaceholder = styled.img`
+  width: 200px;
+  align-self: center;
+  margin-bottom: 1rem;
+  border-radius: 3rem;
+`;

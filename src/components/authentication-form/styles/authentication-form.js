@@ -96,6 +96,9 @@ export const ErrorContainer = styled.ul`
   padding-left: 0.2rem;
   font-size: ${({ theme }) => theme.fontSize.small};
   max-width: 400px;
+  transform: translateY(${({ state }) => (state === "entering" ? -600 : 0)}px);
+  opacity: ${({ state }) => (state === "entering" ? 0 : 1)};
+  transition: 100ms;
 `;
 
 export const ErrorIcon = styled(BiErrorCircle)``;

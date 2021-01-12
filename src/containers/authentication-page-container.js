@@ -62,21 +62,21 @@ export default function AuthenticationPageContainer() {
         <AuthenticationForm>
           <AuthenticationForm.Form onSubmit={handleSubmit(onSubmit)}>
             {errorsList && (
-              <CSSTransition
-                classNames="fade"
-                timeout={250}
-                appear={true}
-                in={Object.keys(errors).length > 0}
-              >
-                <AuthenticationForm.ErrorContainer>
-                  {errorsList.map((item, i) => {
-                    return (
-                      <AuthenticationForm.ErrorMessage key={item + i}>
-                        {item}
-                      </AuthenticationForm.ErrorMessage>
-                    );
-                  })}
-                </AuthenticationForm.ErrorContainer>
+              <CSSTransition timeout={100} appear={true} in={!!errorsList}>
+                {(state) => {
+                  console.log(state);
+                  return (
+                    <AuthenticationForm.ErrorContainer state={state}>
+                      {errorsList.map((item, i) => {
+                        return (
+                          <AuthenticationForm.ErrorMessage key={item + i}>
+                            {item}
+                          </AuthenticationForm.ErrorMessage>
+                        );
+                      })}
+                    </AuthenticationForm.ErrorContainer>
+                  );
+                }}
               </CSSTransition>
             )}
             <AuthenticationForm.Title>

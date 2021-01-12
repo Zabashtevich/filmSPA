@@ -18,6 +18,7 @@ export default function AuthenticationPageContainer() {
   const [errorsList, setErrorsList] = useState(null);
   const [userLoading, setUserLoading] = useState(false);
   const [userRedirect, setUserRedirect] = useState(false);
+  const [avatarSrc, setAvatarSrc] = useState("./../assets/images/poster.png");
 
   const { firebase } = useContext(AuthContext);
 
@@ -74,7 +75,7 @@ export default function AuthenticationPageContainer() {
               <LoginForm register={register} />
             )}
             {location.slug === "registration" && !userLoading && (
-              <RegistrationForm register={register} />
+              <RegistrationForm register={register} avatarSrc={avatarSrc} />
             )}
             {userLoading && <LoadingSpinner />}
             <AuthenticationForm.Button type="submit" disabled={userLoading}>

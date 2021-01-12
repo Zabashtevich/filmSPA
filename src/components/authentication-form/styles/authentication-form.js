@@ -112,3 +112,7 @@ export const TextLink = styled(ReactRouterLink)`
     transition: all 0.2s linear;
   }
 `;
+
+export const AvatarPlaceholder = styled.img``;
+
+export const InputFile = styled.input``;

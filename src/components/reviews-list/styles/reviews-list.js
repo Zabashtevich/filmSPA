@@ -1,7 +1,5 @@
 import styled, { css } from "styled-components/macro";
 
-import { Link as ReactRouterLink } from "react-router-dom";
-
 export const Container = styled.div`
   padding: 1rem 4rem;
   max-width: 750px;
@@ -13,6 +11,7 @@ export const Container = styled.div`
   background-color: #fff;
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 
 export const Wrapper = styled.div`

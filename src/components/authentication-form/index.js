@@ -11,6 +11,8 @@ import {
   ErrorMessage,
   Form,
   TextLink,
+  AvatarPlaceholder,
+  InputFile,
 } from "./styles/authentication-form";
 
 export default function AuthenticationForm({ children, ...rest }) {
@@ -79,4 +81,18 @@ AuthenticationForm.TextLink = function AuthenticationFormTextLink({
   ...rest
 }) {
   return <TextLink {...rest}>{children}</TextLink>;
+};
+
+AuthenticationForm.AvatarPlaceholder = function AuthenticationFormAvatarPlaceholder({
+  children,
+  ...rest
+}) {
+  return <AvatarPlaceholder {...rest} />;
+};
+
+AuthenticationForm.InputFile = function AuthenticationFormInputFile({
+  children,
+  ...rest
+}) {
+  return <InputFile {...rest} />;
 };

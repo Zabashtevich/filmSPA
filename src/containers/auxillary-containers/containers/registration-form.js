@@ -2,9 +2,13 @@ import React from "react";
 
 import { AuthenticationForm } from "../../../components";
 
-export default function RegistrationForm({ register }) {
+export default function RegistrationForm({ register, avatarSrc }) {
   return (
     <>
+      <AuthenticationForm.Wrapper>
+        <AuthenticationForm.AvatarPlaceholder src={avatarSrc} />
+        <AuthenticationForm.Input type={"file"} />
+      </AuthenticationForm.Wrapper>
       <AuthenticationForm.Wrapper>
         <AuthenticationForm.Label>Nickname</AuthenticationForm.Label>
         <AuthenticationForm.Input

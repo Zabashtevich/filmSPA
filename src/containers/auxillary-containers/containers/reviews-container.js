@@ -42,7 +42,7 @@ export default function ReviewsContainer({
 
   return (
     <ReviewsList>
-      {fullReviewsArray !== 0 ? (
+      {fullReviewsArray.length !== 0 ? (
         <>
           <ReviewsList.HeaderWrapper>
             <ReviewsList.Title>Reviews</ReviewsList.Title>

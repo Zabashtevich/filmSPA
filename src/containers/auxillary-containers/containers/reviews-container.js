@@ -3,6 +3,7 @@ import { useParams, useHistory } from "react-router-dom";
 
 import { LoadMore, ReviewsList } from "../../../components";
 import { getCorrectSrc } from "./../../../utils/utils";
+import AuxillaryPaginationContainer from "./auxillary-pagination-container";
 
 export default function ReviewsContainer({
   fullReviewsArray,
@@ -11,6 +12,9 @@ export default function ReviewsContainer({
   setErrorModalVisible,
   reviewData,
 }) {
+  const [firstOffsetNumber, setFirstOffsetNumber] = useState(0);
+  const [lastOffsetNumber, setLastOffsetNumber] = useState(5);
+
   const location = useParams();
   const history = useHistory();
 
@@ -31,6 +35,11 @@ export default function ReviewsContainer({
     }
   };
 
+  const calculateReviewsOffset = (buttonNumber) => {
+    setFirstOffsetNumber(buttonNumber * 5 - 5);
+    setLastOffsetNumber(buttonNumber * 5);
+  };
+
   return (
     <ReviewsList>
       {fullReviewsArray !== 0 ? (
@@ -44,20 +53,33 @@ export default function ReviewsContainer({
               </ReviewsList.ReviewsAmount>
             </ReviewsList.AmountWrapper>
           </ReviewsList.HeaderWrapper>
-          {fullReviewsArray.map((item) => {
-            const correctSrc =
-              item.avatar === null || item.avatar.includes("https")
-                ? getCorrectSrc(item.avatar)
-                : item.avatar;
-            return <ReviewItemContainer item={item} correctSrc={correctSrc} />;
-          })}
+          {fullReviewsArray
+            .slice(firstOffsetNumber, lastOffsetNumber)
+            .map((item) => {
+              const correctSrc =
+                item.avatar === null || item.avatar.includes("https")
+                  ? getCorrectSrc(item.avatar)
+                  : item.avatar;
+              return (
+                <ReviewItemContainer
+                  key={item.nickname}
+                  item={item}
+                  correctSrc={correctSrc}
+                />
+              );
+            })}
         </>
       ) : (
         <ReviewsList.ItemContainer>
           <ReviewsList.NoReviews />
         </ReviewsList.ItemContainer>
       )}
-
+      {fullReviewsArray.length > 5 && (
+        <AuxillaryPaginationContainer
+          reviewsLength={fullReviewsArray.length}
+          calculateReviewsOffset={calculateReviewsOffset}
+        />
+      )}
       <ReviewsList.LinkButton onClick={reviewRedirectPage}>
         Create own review
       </ReviewsList.LinkButton>

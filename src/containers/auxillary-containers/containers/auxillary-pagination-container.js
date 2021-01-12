@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { AuxillaryPagination } from "../../../components";
 
-export default function AuxillaryPaginationContainer({ reviewsLength }) {
+export default function AuxillaryPaginationContainer({
+  reviewsLength,
+  calculateReviewsOffset,
+}) {
   const [paginationAmount, setPaginationAmount] = useState(null);
   const [activePaginationItem, setActivePaginationItem] = useState(1);
   const [amountLoading, setAmountLoading] = useState(true);
-
   useEffect(() => {
     setPaginationAmount(Array(Math.ceil(reviewsLength / 5)).fill(1));
     setAmountLoading(false);
@@ -18,7 +20,10 @@ export default function AuxillaryPaginationContainer({ reviewsLength }) {
           {paginationAmount.map((_, i) => {
             return (
               <AuxillaryPagination.Item
-                onClick={() => setActivePaginationItem(i + 1)}
+                onClick={() => {
+                  setActivePaginationItem(i + 1);
+                  calculateReviewsOffset(i + 1);
+                }}
                 key={i}
                 active={i + 1 === activePaginationItem ? 1 : 0}
               >

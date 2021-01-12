@@ -158,46 +158,6 @@ export default function CardDetailsPanelContainer() {
         recommendations={list.recommendations.results}
         slug={(location.direction = "movie")}
       />
-      <ReviewsList>
-        {!reviewLoading && list.reviews.results.length !== 0 ? (
-          <>
-            <ReviewsList.HeaderWrapper>
-              <ReviewsList.Title>Reviews</ReviewsList.Title>
-              <ReviewsList.AmountWrapper>
-                <ReviewsList.AmountTitle>amount</ReviewsList.AmountTitle>
-                <ReviewsList.ReviewsAmount>
-                  {fullReviewsArray.length}
-                </ReviewsList.ReviewsAmount>
-              </ReviewsList.AmountWrapper>
-            </ReviewsList.HeaderWrapper>
-            {fullReviewsArray.map((item) => {
-              const correctSrc =
-                item.avatar === null || item.avatar.includes("https")
-                  ? getCorrectSrc(item.avatar)
-                  : item.avatar;
-              return (
-                <ReviewItemContainer
-                  key={item.nickname}
-                  correctSrc={correctSrc}
-                  item={item}
-                />
-              );
-            })}
-          </>
-        ) : (
-          <ReviewsList.ItemContainer>
-            <ReviewsList.NoReviews />
-          </ReviewsList.ItemContainer>
-        )}
-        {fullReviewsArray && (
-          <AuxillaryPaginationContainer
-            reviewsLength={fullReviewsArray.length}
-          />
-        )}
-        <DetailsPanel.LinkButton onClick={reviewRedirectPage}>
-          Create own review
-        </DetailsPanel.LinkButton>
-      </ReviewsList>
 
       {errorModalVisible && (
         <ErrorModalContainer

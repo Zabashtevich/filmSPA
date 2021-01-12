@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Container = styled.div`
   display: flex;
@@ -12,13 +12,20 @@ export const Container = styled.div`
 export const Item = styled.span`
   display: block;
   padding: 0.6rem 0.8rem;
-  color: #fff;
-  background-color: ${({ theme }) => theme.colors.secondary};
+  background-color: ${({ theme }) => theme.colors.reviewsBackground};
+  color: #000;
   border-radius: 0.6rem;
   margin-right: 0.5rem;
   border: 1px solid hsla(0, 30%, 10%, 0.1);
   box-shadow: 1px 2px 1px 1px hsla(0, 0%, 50%, 0.1);
   cursor: pointer;
+  transition: 750ms;
+  ${({ active }) =>
+    active &&
+    css`
+      background-color: ${({ theme }) => theme.colors.secondary};
+      color: #fff;
+    `};
 `;
 
 export const DummyItem = styled.span`

@@ -1,4 +1,5 @@
 import React from "react";
+import { ReviewPostForm } from "..";
 import { baseAuthorImageLink } from "../../constants/constants";
 
 import {
@@ -19,6 +20,7 @@ import {
   ReviewsAmount,
   AmountWrapper,
   AmountTitle,
+  LinkButton,
 } from "./styles/reviews-list";
 
 export default function ReviewsList({ children, ...rest }) {
@@ -130,4 +132,8 @@ ReviewsList.AmountTitle = function ReviewsListAmountTitle({
   ...rest
 }) {
   return <AmountTitle {...rest}>{children}</AmountTitle>;
+};
+
+ReviewsList.LinkButton = function ReviewsListLinkButton({ children, ...rest }) {
+  return <LinkButton {...rest}>{children}</LinkButton>;
 };

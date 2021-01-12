@@ -7,3 +7,4 @@ export { default as SliderContainer } from "./containers/slider-container";
 export { default as LoginForm } from "./containers/login-form";
 export { default as RegistrationForm } from "./containers/registration-form";
 export { default as PaginationMainPageContainer } from "./containers/pagination-main-page-container";
+export { default as ReviewsContainer } from "./containers/reviews-container";

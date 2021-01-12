@@ -1,27 +1,16 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import {
-  DetailsPanel,
-  RelevantList,
-  ReviewsList,
-  StarRating,
-  Votes,
-} from "../components";
+import { DetailsPanel, RelevantList, StarRating, Votes } from "../components";
 import { AuthContext } from "../context/auth-context";
 import useAuthListener from "../hooks/useAuthListener";
 import useFetch from "../hooks/useFetchData";
 import useFirestore from "../hooks/useFirestore";
-import {
-  getCorrectReviewsArray,
-  getCorrectSrc,
-  offsetListener,
-} from "../utils/utils";
+import { getCorrectReviewsArray, offsetListener } from "../utils/utils";
 import {
   ErrorModalContainer,
   RelevantListContainer,
 } from "./auxillary-containers";
-import AuxillaryPaginationContainer from "./auxillary-containers/containers/auxillary-pagination-container";
-import ReviewItemContainer from "./auxillary-containers/containers/review-item-container";
+import { ReviewsContainer } from "./auxillary-containers";
 
 export default function CardDetailsPanelContainer() {
   const [starValue, setStarValue] = useState(0);
@@ -102,23 +91,6 @@ export default function CardDetailsPanelContainer() {
     }
   };
 
-  const reviewRedirectPage = () => {
-    if (!user) {
-      setErrorMessage(["Please, log in to create review"]);
-      setErrorModalVisible(true);
-      setTimeout(() => history.push("/authentication/login"), 3000);
-    }
-    if (reviewData.find((item) => item.nickname === user.displayName)) {
-      setErrorMessage([
-        "Sorry, but you alreay have own review on this page",
-        "Please edit you review or delete it to create new",
-      ]);
-      setErrorModalVisible(true);
-    } else {
-      history.push(`${location.slug}/review`);
-    }
-  };
-
   return list ? (
     <DetailsPanel>
       <DetailsPanel.ContentWrapper>
@@ -158,7 +130,15 @@ export default function CardDetailsPanelContainer() {
         recommendations={list.recommendations.results}
         slug={(location.direction = "movie")}
       />
-
+      {fullReviewsArray && (
+        <ReviewsContainer
+          fullReviewsArray={fullReviewsArray}
+          user={user}
+          setErrorMessage={setErrorMessage}
+          setErrorModalVisible={setErrorModalVisible}
+          reviewData={reviewData}
+        />
+      )}
       {errorModalVisible && (
         <ErrorModalContainer
           errorMessage={errorMessage}

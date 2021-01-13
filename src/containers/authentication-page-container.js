@@ -4,11 +4,12 @@ import { useForm } from "react-hook-form";
 import { CSSTransition } from "react-transition-group";
 
 import AuthenticationForm from "../components/authentication-form";
-import { getErrorsList } from "../utils/utils";
+import { getErrorsList, getPreviewSrc } from "../utils/utils";
 import { authLogic } from "../utils/firebase";
 import { AuthContext } from "../context/auth-context";
 import { LoginForm, RegistrationForm } from "./auxillary-containers";
 import LoadingSpinner from "../components/loading-spinner";
+import { firebase } from "./../libs/firebase";
 
 export default function AuthenticationPageContainer() {
   const location = useParams();
@@ -47,6 +48,7 @@ export default function AuthenticationPageContainer() {
   const fileValidation = (e) => {
     setAvatarLoading(true);
     if (e.target.files[0].type.includes("image")) {
+      getPreviewSrc(e.target.files[0], setAvatarSrc);
       setAvatarLoading(false);
     } else {
       setErrorsList(["Incorrect type of file"]);

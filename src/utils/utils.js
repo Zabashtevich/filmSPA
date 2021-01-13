@@ -164,3 +164,13 @@ export const offsetListener = () => {
     document.body.style.backgroundColor = "#f2f2f2";
   }
 };
+
+export function getPreviewSrc(file, setAvatarSrc) {
+  const reader = new FileReader();
+
+  reader.addEventListener("load", function () {
+    setAvatarSrc(this.result);
+  });
+
+  reader.readAsDataURL(file);
+}

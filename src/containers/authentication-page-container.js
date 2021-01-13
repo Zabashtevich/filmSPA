@@ -21,11 +21,22 @@ export default function AuthenticationPageContainer() {
   const [userRedirect, setUserRedirect] = useState(false);
   const [avatarLoading, setAvatarLoading] = useState(false);
   const [avatarSrc, setAvatarSrc] = useState("./../assets/images/poster.png");
-  const [fileName, setFileName] = useState(null);
+  const [file, setFile] = useState(null);
   const [isAvatarChanged, setIsAvatarChanged] = useState(false);
   const [imgIsValid, setImgIsValid] = useState(false);
 
   const { firebase } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (imgIsValid) {
+      console.log(file);
+      getPreviewSrc(file, setAvatarSrc);
+      setIsAvatarChanged(true);
+      setAvatarLoading(false);
+    } else {
+      setAvatarSrc("./../assets/images/poster.png");
+    }
+  }, [imgIsValid]);
 
   useEffect(() => {
     if (Object.keys(errors).length > 0) {
@@ -45,7 +56,7 @@ export default function AuthenticationPageContainer() {
       setErrorsList,
       setUserRedirect,
       history,
-      fileName,
+      file,
     );
   };
 
@@ -56,12 +67,8 @@ export default function AuthenticationPageContainer() {
       setAvatarLoading,
       e.target.files[0],
       setImgIsValid,
+      setFile,
     );
-    if (imgIsValid) {
-      getPreviewSrc(e.target.files[0], setAvatarSrc, setFileName);
-      setIsAvatarChanged(true);
-      setAvatarLoading(false);
-    }
   };
 
   return (

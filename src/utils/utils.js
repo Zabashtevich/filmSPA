@@ -170,6 +170,7 @@ export async function validateImg(
   setAvatarLoading,
   file,
   setImgIsValid,
+  setFile,
 ) {
   if (!file.type.includes("image")) {
     setErrorsList(["Incorrect type of file"]);
@@ -187,9 +188,11 @@ export async function validateImg(
 
   await imageSizeValidate(file)
     .then(() => {
+      setFile(file);
       setImgIsValid(true);
     })
     .catch(() => {
+      setFile(null);
       setErrorsList(["File width or height must be smaller than 200px"]);
       setAvatarLoading(false);
       setImgIsValid(false);
@@ -201,7 +204,6 @@ export function getPreviewSrc(file, setAvatarSrc, setFileName) {
   const reader = new FileReader();
   reader.addEventListener("load", function () {
     setAvatarSrc(this.result);
-    setFileName(file.name);
   });
 
   reader.readAsDataURL(file);

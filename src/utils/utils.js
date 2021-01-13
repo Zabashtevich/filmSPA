@@ -165,32 +165,37 @@ export const offsetListener = () => {
   }
 };
 
-export const imgIsValid = (setErrorsList, setAvatarLoading, file) => {
+export async function validateImg(
+  setErrorsList,
+  setAvatarLoading,
+  file,
+  setImgIsValid,
+) {
   if (!file.type.includes("image")) {
     setErrorsList(["Incorrect type of file"]);
     setAvatarLoading(false);
-  }
-  if (parseFloat(file.size / (1024 * 1024)) >= 3) {
-    setErrorsList(["File size must be smaller than 3 MB"]);
-    setAvatarLoading(false);
+    setImgIsValid(false);
+    return;
+  } else {
+    if (parseFloat(file.size / (1024 * 1024)) >= 3) {
+      setErrorsList(["File size must be smaller than 3 MB"]);
+      setAvatarLoading(false);
+      setImgIsValid(false);
+      return;
+    }
   }
 
-  function check() {
-    let img = new Image();
-    img.src = window.URL.createObjectURL(file);
-    console.log("hi");
-    img.onload = () => {
-      if (img.width > 200 || img.height > 200) {
-        setErrorsList(["File width or height must be smaller than"]);
-        setAvatarLoading(false);
-        return false;
-      } else {
-        return true;
-      }
-    };
-  }
-  return check();
-};
+  await imageSizeValidate(file)
+    .then(() => {
+      setImgIsValid(true);
+    })
+    .catch(() => {
+      setErrorsList(["File width or height must be smaller than 200px"]);
+      setAvatarLoading(false);
+      setImgIsValid(false);
+      return;
+    });
+}
 
 export function getPreviewSrc(file, setAvatarSrc, setFileName) {
   const reader = new FileReader();
@@ -200,4 +205,19 @@ export function getPreviewSrc(file, setAvatarSrc, setFileName) {
   });
 
   reader.readAsDataURL(file);
+}
+
+function imageSizeValidate(file) {
+  return new Promise(function (resolve, reject) {
+    let img = new Image();
+    img.src = window.URL.createObjectURL(file);
+
+    img.onload = () => {
+      if (img.width > 200 || img.height > 200) {
+        reject();
+      } else {
+        resolve();
+      }
+    };
+  });
 }

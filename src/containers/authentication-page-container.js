@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { CSSTransition } from "react-transition-group";
 
 import AuthenticationForm from "../components/authentication-form";
-import { getErrorsList, getPreviewSrc, imgIsValid } from "../utils/utils";
+import { getErrorsList, getPreviewSrc, validateImg } from "../utils/utils";
 import { authLogic } from "../utils/firebase";
 import { AuthContext } from "../context/auth-context";
 import { LoginForm, RegistrationForm } from "./auxillary-containers";
@@ -23,6 +23,7 @@ export default function AuthenticationPageContainer() {
   const [avatarSrc, setAvatarSrc] = useState("./../assets/images/poster.png");
   const [fileName, setFileName] = useState(null);
   const [isAvatarChanged, setIsAvatarChanged] = useState(false);
+  const [imgIsValid, setImgIsValid] = useState(false);
 
   const { firebase } = useContext(AuthContext);
 
@@ -50,8 +51,13 @@ export default function AuthenticationPageContainer() {
 
   const fileValidation = (e) => {
     setAvatarLoading(true);
-
-    if (imgIsValid(setErrorsList, setAvatarLoading, e.target.files[0])) {
+    validateImg(
+      setErrorsList,
+      setAvatarLoading,
+      e.target.files[0],
+      setImgIsValid,
+    );
+    if (imgIsValid) {
       getPreviewSrc(e.target.files[0], setAvatarSrc, setFileName);
       setIsAvatarChanged(true);
       setAvatarLoading(false);

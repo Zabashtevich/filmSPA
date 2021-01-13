@@ -167,7 +167,7 @@ export const offsetListener = () => {
 
 export function getPreviewSrc(file, setAvatarSrc) {
   const reader = new FileReader();
-
+  console.log(file.size);
   reader.addEventListener("load", function () {
     setAvatarSrc(this.result);
   });

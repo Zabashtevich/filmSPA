@@ -1,4 +1,5 @@
 import React from "react";
+import { CSSTransition } from "react-transition-group";
 
 import { AuthenticationForm } from "../../../components";
 
@@ -6,11 +7,26 @@ export default function RegistrationForm({
   register,
   avatarSrc,
   fileValidation,
+  isAvatarChanged,
 }) {
   return (
     <>
       <AuthenticationForm.Wrapper>
-        <AuthenticationForm.AvatarPlaceholder src={avatarSrc} />
+        {!isAvatarChanged && (
+          <AuthenticationForm.AvatarPlaceholder src={avatarSrc} />
+        )}
+        {isAvatarChanged && (
+          <CSSTransition
+            timeout={250}
+            appear={true}
+            unmountOnExit
+            in={isAvatarChanged}
+          >
+            {(state) => (
+              <AuthenticationForm.UserAvatar src={avatarSrc} state={state} />
+            )}
+          </CSSTransition>
+        )}
         <AuthenticationForm.Label>Profile picture</AuthenticationForm.Label>
         <AuthenticationForm.Input
           accept="image/x-png,image/gif,image/jpeg"

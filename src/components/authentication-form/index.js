@@ -12,6 +12,7 @@ import {
   Form,
   TextLink,
   AvatarPlaceholder,
+  UserAvatar,
 } from "./styles/authentication-form";
 
 export default function AuthenticationForm({ children, ...rest }) {
@@ -87,4 +88,11 @@ AuthenticationForm.AvatarPlaceholder = function AuthenticationFormAvatarPlacehol
   ...rest
 }) {
   return <AvatarPlaceholder {...rest} />;
+};
+
+AuthenticationForm.UserAvatar = function AuthenticationFormUserAvatar({
+  children,
+  ...rest
+}) {
+  return <UserAvatar {...rest} />;
 };

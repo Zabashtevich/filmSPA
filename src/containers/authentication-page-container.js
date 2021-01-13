@@ -21,6 +21,7 @@ export default function AuthenticationPageContainer() {
   const [userRedirect, setUserRedirect] = useState(false);
   const [avatarLoading, setAvatarLoading] = useState(false);
   const [avatarSrc, setAvatarSrc] = useState("./../assets/images/poster.png");
+  const [isAvatarChanged, setIsAvatarChanged] = useState(false);
 
   const { firebase } = useContext(AuthContext);
 
@@ -48,8 +49,14 @@ export default function AuthenticationPageContainer() {
   const fileValidation = (e) => {
     setAvatarLoading(true);
     if (e.target.files[0].type.includes("image")) {
-      getPreviewSrc(e.target.files[0], setAvatarSrc);
-      setAvatarLoading(false);
+      if (parseFloat(e.target.files[0].size / (1024 * 1024)) >= 3) {
+        setErrorsList(["File size must be smaller than 3 MB"]);
+        setAvatarLoading(false);
+      } else {
+        getPreviewSrc(e.target.files[0], setAvatarSrc);
+        setIsAvatarChanged(true);
+        setAvatarLoading(false);
+      }
     } else {
       setErrorsList(["Incorrect type of file"]);
       setAvatarLoading(false);
@@ -92,6 +99,7 @@ export default function AuthenticationPageContainer() {
                 register={register}
                 avatarSrc={avatarSrc}
                 fileValidation={fileValidation}
+                isAvatarChanged={isAvatarChanged}
               />
             )}
             {userLoading && <LoadingSpinner />}

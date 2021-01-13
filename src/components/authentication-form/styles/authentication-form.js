@@ -122,3 +122,13 @@ export const AvatarPlaceholder = styled.img`
   margin-bottom: 1rem;
   border-radius: 3rem;
 `;
+
+export const UserAvatar = styled.img`
+  max-width: 200px;
+  align-self: center;
+  margin-bottom: 1rem;
+  border-radius: 3rem;
+  opacity: ${({ state }) => (state === "entering" ? 0 : 1)};
+  transform: translateX(${({ state }) => (state === "entering" ? -400 : 0)}px);
+  transition: 250ms;
+`;

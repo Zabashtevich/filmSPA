@@ -165,11 +165,38 @@ export const offsetListener = () => {
   }
 };
 
-export function getPreviewSrc(file, setAvatarSrc) {
+export const imgIsValid = (setErrorsList, setAvatarLoading, file) => {
+  if (!file.type.includes("image")) {
+    setErrorsList(["Incorrect type of file"]);
+    setAvatarLoading(false);
+  }
+  if (parseFloat(file.size / (1024 * 1024)) >= 3) {
+    setErrorsList(["File size must be smaller than 3 MB"]);
+    setAvatarLoading(false);
+  }
+
+  function check() {
+    let img = new Image();
+    img.src = window.URL.createObjectURL(file);
+    console.log("hi");
+    img.onload = () => {
+      if (img.width > 200 || img.height > 200) {
+        setErrorsList(["File width or height must be smaller than"]);
+        setAvatarLoading(false);
+        return false;
+      } else {
+        return true;
+      }
+    };
+  }
+  return check();
+};
+
+export function getPreviewSrc(file, setAvatarSrc, setFileName) {
   const reader = new FileReader();
-  console.log(file.size);
   reader.addEventListener("load", function () {
     setAvatarSrc(this.result);
+    setFileName(file.name);
   });
 
   reader.readAsDataURL(file);

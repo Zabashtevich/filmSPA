@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { CSSTransition } from "react-transition-group";
 
 import AuthenticationForm from "../components/authentication-form";
-import { getErrorsList, getPreviewSrc } from "../utils/utils";
+import { getErrorsList, getPreviewSrc, imgIsValid } from "../utils/utils";
 import { authLogic } from "../utils/firebase";
 import { AuthContext } from "../context/auth-context";
 import { LoginForm, RegistrationForm } from "./auxillary-containers";
@@ -21,6 +21,7 @@ export default function AuthenticationPageContainer() {
   const [userRedirect, setUserRedirect] = useState(false);
   const [avatarLoading, setAvatarLoading] = useState(false);
   const [avatarSrc, setAvatarSrc] = useState("./../assets/images/poster.png");
+  const [fileName, setFileName] = useState(null);
   const [isAvatarChanged, setIsAvatarChanged] = useState(false);
 
   const { firebase } = useContext(AuthContext);
@@ -43,22 +44,16 @@ export default function AuthenticationPageContainer() {
       setErrorsList,
       setUserRedirect,
       history,
+      fileName,
     );
   };
 
   const fileValidation = (e) => {
     setAvatarLoading(true);
-    if (e.target.files[0].type.includes("image")) {
-      if (parseFloat(e.target.files[0].size / (1024 * 1024)) >= 3) {
-        setErrorsList(["File size must be smaller than 3 MB"]);
-        setAvatarLoading(false);
-      } else {
-        getPreviewSrc(e.target.files[0], setAvatarSrc);
-        setIsAvatarChanged(true);
-        setAvatarLoading(false);
-      }
-    } else {
-      setErrorsList(["Incorrect type of file"]);
+
+    if (imgIsValid(setErrorsList, setAvatarLoading, e.target.files[0])) {
+      getPreviewSrc(e.target.files[0], setAvatarSrc, setFileName);
+      setIsAvatarChanged(true);
       setAvatarLoading(false);
     }
   };
@@ -73,7 +68,6 @@ export default function AuthenticationPageContainer() {
             {errorsList && (
               <CSSTransition timeout={100} appear={true} in={!!errorsList}>
                 {(state) => {
-                  console.log(state);
                   return (
                     <AuthenticationForm.ErrorContainer state={state}>
                       {errorsList.map((item, i) => {

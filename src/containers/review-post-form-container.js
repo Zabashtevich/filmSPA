@@ -74,12 +74,16 @@ export default function ReviewPostFormContainer() {
       )}
       <ReviewPostForm.Form onSubmit={handleSubmit(onPostReview)}>
         <ReviewPostForm.Title>Create your review</ReviewPostForm.Title>
-        <ReviewPostForm.ProfileWrapper>
-          <ReviewPostForm.Avatar src={"./../../../assets/images/poster.png"} />
-          <ReviewPostForm.Nickname>
-            {user && user.displayName}
-          </ReviewPostForm.Nickname>
-        </ReviewPostForm.ProfileWrapper>
+        {user && (
+          <ReviewPostForm.ProfileWrapper>
+            <ReviewPostForm.Avatar
+              src={user.photoURL || "./../../../assets/images/poster.png"}
+            />
+            <ReviewPostForm.Nickname>
+              {user.displayName}
+            </ReviewPostForm.Nickname>
+          </ReviewPostForm.ProfileWrapper>
+        )}
         <ReviewPostForm.Input
           placeholder={"Title"}
           name="title"

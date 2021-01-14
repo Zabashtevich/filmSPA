@@ -16,6 +16,7 @@ export const authLogic = async (
   setUserRedirect,
   history,
   file,
+  isAvatarChanged,
 ) => {
   setUserLoading(true);
   switch (slug) {
@@ -32,61 +33,111 @@ export const authLogic = async (
         });
       break;
     case "registration":
-      repeatPassword !== password
-        ? getErrorsList(repeatPassword, setErrorsList)
-        : setErrorsList(null);
-      const ref = firebase.storage().ref();
-      const fileRef = ref.child(file.name);
-      await fileRef.put(file).then(() => alert("haha"));
-      await fileRef.getDownloadURL().then(function (url) {
-        console.log(url);
-      });
-      firebase
-        .auth()
-        .createUserWithEmailAndPassword(email, password)
-        .then((result) => {
-          result.user
-            .updateProfile({
-              displayName: nickname,
-            })
-            .then(() => {
-              firebase
-                .firestore()
-                .collection(`${nickname}`)
-                .doc(`moviesrated`)
-                .set({ list: [] })
-                .catch(() => {
-                  setUserLoading(false);
-                  setErrorsList([`something gone wrong`]);
-                });
-              firebase
-                .firestore()
-                .collection(`${nickname}`)
-                .doc(`collection`)
-                .set({ list: [] })
-                .catch(() => {
-                  setUserLoading(false);
-                  setErrorsList([`something gone wrong`]);
-                });
-              firebase
-                .firestore()
-                .collection(`${nickname}`)
-                .doc(`reviews`)
-                .set({ list: [] })
-                .catch(() => {
-                  setUserLoading(false);
-                  setErrorsList([`something gone wrong`]);
+      if (isAvatarChanged) {
+        repeatPassword !== password
+          ? getErrorsList(repeatPassword, setErrorsList)
+          : setErrorsList(null);
+        const ref = firebase.storage().ref();
+        const fileRef = ref.child(file.name);
+        await fileRef.put(file);
+        await fileRef.getDownloadURL().then(function (url) {
+          firebase
+            .auth()
+            .createUserWithEmailAndPassword(email, password)
+            .then((result) => {
+              result.user
+                .updateProfile({
+                  displayName: nickname,
+                  photoURL: url,
                 })
                 .then(() => {
-                  setUserLoading(false);
-                  setUserRedirect(true);
+                  firebase
+                    .firestore()
+                    .collection(`${nickname}`)
+                    .doc(`moviesrated`)
+                    .set({ list: [] })
+                    .catch(() => {
+                      setUserLoading(false);
+                      setErrorsList([`something gone wrong`]);
+                    });
+                  firebase
+                    .firestore()
+                    .collection(`${nickname}`)
+                    .doc(`collection`)
+                    .set({ list: [] })
+                    .catch(() => {
+                      setUserLoading(false);
+                      setErrorsList([`something gone wrong`]);
+                    });
+                  firebase
+                    .firestore()
+                    .collection(`${nickname}`)
+                    .doc(`reviews`)
+                    .set({ list: [] })
+                    .catch(() => {
+                      setUserLoading(false);
+                      setErrorsList([`something gone wrong`]);
+                    })
+                    .then(() => {
+                      setUserLoading(false);
+                      setUserRedirect(true);
+                    });
                 });
+            })
+            .catch(({ message }) => {
+              setErrorsList([message]);
+              setUserLoading(false);
             });
-        })
-        .catch(({ message }) => {
-          setErrorsList([message]);
-          setUserLoading(false);
         });
+      } else {
+        firebase
+          .auth()
+          .createUserWithEmailAndPassword(email, password)
+          .then((result) => {
+            result.user
+              .updateProfile({
+                displayName: nickname,
+                photoURL: null,
+              })
+              .then(() => {
+                firebase
+                  .firestore()
+                  .collection(`${nickname}`)
+                  .doc(`moviesrated`)
+                  .set({ list: [] })
+                  .catch(() => {
+                    setUserLoading(false);
+                    setErrorsList([`something gone wrong`]);
+                  });
+                firebase
+                  .firestore()
+                  .collection(`${nickname}`)
+                  .doc(`collection`)
+                  .set({ list: [] })
+                  .catch(() => {
+                    setUserLoading(false);
+                    setErrorsList([`something gone wrong`]);
+                  });
+                firebase
+                  .firestore()
+                  .collection(`${nickname}`)
+                  .doc(`reviews`)
+                  .set({ list: [] })
+                  .catch(() => {
+                    setUserLoading(false);
+                    setErrorsList([`something gone wrong`]);
+                  })
+                  .then(() => {
+                    setUserLoading(false);
+                    setUserRedirect(true);
+                  });
+              });
+          })
+          .catch(({ message }) => {
+            setErrorsList([message]);
+            setUserLoading(false);
+          });
+      }
 
       break;
     default:

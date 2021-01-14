@@ -9,7 +9,6 @@ import { authLogic } from "../utils/firebase";
 import { AuthContext } from "../context/auth-context";
 import { LoginForm, RegistrationForm } from "./auxillary-containers";
 import LoadingSpinner from "../components/loading-spinner";
-import { firebase } from "./../libs/firebase";
 
 export default function AuthenticationPageContainer() {
   const location = useParams();
@@ -29,14 +28,13 @@ export default function AuthenticationPageContainer() {
 
   useEffect(() => {
     if (imgIsValid) {
-      console.log(file);
       getPreviewSrc(file, setAvatarSrc);
       setIsAvatarChanged(true);
       setAvatarLoading(false);
     } else {
       setAvatarSrc("./../assets/images/poster.png");
     }
-  }, [imgIsValid]);
+  }, [imgIsValid, file]);
 
   useEffect(() => {
     if (Object.keys(errors).length > 0) {
@@ -57,6 +55,7 @@ export default function AuthenticationPageContainer() {
       setUserRedirect,
       history,
       file,
+      isAvatarChanged,
     );
   };
 

@@ -4,7 +4,9 @@ import {
   Container,
   Icon,
   PopupContainer,
-  PopupItem,
+  PopupNickname,
+  PopupLink,
+  PopupLogout,
 } from "./styles/header-profile";
 
 export default function HeaderProfile({ children, ...rest }) {
@@ -22,9 +24,23 @@ HeaderProfile.PopupContainer = function HeaderProfilePopupContainer({
   return <PopupContainer {...rest}>{children}</PopupContainer>;
 };
 
-HeaderProfile.PopupItem = function HeaderProfilePopupItem({
+HeaderProfile.PopupNickname = function HeaderProfilePopupNickname({
   children,
   ...rest
 }) {
-  return <PopupItem {...rest}>{children}</PopupItem>;
+  return <PopupNickname {...rest}>{children}</PopupNickname>;
+};
+
+HeaderProfile.PopupLogout = function HeaderProfilePopupLogout({
+  children,
+  ...rest
+}) {
+  return <PopupLogout {...rest}>{children}</PopupLogout>;
+};
+
+HeaderProfile.PopupLink = function HeaderProfilePopupLink({
+  children,
+  ...rest
+}) {
+  return <PopupLink {...rest}>{children}</PopupLink>;
 };

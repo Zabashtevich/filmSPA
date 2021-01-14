@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { Header } from "../components";
 import useAuthListener from "../hooks/useAuthListener";
 import { getHeaderProps } from "../utils/utils";
+import { HeaderProfileContainer } from "./auxillary-containers";
 
 export default function HeaderMainContainer() {
   const [inputActive, setInputActive] = useState(false);
@@ -99,13 +100,7 @@ export default function HeaderMainContainer() {
           </>
         )}
 
-        {user && (
-          <Header.Profile
-            positionchanged={headerProp.positionchanged ? "true" : null}
-          >
-            {user.displayName}
-          </Header.Profile>
-        )}
+        {user && <HeaderProfileContainer user={user} />}
       </Header.Inner>
     </Header>
   );

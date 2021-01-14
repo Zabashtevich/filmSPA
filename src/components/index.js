@@ -24,3 +24,4 @@ export { default as AuthenticationForm } from "./authentication-form";
 export { default as ErrorModal } from "./error-modal";
 export { default as ReviewPostForm } from "./review-post-form";
 export { default as AuxillaryPagination } from "./auxillary-pagination";
+export { default as HeaderProfile } from "./header-profile";

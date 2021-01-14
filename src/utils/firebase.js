@@ -4,7 +4,7 @@ import {
   createUserReviewInfo,
 } from "./utils";
 
-export const authLogic = (
+export const authLogic = async (
   setUserLoading,
   slug,
   firebase,
@@ -15,6 +15,7 @@ export const authLogic = (
   setErrorsList,
   setUserRedirect,
   history,
+  file,
 ) => {
   setUserLoading(true);
   switch (slug) {
@@ -34,6 +35,12 @@ export const authLogic = (
       repeatPassword !== password
         ? getErrorsList(repeatPassword, setErrorsList)
         : setErrorsList(null);
+      const ref = firebase.storage().ref();
+      const fileRef = ref.child(file.name);
+      await fileRef.put(file).then(() => alert("haha"));
+      await fileRef.getDownloadURL().then(function (url) {
+        console.log(url);
+      });
       firebase
         .auth()
         .createUserWithEmailAndPassword(email, password)

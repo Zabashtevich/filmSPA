@@ -15,7 +15,6 @@ export default function HeaderMainContainer() {
   const inputRef = useRef();
 
   const { user } = useAuthListener();
-  console.log(user);
   useEffect(() => {
     const listener = () => {
       getHeaderProps(setHeaderProp, headerProp);

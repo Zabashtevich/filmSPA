@@ -4,147 +4,6 @@ import {
   createUserReviewInfo,
 } from "./utils";
 
-export const authLogic = async (
-  setUserLoading,
-  slug,
-  firebase,
-  nickname,
-  email,
-  password,
-  repeatPassword,
-  setErrorsList,
-  setUserRedirect,
-  history,
-  file,
-  isAvatarChanged,
-) => {
-  setUserLoading(true);
-  switch (slug) {
-    case "login":
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(email, password)
-        .then(() => {
-          history.push("/");
-        })
-        .catch(({ message }) => {
-          setErrorsList([message]);
-          setUserLoading(false);
-        });
-      break;
-    case "registration":
-      if (isAvatarChanged) {
-        repeatPassword !== password
-          ? getErrorsList(repeatPassword, setErrorsList)
-          : setErrorsList(null);
-        const ref = firebase.storage().ref();
-        const fileRef = ref.child(file.name);
-        await fileRef.put(file);
-        await fileRef.getDownloadURL().then(function (url) {
-          firebase
-            .auth()
-            .createUserWithEmailAndPassword(email, password)
-            .then((result) => {
-              result.user
-                .updateProfile({
-                  displayName: nickname,
-                  photoURL: url,
-                })
-                .then(() => {
-                  firebase
-                    .firestore()
-                    .collection(`${nickname}`)
-                    .doc(`moviesrated`)
-                    .set({ list: [] })
-                    .catch(() => {
-                      setUserLoading(false);
-                      setErrorsList([`something gone wrong`]);
-                    });
-                  firebase
-                    .firestore()
-                    .collection(`${nickname}`)
-                    .doc(`collection`)
-                    .set({ list: [] })
-                    .catch(() => {
-                      setUserLoading(false);
-                      setErrorsList([`something gone wrong`]);
-                    });
-                  firebase
-                    .firestore()
-                    .collection(`${nickname}`)
-                    .doc(`reviews`)
-                    .set({ list: [] })
-                    .catch(() => {
-                      setUserLoading(false);
-                      setErrorsList([`something gone wrong`]);
-                    })
-                    .then(() => {
-                      setUserLoading(false);
-                      setUserRedirect(true);
-                    });
-                });
-            })
-            .catch(({ message }) => {
-              setErrorsList([message]);
-              setUserLoading(false);
-            });
-        });
-      } else {
-        firebase
-          .auth()
-          .createUserWithEmailAndPassword(email, password)
-          .then((result) => {
-            result.user
-              .updateProfile({
-                displayName: nickname,
-                photoURL: null,
-              })
-              .then(() => {
-                firebase
-                  .firestore()
-                  .collection(`${nickname}`)
-                  .doc(`moviesrated`)
-                  .set({ list: [] })
-                  .catch(() => {
-                    setUserLoading(false);
-                    setErrorsList([`something gone wrong`]);
-                  });
-                firebase
-                  .firestore()
-                  .collection(`${nickname}`)
-                  .doc(`collection`)
-                  .set({ list: [] })
-                  .catch(() => {
-                    setUserLoading(false);
-                    setErrorsList([`something gone wrong`]);
-                  });
-                firebase
-                  .firestore()
-                  .collection(`${nickname}`)
-                  .doc(`reviews`)
-                  .set({ list: [] })
-                  .catch(() => {
-                    setUserLoading(false);
-                    setErrorsList([`something gone wrong`]);
-                  })
-                  .then(() => {
-                    setUserLoading(false);
-                    setUserRedirect(true);
-                  });
-              });
-          })
-          .catch(({ message }) => {
-            setErrorsList([message]);
-            setUserLoading(false);
-          });
-      }
-
-      break;
-    default:
-      setErrorsList(["something gone wrong"]);
-  }
-};
-
 export const postReviewLogic = (
   user,
   setErrorMessage,
@@ -235,4 +94,207 @@ export const postReviewLogic = (
         history.push(`../${id}`);
       });
   }
+};
+
+export const authLogic = async (
+  setUserLoading,
+  slug,
+  firebase,
+  nickname,
+  email,
+  password,
+  repeatPassword,
+  setErrorsList,
+  setUserRedirect,
+  history,
+  file,
+  isAvatarChanged,
+) => {
+  setUserLoading(true);
+  switch (slug) {
+    case "login":
+      userLogin(
+        firebase,
+        history,
+        setErrorsList,
+        setUserLoading,
+        email,
+        password,
+      );
+      break;
+    case "registration":
+      repeatPassword !== password
+        ? getErrorsList(repeatPassword, setErrorsList)
+        : setErrorsList(null);
+      switch (isAvatarChanged) {
+        case true:
+          createUserWithAvatar(
+            firebase,
+            history,
+            setErrorsList,
+            setUserLoading,
+            email,
+            password,
+          );
+          break;
+        case false:
+          createUserWithoutAvatar(
+            firebase,
+            nickname,
+            setUserLoading,
+            setErrorsList,
+            setUserRedirect,
+            email,
+            password,
+          );
+          break;
+        default:
+          setErrorsList(["something gone wrong"]);
+      }
+      break;
+    default:
+      setErrorsList(["something gone wrong"]);
+  }
+};
+
+export const userLogin = (
+  firebase,
+  history,
+  setErrorsList,
+  setUserLoading,
+  email,
+  password,
+) => {
+  firebase
+    .auth()
+    .signInWithEmailAndPassword(email, password)
+    .then(() => {
+      history.push("/");
+    })
+    .catch(({ message }) => {
+      setErrorsList([message]);
+      setUserLoading(false);
+    });
+};
+
+export const createUserWithAvatar = async (
+  firebase,
+  nickname,
+  setUserLoading,
+  setErrorsList,
+  setUserRedirect,
+  file,
+  email,
+  password,
+) => {
+  const ref = firebase.storage().ref();
+  const fileRef = ref.child(file.name);
+  await fileRef.put(file);
+  await fileRef.getDownloadURL().then(function (url) {
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then((result) => {
+        result.user
+          .updateProfile({
+            displayName: nickname,
+            photoURL: url,
+          })
+          .then(() => {
+            firebase
+              .firestore()
+              .collection(`${nickname}`)
+              .doc(`moviesrated`)
+              .set({ list: [] })
+              .catch(() => {
+                setUserLoading(false);
+                setErrorsList([`something gone wrong`]);
+              });
+            firebase
+              .firestore()
+              .collection(`${nickname}`)
+              .doc(`collection`)
+              .set({ list: [] })
+              .catch(() => {
+                setUserLoading(false);
+                setErrorsList([`something gone wrong`]);
+              });
+            firebase
+              .firestore()
+              .collection(`${nickname}`)
+              .doc(`reviews`)
+              .set({ list: [] })
+              .catch(() => {
+                setUserLoading(false);
+                setErrorsList([`something gone wrong`]);
+              })
+              .then(() => {
+                setUserLoading(false);
+                setUserRedirect(true);
+              });
+          });
+      })
+      .catch(({ message }) => {
+        setErrorsList([message]);
+        setUserLoading(false);
+      });
+  });
+};
+
+export const createUserWithoutAvatar = (
+  firebase,
+  nickname,
+  setUserLoading,
+  setErrorsList,
+  setUserRedirect,
+  email,
+  password,
+) => {
+  firebase
+    .auth()
+    .createUserWithEmailAndPassword(email, password)
+    .then((result) => {
+      result.user
+        .updateProfile({
+          displayName: nickname,
+          photoURL: null,
+        })
+        .then(() => {
+          firebase
+            .firestore()
+            .collection(`${nickname}`)
+            .doc(`moviesrated`)
+            .set({ list: [] })
+            .catch(() => {
+              setUserLoading(false);
+              setErrorsList([`something gone wrong`]);
+            });
+          firebase
+            .firestore()
+            .collection(`${nickname}`)
+            .doc(`collection`)
+            .set({ list: [] })
+            .catch(() => {
+              setUserLoading(false);
+              setErrorsList([`something gone wrong`]);
+            });
+          firebase
+            .firestore()
+            .collection(`${nickname}`)
+            .doc(`reviews`)
+            .set({ list: [] })
+            .catch(() => {
+              setUserLoading(false);
+              setErrorsList([`something gone wrong`]);
+            })
+            .then(() => {
+              setUserLoading(false);
+              setUserRedirect(true);
+            });
+        });
+    })
+    .catch(({ message }) => {
+      setErrorsList([message]);
+      setUserLoading(false);
+    });
 };

@@ -6,7 +6,6 @@ import useAuthLisner from "./../hooks/useAuthListener";
 
 export default function AccountContainer() {
   const { user } = useAuthLisner();
-  console.log(user);
   return (
     <Account>
       <Account.ColumnContainer leftcolumn={1}>

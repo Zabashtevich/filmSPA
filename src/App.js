@@ -7,6 +7,8 @@ import {
   ActorDetailsPage,
   AuthenticationPage,
   ReviewPage,
+  AccountPage,
+  AccountEditPage,
 } from "./pages";
 
 function App() {
@@ -27,16 +29,8 @@ function App() {
           component={ReviewPage}
           exact
         />
-        <Route
-          path="/details/:direction/:slug/review"
-          component={ReviewPage}
-          exact
-        />
-        <Route
-          path="/details/:direction/:slug/review"
-          component={ReviewPage}
-          exact
-        />
+        <Route path="/account/:slug" component={AccountPage} exact />
+        <Route path="/account/:slug/edit" component={AccountEditPage} exact />
       </Switch>
     </Router>
   );

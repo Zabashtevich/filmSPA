@@ -100,7 +100,12 @@ export default function HeaderMainContainer() {
           </>
         )}
 
-        {user && <HeaderProfileContainer user={user} />}
+        {user && (
+          <HeaderProfileContainer
+            positionchanged={headerProp.positionchanged ? "true" : null}
+            user={user}
+          />
+        )}
       </Header.Inner>
     </Header>
   );

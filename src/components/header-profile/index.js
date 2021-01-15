@@ -7,6 +7,7 @@ import {
   PopupNickname,
   PopupLink,
   PopupLogout,
+  PopupEmail,
 } from "./styles/header-profile";
 
 export default function HeaderProfile({ children, ...rest }) {
@@ -43,4 +44,11 @@ HeaderProfile.PopupLink = function HeaderProfilePopupLink({
   ...rest
 }) {
   return <PopupLink {...rest}>{children}</PopupLink>;
+};
+
+HeaderProfile.PopupEmail = function HeaderProfilePopupEmail({
+  children,
+  ...rest
+}) {
+  return <PopupEmail {...rest}>{children}</PopupEmail>;
 };

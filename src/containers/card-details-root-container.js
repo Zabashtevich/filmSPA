@@ -14,6 +14,7 @@ import {
   CardRows,
   ErrorModalContainer,
   ModalGalleryContainer,
+  TooltipsContainer,
 } from "./auxillary-containers";
 
 export default function CardDetailsRootContainer() {
@@ -96,6 +97,7 @@ export default function CardDetailsRootContainer() {
                 <Votes.VotesAmount>{list.vote_count}</Votes.VotesAmount>
               </Votes.Wrapper>
             </Votes>
+            <TooltipsContainer />
           </ListColumn>
         </DetailsHeader>
       )}

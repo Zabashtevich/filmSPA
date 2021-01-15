@@ -26,3 +26,4 @@ export { default as ReviewPostForm } from "./review-post-form";
 export { default as AuxillaryPagination } from "./auxillary-pagination";
 export { default as HeaderProfile } from "./header-profile";
 export { default as Account } from "./account";
+export { default as Tooltips } from "./tooltips";

@@ -9,7 +9,7 @@ export default function AccountContainer() {
   console.log(user);
   return (
     <Account>
-      <Account.ColumnContainer>
+      <Account.ColumnContainer leftcolumn={1}>
         <Account.Avatar src={user.photoURL} />
         <Account.Nickname>{user.displayName}</Account.Nickname>
       </Account.ColumnContainer>

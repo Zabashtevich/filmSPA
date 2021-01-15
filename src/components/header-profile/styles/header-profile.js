@@ -37,11 +37,23 @@ export const PopupLink = styled(ReactRouterLink)`
   text-decoration: none;
   color: #000;
   margin: 1rem 2rem 0.2rem 1rem;
+  font-size: 1.1rem;
+  font-weight: ${({ theme }) => theme.fontWeightSecondary.normal};
+  &:hover {
+    color: gray;
+    transition: 200ms;
+  }
 `;
 
 export const PopupLogout = styled.span`
   margin: 1rem 2rem 1.3rem 1rem;
   cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: ${({ theme }) => theme.fontWeightSecondary.normal};
+  &:hover {
+    color: gray;
+    transition: 200ms;
+  }
 `;
 
 export const PopupEmail = styled.span`

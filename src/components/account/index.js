@@ -6,27 +6,40 @@ import {
   Wrapper,
   RatedContainer,
   RatedItemWrapper,
+  ColumnContainer,
+  Avatar,
 } from "./styles/account";
 
-export default function Account({ Children, ...rest }) {
-  return <Container {...rest}>{Children}</Container>;
+export default function Account({ children, ...rest }) {
+  return <Container {...rest}>{children}</Container>;
 }
 
-Account.Nickname = function AccountNickname({ Children, ...rest }) {
-  return <Nickname {...rest}>{Children}</Nickname>;
+Account.Nickname = function AccountNickname({ children, ...rest }) {
+  return <Nickname {...rest}>{children}</Nickname>;
 };
 
-Account.Wrapper = function AccountWrapper({ Children, ...rest }) {
-  return <Wrapper {...rest}>{Children}</Wrapper>;
+Account.Wrapper = function AccountWrapper({ children, ...rest }) {
+  return <Wrapper {...rest}>{children}</Wrapper>;
 };
 
-Account.RatedContainer = function AccountRatedContainer({ Children, ...rest }) {
-  return <RatedContainer {...rest}>{Children}</RatedContainer>;
+Account.RatedContainer = function AccountRatedContainer({ children, ...rest }) {
+  return <RatedContainer {...rest}>{children}</RatedContainer>;
 };
 
 Account.RatedItemWrapper = function AccountRatedItemWrapper({
-  Children,
+  children,
   ...rest
 }) {
-  return <RatedItemWrapper {...rest}>{Children}</RatedItemWrapper>;
+  return <RatedItemWrapper {...rest}>{children}</RatedItemWrapper>;
+};
+
+Account.ColumnContainer = function AccountColumnContainer({
+  children,
+  ...rest
+}) {
+  return <ColumnContainer {...rest}>{children}</ColumnContainer>;
+};
+
+Account.Avatar = function AccountAvatar({ children, ...rest }) {
+  return <Avatar {...rest} />;
 };

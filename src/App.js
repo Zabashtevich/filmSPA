@@ -1,11 +1,13 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import CardDetailsPage from "./pages/card-details-page";
-import MainPage from "./pages/main-page";
-import ActorDetailsPage from "./pages/actor-details-page";
-import AuthenticationPage from "./pages/authentication-page";
-import ReviewPage from "./pages/review-page";
+import {
+  CardDetailsPage,
+  MainPage,
+  ActorDetailsPage,
+  AuthenticationPage,
+  ReviewPage,
+} from "./pages";
 
 function App() {
   return (
@@ -20,6 +22,16 @@ function App() {
         />
         <Route path="/actor/:slug" component={ActorDetailsPage} />
         <Route path="/authentication/:slug" component={AuthenticationPage} />
+        <Route
+          path="/details/:direction/:slug/review"
+          component={ReviewPage}
+          exact
+        />
+        <Route
+          path="/details/:direction/:slug/review"
+          component={ReviewPage}
+          exact
+        />
         <Route
           path="/details/:direction/:slug/review"
           component={ReviewPage}

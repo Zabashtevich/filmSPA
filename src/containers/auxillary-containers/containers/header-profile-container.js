@@ -32,10 +32,10 @@ export default function HeaderProfileContainer({ user, positionchanged }) {
                   {user.email}
                 </HeaderProfile.PopupEmail>
               </HeaderProfile.PopupMetawrapper>
-              <HeaderProfile.PopupLink to="/">
+              <HeaderProfile.PopupLink to={`/account/${user.displayName}`}>
                 To profile
               </HeaderProfile.PopupLink>
-              <HeaderProfile.PopupLink to="/">
+              <HeaderProfile.PopupLink to={`/account/${user.displayName}/edit`}>
                 Edit profile
               </HeaderProfile.PopupLink>
               <HeaderProfile.PopupLogout>Log out</HeaderProfile.PopupLogout>

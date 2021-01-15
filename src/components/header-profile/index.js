@@ -8,6 +8,7 @@ import {
   PopupLink,
   PopupLogout,
   PopupEmail,
+  PopupMetawrapper,
 } from "./styles/header-profile";
 
 export default function HeaderProfile({ children, ...rest }) {
@@ -51,4 +52,11 @@ HeaderProfile.PopupEmail = function HeaderProfilePopupEmail({
   ...rest
 }) {
   return <PopupEmail {...rest}>{children}</PopupEmail>;
+};
+
+HeaderProfile.PopupMetawrapper = function HeaderProfilePopupMetawrapper({
+  children,
+  ...rest
+}) {
+  return <PopupMetawrapper {...rest}>{children}</PopupMetawrapper>;
 };

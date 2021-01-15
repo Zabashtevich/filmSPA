@@ -41,14 +41,35 @@ export const PopupLink = styled(ReactRouterLink)`
 
 export const PopupLogout = styled.span`
   margin: 1rem 2rem 1.3rem 1rem;
+  cursor: pointer;
 `;
 
 export const PopupEmail = styled.span`
-  margin: 1rem 2rem 1.3rem 1rem;
+  margin: 0.2rem 2rem 1.3rem 1rem;
+  font-size: 0.9rem;
+  color: gray;
+  cursor: default;
 `;
 
 export const PopupNickname = styled.span`
   margin: 1rem 2rem 0.2rem 1rem;
   cursor: default;
   font-size: 1.2rem;
+`;
+
+export const PopupMetawrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid gray;
+  position: relative;
+  &::after {
+    content: "";
+    display: ${({ popupVisible }) => (popupVisible ? "block" : "none")};
+    position: absolute;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid gray;
+    top: -2%;
+    left: 65%;
+  }
 `;

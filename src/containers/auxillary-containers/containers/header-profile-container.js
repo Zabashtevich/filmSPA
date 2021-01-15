@@ -13,10 +13,13 @@ export default function HeaderProfileContainer({ user, positionchanged }) {
       />
       {popupVisible && (
         <HeaderProfile.PopupContainer>
-          <HeaderProfile.PopupNickname>
-            {user.displayName}
-          </HeaderProfile.PopupNickname>
-          <HeaderProfile.PopupEmail>{user.email}</HeaderProfile.PopupEmail>
+          <HeaderProfile.PopupMetawrapper popupVisible={popupVisible}>
+            <HeaderProfile.PopupNickname>
+              {user.displayName}
+            </HeaderProfile.PopupNickname>
+            <HeaderProfile.PopupEmail>{user.email}</HeaderProfile.PopupEmail>
+          </HeaderProfile.PopupMetawrapper>
+          <HeaderProfile.PopupLink>To profile</HeaderProfile.PopupLink>
           <HeaderProfile.PopupLink>Edit profile</HeaderProfile.PopupLink>
           <HeaderProfile.PopupLogout>Log out</HeaderProfile.PopupLogout>
         </HeaderProfile.PopupContainer>

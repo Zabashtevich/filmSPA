@@ -22,15 +22,32 @@ export const Icon = styled.img`
 export const PopupContainer = styled.div`
   position: absolute;
   top: 98%;
-  left: 50%;
+  left: -100%;
   border-radius: 0 0 1rem 1rem;
-  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   background-color: #f4f4f4;
   display: flex;
   justify-content: center;
   flex-direction: column;
+  &.my-node-enter {
+    opacity: 0;
+    transform: translateY(-400px);
+  }
+  &.my-node-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: 200ms;
+  }
+  &.my-node-exit {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  &.my-node-exit-active {
+    opacity: 0;
+    transform: translateY(-400px);
+    transition: 300ms;
+  }
 `;
 
 export const PopupLink = styled(ReactRouterLink)`

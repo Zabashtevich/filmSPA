@@ -22,6 +22,7 @@ export default function CardDetailsRootContainer() {
 
   const history = useHistory();
   const location = useParams();
+
   const { list, loading, error } = useFetch(location.direction, location.slug, [
     {
       append_to_response:

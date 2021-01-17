@@ -54,29 +54,23 @@ export default function HeaderProfileContainer({ user, positionchanged }) {
         unmountOnExit
         classNames="my-node"
       >
-        {(state) => {
-          return (
-            <HeaderProfile.PopupContainer state={state}>
-              <HeaderProfile.PopupMetawrapper popupVisible={popupVisible}>
-                <HeaderProfile.PopupNickname>
-                  {user.displayName}
-                </HeaderProfile.PopupNickname>
-                <HeaderProfile.PopupEmail>
-                  {user.email}
-                </HeaderProfile.PopupEmail>
-              </HeaderProfile.PopupMetawrapper>
-              <HeaderProfile.PopupLink to={`/account/${user.displayName}`}>
-                To profile
-              </HeaderProfile.PopupLink>
-              <HeaderProfile.PopupLink to={`/account/${user.displayName}/edit`}>
-                Edit profile
-              </HeaderProfile.PopupLink>
-              <HeaderProfile.PopupLogout onClick={logOut}>
-                Log out
-              </HeaderProfile.PopupLogout>
-            </HeaderProfile.PopupContainer>
-          );
-        }}
+        <HeaderProfile.PopupContainer>
+          <HeaderProfile.PopupMetawrapper popupVisible={popupVisible}>
+            <HeaderProfile.PopupNickname>
+              {user.displayName}
+            </HeaderProfile.PopupNickname>
+            <HeaderProfile.PopupEmail>{user.email}</HeaderProfile.PopupEmail>
+          </HeaderProfile.PopupMetawrapper>
+          <HeaderProfile.PopupLink to={`/account/${user.displayName}`}>
+            To profile
+          </HeaderProfile.PopupLink>
+          <HeaderProfile.PopupLink to={`/account/${user.displayName}/edit`}>
+            Edit profile
+          </HeaderProfile.PopupLink>
+          <HeaderProfile.PopupLogout onClick={logOut}>
+            Log out
+          </HeaderProfile.PopupLogout>
+        </HeaderProfile.PopupContainer>
       </CSSTransition>
     </HeaderProfile>
   );

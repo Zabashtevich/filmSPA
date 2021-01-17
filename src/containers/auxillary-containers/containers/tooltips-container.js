@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { CSSTransition } from "react-transition-group";
 
 import { Tooltips } from "../../../components";
 import useAuthListener from "./../../../hooks/useAuthListener";
@@ -17,32 +18,52 @@ export default function TooltipsContainer() {
           onMouseEnter={() => setVisibleWatchlistDesc(true)}
           onMouseLeave={() => setVisibleWatchlistDesc(false)}
         />
-        {user && visibleWatchlistDesc && (
+        <CSSTransition
+          in={user && visibleWatchlistDesc}
+          appear={true}
+          timeout={{ enter: 600, exit: 600 }}
+          unmountOnExit
+          classNames="my-node"
+        >
+          <Tooltips.Description>Add movie to list</Tooltips.Description>
+        </CSSTransition>
+        <CSSTransition
+          in={!user && visibleWatchlistDesc}
+          appear={true}
+          timeout={{ enter: 600, exit: 600 }}
+          unmountOnExit
+          classNames="my-node"
+        >
           <Tooltips.Description left={"1"}>
-            Add movie to list
+            Please, sign in to add movie to list
           </Tooltips.Description>
-        )}
-        {user && visibleWatchlistDesc && (
-          <Tooltips.Description left={"1"}>
-            Please, log in to add movie to list
-          </Tooltips.Description>
-        )}
+        </CSSTransition>
       </Tooltips.ItemWrapper>
-      <Tooltips.ItemWrapper>
+      <Tooltips.ItemWrapper rightposition={1}>
         <Tooltips.Favorite
           onMouseEnter={() => setVisibleFavoriteDesc(true)}
           onMouseLeave={() => setVisibleFavoriteDesc(false)}
         />
-        {user && visibleFavoriteDesc && (
-          <Tooltips.Description right={"1"}>
-            Add movie to favorite
+        <CSSTransition
+          in={user && visibleFavoriteDesc}
+          appear={true}
+          timeout={{ enter: 600, exit: 600 }}
+          unmountOnExit
+          classNames="my-node"
+        >
+          <Tooltips.Description>Add movie to favorite</Tooltips.Description>
+        </CSSTransition>
+        <CSSTransition
+          in={!user && visibleFavoriteDesc}
+          appear={true}
+          timeout={{ enter: 600, exit: 600 }}
+          unmountOnExit
+          classNames="my-node"
+        >
+          <Tooltips.Description>
+            Please, sign in to add movie to favorite
           </Tooltips.Description>
-        )}
-        {!user && visibleFavoriteDesc && (
-          <Tooltips.Description right={"1"}>
-            Please, log in to add movie to favorite
-          </Tooltips.Description>
-        )}
+        </CSSTransition>
       </Tooltips.ItemWrapper>
     </Tooltips>
   );

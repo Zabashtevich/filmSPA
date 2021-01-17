@@ -51,13 +51,7 @@ export default function WatchListContainer({ user, watchListPopupVisible }) {
         setDataSubmiting(false);
       }, 5000);
     }
-    createListLogic(
-      firebase,
-      inputValue,
-      setDataSubmiting,
-      data,
-      user.displayName,
-    ).then(() => {
+    createListLogic(firebase, inputValue, data, user.displayName).then(() => {
       setInputValue(false);
       setInputNameVisible(false);
       setDataSubmiting(false);
@@ -78,9 +72,11 @@ export default function WatchListContainer({ user, watchListPopupVisible }) {
             {data.length > 0 &&
               data.map((item) => {
                 return (
-                  <WatchList.Wrapper>
+                  <WatchList.Wrapper key={item.name}>
                     <WatchList.ItemIcon />
-                    <WatchList.ItemName>{item.name}</WatchList.ItemName>
+                    <WatchList.ItemName>
+                      {item.name.toUpperCase()}
+                    </WatchList.ItemName>
                   </WatchList.Wrapper>
                 );
               })}

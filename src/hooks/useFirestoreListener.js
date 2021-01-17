@@ -2,14 +2,14 @@ import { useContext, useState, useEffect } from "react";
 
 import { AuthContext } from "../context/auth-context";
 
-export default function useFirestore(collectionTarget, docTarget) {
+export default function useFirestoreListener(collectionTarget, docTarget) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const { firebase } = useContext(AuthContext);
   useEffect(() => {
     let mounted = true;
     if (!mounted) return;
-    const unsubscribe = firebase
+    firebase
       .firestore()
       .collection(`${collectionTarget}`)
       .doc(`${docTarget}`)
@@ -25,9 +25,7 @@ export default function useFirestore(collectionTarget, docTarget) {
     return () => {
       mounted = false;
       setData([]);
-      unsubscribe();
     };
   }, [docTarget, collectionTarget]);
 
   return [loading, data];
-}

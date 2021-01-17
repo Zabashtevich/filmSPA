@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components/macro";
 
 import { BsPlusCircle } from "react-icons/bs";
-import { BsListCheck } from "react-icons/bs";
+import { RiMovie2Line } from "react-icons/ri";
 
 export const Container = styled.div`
   position: absolute;
@@ -36,14 +36,18 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1rem 2rem;
-  margin: 1rem 2rem;
+  padding: 1rem 1rem;
+  margin: 1rem 1rem;
   border: 1px solid black;
   border-radius: 2rem;
   background-color: white;
+  width: 100px;
 `;
 
-export const ItemIcon = styled(BsListCheck)``;
+export const ItemIcon = styled(RiMovie2Line)`
+  fill: gray;
+  font-size: ${({ theme }) => theme.fontSize.huge};
+`;
 
 export const CreateIcon = styled(BsPlusCircle)`
   font-size: ${({ theme }) => theme.fontSize.huge};
@@ -111,13 +115,13 @@ export const InputName = styled.input`
       &::placeholder {
         color: ${({ theme }) => theme.colors.error};
       }
-    `}
+    `};
 `;
 
 export const ItemName = styled.div`
   white-space: nowrap;
-  color: gray;
-  margin-top: 1rem;
+  color: black;
+  margin-top: 0.5rem;
 `;
 
 export const ButtonsWrapper = styled.div`

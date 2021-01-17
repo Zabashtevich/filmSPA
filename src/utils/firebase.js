@@ -300,6 +300,7 @@ export const createUserWithoutAvatar = (
 };
 
 export const createListLogic = (firebase, inputValue, data, name) => {
+  console.log(name);
   return firebase
     .firestore()
     .collection(`${name}`)

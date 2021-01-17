@@ -2,61 +2,61 @@ import React from "react";
 
 import {
   Container,
-  Wrapper,
-  ItemIcon,
-  CreateIcon,
-  Warning,
-  ItemName,
-  InputName,
-  InputLabel,
-  CreateButton,
-  CloseButton,
-  ButtonsWrapper,
+  ItemContainer,
+  Number,
+  Name,
+  Date,
+  Add,
+  Remove,
+  Firstletter,
+  Input,
+  Confirm,
+  Abort,
 } from "./styles/watch-list";
 
 export default function WatchList({ children, ...rest }) {
   return <Container {...rest}>{children}</Container>;
 }
 
-WatchList.Wrapper = function WatchListWrapper({ children, ...rest }) {
-  return <Wrapper {...rest}>{children}</Wrapper>;
-};
-
-WatchList.ItemIcon = function WatchListItemIcon({ ...rest }) {
-  return <ItemIcon {...rest} />;
-};
-
-WatchList.CreateIcon = function WatchListCreateIcon({ ...rest }) {
-  return <CreateIcon {...rest} />;
-};
-
-WatchList.Warning = function WatchListWarning({ children, ...rest }) {
-  return <Warning {...rest}>{children}</Warning>;
-};
-
-WatchList.ItemName = function WatchListItemName({ children, ...rest }) {
-  return <ItemName {...rest}>{children}</ItemName>;
-};
-
-WatchList.InputName = function WatchListInputName({ children, ...rest }) {
-  return <InputName {...rest} />;
-};
-
-WatchList.InputLabel = function WatchListInputLabel({ children, ...rest }) {
-  return <InputLabel {...rest}>{children}</InputLabel>;
-};
-
-WatchList.CreateButton = function WatchListCreateButton({ children, ...rest }) {
-  return <CreateButton {...rest}>{children}</CreateButton>;
-};
-
-WatchList.CloseButton = function WatchListCloseButton({ children, ...rest }) {
-  return <CloseButton {...rest}>{children}</CloseButton>;
-};
-
-WatchList.ButtonsWrapper = function WatchListButtonsWrapper({
+WatchList.ItemContainer = function WatchListItemContainer({
   children,
   ...rest
 }) {
-  return <ButtonsWrapper {...rest}>{children}</ButtonsWrapper>;
+  return <ItemContainer {...rest}>{children}</ItemContainer>;
+};
+
+WatchList.Number = function WatchListNumber({ children, ...rest }) {
+  return <Number {...rest}>{children}</Number>;
+};
+
+WatchList.Name = function WatchListName({ children, ...rest }) {
+  return <Name {...rest}>{children}</Name>;
+};
+
+WatchList.Date = function WatchListDate({ children, ...rest }) {
+  return <Date {...rest}>{children}</Date>;
+};
+
+WatchList.Add = function WatchListAdd({ children, ...rest }) {
+  return <Add {...rest} />;
+};
+
+WatchList.Remove = function WatchListRemove({ children, ...rest }) {
+  return <Remove {...rest} />;
+};
+
+WatchList.Firstletter = function WatchListFirstletter({ children, ...rest }) {
+  return <Firstletter {...rest} />;
+};
+
+WatchList.Input = function WatchListInput({ children, ...rest }) {
+  return <Input {...rest} />;
+};
+
+WatchList.Confirm = function WatchListConfirm({ children, ...rest }) {
+  return <Confirm {...rest} />;
+};
+
+WatchList.Abort = function WatchListAbort({ children, ...rest }) {
+  return <Abort {...rest} />;
 };

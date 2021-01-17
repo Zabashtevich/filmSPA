@@ -70,66 +70,22 @@ export default function WatchListContainer({ user, watchListPopupVisible }) {
         {!dataLoading && (
           <>
             {data.length > 0 &&
-              data.map((item) => {
-                return (
-                  <WatchList.Wrapper key={item.name}>
-                    <WatchList.ItemIcon />
-                    <WatchList.ItemName>
-                      {item.name.toUpperCase()}
-                    </WatchList.ItemName>
-                  </WatchList.Wrapper>
-                );
-              })}
-            <WatchList.Wrapper onClick={createListActive}>
-              <WatchList.CreateIcon />
-              {!inputNameVisible && (
-                <WatchList.ItemName>CREATE LIST</WatchList.ItemName>
-              )}
-              {inputNameVisible && (
-                <>
-                  <CSSTransition
-                    in={!warningVisible && !warningAnimating}
-                    appear={true}
-                    timeout={{ enter: 200, exit: 300 }}
-                    unmountOnExit
-                    classNames="fade"
-                    onEnter={() => setLabelAnimating(true)}
-                    onExited={() => setLabelAnimating(false)}
-                  >
-                    <WatchList.InputLabel>
-                      ENTER NAME OF LIST
-                    </WatchList.InputLabel>
-                  </CSSTransition>
-                  <CSSTransition
-                    in={warningVisible && !labelAnimating}
-                    appear={true}
-                    timeout={{ enter: 200, exit: 300 }}
-                    unmountOnExit
-                    classNames="fade"
-                    onEnter={() => setWarningAnimating(true)}
-                    onExited={() => setWarningAnimating(false)}
-                  >
-                    <WatchList.Warning>{warningMessage}</WatchList.Warning>
-                  </CSSTransition>
-                  <WatchList.InputName
-                    placeholder={"max 20 symbols "}
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
-                    warningVisible={warningVisible}
-                  />
-                  <WatchList.ButtonsWrapper>
-                    <WatchList.CreateButton
-                      onClick={(e) => createListSubmit(e)}
-                    >
-                      CREATE
-                    </WatchList.CreateButton>
-                    <WatchList.CloseButton onClick={(e) => createListAbort(e)}>
-                      CANCEL
-                    </WatchList.CloseButton>
-                  </WatchList.ButtonsWrapper>
-                </>
-              )}
-            </WatchList.Wrapper>
+              data.map((item, i) => (
+                <WatchList.ItemContainer>
+                  <WatchList.Number>{i + 1}</WatchList.Number>
+                  <WatchList.Name>{item.name}</WatchList.Name>
+                  <WatchList.Date></WatchList.Date>
+                  <WatchList.Add />
+                  <WatchList.Remove />
+                </WatchList.ItemContainer>
+              ))}
+            <WatchList.ItemContainer>
+              <WatchList.Firstletter />
+              <WatchList.Name>CREATE LIST</WatchList.Name>
+              <WatchList.Input />
+              <WatchList.Confirm />
+              <WatchList.Abort />
+            </WatchList.ItemContainer>
           </>
         )}
       </WatchList>

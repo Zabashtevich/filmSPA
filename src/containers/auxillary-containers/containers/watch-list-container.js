@@ -24,13 +24,11 @@ export default function WatchListContainer({ user, watchListPopupVisible }) {
       e.target.classList.value.includes("Wrapper") ||
       e.target.classList.value.includes("CreateIcon")
     ) {
-      console.log("hu");
       setInputNameVisible((prev) => !prev);
     }
   };
 
   const createListAbort = (e) => {
-    console.log("hu1");
     setInputNameVisible((prev) => !prev);
   };
 
@@ -53,7 +51,17 @@ export default function WatchListContainer({ user, watchListPopupVisible }) {
         setDataSubmiting(false);
       }, 5000);
     }
-    createListLogic(firebase, inputValue, setDataSubmiting);
+    createListLogic(
+      firebase,
+      inputValue,
+      setDataSubmiting,
+      data,
+      user.displayName,
+    ).then(() => {
+      setInputValue(false);
+      setInputNameVisible(false);
+      setDataSubmiting(false);
+    });
   };
 
   return (

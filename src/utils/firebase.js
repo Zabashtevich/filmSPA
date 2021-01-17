@@ -299,4 +299,10 @@ export const createUserWithoutAvatar = (
     });
 };
 
-export const createListLogic = () => {};
+export const createListLogic = (firebase, inputValue, data, name) => {
+  return firebase
+    .firestore()
+    .collection(`${name}`)
+    .doc(`collection`)
+    .update({ list: [...data.concat([{ name: inputValue, content: [] }])] });
+};

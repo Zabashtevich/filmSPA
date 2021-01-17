@@ -5,8 +5,7 @@ import {
   Wrapper,
   ItemIcon,
   CreateIcon,
-  WarningWrapper,
-  WarningMessage,
+  Warning,
   ItemName,
   InputName,
   InputLabel,
@@ -31,18 +30,8 @@ WatchList.CreateIcon = function WatchListCreateIcon({ ...rest }) {
   return <CreateIcon {...rest} />;
 };
 
-WatchList.WarningWrapper = function WatchListWarningWrapper({
-  children,
-  ...rest
-}) {
-  return <WarningWrapper {...rest}>{children}</WarningWrapper>;
-};
-
-WatchList.WarningMessage = function WatchListWarningMessage({
-  children,
-  ...rest
-}) {
-  return <WarningMessage {...rest}>{children}</WarningMessage>;
+WatchList.Warning = function WatchListWarning({ children, ...rest }) {
+  return <Warning {...rest}>{children}</Warning>;
 };
 
 WatchList.ItemName = function WatchListItemName({ children, ...rest }) {

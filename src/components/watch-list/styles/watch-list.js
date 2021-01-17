@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 
 import { BsPlusCircle } from "react-icons/bs";
 import { BsListCheck } from "react-icons/bs";
@@ -50,14 +50,50 @@ export const CreateIcon = styled(BsPlusCircle)`
   fill: gray;
 `;
 
-export const WarningWrapper = styled.div``;
+export const Warning = styled.span`
+  color: ${({ theme }) => theme.colors.error};
+  margin-top: 1rem;
+  &.fade-enter {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+  &.fade-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: 200ms;
+  }
+  &.fade-exit {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  &.fade-exit-active {
+    opacity: 0;
+    transition: 300ms;
+    transform: translateX(200px);
+  }
+`;
 
-export const WarningMessage = styled.span``;
-
-export const ItemName = styled.div`
-  white-space: nowrap;
+export const InputLabel = styled.label`
   color: gray;
   margin-top: 1rem;
+  &.fade-enter {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+  &.fade-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: 200ms;
+  }
+  &.fade-exit {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  &.fade-exit-active {
+    opacity: 0;
+    transition: 300ms;
+    transform: translateX(200px);
+  }
 `;
 
 export const InputName = styled.input`
@@ -68,9 +104,18 @@ export const InputName = styled.input`
   padding: 0.2rem 0.4rem;
   text-align: center;
   border: 1px solid black;
+  ${({ warningVisible }) =>
+    warningVisible &&
+    css`
+      border: 1px solid ${({ theme }) => theme.colors.error};
+      &::placeholder {
+        color: ${({ theme }) => theme.colors.error};
+      }
+    `}
 `;
 
-export const InputLabel = styled.label`
+export const ItemName = styled.div`
+  white-space: nowrap;
   color: gray;
   margin-top: 1rem;
 `;
@@ -101,4 +146,5 @@ export const CloseButton = styled.button`
   color: white;
   padding: 0.3rem 0.6rem;
   cursor: pointer;
+  z-index: 300;
 `;

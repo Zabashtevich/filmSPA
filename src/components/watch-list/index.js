@@ -11,6 +11,8 @@ import {
   InputName,
   InputLabel,
   CreateButton,
+  CloseButton,
+  ButtonsWrapper,
 } from "./styles/watch-list";
 
 export default function WatchList({ children, ...rest }) {
@@ -57,4 +59,15 @@ WatchList.InputLabel = function WatchListInputLabel({ children, ...rest }) {
 
 WatchList.CreateButton = function WatchListCreateButton({ children, ...rest }) {
   return <CreateButton {...rest}>{children}</CreateButton>;
+};
+
+WatchList.CloseButton = function WatchListCloseButton({ children, ...rest }) {
+  return <CloseButton {...rest}>{children}</CloseButton>;
+};
+
+WatchList.ButtonsWrapper = function WatchListButtonsWrapper({
+  children,
+  ...rest
+}) {
+  return <ButtonsWrapper {...rest}>{children}</ButtonsWrapper>;
 };

@@ -9,12 +9,13 @@ export default function TooltipsContainer() {
   const { user } = useAuthListener();
 
   const [visibleWatchlistDesc, setVisibleWatchlistDesc] = useState(false);
-
   const [visibleFavoriteDesc, setVisibleFavoriteDesc] = useState(false);
+  const [watchListPopupVisible, setWatchListPopupVisible] = useState(false);
 
   const onWatchlistClick = () => {
     if (!user) return;
     setVisibleWatchlistDesc(false);
+    setWatchListPopupVisible((prev) => !prev);
   };
 
   const onFavoriteClock = () => {
@@ -50,7 +51,10 @@ export default function TooltipsContainer() {
             Please, sign in to add movie to list
           </Tooltips.Description>
         </CSSTransition>
-        <WatchListContainer user={user} />
+        <WatchListContainer
+          user={user}
+          watchListPopupVisible={watchListPopupVisible}
+        />
       </Tooltips.ItemWrapper>
       <Tooltips.ItemWrapper rightposition={1}>
         <Tooltips.Favorite

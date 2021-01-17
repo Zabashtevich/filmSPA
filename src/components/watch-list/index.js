@@ -5,9 +5,12 @@ import {
   Wrapper,
   ItemIcon,
   CreateIcon,
-  Placeholder,
-  Warning,
+  WarningWrapper,
+  WarningMessage,
   ItemName,
+  InputName,
+  InputLabel,
+  CreateButton,
 } from "./styles/watch-list";
 
 export default function WatchList({ children, ...rest }) {
@@ -26,14 +29,32 @@ WatchList.CreateIcon = function WatchListCreateIcon({ ...rest }) {
   return <CreateIcon {...rest} />;
 };
 
-WatchList.Placeholder = function WatchListPlaceholder({ children, ...rest }) {
-  return <Placeholder {...rest}>{children}</Placeholder>;
+WatchList.WarningWrapper = function WatchListWarningWrapper({
+  children,
+  ...rest
+}) {
+  return <WarningWrapper {...rest}>{children}</WarningWrapper>;
 };
 
-WatchList.Warning = function WatchListWarning({ children, ...rest }) {
-  return <Warning {...rest}>{children}</Warning>;
+WatchList.WarningMessage = function WatchListWarningMessage({
+  children,
+  ...rest
+}) {
+  return <WarningMessage {...rest}>{children}</WarningMessage>;
 };
 
 WatchList.ItemName = function WatchListItemName({ children, ...rest }) {
   return <ItemName {...rest}>{children}</ItemName>;
+};
+
+WatchList.InputName = function WatchListInputName({ children, ...rest }) {
+  return <InputName {...rest} />;
+};
+
+WatchList.InputLabel = function WatchListInputLabel({ children, ...rest }) {
+  return <InputLabel {...rest}>{children}</InputLabel>;
+};
+
+WatchList.CreateButton = function WatchListCreateButton({ children, ...rest }) {
+  return <CreateButton {...rest}>{children}</CreateButton>;
 };

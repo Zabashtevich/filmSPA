@@ -298,3 +298,5 @@ export const createUserWithoutAvatar = (
       setUserLoading(false);
     });
 };
+
+export const createListLogic = () => {};

@@ -3,6 +3,7 @@ import { CSSTransition } from "react-transition-group";
 
 import { Tooltips } from "../../../components";
 import useAuthListener from "./../../../hooks/useAuthListener";
+import WatchListContainer from "./watch-list-container";
 
 export default function TooltipsContainer() {
   const { user } = useAuthListener();
@@ -49,6 +50,7 @@ export default function TooltipsContainer() {
             Please, sign in to add movie to list
           </Tooltips.Description>
         </CSSTransition>
+        <WatchListContainer user={user} />
       </Tooltips.ItemWrapper>
       <Tooltips.ItemWrapper rightposition={1}>
         <Tooltips.Favorite

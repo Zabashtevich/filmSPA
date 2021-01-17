@@ -12,6 +12,7 @@ import {
   Input,
   Confirm,
   Abort,
+  IconsWrapper,
 } from "./styles/watch-list";
 
 export default function WatchList({ children, ...rest }) {
@@ -35,6 +36,10 @@ WatchList.Name = function WatchListName({ children, ...rest }) {
 
 WatchList.Date = function WatchListDate({ children, ...rest }) {
   return <Date {...rest}>{children}</Date>;
+};
+
+WatchList.IconsWrapper = function WatchListIconsWrapper({ children, ...rest }) {
+  return <IconsWrapper {...rest}>{children}</IconsWrapper>;
 };
 
 WatchList.Add = function WatchListAdd({ children, ...rest }) {

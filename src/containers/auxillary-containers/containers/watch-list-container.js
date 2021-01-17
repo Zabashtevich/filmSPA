@@ -73,10 +73,12 @@ export default function WatchListContainer({ user, watchListPopupVisible }) {
               data.map((item, i) => (
                 <WatchList.ItemContainer>
                   <WatchList.Number>{i + 1}</WatchList.Number>
-                  <WatchList.Name>{item.name}</WatchList.Name>
+                  <WatchList.Name>{item.name.toUpperCase()}</WatchList.Name>
                   <WatchList.Date></WatchList.Date>
-                  <WatchList.Add />
-                  <WatchList.Remove />
+                  <WatchList.IconsWrapper>
+                    <WatchList.Add />
+                    <WatchList.Remove />
+                  </WatchList.IconsWrapper>
                 </WatchList.ItemContainer>
               ))}
             <WatchList.ItemContainer>

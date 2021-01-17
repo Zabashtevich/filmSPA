@@ -11,12 +11,23 @@ export default function TooltipsContainer() {
 
   const [visibleFavoriteDesc, setVisibleFavoriteDesc] = useState(false);
 
+  const onWatchlistClick = () => {
+    if (!user) return;
+    setVisibleWatchlistDesc(false);
+  };
+
+  const onFavoriteClock = () => {
+    if (!user) return;
+    setVisibleFavoriteDesc(false);
+  };
+
   return (
     <Tooltips>
       <Tooltips.ItemWrapper>
         <Tooltips.Watchlist
           onMouseEnter={() => setVisibleWatchlistDesc(true)}
           onMouseLeave={() => setVisibleWatchlistDesc(false)}
+          onClick={onWatchlistClick}
         />
         <CSSTransition
           in={user && visibleWatchlistDesc}
@@ -43,6 +54,7 @@ export default function TooltipsContainer() {
         <Tooltips.Favorite
           onMouseEnter={() => setVisibleFavoriteDesc(true)}
           onMouseLeave={() => setVisibleFavoriteDesc(false)}
+          onClick={onFavoriteClock}
         />
         <CSSTransition
           in={user && visibleFavoriteDesc}

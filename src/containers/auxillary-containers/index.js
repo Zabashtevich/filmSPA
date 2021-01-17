@@ -10,3 +10,4 @@ export { default as PaginationMainPageContainer } from "./containers/pagination-
 export { default as ReviewsContainer } from "./containers/reviews-container";
 export { default as HeaderProfileContainer } from "./containers/header-profile-container";
 export { default as TooltipsContainer } from "./containers/tooltips-container";
+export { default as WatchListContainer } from "./containers/watch-list-container";

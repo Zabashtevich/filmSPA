@@ -42,20 +42,20 @@ export const Description = styled.span`
   font-size: ${({ theme }) => theme.fontSize.small};
   left: 50%;
   transform: translateX(-50%);
-  &.my-node-enter {
+  &.fade-enter {
     opacity: 0;
     transform: translateX(-200px);
   }
-  &.my-node-enter-active {
+  &.fade-enter-active {
     opacity: 1;
     transform: translateX(-50%);
     transition: 200ms;
   }
-  &.my-node-exit {
+  &.fade-exit {
     opacity: 1;
     transform: translateX(-50%);
   }
-  &.my-node-exit-active {
+  &.fade-exit-active {
     opacity: 0;
     transition: 300ms;
     transform: translateX(200px);

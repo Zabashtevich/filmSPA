@@ -23,7 +23,7 @@ export default function TooltipsContainer() {
           appear={true}
           timeout={{ enter: 600, exit: 600 }}
           unmountOnExit
-          classNames="my-node"
+          classNames="fade"
         >
           <Tooltips.Description>Add movie to list</Tooltips.Description>
         </CSSTransition>
@@ -32,7 +32,7 @@ export default function TooltipsContainer() {
           appear={true}
           timeout={{ enter: 600, exit: 600 }}
           unmountOnExit
-          classNames="my-node"
+          classNames="fade"
         >
           <Tooltips.Description left={"1"}>
             Please, sign in to add movie to list
@@ -49,7 +49,7 @@ export default function TooltipsContainer() {
           appear={true}
           timeout={{ enter: 600, exit: 600 }}
           unmountOnExit
-          classNames="my-node"
+          classNames="fade"
         >
           <Tooltips.Description>Add movie to favorite</Tooltips.Description>
         </CSSTransition>
@@ -58,7 +58,7 @@ export default function TooltipsContainer() {
           appear={true}
           timeout={{ enter: 600, exit: 600 }}
           unmountOnExit
-          classNames="my-node"
+          classNames="fade"
         >
           <Tooltips.Description>
             Please, sign in to add movie to favorite

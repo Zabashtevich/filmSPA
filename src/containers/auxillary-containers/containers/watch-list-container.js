@@ -19,17 +19,13 @@ export default function WatchListContainer({ user, watchListPopupVisible }) {
 
   const { firebase } = useContext(AuthContext);
 
-  const createListActive = (e) => {
+  const creatListToogler = (e) => {
     if (
-      e.target.classList.value.includes("Wrapper") ||
+      e.target.classList.value.includes("Abort") ||
       e.target.classList.value.includes("CreateIcon")
     ) {
       setInputNameVisible((prev) => !prev);
     }
-  };
-
-  const createListHandle = (e) => {
-    setInputNameVisible((prev) => !prev);
   };
 
   const createListSubmit = () => {
@@ -81,26 +77,31 @@ export default function WatchListContainer({ user, watchListPopupVisible }) {
                   </WatchList.IconsWrapper>
                 </WatchList.ItemContainer>
               ))}
-            <WatchList.ItemContainer createitem={1}>
+            <WatchList.CreateListContainer>
               {!inputNameVisible && (
                 <WatchList.Placeholder>CREATE LIST</WatchList.Placeholder>
               )}
-              {inputNameVisible && <WatchList.Input />}
-              {inputNameVisible && (
-                <WatchList.IconsWrapper>
-                  <WatchList.Confirm />
-                  <WatchList.Abort />
-                </WatchList.IconsWrapper>
-              )}
-              {!inputNameVisible && (
-                <WatchList.IconsWrapper
-                  createitem={1}
-                  onClick={createListHandle}
+              <WatchList.CreateListIconsWrapper>
+                {!inputNameVisible && (
+                  <WatchList.CreateIcon onClick={creatListToogler} />
+                )}
+                <CSSTransition
+                  in={inputNameVisible}
+                  appear={true}
+                  timeout={{ enter: 200, exit: 300 }}
+                  unmountOnExit
+                  classNames="fade"
                 >
-                  <WatchList.CreateIcon />
-                </WatchList.IconsWrapper>
-              )}
-            </WatchList.ItemContainer>
+                  <WatchList.Input placeholder={"Enter name of list"} />
+                </CSSTransition>
+                {inputNameVisible && (
+                  <>
+                    <WatchList.Confirm />
+                    <WatchList.Abort onClick={creatListToogler} />
+                  </>
+                )}
+              </WatchList.CreateListIconsWrapper>
+            </WatchList.CreateListContainer>
           </>
         )}
       </WatchList>

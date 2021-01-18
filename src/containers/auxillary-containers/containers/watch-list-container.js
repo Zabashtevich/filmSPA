@@ -14,13 +14,12 @@ export default function WatchListContainer({ user, watchListPopupVisible }) {
   const [inputValue, setInputValue] = useState("");
   const [warningMessage, setWarningMessage] = useState("");
   const [dataSubmiting, setDataSubmiting] = useState(false);
-  const [labelAnimating, setLabelAnimating] = useState(false);
-  const [warningAnimating, setWarningAnimating] = useState(false);
+  const [createAnimating, setCreateAnimating] = useState(false);
+  const [confirmAnimating, setConfirmAnimating] = useState(false);
 
   const { firebase } = useContext(AuthContext);
 
   const creatListToogler = (e) => {
-    console.log(e.target.classList.value);
     if (
       e.target.classList.value.includes("Abort") ||
       e.target.classList.value.includes("CreateIcon")
@@ -80,34 +79,42 @@ export default function WatchListContainer({ user, watchListPopupVisible }) {
               ))}
             <WatchList.CreateListContainer>
               <CSSTransition
-                in={!inputNameVisible}
+                in={!inputNameVisible && !confirmAnimating}
                 appear={true}
-                timeout={{ enter: 200, exit: 300 }}
+                timeout={{ enter: 300, exit: 300 }}
                 unmountOnExit
                 classNames="fade"
               >
                 <WatchList.Placeholder>CREATE LIST</WatchList.Placeholder>
               </CSSTransition>
-              <WatchList.CreateListIconsWrapper>
-                {!inputNameVisible && (
+              <CSSTransition
+                in={inputNameVisible && !createAnimating}
+                appear={true}
+                timeout={{ enter: 300, exit: 300 }}
+                unmountOnExit
+                classNames="fade"
+                onEnter={() => setConfirmAnimating(true)}
+                onExited={() => setConfirmAnimating(false)}
+              >
+                <WatchList.CreateListIconsWrapper>
+                  <WatchList.Confirm />
+                  <WatchList.Input placeholder={"Enter a name"} />
+                  <WatchList.Abort onClick={creatListToogler} />
+                </WatchList.CreateListIconsWrapper>
+              </CSSTransition>
+              <CSSTransition
+                in={!inputNameVisible && !confirmAnimating}
+                appear={true}
+                timeout={{ enter: 300, exit: 300 }}
+                unmountOnExit
+                classNames="fade"
+                onEnter={() => setCreateAnimating(true)}
+                onExited={() => setCreateAnimating(false)}
+              >
+                <WatchList.CreateListIconsWrapper>
                   <WatchList.CreateIcon onClick={creatListToogler} />
-                )}
-                <CSSTransition
-                  in={inputNameVisible}
-                  appear={true}
-                  timeout={{ enter: 200, exit: 300 }}
-                  unmountOnExit
-                  classNames="fade"
-                >
-                  <WatchList.Input placeholder={"Enter name of list"} />
-                </CSSTransition>
-                {inputNameVisible && (
-                  <>
-                    <WatchList.Confirm />
-                    <WatchList.Abort onClick={creatListToogler} />
-                  </>
-                )}
-              </WatchList.CreateListIconsWrapper>
+                </WatchList.CreateListIconsWrapper>
+              </CSSTransition>
             </WatchList.CreateListContainer>
           </>
         )}

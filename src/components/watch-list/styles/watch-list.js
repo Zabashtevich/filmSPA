@@ -53,14 +53,15 @@ export const Placeholder = styled.div`
   color: black;
   font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
   font-size: 0.8rem;
+  user-select: none;
   &.fade-enter {
     opacity: 0;
-    transform: translateX(-400px);
+    transform: translateX(400px);
   }
   &.fade-enter-active {
     opacity: 1;
     transform: translateX(0);
-    transition: 100ms;
+    transition: 300ms;
   }
   &.fade-exit {
     opacity: 1;
@@ -96,6 +97,24 @@ export const CreateListIconsWrapper = styled.div`
   display: flex;
   align-items: center;
   margin: 0.2rem 0;
+  &.fade-enter {
+    opacity: 0;
+    transform: translateX(400px);
+  }
+  &.fade-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: 300ms;
+  }
+  &.fade-exit {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  &.fade-exit-active {
+    opacity: 0;
+    transition: 300ms;
+    transform: translateX(-400px);
+  }
 `;
 
 export const CreateIcon = styled(GrAdd)`
@@ -120,24 +139,7 @@ export const Input = styled.input`
   right: 110%;
   border: 1px solid black;
   outline: none;
-  &.fade-enter {
-    opacity: 0;
-    transform: translateX(400px);
-  }
-  &.fade-enter-active {
-    opacity: 1;
-    transform: translateX(0);
-    transition: 200ms;
-  }
-  &.fade-exit {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  &.fade-exit-active {
-    opacity: 0;
-    transition: 300ms;
-    transform: translateX(400px);
-  }
+  user-select: none;
 `;
 
 export const Confirm = styled(HiCheckCircle)`

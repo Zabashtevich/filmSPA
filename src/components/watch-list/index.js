@@ -8,11 +8,12 @@ import {
   Date,
   Add,
   Remove,
-  Firstletter,
   Input,
   Confirm,
   Abort,
   IconsWrapper,
+  Placeholder,
+  CreateIcon,
 } from "./styles/watch-list";
 
 export default function WatchList({ children, ...rest }) {
@@ -34,6 +35,10 @@ WatchList.Name = function WatchListName({ children, ...rest }) {
   return <Name {...rest}>{children}</Name>;
 };
 
+WatchList.Placeholder = function WatchListPlaceholder({ children, ...rest }) {
+  return <Placeholder {...rest}>{children}</Placeholder>;
+};
+
 WatchList.Date = function WatchListDate({ children, ...rest }) {
   return <Date {...rest}>{children}</Date>;
 };
@@ -46,12 +51,12 @@ WatchList.Add = function WatchListAdd({ children, ...rest }) {
   return <Add {...rest} />;
 };
 
-WatchList.Remove = function WatchListRemove({ children, ...rest }) {
-  return <Remove {...rest} />;
+WatchList.CreateIcon = function WatchListCreateIcon({ children, ...rest }) {
+  return <CreateIcon {...rest} />;
 };
 
-WatchList.Firstletter = function WatchListFirstletter({ children, ...rest }) {
-  return <Firstletter {...rest} />;
+WatchList.Remove = function WatchListRemove({ children, ...rest }) {
+  return <Remove {...rest} />;
 };
 
 WatchList.Input = function WatchListInput({ children, ...rest }) {

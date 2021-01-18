@@ -28,7 +28,7 @@ export default function WatchListContainer({ user, watchListPopupVisible }) {
     }
   };
 
-  const createListAbort = (e) => {
+  const createListHandle = (e) => {
     setInputNameVisible((prev) => !prev);
   };
 
@@ -81,12 +81,25 @@ export default function WatchListContainer({ user, watchListPopupVisible }) {
                   </WatchList.IconsWrapper>
                 </WatchList.ItemContainer>
               ))}
-            <WatchList.ItemContainer>
-              <WatchList.Firstletter />
-              <WatchList.Name>CREATE LIST</WatchList.Name>
-              <WatchList.Input />
-              <WatchList.Confirm />
-              <WatchList.Abort />
+            <WatchList.ItemContainer createitem={1}>
+              {!inputNameVisible && (
+                <WatchList.Placeholder>CREATE LIST</WatchList.Placeholder>
+              )}
+              {inputNameVisible && <WatchList.Input />}
+              {inputNameVisible && (
+                <WatchList.IconsWrapper>
+                  <WatchList.Confirm />
+                  <WatchList.Abort />
+                </WatchList.IconsWrapper>
+              )}
+              {!inputNameVisible && (
+                <WatchList.IconsWrapper
+                  createitem={1}
+                  onClick={createListHandle}
+                >
+                  <WatchList.CreateIcon />
+                </WatchList.IconsWrapper>
+              )}
             </WatchList.ItemContainer>
           </>
         )}

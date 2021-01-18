@@ -20,6 +20,7 @@ export default function WatchListContainer({ user, watchListPopupVisible }) {
   const { firebase } = useContext(AuthContext);
 
   const creatListToogler = (e) => {
+    console.log(e.target.classList.value);
     if (
       e.target.classList.value.includes("Abort") ||
       e.target.classList.value.includes("CreateIcon")
@@ -78,9 +79,15 @@ export default function WatchListContainer({ user, watchListPopupVisible }) {
                 </WatchList.ItemContainer>
               ))}
             <WatchList.CreateListContainer>
-              {!inputNameVisible && (
+              <CSSTransition
+                in={!inputNameVisible}
+                appear={true}
+                timeout={{ enter: 200, exit: 300 }}
+                unmountOnExit
+                classNames="fade"
+              >
                 <WatchList.Placeholder>CREATE LIST</WatchList.Placeholder>
-              )}
+              </CSSTransition>
               <WatchList.CreateListIconsWrapper>
                 {!inputNameVisible && (
                   <WatchList.CreateIcon onClick={creatListToogler} />

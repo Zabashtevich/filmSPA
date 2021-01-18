@@ -53,6 +53,24 @@ export const Placeholder = styled.div`
   color: black;
   font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
   font-size: 0.8rem;
+  &.fade-enter {
+    opacity: 0;
+    transform: translateX(-400px);
+  }
+  &.fade-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: 100ms;
+  }
+  &.fade-exit {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  &.fade-exit-active {
+    opacity: 0;
+    transition: 300ms;
+    transform: translateX(-400px);
+  }
 `;
 
 export const Date = styled.div``;
@@ -77,15 +95,17 @@ export const CreateListIconsWrapper = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  margin: 0.1rem 0;
+  margin: 0.2rem 0;
 `;
 
 export const CreateIcon = styled(GrAdd)`
-  padding: 0.5rem;
+  padding: 0.2rem;
   margin-right: 0.5rem;
+  font-size: ${({ theme }) => theme.fontSize.normal};
   background-color: ${({ theme }) => theme.colors.secondary};
   & > path {
     stroke: white;
+    pointer-events: none;
   }
 `;
 
@@ -126,6 +146,9 @@ export const Confirm = styled(HiCheckCircle)`
   background-color: ${({ theme }) => theme.colors.secondary};
   font-size: ${({ theme }) => theme.fontSize.normal};
   border-right: 1px solid white;
+  & > path {
+    width: 50%;
+  }
 `;
 
 export const Abort = styled(MdCancel)`
@@ -134,6 +157,11 @@ export const Abort = styled(MdCancel)`
   margin-right: 0.5rem;
   background-color: ${({ theme }) => theme.colors.secondary};
   font-size: ${({ theme }) => theme.fontSize.normal};
+  z-index: 100;
+  cursor: pointer;
+  & > * {
+    pointer-events: none;
+  }
 `;
 
 export const ItemContainer = styled.div`

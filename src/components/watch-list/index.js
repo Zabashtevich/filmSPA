@@ -14,7 +14,6 @@ import {
   IconsWrapper,
   Placeholder,
   CreateIcon,
-  CreateListContainer,
   CreateListIconsWrapper,
 } from "./styles/watch-list";
 
@@ -27,13 +26,6 @@ WatchList.ItemContainer = function WatchListItemContainer({
   ...rest
 }) {
   return <ItemContainer {...rest}>{children}</ItemContainer>;
-};
-
-WatchList.CreateListContainer = function WatchListCreateListContainer({
-  children,
-  ...rest
-}) {
-  return <CreateListContainer {...rest}>{children}</CreateListContainer>;
 };
 
 WatchList.Number = function WatchListNumber({ children, ...rest }) {

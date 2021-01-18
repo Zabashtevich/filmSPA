@@ -93,7 +93,6 @@ export const Add = styled(MdAddBox)`
 `;
 
 export const CreateListIconsWrapper = styled.div`
-  position: relative;
   display: flex;
   align-items: center;
   margin: 0.2rem 0;
@@ -119,7 +118,6 @@ export const CreateListIconsWrapper = styled.div`
 
 export const CreateIcon = styled(GrAdd)`
   padding: 0.2rem;
-  margin-right: 0.5rem;
   font-size: ${({ theme }) => theme.fontSize.normal};
   background-color: ${({ theme }) => theme.colors.secondary};
   & > path {
@@ -135,11 +133,28 @@ export const Remove = styled(CgTrash)`
 `;
 
 export const Input = styled.input`
-  position: absolute;
-  right: 110%;
+  left: 2%;
   border: 1px solid black;
   outline: none;
   user-select: none;
+  &.fade-enter {
+    opacity: 0;
+    transform: translateX(400px);
+  }
+  &.fade-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: 300ms;
+  }
+  &.fade-exit {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  &.fade-exit-active {
+    opacity: 0;
+    transition: 300ms;
+    transform: translateX(-400px);
+  }
 `;
 
 export const Confirm = styled(HiCheckCircle)`
@@ -156,7 +171,6 @@ export const Confirm = styled(HiCheckCircle)`
 export const Abort = styled(MdCancel)`
   fill: white;
   padding: 0.2rem;
-  margin-right: 0.5rem;
   background-color: ${({ theme }) => theme.colors.secondary};
   font-size: ${({ theme }) => theme.fontSize.normal};
   z-index: 100;
@@ -173,7 +187,12 @@ export const ItemContainer = styled.div`
   margin: 0.5rem 0.6rem;
   border: 1px solid ${({ theme }) => theme.colors.secondary};
   height: 25px;
-  position: relative;
+  ${({ createitem }) =>
+    createitem &&
+    css`
+      border: none;
+      align-items: center;
+    `}
   &:hover {
     ${Number} {
       background-color: white;
@@ -184,8 +203,8 @@ export const ItemContainer = styled.div`
   }
 `;
 
-export const CreateListContainer = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+export const Warning = styled.div`
+  color: black;
+  position: absolute;
+  left: 3%;
 `;

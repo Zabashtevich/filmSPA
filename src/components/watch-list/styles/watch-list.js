@@ -165,6 +165,7 @@ export const Confirm = styled(HiCheckCircle)`
   border-right: 1px solid white;
   & > path {
     width: 50%;
+    pointer-events: none;
   }
 `;
 

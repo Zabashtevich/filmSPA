@@ -21,7 +21,7 @@ export const Inner = styled.div`
   position: relative;
   background-color: #fff;
   border-radius: 2rem;
-  z-index: 200;
+  z-index: 400;
   display: flex;
   flex-direction: column;
   align-items: center;

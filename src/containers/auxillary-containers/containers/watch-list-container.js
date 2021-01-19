@@ -59,6 +59,10 @@ export default function WatchListContainer({ user, watchListPopupVisible }) {
     }
   };
 
+  const deleteListSubmit = () => {
+    alert("hi");
+  };
+
   return (
     <>
       {errorModalVisible && (
@@ -86,7 +90,7 @@ export default function WatchListContainer({ user, watchListPopupVisible }) {
                     <WatchList.Date></WatchList.Date>
                     <WatchList.IconsWrapper>
                       <WatchList.Add />
-                      <WatchList.Remove />
+                      <WatchList.Remove onClick={(e) => deleteListSubmit(e)} />
                     </WatchList.IconsWrapper>
                   </WatchList.ItemContainer>
                 ))}

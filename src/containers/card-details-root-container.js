@@ -11,11 +11,11 @@ import {
 } from "../components";
 import useFetch from "../hooks/useFetchData";
 import {
-  CardRows,
   ErrorModalContainer,
   ModalGalleryContainer,
   TooltipsContainer,
 } from "./auxillary-containers";
+import CardRows from "./auxillary-containers/containers/auxillary-items/card-rows";
 
 export default function CardDetailsRootContainer() {
   const [visibleGallery, setVisibleGallery] = useState(false);

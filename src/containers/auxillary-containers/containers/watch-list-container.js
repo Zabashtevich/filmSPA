@@ -9,7 +9,7 @@ import useFirestore from "./../../../hooks/useFirestore";
 import {
   WatchListCreateItemContainer,
   WatchListItemContainer,
-} from "./watch-list-items-container";
+} from "./auxillary-items/watch-list-items-container";
 
 export default function WatchListContainer({ user, watchListPopupVisible }) {
   const [dataLoading, data] = useFirestore(user.displayName, "collection");

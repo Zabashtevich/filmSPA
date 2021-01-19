@@ -1,7 +1,7 @@
 import React from "react";
 import { CSSTransition } from "react-transition-group";
 
-import { AuthenticationForm } from "../../../components";
+import { AuthenticationForm } from "../../../../components";
 
 export default function RegistrationForm({
   register,

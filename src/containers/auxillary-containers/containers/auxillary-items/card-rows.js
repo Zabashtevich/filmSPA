@@ -1,10 +1,10 @@
 import React from "react";
-import { CardDescriptionColumn } from "../../../components";
+import { CardDescriptionColumn } from "../../../../components";
 import {
   getBudgetFormat,
   getRowFormat,
   getRightReleasedDate,
-} from "../../../utils/utils";
+} from "../../../../utils/utils";
 
 export default function CardRows({ list }) {
   return (

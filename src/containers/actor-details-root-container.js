@@ -19,8 +19,9 @@ import {
 import {
   ModalGalleryContainer,
   RelevantListContainer,
-  ActorRows,
 } from "./auxillary-containers";
+
+import ActorRows from "./auxillary-containers/containers/auxillary-items/actor-rows";
 
 import useFirestore from "../hooks/useFirestore";
 import useAuthListener from "../hooks/useAuthListener";

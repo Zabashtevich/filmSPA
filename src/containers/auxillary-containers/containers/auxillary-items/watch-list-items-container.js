@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { CSSTransition } from "react-transition-group";
 
-import { WatchList } from "../../../components";
+import { WatchList } from "../../../../components";
 
 export function WatchListItemContainer({ item, i, deleteListSubmit }) {
   return (

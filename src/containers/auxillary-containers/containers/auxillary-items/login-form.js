@@ -1,6 +1,6 @@
 import React from "react";
 
-import { AuthenticationForm } from "../../../components";
+import { AuthenticationForm } from "../../../../components";
 
 export default function LoginForm({ register }) {
   return (

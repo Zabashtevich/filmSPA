@@ -202,6 +202,24 @@ export const ItemContainer = styled.div`
       transition: 300ms;
     }
   }
+  &.fade-enter {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+  &.fade-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: 200ms;
+  }
+  &.fade-exit {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  &.fade-exit-active {
+    opacity: 0;
+    transition: 300ms;
+    transform: translateX(200px);
+  }
 `;
 
 export const Warning = styled.div`

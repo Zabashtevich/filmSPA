@@ -300,10 +300,23 @@ export const createUserWithoutAvatar = (
 };
 
 export const createListLogic = (firebase, inputValue, data, name) => {
-  console.log(name);
   return firebase
     .firestore()
     .collection(`${name}`)
     .doc(`collection`)
     .update({ list: [...data.concat([{ name: inputValue, content: [] }])] });
+};
+
+export const deleteItemFromList = (firebase, name, array, nickname) => {
+  const index = array.indexOf(name);
+  const newArray =
+    array.length === 1
+      ? []
+      : [...array.splice(0, index), array.splice(index + 1)];
+  console.log([...array.splice(0, index), array.splice(index + 1)]);
+  return firebase
+    .firestore()
+    .collection(`${nickname}`)
+    .doc(`collection`)
+    .update({ list: [...newArray] });
 };

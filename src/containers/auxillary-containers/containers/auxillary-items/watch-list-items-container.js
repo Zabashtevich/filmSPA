@@ -11,7 +11,7 @@ export function WatchListItemContainer({ item, i, deleteListSubmit }) {
       <WatchList.Date></WatchList.Date>
       <WatchList.IconsWrapper>
         <WatchList.Add />
-        <WatchList.Remove onClick={(e) => deleteListSubmit(e)} />
+        <WatchList.Remove onClick={(item) => deleteListSubmit(item.name)} />
       </WatchList.IconsWrapper>
     </WatchList.ItemContainer>
   );

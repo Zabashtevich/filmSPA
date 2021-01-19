@@ -1,11 +1,11 @@
 import React, { useState, useContext } from "react";
-import ReactDOM from "react-dom";
+import { createPortal } from "react-dom";
 import { CSSTransition } from "react-transition-group";
 
 import { WatchList } from "../../../components";
 import ErrorModalContainer from "./error-modal-container";
 import { AuthContext } from "../../../context/auth-context";
-import { createListLogic } from "../../../utils/firebase";
+import { createListLogic, deleteItemFromList } from "../../../utils/firebase";
 import useFirestore from "./../../../hooks/useFirestore";
 import {
   WatchListCreateItemContainer,
@@ -52,14 +52,14 @@ export default function WatchListContainer({ user, watchListPopupVisible }) {
     }
   };
 
-  const deleteListSubmit = () => {
-    alert("hi");
+  const deleteListSubmit = (name) => {
+    deleteItemFromList(firebase, name, data, user.displayName);
   };
 
   return (
     <>
       {errorModalVisible &&
-        ReactDOM.createPortal(
+        createPortal(
           <ErrorModalContainer
             errorMessage={errorMessage}
             closeModal={hideErrorModal}
@@ -78,14 +78,15 @@ export default function WatchListContainer({ user, watchListPopupVisible }) {
           {!dataLoading && (
             <>
               {data.length > 0 &&
-                data.map((item, i) => (
-                  <WatchListItemContainer
-                    key={item.name}
-                    item={item}
-                    i={i}
-                    deleteListSubmit={deleteListSubmit}
-                  />
-                ))}
+                data.map((item, i) => {
+                  return (
+                    <WatchListItemContainer
+                      item={item}
+                      i={i}
+                      deleteListSubmit={deleteListSubmit}
+                    />
+                  );
+                })}
               <WatchListCreateItemContainer
                 inputValue={inputValue}
                 setInputValue={setInputValue}

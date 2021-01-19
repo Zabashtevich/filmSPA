@@ -5,6 +5,10 @@ import {
   Wrapper,
   Message,
   ButtonsWrapper,
+  Container,
+  ContainerBackground,
+  Button,
+  Title,
 } from "./styles/confirm-popup";
 
 export default function ConfirmPopup({ children, ...rest }) {
@@ -23,6 +27,10 @@ ConfirmPopup.ContainerBackground = function ConfirmPopupContainerBackground({
 
 ConfirmPopup.Wrapper = function ConfirmPopupWrapper({ children, ...rest }) {
   return <Wrapper {...rest}>{children}</Wrapper>;
+};
+
+ConfirmPopup.Title = function ConfirmPopupTitle({ children, ...rest }) {
+  return <Title {...rest}>{children}</Title>;
 };
 
 ConfirmPopup.Message = function ConfirmPopupMessage({ children, ...rest }) {

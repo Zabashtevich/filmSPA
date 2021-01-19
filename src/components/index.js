@@ -28,3 +28,4 @@ export { default as HeaderProfile } from "./header-profile";
 export { default as Account } from "./account";
 export { default as Tooltips } from "./tooltips";
 export { default as WatchList } from "./watch-list";
+export { default as ConfirmPopup } from "./confirm-popup";

@@ -6,7 +6,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 100;
+  z-index: 200;
 `;
 
 export const PosterWrapper = styled.div`

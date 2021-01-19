@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import ReactDOM from "react-dom";
 import { CSSTransition } from "react-transition-group";
 
 import { WatchList } from "../../../components";
@@ -44,7 +45,7 @@ export default function WatchListContainer({ user, watchListPopupVisible }) {
       setDataSubmiting(false);
     } else {
       createListLogic(firebase, inputValue, data, user.displayName).then(() => {
-        setInputValue(false);
+        setInputValue("");
         setInputVisible(false);
         setDataSubmiting(false);
       });
@@ -57,13 +58,15 @@ export default function WatchListContainer({ user, watchListPopupVisible }) {
 
   return (
     <>
-      {errorModalVisible && (
-        <ErrorModalContainer
-          errorMessage={errorMessage}
-          closeModal={hideErrorModal}
-          errorModalVisible={errorModalVisible}
-        />
-      )}
+      {errorModalVisible &&
+        ReactDOM.createPortal(
+          <ErrorModalContainer
+            errorMessage={errorMessage}
+            closeModal={hideErrorModal}
+            errorModalVisible={errorModalVisible}
+          />,
+          document.querySelector("#root"),
+        )}
       <CSSTransition
         in={user && watchListPopupVisible}
         appear={true}

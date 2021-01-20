@@ -3,16 +3,19 @@ import { CSSTransition } from "react-transition-group";
 
 import { ConfirmPopup } from "../../../components";
 
-export default function ConfirmPopupContainer({ popupConfirmVisible }) {
-  const message = "Do you want to delete list ?";
+export default function ConfirmPopupContainer({
+  message,
+  closeConfirmWindow,
+  popupConfirmVisible,
+}) {
   return (
-    <CSSTransition
-      in={popupConfirmVisible}
-      classNames="fade"
-      timeout={600}
-      appear={true}
-    >
-      <ConfirmPopup>
+    <ConfirmPopup>
+      <CSSTransition
+        classNames="fade"
+        timeout={{ enter: 400, exit: 300 }}
+        appear={true}
+        in={popupConfirmVisible}
+      >
         <ConfirmPopup.Container>
           <ConfirmPopup.Wrapper titlewrapper={1}>
             <ConfirmPopup.ContainerBackground />
@@ -22,11 +25,21 @@ export default function ConfirmPopupContainer({ popupConfirmVisible }) {
             <ConfirmPopup.Message>{message}</ConfirmPopup.Message>
           </ConfirmPopup.Wrapper>
           <ConfirmPopup.Wrapper buttonswrapper={1}>
-            <ConfirmPopup.Button cancel={1}>CANCEL</ConfirmPopup.Button>
-            <ConfirmPopup.Button confirm={1}>CONFIRM</ConfirmPopup.Button>
+            <ConfirmPopup.Button
+              cancel={1}
+              onClick={() => closeConfirmWindow(false)}
+            >
+              CANCEL
+            </ConfirmPopup.Button>
+            <ConfirmPopup.Button
+              confirm={1}
+              onClick={() => closeConfirmWindow(true)}
+            >
+              CONFIRM
+            </ConfirmPopup.Button>
           </ConfirmPopup.Wrapper>
         </ConfirmPopup.Container>
-      </ConfirmPopup>
-    </CSSTransition>
+      </CSSTransition>
+    </ConfirmPopup>
   );
 }

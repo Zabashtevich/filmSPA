@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { CSSTransition } from "react-transition-group";
 
@@ -21,10 +21,23 @@ export default function WatchListContainer({ user, watchListPopupVisible }) {
   const [errorModalVisible, setErrorModalVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [inputVisible, setInputVisible] = useState(false);
-  const [popupConfirmVisible, setPopupConfirmVisible] = useState(true);
+  const [popupConfirmVisible, setPopupConfirmVisible] = useState(false);
+  const [confirmMessage, setConfirmMessage] = useState("");
+  const [deletingList, setDeletingList] = useState({ name: "", delete: false });
 
+  useEffect(() => {
+    if (!deletingList.delete) return;
+    deleteItemFromList(
+      firebase,
+      deletingList.name,
+      data,
+      user.displayName,
+    ).then(() => {
+      setDeletingList({ name: "", delete: false });
+    });
+  }, [deletingList]);
   const { firebase } = useContext(AuthContext);
-
+  console.log(deletingList);
   const showErrorModal = (errorText) => {
     document.body.style.overflow = "hidden";
     setErrorMessage([errorText]);
@@ -56,15 +69,25 @@ export default function WatchListContainer({ user, watchListPopupVisible }) {
   };
 
   const deleteListSubmit = (name) => {
-    console.log(name, "haha");
-    deleteItemFromList(firebase, name, data, user.displayName);
+    setDeletingList((prev) => ({ ...prev, name: name }));
+    setPopupConfirmVisible(true);
+    setConfirmMessage(`Are you sure you want to delete list ${name}?`);
   };
 
+  const closeConfirmWindown = (value) => {
+    setDeletingList((prev) => ({ ...prev, delete: value }));
+    setConfirmMessage("");
+    setPopupConfirmVisible(false);
+  };
   return (
     <>
       {popupConfirmVisible &&
         createPortal(
-          <ConfirmPopupContainer />,
+          <ConfirmPopupContainer
+            message={confirmMessage}
+            closeConfirmWindow={closeConfirmWindown}
+            popupConfirmVisible={popupConfirmVisible}
+          />,
           document.querySelector("#root"),
         )}
       {errorModalVisible &&

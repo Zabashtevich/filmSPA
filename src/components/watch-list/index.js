@@ -12,9 +12,10 @@ import {
   Confirm,
   Abort,
   IconsWrapper,
-  Placeholder,
+  CreateTitle,
   CreateIcon,
   CreateListIconsWrapper,
+  Placeholder,
 } from "./styles/watch-list";
 
 export default function WatchList({ children, ...rest }) {
@@ -34,6 +35,10 @@ WatchList.Number = function WatchListNumber({ children, ...rest }) {
 
 WatchList.Name = function WatchListName({ children, ...rest }) {
   return <Name {...rest}>{children}</Name>;
+};
+
+WatchList.CreateTitle = function WatchListCreateTitle({ children, ...rest }) {
+  return <CreateTitle {...rest}>{children}</CreateTitle>;
 };
 
 WatchList.Placeholder = function WatchListPlaceholder({ children, ...rest }) {

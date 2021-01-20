@@ -7,6 +7,8 @@ import { HiCheckCircle } from "react-icons/hi";
 import { GrAdd } from "react-icons/gr";
 
 export const Container = styled.div`
+  min-height: 75px;
+  min-width: 370px;
   position: absolute;
   top: 110%;
   left: -350%;
@@ -48,7 +50,7 @@ export const Name = styled.div`
   color: black;
 `;
 
-export const Placeholder = styled.div`
+export const CreateTitle = styled.div`
   padding: 0.7rem 1rem;
   color: black;
   font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
@@ -188,6 +190,11 @@ export const ItemContainer = styled.div`
   margin: 0.5rem 0.6rem;
   border: 1px solid ${({ theme }) => theme.colors.secondary};
   height: 25px;
+  ${({ placeholder }) =>
+    placeholder &&
+    css`
+      border: none;
+    `}
   ${({ createitem }) =>
     createitem &&
     css`
@@ -220,10 +227,28 @@ export const ItemContainer = styled.div`
     transition: 300ms;
     transform: translateX(200px);
   }
+  &.fade-appear {
+    opacity: 0;
+    transition: 500ms;
+    transform: translateX(-400px);
+  }
+  &.fade-appear-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: 300ms;
+  }
 `;
 
 export const Warning = styled.div`
   color: black;
   position: absolute;
   left: 3%;
+`;
+
+export const Placeholder = styled.span`
+  color: black;
+  align-self: center;
+  font-size: ${({ theme }) => theme.fontSize.small};
+  font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
+  margin-left: 1rem;
 `;

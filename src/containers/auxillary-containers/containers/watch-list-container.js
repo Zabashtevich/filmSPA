@@ -10,6 +10,7 @@ import useFirestore from "./../../../hooks/useFirestore";
 import {
   WatchListCreateItemContainer,
   WatchListItemContainer,
+  WatchListPlaceholderContainer,
 } from "./auxillary-items/watch-list-items-container";
 
 export default function WatchListContainer({ user, watchListPopupVisible }) {
@@ -78,11 +79,13 @@ export default function WatchListContainer({ user, watchListPopupVisible }) {
         <WatchList>
           {!dataLoading && (
             <>
-              {data.length > 0 && (
+              {data.length > 0 ? (
                 <WatchListItemContainer
                   deleteListSubmit={deleteListSubmit}
                   data={data}
                 />
+              ) : (
+                <WatchListPlaceholderContainer />
               )}
 
               <WatchListCreateItemContainer

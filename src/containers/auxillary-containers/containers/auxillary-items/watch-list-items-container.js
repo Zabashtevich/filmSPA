@@ -7,12 +7,12 @@ export function WatchListItemContainer({ data, deleteListSubmit }) {
   return (
     <TransitionGroup>
       {data.map((item, i) => {
-        console.log(item);
         return (
           <CSSTransition
             key={item.name + i}
             classNames="fade"
-            timeout={{ enter: 30000, exit: 30000 }}
+            timeout={{ enter: 200, exit: 300, appear: 300 }}
+            appear={true}
           >
             <WatchList.ItemContainer>
               <WatchList.Number>{i + 1}</WatchList.Number>
@@ -57,7 +57,7 @@ export function WatchListCreateItemContainer({
         unmountOnExit
         classNames="fade"
       >
-        <WatchList.Placeholder>CREATE LIST</WatchList.Placeholder>
+        <WatchList.CreateTitle>CREATE LIST</WatchList.CreateTitle>
       </CSSTransition>
       <CSSTransition
         in={inputVisible && !createAnimating}
@@ -100,5 +100,23 @@ export function WatchListCreateItemContainer({
         </WatchList.CreateListIconsWrapper>
       </CSSTransition>
     </WatchList.ItemContainer>
+  );
+}
+
+export function WatchListPlaceholderContainer() {
+  return (
+    <TransitionGroup>
+      <CSSTransition
+        appear={true}
+        classNames="fade"
+        timeout={{ enter: 200, exit: 300, appear: 300 }}
+      >
+        <WatchList.ItemContainer placeholder={1}>
+          <WatchList.Placeholder>
+            You have not any list but you can create one
+          </WatchList.Placeholder>
+        </WatchList.ItemContainer>
+      </CSSTransition>
+    </TransitionGroup>
   );
 }

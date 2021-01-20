@@ -23,8 +23,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   position: relative;
-  border-radius: 1rem;
-  border: orange 0.5rem solid;
+  outline: orange 0.3rem solid;
   font-family: ${({ theme }) => theme.fontFamily.secondary};
 `;
 
@@ -41,9 +40,7 @@ export const Wrapper = styled.div`
     css`
       display: flex;
       justify-content: center;
-      background-color: gray;
-      width: 100%;
-      border-radius: 0.5rem;
+      margin-top: 4rem;
     `}
   ${({ titlewrapper }) =>
     titlewrapper &&
@@ -51,6 +48,11 @@ export const Wrapper = styled.div`
       display: flex;
       flex-direction: column;
       align-items: center;
+    `}
+    ${({ messagewrapper }) =>
+    messagewrapper &&
+    css`
+      margin-top: 4rem;
     `}
 `;
 
@@ -62,8 +64,42 @@ export const Title = styled.span`
   margin-top: 1rem;
 `;
 
-export const Message = styled.span``;
+export const Message = styled.span`
+  margin-top: 2rem;
+  color: gray;
+  font-size: ${({ theme }) => theme.fontSize.normal};
+  font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
+`;
 
-export const ButtonsWrapper = styled.div``;
-
-export const Button = styled.button``;
+export const Button = styled.button`
+  font-size: ${({ theme }) => theme.fontSize.normal};
+  outline: none;
+  padding: 1rem 1rem;
+  width: 200px;
+  text-align: center;
+  cursor: pointer;
+  ${({ cancel }) =>
+    cancel &&
+    css`
+      background-color: rgba(232, 232, 232, 0.8);
+      border: 1px solid black;
+      margin-right: 1rem;
+      &:hover {
+        background-color: ${({ theme }) => theme.colors.secondary};
+        color: white;
+        transition: 300ms;
+      }
+    `};
+  ${({ confirm }) =>
+    confirm &&
+    css`
+      background-color: #ffd280;
+      border: 1px solid gray;
+      color: white;
+      &:hover {
+        background-color: white;
+        color: black;
+        transition: 300ms;
+      }
+    `}
+`;

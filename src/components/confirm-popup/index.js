@@ -37,13 +37,6 @@ ConfirmPopup.Message = function ConfirmPopupMessage({ children, ...rest }) {
   return <Message {...rest}>{children}</Message>;
 };
 
-ConfirmPopup.ButtonsWrapper = function ConfirmPopupButtonsWrapper({
-  children,
-  ...rest
-}) {
-  return <ButtonsWrapper {...rest}>{children}</ButtonsWrapper>;
-};
-
 ConfirmPopup.Button = function ConfirmPopupButton({ children, ...rest }) {
   return <Button {...rest}>{children}</Button>;
 };

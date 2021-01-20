@@ -18,12 +18,12 @@ export default function ConfirmPopupContainer({ popupConfirmVisible }) {
             <ConfirmPopup.ContainerBackground />
             <ConfirmPopup.Title>CONFIRM</ConfirmPopup.Title>
           </ConfirmPopup.Wrapper>
-          <ConfirmPopup.Wrapper>
+          <ConfirmPopup.Wrapper messagewrapper={1}>
             <ConfirmPopup.Message>{message}</ConfirmPopup.Message>
           </ConfirmPopup.Wrapper>
           <ConfirmPopup.Wrapper buttonswrapper={1}>
-            <ConfirmPopup.Button>CANCEL</ConfirmPopup.Button>
-            <ConfirmPopup.Button>CONFIRM</ConfirmPopup.Button>
+            <ConfirmPopup.Button cancel={1}>CANCEL</ConfirmPopup.Button>
+            <ConfirmPopup.Button confirm={1}>CONFIRM</ConfirmPopup.Button>
           </ConfirmPopup.Wrapper>
         </ConfirmPopup.Container>
       </ConfirmPopup>

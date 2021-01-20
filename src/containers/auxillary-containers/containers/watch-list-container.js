@@ -53,6 +53,7 @@ export default function WatchListContainer({ user, watchListPopupVisible }) {
   };
 
   const deleteListSubmit = (name) => {
+    console.log(name, "haha");
     deleteItemFromList(firebase, name, data, user.displayName);
   };
 
@@ -77,16 +78,13 @@ export default function WatchListContainer({ user, watchListPopupVisible }) {
         <WatchList>
           {!dataLoading && (
             <>
-              {data.length > 0 &&
-                data.map((item, i) => {
-                  return (
-                    <WatchListItemContainer
-                      item={item}
-                      i={i}
-                      deleteListSubmit={deleteListSubmit}
-                    />
-                  );
-                })}
+              {data.length > 0 && (
+                <WatchListItemContainer
+                  deleteListSubmit={deleteListSubmit}
+                  data={data}
+                />
+              )}
+
               <WatchListCreateItemContainer
                 inputValue={inputValue}
                 setInputValue={setInputValue}

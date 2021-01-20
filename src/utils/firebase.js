@@ -308,12 +308,10 @@ export const createListLogic = (firebase, inputValue, data, name) => {
 };
 
 export const deleteItemFromList = (firebase, name, array, nickname) => {
-  const index = array.indexOf(name);
+  console.log(name);
   const newArray =
-    array.length === 1
-      ? []
-      : [...array.splice(0, index), array.splice(index + 1)];
-  console.log([...array.splice(0, index), array.splice(index + 1)]);
+    array.length === 1 ? [] : [...array.filter((item) => item.name !== name)];
+  console.log(newArray);
   return firebase
     .firestore()
     .collection(`${nickname}`)

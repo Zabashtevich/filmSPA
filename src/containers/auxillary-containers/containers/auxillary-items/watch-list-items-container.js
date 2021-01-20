@@ -1,19 +1,32 @@
 import React, { useState } from "react";
-import { CSSTransition } from "react-transition-group";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 import { WatchList } from "../../../../components";
 
-export function WatchListItemContainer({ item, i, deleteListSubmit }) {
+export function WatchListItemContainer({ data, deleteListSubmit }) {
   return (
-    <WatchList.ItemContainer>
-      <WatchList.Number>{i + 1}</WatchList.Number>
-      <WatchList.Name>{item.name.toUpperCase()}</WatchList.Name>
-      <WatchList.Date></WatchList.Date>
-      <WatchList.IconsWrapper>
-        <WatchList.Add />
-        <WatchList.Remove onClick={(item) => deleteListSubmit(item.name)} />
-      </WatchList.IconsWrapper>
-    </WatchList.ItemContainer>
+    <TransitionGroup>
+      {data.map((item, i) => {
+        console.log(item);
+        return (
+          <CSSTransition
+            key={item.name + i}
+            classNames="fade"
+            timeout={{ enter: 30000, exit: 30000 }}
+          >
+            <WatchList.ItemContainer>
+              <WatchList.Number>{i + 1}</WatchList.Number>
+              <WatchList.Name>{item.name.toUpperCase()}</WatchList.Name>
+              <WatchList.Date></WatchList.Date>
+              <WatchList.IconsWrapper>
+                <WatchList.Add />
+                <WatchList.Remove onClick={() => deleteListSubmit(item.name)} />
+              </WatchList.IconsWrapper>
+            </WatchList.ItemContainer>
+          </CSSTransition>
+        );
+      })}
+    </TransitionGroup>
   );
 }
 

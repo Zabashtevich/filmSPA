@@ -12,6 +12,7 @@ import {
   WatchListItemContainer,
   WatchListPlaceholderContainer,
 } from "./auxillary-items/watch-list-items-container";
+import ConfirmPopupContainer from "./confirm-popup-container";
 
 export default function WatchListContainer({ user, watchListPopupVisible }) {
   const [dataLoading, data] = useFirestore(user.displayName, "collection");
@@ -20,6 +21,7 @@ export default function WatchListContainer({ user, watchListPopupVisible }) {
   const [errorModalVisible, setErrorModalVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [inputVisible, setInputVisible] = useState(false);
+  const [popupConfirmVisible, setPopupConfirmVisible] = useState(true);
 
   const { firebase } = useContext(AuthContext);
 
@@ -60,6 +62,11 @@ export default function WatchListContainer({ user, watchListPopupVisible }) {
 
   return (
     <>
+      {popupConfirmVisible &&
+        createPortal(
+          <ConfirmPopupContainer />,
+          document.querySelector("#root"),
+        )}
       {errorModalVisible &&
         createPortal(
           <ErrorModalContainer

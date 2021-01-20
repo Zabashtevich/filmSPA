@@ -13,6 +13,7 @@ import {
   WatchListPlaceholderContainer,
 } from "./auxillary-items/watch-list-items-container";
 import ConfirmPopupContainer from "./confirm-popup-container";
+import ItemDescriptionPopupContainer from "./item-description-popup-container";
 
 export default function WatchListContainer({ user, watchListPopupVisible }) {
   const [dataLoading, data] = useFirestore(user.displayName, "collection");
@@ -36,8 +37,9 @@ export default function WatchListContainer({ user, watchListPopupVisible }) {
       setDeletingList({ name: "", delete: false });
     });
   }, [deletingList]);
+
   const { firebase } = useContext(AuthContext);
-  console.log(deletingList);
+
   const showErrorModal = (errorText) => {
     document.body.style.overflow = "hidden";
     setErrorMessage([errorText]);

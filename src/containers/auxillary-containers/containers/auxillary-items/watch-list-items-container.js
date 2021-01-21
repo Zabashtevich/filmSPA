@@ -4,7 +4,11 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { WatchList } from "../../../../components";
 import ItemDescriptionPopupContainer from "./item-description-popup-container";
 
-export function WatchListItemContainer({ data, deleteListSubmit }) {
+export function WatchListItemContainer({
+  data,
+  deleteListSubmit,
+  onAddToList,
+}) {
   const [addDesc, setAddDesc] = useState(false);
   const [removeDesc, setRemoveDesc] = useState(false);
   return (
@@ -12,7 +16,7 @@ export function WatchListItemContainer({ data, deleteListSubmit }) {
       {data.map((item, i) => {
         return (
           <CSSTransition
-            key={item.name}
+            key={item.id}
             classNames="fade"
             timeout={{ enter: 200, exit: 300, appear: 300 }}
             appear={true}
@@ -25,9 +29,10 @@ export function WatchListItemContainer({ data, deleteListSubmit }) {
                 <WatchList.Add
                   onMouseEnter={() => setAddDesc(true)}
                   onMouseLeave={() => setAddDesc(false)}
+                  onClick={() => onAddToList(item.id)}
                 />
                 <WatchList.Remove
-                  onClick={() => deleteListSubmit(item.name)}
+                  onClick={() => deleteListSubmit(item.id, item.name)}
                   onMouseEnter={() => setRemoveDesc(true)}
                   onMouseLeave={() => setRemoveDesc(false)}
                 />

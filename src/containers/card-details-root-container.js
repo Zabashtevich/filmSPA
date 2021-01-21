@@ -98,7 +98,7 @@ export default function CardDetailsRootContainer() {
                 <Votes.VotesAmount>{list.vote_count}</Votes.VotesAmount>
               </Votes.Wrapper>
             </Votes>
-            <TooltipsContainer />
+            <TooltipsContainer slug={location.slug} />
           </ListColumn>
         </DetailsHeader>
       )}

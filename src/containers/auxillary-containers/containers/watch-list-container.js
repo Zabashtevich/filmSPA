@@ -5,7 +5,11 @@ import { CSSTransition } from "react-transition-group";
 import { WatchList } from "../../../components";
 import ErrorModalContainer from "./error-modal-container";
 import { AuthContext } from "../../../context/auth-context";
-import { createListLogic, deleteItemFromList } from "../../../utils/firebase";
+import {
+  createListLogic,
+  deleteItemFromList,
+  saveMovieInList,
+} from "../../../utils/firebase";
 import useFirestore from "./../../../hooks/useFirestore";
 import {
   WatchListCreateItemContainer,
@@ -14,7 +18,11 @@ import {
 } from "./auxillary-items/watch-list-items-container";
 import ConfirmPopupContainer from "./confirm-popup-container";
 
-export default function WatchListContainer({ user, watchListPopupVisible }) {
+export default function WatchListContainer({
+  user,
+  watchListPopupVisible,
+  slug,
+}) {
   const [dataLoading, data] = useFirestore(user.displayName, "collection");
   const [inputValue, setInputValue] = useState("");
   const [dataSubmiting, setDataSubmiting] = useState(false);
@@ -23,18 +31,15 @@ export default function WatchListContainer({ user, watchListPopupVisible }) {
   const [inputVisible, setInputVisible] = useState(false);
   const [popupConfirmVisible, setPopupConfirmVisible] = useState(false);
   const [confirmMessage, setConfirmMessage] = useState("");
-  const [deletingList, setDeletingList] = useState({ name: "", delete: false });
+  const [deletingList, setDeletingList] = useState({ id: "", delete: false });
 
   useEffect(() => {
     if (!deletingList.delete) return;
-    deleteItemFromList(
-      firebase,
-      deletingList.name,
-      data,
-      user.displayName,
-    ).then(() => {
-      setDeletingList({ name: "", delete: false });
-    });
+    deleteItemFromList(firebase, deletingList.id, data, user.displayName).then(
+      () => {
+        setDeletingList({ id: "", delete: false });
+      },
+    );
   }, [deletingList]);
 
   const { firebase } = useContext(AuthContext);
@@ -86,8 +91,8 @@ export default function WatchListContainer({ user, watchListPopupVisible }) {
     }
   };
 
-  const deleteListSubmit = (name) => {
-    setDeletingList((prev) => ({ ...prev, name: name }));
+  const deleteListSubmit = (id, name) => {
+    setDeletingList((prev) => ({ ...prev, id }));
     setPopupConfirmVisible(true);
     setConfirmMessage(`Are you sure you want to delete list ${name}?`);
   };
@@ -97,6 +102,11 @@ export default function WatchListContainer({ user, watchListPopupVisible }) {
     setConfirmMessage("");
     setPopupConfirmVisible(false);
   };
+
+  const onAddToList = (id) => {
+    saveMovieInList(firebase, user.displayName, id, data, slug);
+  };
+
   return (
     <>
       {popupConfirmVisible &&
@@ -131,6 +141,7 @@ export default function WatchListContainer({ user, watchListPopupVisible }) {
                 <WatchListItemContainer
                   deleteListSubmit={deleteListSubmit}
                   data={data}
+                  onAddToList={onAddToList}
                 />
               ) : (
                 <WatchListPlaceholderContainer />

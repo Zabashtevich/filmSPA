@@ -304,12 +304,38 @@ export const createListLogic = (firebase, inputValue, data, name) => {
     .firestore()
     .collection(`${name}`)
     .doc(`collection`)
-    .update({ list: [...data.concat([{ name: inputValue, content: [] }])] });
+    .update({
+      list: [
+        ...data.concat([
+          {
+            name: inputValue,
+            content: [],
+            id: Math.ceil(Math.random() * 1000),
+          },
+        ]),
+      ],
+    });
 };
 
-export const deleteItemFromList = (firebase, name, array, nickname) => {
+export const deleteItemFromList = (firebase, id, array, nickname) => {
   const newArray =
-    array.length === 1 ? [] : [...array.filter((item) => item.name !== name)];
+    array.length === 1 ? [] : [...array.filter((item) => item.id !== id)];
+  return firebase
+    .firestore()
+    .collection(`${nickname}`)
+    .doc(`collection`)
+    .update({ list: [...newArray] });
+};
+
+export const saveMovieInList = (firebase, nickname, id, data, slug) => {
+  const newArray = data.map(
+    (item) =>
+      item.id === id && {
+        content: [...item.content, +slug],
+        name: item.name,
+        id: item.id,
+      },
+  );
   return firebase
     .firestore()
     .collection(`${nickname}`)

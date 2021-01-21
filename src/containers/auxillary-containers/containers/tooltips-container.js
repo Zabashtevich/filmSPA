@@ -5,7 +5,7 @@ import useAuthListener from "./../../../hooks/useAuthListener";
 import ItemDescriptionPopupContainer from "./auxillary-items/item-description-popup-container";
 import WatchListContainer from "./watch-list-container";
 
-export default function TooltipsContainer() {
+export default function TooltipsContainer({ slug }) {
   const { user } = useAuthListener();
 
   const [watchlistDesc, setWatchlistDesc] = useState(false);
@@ -49,6 +49,7 @@ export default function TooltipsContainer() {
         <WatchListContainer
           user={user}
           watchListPopupVisible={watchListPopupVisible}
+          slug={slug}
         />
       </Tooltips.ItemWrapper>
       <Tooltips.ItemWrapper rightposition={1}>

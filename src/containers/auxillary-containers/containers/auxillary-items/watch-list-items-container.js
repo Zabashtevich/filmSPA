@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 import { WatchList } from "../../../../components";
+import ItemDescriptionPopupContainer from "./item-description-popup-container";
 
 export function WatchListItemContainer({ data, deleteListSubmit }) {
   return (
@@ -39,6 +40,8 @@ export function WatchListCreateItemContainer({
 }) {
   const [createAnimating, setCreateAnimating] = useState(false);
   const [confirmAnimating, setConfirmAnimating] = useState(false);
+  const [finishDesc, setFinishDesc] = useState(false);
+  const [cancelDesc, setCancelDesc] = useState(false);
 
   return (
     <WatchList.ItemContainer createitem={1}>
@@ -74,8 +77,21 @@ export function WatchListCreateItemContainer({
         onExited={() => setConfirmAnimating(false)}
       >
         <WatchList.CreateListIconsWrapper>
-          <WatchList.Confirm onClick={(e) => createListSubmit(e)} />
-          <WatchList.Abort onClick={creatListToogler} />
+          <WatchList.Confirm
+            onClick={(e) => createListSubmit(e)}
+            onMouseEnter={() => setFinishDesc(true)}
+            onMouseLeave={() => setFinishDesc(false)}
+          />
+          <ItemDescriptionPopupContainer
+            text={"Finish creating"}
+            visible={finishDesc}
+          />
+          <WatchList.Abort
+            onClick={creatListToogler}
+            onMouseEnter={() => setCancelDesc(true)}
+            onMouseLeave={() => setCancelDesc(false)}
+          />
+          <ItemDescriptionPopupContainer text={"Cancel"} visible={cancelDesc} />
         </WatchList.CreateListIconsWrapper>
       </CSSTransition>
       <CSSTransition

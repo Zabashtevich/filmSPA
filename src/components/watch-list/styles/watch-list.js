@@ -94,10 +94,15 @@ export const Add = styled(MdAddBox)`
   border-left: 1px solid ${({ theme }) => theme.colors.secondary};
 `;
 
+export const IconInner = styled.div`
+  position: relative;
+`;
+
 export const CreateListIconsWrapper = styled.div`
   display: flex;
   align-items: center;
   margin: 0.2rem 0;
+  position: relative;
   &.fade-enter {
     opacity: 0;
     transform: translateX(400px);

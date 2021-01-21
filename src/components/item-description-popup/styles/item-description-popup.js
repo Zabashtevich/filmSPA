@@ -48,9 +48,7 @@ export const Container = styled.div`
 `;
 
 export const Message = styled.span`
-  background-color: ${({ theme }) => theme.colors.secondary};
-
   padding: 0.2rem 0.5rem;
   border-radius: 1rem;
-  color: white;
+  color: black;
 `;

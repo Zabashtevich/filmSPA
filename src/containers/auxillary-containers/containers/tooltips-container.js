@@ -11,10 +11,11 @@ export default function TooltipsContainer() {
   const [watchlistDesc, setWatchlistDesc] = useState(false);
   const [favoriteDesc, setFavoriteDesc] = useState(false);
   const [watchListPopupVisible, setWatchListPopupVisible] = useState(false);
+  const [descriptionBlocker, setDescriptionBlocker] = useState(false);
 
   const onWatchlistClick = () => {
     if (!user) return;
-    setWatchlistDesc(false);
+    setDescriptionBlocker((prev) => !prev);
     setWatchListPopupVisible((prev) => !prev);
   };
 
@@ -31,14 +32,14 @@ export default function TooltipsContainer() {
           onMouseLeave={() => setWatchlistDesc(false)}
           onClick={onWatchlistClick}
         />
-        {user && (
+        {user && !descriptionBlocker && (
           <ItemDescriptionPopupContainer
             left={1}
             text={"Add movie to list"}
             visible={watchlistDesc}
           />
         )}
-        {!user && (
+        {!user && !descriptionBlocker && (
           <ItemDescriptionPopupContainer
             left={1}
             text={"Please, sign in to add movie to list"}
@@ -56,14 +57,14 @@ export default function TooltipsContainer() {
           onMouseLeave={() => setFavoriteDesc(false)}
           onClick={onFavoriteClock}
         />
-        {user && (
+        {user && !descriptionBlocker && (
           <ItemDescriptionPopupContainer
             right={1}
             text={"Add movie to favorite"}
             visible={favoriteDesc}
           />
         )}
-        {!user && (
+        {!user && !descriptionBlocker && (
           <ItemDescriptionPopupContainer
             right={1}
             text={"Please, sign in to add movie to favorite"}

@@ -5,7 +5,6 @@ import {
   ItemContainer,
   Number,
   Name,
-  Date,
   Add,
   Remove,
   Input,
@@ -16,6 +15,7 @@ import {
   CreateIcon,
   CreateListIconsWrapper,
   Placeholder,
+  Delete,
 } from "./styles/watch-list";
 
 export default function WatchList({ children, ...rest }) {
@@ -33,6 +33,10 @@ WatchList.Number = function WatchListNumber({ children, ...rest }) {
   return <Number {...rest}>{children}</Number>;
 };
 
+WatchList.Delete = function WatchListDelete({ children, ...rest }) {
+  return <Delete {...rest}>{children}</Delete>;
+};
+
 WatchList.Name = function WatchListName({ children, ...rest }) {
   return <Name {...rest}>{children}</Name>;
 };
@@ -43,10 +47,6 @@ WatchList.CreateTitle = function WatchListCreateTitle({ children, ...rest }) {
 
 WatchList.Placeholder = function WatchListPlaceholder({ children, ...rest }) {
   return <Placeholder {...rest}>{children}</Placeholder>;
-};
-
-WatchList.Date = function WatchListDate({ children, ...rest }) {
-  return <Date {...rest}>{children}</Date>;
 };
 
 WatchList.IconsWrapper = function WatchListIconsWrapper({ children, ...rest }) {

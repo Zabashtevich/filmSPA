@@ -5,6 +5,7 @@ import { CgTrash } from "react-icons/cg";
 import { MdCancel } from "react-icons/md";
 import { HiCheckCircle } from "react-icons/hi";
 import { GrAdd } from "react-icons/gr";
+import { AiFillCloseSquare } from "react-icons/ai";
 
 export const Container = styled.div`
   min-height: 75px;
@@ -76,8 +77,6 @@ export const CreateTitle = styled.div`
   }
 `;
 
-export const Date = styled.div``;
-
 export const IconsWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -128,6 +127,15 @@ export const CreateIcon = styled(GrAdd)`
     stroke: white;
     pointer-events: none;
   }
+`;
+
+export const Delete = styled(AiFillCloseSquare)`
+  font-size: ${({ theme }) => theme.fontSize.normal};
+  fill: black;
+  height: 100%;
+  width: 50%;
+  border-right: 1px solid ${({ theme }) => theme.colors.secondary};
+  border-left: 1px solid ${({ theme }) => theme.colors.secondary};
 `;
 
 export const Remove = styled(CgTrash)`

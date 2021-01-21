@@ -8,9 +8,12 @@ export function WatchListItemContainer({
   data,
   deleteListSubmit,
   onAddToList,
+  addedToList,
+  onRemoveFromList,
 }) {
   const [addDesc, setAddDesc] = useState(false);
   const [removeDesc, setRemoveDesc] = useState(false);
+  const [deleteDesc, setDeleteDesc] = useState(false);
   return (
     <TransitionGroup>
       {data.map((item, i) => {
@@ -24,13 +27,21 @@ export function WatchListItemContainer({
             <WatchList.ItemContainer>
               <WatchList.Number>{i + 1}</WatchList.Number>
               <WatchList.Name>{item.name.toUpperCase()}</WatchList.Name>
-              <WatchList.Date></WatchList.Date>
               <WatchList.IconsWrapper>
-                <WatchList.Add
-                  onMouseEnter={() => setAddDesc(true)}
-                  onMouseLeave={() => setAddDesc(false)}
-                  onClick={() => onAddToList(item.id)}
-                />
+                {!addedToList && (
+                  <WatchList.Add
+                    onMouseEnter={() => setAddDesc(true)}
+                    onMouseLeave={() => setAddDesc(false)}
+                    onClick={() => onAddToList(item.id)}
+                  />
+                )}
+                {addedToList && (
+                  <WatchList.Delete
+                    onClick={() => onRemoveFromList(item.id)}
+                    onMouseEnter={() => setDeleteDesc(true)}
+                    onMouseLeave={() => setDeleteDesc(false)}
+                  />
+                )}
                 <WatchList.Remove
                   onClick={() => deleteListSubmit(item.id, item.name)}
                   onMouseEnter={() => setRemoveDesc(true)}
@@ -47,6 +58,11 @@ export function WatchListItemContainer({
                       backgroundsecondary={1}
                       text={"Add movie to list"}
                       visible={addDesc}
+                    />
+                    <ItemDescriptionPopupContainer
+                      backgroundsecondary={1}
+                      text={"Delete movie from list"}
+                      visible={deleteDesc}
                     />
                   </>
                 )}

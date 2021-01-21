@@ -32,6 +32,7 @@ export default function WatchListContainer({
   const [popupConfirmVisible, setPopupConfirmVisible] = useState(false);
   const [confirmMessage, setConfirmMessage] = useState("");
   const [deletingList, setDeletingList] = useState({ id: "", delete: false });
+  const [addedToList, setAddedToList] = useState(false);
 
   useEffect(() => {
     if (!deletingList.delete) return;
@@ -41,6 +42,13 @@ export default function WatchListContainer({
       },
     );
   }, [deletingList]);
+
+  useEffect(() => {
+    if (data.length === 0) return;
+    if (data.map((item) => item.content.find((item) => item.slug === slug))) {
+      setAddedToList(true);
+    }
+  }, [data, slug]);
 
   const { firebase } = useContext(AuthContext);
 
@@ -104,8 +112,12 @@ export default function WatchListContainer({
   };
 
   const onAddToList = (id) => {
-    saveMovieInList(firebase, user.displayName, id, data, slug);
+    saveMovieInList(firebase, user.displayName, id, data, slug).then(() => {
+      setAddedToList(true);
+    });
   };
+
+  const onRemoveFromList = () => {};
 
   return (
     <>
@@ -142,6 +154,8 @@ export default function WatchListContainer({
                   deleteListSubmit={deleteListSubmit}
                   data={data}
                   onAddToList={onAddToList}
+                  addedToList={addedToList}
+                  onRemoveFromList={onRemoveFromList}
                 />
               ) : (
                 <WatchListPlaceholderContainer />

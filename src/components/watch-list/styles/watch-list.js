@@ -82,6 +82,7 @@ export const IconsWrapper = styled.div`
   display: flex;
   align-items: center;
   width: 60px;
+  position: relative;
   justify-content: space-around;
 `;
 
@@ -92,10 +93,6 @@ export const Add = styled(MdAddBox)`
   width: 50%;
   border-right: 1px solid ${({ theme }) => theme.colors.secondary};
   border-left: 1px solid ${({ theme }) => theme.colors.secondary};
-`;
-
-export const IconInner = styled.div`
-  position: relative;
 `;
 
 export const CreateListIconsWrapper = styled.div`

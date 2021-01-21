@@ -5,6 +5,14 @@ export const Container = styled.div`
   font-size: ${({ theme }) => theme.fontSize.small};
   font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
   background-color: white;
+  z-index: 500;
+  color: black;
+  ${({ backgroundsecondary }) =>
+    backgroundsecondary &&
+    css`
+      background-color: ${({ theme }) => theme.colors.secondary};
+      color: white;
+    `}
 
   border-radius: 1rem;
   white-space: nowrap;
@@ -50,5 +58,4 @@ export const Container = styled.div`
 export const Message = styled.span`
   padding: 0.2rem 0.5rem;
   border-radius: 1rem;
-  color: black;
 `;

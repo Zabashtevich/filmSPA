@@ -5,6 +5,8 @@ import { WatchList } from "../../../../components";
 import ItemDescriptionPopupContainer from "./item-description-popup-container";
 
 export function WatchListItemContainer({ data, deleteListSubmit }) {
+  const [addDesc, setAddDesc] = useState(false);
+  const [removeDesc, setRemoveDesc] = useState(false);
   return (
     <TransitionGroup>
       {data.map((item, i) => {
@@ -20,8 +22,29 @@ export function WatchListItemContainer({ data, deleteListSubmit }) {
               <WatchList.Name>{item.name.toUpperCase()}</WatchList.Name>
               <WatchList.Date></WatchList.Date>
               <WatchList.IconsWrapper>
-                <WatchList.Add />
-                <WatchList.Remove onClick={() => deleteListSubmit(item.name)} />
+                <WatchList.Add
+                  onMouseEnter={() => setAddDesc(true)}
+                  onMouseLeave={() => setAddDesc(false)}
+                />
+                <WatchList.Remove
+                  onClick={() => deleteListSubmit(item.name)}
+                  onMouseEnter={() => setRemoveDesc(true)}
+                  onMouseLeave={() => setRemoveDesc(false)}
+                />
+                {i === data.length - 1 && (
+                  <>
+                    <ItemDescriptionPopupContainer
+                      backgroundsecondary={1}
+                      text={"Delete list"}
+                      visible={removeDesc}
+                    />
+                    <ItemDescriptionPopupContainer
+                      backgroundsecondary={1}
+                      text={"Add movie to list"}
+                      visible={addDesc}
+                    />
+                  </>
+                )}
               </WatchList.IconsWrapper>
             </WatchList.ItemContainer>
           </CSSTransition>

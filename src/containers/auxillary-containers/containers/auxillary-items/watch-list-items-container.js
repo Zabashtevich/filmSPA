@@ -33,21 +33,13 @@ export function WatchListItemContainer({ data, deleteListSubmit }) {
 export function WatchListCreateItemContainer({
   inputValue,
   setInputValue,
-  setInputVisible,
   inputVisible,
   createListSubmit,
+  creatListToogler,
 }) {
   const [createAnimating, setCreateAnimating] = useState(false);
   const [confirmAnimating, setConfirmAnimating] = useState(false);
 
-  const creatListToogler = (e) => {
-    if (
-      e.target.classList.value.includes("Abort") ||
-      e.target.classList.value.includes("CreateIcon")
-    ) {
-      setInputVisible((prev) => !prev);
-    }
-  };
   return (
     <WatchList.ItemContainer createitem={1}>
       <CSSTransition

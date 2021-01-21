@@ -27,14 +27,11 @@ export default function WatchListContainer({ user, watchListPopupVisible }) {
 
   useEffect(() => {
     if (!deletingList.delete) return;
-    deleteItemFromList(
-      firebase,
-      deletingList.name,
-      data,
-      user.displayName,
-    ).then(() => {
-      setDeletingList({ name: "", delete: false });
-    });
+    deleteItemFromList(firebase, deletingList.name, data, user.displayName)
+      .then(() => {
+        setDeletingList({ name: "", delete: false });
+      })
+      .catch(() => showErrorModal("Something gone wrong"));
   }, [deletingList]);
 
   const { firebase } = useContext(AuthContext);
@@ -51,8 +48,26 @@ export default function WatchListContainer({ user, watchListPopupVisible }) {
     setErrorModalVisible(false);
   };
 
+  const creatListToogler = (e) => {
+    if (dataSubmiting) {
+      return;
+    } else {
+      if (data.length === 5) {
+        showErrorModal("Sorry but now you can create ony 5 lists");
+        return;
+      }
+      if (
+        e.target.classList.value.includes("Abort") ||
+        e.target.classList.value.includes("CreateIcon")
+      ) {
+        setInputVisible((prev) => !prev);
+      }
+    }
+  };
+
   const createListSubmit = (e) => {
     if (!e.target.classList.value.includes("Confirm")) return;
+    setInputVisible(false);
     setDataSubmiting(true);
     if (inputValue.length > 20) {
       showErrorModal("Name can be max 20 characters long");
@@ -63,7 +78,6 @@ export default function WatchListContainer({ user, watchListPopupVisible }) {
     } else {
       createListLogic(firebase, inputValue, data, user.displayName).then(() => {
         setInputValue("");
-        setInputVisible(false);
         setDataSubmiting(false);
       });
     }
@@ -125,6 +139,7 @@ export default function WatchListContainer({ user, watchListPopupVisible }) {
                 setInputVisible={setInputVisible}
                 inputVisible={inputVisible}
                 createListSubmit={createListSubmit}
+                creatListToogler={creatListToogler}
               />
             </>
           )}

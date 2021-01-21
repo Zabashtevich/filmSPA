@@ -31,33 +31,3 @@ export const Favorite = styled(MdFavorite)`
   font-size: ${({ theme }) => theme.fontSize.normal};
   padding: 1rem;
 `;
-
-export const Description = styled.span`
-  position: absolute;
-  background-color: gray;
-  padding: 0.3rem 0.6rem;
-  top: 120%;
-  border-radius: 1rem;
-  white-space: nowrap;
-  font-size: ${({ theme }) => theme.fontSize.small};
-  left: 50%;
-  transform: translateX(-50%);
-  &.fade-enter {
-    opacity: 0;
-    transform: translateX(-200px);
-  }
-  &.fade-enter-active {
-    opacity: 1;
-    transform: translateX(-50%);
-    transition: 200ms;
-  }
-  &.fade-exit {
-    opacity: 1;
-    transform: translateX(-50%);
-  }
-  &.fade-exit-active {
-    opacity: 0;
-    transition: 300ms;
-    transform: translateX(200px);
-  }
-`;

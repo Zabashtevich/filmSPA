@@ -1,12 +1,6 @@
 import React from "react";
 
-import {
-  Container,
-  ItemWrapper,
-  Watchlist,
-  Favorite,
-  Description,
-} from "./styles/tooltips";
+import { Container, ItemWrapper, Watchlist, Favorite } from "./styles/tooltips";
 
 export default function Tooltips({ children, ...rest }) {
   return <Container {...rest}>{children}</Container>;
@@ -22,8 +16,4 @@ Tooltips.Watchlist = function TooltipsWatchlist({ ...rest }) {
 
 Tooltips.Favorite = function TooltipsFavorite({ ...rest }) {
   return <Favorite {...rest} />;
-};
-
-Tooltips.Description = function TooltipsDescription({ children, ...rest }) {
-  return <Description {...rest}>{children}</Description>;
 };

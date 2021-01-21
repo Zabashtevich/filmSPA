@@ -27,11 +27,14 @@ export default function WatchListContainer({ user, watchListPopupVisible }) {
 
   useEffect(() => {
     if (!deletingList.delete) return;
-    deleteItemFromList(firebase, deletingList.name, data, user.displayName)
-      .then(() => {
-        setDeletingList({ name: "", delete: false });
-      })
-      .catch(() => showErrorModal("Something gone wrong"));
+    deleteItemFromList(
+      firebase,
+      deletingList.name,
+      data,
+      user.displayName,
+    ).then(() => {
+      setDeletingList({ name: "", delete: false });
+    });
   }, [deletingList]);
 
   const { firebase } = useContext(AuthContext);

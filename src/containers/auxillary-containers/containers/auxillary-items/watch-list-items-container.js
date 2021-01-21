@@ -12,7 +12,7 @@ export function WatchListItemContainer({ data, deleteListSubmit }) {
       {data.map((item, i) => {
         return (
           <CSSTransition
-            key={item.name + i}
+            key={item.name}
             classNames="fade"
             timeout={{ enter: 200, exit: 300, appear: 300 }}
             appear={true}

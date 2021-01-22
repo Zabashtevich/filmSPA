@@ -8,6 +8,7 @@ import { AuthContext } from "../../../context/auth-context";
 import {
   createListLogic,
   deleteItemFromList,
+  deleteMovieFormList,
   saveMovieInList,
 } from "../../../utils/firebase";
 import useFirestore from "./../../../hooks/useFirestore";
@@ -45,7 +46,7 @@ export default function WatchListContainer({
 
   useEffect(() => {
     if (data.length === 0) return;
-    if (data.map((item) => item.content.find((item) => item.slug === slug))) {
+    if (data.map((item) => item.content.includes(+slug))[0]) {
       setAddedToList(true);
     }
   }, [data, slug]);
@@ -117,7 +118,11 @@ export default function WatchListContainer({
     });
   };
 
-  const onRemoveFromList = () => {};
+  const onRemoveFromList = () => {
+    deleteMovieFormList(firebase, user.displayName, data, slug).then(() => {
+      setAddedToList(false);
+    });
+  };
 
   return (
     <>

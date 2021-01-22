@@ -32,12 +32,19 @@ export function WatchListItemContainer({
                   <WatchList.Add
                     onMouseEnter={() => setAddDesc(true)}
                     onMouseLeave={() => setAddDesc(false)}
-                    onClick={() => onAddToList(item.id)}
+                    onClick={() => {
+                      setAddDesc(false);
+                      onAddToList(item.id);
+                    }}
                   />
                 )}
                 {addedToList && (
                   <WatchList.Delete
-                    onClick={() => onRemoveFromList(item.id)}
+                    onClick={() => {
+                      onRemoveFromList();
+                      setAddDesc(false);
+                      setDeleteDesc(false);
+                    }}
                     onMouseEnter={() => setDeleteDesc(true)}
                     onMouseLeave={() => setDeleteDesc(false)}
                   />

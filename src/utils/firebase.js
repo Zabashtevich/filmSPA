@@ -1,3 +1,4 @@
+import { ImReddit } from "react-icons/im";
 import {
   getErrorsList,
   createNewReviewInfo,
@@ -336,6 +337,19 @@ export const saveMovieInList = (firebase, nickname, id, data, slug) => {
         id: item.id,
       },
   );
+  return firebase
+    .firestore()
+    .collection(`${nickname}`)
+    .doc(`collection`)
+    .update({ list: [...newArray] });
+};
+
+export const deleteMovieFormList = (firebase, nickname, data, slug) => {
+  const newArray = data.map((item) => ({
+    ...item,
+    content: item.content.filter((item) => item !== +slug),
+  }));
+  console.log(newArray);
   return firebase
     .firestore()
     .collection(`${nickname}`)

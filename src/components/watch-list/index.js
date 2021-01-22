@@ -1,4 +1,5 @@
 import React from "react";
+import { CSSTransition } from "react-transition-group";
 
 import {
   Container,
@@ -41,8 +42,23 @@ WatchList.Name = function WatchListName({ children, ...rest }) {
   return <Name {...rest}>{children}</Name>;
 };
 
-WatchList.CreateTitle = function WatchListCreateTitle({ children, ...rest }) {
-  return <CreateTitle {...rest}>{children}</CreateTitle>;
+WatchList.CreateTitle = function WatchListCreateTitle({
+  children,
+  inputVisible,
+  confirmAnimating,
+  ...rest
+}) {
+  return (
+    <CSSTransition
+      in={!inputVisible && !confirmAnimating}
+      appear={true}
+      timeout={{ enter: 300, exit: 300 }}
+      unmountOnExit
+      classNames="fade"
+    >
+      <CreateTitle {...rest}>{children}</CreateTitle>
+    </CSSTransition>
+  );
 };
 
 WatchList.Placeholder = function WatchListPlaceholder({ children, ...rest }) {
@@ -55,9 +71,26 @@ WatchList.IconsWrapper = function WatchListIconsWrapper({ children, ...rest }) {
 
 WatchList.CreateListIconsWrapper = function WatchListCreateListIconsWrapper({
   children,
+  visibleFirst,
+  visibleSecond,
+  setConfirmAnimating,
+  onenter,
+  onexited,
   ...rest
 }) {
-  return <CreateListIconsWrapper {...rest}>{children}</CreateListIconsWrapper>;
+  return (
+    <CSSTransition
+      in={visibleFirst && visibleSecond}
+      appear={true}
+      timeout={{ enter: 300, exit: 300 }}
+      unmountOnExit
+      classNames="fade"
+      onEnter={onenter}
+      onExited={onexited}
+    >
+      <CreateListIconsWrapper {...rest}>{children}</CreateListIconsWrapper>
+    </CSSTransition>
+  );
 };
 
 WatchList.Add = function WatchListAdd({ children, ...rest }) {
@@ -72,8 +105,23 @@ WatchList.Remove = function WatchListRemove({ children, ...rest }) {
   return <Remove {...rest} />;
 };
 
-WatchList.Input = function WatchListInput({ children, ...rest }) {
-  return <Input {...rest} />;
+WatchList.Input = function WatchListInput({
+  children,
+  inputVisible,
+  createAnimating,
+  ...rest
+}) {
+  return (
+    <CSSTransition
+      in={inputVisible && !createAnimating}
+      appear={true}
+      timeout={{ enter: 300, exit: 300 }}
+      unmountOnExit
+      classNames="fade"
+    >
+      <Input {...rest} />
+    </CSSTransition>
+  );
 };
 
 WatchList.Confirm = function WatchListConfirm({ children, ...rest }) {

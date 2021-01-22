@@ -96,68 +96,50 @@ export function WatchListCreateItemContainer({
 
   return (
     <WatchList.ItemContainer createitem={1}>
-      <CSSTransition
-        in={!inputVisible && !confirmAnimating}
-        appear={true}
-        timeout={{ enter: 300, exit: 300 }}
-        unmountOnExit
-        classNames="fade"
+      <WatchList.CreateTitle
+        inputVisible={inputVisible}
+        confirmAnimating={confirmAnimating}
       >
-        <WatchList.CreateTitle>CREATE LIST</WatchList.CreateTitle>
-      </CSSTransition>
-      <CSSTransition
-        in={inputVisible && !createAnimating}
-        appear={true}
-        timeout={{ enter: 300, exit: 300 }}
-        unmountOnExit
-        classNames="fade"
+        CREATE LIST
+      </WatchList.CreateTitle>
+      <WatchList.Input
+        placeholder={"Enter a name"}
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+        inputVisible={inputVisible}
+        createAnimating={createAnimating}
+      />
+      <WatchList.CreateListIconsWrapper
+        visibleFirst={inputVisible}
+        visibleSecond={!createAnimating}
+        setConfirmAnimating={setConfirmAnimating}
+        onenter={() => setConfirmAnimating(true)}
+        onexited={() => setConfirmAnimating(false)}
       >
-        <WatchList.Input
-          placeholder={"Enter a name"}
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
+        <WatchList.Confirm
+          onClick={(e) => createListSubmit(e)}
+          onMouseEnter={() => setFinishDesc(true)}
+          onMouseLeave={() => setFinishDesc(false)}
         />
-      </CSSTransition>
-      <CSSTransition
-        in={inputVisible && !createAnimating}
-        appear={true}
-        timeout={{ enter: 300, exit: 300 }}
-        unmountOnExit
-        classNames="fade"
-        onEnter={() => setConfirmAnimating(true)}
-        onExited={() => setConfirmAnimating(false)}
+        <ItemDescriptionPopupContainer
+          text={"Finish creating"}
+          visible={finishDesc}
+        />
+        <WatchList.Abort
+          onClick={creatListToogler}
+          onMouseEnter={() => setCancelDesc(true)}
+          onMouseLeave={() => setCancelDesc(false)}
+        />
+        <ItemDescriptionPopupContainer text={"Cancel"} visible={cancelDesc} />
+      </WatchList.CreateListIconsWrapper>
+      <WatchList.CreateListIconsWrapper
+        visibleFirst={!inputVisible}
+        visibleSecond={!confirmAnimating}
+        onenter={() => setCreateAnimating(true)}
+        onexited={() => setCreateAnimating(false)}
       >
-        <WatchList.CreateListIconsWrapper>
-          <WatchList.Confirm
-            onClick={(e) => createListSubmit(e)}
-            onMouseEnter={() => setFinishDesc(true)}
-            onMouseLeave={() => setFinishDesc(false)}
-          />
-          <ItemDescriptionPopupContainer
-            text={"Finish creating"}
-            visible={finishDesc}
-          />
-          <WatchList.Abort
-            onClick={creatListToogler}
-            onMouseEnter={() => setCancelDesc(true)}
-            onMouseLeave={() => setCancelDesc(false)}
-          />
-          <ItemDescriptionPopupContainer text={"Cancel"} visible={cancelDesc} />
-        </WatchList.CreateListIconsWrapper>
-      </CSSTransition>
-      <CSSTransition
-        in={!inputVisible && !confirmAnimating}
-        appear={true}
-        timeout={{ enter: 300, exit: 300 }}
-        unmountOnExit
-        classNames="fade"
-        onEnter={() => setCreateAnimating(true)}
-        onExited={() => setCreateAnimating(false)}
-      >
-        <WatchList.CreateListIconsWrapper>
-          <WatchList.CreateIcon onClick={creatListToogler} />
-        </WatchList.CreateListIconsWrapper>
-      </CSSTransition>
+        <WatchList.CreateIcon onClick={creatListToogler} />
+      </WatchList.CreateListIconsWrapper>
     </WatchList.ItemContainer>
   );
 }

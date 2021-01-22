@@ -215,7 +215,7 @@ export const createUserWithAvatar = async (
               .firestore()
               .collection(`${nickname}`)
               .doc(`collection`)
-              .set({ list: [] })
+              .set({ list: [], favorite: [] })
               .catch(() => {
                 setUserLoading(false);
                 setErrorsList([`something gone wrong`]);
@@ -283,7 +283,7 @@ export const createUserWithoutAvatar = (
             .firestore()
             .collection(`${nickname}`)
             .doc(`reviews`)
-            .set({ list: [] })
+            .set({ list: [], favorite: [] })
             .catch(() => {
               setUserLoading(false);
               setErrorsList([`something gone wrong`]);
@@ -349,10 +349,25 @@ export const deleteMovieFormList = (firebase, nickname, data, slug) => {
     ...item,
     content: item.content.filter((item) => item !== +slug),
   }));
-  console.log(newArray);
   return firebase
     .firestore()
     .collection(`${nickname}`)
     .doc(`collection`)
     .update({ list: [...newArray] });
+};
+
+export const favoriteLogic = (firebase, slug, nickname, isFavorite, array) => {
+  if (isFavorite) {
+    return firebase
+      .firestore()
+      .collection(`${nickname}`)
+      .doc(`collection`)
+      .update({ favorite: [...array.filter((item) => item !== slug)] });
+  } else {
+    return firebase
+      .firestore()
+      .collection(`${nickname}`)
+      .doc(`collection`)
+      .update({ favorite: [...array, slug] });
+  }
 };

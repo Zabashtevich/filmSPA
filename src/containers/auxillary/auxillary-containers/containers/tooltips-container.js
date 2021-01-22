@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
+import { AuthContext } from "../../../../context/auth-context";
+import useFirestore from "../../../../hooks/useFirestore";
 import { Tooltips } from "../../../../components";
 import useAuthListener from "../../../../hooks/useAuthListener";
 import { ItemDescriptionPopupContainer } from "../../auxillary-items";
 import WatchListContainer from "./watch-list-container";
+import { favoriteLogic } from "../../../../utils/firebase";
 
 export default function TooltipsContainer({ slug }) {
   const { user } = useAuthListener();
@@ -12,6 +15,21 @@ export default function TooltipsContainer({ slug }) {
   const [favoriteDesc, setFavoriteDesc] = useState(false);
   const [watchListPopupVisible, setWatchListPopupVisible] = useState(false);
   const [descriptionBlocker, setDescriptionBlocker] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [dataLoading, data] = useFirestore(
+    user.displayName,
+    "collection",
+    "favorite",
+  );
+
+  const { firebase } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (data.length === 0) return;
+    if (data.filter((item) => item === slug)) {
+      setIsFavorite(true);
+    }
+  }, [data, slug]);
 
   const onWatchlistClick = () => {
     if (!user) return;
@@ -19,9 +37,19 @@ export default function TooltipsContainer({ slug }) {
     setWatchListPopupVisible((prev) => !prev);
   };
 
-  const onFavoriteClock = () => {
+  const onFavoriteClick = () => {
     if (!user) return;
     setFavoriteDesc(false);
+    favoriteLogic(firebase, slug, user.displayName, isFavorite, data).then(
+      () => {
+        if (isFavorite) {
+          setIsFavorite(false);
+        } else {
+          setIsFavorite(true);
+        }
+        setFavoriteDesc(true);
+      },
+    );
   };
 
   return (
@@ -56,7 +84,8 @@ export default function TooltipsContainer({ slug }) {
         <Tooltips.Favorite
           onMouseEnter={() => setFavoriteDesc(true)}
           onMouseLeave={() => setFavoriteDesc(false)}
-          onClick={onFavoriteClock}
+          onClick={onFavoriteClick}
+          isfavorite={isFavorite ? 1 : 0}
         />
         {user && !descriptionBlocker && (
           <ItemDescriptionPopupContainer
@@ -69,6 +98,13 @@ export default function TooltipsContainer({ slug }) {
           <ItemDescriptionPopupContainer
             right={1}
             text={"Please, sign in to add movie to favorite"}
+            visible={favoriteDesc}
+          />
+        )}
+        {user && !descriptionBlocker && isFavorite && (
+          <ItemDescriptionPopupContainer
+            right={1}
+            text={"Delete film from favorite"}
             visible={favoriteDesc}
           />
         )}

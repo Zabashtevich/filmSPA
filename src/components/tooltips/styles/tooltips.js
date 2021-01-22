@@ -15,6 +15,7 @@ export const ItemWrapper = styled.div`
   position: relative;
   display: flex;
   cursor: pointer;
+
   ${({ rightposition }) =>
     rightposition &&
     css`
@@ -30,4 +31,9 @@ export const Watchlist = styled(FaRegListAlt)`
 export const Favorite = styled(MdFavorite)`
   font-size: ${({ theme }) => theme.fontSize.normal};
   padding: 1rem;
+  ${({ isfavorite }) =>
+    isfavorite &&
+    css`
+      fill: pink;
+    `};
 `;

@@ -1,7 +1,7 @@
 import React from "react";
 import { CSSTransition } from "react-transition-group";
 
-import { ItemDescriptionPopup } from "../../../components";
+import { ItemDescriptionPopup } from "../../../../components";
 
 export default function ItemDescriptionPopupContainer({
   text,

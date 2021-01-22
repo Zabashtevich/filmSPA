@@ -9,8 +9,8 @@ import { getCorrectReviewsArray, offsetListener } from "../utils/utils";
 import {
   ErrorModalContainer,
   RelevantListContainer,
-} from "./auxillary-containers";
-import { ReviewsContainer } from "./auxillary-containers";
+  ReviewsContainer,
+} from "./auxillary/auxillary-containers";
 
 export default function CardDetailsPanelContainer() {
   const [starValue, setStarValue] = useState(0);

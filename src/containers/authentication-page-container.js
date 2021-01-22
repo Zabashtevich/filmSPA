@@ -7,8 +7,7 @@ import AuthenticationForm from "../components/authentication-form";
 import { getErrorsList, getPreviewSrc, validateImg } from "../utils/utils";
 import { authLogic } from "../utils/firebase";
 import { AuthContext } from "../context/auth-context";
-import LoginForm from "./auxillary-containers/containers/auxillary-items/login-form";
-import RegistrationForm from "./auxillary-containers/containers/auxillary-items/registration-form";
+import { RegistrationForm, LoginForm } from "./auxillary/auxillary-items";
 import LoadingSpinner from "../components/loading-spinner";
 
 export default function AuthenticationPageContainer() {

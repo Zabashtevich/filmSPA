@@ -16,7 +16,7 @@ import {
   WatchListCreateItemContainer,
   WatchListItemContainer,
   WatchListPlaceholderContainer,
-} from "../../auxillary-items/watch-list-items-container";
+} from "../../auxillary-items";
 import ConfirmPopupContainer from "./confirm-popup-container";
 
 export default function WatchListContainer({

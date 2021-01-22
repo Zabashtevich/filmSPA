@@ -14,8 +14,8 @@ import {
   ErrorModalContainer,
   ModalGalleryContainer,
   TooltipsContainer,
-} from "./auxillary-containers";
-import CardRows from "./auxillary-containers/containers/auxillary-items/card-rows";
+} from "./auxillary/auxillary-containers";
+import { CardRows } from "./auxillary/auxillary-items";
 
 export default function CardDetailsRootContainer() {
   const [visibleGallery, setVisibleGallery] = useState(false);

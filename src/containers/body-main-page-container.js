@@ -9,7 +9,7 @@ import TabsMainPageCotainer from "./tabs-main-page-container";
 import {
   SliderContainer,
   PaginationMainPageContainer,
-} from "./auxillary-containers";
+} from "./auxillary/auxillary-containers";
 
 export default function BodyMainContainer() {
   const [sliderIndex, setSliderIndex] = useState(1);

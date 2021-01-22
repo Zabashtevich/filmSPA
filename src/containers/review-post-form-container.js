@@ -7,7 +7,7 @@ import useFirestore from "../hooks/useFirestore";
 import useAuthListener from "../hooks/useAuthListener";
 
 import { ReviewPostForm } from "../components";
-import { ErrorModalContainer } from "./auxillary-containers";
+import { ErrorModalContainer } from "./auxillary/auxillary-containers";
 import { postReviewLogic } from "../utils/firebase";
 import { AuthContext } from "../context/auth-context";
 

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { Tooltips } from "../../../../components";
 import useAuthListener from "../../../../hooks/useAuthListener";
-import ItemDescriptionPopupContainer from "../../auxillary-items/item-description-popup-container";
+import { ItemDescriptionPopupContainer } from "../../auxillary-items";
 import WatchListContainer from "./watch-list-container";
 
 export default function TooltipsContainer({ slug }) {

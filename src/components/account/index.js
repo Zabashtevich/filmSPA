@@ -3,11 +3,12 @@ import React from "react";
 import {
   Container,
   Nickname,
-  Wrapper,
-  RatedContainer,
-  RatedItemWrapper,
   ColumnContainer,
   Avatar,
+  Link,
+  Title,
+  Wrapper,
+  Subtitle,
 } from "./styles/account";
 
 export default function Account({ children, ...rest }) {
@@ -16,21 +17,6 @@ export default function Account({ children, ...rest }) {
 
 Account.Nickname = function AccountNickname({ children, ...rest }) {
   return <Nickname {...rest}>{children}</Nickname>;
-};
-
-Account.Wrapper = function AccountWrapper({ children, ...rest }) {
-  return <Wrapper {...rest}>{children}</Wrapper>;
-};
-
-Account.RatedContainer = function AccountRatedContainer({ children, ...rest }) {
-  return <RatedContainer {...rest}>{children}</RatedContainer>;
-};
-
-Account.RatedItemWrapper = function AccountRatedItemWrapper({
-  children,
-  ...rest
-}) {
-  return <RatedItemWrapper {...rest}>{children}</RatedItemWrapper>;
 };
 
 Account.ColumnContainer = function AccountColumnContainer({
@@ -42,4 +28,20 @@ Account.ColumnContainer = function AccountColumnContainer({
 
 Account.Avatar = function AccountAvatar({ children, ...rest }) {
   return <Avatar {...rest} />;
+};
+
+Account.Link = function AccountLink({ children, ...rest }) {
+  return <Link {...rest}>{children}</Link>;
+};
+
+Account.Title = function AccountTitle({ children, ...rest }) {
+  return <Title {...rest}>{children}</Title>;
+};
+
+Account.Wrapper = function AccountWrapper({ children, ...rest }) {
+  return <Wrapper {...rest}>{children}</Wrapper>;
+};
+
+Account.Subtitle = function AccountSubtitle({ children, ...rest }) {
+  return <Subtitle {...rest}>{children}</Subtitle>;
 };

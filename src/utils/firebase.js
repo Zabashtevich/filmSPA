@@ -318,7 +318,7 @@ export const createListLogic = (firebase, inputValue, data, name) => {
     });
 };
 
-export const deleteItemFromList = (firebase, id, array, nickname) => {
+export const deleteList = (firebase, id, array, nickname) => {
   const newArray =
     array.length === 1 ? [] : [...array.filter((item) => item.id !== id)];
   return firebase

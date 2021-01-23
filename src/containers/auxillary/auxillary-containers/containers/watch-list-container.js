@@ -7,7 +7,7 @@ import ErrorModalContainer from "./error-modal-container";
 import { AuthContext } from "../../../../context/auth-context";
 import {
   createListLogic,
-  deleteItemFromList,
+  deleteList,
   deleteMovieFormList,
   saveMovieInList,
 } from "../../../../utils/firebase";
@@ -35,13 +35,13 @@ export default function WatchListContainer({
   const [deletingList, setDeletingList] = useState({ id: "", delete: false });
   const [addedToList, setAddedToList] = useState(false);
 
+  const { firebase } = useContext(AuthContext);
+
   useEffect(() => {
     if (!deletingList.delete) return;
-    deleteItemFromList(firebase, deletingList.id, data, user.displayName).then(
-      () => {
-        setDeletingList({ id: "", delete: false });
-      },
-    );
+    deleteList(firebase, deletingList.id, data, user.displayName).then(() => {
+      setDeletingList({ id: "", delete: false });
+    });
   }, [deletingList]);
 
   useEffect(() => {
@@ -50,8 +50,6 @@ export default function WatchListContainer({
       setAddedToList(true);
     }
   }, [data, slug]);
-
-  const { firebase } = useContext(AuthContext);
 
   const showErrorModal = (errorText) => {
     document.body.style.overflow = "hidden";

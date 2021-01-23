@@ -8,7 +8,6 @@ export default function ItemDescriptionPopupContainer({
   visible,
   ...rest
 }) {
-  console.log(text);
   return (
     <CSSTransition
       in={visible}

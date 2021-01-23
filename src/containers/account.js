@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { createPortal } from "react-dom";
+import { AuthContext } from "../context/auth-context";
+import { deleteList } from "../utils/firebase";
 
 import { Account, AccountList } from "./../components";
 import useAuthLisner from "./../hooks/useAuthListener";
@@ -10,13 +12,31 @@ import { AccountListItem } from "./auxillary/auxillary-items";
 export default function AccountContainer() {
   const { user } = useAuthLisner();
   const [loadingData, data] = useFirestore(user.displayName, "collection");
+  const { firebase } = useContext(AuthContext);
 
   const [popupConfirmVisible, setPopupConfirmVisible] = useState(false);
   const [confirmMessage, setConfirmMessage] = useState("");
+  const [deletingList, setDeletingList] = useState({ id: "", delete: false });
 
-  const onListDelete = (id) => {};
+  useEffect(() => {
+    if (!deletingList.delete) return;
+    deleteList(firebase, deletingList.id, data, user.displayName).then(() => {
+      setDeletingList({ id: "", delete: false });
+    });
+  }, [deletingList.delete]);
 
-  const closeConfirmWindow = () => {};
+  const onListDelete = (id, name) => {
+    setDeletingList((prev) => ({ ...prev, id }));
+    setConfirmMessage(`Are you sure you want to delete list ${name}?`);
+    setPopupConfirmVisible(true);
+  };
+
+  const closeConfirmWindow = (value) => {
+    console.log(value);
+    setDeletingList((prev) => ({ ...prev, delete: value }));
+    setConfirmMessage("");
+    setPopupConfirmVisible(false);
+  };
 
   return (
     <Account>

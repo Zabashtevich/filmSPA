@@ -32,7 +32,7 @@ export default function AccountListItem({ item, i, onListDelete }) {
           <AccountList.Delete
             onMouseEnter={() => setDeleteDesc(true)}
             onMouseLeave={() => setDeleteDesc(false)}
-            onClick={() => onListDelete(item.id)}
+            onClick={() => onListDelete(item.id, item.name)}
           />
           <ItemDescriptionPopupContainer
             text={"Rename list"}

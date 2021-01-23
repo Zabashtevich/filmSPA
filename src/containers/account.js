@@ -1,14 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
+import { createPortal } from "react-dom";
 
 import { Account, AccountList } from "./../components";
 import useAuthLisner from "./../hooks/useAuthListener";
 import useFirestore from "./../hooks/useFirestore";
+import { ConfirmPopupContainer } from "./auxillary/auxillary-containers";
+import { AccountListItem } from "./auxillary/auxillary-items";
 
 export default function AccountContainer() {
   const { user } = useAuthLisner();
   const [loadingData, data] = useFirestore(user.displayName, "collection");
+
+  const [popupConfirmVisible, setPopupConfirmVisible] = useState(false);
+  const [confirmMessage, setConfirmMessage] = useState("");
+
+  const onListDelete = (id) => {};
+
+  const closeConfirmWindow = () => {};
+
   return (
     <Account>
+      {popupConfirmVisible &&
+        createPortal(
+          <ConfirmPopupContainer
+            message={confirmMessage}
+            closeConfirmWindow={closeConfirmWindow}
+            popupConfirmVisible={popupConfirmVisible}
+          />,
+          document.querySelector("#root"),
+        )}
       <Account.ColumnContainer leftcolumn={1}>
         <Account.Avatar src={user.photoURL} />
         <Account.Nickname>{user.displayName}</Account.Nickname>
@@ -26,27 +46,12 @@ export default function AccountContainer() {
             data &&
             data.map((item, i) => {
               return (
-                <AccountList.ItemContainer key={item.id}>
-                  <AccountList.ImgWrapper>
-                    <AccountList.ImgIcon i={i + 1} />
-                  </AccountList.ImgWrapper>
-                  <AccountList.InfoWrapper>
-                    <AccountList.InfoRow row={1}>
-                      <AccountList.InfoTitle>Name:</AccountList.InfoTitle>
-                      <AccountList.InfoItem>{item.name}</AccountList.InfoItem>
-                    </AccountList.InfoRow>
-                    <AccountList.InfoRow>
-                      <AccountList.InfoTitle>Date:</AccountList.InfoTitle>
-                      <AccountList.InfoItem>123</AccountList.InfoItem>
-                    </AccountList.InfoRow>
-                    <AccountList.InfoRow>
-                      <AccountList.InfoTitle>Amount:</AccountList.InfoTitle>
-                      <AccountList.InfoItem>
-                        {item.content.length}
-                      </AccountList.InfoItem>
-                    </AccountList.InfoRow>
-                  </AccountList.InfoWrapper>
-                </AccountList.ItemContainer>
+                <AccountListItem
+                  key={item.id}
+                  item={item}
+                  i={i}
+                  onListDelete={onListDelete}
+                />
               );
             })}
         </AccountList>

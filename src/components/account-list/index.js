@@ -13,6 +13,9 @@ import {
   ImgIcon3,
   ImgIcon4,
   ImgIcon5,
+  ButtonsWrapper,
+  Delete,
+  Rename,
 } from "./styles/account-list";
 
 export default function AccountList({ children, ...rest }) {
@@ -59,4 +62,19 @@ AccountList.InfoTitle = function AccountListInfoTitle({ children, ...rest }) {
 
 AccountList.InfoItem = function AccountListInfoItem({ children, ...rest }) {
   return <InfoItem {...rest}>{children}</InfoItem>;
+};
+
+AccountList.ButtonsWrapper = function AccountListButtonsWrapper({
+  children,
+  ...rest
+}) {
+  return <ButtonsWrapper {...rest}>{children}</ButtonsWrapper>;
+};
+
+AccountList.Delete = function AccountListDelete({ children, ...rest }) {
+  return <Delete {...rest}>{children}</Delete>;
+};
+
+AccountList.Rename = function AccountListRename({ children, ...rest }) {
+  return <Rename {...rest}>{children}</Rename>;
 };

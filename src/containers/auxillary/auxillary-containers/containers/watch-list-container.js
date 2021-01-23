@@ -106,7 +106,7 @@ export default function WatchListContainer({
     setConfirmMessage(`Are you sure you want to delete list ${name}?`);
   };
 
-  const closeConfirmWindown = (value) => {
+  const closeConfirmWindow = (value) => {
     setDeletingList((prev) => ({ ...prev, delete: value }));
     setConfirmMessage("");
     setPopupConfirmVisible(false);
@@ -130,7 +130,7 @@ export default function WatchListContainer({
         createPortal(
           <ConfirmPopupContainer
             message={confirmMessage}
-            closeConfirmWindow={closeConfirmWindown}
+            closeConfirmWindow={closeConfirmWindow}
             popupConfirmVisible={popupConfirmVisible}
           />,
           document.querySelector("#root"),

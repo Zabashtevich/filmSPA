@@ -7,6 +7,8 @@ import {
   MdLooks4,
   MdLooks5,
 } from "react-icons/md";
+import { FiEdit3 } from "react-icons/fi";
+import { CgTrash } from "react-icons/cg";
 
 export const Container = styled.div`
   min-width: 100%;
@@ -15,15 +17,6 @@ export const Container = styled.div`
   background-color: rgb(242, 242, 242);
   display: flex;
   align-items: center;
-`;
-
-export const ItemContainer = styled.div`
-  margin-left: 1rem;
-  background-color: white;
-  display: flex;
-  height: 150px;
-  border-radius: 1rem;
-  border: 1px solid rgba(31, 31, 31, 0.3);
 `;
 
 export const ImgWrapper = styled.div`
@@ -108,3 +101,57 @@ export const InfoRow = styled.div`
 export const InfoTitle = styled.span``;
 
 export const InfoItem = styled.span``;
+
+export const ButtonsWrapper = styled.div`
+  margin-top: 1.5rem;
+  position: relative;
+`;
+
+export const Delete = styled(CgTrash)`
+  font-size: ${({ theme }) => theme.fontSize.large};
+  color: gray;
+  opacity: 0.7;
+  padding: 0.1rem 0.4rem;
+  cursor: pointer;
+`;
+
+export const Rename = styled(FiEdit3)`
+  font-size: ${({ theme }) => theme.fontSize.large};
+  color: gray;
+  opacity: 0.7;
+  padding: 0.1rem 0.4rem;
+  cursor: pointer;
+`;
+
+export const ItemContainer = styled.div`
+  margin-left: 1rem;
+  background-color: white;
+  display: flex;
+  height: 150px;
+  border-radius: 1rem;
+  border: 1px solid rgba(31, 31, 31, 0.3);
+  &:hover {
+    ${Rename} {
+      color: black;
+      opacity: 1;
+      transition: 500ms;
+    }
+    ${Delete} {
+      color: black;
+      opacity: 1;
+      transition: 500ms;
+    }
+    ${InfoRow} {
+      color: black;
+      opacity: 1;
+      transition: 500ms;
+    }
+    ${ImgIcon1} {
+      fill: black;
+      opacity: 1;
+      transition: 500ms;
+    }
+    border: 1px solid rgba(31, 31, 31, 0.5);
+    transition: 500ms;
+  }
+`;

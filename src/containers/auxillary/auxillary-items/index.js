@@ -6,3 +6,4 @@ export { default as RegistrationForm } from "./items/registration-form";
 export { default as WatchListCreateItemContainer } from "./items/watch-list-create-item";
 export { default as WatchListItemContainer } from "./items/watch-list-item";
 export { default as WatchListPlaceholderContainer } from "./items/watch-list-placeholder";
+export { default as AccountListItem } from "./items/account-list-item";

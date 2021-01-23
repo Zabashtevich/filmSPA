@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { createPortal } from "react-dom";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
+
 import { AuthContext } from "../context/auth-context";
 import { deleteList } from "../utils/firebase";
 
@@ -66,12 +68,18 @@ export default function AccountContainer() {
             data &&
             data.map((item, i) => {
               return (
-                <AccountListItem
+                <CSSTransition
+                  classNames="fade"
+                  timeout={{ enter: 200, exit: 300, appear: 300 }}
+                  appear={true}
                   key={item.id}
-                  item={item}
-                  i={i}
-                  onListDelete={onListDelete}
-                />
+                >
+                  <AccountListItem
+                    onListDelete={onListDelete}
+                    i={i}
+                    item={item}
+                  />
+                </CSSTransition>
               );
             })}
         </AccountList>

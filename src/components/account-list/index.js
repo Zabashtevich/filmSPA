@@ -1,4 +1,5 @@
 import React from "react";
+import { TransitionGroup } from "react-transition-group";
 
 import {
   Container,
@@ -19,11 +20,16 @@ import {
 } from "./styles/account-list";
 
 export default function AccountList({ children, ...rest }) {
-  return <Container {...rest}>{children}</Container>;
+  return (
+    <TransitionGroup component={Container} {...rest}>
+      {children}
+    </TransitionGroup>
+  );
 }
 
 AccountList.ItemContainer = function AccountListItemContainer({
   children,
+  key,
   ...rest
 }) {
   return <ItemContainer {...rest}>{children}</ItemContainer>;

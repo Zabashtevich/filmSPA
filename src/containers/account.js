@@ -9,7 +9,10 @@ import { Account, AccountList } from "./../components";
 import useAuthLisner from "./../hooks/useAuthListener";
 import useFirestore from "./../hooks/useFirestore";
 import { ConfirmPopupContainer } from "./auxillary/auxillary-containers";
-import { AccountListItem } from "./auxillary/auxillary-items";
+import {
+  AccountCreateList,
+  AccountListItem,
+} from "./auxillary/auxillary-items";
 
 export default function AccountContainer() {
   const { user } = useAuthLisner();
@@ -65,7 +68,7 @@ export default function AccountContainer() {
         </Account.Wrapper>
         <AccountList>
           {!loadingData &&
-            data &&
+            data.length > 0 &&
             data.map((item, i) => {
               return (
                 <CSSTransition
@@ -82,6 +85,7 @@ export default function AccountContainer() {
                 </CSSTransition>
               );
             })}
+          {data.length <= 5 && <AccountCreateList />}
         </AccountList>
       </Account.ColumnContainer>
     </Account>

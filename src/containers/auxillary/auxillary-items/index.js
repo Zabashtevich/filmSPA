@@ -7,3 +7,4 @@ export { default as WatchListCreateItemContainer } from "./items/watch-list-crea
 export { default as WatchListItemContainer } from "./items/watch-list-item";
 export { default as WatchListPlaceholderContainer } from "./items/watch-list-placeholder";
 export { default as AccountListItem } from "./items/account-list-item";
+export { default as AccountCreateList } from "./items/account-create-list";

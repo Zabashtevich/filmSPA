@@ -13,13 +13,12 @@ export const Container = styled.div`
       background-color: ${({ theme }) => theme.colors.secondary};
       color: white;
     `}
-
   border-radius: 1rem;
   white-space: nowrap;
   padding: 0.6rem 0.6rem;
   position: absolute;
-  top: 140%;
-  left: -75%;
+  top: 110%;
+  left: -20%;
   &.fade-enter {
     opacity: 0;
     transform: translateX(-200px);

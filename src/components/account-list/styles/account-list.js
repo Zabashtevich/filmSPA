@@ -9,6 +9,7 @@ import {
 } from "react-icons/md";
 import { FiEdit3 } from "react-icons/fi";
 import { CgTrash } from "react-icons/cg";
+import { BsPlusCircleFill } from "react-icons/bs";
 
 export const Container = styled.div`
   min-width: 100%;
@@ -182,5 +183,42 @@ export const ItemContainer = styled.div`
     opacity: 1;
     transform: translateX(0);
     transition: 300ms;
+  }
+`;
+
+export const PlaceholderContainer = styled.div``;
+
+export const Placeholder = styled.div``;
+
+export const CreateIcon = styled(BsPlusCircleFill)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 5rem;
+  fill: gray;
+  opacity: 0.5;
+`;
+
+export const Input = styled.div``;
+
+export const Confirm = styled.div``;
+
+export const Abort = styled.div``;
+
+export const CreateItemContainer = styled.div`
+  width: 250px;
+  height: 150px;
+  background-color: white;
+  margin-left: 1rem;
+  border-radius: 1rem;
+  position: relative;
+  &:hover {
+    ${CreateIcon} {
+      fill: black;
+      opacity: 1;
+      transition: 500ms;
+      cursor: pointer;
+    }
   }
 `;

@@ -17,6 +17,13 @@ import {
   ButtonsWrapper,
   Delete,
   Rename,
+  PlaceholderContainer,
+  Placeholder,
+  CreateItemContainer,
+  CreateIcon,
+  Input,
+  Confirm,
+  Abort,
 } from "./styles/account-list";
 
 export default function AccountList({ children, ...rest }) {
@@ -83,4 +90,48 @@ AccountList.Delete = function AccountListDelete({ children, ...rest }) {
 
 AccountList.Rename = function AccountListRename({ children, ...rest }) {
   return <Rename {...rest}>{children}</Rename>;
+};
+
+AccountList.PlaceholderContainer = function AccountListPlaceholderContainer({
+  children,
+  ...rest
+}) {
+  return <PlaceholderContainer {...rest}>{children}</PlaceholderContainer>;
+};
+
+AccountList.Placeholder = function AccountListPlaceholder({
+  children,
+  ...rest
+}) {
+  return <Placeholder {...rest}>{children}</Placeholder>;
+};
+
+AccountList.CreateItemContainer = function AccountListCreateItemContainer({
+  children,
+  ...rest
+}) {
+  return <CreateItemContainer {...rest}>{children}</CreateItemContainer>;
+};
+
+AccountList.CreateIcon = function AccountListCreateIcon({ children, ...rest }) {
+  return <CreateIcon {...rest}>{children}</CreateIcon>;
+};
+
+AccountList.ButtonsWrapper = function AccountListButtonsWrapper({
+  children,
+  ...rest
+}) {
+  return <ButtonsWrapper {...rest}>{children}</ButtonsWrapper>;
+};
+
+AccountList.Input = function AccountListInput({ children, ...rest }) {
+  return <Input {...rest}>{children}</Input>;
+};
+
+AccountList.Confirm = function AccountListConfirm({ children, ...rest }) {
+  return <Confirm {...rest}>{children}</Confirm>;
+};
+
+AccountList.Abort = function AccountListAbort({ children, ...rest }) {
+  return <Abort {...rest}>{children}</Abort>;
 };

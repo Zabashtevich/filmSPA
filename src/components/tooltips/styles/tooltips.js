@@ -35,5 +35,6 @@ export const Favorite = styled(MdFavorite)`
     isfavorite &&
     css`
       fill: pink;
+      transition: 500ms;
     `};
 `;

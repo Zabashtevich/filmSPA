@@ -1,0 +1,62 @@
+import React from "react";
+
+import {
+  Container,
+  ItemContainer,
+  ImgWrapper,
+  InfoWrapper,
+  InfoRow,
+  InfoTitle,
+  InfoItem,
+  ImgIcon1,
+  ImgIcon2,
+  ImgIcon3,
+  ImgIcon4,
+  ImgIcon5,
+} from "./styles/account-list";
+
+export default function AccountList({ children, ...rest }) {
+  return <Container {...rest}>{children}</Container>;
+}
+
+AccountList.ItemContainer = function AccountListItemContainer({
+  children,
+  ...rest
+}) {
+  return <ItemContainer {...rest}>{children}</ItemContainer>;
+};
+
+AccountList.ImgWrapper = function AccountListImgWrapper({ children, ...rest }) {
+  return <ImgWrapper {...rest}>{children}</ImgWrapper>;
+};
+
+AccountList.ImgIcon = function AccountListImgIcon({ i }) {
+  return (
+    <>
+      {i === 1 && <ImgIcon1 />}
+      {i === 2 && <ImgIcon2 />}
+      {i === 3 && <ImgIcon3 />}
+      {i === 4 && <ImgIcon4 />}
+      {i === 5 && <ImgIcon5 />}
+    </>
+  );
+};
+
+AccountList.InfoWrapper = function AccountListInfoWrapper({
+  children,
+  ...rest
+}) {
+  return <InfoWrapper {...rest}>{children}</InfoWrapper>;
+};
+
+AccountList.InfoRow = function AccountListInfoRow({ children, ...rest }) {
+  return <InfoRow {...rest}>{children}</InfoRow>;
+};
+
+AccountList.InfoTitle = function AccountListInfoTitle({ children, ...rest }) {
+  return <InfoTitle {...rest}>{children}</InfoTitle>;
+};
+
+AccountList.InfoItem = function AccountListInfoItem({ children, ...rest }) {
+  return <InfoItem {...rest}>{children}</InfoItem>;
+};

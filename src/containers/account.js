@@ -3,7 +3,7 @@ import { createPortal } from "react-dom";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 import { AuthContext } from "../context/auth-context";
-import { deleteList } from "../utils/firebase";
+import { createListLogic, deleteList } from "../utils/firebase";
 
 import { Account, AccountList } from "./../components";
 import useAuthLisner from "./../hooks/useAuthListener";
@@ -23,6 +23,9 @@ export default function AccountContainer() {
   const [popupConfirmVisible, setPopupConfirmVisible] = useState(false);
   const [confirmMessage, setConfirmMessage] = useState("");
   const [deletingList, setDeletingList] = useState({ id: "", delete: false });
+  const [dataSubmiting, setDataSubmiting] = useState(false);
+  const [creatingList, setCreatingList] = useState(false);
+  const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {
     if (!deletingList.delete) return;
@@ -38,10 +41,47 @@ export default function AccountContainer() {
   };
 
   const closeConfirmWindow = (value) => {
-    console.log(value);
     setDeletingList((prev) => ({ ...prev, delete: value }));
     setConfirmMessage("");
     setPopupConfirmVisible(false);
+  };
+
+  const showErrorModal = () => {};
+
+  const creatListToogler = (e) => {
+    console.log(e.target.classList.value);
+    if (dataSubmiting) {
+      return;
+    } else {
+      if (data.length === 5) {
+        showErrorModal("Sorry but now you can create ony 5 lists");
+        return;
+      }
+      if (
+        e.target.classList.value.includes("Abort") ||
+        e.target.classList.value.includes("CreateIcon")
+      ) {
+        setCreatingList((prev) => !prev);
+      }
+    }
+  };
+
+  const createListSubmit = (e) => {
+    if (!e.target.classList.value.includes("Confirm")) return;
+    setCreatingList(false);
+    setDataSubmiting(true);
+    if (inputValue.length > 20) {
+      showErrorModal("Name can be max 20 characters long");
+      setDataSubmiting(false);
+    } else if (inputValue.length === 0 || inputValue.length < 3) {
+      showErrorModal("Name should be at least 4 characters long");
+      setDataSubmiting(false);
+    } else {
+      createListLogic(firebase, inputValue, data, user.displayName).then(() => {
+        setInputValue("");
+        setDataSubmiting(false);
+      });
+    }
   };
 
   return (
@@ -87,7 +127,14 @@ export default function AccountContainer() {
               );
             })}
           {data.length === 0 && <AccountListPlaceholder />}
-          {data.length <= 5 && <AccountCreateList />}
+          {data.length <= 5 && (
+            <AccountCreateList
+              creatingList={creatingList}
+              creatListToogler={creatListToogler}
+              inputValue={inputValue}
+              setInputValue={setInputValue}
+            />
+          )}
         </AccountList>
       </Account.ColumnContainer>
     </Account>

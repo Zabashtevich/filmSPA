@@ -2,9 +2,13 @@ import React, { useState } from "react";
 import { AcclistCreateItem } from "../../../../components";
 import ItemDescriptionPopupContainer from "./item-description-popup-container";
 
-export default function AccountCreateList() {
+export default function AccountCreateList({
+  creatingList,
+  creatListToogler,
+  inputValue,
+  setInputValue,
+}) {
   const [createDesc, setCreateDesc] = useState(false);
-  const [creatingList, setCreatingList] = useState(false);
   const [confirmDesc, setConfirmDesc] = useState(false);
   const [delcineDesc, setDeclineDesc] = useState(false);
 
@@ -13,7 +17,7 @@ export default function AccountCreateList() {
       <AcclistCreateItem.CreateIcon
         onMouseEnter={() => setCreateDesc(true)}
         onMouseLeave={() => setCreateDesc(false)}
-        onClick={() => setCreatingList(true)}
+        onClick={(e) => creatListToogler(e)}
         visible={creatingList}
       />
       <ItemDescriptionPopupContainer
@@ -24,7 +28,11 @@ export default function AccountCreateList() {
       <AcclistCreateItem.CreateTitle visible={creatingList}>
         Enter name
       </AcclistCreateItem.CreateTitle>
-      <AcclistCreateItem.Input visible={creatingList} />
+      <AcclistCreateItem.Input
+        visible={creatingList}
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+      />
       <AcclistCreateItem.Wrapper visible={creatingList}>
         <AcclistCreateItem.Confirm
           onMouseEnter={() => setConfirmDesc(true)}

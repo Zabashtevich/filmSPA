@@ -17,13 +17,6 @@ import {
   ButtonsWrapper,
   Delete,
   Rename,
-  PlaceholderContainer,
-  Placeholder,
-  CreateItemContainer,
-  CreateIcon,
-  Input,
-  Confirm,
-  Abort,
 } from "./styles/acclist";
 
 export default function AccountList({ children, ...rest }) {
@@ -90,78 +83,4 @@ AccountList.Delete = function AccountListDelete({ children, ...rest }) {
 
 AccountList.Rename = function AccountListRename({ children, ...rest }) {
   return <Rename {...rest}>{children}</Rename>;
-};
-
-AccountList.PlaceholderContainer = function AccountListPlaceholderContainer({
-  children,
-  ...rest
-}) {
-  return <PlaceholderContainer {...rest}>{children}</PlaceholderContainer>;
-};
-
-AccountList.Placeholder = function AccountListPlaceholder({
-  children,
-  ...rest
-}) {
-  return <Placeholder {...rest}>{children}</Placeholder>;
-};
-
-AccountList.CreateItemContainer = function AccountListCreateItemContainer({
-  children,
-  ...rest
-}) {
-  return <CreateItemContainer {...rest}>{children}</CreateItemContainer>;
-};
-
-AccountList.CreateIcon = function AccountListCreateIcon({ children, ...rest }) {
-  return <CreateIcon {...rest}>{children}</CreateIcon>;
-};
-
-AccountList.Input = function AccountListInput({ children, visible, ...rest }) {
-  return (
-    <CSSTransition
-      in={visible}
-      appear={true}
-      timeout={{ enter: 200, exit: 300, appear: 300 }}
-      classNames="fade"
-      unmountOnExit
-      mountOnEnter
-    >
-      <Input {...rest}>{children}</Input>
-    </CSSTransition>
-  );
-};
-
-AccountList.Confirm = function AccountListConfirm({
-  children,
-  visible,
-  ...rest
-}) {
-  return (
-    <CSSTransition
-      in={visible}
-      appear={true}
-      timeout={{ enter: 200, exit: 300, appear: 300 }}
-      classNames="fade"
-      unmountOnExit
-      mountOnEnter
-    >
-      <Confirm {...rest}>{children}</Confirm>
-    </CSSTransition>
-  );
-};
-
-AccountList.Abort = function AccountListAbort({ children, visible, ...rest }) {
-  return (
-    <CSSTransition
-      in={visible}
-      appear={true}
-      timeout={{ enter: 500, exit: 600, appear: 30000 }}
-      classNames="fade"
-      unmountOnExit
-      mountOnEnter
-    >
-      <Abort {...rest}>{children}</Abort>
-    </CSSTransition>
-  );
 };

@@ -6,6 +6,7 @@ import {
   Item,
   Placeholder,
   CreateIcon,
+  CreateTitle,
   Input,
   Confirm,
   Abort,
@@ -15,13 +16,6 @@ import {
 export default function AcclistCreateItem({ children, ...rest }) {
   return <Item {...rest}>{children}</Item>;
 }
-
-AcclistCreateItem.Placeholder = function AcclistCreateItemPlaceholder({
-  children,
-  ...rest
-}) {
-  return <Placeholder {...rest}>{children}</Placeholder>;
-};
 
 AcclistCreateItem.Wrapper = function AcclistCreateItemWrapper({
   children,
@@ -38,6 +32,25 @@ AcclistCreateItem.Wrapper = function AcclistCreateItemWrapper({
       mountOnEnter
     >
       <Wrapper {...rest}>{children}</Wrapper>
+    </CSSTransition>
+  );
+};
+
+AcclistCreateItem.CreateTitle = function AcclistCreateItemCreateTitle({
+  children,
+  visible,
+  ...rest
+}) {
+  return (
+    <CSSTransition
+      in={visible}
+      appear={true}
+      timeout={{ enter: 500, exit: 600, appear: 300 }}
+      classNames="fade"
+      unmountOnExit
+      mountOnEnter
+    >
+      <CreateTitle {...rest}>{children}</CreateTitle>
     </CSSTransition>
   );
 };
@@ -70,7 +83,7 @@ AcclistCreateItem.Input = function AcclistCreateItemInput({
     <CSSTransition
       in={visible}
       appear={true}
-      timeout={{ enter: 200, exit: 300, appear: 300 }}
+      timeout={{ enter: 500, exit: 600, appear: 300 }}
       classNames="fade"
       unmountOnExit
       mountOnEnter
@@ -92,4 +105,11 @@ AcclistCreateItem.Abort = function AcclistCreateItemAbort({
   ...rest
 }) {
   return <Abort {...rest}>{children}</Abort>;
+};
+
+AcclistCreateItem.Placeholder = function AcclistCreateItemPlaceholder({
+  children,
+  ...rest
+}) {
+  return <Placeholder {...rest}>{children}</Placeholder>;
 };

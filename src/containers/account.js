@@ -12,6 +12,7 @@ import { ConfirmPopupContainer } from "./auxillary/auxillary-containers";
 import {
   AccountCreateList,
   AccountListItem,
+  AccountListPlaceholder,
 } from "./auxillary/auxillary-items";
 
 export default function AccountContainer() {
@@ -85,6 +86,7 @@ export default function AccountContainer() {
                 </CSSTransition>
               );
             })}
+          {data.length === 0 && <AccountListPlaceholder />}
           {data.length <= 5 && <AccountCreateList />}
         </AccountList>
       </Account.ColumnContainer>

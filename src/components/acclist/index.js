@@ -24,8 +24,7 @@ import {
   Input,
   Confirm,
   Abort,
-  CreateButtonsWrapper,
-} from "./styles/account-list";
+} from "./styles/acclist";
 
 export default function AccountList({ children, ...rest }) {
   return (
@@ -116,13 +115,6 @@ AccountList.CreateItemContainer = function AccountListCreateItemContainer({
 
 AccountList.CreateIcon = function AccountListCreateIcon({ children, ...rest }) {
   return <CreateIcon {...rest}>{children}</CreateIcon>;
-};
-
-AccountList.ButtonsWrapper = function AccountListButtonsWrapper({
-  children,
-  ...rest
-}) {
-  return <ButtonsWrapper {...rest}>{children}</ButtonsWrapper>;
 };
 
 AccountList.Input = function AccountListInput({ children, visible, ...rest }) {

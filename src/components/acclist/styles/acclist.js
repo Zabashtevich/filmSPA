@@ -10,6 +10,8 @@ import {
 import { FiEdit3 } from "react-icons/fi";
 import { CgTrash } from "react-icons/cg";
 import { BsPlusCircleFill } from "react-icons/bs";
+import { MdCancel } from "react-icons/md";
+import { HiCheckCircle } from "react-icons/hi";
 
 export const Container = styled.div`
   min-width: 100%;
@@ -204,12 +206,12 @@ export const Input = styled.input`
   align-self: flex-end;
   &.fade-enter {
     opacity: 0;
-    transform: translateX(-200px);
+    transform: translateX(300px);
   }
   &.fade-enter-active {
     opacity: 1;
     transform: translateX(0);
-    transition: 200ms;
+    transition: 500ms;
   }
   &.fade-exit {
     opacity: 1;
@@ -217,30 +219,21 @@ export const Input = styled.input`
   }
   &.fade-exit-active {
     opacity: 0;
-    transition: 300ms;
-    transform: translateX(200px);
-  }
-  &.fade-appear {
-    opacity: 0;
-    transform: translateX(-400px);
-  }
-  &.fade-appear-active {
-    opacity: 1;
-    transform: translateX(0);
-    transition: 300ms;
+    transition: 600ms;
+    transform: translateX(-300px);
   }
 `;
 
-export const Confirm = styled.div`
+export const Confirm = styled(HiCheckCircle)`
   align-self: flex-end;
   &.fade-enter {
     opacity: 0;
-    transform: translateX(-200px);
+    transform: translateX(300px);
   }
   &.fade-enter-active {
     opacity: 1;
     transform: translateX(0);
-    transition: 200ms;
+    transition: 500ms;
   }
   &.fade-exit {
     opacity: 1;
@@ -248,31 +241,21 @@ export const Confirm = styled.div`
   }
   &.fade-exit-active {
     opacity: 0;
-    transition: 300ms;
-    transform: translateX(200px);
-  }
-  &.fade-appear {
-    opacity: 0;
-    transition: 500ms;
-    transform: translateX(-400px);
-  }
-  &.fade-appear-active {
-    opacity: 1;
-    transform: translateX(0);
-    transition: 300ms;
+    transition: 600ms;
+    transform: translateX(-300px);
   }
 `;
 
-export const Abort = styled.div`
+export const Abort = styled(MdCancel)`
   align-self: flex-end;
   &.fade-enter {
     opacity: 0;
-    transform: translateX(-200px);
+    transform: translateX(300px);
   }
   &.fade-enter-active {
     opacity: 1;
     transform: translateX(0);
-    transition: 200ms;
+    transition: 500ms;
   }
   &.fade-exit {
     opacity: 1;
@@ -280,18 +263,8 @@ export const Abort = styled.div`
   }
   &.fade-exit-active {
     opacity: 0;
-    transition: 300ms;
-    transform: translateX(200px);
-  }
-  &.fade-appear {
-    opacity: 0;
-    transition: 500ms;
-    transform: translateX(-400px);
-  }
-  &.fade-appear-active {
-    opacity: 1;
-    transform: translateX(0);
-    transition: 300ms;
+    transition: 600ms;
+    transform: translateX(-300px);
   }
 `;
 
@@ -310,26 +283,5 @@ export const CreateItemContainer = styled.div`
       transition: 500ms;
       cursor: pointer;
     }
-  }
-`;
-
-export const CreateButtonsWrapper = styled.div`
-  &.fade-enter {
-    opacity: 0;
-    transform: translateX(-200px);
-  }
-  &.fade-enter-active {
-    opacity: 1;
-    transform: translateX(0);
-    transition: 500ms;
-  }
-  &.fade-exit {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  &.fade-exit-active {
-    opacity: 0;
-    transition: 600ms;
-    transform: translateX(200px);
   }
 `;

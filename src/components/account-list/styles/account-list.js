@@ -200,13 +200,103 @@ export const CreateIcon = styled(BsPlusCircleFill)`
   opacity: 0.5;
 `;
 
-export const Input = styled.div``;
+export const Input = styled.input`
+  align-self: flex-end;
+  &.fade-enter {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+  &.fade-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: 200ms;
+  }
+  &.fade-exit {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  &.fade-exit-active {
+    opacity: 0;
+    transition: 300ms;
+    transform: translateX(200px);
+  }
+  &.fade-appear {
+    opacity: 0;
+    transform: translateX(-400px);
+  }
+  &.fade-appear-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: 300ms;
+  }
+`;
 
-export const Confirm = styled.div``;
+export const Confirm = styled.div`
+  align-self: flex-end;
+  &.fade-enter {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+  &.fade-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: 200ms;
+  }
+  &.fade-exit {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  &.fade-exit-active {
+    opacity: 0;
+    transition: 300ms;
+    transform: translateX(200px);
+  }
+  &.fade-appear {
+    opacity: 0;
+    transition: 500ms;
+    transform: translateX(-400px);
+  }
+  &.fade-appear-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: 300ms;
+  }
+`;
 
-export const Abort = styled.div``;
+export const Abort = styled.div`
+  align-self: flex-end;
+  &.fade-enter {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+  &.fade-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: 200ms;
+  }
+  &.fade-exit {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  &.fade-exit-active {
+    opacity: 0;
+    transition: 300ms;
+    transform: translateX(200px);
+  }
+  &.fade-appear {
+    opacity: 0;
+    transition: 500ms;
+    transform: translateX(-400px);
+  }
+  &.fade-appear-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: 300ms;
+  }
+`;
 
 export const CreateItemContainer = styled.div`
+  display: flex;
   width: 250px;
   height: 150px;
   background-color: white;
@@ -220,5 +310,26 @@ export const CreateItemContainer = styled.div`
       transition: 500ms;
       cursor: pointer;
     }
+  }
+`;
+
+export const CreateButtonsWrapper = styled.div`
+  &.fade-enter {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+  &.fade-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: 500ms;
+  }
+  &.fade-exit {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  &.fade-exit-active {
+    opacity: 0;
+    transition: 600ms;
+    transform: translateX(200px);
   }
 `;

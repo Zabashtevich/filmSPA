@@ -1,5 +1,5 @@
 import React from "react";
-import { TransitionGroup } from "react-transition-group";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 import {
   Container,
@@ -24,6 +24,7 @@ import {
   Input,
   Confirm,
   Abort,
+  CreateButtonsWrapper,
 } from "./styles/account-list";
 
 export default function AccountList({ children, ...rest }) {
@@ -124,14 +125,51 @@ AccountList.ButtonsWrapper = function AccountListButtonsWrapper({
   return <ButtonsWrapper {...rest}>{children}</ButtonsWrapper>;
 };
 
-AccountList.Input = function AccountListInput({ children, ...rest }) {
-  return <Input {...rest}>{children}</Input>;
+AccountList.Input = function AccountListInput({ children, visible, ...rest }) {
+  return (
+    <CSSTransition
+      in={visible}
+      appear={true}
+      timeout={{ enter: 200, exit: 300, appear: 300 }}
+      classNames="fade"
+      unmountOnExit
+      mountOnEnter
+    >
+      <Input {...rest}>{children}</Input>
+    </CSSTransition>
+  );
 };
 
-AccountList.Confirm = function AccountListConfirm({ children, ...rest }) {
-  return <Confirm {...rest}>{children}</Confirm>;
+AccountList.Confirm = function AccountListConfirm({
+  children,
+  visible,
+  ...rest
+}) {
+  return (
+    <CSSTransition
+      in={visible}
+      appear={true}
+      timeout={{ enter: 200, exit: 300, appear: 300 }}
+      classNames="fade"
+      unmountOnExit
+      mountOnEnter
+    >
+      <Confirm {...rest}>{children}</Confirm>
+    </CSSTransition>
+  );
 };
 
-AccountList.Abort = function AccountListAbort({ children, ...rest }) {
-  return <Abort {...rest}>{children}</Abort>;
+AccountList.Abort = function AccountListAbort({ children, visible, ...rest }) {
+  return (
+    <CSSTransition
+      in={visible}
+      appear={true}
+      timeout={{ enter: 500, exit: 600, appear: 30000 }}
+      classNames="fade"
+      unmountOnExit
+      mountOnEnter
+    >
+      <Abort {...rest}>{children}</Abort>
+    </CSSTransition>
+  );
 };

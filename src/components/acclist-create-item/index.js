@@ -1,5 +1,7 @@
 import React from "react";
 
+import { CSSTransition } from "react-transition-group";
+
 import {
   Item,
   Placeholder,
@@ -7,24 +9,63 @@ import {
   Input,
   Confirm,
   Abort,
+  Wrapper,
 } from "./styles/acclist-create-item";
 
 export default function AcclistCreateItem({ children, ...rest }) {
   return <Item {...rest}>{children}</Item>;
 }
 
-AccountList.Placeholder = function AccountListPlaceholder({
+AcclistCreateItem.Placeholder = function AcclistCreateItemPlaceholder({
   children,
   ...rest
 }) {
   return <Placeholder {...rest}>{children}</Placeholder>;
 };
 
-AccountList.CreateIcon = function AccountListCreateIcon({ children, ...rest }) {
-  return <CreateIcon {...rest}>{children}</CreateIcon>;
+AcclistCreateItem.Wrapper = function AcclistCreateItemWrapper({
+  children,
+  visible,
+  ...rest
+}) {
+  return (
+    <CSSTransition
+      in={visible}
+      appear={true}
+      timeout={{ enter: 500, exit: 600, appear: 300 }}
+      classNames="fade"
+      unmountOnExit
+      mountOnEnter
+    >
+      <Wrapper {...rest}>{children}</Wrapper>
+    </CSSTransition>
+  );
 };
 
-AccountList.Input = function AccountListInput({ children, visible, ...rest }) {
+AcclistCreateItem.CreateIcon = function AcclistCreateItemCreateIcon({
+  children,
+  visible,
+  ...rest
+}) {
+  return (
+    <CSSTransition
+      in={!visible}
+      appear={true}
+      timeout={{ enter: 500, exit: 600, appear: 300 }}
+      classNames="fade"
+      unmountOnExit
+      mountOnEnter
+    >
+      <CreateIcon {...rest}>{children}</CreateIcon>
+    </CSSTransition>
+  );
+};
+
+AcclistCreateItem.Input = function AcclistCreateItemInput({
+  children,
+  visible,
+  ...rest
+}) {
   return (
     <CSSTransition
       in={visible}
@@ -39,36 +80,16 @@ AccountList.Input = function AccountListInput({ children, visible, ...rest }) {
   );
 };
 
-AccountList.Confirm = function AccountListConfirm({
+AcclistCreateItem.Confirm = function AcclistCreateItemConfirm({
   children,
-  visible,
   ...rest
 }) {
-  return (
-    <CSSTransition
-      in={visible}
-      appear={true}
-      timeout={{ enter: 200, exit: 300, appear: 300 }}
-      classNames="fade"
-      unmountOnExit
-      mountOnEnter
-    >
-      <Confirm {...rest}>{children}</Confirm>
-    </CSSTransition>
-  );
+  return <Confirm {...rest}>{children}</Confirm>;
 };
 
-AccountList.Abort = function AccountListAbort({ children, visible, ...rest }) {
-  return (
-    <CSSTransition
-      in={visible}
-      appear={true}
-      timeout={{ enter: 500, exit: 600, appear: 30000 }}
-      classNames="fade"
-      unmountOnExit
-      mountOnEnter
-    >
-      <Abort {...rest}>{children}</Abort>
-    </CSSTransition>
-  );
+AcclistCreateItem.Abort = function AcclistCreateItemAbort({
+  children,
+  ...rest
+}) {
+  return <Abort {...rest}>{children}</Abort>;
 };

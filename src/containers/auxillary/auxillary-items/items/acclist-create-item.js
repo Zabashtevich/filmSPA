@@ -1,25 +1,28 @@
 import React, { useState } from "react";
-import { AccountList } from "../../../../components";
+import { AcclistCreateItem } from "../../../../components";
 import ItemDescriptionPopupContainer from "./item-description-popup-container";
 
 export default function AccountCreateList() {
   const [createDesc, setCreateDesc] = useState(false);
   const [creatingList, setCreatingList] = useState(false);
   return (
-    <AccountList.CreateItemContainer>
-      <AccountList.CreateIcon
+    <AcclistCreateItem>
+      <AcclistCreateItem.CreateIcon
         onMouseEnter={() => setCreateDesc(true)}
         onMouseLeave={() => setCreateDesc(false)}
         onClick={() => setCreatingList(true)}
+        visible={creatingList}
       />
       <ItemDescriptionPopupContainer
         text={"Create list"}
         visible={createDesc}
         backgroundsecondary={1}
       />
-      <AccountList.Input visible={creatingList} />
-      <AccountList.Confirm visible={creatingList} />
-      <AccountList.Abort visible={creatingList} />
-    </AccountList.CreateItemContainer>
+      <AcclistCreateItem.Input visible={creatingList} />
+      <AcclistCreateItem.Wrapper visible={creatingList}>
+        <AcclistCreateItem.Confirm />
+        <AcclistCreateItem.Abort />
+      </AcclistCreateItem.Wrapper>
+    </AcclistCreateItem>
   );
 }

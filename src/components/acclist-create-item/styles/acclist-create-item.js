@@ -15,6 +15,24 @@ export const Item = styled.div`
   margin-left: 1rem;
   border-radius: 1rem;
   position: relative;
+  &.fade-enter {
+    opacity: 0;
+    transform: translateX(300px);
+  }
+  &.fade-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: 500ms;
+  }
+  &.fade-exit {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  &.fade-exit-active {
+    opacity: 0;
+    transition: 600ms;
+    transform: translateX(-300px);
+  }
 `;
 
 export const CreateIcon = styled(BsPlusCircleFill)`
@@ -25,6 +43,9 @@ export const CreateIcon = styled(BsPlusCircleFill)`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  & > path {
+    pointer-events: none;
+  }
   &:hover {
     fill: black;
     opacity: 1;
@@ -128,11 +149,17 @@ export const Wrapper = styled.div`
 export const Confirm = styled(HiCheckCircle)`
   font-size: ${({ theme }) => theme.fontSize.large};
   cursor: pointer;
+  & > path {
+    pointer-events: none;
+  }
 `;
 
 export const Abort = styled(MdCancel)`
   font-size: ${({ theme }) => theme.fontSize.large};
   cursor: pointer;
+  & > path {
+    pointer-events: none;
+  }
 `;
 
 export const Placeholder = styled.div`

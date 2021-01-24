@@ -9,12 +9,9 @@ import {
 } from "react-icons/md";
 import { FiEdit3 } from "react-icons/fi";
 import { CgTrash } from "react-icons/cg";
-import { BsPlusCircleFill } from "react-icons/bs";
-import { MdCancel } from "react-icons/md";
-import { HiCheckCircle } from "react-icons/hi";
 
 export const Container = styled.div`
-  min-width: 100%;
+  width: 100%;
   min-height: 200px;
   margin-left: 3rem;
   background-color: rgb(242, 242, 242);

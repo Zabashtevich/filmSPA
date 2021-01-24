@@ -49,7 +49,6 @@ export default function AccountContainer() {
   const showErrorModal = () => {};
 
   const creatListToogler = (e) => {
-    console.log(e.target.classList.value);
     if (dataSubmiting) {
       return;
     } else {
@@ -83,7 +82,7 @@ export default function AccountContainer() {
       });
     }
   };
-
+  console.log(data.length === 0);
   return (
     <Account>
       {popupConfirmVisible &&
@@ -126,13 +125,14 @@ export default function AccountContainer() {
                 </CSSTransition>
               );
             })}
-          {data.length === 0 && <AccountListPlaceholder />}
+          <AccountListPlaceholder visible={!loadingData && data.length === 0} />
           {data.length <= 5 && (
             <AccountCreateList
               creatingList={creatingList}
               creatListToogler={creatListToogler}
               inputValue={inputValue}
               setInputValue={setInputValue}
+              createListSubmit={createListSubmit}
             />
           )}
         </AccountList>

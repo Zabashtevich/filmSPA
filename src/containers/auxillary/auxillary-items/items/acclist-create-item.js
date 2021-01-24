@@ -7,6 +7,7 @@ export default function AccountCreateList({
   creatListToogler,
   inputValue,
   setInputValue,
+  createListSubmit,
 }) {
   const [createDesc, setCreateDesc] = useState(false);
   const [confirmDesc, setConfirmDesc] = useState(false);
@@ -37,6 +38,7 @@ export default function AccountCreateList({
         <AcclistCreateItem.Confirm
           onMouseEnter={() => setConfirmDesc(true)}
           onMouseLeave={() => setConfirmDesc(false)}
+          onClick={(e) => createListSubmit(e)}
         />
         <AcclistCreateItem.Abort
           onMouseEnter={() => setDeclineDesc(true)}

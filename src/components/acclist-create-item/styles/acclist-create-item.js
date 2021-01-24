@@ -15,24 +15,7 @@ export const Item = styled.div`
   margin-left: 1rem;
   border-radius: 1rem;
   position: relative;
-  &.fade-enter {
-    opacity: 0;
-    transform: translateX(300px);
-  }
-  &.fade-enter-active {
-    opacity: 1;
-    transform: translateX(0);
-    transition: 500ms;
-  }
-  &.fade-exit {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  &.fade-exit-active {
-    opacity: 0;
-    transition: 600ms;
-    transform: translateX(-300px);
-  }
+  ${({ theme }) => theme.animations.accCreateListMain};
 `;
 
 export const CreateIcon = styled(BsPlusCircleFill)`
@@ -52,48 +35,14 @@ export const CreateIcon = styled(BsPlusCircleFill)`
     transition: 500ms;
   }
   cursor: pointer;
-  &.fade-enter {
-    left: 0;
-    opacity: 0;
-  }
-  &.fade-enter-active {
-    opacity: 0.5;
-    left: 50%;
-    transition: 500ms;
-  }
-  &.fade-exit {
-    opacity: 0.5;
-    left: 50%;
-  }
-  &.fade-exit-active {
-    opacity: 0;
-    transition: 600ms;
-    left: 0;
-  }
+  ${({ theme }) => theme.animations.accCreateListSecondary};
 `;
 
 export const CreateTitle = styled.span`
   margin-top: 1rem;
   margin-bottom: 0.5rem;
   font-size: ${({ theme }) => theme.fontSize.normal};
-  &.fade-enter {
-    opacity: 0;
-    transform: translateX(300px);
-  }
-  &.fade-enter-active {
-    opacity: 1;
-    transform: translateX(0);
-    transition: 500ms;
-  }
-  &.fade-exit {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  &.fade-exit-active {
-    opacity: 0;
-    transition: 600ms;
-    transform: translateX(-300px);
-  }
+  ${({ theme }) => theme.animations.accCreateListMain};
 `;
 
 export const Input = styled.input`
@@ -101,24 +50,7 @@ export const Input = styled.input`
   border: 1px solid rgba(31, 31, 31, 0.5);
   border-radius: 1rem;
   padding: 0.2rem 0.4rem;
-  &.fade-enter {
-    opacity: 0;
-    transform: translateX(300px);
-  }
-  &.fade-enter-active {
-    opacity: 1;
-    transform: translateX(0);
-    transition: 500ms;
-  }
-  &.fade-exit {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  &.fade-exit-active {
-    opacity: 0;
-    transition: 600ms;
-    transform: translateX(-300px);
-  }
+  ${({ theme }) => theme.animations.accCreateListMain};
 `;
 
 export const Wrapper = styled.div`
@@ -126,24 +58,7 @@ export const Wrapper = styled.div`
   justify-content: space-around;
   width: 30%;
   margin-top: 0.5rem;
-  &.fade-enter {
-    opacity: 0;
-    transform: translateX(300px);
-  }
-  &.fade-enter-active {
-    opacity: 1;
-    transform: translateX(0);
-    transition: 500ms;
-  }
-  &.fade-exit {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  &.fade-exit-active {
-    opacity: 0;
-    transition: 600ms;
-    transform: translateX(-300px);
-  }
+  ${({ theme }) => theme.animations.accCreateListMain};
 `;
 
 export const Confirm = styled(HiCheckCircle)`

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { createPortal } from "react-dom";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { CSSTransition } from "react-transition-group";
 
 import { AuthContext } from "../context/auth-context";
 import { createListLogic, deleteList } from "../utils/firebase";
@@ -8,7 +8,10 @@ import { createListLogic, deleteList } from "../utils/firebase";
 import { Account, AccountList } from "./../components";
 import useAuthLisner from "./../hooks/useAuthListener";
 import useFirestore from "./../hooks/useFirestore";
-import { ConfirmPopupContainer } from "./auxillary/auxillary-containers";
+import {
+  ConfirmPopupContainer,
+  ErrorModalContainer,
+} from "./auxillary/auxillary-containers";
 import {
   AccountCreateList,
   AccountListItem,
@@ -26,6 +29,8 @@ export default function AccountContainer() {
   const [dataSubmiting, setDataSubmiting] = useState(false);
   const [creatingList, setCreatingList] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [errorModalVisible, setErrorModalVisible] = useState(false);
 
   useEffect(() => {
     if (!deletingList.delete) return;
@@ -46,7 +51,17 @@ export default function AccountContainer() {
     setPopupConfirmVisible(false);
   };
 
-  const showErrorModal = () => {};
+  const showErrorModal = (errorText) => {
+    document.body.style.overflow = "hidden";
+    setErrorMessage([errorText]);
+    setErrorModalVisible(true);
+  };
+
+  const hideErrorModal = () => {
+    document.body.style.overflow = "auto";
+    setErrorMessage(null);
+    setErrorModalVisible(false);
+  };
 
   const creatListToogler = (e) => {
     if (dataSubmiting) {
@@ -82,61 +97,74 @@ export default function AccountContainer() {
       });
     }
   };
-  console.log(data.length === 0);
+
   return (
-    <Account>
-      {popupConfirmVisible &&
+    <>
+      {errorModalVisible &&
         createPortal(
-          <ConfirmPopupContainer
-            message={confirmMessage}
-            closeConfirmWindow={closeConfirmWindow}
-            popupConfirmVisible={popupConfirmVisible}
+          <ErrorModalContainer
+            errorMessage={errorMessage}
+            closeModal={hideErrorModal}
+            errorModalVisible={errorModalVisible}
           />,
           document.querySelector("#root"),
         )}
-      <Account.ColumnContainer leftcolumn={1}>
-        <Account.Avatar src={user.photoURL} />
-        <Account.Nickname>{user.displayName}</Account.Nickname>
-        <Account.Link to={`${user.displayName}/edit`}>
-          Edit profile
-        </Account.Link>
-      </Account.ColumnContainer>
-      <Account.ColumnContainer>
-        <Account.Title>YOUR ACTIVITY</Account.Title>
-        <Account.Wrapper>
-          <Account.Subtitle>Your lists:</Account.Subtitle>
-        </Account.Wrapper>
-        <AccountList>
-          {!loadingData &&
-            data.length > 0 &&
-            data.map((item, i) => {
-              return (
-                <CSSTransition
-                  classNames="fade"
-                  timeout={{ enter: 200, exit: 300, appear: 300 }}
-                  appear={true}
-                  key={item.id}
-                >
-                  <AccountListItem
-                    onListDelete={onListDelete}
-                    i={i}
-                    item={item}
-                  />
-                </CSSTransition>
-              );
-            })}
-          <AccountListPlaceholder visible={!loadingData && data.length === 0} />
-          {data.length <= 5 && (
-            <AccountCreateList
-              creatingList={creatingList}
-              creatListToogler={creatListToogler}
-              inputValue={inputValue}
-              setInputValue={setInputValue}
-              createListSubmit={createListSubmit}
-            />
+      <Account>
+        {popupConfirmVisible &&
+          createPortal(
+            <ConfirmPopupContainer
+              message={confirmMessage}
+              closeConfirmWindow={closeConfirmWindow}
+              popupConfirmVisible={popupConfirmVisible}
+            />,
+            document.querySelector("#root"),
           )}
-        </AccountList>
-      </Account.ColumnContainer>
-    </Account>
+        <Account.ColumnContainer leftcolumn={1}>
+          <Account.Avatar src={user.photoURL} />
+          <Account.Nickname>{user.displayName}</Account.Nickname>
+          <Account.Link to={`${user.displayName}/edit`}>
+            Edit profile
+          </Account.Link>
+        </Account.ColumnContainer>
+        <Account.ColumnContainer>
+          <Account.Title>YOUR ACTIVITY</Account.Title>
+          <Account.Wrapper>
+            <Account.Subtitle>Your lists:</Account.Subtitle>
+          </Account.Wrapper>
+          <AccountList>
+            {!loadingData &&
+              data.length > 0 &&
+              data.map((item, i) => {
+                return (
+                  <CSSTransition
+                    classNames="fade"
+                    timeout={{ enter: 200, exit: 300, appear: 300 }}
+                    appear={true}
+                    key={item.id}
+                  >
+                    <AccountListItem
+                      onListDelete={onListDelete}
+                      i={i}
+                      item={item}
+                    />
+                  </CSSTransition>
+                );
+              })}
+            <AccountListPlaceholder
+              visible={!loadingData && data.length === 0}
+            />
+            {data.length <= 5 && (
+              <AccountCreateList
+                creatingList={creatingList}
+                creatListToogler={creatListToogler}
+                inputValue={inputValue}
+                setInputValue={setInputValue}
+                createListSubmit={createListSubmit}
+              />
+            )}
+          </AccountList>
+        </Account.ColumnContainer>
+      </Account>
+    </>
   );
 }

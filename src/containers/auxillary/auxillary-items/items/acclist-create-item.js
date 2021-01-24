@@ -43,6 +43,7 @@ export default function AccountCreateList({
         <AcclistCreateItem.Abort
           onMouseEnter={() => setDeclineDesc(true)}
           onMouseLeave={() => setDeclineDesc(false)}
+          onClick={(e) => creatListToogler(e)}
         />
         <ItemDescriptionPopupContainer
           text={"Confirm"}

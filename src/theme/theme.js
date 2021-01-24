@@ -31,4 +31,42 @@ export default {
     negativeReview: "#ffe8d9",
     positiveReview: "#d9f0e1",
   },
+  animations: {
+    accCreateListMain: `&.fade-enter {
+      opacity: 0;
+      transform: translateX(300px);
+    }
+    &.fade-enter-active {
+      opacity: 1;
+      transform: translateX(0);
+      transition: 500ms;
+    }
+    &.fade-exit {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    &.fade-exit-active {
+      opacity: 0;
+      transition: 600ms;
+      transform: translateX(-300px);
+    }`,
+    accCreateListSecondary: `&.fade-enter {
+      left: 0;
+      opacity: 0;
+    }
+    &.fade-enter-active {
+      opacity: 0.5;
+      left: 50%;
+      transition: 500ms;
+    }
+    &.fade-exit {
+      opacity: 0.5;
+      left: 50%;
+    }
+    &.fade-exit-active {
+      opacity: 0;
+      transition: 600ms;
+      left: 0;
+    }`,
+  },
 };

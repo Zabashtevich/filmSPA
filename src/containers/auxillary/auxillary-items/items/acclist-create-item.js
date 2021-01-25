@@ -13,12 +13,21 @@ export default function AccountCreateList({
   const [confirmDesc, setConfirmDesc] = useState(false);
   const [delcineDesc, setDeclineDesc] = useState(false);
 
+  const hideDesc = () => {
+    setCreateDesc(false);
+    setConfirmDesc(false);
+    setDeclineDesc(false);
+  };
+
   return (
     <AcclistCreateItem>
       <AcclistCreateItem.CreateIcon
         onMouseEnter={() => setCreateDesc(true)}
         onMouseLeave={() => setCreateDesc(false)}
-        onClick={(e) => creatListToogler(e)}
+        onClick={(e) => {
+          creatListToogler(e);
+          hideDesc();
+        }}
         visible={creatingList}
       />
       <ItemDescriptionPopupContainer
@@ -38,12 +47,18 @@ export default function AccountCreateList({
         <AcclistCreateItem.Confirm
           onMouseEnter={() => setConfirmDesc(true)}
           onMouseLeave={() => setConfirmDesc(false)}
-          onClick={(e) => createListSubmit(e)}
+          onClick={(e) => {
+            createListSubmit(e);
+            hideDesc();
+          }}
         />
         <AcclistCreateItem.Abort
           onMouseEnter={() => setDeclineDesc(true)}
           onMouseLeave={() => setDeclineDesc(false)}
-          onClick={(e) => creatListToogler(e)}
+          onClick={(e) => {
+            hideDesc();
+            creatListToogler(e);
+          }}
         />
         <ItemDescriptionPopupContainer
           text={"Confirm"}

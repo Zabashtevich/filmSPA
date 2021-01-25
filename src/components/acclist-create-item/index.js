@@ -64,7 +64,7 @@ AcclistCreateItem.CreateIcon = function AcclistCreateItemCreateIcon({
     <CSSTransition
       in={!visible}
       appear={true}
-      timeout={{ enter: 500, exit: 600, appear: 500 }}
+      timeout={{ enter: 500, exit: 300, appear: 500 }}
       classNames="fade"
       unmountOnExit
       mountOnEnter

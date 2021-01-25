@@ -84,7 +84,6 @@ export default function AccountContainer() {
 
   const createListSubmit = (e) => {
     if (!e.target.classList.value.includes("Confirm")) return;
-
     setCreatingList(false);
     setDataSubmiting(true);
     if (inputValue.length > 20) {
@@ -111,16 +110,16 @@ export default function AccountContainer() {
           />,
           document.querySelector("#root"),
         )}
+      {popupConfirmVisible &&
+        createPortal(
+          <ConfirmPopupContainer
+            message={confirmMessage}
+            closeConfirmWindow={closeConfirmWindow}
+            popupConfirmVisible={popupConfirmVisible}
+          />,
+          document.querySelector("#root"),
+        )}
       <Account>
-        {popupConfirmVisible &&
-          createPortal(
-            <ConfirmPopupContainer
-              message={confirmMessage}
-              closeConfirmWindow={closeConfirmWindow}
-              popupConfirmVisible={popupConfirmVisible}
-            />,
-            document.querySelector("#root"),
-          )}
         <Account.ColumnContainer leftcolumn={1}>
           <Account.Avatar src={user.photoURL} />
           <Account.Nickname>{user.displayName}</Account.Nickname>

@@ -155,5 +155,5 @@ export const ItemContainer = styled.div`
     border: 1px solid rgba(31, 31, 31, 0.5);
     transition: 500ms;
   }
-  ${({ theme }) => theme.animations.fadeRight};
+  ${({ theme }) => theme.animations.fadeLtR};
 `;

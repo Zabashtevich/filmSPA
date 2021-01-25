@@ -9,3 +9,4 @@ export { default as WatchListPlaceholderContainer } from "./items/watch-list-pla
 export { default as AccountListItem } from "./items/acclist-item";
 export { default as AccountCreateList } from "./items/acclist-create-item";
 export { default as AccountListPlaceholder } from "./items/acclist-placeholder";
+export { default as EditModalList } from "./items/edit-modal-list";

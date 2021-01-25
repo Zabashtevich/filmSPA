@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 
 export const Background = styled.div`
   position: fixed;
@@ -15,36 +15,53 @@ export const Background = styled.div`
 `;
 
 export const Container = styled.div`
-  min-width: 1000px;
-  min-height: 600px;
+  width: 900px;
+  height: 600px;
   background-color: white;
   border-radius: 1rem;
   display: flex;
-  align-items: center;
   flex-direction: column;
+  justify-content: space-between;
+  border: 5px solid ${({ theme }) => theme.colors.secondary};
 `;
 
 export const Title = styled.div`
   color: ${({ theme }) => theme.colors.secondary};
   font-size: ${({ theme }) => theme.fontSize.huge};
+  text-align: center;
+  margin-top: 3rem;
   opacity: 0.8;
-  margin-top: 2rem;
 `;
 
 export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
+  ${({ buttons }) =>
+    buttons &&
+    css`
+      margin-bottom: 2rem;
+    `}
 `;
 
-export const Input = styled.div``;
+export const Input = styled.input`
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 0.8rem 1.2rem;
+  border-radius: 1rem;
+  width: 450px;
+  &:focus {
+    background-color: ${({ theme }) => theme.colors.secondary};
+    color: white;
+    transition: 300ms;
+  }
+`;
 
 export const Confirm = styled.button`
   cursor: pointer;
   outline: none;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 1rem;
-  font-size: ${({ theme }) => theme.fontSize.large};
+  font-size: ${({ theme }) => theme.fontSize.normal};
   padding: 0.7rem 1rem;
   margin-left: 1rem;
   background-color: white;
@@ -61,7 +78,7 @@ export const Cancel = styled.button`
   outline: none;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 1rem;
-  font-size: ${({ theme }) => theme.fontSize.large};
+  font-size: ${({ theme }) => theme.fontSize.normal};
   padding: 0.7rem 1rem;
   margin-right: 1rem;
   background-color: ${({ theme }) => theme.colors.secondary};

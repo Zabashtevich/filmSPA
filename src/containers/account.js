@@ -31,6 +31,7 @@ export default function AccountContainer() {
   const [inputValue, setInputValue] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [errorModalVisible, setErrorModalVisible] = useState(false);
+  const [placeholderDeelay, setPlaceholderDeelay] = useState(false);
 
   useEffect(() => {
     if (!deletingList.delete) return;
@@ -97,7 +98,7 @@ export default function AccountContainer() {
       });
     }
   };
-
+  console.log(placeholderDeelay);
   return (
     <>
       {errorModalVisible &&
@@ -133,6 +134,7 @@ export default function AccountContainer() {
           </Account.Wrapper>
           <AccountList>
             {!loadingData &&
+              !placeholderDeelay &&
               data.length > 0 &&
               data.map((item, i) => {
                 return (
@@ -152,6 +154,7 @@ export default function AccountContainer() {
               })}
             <AccountListPlaceholder
               visible={!loadingData && data.length === 0}
+              setPlaceholderDeelay={setPlaceholderDeelay}
             />
             {data.length <= 5 && (
               <AccountCreateList

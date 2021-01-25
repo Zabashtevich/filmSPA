@@ -32,7 +32,7 @@ export default {
     positiveReview: "#d9f0e1",
   },
   animations: {
-    fadeRight: `&.fade-enter {
+    fadeLtR: `&.fade-enter {
       opacity: 0;
       transform: translateX(-300px);
     }
@@ -48,20 +48,41 @@ export default {
     &.fade-exit-active {
       opacity: 0;
       transition: 600ms;
-      transform: translateX(-300px);
+      transform: translateX(300px);
     }
     &.fade-appear {
       opacity: 0;
       transform: translateX(-300px);
+    }
+    &.fade-appear-active {
+      opacity: 1;
+      transform: translateX(0);
+      transition: 500ms;
+    }`,
+    opacity: `&.fade-enter {
+      opacity: 0;
+    }
+    &.fade-enter-active {
+      opacity: 1;
+      transition: 500ms;
+    }
+    &.fade-exit {
+      opacity: 1;
+    }
+    &.fade-exit-active {
+      opacity: 0;
+      transition: 600ms;
+    }
+    &.fade-appear {
+      opacity: 0;
     }
     &.fade-appear-active {
       opacity: 1;
-      transform: translateX(0);
       transition: 500ms;
     }`,
-    fadeLeft: `&.fade-enter {
+    fadeLtL: `&.fade-enter {
       opacity: 0;
-      transform: translateX(300px);
+      transform: translateX(-300px);
     }
     &.fade-enter-active {
       opacity: 1;
@@ -75,11 +96,11 @@ export default {
     &.fade-exit-active {
       opacity: 0;
       transition: 600ms;
-      transform: translateX(300px);
+      transform: translateX(-300px);
     }
     &.fade-appear {
       opacity: 0;
-      transform: translateX(300px);
+      transform: translateX(-300px);
     }
     &.fade-appear-active {
       opacity: 1;

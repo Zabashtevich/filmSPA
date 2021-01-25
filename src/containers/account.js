@@ -32,6 +32,7 @@ export default function AccountContainer() {
   const [errorMessage, setErrorMessage] = useState("");
   const [errorModalVisible, setErrorModalVisible] = useState(false);
   const [placeholderDeelay, setPlaceholderDeelay] = useState(false);
+  const [itemDeelay, setItemDeelay] = useState(false);
 
   useEffect(() => {
     if (!deletingList.delete) return;
@@ -83,6 +84,7 @@ export default function AccountContainer() {
 
   const createListSubmit = (e) => {
     if (!e.target.classList.value.includes("Confirm")) return;
+
     setCreatingList(false);
     setDataSubmiting(true);
     if (inputValue.length > 20) {
@@ -98,7 +100,6 @@ export default function AccountContainer() {
       });
     }
   };
-  console.log(placeholderDeelay);
   return (
     <>
       {errorModalVisible &&
@@ -140,9 +141,13 @@ export default function AccountContainer() {
                 return (
                   <CSSTransition
                     classNames="fade"
-                    timeout={{ enter: 200, exit: 300, appear: 300 }}
+                    timeout={{ enter: 500, exit: 600, appear: 500 }}
                     appear={true}
                     key={item.id}
+                    onEnter={() => setItemDeelay(true)}
+                    onExited={() => setItemDeelay(false)}
+                    unmountOnExit
+                    mountOnEnter
                   >
                     <AccountListItem
                       onListDelete={onListDelete}
@@ -153,7 +158,7 @@ export default function AccountContainer() {
                 );
               })}
             <AccountListPlaceholder
-              visible={!loadingData && data.length === 0}
+              visible={!loadingData && data.length === 0 && !itemDeelay}
               setPlaceholderDeelay={setPlaceholderDeelay}
             />
             {data.length <= 5 && (

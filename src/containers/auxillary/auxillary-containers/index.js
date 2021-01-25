@@ -8,3 +8,4 @@ export { default as HeaderProfileContainer } from "./containers/header-profile-c
 export { default as TooltipsContainer } from "./containers/tooltips-container";
 export { default as WatchListContainer } from "./containers/watch-list-container";
 export { default as ConfirmPopupContainer } from "./containers/confirm-popup-container";
+export { default as EditModalContainer } from "./containers/edit-modal-container";

@@ -32,3 +32,4 @@ export { default as ConfirmPopup } from "./confirm-popup";
 export { default as ItemDescriptionPopup } from "./item-description-popup";
 export { default as AccountList } from "./acclist";
 export { default as AcclistCreateItem } from "./acclist-create-item";
+export { default as EditModal } from "./edit-modal";

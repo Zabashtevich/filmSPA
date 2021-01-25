@@ -10,6 +10,7 @@ import useAuthLisner from "./../hooks/useAuthListener";
 import useFirestore from "./../hooks/useFirestore";
 import {
   ConfirmPopupContainer,
+  EditModalContainer,
   ErrorModalContainer,
 } from "./auxillary/auxillary-containers";
 import {
@@ -33,6 +34,8 @@ export default function AccountContainer() {
   const [errorModalVisible, setErrorModalVisible] = useState(false);
   const [placeholderDeelay, setPlaceholderDeelay] = useState(false);
   const [itemDeelay, setItemDeelay] = useState(false);
+  const [editModalVisible, setEditModalVisible] = useState(false);
+  const [editModalText, setEditModalText] = useState("");
 
   useEffect(() => {
     if (!deletingList.delete) return;
@@ -101,6 +104,11 @@ export default function AccountContainer() {
   };
   return (
     <>
+      {!editModalVisible &&
+        createPortal(
+          <EditModalContainer text={editModalText} visible={1} />,
+          document.querySelector("#root"),
+        )}
       {errorModalVisible &&
         createPortal(
           <ErrorModalContainer

@@ -1,4 +1,5 @@
 import React from "react";
+import { CSSTransition } from "react-transition-group";
 
 import {
   Background,
@@ -15,11 +16,15 @@ export default function EditModal({ children, ...rest }) {
 }
 
 EditModal.Container = function EditModalContainer({ children, ...rest }) {
-  return <Container {...rest}>{children}</Container>;
+  return (
+    <CSSTransition>
+      <Container {...rest}>{children}</Container>
+    </CSSTransition>
+  );
 };
 
 EditModal.Title = function EditModalTitle({ children, ...rest }) {
-  return <Title {...rest}>{children}</Title>;
+  return <Title {...rest}>Enter a new name</Title>;
 };
 
 EditModal.Wrapper = function EditModalWrapper({ children, ...rest }) {
@@ -30,10 +35,10 @@ EditModal.Input = function EditModalInput({ ...rest }) {
   return <Input {...rest} />;
 };
 
-EditModal.Confirm = function EditModalConfirm({ children, ...rest }) {
-  return <Confirm {...rest}>{children}</Confirm>;
+EditModal.Confirm = function EditModalConfirm({ ...rest }) {
+  return <Confirm {...rest}>CONFIRM</Confirm>;
 };
 
-EditModal.Cancel = function EditModalCancel({ children, ...rest }) {
-  return <Cancel {...rest}>{children}</Cancel>;
+EditModal.Cancel = function EditModalCancel({ ...rest }) {
+  return <Cancel {...rest}>CANCEL</Cancel>;
 };

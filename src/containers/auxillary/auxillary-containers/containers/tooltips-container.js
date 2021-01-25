@@ -23,10 +23,10 @@ export default function TooltipsContainer({ slug }) {
   );
 
   const { firebase } = useContext(AuthContext);
-
   useEffect(() => {
     if (data.length === 0) return;
-    if (data.filter((item) => item === slug)) {
+    if (data.filter((item) => item === slug).length > 0) {
+      console.log("hi");
       setIsFavorite(true);
     }
   }, [data, slug]);

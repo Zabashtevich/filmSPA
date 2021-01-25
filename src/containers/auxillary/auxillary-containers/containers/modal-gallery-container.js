@@ -51,7 +51,11 @@ export default function ModalGalleryContainer({
         hideModal(e);
       }}
     >
-      <CSSTransition timeout={150} appear={true} in={visibleGallery}>
+      <CSSTransition
+        timeout={{ enter: 500, exit: 600 }}
+        appear={true}
+        in={visibleGallery}
+      >
         {(state) => (
           <ModalGallery.Photo
             state={state}

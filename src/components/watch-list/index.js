@@ -52,7 +52,8 @@ WatchList.CreateTitle = function WatchListCreateTitle({
     <CSSTransition
       in={!inputVisible && !confirmAnimating}
       appear={true}
-      timeout={{ enter: 300, exit: 300 }}
+      timeout={{ enter: 500, exit: 600 }}
+      mountOnEnter
       unmountOnExit
       classNames="fade"
     >
@@ -82,7 +83,7 @@ WatchList.CreateListIconsWrapper = function WatchListCreateListIconsWrapper({
     <CSSTransition
       in={visibleFirst && visibleSecond}
       appear={true}
-      timeout={{ enter: 300, exit: 300 }}
+      timeout={{ enter: 500, exit: 600 }}
       unmountOnExit
       classNames="fade"
       onEnter={onenter}
@@ -115,7 +116,7 @@ WatchList.Input = function WatchListInput({
     <CSSTransition
       in={inputVisible && !createAnimating}
       appear={true}
-      timeout={{ enter: 300, exit: 300 }}
+      timeout={{ enter: 500, exit: 600 }}
       unmountOnExit
       classNames="fade"
     >

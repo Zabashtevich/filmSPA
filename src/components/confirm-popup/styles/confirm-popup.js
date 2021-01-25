@@ -25,24 +25,7 @@ export const Container = styled.div`
   position: relative;
   outline: orange 0.3rem solid;
   font-family: ${({ theme }) => theme.fontFamily.secondary};
-  &.fade-appear {
-    opacity: 0;
-    transform: translateX(-800px);
-  }
-  &.fade-appear-active {
-    opacity: 1;
-    transform: translateX(0);
-    transition: 200ms;
-  }
-  &.fade-exit {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  &.fade-exit-active {
-    opacity: 0;
-    transition: 300ms;
-    transform: translateX(200px);
-  }
+  ${({ theme }) => theme.animations.fade};
 `;
 
 export const ContainerBackground = styled(ImWarning)`

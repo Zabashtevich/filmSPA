@@ -12,7 +12,7 @@ export default function ConfirmPopupContainer({
     <ConfirmPopup>
       <CSSTransition
         classNames="fade"
-        timeout={{ enter: 400, exit: 300 }}
+        timeout={{ enter: 500, exit: 600 }}
         appear={true}
         in={popupConfirmVisible}
       >

@@ -155,32 +155,5 @@ export const ItemContainer = styled.div`
     border: 1px solid rgba(31, 31, 31, 0.5);
     transition: 500ms;
   }
-  &.fade-enter {
-    opacity: 0;
-    transform: translateX(-200px);
-  }
-  &.fade-enter-active {
-    opacity: 1;
-    transform: translateX(0);
-    transition: 200ms;
-  }
-  &.fade-exit {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  &.fade-exit-active {
-    opacity: 0;
-    transition: 300ms;
-    transform: translateX(200px);
-  }
-  &.fade-appear {
-    opacity: 0;
-    transition: 500ms;
-    transform: translateX(-400px);
-  }
-  &.fade-appear-active {
-    opacity: 1;
-    transform: translateX(0);
-    transition: 300ms;
-  }
+  ${({ theme }) => theme.animations.fadeRight};
 `;

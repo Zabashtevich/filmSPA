@@ -26,7 +26,7 @@ AcclistCreateItem.Wrapper = function AcclistCreateItemWrapper({
     <CSSTransition
       in={visible}
       appear={true}
-      timeout={{ enter: 500, exit: 600, appear: 300 }}
+      timeout={{ enter: 500, exit: 600, appear: 500 }}
       classNames="fade"
       unmountOnExit
       mountOnEnter
@@ -45,7 +45,7 @@ AcclistCreateItem.CreateTitle = function AcclistCreateItemCreateTitle({
     <CSSTransition
       in={visible}
       appear={true}
-      timeout={{ enter: 500, exit: 600, appear: 300 }}
+      timeout={{ enter: 500, exit: 600, appear: 500 }}
       classNames="fade"
       unmountOnExit
       mountOnEnter
@@ -64,7 +64,7 @@ AcclistCreateItem.CreateIcon = function AcclistCreateItemCreateIcon({
     <CSSTransition
       in={!visible}
       appear={true}
-      timeout={{ enter: 500, exit: 600, appear: 300 }}
+      timeout={{ enter: 500, exit: 600, appear: 500 }}
       classNames="fade"
       unmountOnExit
       mountOnEnter
@@ -83,7 +83,7 @@ AcclistCreateItem.Input = function AcclistCreateItemInput({
     <CSSTransition
       in={visible}
       appear={true}
-      timeout={{ enter: 500, exit: 600, appear: 300 }}
+      timeout={{ enter: 500, exit: 600, appear: 500 }}
       classNames="fade"
       unmountOnExit
       mountOnEnter

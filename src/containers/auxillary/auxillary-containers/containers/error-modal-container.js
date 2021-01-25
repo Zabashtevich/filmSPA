@@ -9,7 +9,11 @@ export default function ErrorModalContainer({
 }) {
   return (
     <ErrorModal>
-      <CSSTransition timeout={150} appear={true} in={errorModalVisible}>
+      <CSSTransition
+        timeout={{ enter: 500, exit: 600 }}
+        appear={true}
+        in={errorModalVisible}
+      >
         {(state) => (
           <ErrorModal.Inner state={state}>
             <ErrorModal.Wrapper>

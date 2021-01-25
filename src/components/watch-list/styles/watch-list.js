@@ -15,24 +15,7 @@ export const Container = styled.div`
   left: -350%;
   font-family: ${({ theme }) => theme.fontFamily.secondary};
   background-color: white;
-  &.fade-enter {
-    opacity: 0;
-    transform: translateX(-200px);
-  }
-  &.fade-enter-active {
-    opacity: 1;
-    transform: translateX(0);
-    transition: 200ms;
-  }
-  &.fade-exit {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  &.fade-exit-active {
-    opacity: 0;
-    transition: 300ms;
-    transform: translateX(200px);
-  }
+  ${({ theme }) => theme.animations.fadeRight};
 `;
 
 export const Number = styled.div`
@@ -57,24 +40,7 @@ export const CreateTitle = styled.div`
   font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
   font-size: 0.8rem;
   user-select: none;
-  &.fade-enter {
-    opacity: 0;
-    transform: translateX(400px);
-  }
-  &.fade-enter-active {
-    opacity: 1;
-    transform: translateX(0);
-    transition: 300ms;
-  }
-  &.fade-exit {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  &.fade-exit-active {
-    opacity: 0;
-    transition: 300ms;
-    transform: translateX(-400px);
-  }
+  ${({ theme }) => theme.animations.fadeRight};
 `;
 
 export const IconsWrapper = styled.div`
@@ -99,24 +65,7 @@ export const CreateListIconsWrapper = styled.div`
   align-items: center;
   margin: 0.2rem 0;
   position: relative;
-  &.fade-enter {
-    opacity: 0;
-    transform: translateX(400px);
-  }
-  &.fade-enter-active {
-    opacity: 1;
-    transform: translateX(0);
-    transition: 300ms;
-  }
-  &.fade-exit {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  &.fade-exit-active {
-    opacity: 0;
-    transition: 300ms;
-    transform: translateX(-400px);
-  }
+  ${({ theme }) => theme.animations.fadeRight};
 `;
 
 export const CreateIcon = styled(GrAdd)`
@@ -149,24 +98,7 @@ export const Input = styled.input`
   border: 1px solid black;
   outline: none;
   user-select: none;
-  &.fade-enter {
-    opacity: 0;
-    transform: translateX(400px);
-  }
-  &.fade-enter-active {
-    opacity: 1;
-    transform: translateX(0);
-    transition: 300ms;
-  }
-  &.fade-exit {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  &.fade-exit-active {
-    opacity: 0;
-    transition: 300ms;
-    transform: translateX(-400px);
-  }
+  ${({ theme }) => theme.animations.fadeLeft};
 `;
 
 export const Confirm = styled(HiCheckCircle)`
@@ -219,34 +151,7 @@ export const ItemContainer = styled.div`
       transition: 300ms;
     }
   }
-  &.fade-enter {
-    opacity: 0;
-    transform: translateX(-200px);
-  }
-  &.fade-enter-active {
-    opacity: 1;
-    transform: translateX(0);
-    transition: 200ms;
-  }
-  &.fade-exit {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  &.fade-exit-active {
-    opacity: 0;
-    transition: 300ms;
-    transform: translateX(200px);
-  }
-  &.fade-appear {
-    opacity: 0;
-    transition: 500ms;
-    transform: translateX(-400px);
-  }
-  &.fade-appear-active {
-    opacity: 1;
-    transform: translateX(0);
-    transition: 300ms;
-  }
+  ${({ theme }) => theme.animations.fadeRight};
 `;
 
 export const Warning = styled.div`

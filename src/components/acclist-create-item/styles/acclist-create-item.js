@@ -15,7 +15,8 @@ export const Item = styled.div`
   margin-left: 1rem;
   border-radius: 1rem;
   position: relative;
-  ${({ theme }) => theme.animations.accCreateListMain};
+  border: 1px solid rgba(31, 31, 31, 0.3);
+  ${({ theme }) => theme.animations.fadeRight};
 `;
 
 export const CreateIcon = styled(BsPlusCircleFill)`
@@ -35,14 +36,14 @@ export const CreateIcon = styled(BsPlusCircleFill)`
     transition: 500ms;
   }
   cursor: pointer;
-  ${({ theme }) => theme.animations.accCreateListSecondary};
+  ${({ theme }) => theme.animations.fadeRightTransform};
 `;
 
 export const CreateTitle = styled.span`
   margin-top: 1rem;
   margin-bottom: 0.5rem;
   font-size: ${({ theme }) => theme.fontSize.normal};
-  ${({ theme }) => theme.animations.accCreateListMain};
+  ${({ theme }) => theme.animations.fadeRight};
 `;
 
 export const Input = styled.input`
@@ -50,7 +51,7 @@ export const Input = styled.input`
   border: 1px solid rgba(31, 31, 31, 0.5);
   border-radius: 1rem;
   padding: 0.2rem 0.4rem;
-  ${({ theme }) => theme.animations.accCreateListMain};
+  ${({ theme }) => theme.animations.fadeRight};
 `;
 
 export const Wrapper = styled.div`
@@ -58,7 +59,7 @@ export const Wrapper = styled.div`
   justify-content: space-around;
   width: 30%;
   margin-top: 0.5rem;
-  ${({ theme }) => theme.animations.accCreateListMain};
+  ${({ theme }) => theme.animations.fadeRight};
 `;
 
 export const Confirm = styled(HiCheckCircle)`

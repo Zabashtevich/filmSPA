@@ -21,7 +21,7 @@ export default function WatchListItemContainer({
           <CSSTransition
             key={item.id}
             classNames="fade"
-            timeout={{ enter: 200, exit: 300, appear: 300 }}
+            timeout={{ enter: 500, exit: 600, appear: 500 }}
             appear={true}
           >
             <WatchList.ItemContainer>

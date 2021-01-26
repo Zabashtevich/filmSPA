@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { AccountList } from "../../../../components";
 import ItemDescriptionPopupContainer from "./item-description-popup-container";
 
-export default function AccountListItem({ onListDelete, item, i, key }) {
+export default function AccountListItem({ onListDelete, item, i, showModal }) {
   const [deleteDesc, setDeleteDesc] = useState(false);
   const [renameDesc, setRenameDesc] = useState(false);
 
@@ -28,11 +28,14 @@ export default function AccountListItem({ onListDelete, item, i, key }) {
           <AccountList.Rename
             onMouseEnter={() => setRenameDesc(true)}
             onMouseLeave={() => setRenameDesc(false)}
+            onClick={() => showModal({ target: "rename" })}
           />
           <AccountList.Delete
             onMouseEnter={() => setDeleteDesc(true)}
             onMouseLeave={() => setDeleteDesc(false)}
-            onClick={() => onListDelete(item.id, item.name)}
+            onClick={() =>
+              showModal({ target: "delete", id: item.id, name: item.name })
+            }
           />
           <ItemDescriptionPopupContainer
             text={"Rename list"}

@@ -24,56 +24,40 @@ export default function AccountContainer() {
   const [loadingData, data] = useFirestore(user.displayName, "collection");
   const { firebase } = useContext(AuthContext);
 
-  const [popupConfirmVisible, setPopupConfirmVisible] = useState(false);
-  const [confirmMessage, setConfirmMessage] = useState("");
-  const [deletingList, setDeletingList] = useState({ id: "", delete: false });
   const [dataSubmiting, setDataSubmiting] = useState(false);
   const [creatingList, setCreatingList] = useState(false);
   const [inputValue, setInputValue] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-  const [errorModalVisible, setErrorModalVisible] = useState(false);
   const [placeholderDeelay, setPlaceholderDeelay] = useState(false);
   const [itemDeelay, setItemDeelay] = useState(false);
-  const [editModalVisible, setEditModalVisible] = useState(false);
-  const [editModalText, setEditModalText] = useState("");
+  const [modal, setModal] = useState({
+    popup: false,
+    popupMessage: "",
+    error: false,
+    errorMessage: "",
+    edit: false,
+    editMessage: "",
+    delete: false,
+    deleteID: null,
+  });
 
   useEffect(() => {
-    if (!deletingList.delete) return;
-    deleteList(firebase, deletingList.id, data, user.displayName).then(() => {
-      setDeletingList({ id: "", delete: false });
-    });
-  }, [deletingList.delete]);
-
-  const onListDelete = (id, name) => {
-    setDeletingList((prev) => ({ ...prev, id }));
-    setConfirmMessage(`Are you sure you want to delete list ${name}?`);
-    setPopupConfirmVisible(true);
-  };
-
-  const closeConfirmWindow = (value) => {
-    setDeletingList((prev) => ({ ...prev, delete: value }));
-    setConfirmMessage("");
-    setPopupConfirmVisible(false);
-  };
-
-  const showErrorModal = (errorText) => {
-    document.body.style.overflow = "hidden";
-    setErrorMessage([errorText]);
-    setErrorModalVisible(true);
-  };
-
-  const hideErrorModal = () => {
-    document.body.style.overflow = "auto";
-    setErrorMessage(null);
-    setErrorModalVisible(false);
-  };
+    if (modal.delete) {
+      deleteList(firebase, modal.deleteID, data, user.displayName).then(() => {
+        setModal({ deleteID: null, delete: false });
+      });
+    }
+  }, [modal]);
 
   const creatListToogler = (e) => {
     if (dataSubmiting) {
       return;
     } else {
       if (data.length === 5) {
-        showErrorModal("Sorry but now you can create ony 5 lists");
+        setModal((prev) => ({
+          ...prev,
+          errorMessage: "Sorry but now you can create ony 5 lists",
+          error: true,
+        }));
         return;
       }
       if (
@@ -90,10 +74,18 @@ export default function AccountContainer() {
     setCreatingList(false);
     setDataSubmiting(true);
     if (inputValue.length > 20) {
-      showErrorModal("Name can be max 20 characters long");
+      setModal((prev) => ({
+        ...prev,
+        errorMessage: "Name can be max 20 characters long",
+        error: true,
+      }));
       setDataSubmiting(false);
     } else if (inputValue.length === 0 || inputValue.length < 3) {
-      showErrorModal("Name should be at least 4 characters long");
+      setModal((prev) => ({
+        ...prev,
+        errorMessage: "Name should be at least 4 characters long",
+        error: true,
+      }));
       setDataSubmiting(false);
     } else {
       createListLogic(firebase, inputValue, data, user.displayName).then(() => {
@@ -102,28 +94,46 @@ export default function AccountContainer() {
       });
     }
   };
+
+  const showModal = ({ target, id, name }) => {
+    document.body.style.overflow = "hidden";
+    if (target === "delete") {
+      setModal((prev) => ({
+        ...prev,
+        confirm: true,
+        confirmMessage: `Are you sure you want to delete list ${name}?`,
+        deleteID: id,
+      }));
+    }
+  };
+
+  const closeModal = () => {};
+
   return (
     <>
-      {!editModalVisible &&
+      {modal.edit &&
         createPortal(
-          <EditModalContainer text={editModalText} visible={1} />,
-          document.querySelector("#root"),
-        )}
-      {errorModalVisible &&
-        createPortal(
-          <ErrorModalContainer
-            errorMessage={errorMessage}
-            closeModal={hideErrorModal}
-            errorModalVisible={errorModalVisible}
+          <EditModalContainer
+            text={"Enter new list name"}
+            visible={modal.edit}
           />,
           document.querySelector("#root"),
         )}
-      {popupConfirmVisible &&
+      {modal.error &&
+        createPortal(
+          <ErrorModalContainer
+            errorMessage={modal.errorMessage}
+            closeModal={closeModal}
+            errorModalVisible={modal.error}
+          />,
+          document.querySelector("#root"),
+        )}
+      {modal.popup &&
         createPortal(
           <ConfirmPopupContainer
-            message={confirmMessage}
-            closeConfirmWindow={closeConfirmWindow}
-            popupConfirmVisible={popupConfirmVisible}
+            message={modal.confirmMessage}
+            closeConfirmWindow={closeModal}
+            popupConfirmVisible={modal.popup}
           />,
           document.querySelector("#root"),
         )}
@@ -156,11 +166,7 @@ export default function AccountContainer() {
                     unmountOnExit
                     mountOnEnter
                   >
-                    <AccountListItem
-                      onListDelete={onListDelete}
-                      i={i}
-                      item={item}
-                    />
+                    <AccountListItem i={i} item={item} showModal={showModal} />
                   </CSSTransition>
                 );
               })}

@@ -9,6 +9,7 @@ import {
   Input,
   Confirm,
   Cancel,
+  Warning,
 } from "./styles/edit-modal";
 
 export default function EditModal({ children, ...rest }) {
@@ -24,7 +25,7 @@ EditModal.Container = function EditModalContainer({ children, ...rest }) {
 };
 
 EditModal.Title = function EditModalTitle({ children, ...rest }) {
-  return <Title {...rest}>Enter a new name</Title>;
+  return <Title {...rest}>{children}</Title>;
 };
 
 EditModal.Wrapper = function EditModalWrapper({ children, ...rest }) {
@@ -41,4 +42,8 @@ EditModal.Confirm = function EditModalConfirm({ ...rest }) {
 
 EditModal.Cancel = function EditModalCancel({ ...rest }) {
   return <Cancel {...rest}>CANCEL</Cancel>;
+};
+
+EditModal.Warning = function EditModalWarning({ children, ...rest }) {
+  return <Warning {...rest}>{children}</Warning>;
 };

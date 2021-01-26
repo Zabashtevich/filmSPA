@@ -21,7 +21,6 @@ export const Container = styled.div`
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   border: 5px solid ${({ theme }) => theme.colors.secondary};
 `;
 
@@ -29,7 +28,7 @@ export const Title = styled.div`
   color: ${({ theme }) => theme.colors.secondary};
   font-size: ${({ theme }) => theme.fontSize.huge};
   text-align: center;
-  margin-top: 3rem;
+  margin: 3rem 0;
   opacity: 0.8;
 `;
 
@@ -39,7 +38,7 @@ export const Wrapper = styled.div`
   ${({ buttons }) =>
     buttons &&
     css`
-      margin-bottom: 2rem;
+      margin: 8rem 0;
     `}
 `;
 
@@ -65,11 +64,18 @@ export const Confirm = styled.button`
   padding: 0.7rem 1rem;
   margin-left: 1rem;
   background-color: white;
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.secondary};
+  transition: 300ms;
+  &:enabled {
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.secondary};
+      color: white;
+      border: 1px solid rgba(255, 255, 255);
+    }
+  }
+  &:disabled {
+    background-color: gray;
+    cursor: not-allowed;
     color: white;
-    border: 1px solid rgba(255, 255, 255);
-    transition: 300ms;
   }
 `;
 
@@ -88,4 +94,11 @@ export const Cancel = styled.button`
     color: ${({ theme }) => theme.colors.secondary};
     transition: 300ms;
   }
+`;
+
+export const Warning = styled.span`
+  margin: 3rem 0;
+  text-align: center;
+  font-size: ${({ theme }) => theme.fontSize.normal};
+  opacity: 0.7;
 `;

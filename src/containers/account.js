@@ -34,8 +34,9 @@ export default function AccountContainer() {
     confirmMessage: "",
     error: false,
     errorMessage: "",
+    editModal: false,
     edit: false,
-    editMessage: "",
+    editID: null,
     delete: false,
     deleteID: null,
   });
@@ -45,6 +46,9 @@ export default function AccountContainer() {
       deleteList(firebase, modal.deleteID, data, user.displayName).then(() => {
         setModal({ deleteID: null, delete: false });
       });
+    }
+    if (modal.edit) {
+      //TODO rename logic
     }
   }, [modal]);
 
@@ -104,6 +108,8 @@ export default function AccountContainer() {
         confirmMessage: `Are you sure you want to delete list ${name}?`,
         deleteID: id,
       }));
+    } else if (target === "rename") {
+      setModal((prev) => ({ ...prev, editModal: true, editID: id }));
     }
   };
 
@@ -125,16 +131,28 @@ export default function AccountContainer() {
           deleteID: null,
         }));
       }
+    } else if (target === "edit") {
+      if (value) {
+        setModal((prev) => ({ ...prev, editModal: false, edit: true }));
+      } else {
+        setModal((prev) => ({
+          ...prev,
+          editModal: false,
+          edit: false,
+          editID: null,
+        }));
+      }
     }
   };
 
   return (
     <>
-      {modal.edit &&
+      {modal.editModal &&
         createPortal(
           <EditModalContainer
             text={"Enter new list name"}
             visible={modal.edit}
+            closeModal={closeModal}
           />,
           document.querySelector("#root"),
         )}

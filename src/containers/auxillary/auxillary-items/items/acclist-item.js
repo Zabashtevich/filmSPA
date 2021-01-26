@@ -28,7 +28,7 @@ export default function AccountListItem({ item, i, showModal }) {
           <AccountList.Rename
             onMouseEnter={() => setRenameDesc(true)}
             onMouseLeave={() => setRenameDesc(false)}
-            onClick={() => showModal({ target: "rename" })}
+            onClick={() => showModal({ target: "rename", id: item.id })}
           />
           <AccountList.Delete
             onMouseEnter={() => setDeleteDesc(true)}

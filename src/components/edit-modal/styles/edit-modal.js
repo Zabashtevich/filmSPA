@@ -22,6 +22,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   border: 5px solid ${({ theme }) => theme.colors.secondary};
+  ${({ theme }) => theme.animations.fadeLtR};
 `;
 
 export const Title = styled.div`

@@ -2,9 +2,8 @@ import React, { useState } from "react";
 
 import { EditModal } from "../../../../components";
 
-export default function EditModalList() {
+export default function EditModalList({ closeModal }) {
   const [listInputValue, setListInputValue] = useState("");
-
   return (
     <>
       <EditModal.Wrapper>
@@ -14,9 +13,12 @@ export default function EditModalList() {
         />
       </EditModal.Wrapper>
       <EditModal.Wrapper buttons={1}>
-        <EditModal.Cancel />
+        <EditModal.Cancel
+          onClick={() => closeModal({ target: "edit", value: false })}
+        />
         <EditModal.Confirm
           disabled={listInputValue.length < 4 || listInputValue.length > 20}
+          onClick={() => closeModal({ target: "edit", value: true })}
         />
       </EditModal.Wrapper>
     </>

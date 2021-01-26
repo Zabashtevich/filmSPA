@@ -16,9 +16,20 @@ export default function EditModal({ children, ...rest }) {
   return <Background {...rest}>{children}</Background>;
 }
 
-EditModal.Container = function EditModalContainer({ children, ...rest }) {
+EditModal.Container = function EditModalContainer({
+  children,
+  visible,
+  ...rest
+}) {
   return (
-    <CSSTransition>
+    <CSSTransition
+      in={visible}
+      appear={true}
+      classNames="fade"
+      timeout={{ enter: 500, exit: 600, appear: 500 }}
+      unmountOnExit
+      mountOnEnter
+    >
       <Container {...rest}>{children}</Container>
     </CSSTransition>
   );

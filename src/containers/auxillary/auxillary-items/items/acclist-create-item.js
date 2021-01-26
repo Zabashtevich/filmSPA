@@ -3,8 +3,9 @@ import { AcclistCreateItem } from "../../../../components";
 import ItemDescriptionPopupContainer from "./item-description-popup-container";
 
 export default function AccountCreateList({
+  visible,
   creatingList,
-  creatListToggler,
+  createToggler,
   inputValue,
   setInputValue,
   createList,
@@ -20,12 +21,12 @@ export default function AccountCreateList({
   };
 
   return (
-    <AcclistCreateItem>
+    <AcclistCreateItem visible={visible}>
       <AcclistCreateItem.CreateIcon
         onMouseEnter={() => setCreateDesc(true)}
         onMouseLeave={() => setCreateDesc(false)}
         onClick={(e) => {
-          creatListToggler(e);
+          createToggler(e);
           hideDesc();
         }}
         visible={creatingList}
@@ -57,7 +58,7 @@ export default function AccountCreateList({
           onMouseLeave={() => setDeclineDesc(false)}
           onClick={(e) => {
             hideDesc();
-            creatListToggler(e);
+            createToggler(e);
           }}
         />
         <ItemDescriptionPopupContainer

@@ -11,10 +11,22 @@ import {
   Confirm,
   Abort,
   Wrapper,
+  PlaceholderContainer,
 } from "./styles/acclist-create-item";
 
-export default function AcclistCreateItem({ children, ...rest }) {
-  return <Item {...rest}>{children}</Item>;
+export default function AcclistCreateItem({ children, visible, ...rest }) {
+  return (
+    <CSSTransition
+      in={visible}
+      classNames="fade"
+      appear={true}
+      timeout={{ enter: 500, exit: 600, appear: 500 }}
+      mountOnEnter
+      unmountOnExit
+    >
+      <Item {...rest}>{children}</Item>
+    </CSSTransition>
+  );
 }
 
 AcclistCreateItem.Wrapper = function AcclistCreateItemWrapper({
@@ -112,4 +124,26 @@ AcclistCreateItem.Placeholder = function AcclistCreateItemPlaceholder({
   ...rest
 }) {
   return <Placeholder {...rest}>{children}</Placeholder>;
+};
+
+AcclistCreateItem.PlaceholderContainer = function AcclistCreateItemPlaceholderContainer({
+  children,
+  visible,
+  setPlaceholderDeelay,
+  ...rest
+}) {
+  return (
+    <CSSTransition
+      in={visible}
+      appear={true}
+      timeout={{ enter: 500, exit: 600, appear: 300 }}
+      onEnter={() => setPlaceholderDeelay(true)}
+      onExited={() => setPlaceholderDeelay(false)}
+      classNames="fade"
+      unmountOnExit
+      mountOnEnter
+    >
+      <PlaceholderContainer {...rest}>{children}</PlaceholderContainer>
+    </CSSTransition>
+  );
 };

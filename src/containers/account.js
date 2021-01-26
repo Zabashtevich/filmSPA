@@ -167,8 +167,9 @@ export default function AccountContainer() {
               visible={!loadingData && data.length === 0 && !itemDeelay}
               setPlaceholderDeelay={setPlaceholderDeelay}
             />
-            {data.length <= 5 && (
+            {data.length <= 5 && !loadingData && (
               <AccountCreateList
+                visible={data.length <= 5 && !loadingData}
                 creatingList={creatingList}
                 createToggler={createToggler}
                 inputValue={inputValue}

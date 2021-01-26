@@ -107,6 +107,60 @@ export default {
       transform: translateX(0);
       transition: 500ms;
     }`,
+    fadeRtR: `&.fade-enter {
+      opacity: 0;
+      transform: translateX(300px);
+    }
+    &.fade-enter-active {
+      opacity: 1;
+      transform: translateX(0);
+      transition: 500ms;
+    }
+    &.fade-exit {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    &.fade-exit-active {
+      opacity: 0;
+      transition: 600ms;
+      transform: translateX(300px);
+    }
+    &.fade-appear {
+      opacity: 0;
+      transform: translateX(300px);
+    }
+    &.fade-appear-active {
+      opacity: 1;
+      transform: translateX(0);
+      transition: 500ms;
+    }`,
+    fadeRtL: `&.fade-enter {
+      opacity: 0;
+      transform: translateX(300px);
+    }
+    &.fade-enter-active {
+      opacity: 1;
+      transform: translateX(0);
+      transition: 500ms;
+    }
+    &.fade-exit {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    &.fade-exit-active {
+      opacity: 0;
+      transition: 600ms;
+      transform: translateX(-300px);
+    }
+    &.fade-appear {
+      opacity: 0;
+      transform: translateX(300px);
+    }
+    &.fade-appear-active {
+      opacity: 1;
+      transform: translateX(0);
+      transition: 500ms;
+    }`,
     fadeRightTransform: `&.fade-enter {
       left: 0;
       opacity: 0;

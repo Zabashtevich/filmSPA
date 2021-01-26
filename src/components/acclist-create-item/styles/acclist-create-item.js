@@ -6,27 +6,23 @@ import { MdCancel } from "react-icons/md";
 
 export const Item = styled.div`
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 250px;
-  height: 150px;
   background-color: white;
   margin-left: 1rem;
+  height: 150px;
   border-radius: 1rem;
-  position: relative;
   border: 1px solid rgba(31, 31, 31, 0.3);
-  ${({ theme }) => theme.animations.fadeLtL};
+  position: relative;
+  ${({ theme }) => theme.animations.fadeRtR};
 `;
 
 export const CreateIcon = styled(BsPlusCircleFill)`
   font-size: 5rem;
   fill: gray;
   opacity: 0.5;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: 250px;
+
   & > path {
     pointer-events: none;
   }
@@ -83,4 +79,17 @@ export const Placeholder = styled.div`
   text-align: center;
   color: gray;
   opacity: 0.5;
+`;
+
+export const PlaceholderContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  height: 150px;
+  background-color: white;
+  margin-left: 1rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(31, 31, 31, 0.3);
+  ${({ theme }) => theme.animations.fadeRtL};
 `;

@@ -19,6 +19,7 @@ export const Container = styled.div`
   padding-top: 2rem;
   flex-direction: row;
   border-radius: 1rem;
+  overflow: auto;
   overflow-x: scroll;
   overflow-y: hidden;
 `;

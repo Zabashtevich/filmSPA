@@ -4,7 +4,11 @@ import { CSSTransition } from "react-transition-group";
 
 import { AuthContext } from "../context/auth-context";
 import { createListLogic, deleteList } from "../utils/firebase";
-import { closeModalSwitcher } from "../utils/switcher";
+import {
+  closeModalSwitcher,
+  createListSwitcher,
+  showModalSwitcher,
+} from "../utils/switcher";
 
 import { Account, AccountList } from "./../components";
 import useAuthLisner from "./../hooks/useAuthListener";
@@ -53,18 +57,10 @@ export default function AccountContainer() {
     }
   }, [modal]);
 
-  const creatListToogler = (e) => {
+  const createToggler = (e) => {
     if (dataSubmiting) {
       return;
     } else {
-      if (data.length === 5) {
-        setModal((prev) => ({
-          ...prev,
-          errorMessage: "Sorry but now you can create ony 5 lists",
-          errorModal: true,
-        }));
-        return;
-      }
       if (
         e.target.classList.value.includes("Abort") ||
         e.target.classList.value.includes("CreateIcon")
@@ -74,46 +70,23 @@ export default function AccountContainer() {
     }
   };
 
-  const createListSubmit = (e) => {
-    if (!e.target.classList.value.includes("Confirm")) return;
-    setCreatingList(false);
-    setDataSubmiting(true);
-    if (inputValue.length > 20) {
-      setModal((prev) => ({
-        ...prev,
-        errorMessage: ["Name can be max 20 characters long"],
-        errorModal: true,
-      }));
-      setDataSubmiting(false);
-    } else if (inputValue.length === 0 || inputValue.length < 3) {
-      setModal((prev) => ({
-        ...prev,
-        errorMessage: ["Name should be at least 4 characters long"],
-        errorModal: true,
-      }));
-      setDataSubmiting(false);
-    } else {
-      createListLogic(firebase, inputValue, data, user.displayName).then(() => {
-        setInputValue("");
-        setDataSubmiting(false);
-      });
-    }
+  const createList = (event) => {
+    createListSwitcher(
+      event,
+      setCreatingList,
+      setDataSubmiting,
+      inputValue,
+      setModal,
+      firebase,
+      data,
+      user.displayName,
+      setInputValue,
+    );
   };
 
   const showModal = ({ target, id, value }) => {
     document.body.style.overflow = "hidden";
-    if (target === "delete") {
-      setModal((prev) => ({
-        ...prev,
-        confirm: true,
-        confirmMessage: `Are you sure you want to delete list ${value}?`,
-        deleteID: id,
-      }));
-    } else if (target === "rename") {
-      setModal((prev) => ({ ...prev, editModal: true, editID: id }));
-    } else if ((target = "error")) {
-      setModal((prev) => ({ ...prev, errorModal: true, errorMessage: value }));
-    }
+    showModalSwitcher(target, id, value, setModal);
   };
 
   const closeModal = ({ target, value }) => {
@@ -190,10 +163,10 @@ export default function AccountContainer() {
             {data.length <= 5 && (
               <AccountCreateList
                 creatingList={creatingList}
-                creatListToogler={creatListToogler}
+                createToggler={createToggler}
                 inputValue={inputValue}
                 setInputValue={setInputValue}
-                createListSubmit={createListSubmit}
+                createList={createList}
               />
             )}
           </AccountList>

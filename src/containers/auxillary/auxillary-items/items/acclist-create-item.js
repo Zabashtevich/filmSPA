@@ -4,10 +4,10 @@ import ItemDescriptionPopupContainer from "./item-description-popup-container";
 
 export default function AccountCreateList({
   creatingList,
-  creatListToogler,
+  creatListToggler,
   inputValue,
   setInputValue,
-  createListSubmit,
+  createList,
 }) {
   const [createDesc, setCreateDesc] = useState(false);
   const [confirmDesc, setConfirmDesc] = useState(false);
@@ -25,7 +25,7 @@ export default function AccountCreateList({
         onMouseEnter={() => setCreateDesc(true)}
         onMouseLeave={() => setCreateDesc(false)}
         onClick={(e) => {
-          creatListToogler(e);
+          creatListToggler(e);
           hideDesc();
         }}
         visible={creatingList}
@@ -47,8 +47,8 @@ export default function AccountCreateList({
         <AcclistCreateItem.Confirm
           onMouseEnter={() => setConfirmDesc(true)}
           onMouseLeave={() => setConfirmDesc(false)}
-          onClick={(e) => {
-            createListSubmit(e);
+          onClick={(event) => {
+            createList(event);
             hideDesc();
           }}
         />
@@ -57,7 +57,7 @@ export default function AccountCreateList({
           onMouseLeave={() => setDeclineDesc(false)}
           onClick={(e) => {
             hideDesc();
-            creatListToogler(e);
+            creatListToggler(e);
           }}
         />
         <ItemDescriptionPopupContainer

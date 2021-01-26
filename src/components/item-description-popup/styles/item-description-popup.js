@@ -7,12 +7,6 @@ export const Container = styled.div`
   background-color: white;
   z-index: 500;
   color: black;
-  ${({ backgroundsecondary }) =>
-    backgroundsecondary &&
-    css`
-      background-color: ${({ theme }) => theme.colors.secondary};
-      color: white;
-    `}
   border-radius: 1rem;
   white-space: nowrap;
   padding: 0.6rem 0.6rem;
@@ -52,6 +46,13 @@ export const Container = styled.div`
         transform: translateX(200px);
       `};
   }
+
+  ${({ backgroundsecondary }) =>
+    backgroundsecondary &&
+    css`
+      background-color: ${({ theme }) => theme.colors.secondary};
+      color: white;
+    `}
 `;
 
 export const Message = styled.span`

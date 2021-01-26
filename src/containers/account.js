@@ -30,8 +30,8 @@ export default function AccountContainer() {
   const [placeholderDeelay, setPlaceholderDeelay] = useState(false);
   const [itemDeelay, setItemDeelay] = useState(false);
   const [modal, setModal] = useState({
-    popup: false,
-    popupMessage: "",
+    confirm: false,
+    confirmMessage: "",
     error: false,
     errorMessage: "",
     edit: false,
@@ -107,7 +107,26 @@ export default function AccountContainer() {
     }
   };
 
-  const closeModal = () => {};
+  const closeModal = ({ target, value }) => {
+    if (target === "confirm") {
+      if (value) {
+        setModal((prev) => ({
+          ...prev,
+          confirm: false,
+          confirmMessage: "",
+          delete: true,
+        }));
+      } else {
+        setModal((prev) => ({
+          ...prev,
+          confirm: false,
+          confirmMessage: "",
+          delete: false,
+          deleteID: null,
+        }));
+      }
+    }
+  };
 
   return (
     <>
@@ -128,12 +147,12 @@ export default function AccountContainer() {
           />,
           document.querySelector("#root"),
         )}
-      {modal.popup &&
+      {modal.confirm &&
         createPortal(
           <ConfirmPopupContainer
             message={modal.confirmMessage}
             closeConfirmWindow={closeModal}
-            popupConfirmVisible={modal.popup}
+            popupConfirmVisible={modal.confirm}
           />,
           document.querySelector("#root"),
         )}

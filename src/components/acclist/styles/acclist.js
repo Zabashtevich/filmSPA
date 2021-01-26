@@ -12,12 +12,15 @@ import { CgTrash } from "react-icons/cg";
 
 export const Container = styled.div`
   width: 100%;
-  min-height: 200px;
+  min-height: 230px;
   margin-left: 3rem;
   background-color: rgb(242, 242, 242);
   display: flex;
-  align-items: center;
+  padding-top: 2rem;
   flex-direction: row;
+  border-radius: 1rem;
+  overflow-x: scroll;
+  overflow-y: hidden;
 `;
 
 export const ImgWrapper = styled.div`

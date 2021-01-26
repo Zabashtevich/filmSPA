@@ -27,13 +27,17 @@ export default function ConfirmPopupContainer({
           <ConfirmPopup.Wrapper buttonswrapper={1}>
             <ConfirmPopup.Button
               cancel={1}
-              onClick={() => closeConfirmWindow(false)}
+              onClick={() =>
+                closeConfirmWindow({ target: "confirm", value: false })
+              }
             >
               CANCEL
             </ConfirmPopup.Button>
             <ConfirmPopup.Button
               confirm={1}
-              onClick={() => closeConfirmWindow(true)}
+              onClick={() =>
+                closeConfirmWindow({ target: "confirm", value: true })
+              }
             >
               CONFIRM
             </ConfirmPopup.Button>

@@ -25,7 +25,7 @@ export const Container = styled.div`
   position: relative;
   outline: orange 0.3rem solid;
   font-family: ${({ theme }) => theme.fontFamily.secondary};
-  ${({ theme }) => theme.animations.fade};
+  ${({ theme }) => theme.animations.fadeLtR};
 `;
 
 export const ContainerBackground = styled(ImWarning)`

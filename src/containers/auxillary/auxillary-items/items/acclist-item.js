@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { AccountList } from "../../../../components";
 import ItemDescriptionPopupContainer from "./item-description-popup-container";
 
-export default function AccountListItem({ onListDelete, item, i, showModal }) {
+export default function AccountListItem({ item, i, showModal }) {
   const [deleteDesc, setDeleteDesc] = useState(false);
   const [renameDesc, setRenameDesc] = useState(false);
 

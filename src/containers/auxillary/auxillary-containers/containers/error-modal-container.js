@@ -17,7 +17,9 @@ export default function ErrorModalContainer({
         {(state) => (
           <ErrorModal.Inner state={state}>
             <ErrorModal.Wrapper>
-              <ErrorModal.CornerButton onClick={closeModal}>
+              <ErrorModal.CornerButton
+                onClick={() => closeModal({ target: "error", valueL: false })}
+              >
                 <ErrorModal.CloseIcon />
               </ErrorModal.CornerButton>
               <ErrorModal.TitleContainer>
@@ -31,7 +33,9 @@ export default function ErrorModalContainer({
                 })}
               </ErrorModal.MessageContainer>
             </ErrorModal.Wrapper>
-            <ErrorModal.CloseButton onClick={closeModal}>
+            <ErrorModal.CloseButton
+              onClick={() => closeModal({ target: "error", valueL: false })}
+            >
               CLOSE
             </ErrorModal.CloseButton>
           </ErrorModal.Inner>

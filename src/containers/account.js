@@ -32,7 +32,7 @@ export default function AccountContainer() {
   const [modal, setModal] = useState({
     confirm: false,
     confirmMessage: "",
-    error: false,
+    errorModal: false,
     errorMessage: "",
     editModal: false,
     edit: false,
@@ -60,7 +60,7 @@ export default function AccountContainer() {
         setModal((prev) => ({
           ...prev,
           errorMessage: "Sorry but now you can create ony 5 lists",
-          error: true,
+          errorModal: true,
         }));
         return;
       }
@@ -80,15 +80,15 @@ export default function AccountContainer() {
     if (inputValue.length > 20) {
       setModal((prev) => ({
         ...prev,
-        errorMessage: "Name can be max 20 characters long",
-        error: true,
+        errorMessage: ["Name can be max 20 characters long"],
+        errorModal: true,
       }));
       setDataSubmiting(false);
     } else if (inputValue.length === 0 || inputValue.length < 3) {
       setModal((prev) => ({
         ...prev,
-        errorMessage: "Name should be at least 4 characters long",
-        error: true,
+        errorMessage: ["Name should be at least 4 characters long"],
+        errorModal: true,
       }));
       setDataSubmiting(false);
     } else {
@@ -99,17 +99,19 @@ export default function AccountContainer() {
     }
   };
 
-  const showModal = ({ target, id, name }) => {
+  const showModal = ({ target, id, value }) => {
     document.body.style.overflow = "hidden";
     if (target === "delete") {
       setModal((prev) => ({
         ...prev,
         confirm: true,
-        confirmMessage: `Are you sure you want to delete list ${name}?`,
+        confirmMessage: `Are you sure you want to delete list ${value}?`,
         deleteID: id,
       }));
     } else if (target === "rename") {
       setModal((prev) => ({ ...prev, editModal: true, editID: id }));
+    } else if ((target = "error")) {
+      setModal((prev) => ({ ...prev, errorModal: true, errorMessage: value }));
     }
   };
 
@@ -142,7 +144,10 @@ export default function AccountContainer() {
           editID: null,
         }));
       }
+    } else if (target === "error") {
+      setModal((prev) => ({ ...prev, errorModal: false, errorMessage: "" }));
     }
+    document.body.style.overflow = "auto";
   };
 
   return (
@@ -151,17 +156,17 @@ export default function AccountContainer() {
         createPortal(
           <EditModalContainer
             text={"Enter new list name"}
-            visible={modal.edit}
+            visible={modal.editModal}
             closeModal={closeModal}
           />,
           document.querySelector("#root"),
         )}
-      {modal.error &&
+      {modal.errorModal &&
         createPortal(
           <ErrorModalContainer
             errorMessage={modal.errorMessage}
             closeModal={closeModal}
-            errorModalVisible={modal.error}
+            errorModalVisible={modal.errorModal}
           />,
           document.querySelector("#root"),
         )}

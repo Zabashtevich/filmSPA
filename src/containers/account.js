@@ -4,6 +4,7 @@ import { CSSTransition } from "react-transition-group";
 
 import { AuthContext } from "../context/auth-context";
 import { createListLogic, deleteList } from "../utils/firebase";
+import { closeModalSwitcher } from "../utils/switcher";
 
 import { Account, AccountList } from "./../components";
 import useAuthLisner from "./../hooks/useAuthListener";
@@ -116,37 +117,7 @@ export default function AccountContainer() {
   };
 
   const closeModal = ({ target, value }) => {
-    if (target === "confirm") {
-      if (value) {
-        setModal((prev) => ({
-          ...prev,
-          confirm: false,
-          confirmMessage: "",
-          delete: true,
-        }));
-      } else {
-        setModal((prev) => ({
-          ...prev,
-          confirm: false,
-          confirmMessage: "",
-          delete: false,
-          deleteID: null,
-        }));
-      }
-    } else if (target === "edit") {
-      if (value) {
-        setModal((prev) => ({ ...prev, editModal: false, edit: true }));
-      } else {
-        setModal((prev) => ({
-          ...prev,
-          editModal: false,
-          edit: false,
-          editID: null,
-        }));
-      }
-    } else if (target === "error") {
-      setModal((prev) => ({ ...prev, errorModal: false, errorMessage: "" }));
-    }
+    closeModalSwitcher(target, value, setModal);
     document.body.style.overflow = "auto";
   };
 

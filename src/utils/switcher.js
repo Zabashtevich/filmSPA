@@ -22,13 +22,19 @@ export const closeModalSwitcher = (target, value, setModal) => {
       break;
     case "edit":
       if (value) {
-        setModal((prev) => ({ ...prev, editModal: false, edit: true }));
+        setModal((prev) => ({
+          ...prev,
+          editModal: false,
+          edit: true,
+          editName: value,
+        }));
       } else {
         setModal((prev) => ({
           ...prev,
           editModal: false,
           edit: false,
           editID: null,
+          editName: "",
         }));
       }
       break;

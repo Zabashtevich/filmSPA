@@ -1,4 +1,3 @@
-import { ImReddit } from "react-icons/im";
 import {
   getErrorsList,
   createNewReviewInfo,
@@ -108,7 +107,6 @@ export const authLogic = async (
   setErrorsList,
   setUserRedirect,
   history,
-  file,
   isAvatarChanged,
 ) => {
   setUserLoading(true);
@@ -370,4 +368,17 @@ export const favoriteLogic = (firebase, slug, nickname, isFavorite, array) => {
       .doc(`collection`)
       .update({ favorite: [...array, slug] });
   }
+};
+
+export const renameList = (firebase, nickname, array, id, name) => {
+  const newArray = array.map((item) => {
+    if (item.id === id) return { ...item, name };
+    return item;
+  });
+
+  return firebase
+    .firestore()
+    .collection(`${nickname}`)
+    .doc(`collection`)
+    .update({ list: [...newArray] });
 };

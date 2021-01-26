@@ -3,7 +3,7 @@ import { createPortal } from "react-dom";
 import { CSSTransition } from "react-transition-group";
 
 import { AuthContext } from "../context/auth-context";
-import { createListLogic, deleteList } from "../utils/firebase";
+import { createListLogic, deleteList, renameList } from "../utils/firebase";
 import {
   closeModalSwitcher,
   createListSwitcher,
@@ -41,6 +41,7 @@ export default function AccountContainer() {
     errorMessage: "",
     editModal: false,
     edit: false,
+    editName: "",
     editID: null,
     delete: false,
     deleteID: null,
@@ -53,7 +54,13 @@ export default function AccountContainer() {
       });
     }
     if (modal.edit) {
-      //TODO rename logic
+      renameList(
+        firebase,
+        user.displayName,
+        data,
+        modal.editID,
+        modal.editName,
+      );
     }
   }, [modal]);
 

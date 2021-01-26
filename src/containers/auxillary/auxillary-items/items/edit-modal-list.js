@@ -18,7 +18,7 @@ export default function EditModalList({ closeModal }) {
         />
         <EditModal.Confirm
           disabled={listInputValue.length < 4 || listInputValue.length > 20}
-          onClick={() => closeModal({ target: "edit", value: true })}
+          onClick={() => closeModal({ target: "edit", value: listInputValue })}
         />
       </EditModal.Wrapper>
     </>

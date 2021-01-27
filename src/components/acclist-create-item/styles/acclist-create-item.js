@@ -6,11 +6,13 @@ import { MdCancel } from "react-icons/md";
 
 export const Item = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: white;
   margin-left: 1rem;
   height: 150px;
+  min-width: 250px;
   border-radius: 1rem;
   border: 1px solid rgba(31, 31, 31, 0.3);
   position: relative;
@@ -22,7 +24,7 @@ export const CreateIcon = styled(BsPlusCircleFill)`
   fill: gray;
   opacity: 0.5;
   width: 250px;
-
+  position: absolute;
   & > path {
     pointer-events: none;
   }

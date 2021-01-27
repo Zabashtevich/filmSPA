@@ -4,11 +4,9 @@ import { Link as ReactRouterLink } from "react-router-dom";
 
 export const Container = styled.div`
   max-width: 1200px;
-  width: 100%;
   margin: 2rem auto;
   display: flex;
   font-family: ${({ theme }) => theme.fontFamily.secondary};
-  height: 100vh;
 `;
 
 export const Nickname = styled.div`
@@ -21,7 +19,6 @@ export const ColumnContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 80%;
   ${({ leftcolumn }) =>
     leftcolumn &&
     css`
@@ -59,11 +56,12 @@ export const Title = styled.span`
   font-size: ${({ theme }) => theme.fontSize.large};
   font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
   text-align: center;
-  margin-bottom: 10rem;
+  margin-bottom: 4rem;
 `;
 
 export const Wrapper = styled.div`
   align-self: flex-start;
+  margin: 2rem 0;
 `;
 
 export const Subtitle = styled.span`

@@ -167,17 +167,18 @@ export default function AccountContainer() {
               visible={!loadingData && data.length === 0 && !itemDeelay}
               setPlaceholderDeelay={setPlaceholderDeelay}
             />
-            {data.length <= 5 && !loadingData && (
-              <AccountCreateList
-                visible={data.length <= 5 && !loadingData}
-                creatingList={creatingList}
-                createToggler={createToggler}
-                inputValue={inputValue}
-                setInputValue={setInputValue}
-                createList={createList}
-              />
-            )}
+            <AccountCreateList
+              visible={data.length <= 4 && !loadingData}
+              creatingList={creatingList}
+              createToggler={createToggler}
+              inputValue={inputValue}
+              setInputValue={setInputValue}
+              createList={createList}
+            />
           </AccountList>
+          <Account.Wrapper>
+            <Account.Subtitle>Your grades:</Account.Subtitle>
+          </Account.Wrapper>
         </Account.ColumnContainer>
       </Account>
     </>

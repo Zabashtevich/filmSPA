@@ -11,17 +11,15 @@ import { FiEdit3 } from "react-icons/fi";
 import { CgTrash } from "react-icons/cg";
 
 export const Container = styled.div`
-  width: 100%;
+  width: 900px;
   min-height: 230px;
   margin-left: 3rem;
   background-color: rgb(242, 242, 242);
   display: flex;
-  padding-top: 2rem;
+  padding-top: 1rem;
   flex-direction: row;
   border-radius: 1rem;
   overflow: auto;
-  overflow-x: scroll;
-  overflow-y: hidden;
 `;
 
 export const ImgWrapper = styled.div`

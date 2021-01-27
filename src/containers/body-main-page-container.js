@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 
+import { bodyFirstTab } from "./../constants/constants";
 import { BodyMain, CardList, CardListSkeleton } from "../components";
 import { range, getPaginator, getRightReleasedDate } from "../utils/utils";
 import Data from "../constants/data.json";
 import useFetch from "../hooks/useFetchData";
-import TabsMainPageCotainer from "./tabs-main-page-container";
+import TabContainer from "./tab-container";
 import {
   SliderContainer,
   PaginationMainPageContainer,
@@ -13,15 +14,15 @@ import {
 
 export default function BodyMainContainer() {
   const [sliderIndex, setSliderIndex] = useState(1);
-  const [typeTabByPopular, setTypeTabByPopularActive] = useState("day");
-  const [tabListType, setTabListTypeActive] = useState("all");
+  const [activeTabFirst, setActiveTabFirst] = useState("day");
+  const [activeTabSecondary, setActiveTabSecondary] = useState("all");
   const history = useHistory();
   const location = useLocation();
   const skeletonAmount = range(1, 20);
   const currentPage = getPaginator(location);
   const { list, loading } = useFetch(
-    `trending/${tabListType}`,
-    typeTabByPopular,
+    `trending/${activeTabFirst}`,
+    activeTabSecondary,
     [{ page: currentPage }],
   );
   return (
@@ -35,11 +36,11 @@ export default function BodyMainContainer() {
         />
       </BodyMain.Section>
       <BodyMain.Section padding="1rem" background="#fff">
-        <TabsMainPageCotainer
-          typeTabByPopular={typeTabByPopular}
-          tabListType={tabListType}
-          setTabListTypeActive={setTabListTypeActive}
-          setTypeTabByPopularActive={setTypeTabByPopularActive}
+        <TabContainer
+          title={"Popular by:"}
+          tabList={bodyFirstTab}
+          setActiveType={setActiveTabFirst}
+          activeType={activeTabFirst}
         />
         <CardList>
           {loading

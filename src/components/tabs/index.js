@@ -7,7 +7,6 @@ import {
   Category,
   Title,
   TitleInner,
-  Wrapper,
 } from "./styles/tab";
 
 export default function Tab({ children, ...rest }) {
@@ -31,8 +30,4 @@ Tab.Title = function TabTitle({ children, ...rest }) {
       <Title> {children}</Title>
     </TitleInner>
   );
-};
-
-Tab.Wrapper = function TabWrapper({ children, ...rest }) {
-  return <Wrapper {...rest}>{children}</Wrapper>;
 };

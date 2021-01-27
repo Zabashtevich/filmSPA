@@ -1,10 +1,10 @@
-export const anchorListType = [
+export const bodyFirstTab = [
   { name: "All", id: "all", side: "left" },
   { name: "Movie", id: "movie", side: "middle" },
   { name: "TV", id: "tv", side: "right" },
 ];
 
-export const anchorListPeriod = [
+export const bodSecondaryTab = [
   { name: "Day", id: "day", side: "left" },
   { name: "Week", id: "week", side: "right" },
 ];

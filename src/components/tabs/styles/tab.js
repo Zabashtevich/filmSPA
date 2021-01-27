@@ -63,8 +63,3 @@ export const TitleInner = styled.div`
     margin: 0 20px;
   }
 `;
-
-export const Wrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;

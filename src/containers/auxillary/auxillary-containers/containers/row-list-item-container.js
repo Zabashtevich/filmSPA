@@ -12,7 +12,8 @@ export default function RowListItemContainer({
   return (
     <RowListItem
       onClick={() => history.push(`/details/movie/${item.id}`)}
-      backgroundcolor={userData.find((card) => card.id === item.id)}
+      backgroundsecondary={index % 2 === 1 ? 1 : 0}
+      rated={userData.find((card) => card.id === item.id)}
     >
       <RowListItem.Number>{index + 1}</RowListItem.Number>
       <RowListItem.Wrapper>

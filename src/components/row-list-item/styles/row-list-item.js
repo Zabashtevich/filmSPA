@@ -9,6 +9,25 @@ export const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0.2rem;
+  cursor: pointer;
+  ${({ backgroundsecondary }) =>
+    backgroundsecondary &&
+    css`
+      background-color: rgba(0, 0, 0, 0.1);
+    `};
+  ${({ rated }) =>
+    rated &&
+    css`
+      background-color: ${({ theme }) => theme.colors.secondary};
+      color: white;
+      &:hover {
+        color: black;
+      }
+    `};
+  &:hover {
+    background-color: rgba(0, 255, 0, 0.05);
+    transition: 500ms;
+  }
 `;
 
 export const Number = styled.div`

@@ -3,13 +3,13 @@ import { createPortal } from "react-dom";
 import { CSSTransition } from "react-transition-group";
 
 import { AuthContext } from "../context/auth-context";
-import { createListLogic, deleteList, renameList } from "../utils/firebase";
+import { deleteList, renameList } from "../utils/firebase";
 import {
   closeModalSwitcher,
   createListSwitcher,
   showModalSwitcher,
 } from "../utils/switcher";
-
+import TabContainer from "./tab-container";
 import { Account, AccountList } from "./../components";
 import useAuthLisner from "./../hooks/useAuthListener";
 import useFirestore from "./../hooks/useFirestore";
@@ -28,7 +28,11 @@ export default function AccountContainer() {
   const { user } = useAuthLisner();
   const [loadingData, data] = useFirestore(user.displayName, "collection");
   const { firebase } = useContext(AuthContext);
-
+  const [tabFirst, setTabFirst] = useState({
+    tabList: [],
+    activeType: 0,
+    title: "Sort by list:",
+  });
   const [dataSubmiting, setDataSubmiting] = useState(false);
   const [creatingList, setCreatingList] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -47,6 +51,11 @@ export default function AccountContainer() {
     deleteID: null,
   });
 
+  useEffect(() => {
+    if (!loadingData) {
+      setTabFirst((prev) => ({ ...prev, tabList: data }));
+    }
+  }, [data]);
   useEffect(() => {
     if (modal.delete) {
       deleteList(firebase, modal.deleteID, data, user.displayName).then(() => {
@@ -179,6 +188,12 @@ export default function AccountContainer() {
           <Account.Wrapper>
             <Account.Subtitle>Your grades:</Account.Subtitle>
           </Account.Wrapper>
+          <TabContainer
+            title={tabFirst.title}
+            tabList={tabFirst.tabList}
+            setActiveType={setTabFirst}
+            activeType={tabFirst.activeType}
+          />
         </Account.ColumnContainer>
       </Account>
     </>

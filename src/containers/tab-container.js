@@ -11,11 +11,11 @@ export default function TabContainer({
     <Tab>
       <Tab.Title>{title}</Tab.Title>
       <Tab.Selector>
-        {tabList.map((item) => {
+        {tabList.map((item, i) => {
           return (
             <Tab.Anchor
-              selected={activeType === item.id ? 1 : 0}
-              onClick={() => setActiveType(item.id)}
+              selected={activeType === i ? 1 : 0}
+              onClick={() => setActiveType(i)}
               key={item.id}
               side={item.side}
             >

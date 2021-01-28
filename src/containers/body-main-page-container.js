@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 
 import { bodyFirstTab, bodySecondaryTab } from "./../constants/constants";
@@ -14,17 +14,42 @@ import {
 
 export default function BodyMainContainer() {
   const [sliderIndex, setSliderIndex] = useState(1);
-  const [activeTabFirst, setActiveTabFirst] = useState("day");
-  const [activeTabSecondary, setActiveTabSecondary] = useState("all");
+  const [tabFirst, setTabFirst] = useState({
+    title: "",
+    tabList: bodyFirstTab,
+    activeType: 0,
+    param: "movie",
+  });
+
+  const [tabSecondary, setTabSecondary] = useState({
+    title: "",
+    tabList: bodySecondaryTab,
+    activeType: 0,
+    param: "day",
+  });
+
   const history = useHistory();
   const location = useLocation();
   const skeletonAmount = range(1, 20);
   const currentPage = getPaginator(location);
   const { list, loading } = useFetch(
-    `trending/${activeTabSecondary}`,
-    activeTabFirst,
+    `trending/${tabFirst.param}`,
+    tabSecondary.param,
     [{ page: currentPage }],
   );
+
+  useEffect(() => {
+    console.log(bodyFirstTab[tabSecondary.activeType]["id"]);
+    setTabFirst((prev) => ({
+      ...prev,
+      param: bodySecondaryTab[tabFirst.activeType]["id"],
+    }));
+    setTabSecondary((prev) => ({
+      ...prev,
+      param: bodyFirstTab[tabSecondary.activeType]["id"],
+    }));
+  }, [tabFirst.param, tabSecondary.param]);
+
   return (
     <BodyMain>
       <BodyMain.Section>
@@ -39,18 +64,18 @@ export default function BodyMainContainer() {
         <BodyMain.Wrapper>
           <BodyMain.Inner>
             <TabContainer
-              title={"Popular by:"}
-              tabList={bodyFirstTab}
-              setActiveType={setActiveTabFirst}
-              activeType={activeTabFirst}
+              title={tabFirst.title}
+              tabList={tabFirst.tabList}
+              setActiveType={setTabFirst}
+              activeType={tabFirst.activeType}
             />
           </BodyMain.Inner>
           <BodyMain.Inner>
             <TabContainer
-              title={"Type:"}
-              tabList={bodySecondaryTab}
-              setActiveType={setActiveTabSecondary}
-              activeType={activeTabSecondary}
+              title={tabSecondary.title}
+              tabList={tabSecondary.tabList}
+              setActiveType={setTabSecondary}
+              activeType={tabSecondary.activeType}
             />
           </BodyMain.Inner>
         </BodyMain.Wrapper>

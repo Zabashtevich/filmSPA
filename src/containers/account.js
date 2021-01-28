@@ -9,9 +9,8 @@ import {
   createListSwitcher,
   showModalSwitcher,
 } from "../utils/switcher";
-import TabContainer from "./tab-container";
 import { Account, AccountList } from "./../components";
-import useAuthLisner from "./../hooks/useAuthListener";
+import useAuthListener from "./../hooks/useAuthListener";
 import useFirestore from "./../hooks/useFirestore";
 import {
   ConfirmPopupContainer,
@@ -25,7 +24,7 @@ import {
 } from "./auxillary/auxillary-items";
 
 export default function AccountContainer() {
-  const { user } = useAuthLisner();
+  const { user } = useAuthListener();
   const [loadingData, data] = useFirestore(user.displayName, "collection");
   const { firebase } = useContext(AuthContext);
   const [dataSubmiting, setDataSubmiting] = useState(false);

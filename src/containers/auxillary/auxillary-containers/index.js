@@ -9,3 +9,4 @@ export { default as TooltipsContainer } from "./containers/tooltips-container";
 export { default as WatchListContainer } from "./containers/watch-list-container";
 export { default as ConfirmPopupContainer } from "./containers/confirm-popup-container";
 export { default as EditModalContainer } from "./containers/edit-modal-container";
+export { default as RowListItemContainer } from "./containers/row-list-item-container";

@@ -19,6 +19,7 @@ import {
 import {
   ModalGalleryContainer,
   RelevantListContainer,
+  RowListItemContainer,
 } from "./auxillary/auxillary-containers";
 
 import { ActorRows } from "./auxillary/auxillary-items";
@@ -94,28 +95,7 @@ export default function ActorDetailsRootContainer() {
               .slice(0, itemsCount)
               .map((item, index) => {
                 console.log(item.id);
-                return (
-                  <ActorMainColumn.CreditsRow
-                    key={item.credit_id}
-                    onClick={() => history.push(`/details/movie/${item.id}`)}
-                    backgroundcolor={userData.find(
-                      (card) => card.id === item.id,
-                    )}
-                  >
-                    <ActorMainColumn.Number>{index + 1}</ActorMainColumn.Number>
-                    <ActorMainColumn.DescriptionWrapper>
-                      <ActorMainColumn.ItemName>
-                        {item.title}
-                      </ActorMainColumn.ItemName>
-                      <ActorMainColumn.Character>
-                        {item.character}
-                      </ActorMainColumn.Character>
-                    </ActorMainColumn.DescriptionWrapper>
-                    <ActorMainColumn.Date>
-                      {getRightReleasedDate(item.release_date)}
-                    </ActorMainColumn.Date>
-                  </ActorMainColumn.CreditsRow>
-                );
+                return <RowListItemContainer />;
               })}
           <LoadMore>
             <LoadMore.Wrapper>

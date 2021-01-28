@@ -223,3 +223,15 @@ function imageSizeValidate(file) {
     };
   });
 }
+
+export const checkMovieRated = (array, moviesrated) => {
+  for (let i = 0; i < array.length; i++) {
+    for (let j = 0; j < moviesrated.length; j++) {
+      if (array[i].id === moviesrated[j].id) {
+        array[i].rated = true;
+        array[i].highscore = moviesrated[j].value;
+      }
+    }
+  }
+  return array;
+};

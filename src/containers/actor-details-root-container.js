@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import {
   ActorMainColumn,
   ActorPosterDescription,
   DetailsHeader,
-  LoadMore,
   ModalGallery,
   PosterColumn,
 } from "../components";
 import useFetch from "../hooks/useFetchData";
-import { getArrayOfMovies, getKnownFor } from "../utils/utils";
+import { getKnownFor } from "../utils/utils";
 
 import {
   ModalGalleryContainer,
@@ -24,9 +23,7 @@ import useAuthListener from "../hooks/useAuthListener";
 
 export default function ActorDetailsRootContainer() {
   const location = useParams();
-  const history = useHistory();
 
-  const [itemsCount, setItemsCount] = useState(10);
   const [knownForList, setKnownForList] = useState(null);
   const [visibleGallery, setVisibleGallery] = useState(false);
 
@@ -35,6 +32,7 @@ export default function ActorDetailsRootContainer() {
   const { list, loading } = useFetch("person", location.slug, [
     { append_to_response: "credits,images" },
   ]);
+
   useEffect(() => {
     if (!list) return;
 
@@ -80,26 +78,7 @@ export default function ActorDetailsRootContainer() {
         />
         <ActorMainColumn.Title>Credits list</ActorMainColumn.Title>
         <ActorMainColumn.CreditsWrapper>
-          {!userLoading && (
-            <RowListItemContainer
-              key={item.id}
-              item={item}
-              index={index}
-              history={history}
-              userData={userData}
-            />
-          )}
-          <LoadMore>
-            <LoadMore.Wrapper>
-              {itemsCount < list.credits.cast.length ? (
-                <LoadMore.Button
-                  onClick={() => setItemsCount((prev) => prev + 10)}
-                >
-                  Load more
-                </LoadMore.Button>
-              ) : null}
-            </LoadMore.Wrapper>
-          </LoadMore>
+          <RowListItemContainer array={list.credits.cast} user={user} />
         </ActorMainColumn.CreditsWrapper>
       </ActorMainColumn>
     </DetailsHeader>

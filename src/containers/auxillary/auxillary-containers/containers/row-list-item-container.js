@@ -1,26 +1,28 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 
-import { RowListItem } from "../../../../components";
+import { LoadMore, RowListItem } from "../../../../components";
 import { getRightReleasedDate } from "./../../../../utils/utils";
 import useFirestore from "../../../../hooks/useFirestore";
 
+import { getArrayOfMovies, checkMovieRated } from "../../../../utils/utils";
+
 export default function RowListItemContainer({ array, user }) {
   const [voteVisible, setVoteVisible] = useState(false);
+  const [itemsCount, setItemsCount] = useState(10);
+  const history = useHistory();
 
   const [userLoading, userData] = useFirestore(
     user && `${user.displayName}`,
     `moviesrated`,
   );
+  console.log(userData);
 
-  useEffect(() => {
-    userData.find(({ id }) => {
-      if (id === item.id) setVoteVisible(true);
-    });
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <>
-      {getArrayOfMovies(list.credits.cast)
+      {checkMovieRated(getArrayOfMovies(array), userData)
         .slice(0, itemsCount)
         .map((item, index) => {
           return (
@@ -28,6 +30,7 @@ export default function RowListItemContainer({ array, user }) {
               onClick={() => history.push(`/details/movie/${item.id}`)}
               backgroundsecondary={index % 2 === 1 ? 1 : 0}
               rated={userData.find((card) => card.id === item.id)}
+              key={item.id}
             >
               <RowListItem.Number>{index + 1}</RowListItem.Number>
               <RowListItem.Wrapper>
@@ -37,17 +40,26 @@ export default function RowListItemContainer({ array, user }) {
               <RowListItem.Date>
                 {getRightReleasedDate(item.release_date)}
               </RowListItem.Date>
-              {voteVisible && (
+              {item.rated && (
                 <RowListItem.Vote>
                   <RowListItem.Star />
                   <RowListItem.Highscore>
-                    {userData.find((card) => card.id === item.id).value}
+                    {item.highscore}
                   </RowListItem.Highscore>
                 </RowListItem.Vote>
               )}
             </RowListItem>
           );
         })}
+      <LoadMore>
+        <LoadMore.Wrapper>
+          {itemsCount < array.length ? (
+            <LoadMore.Button onClick={() => setItemsCount((prev) => prev + 10)}>
+              Load more
+            </LoadMore.Button>
+          ) : null}
+        </LoadMore.Wrapper>
+      </LoadMore>
     </>
   );
 }

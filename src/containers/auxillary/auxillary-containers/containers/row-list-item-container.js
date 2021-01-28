@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { RowListItem } from "../../../../components";
 import { getRightReleasedDate } from "./../../../../utils/utils";
@@ -9,6 +9,14 @@ export default function RowListItemContainer({
   history,
   userData,
 }) {
+  const [voteVisible, setVoteVisible] = useState(false);
+
+  useEffect(() => {
+    userData.find(({ id }) => {
+      if (id === item.id) setVoteVisible(true);
+    });
+  }, []);
+
   return (
     <RowListItem
       onClick={() => history.push(`/details/movie/${item.id}`)}
@@ -23,6 +31,14 @@ export default function RowListItemContainer({
       <RowListItem.Date>
         {getRightReleasedDate(item.release_date)}
       </RowListItem.Date>
+      {voteVisible && (
+        <RowListItem.Vote>
+          <RowListItem.Star />
+          <RowListItem.Highscore>
+            {userData.find((card) => card.id === item.id).value}
+          </RowListItem.Highscore>
+        </RowListItem.Vote>
+      )}
     </RowListItem>
   );
 }

@@ -96,6 +96,7 @@ export default function ActorDetailsRootContainer() {
               .map((item, index) => {
                 return (
                   <RowListItemContainer
+                    key={item.id}
                     item={item}
                     index={index}
                     history={history}

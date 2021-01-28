@@ -29,6 +29,7 @@ export const Button = styled.button`
     `}
   &:hover {
     background-color: #fff;
+    color: black;
     border: 1px solid gray;
     transition: all 0.2s linear;
   }

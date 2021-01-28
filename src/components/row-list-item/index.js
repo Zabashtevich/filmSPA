@@ -7,6 +7,9 @@ import {
   Number,
   Character,
   Wrapper,
+  Star,
+  Highscore,
+  Vote,
 } from "./styles/row-list-item";
 
 export default function RowListItem({ children, ...rest }) {
@@ -31,4 +34,16 @@ RowListItem.Character = function RowListItemCharacter({ children, ...rest }) {
 
 RowListItem.Wrapper = function RowListItemWrapper({ children, ...rest }) {
   return <Wrapper {...rest}>{children}</Wrapper>;
+};
+
+RowListItem.Vote = function RowListItemVote({ children, ...rest }) {
+  return <Vote {...rest}>{children}</Vote>;
+};
+
+RowListItem.Star = function RowListItemStar({ ...rest }) {
+  return <Star {...rest} />;
+};
+
+RowListItem.Highscore = function RowListItemHighscore({ children, ...rest }) {
+  return <Highscore {...rest}>{children}</Highscore>;
 };

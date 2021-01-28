@@ -1,12 +1,13 @@
 import styled, { css } from "styled-components/macro";
 
+import { IoIosStar } from "react-icons/io";
+
 export const Container = styled.div`
   background-color: white;
   margin: 1rem 1rem;
   display: flex;
   font-family: ${({ theme }) => theme.fontFamily.secondary};
   height: 50px;
-  justify-content: space-between;
   align-items: center;
   padding: 0.2rem;
   cursor: pointer;
@@ -40,6 +41,14 @@ export const Number = styled.div`
 
 export const Wrapper = styled.div`
   width: 400px;
+  margin-left: 5rem;
+`;
+
+export const Vote = styled.div`
+  display: flex;
+  margin-right: 1rem;
+  align-items: center;
+  margin-left: auto;
 `;
 
 export const Name = styled.div`
@@ -51,3 +60,12 @@ export const Character = styled.div`
 `;
 
 export const Date = styled.div``;
+
+export const Star = styled(IoIosStar)`
+  margin-right: 0.5rem;
+  font-size: ${({ theme }) => theme.fontSize.normal};
+`;
+
+export const Highscore = styled.div`
+  font-size: ${({ theme }) => theme.fontSize.normal};
+`;

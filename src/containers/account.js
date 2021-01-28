@@ -33,6 +33,11 @@ export default function AccountContainer() {
     activeType: 0,
     title: "Sort by list:",
   });
+  const [tabSecondary, setTabSecondary] = useState({
+    tabList: [],
+    activeType: 0,
+    title: "Sort by list:",
+  });
   const [dataSubmiting, setDataSubmiting] = useState(false);
   const [creatingList, setCreatingList] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -188,12 +193,24 @@ export default function AccountContainer() {
           <Account.Wrapper>
             <Account.Subtitle>Your grades:</Account.Subtitle>
           </Account.Wrapper>
-          <TabContainer
-            title={tabFirst.title}
-            tabList={tabFirst.tabList}
-            setActiveType={setTabFirst}
-            activeType={tabFirst.activeType}
-          />
+          <Account.Wrapper tabs={1}>
+            <Account.TabInner>
+              <TabContainer
+                title={tabFirst.title}
+                tabList={tabFirst.tabList}
+                setActiveType={setTabFirst}
+                activeType={tabFirst.activeType}
+              />
+            </Account.TabInner>
+            <Account.TabInner>
+              <TabContainer
+                title={tabSecondary.title}
+                tabList={tabSecondary.tabList}
+                setActiveType={setTabSecondary}
+                activeType={tabSecondary.activeType}
+              />
+            </Account.TabInner>
+          </Account.Wrapper>
         </Account.ColumnContainer>
       </Account>
     </>

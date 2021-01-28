@@ -9,6 +9,7 @@ import {
   Title,
   Wrapper,
   Subtitle,
+  TabInner,
 } from "./styles/account";
 
 export default function Account({ children, ...rest }) {
@@ -44,4 +45,8 @@ Account.Wrapper = function AccountWrapper({ children, ...rest }) {
 
 Account.Subtitle = function AccountSubtitle({ children, ...rest }) {
   return <Subtitle {...rest}>{children}</Subtitle>;
+};
+
+Account.TabInner = function AccountTabInner({ children, ...rest }) {
+  return <TabInner {...rest}>{children}</TabInner>;
 };

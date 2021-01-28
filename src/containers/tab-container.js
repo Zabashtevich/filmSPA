@@ -18,7 +18,7 @@ export default function TabContainer({
               onClick={() =>
                 setActiveType((prev) => ({ ...prev, activeType: i }))
               }
-              key={item.id}
+              key={item.name + i}
               side={item.side}
             >
               {item.name}

@@ -22,3 +22,12 @@ export const Section = styled.section`
 export const BodyWrapper = styled.div`
   background: ${({ theme }) => theme.colors.appMainColor};
 `;
+
+export const Inner = styled.div`
+  display: flex;
+`;
+
+export const Wrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;

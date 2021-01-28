@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 
-import { bodyFirstTab } from "./../constants/constants";
+import { bodyFirstTab, bodySecondaryTab } from "./../constants/constants";
 import { BodyMain, CardList, CardListSkeleton } from "../components";
 import { range, getPaginator, getRightReleasedDate } from "../utils/utils";
 import Data from "../constants/data.json";
@@ -21,8 +21,8 @@ export default function BodyMainContainer() {
   const skeletonAmount = range(1, 20);
   const currentPage = getPaginator(location);
   const { list, loading } = useFetch(
-    `trending/${activeTabFirst}`,
-    activeTabSecondary,
+    `trending/${activeTabSecondary}`,
+    activeTabFirst,
     [{ page: currentPage }],
   );
   return (
@@ -36,12 +36,24 @@ export default function BodyMainContainer() {
         />
       </BodyMain.Section>
       <BodyMain.Section padding="1rem" background="#fff">
-        <TabContainer
-          title={"Popular by:"}
-          tabList={bodyFirstTab}
-          setActiveType={setActiveTabFirst}
-          activeType={activeTabFirst}
-        />
+        <BodyMain.Wrapper>
+          <BodyMain.Inner>
+            <TabContainer
+              title={"Popular by:"}
+              tabList={bodyFirstTab}
+              setActiveType={setActiveTabFirst}
+              activeType={activeTabFirst}
+            />
+          </BodyMain.Inner>
+          <BodyMain.Inner>
+            <TabContainer
+              title={"Type:"}
+              tabList={bodySecondaryTab}
+              setActiveType={setActiveTabSecondary}
+              activeType={activeTabSecondary}
+            />
+          </BodyMain.Inner>
+        </BodyMain.Wrapper>
         <CardList>
           {loading
             ? skeletonAmount.map((_) => <CardListSkeleton key={_} />)

@@ -14,9 +14,10 @@ export default function TabContainer({
         {tabList.map((item) => {
           return (
             <Tab.Anchor
-              selected={activeType === item.name ? 1 : 0}
-              onClick={() => setActiveType(item.name)}
-              key={item.name}
+              selected={activeType === item.id ? 1 : 0}
+              onClick={() => setActiveType(item.id)}
+              key={item.id}
+              side={item.side}
             >
               {item.name}
             </Tab.Anchor>

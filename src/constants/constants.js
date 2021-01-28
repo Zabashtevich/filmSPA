@@ -1,10 +1,10 @@
-export const bodyFirstTab = [
+export const bodySecondaryTab = [
   { name: "All", id: "all", side: "left" },
   { name: "Movie", id: "movie", side: "middle" },
   { name: "TV", id: "tv", side: "right" },
 ];
 
-export const bodSecondaryTab = [
+export const bodyFirstTab = [
   { name: "Day", id: "day", side: "left" },
   { name: "Week", id: "week", side: "right" },
 ];

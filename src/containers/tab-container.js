@@ -15,7 +15,9 @@ export default function TabContainer({
           return (
             <Tab.Anchor
               selected={activeType === i ? 1 : 0}
-              onClick={() => setActiveType(i)}
+              onClick={() =>
+                setActiveType((prev) => ({ ...prev, activeType: i }))
+              }
               key={item.id}
               side={item.side}
             >

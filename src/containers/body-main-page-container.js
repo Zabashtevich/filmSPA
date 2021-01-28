@@ -15,17 +15,17 @@ import {
 export default function BodyMainContainer() {
   const [sliderIndex, setSliderIndex] = useState(1);
   const [tabFirst, setTabFirst] = useState({
-    title: "",
+    title: "Sort by:",
     tabList: bodyFirstTab,
     activeType: 0,
-    param: "movie",
+    param: "day",
   });
 
   const [tabSecondary, setTabSecondary] = useState({
-    title: "",
+    title: "List type:",
     tabList: bodySecondaryTab,
     activeType: 0,
-    param: "day",
+    param: "all",
   });
 
   const history = useHistory();
@@ -33,22 +33,21 @@ export default function BodyMainContainer() {
   const skeletonAmount = range(1, 20);
   const currentPage = getPaginator(location);
   const { list, loading } = useFetch(
-    `trending/${tabFirst.param}`,
-    tabSecondary.param,
+    `trending/${tabSecondary.param}`,
+    tabFirst.param,
     [{ page: currentPage }],
   );
 
   useEffect(() => {
-    console.log(bodyFirstTab[tabSecondary.activeType]["id"]);
     setTabFirst((prev) => ({
       ...prev,
-      param: bodySecondaryTab[tabFirst.activeType]["id"],
+      param: bodyFirstTab[tabFirst.activeType]["id"],
     }));
     setTabSecondary((prev) => ({
       ...prev,
-      param: bodyFirstTab[tabSecondary.activeType]["id"],
+      param: bodySecondaryTab[tabSecondary.activeType]["id"],
     }));
-  }, [tabFirst.param, tabSecondary.param]);
+  }, [tabFirst.activeType, tabSecondary.activeType]);
 
   return (
     <BodyMain>

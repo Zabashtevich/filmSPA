@@ -10,11 +10,7 @@ import {
   PosterColumn,
 } from "../components";
 import useFetch from "../hooks/useFetchData";
-import {
-  getArrayOfMovies,
-  getKnownFor,
-  getRightReleasedDate,
-} from "../utils/utils";
+import { getArrayOfMovies, getKnownFor } from "../utils/utils";
 
 import {
   ModalGalleryContainer,
@@ -24,7 +20,6 @@ import {
 
 import { ActorRows } from "./auxillary/auxillary-items";
 
-import useFirestore from "../hooks/useFirestore";
 import useAuthListener from "../hooks/useAuthListener";
 
 export default function ActorDetailsRootContainer() {
@@ -36,11 +31,6 @@ export default function ActorDetailsRootContainer() {
   const [visibleGallery, setVisibleGallery] = useState(false);
 
   const { user } = useAuthListener();
-
-  const [userLoading, userData] = useFirestore(
-    user && `${user.displayName}`,
-    `moviesrated`,
-  );
 
   const { list, loading } = useFetch("person", location.slug, [
     { append_to_response: "credits,images" },
@@ -90,20 +80,15 @@ export default function ActorDetailsRootContainer() {
         />
         <ActorMainColumn.Title>Credits list</ActorMainColumn.Title>
         <ActorMainColumn.CreditsWrapper>
-          {!userLoading &&
-            getArrayOfMovies(list.credits.cast)
-              .slice(0, itemsCount)
-              .map((item, index) => {
-                return (
-                  <RowListItemContainer
-                    key={item.id}
-                    item={item}
-                    index={index}
-                    history={history}
-                    userData={userData}
-                  />
-                );
-              })}
+          {!userLoading && (
+            <RowListItemContainer
+              key={item.id}
+              item={item}
+              index={index}
+              history={history}
+              userData={userData}
+            />
+          )}
           <LoadMore>
             <LoadMore.Wrapper>
               {itemsCount < list.credits.cast.length ? (

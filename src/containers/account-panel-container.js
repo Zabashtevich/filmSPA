@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { AccountPanel } from "../components";
 import TabContainer from "./tab-container";
+import { RowListItemContainer } from "./auxillary/auxillary-containers";
 import useFirestore from "./../hooks/useFirestore";
 import useAuthListener from "./../hooks/useAuthListener";
 
@@ -14,10 +15,17 @@ export default function AccountPanelContainer() {
     title: "List type:",
   });
   const [tabSecondary, setTabSecondary] = useState({
-    tabList: [{ name: "date" }, { name: "rating" }, { name: "site rating" }],
+    tabList: [{ name: "date" }, { name: "rating" }],
     activeType: 0,
     title: "Sort by:",
   });
+
+  const [loadingContent, content] = useFirestore(
+    user.displayName,
+    "moviesrated",
+  );
+
+  console.log(content);
 
   useEffect(() => {
     if (!loadingData) {
@@ -48,6 +56,7 @@ export default function AccountPanelContainer() {
           />
         </AccountPanel.Inner>
       </AccountPanel.Wrapper>
+      <AccountPanel.CardContainer></AccountPanel.CardContainer>
     </AccountPanel>
   );
 }

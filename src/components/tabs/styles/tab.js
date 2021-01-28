@@ -6,11 +6,12 @@ export const Container = styled.div`
   flex-direction: row;
 `;
 
-export const Category = styled.h3`
+export const Category = styled.span`
   display: block;
   align-self: center;
   font-size: ${({ theme }) => theme.fontSize.normal};
   user-select: none;
+  white-space: nowrap;
 `;
 
 export const Selector = styled.div`

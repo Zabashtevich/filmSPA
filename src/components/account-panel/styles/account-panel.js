@@ -20,4 +20,9 @@ export const Inner = styled.div`
   display: flex;
 `;
 
-export const CardContainer = styled.div``;
+export const CardContainer = styled.div`
+  min-height: 500px;
+  min-width: 1000px;
+  background-color: black;
+  margin-top: 2rem;
+`;

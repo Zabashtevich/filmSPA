@@ -34,3 +34,4 @@ export { default as AccountList } from "./acclist";
 export { default as AcclistCreateItem } from "./acclist-create-item";
 export { default as EditModal } from "./edit-modal";
 export { default as AccountPanel } from "./account-panel";
+export { default as RowListItem } from "./row-list-item";

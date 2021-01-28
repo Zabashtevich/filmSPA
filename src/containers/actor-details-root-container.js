@@ -90,13 +90,6 @@ export default function ActorDetailsRootContainer() {
         />
         <ActorMainColumn.Title>Credits list</ActorMainColumn.Title>
         <ActorMainColumn.CreditsWrapper>
-          {!userLoading &&
-            getArrayOfMovies(list.credits.cast)
-              .slice(0, itemsCount)
-              .map((item, index) => {
-                console.log(item.id);
-                return <RowListItemContainer />;
-              })}
           <LoadMore>
             <LoadMore.Wrapper>
               {itemsCount < list.credits.cast.length ? (

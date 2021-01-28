@@ -1,20 +1,27 @@
 import React from "react";
 
-export default function RowListItemContainer() {
+import { RowListItem } from "../../../../components";
+import { getRightReleasedDate } from "./../../../../utils/utils";
+
+export default function RowListItemContainer({
+  item,
+  index,
+  history,
+  userData,
+}) {
   return (
-    <ActorMainColumn.CreditsRow
-      key={item.credit_id}
+    <RowListItem
       onClick={() => history.push(`/details/movie/${item.id}`)}
       backgroundcolor={userData.find((card) => card.id === item.id)}
     >
-      <ActorMainColumn.Number>{index + 1}</ActorMainColumn.Number>
-      <ActorMainColumn.DescriptionWrapper>
-        <ActorMainColumn.ItemName>{item.title}</ActorMainColumn.ItemName>
-        <ActorMainColumn.Character>{item.character}</ActorMainColumn.Character>
-      </ActorMainColumn.DescriptionWrapper>
-      <ActorMainColumn.Date>
+      <RowListItem.Number>{index + 1}</RowListItem.Number>
+      <RowListItem.Wrapper>
+        <RowListItem.Name>{item.title}</RowListItem.Name>
+        <RowListItem.Character>{item.character}</RowListItem.Character>
+      </RowListItem.Wrapper>
+      <RowListItem.Date>
         {getRightReleasedDate(item.release_date)}
-      </ActorMainColumn.Date>
-    </ActorMainColumn.CreditsRow>
+      </RowListItem.Date>
+    </RowListItem>
   );
 }

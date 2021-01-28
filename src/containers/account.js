@@ -28,16 +28,6 @@ export default function AccountContainer() {
   const { user } = useAuthLisner();
   const [loadingData, data] = useFirestore(user.displayName, "collection");
   const { firebase } = useContext(AuthContext);
-  const [tabFirst, setTabFirst] = useState({
-    tabList: [],
-    activeType: 0,
-    title: "Sort by list:",
-  });
-  const [tabSecondary, setTabSecondary] = useState({
-    tabList: [],
-    activeType: 0,
-    title: "Sort by list:",
-  });
   const [dataSubmiting, setDataSubmiting] = useState(false);
   const [creatingList, setCreatingList] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -55,15 +45,6 @@ export default function AccountContainer() {
     delete: false,
     deleteID: null,
   });
-
-  useEffect(() => {
-    if (!loadingData) {
-      setTabFirst((prev) => ({
-        ...prev,
-        tabList: [{ name: "voices" }, ...data],
-      }));
-    }
-  }, [loadingData]);
 
   useEffect(() => {
     if (modal.delete) {
@@ -196,24 +177,6 @@ export default function AccountContainer() {
           </AccountList>
           <Account.Wrapper>
             <Account.Subtitle>Your grades:</Account.Subtitle>
-          </Account.Wrapper>
-          <Account.Wrapper tabs={1}>
-            <Account.TabInner>
-              <TabContainer
-                title={tabFirst.title}
-                tabList={tabFirst.tabList}
-                setActiveType={setTabFirst}
-                activeType={tabFirst.activeType}
-              />
-            </Account.TabInner>
-            <Account.TabInner>
-              <TabContainer
-                title={tabSecondary.title}
-                tabList={tabSecondary.tabList}
-                setActiveType={setTabSecondary}
-                activeType={tabSecondary.activeType}
-              />
-            </Account.TabInner>
           </Account.Wrapper>
         </Account.ColumnContainer>
       </Account>

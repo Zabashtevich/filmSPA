@@ -62,14 +62,6 @@ export const Title = styled.span`
 export const Wrapper = styled.div`
   align-self: flex-start;
   margin: 2rem 0;
-  ${({ tabs }) =>
-    tabs &&
-    css`
-      margin: 2rem;
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-    `}
 `;
 
 export const Subtitle = styled.span`

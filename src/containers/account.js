@@ -58,9 +58,13 @@ export default function AccountContainer() {
 
   useEffect(() => {
     if (!loadingData) {
-      setTabFirst((prev) => ({ ...prev, tabList: data }));
+      setTabFirst((prev) => ({
+        ...prev,
+        tabList: [{ name: "voices" }, ...data],
+      }));
     }
-  }, [data]);
+  }, [loadingData]);
+
   useEffect(() => {
     if (modal.delete) {
       deleteList(firebase, modal.deleteID, data, user.displayName).then(() => {

@@ -19,7 +19,9 @@ export default function TabContainer({
                 setActiveType((prev) => ({ ...prev, activeType: i }))
               }
               key={item.name + i}
-              side={item.side}
+              side={
+                (i === 0 && "left") || (i === tabList.length - 1 && "right")
+              }
             >
               {item.name}
             </Tab.Anchor>

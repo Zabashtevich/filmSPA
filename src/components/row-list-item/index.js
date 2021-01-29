@@ -10,6 +10,9 @@ import {
   Star,
   Highscore,
   Vote,
+  Icon,
+  Popup,
+  Item,
 } from "./styles/row-list-item";
 
 export default function RowListItem({ children, ...rest }) {
@@ -42,6 +45,22 @@ RowListItem.Vote = function RowListItemVote({ children, ...rest }) {
 
 RowListItem.Star = function RowListItemStar({ ...rest }) {
   return <Star {...rest} />;
+};
+
+RowListItem.Highscore = function RowListItemHighscore({ children, ...rest }) {
+  return <Highscore {...rest}>{children}</Highscore>;
+};
+
+RowListItem.Icon = function RowListItemIcon({ ...rest }) {
+  return <Icon {...rest} />;
+};
+
+RowListItem.Popup = function RowListItemPopup({ children, ...rest }) {
+  return <Popup {...rest}>{children}</Popup>;
+};
+
+RowListItem.Item = function RowListItemItem({ children, ...rest }) {
+  return <Item {...rest}>{children}</Item>;
 };
 
 RowListItem.Highscore = function RowListItemHighscore({ children, ...rest }) {

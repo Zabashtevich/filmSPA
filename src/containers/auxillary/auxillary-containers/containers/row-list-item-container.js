@@ -45,6 +45,7 @@ export default function RowListItemContainer({ array, user }) {
                   <RowListItem.Highscore>
                     {item.highscore}
                   </RowListItem.Highscore>
+                  <RowListItem.Icon />
                 </RowListItem.Vote>
               )}
             </RowListItem>

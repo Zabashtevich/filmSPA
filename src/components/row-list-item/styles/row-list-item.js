@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components/macro";
 
 import { IoIosStar } from "react-icons/io";
+import { VscTriangleDown } from "react-icons/vsc";
 
 export const Number = styled.div`
   font-size: ${({ theme }) => theme.fontSize.small};
@@ -22,7 +23,8 @@ export const Vote = styled.div`
   margin-left: auto;
   background-color: ${({ theme }) => theme.colors.secondary};
   color: white;
-  padding: 0.2rem 0.4rem;
+  padding: 0.3rem 0.5rem;
+  position: relative;
 `;
 
 export const Name = styled.div`
@@ -36,13 +38,23 @@ export const Character = styled.div`
 export const Date = styled.div``;
 
 export const Star = styled(IoIosStar)`
-  margin-right: 0.5rem;
   font-size: ${({ theme }) => theme.fontSize.normal};
+  padding: 0.1rem 0.2rem;
 `;
 
 export const Highscore = styled.div`
   font-size: ${({ theme }) => theme.fontSize.normal};
+  padding: 0.1rem 0.2rem;
 `;
+
+export const Icon = styled(VscTriangleDown)`
+  font-size: ${({ theme }) => theme.fontSize.normal};
+  padding: 0.1rem 0.2rem;
+`;
+
+export const Popup = styled.div``;
+
+export const Item = styled.div``;
 
 export const Container = styled.div`
   background-color: white;

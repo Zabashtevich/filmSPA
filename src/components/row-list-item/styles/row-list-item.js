@@ -4,15 +4,14 @@ import { IoIosStar, IoIosStarOutline } from "react-icons/io";
 import { VscTriangleDown } from "react-icons/vsc";
 
 export const Number = styled.div`
-  ${({ votenumber }) =>
-    votenumber &&
-    css`
-      font-size: ${({ theme }) => theme.fontSize.small};
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 50px;
-    `};
+  font-size: ${({ theme }) => theme.fontSize.small};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+`;
+
+export const PopupNumber = styled.div`
   width: 20px;
   font-size: ${({ theme }) => theme.fontSize.small};
   text-align: center;
@@ -53,6 +52,9 @@ export const Star = styled(IoIosStar)`
       font-size: ${({ theme }) => theme.fontSize.normal};
       padding: 0.1rem 0.2rem;
     `};
+  & > * {
+    pointer-events: none;
+  }
 `;
 
 export const EmptyStar = styled(IoIosStarOutline)`
@@ -70,9 +72,12 @@ export const Icon = styled(VscTriangleDown)`
 `;
 
 export const Popup = styled.div`
+  top: 100%;
   background: white;
   border: 1px solid rgba(0, 0, 0, 0.2);
   padding-top: 2rem;
+  position: absolute;
+  color: black;
 `;
 
 export const Item = styled.div`

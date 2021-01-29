@@ -9,7 +9,7 @@ import { getArrayOfMovies, checkMovieRated } from "../../../../utils/utils";
 import { RowListPopup } from "../../auxillary-items";
 
 export default function RowListItemContainer({ array, user }) {
-  const [voteVisible, setVoteVisible] = useState(false);
+  const [popupVisible, setPopupVisible] = useState(false);
   const [itemsCount, setItemsCount] = useState(10);
   const history = useHistory();
 
@@ -18,7 +18,17 @@ export default function RowListItemContainer({ array, user }) {
     `moviesrated`,
   );
 
-  useEffect(() => {}, []);
+  const handleRedirect = (event, slug) => {
+    if (
+      event.target.classList.value.includes("Number") ||
+      event.target.classList.value.includes("Container") ||
+      event.target.classList.value.includes("Name") ||
+      event.target.classList.value.includes("Character") ||
+      event.target.classList.value.includes("Date")
+    ) {
+      history.push(`/details/movie/${slug}`);
+    }
+  };
 
   return (
     <>
@@ -27,14 +37,12 @@ export default function RowListItemContainer({ array, user }) {
         .map((item, index) => {
           return (
             <RowListItem
-              onClick={() => history.push(`/details/movie/${item.id}`)}
+              onClick={(e) => handleRedirect(e, item.id)}
               backgroundsecondary={index % 2 === 1 ? 1 : 0}
               rated={userData.find((card) => card.id === item.id)}
               key={item.id}
             >
-              <RowListItem.Number votenumber={1}>
-                {index + 1}
-              </RowListItem.Number>
+              <RowListItem.Number>{index + 1}</RowListItem.Number>
               <RowListItem.Wrapper>
                 <RowListItem.Name>{item.title}</RowListItem.Name>
                 <RowListItem.Character>{item.character}</RowListItem.Character>
@@ -43,19 +51,21 @@ export default function RowListItemContainer({ array, user }) {
                 {getRightReleasedDate(item.release_date)}
               </RowListItem.Date>
               {item.rated && (
-                <RowListItem.Vote>
+                <RowListItem.Vote
+                  onClick={() => setPopupVisible((prev) => !prev)}
+                >
                   <RowListItem.Star votestar={1} />
                   <RowListItem.Highscore>
                     {item.highscore}
                   </RowListItem.Highscore>
                   <RowListItem.Icon />
+                  {popupVisible && <RowListPopup />}
                 </RowListItem.Vote>
               )}
             </RowListItem>
           );
         })}
       <LoadMore>
-        <RowListPopup />
         <LoadMore.Wrapper>
           {itemsCount < array.length ? (
             <LoadMore.Button onClick={() => setItemsCount((prev) => prev + 10)}>

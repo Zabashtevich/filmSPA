@@ -15,6 +15,7 @@ import {
   Popup,
   Item,
   Inner,
+  PopupNumber,
 } from "./styles/row-list-item";
 
 export default function RowListItem({ children, ...rest }) {
@@ -31,6 +32,13 @@ RowListItem.Name = function RowListItemName({ children, ...rest }) {
 
 RowListItem.Number = function RowListItemNumber({ children, ...rest }) {
   return <Number {...rest}>{children}</Number>;
+};
+
+RowListItem.PopupNumber = function RowListItemPopupNumber({
+  children,
+  ...rest
+}) {
+  return <PopupNumber {...rest}>{children}</PopupNumber>;
 };
 
 RowListItem.Character = function RowListItemCharacter({ children, ...rest }) {

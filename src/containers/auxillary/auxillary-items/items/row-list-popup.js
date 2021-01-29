@@ -10,7 +10,7 @@ export default function RowListPopup() {
         .map((_, index) => {
           return (
             <RowListItem.Item key={index}>
-              <RowListItem.Number>{index + 1}</RowListItem.Number>
+              <RowListItem.PopupNumber>{index + 1}</RowListItem.PopupNumber>
               {Array(10)
                 .fill(1)
                 .map((_, i) => {

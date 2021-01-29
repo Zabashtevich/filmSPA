@@ -16,7 +16,6 @@ export default function RowListItemContainer({ array, user }) {
     user && `${user.displayName}`,
     `moviesrated`,
   );
-  console.log(userData);
 
   useEffect(() => {}, []);
 

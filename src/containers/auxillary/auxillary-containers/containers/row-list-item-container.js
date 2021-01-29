@@ -6,6 +6,7 @@ import { getRightReleasedDate } from "./../../../../utils/utils";
 import useFirestore from "../../../../hooks/useFirestore";
 
 import { getArrayOfMovies, checkMovieRated } from "../../../../utils/utils";
+import { RowListPopup } from "../../auxillary-items";
 
 export default function RowListItemContainer({ array, user }) {
   const [voteVisible, setVoteVisible] = useState(false);
@@ -31,7 +32,9 @@ export default function RowListItemContainer({ array, user }) {
               rated={userData.find((card) => card.id === item.id)}
               key={item.id}
             >
-              <RowListItem.Number>{index + 1}</RowListItem.Number>
+              <RowListItem.Number votenumber={1}>
+                {index + 1}
+              </RowListItem.Number>
               <RowListItem.Wrapper>
                 <RowListItem.Name>{item.title}</RowListItem.Name>
                 <RowListItem.Character>{item.character}</RowListItem.Character>
@@ -41,7 +44,7 @@ export default function RowListItemContainer({ array, user }) {
               </RowListItem.Date>
               {item.rated && (
                 <RowListItem.Vote>
-                  <RowListItem.Star />
+                  <RowListItem.Star votestar={1} />
                   <RowListItem.Highscore>
                     {item.highscore}
                   </RowListItem.Highscore>
@@ -52,6 +55,7 @@ export default function RowListItemContainer({ array, user }) {
           );
         })}
       <LoadMore>
+        <RowListPopup />
         <LoadMore.Wrapper>
           {itemsCount < array.length ? (
             <LoadMore.Button onClick={() => setItemsCount((prev) => prev + 10)}>

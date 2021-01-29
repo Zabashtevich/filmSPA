@@ -8,11 +8,13 @@ import {
   Character,
   Wrapper,
   Star,
+  EmptyStar,
   Highscore,
   Vote,
   Icon,
   Popup,
   Item,
+  Inner,
 } from "./styles/row-list-item";
 
 export default function RowListItem({ children, ...rest }) {
@@ -43,6 +45,10 @@ RowListItem.Vote = function RowListItemVote({ children, ...rest }) {
   return <Vote {...rest}>{children}</Vote>;
 };
 
+RowListItem.EmptyStar = function RowListItemEmptyStar({ ...rest }) {
+  return <EmptyStar {...rest} />;
+};
+
 RowListItem.Star = function RowListItemStar({ ...rest }) {
   return <Star {...rest} />;
 };
@@ -65,4 +71,8 @@ RowListItem.Item = function RowListItemItem({ children, ...rest }) {
 
 RowListItem.Highscore = function RowListItemHighscore({ children, ...rest }) {
   return <Highscore {...rest}>{children}</Highscore>;
+};
+
+RowListItem.Inner = function RowListItemInner({ children, ...rest }) {
+  return <Inner {...rest}>{children}</Inner>;
 };

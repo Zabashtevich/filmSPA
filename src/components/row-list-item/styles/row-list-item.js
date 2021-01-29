@@ -1,14 +1,22 @@
 import styled, { css } from "styled-components/macro";
 
-import { IoIosStar } from "react-icons/io";
+import { IoIosStar, IoIosStarOutline } from "react-icons/io";
 import { VscTriangleDown } from "react-icons/vsc";
 
 export const Number = styled.div`
+  ${({ votenumber }) =>
+    votenumber &&
+    css`
+      font-size: ${({ theme }) => theme.fontSize.small};
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 50px;
+    `};
+  width: 20px;
   font-size: ${({ theme }) => theme.fontSize.small};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50px;
+  text-align: center;
+  margin-right: 0.5rem;
 `;
 
 export const Wrapper = styled.div`
@@ -38,8 +46,17 @@ export const Character = styled.div`
 export const Date = styled.div``;
 
 export const Star = styled(IoIosStar)`
-  font-size: ${({ theme }) => theme.fontSize.normal};
-  padding: 0.1rem 0.2rem;
+  font-size: ${({ theme }) => theme.fontSize.small};
+  ${({ votestar }) =>
+    votestar &&
+    css`
+      font-size: ${({ theme }) => theme.fontSize.normal};
+      padding: 0.1rem 0.2rem;
+    `};
+`;
+
+export const EmptyStar = styled(IoIosStarOutline)`
+  font-size: ${({ theme }) => theme.fontSize.small};
 `;
 
 export const Highscore = styled.div`
@@ -52,11 +69,24 @@ export const Icon = styled(VscTriangleDown)`
   padding: 0.1rem 0.2rem;
 `;
 
-export const Popup = styled.div``;
+export const Popup = styled.div`
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding-top: 2rem;
+`;
 
-export const Item = styled.div``;
+export const Item = styled.div`
+  display: flex;
+  cursor: pointer;
+  padding: 0.4rem 0.6rem;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    transition: 500ms;
+  }
+`;
 
 export const Container = styled.div`
+  cursor: pointer;
   background-color: white;
   margin: 1rem 1rem;
   display: flex;
@@ -88,4 +118,8 @@ export const Container = styled.div`
       transition: 500ms;
     }
   }
+`;
+
+export const Inner = styled.div`
+  display: flex;
 `;

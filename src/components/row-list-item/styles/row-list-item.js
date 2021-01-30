@@ -1,7 +1,6 @@
 import styled, { css } from "styled-components/macro";
 
 import { IoIosStar } from "react-icons/io";
-import { VscTriangleDown } from "react-icons/vsc";
 
 export const Numerator = styled.div`
   font-size: ${({ theme }) => theme.fontSize.small};
@@ -19,17 +18,6 @@ export const Wrapper = styled.div`
   margin-left: 5rem;
 `;
 
-export const Vote = styled.div`
-  display: flex;
-  margin-right: 1rem;
-  align-items: center;
-  margin-left: auto;
-  background-color: ${({ theme }) => theme.colors.secondary};
-  color: white;
-  padding: 0.3rem 0.5rem;
-  position: relative;
-`;
-
 export const Name = styled.div`
   margin: 0.4rem;
 `;
@@ -42,19 +30,6 @@ export const Date = styled.div``;
 
 export const Star = styled(IoIosStar)`
   font-size: ${({ theme }) => theme.fontSize.small};
-  & > * {
-    pointer-events: none;
-  }
-`;
-
-export const Highscore = styled.div`
-  font-size: ${({ theme }) => theme.fontSize.normal};
-  padding: 0.1rem 0.2rem;
-`;
-
-export const Icon = styled(VscTriangleDown)`
-  font-size: ${({ theme }) => theme.fontSize.normal};
-  padding: 0.1rem 0.2rem;
   & > * {
     pointer-events: none;
   }
@@ -87,10 +62,5 @@ export const Container = styled.div`
     background-color: ${({ theme }) => theme.colors.secondary};
     color: white;
     transition: 500ms;
-    ${Vote} {
-      background-color: white;
-      color: black;
-      transition: 500ms;
-    }
   }
 `;

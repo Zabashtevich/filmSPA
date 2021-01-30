@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import { LoadMore, RowListItem } from "../../../../components";
@@ -6,10 +6,9 @@ import { getRightReleasedDate } from "./../../../../utils/utils";
 import useFirestore from "../../../../hooks/useFirestore";
 
 import { getArrayOfMovies, checkMovieRated } from "../../../../utils/utils";
-import { RowListPopup } from "../../auxillary-items";
+import VotePopupContainer from "./vote-popup-container";
 
 export default function RowListItemContainer({ array, user }) {
-  const [popupVisible, setPopupVisible] = useState(false);
   const [itemsCount, setItemsCount] = useState(10);
   const history = useHistory();
 
@@ -20,7 +19,7 @@ export default function RowListItemContainer({ array, user }) {
 
   const handleRedirect = (event, slug) => {
     if (
-      event.target.classList.value.includes("Number") ||
+      event.target.classList.value.includes("Numerator") ||
       event.target.classList.value.includes("Container") ||
       event.target.classList.value.includes("Name") ||
       event.target.classList.value.includes("Character") ||
@@ -42,7 +41,7 @@ export default function RowListItemContainer({ array, user }) {
               rated={userData.find((card) => card.id === item.id)}
               key={item.id}
             >
-              <RowListItem.Number>{index + 1}</RowListItem.Number>
+              <RowListItem.Numerator>{index + 1}</RowListItem.Numerator>
               <RowListItem.Wrapper>
                 <RowListItem.Name>{item.title}</RowListItem.Name>
                 <RowListItem.Character>{item.character}</RowListItem.Character>
@@ -50,18 +49,7 @@ export default function RowListItemContainer({ array, user }) {
               <RowListItem.Date>
                 {getRightReleasedDate(item.release_date)}
               </RowListItem.Date>
-              {item.rated && (
-                <RowListItem.Vote
-                  onClick={() => setPopupVisible((prev) => !prev)}
-                >
-                  <RowListItem.Star votestar={1} />
-                  <RowListItem.Highscore>
-                    {item.highscore}
-                  </RowListItem.Highscore>
-                  <RowListItem.Icon />
-                  {popupVisible && <RowListPopup />}
-                </RowListItem.Vote>
-              )}
+              {item.rated && <VotePopupContainer item={item} index={index} />}
             </RowListItem>
           );
         })}

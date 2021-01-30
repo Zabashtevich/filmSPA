@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 import { LoadMore, RowListItem } from "../../../../components";
 import { getRightReleasedDate } from "./../../../../utils/utils";
@@ -30,27 +31,38 @@ export default function RowListItemContainer({ array, user }) {
   };
 
   return (
-    <>
+    <TransitionGroup>
       {checkMovieRated(getArrayOfMovies(array), userData)
         .slice(0, itemsCount)
         .map((item, index) => {
           return (
-            <RowListItem
-              onClick={(e) => handleRedirect(e, item.id)}
-              backgroundsecondary={index % 2 === 1 ? 1 : 0}
-              rated={userData.find((card) => card.id === item.id)}
-              key={item.id}
+            <CSSTransition
+              classNames="fade"
+              appear={true}
+              timeout={{ enter: 1000, exit: 2000, appear: 1000 }}
+              mountOnEnter
+              unmountOnExit
+              key={item.id + index}
+              in={!userLoading}
             >
-              <RowListItem.Numerator>{index + 1}</RowListItem.Numerator>
-              <RowListItem.Wrapper>
-                <RowListItem.Name>{item.title}</RowListItem.Name>
-                <RowListItem.Character>{item.character}</RowListItem.Character>
-              </RowListItem.Wrapper>
-              <RowListItem.Date>
-                {getRightReleasedDate(item.release_date)}
-              </RowListItem.Date>
-              {item.rated && <VotePopupContainer item={item} index={index} />}
-            </RowListItem>
+              <RowListItem
+                onClick={(e) => handleRedirect(e, item.id)}
+                backgroundsecondary={index % 2 === 1 ? 1 : 0}
+                rated={userData.find((card) => card.id === item.id)}
+              >
+                <RowListItem.Numerator>{index + 1}</RowListItem.Numerator>
+                <RowListItem.Wrapper>
+                  <RowListItem.Name>{item.title}</RowListItem.Name>
+                  <RowListItem.Character>
+                    {item.character}
+                  </RowListItem.Character>
+                </RowListItem.Wrapper>
+                <RowListItem.Date>
+                  {getRightReleasedDate(item.release_date)}
+                </RowListItem.Date>
+                {item.rated && <VotePopupContainer item={item} index={index} />}
+              </RowListItem>
+            </CSSTransition>
           );
         })}
       <LoadMore>
@@ -62,6 +74,6 @@ export default function RowListItemContainer({ array, user }) {
           ) : null}
         </LoadMore.Wrapper>
       </LoadMore>
-    </>
+    </TransitionGroup>
   );
 }

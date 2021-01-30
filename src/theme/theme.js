@@ -71,7 +71,7 @@ export default {
     }
     &.fade-exit-active {
       opacity: 0;
-      transition: 300ms;
+      transition: 600ms;
     }
     &.fade-appear {
       opacity: 0;
@@ -79,6 +79,27 @@ export default {
     &.fade-appear-active {
       opacity: 1;
       transition: 500ms;
+    }`,
+    opacityLong: `&.fade-enter {
+      opacity: 0;
+    }
+    &.fade-enter-active {
+      opacity: 1;
+      transition: 1000ms;
+    }
+    &.fade-exit {
+      opacity: 1;
+    }
+    &.fade-exit-active {
+      opacity: 0;
+      transition: 2000ms;
+    }
+    &.fade-appear {
+      opacity: 0;
+    }
+    &.fade-appear-active {
+      opacity: 1;
+      transition: 1000ms;
     }`,
     fadeLtL: `&.fade-enter {
       opacity: 0;

@@ -77,9 +77,11 @@ export default function ActorDetailsRootContainer() {
           slug={"movie"}
         />
         <ActorMainColumn.Title>Credits list</ActorMainColumn.Title>
-        <ActorMainColumn.CreditsWrapper>
-          <RowListItemContainer array={list.credits.cast} user={user} />
-        </ActorMainColumn.CreditsWrapper>
+        {!loading && (
+          <ActorMainColumn.CreditsWrapper>
+            <RowListItemContainer array={list.credits.cast} user={user} />
+          </ActorMainColumn.CreditsWrapper>
+        )}
       </ActorMainColumn>
     </DetailsHeader>
   ) : null;

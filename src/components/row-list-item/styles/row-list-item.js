@@ -63,4 +63,5 @@ export const Container = styled.div`
     color: white;
     transition: 500ms;
   }
+  ${({ theme }) => theme.animations.opacityLong};
 `;

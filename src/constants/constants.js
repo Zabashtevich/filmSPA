@@ -9,6 +9,17 @@ export const bodyFirstTab = [
   { name: "Week", id: "week", side: "right" },
 ];
 
+export const filterRows = [
+  [
+    { name: "date" },
+    { name: "rating" },
+    { name: "your rating" },
+    { name: "amount of votes" },
+  ],
+  [{ name: "votes" }, { name: "lists" }, { name: "favorite" }],
+  [{ value: 10 }, { value: 25 }, { value: 50 }],
+];
+
 export const baseImageLink = "https://image.tmdb.org/t/p/w200";
 
 export const relevantImageLink = "https://image.tmdb.org/t/p/w300";

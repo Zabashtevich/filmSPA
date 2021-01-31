@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 
 import { Link as ReactRouterLink } from "react-router-dom";
 
@@ -21,7 +21,7 @@ export const Title = styled.h3`
 `;
 
 export const Item = styled.div`
-  width: 500px;
+  width: 550px;
   display: flex;
   font-size: ${({ theme }) => theme.fontSize.small};
   font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
@@ -46,9 +46,14 @@ export const Element = styled(ReactRouterLink)`
   margin: 0.5rem 0.3rem;
   text-decoration: none;
   color: black;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.4);
   color: white;
   padding: 0.3rem 0.5rem;
+  ${({ selected }) =>
+    selected &&
+    css`
+      background-color: black;
+    `}
   &:hover {
     background-color: rgba(0, 0, 0, 1);
     transition: 500ms;
@@ -57,7 +62,7 @@ export const Element = styled(ReactRouterLink)`
 
 export const Select = styled.select`
   width: 100px;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.4);
   outline: none;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 0.1rem;
@@ -79,8 +84,9 @@ export const Button = styled.button`
   width: 100px;
   outline: none;
   border: 1px solid rgba(0, 0, 0, 0.5);
-  border-radius: 0.2rem;
+  border-radius: 0.1rem;
   padding: 0.25rem 0.1rem;
+  margin: 0.5rem 0.3rem;
   color: black;
   background-color: white;
   text-align: center;

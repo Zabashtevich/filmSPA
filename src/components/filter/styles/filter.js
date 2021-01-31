@@ -35,6 +35,7 @@ export const Name = styled.span`
   background-color: white;
   padding: 0.3rem 0.5rem;
   border: 1px solid rgba(0, 0, 0, 0.2);
+  user-select: none;
 `;
 
 export const Wrapper = styled.div`
@@ -45,13 +46,48 @@ export const Element = styled(ReactRouterLink)`
   margin: 0.5rem 0.3rem;
   text-decoration: none;
   color: black;
-  background-color: ${({ theme }) => theme.colors.secondary};
+  background-color: rgba(0, 0, 0, 0.7);
   color: white;
   padding: 0.3rem 0.5rem;
+  &:hover {
+    background-color: rgba(0, 0, 0, 1);
+    transition: 500ms;
+  }
 `;
 
-export const Input = styled.input`
-  width: 75px;
+export const Select = styled.select`
+  width: 100px;
+  background-color: rgba(0, 0, 0, 0.7);
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.1rem;
+  margin: 0.5rem 0.3rem;
+  padding: 0.15rem 0.5rem;
+  color: white;
+  font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
+  &:focus {
+    background-color: black;
+  }
 `;
 
-export const Button = styled.button``;
+export const Option = styled.option`
+  background-color: gray;
+  font-weight: inherit;
+`;
+
+export const Button = styled.button`
+  width: 100px;
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 0.2rem;
+  padding: 0.25rem 0.1rem;
+  color: black;
+  background-color: white;
+  text-align: center;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.secondary};
+    color: white;
+    transition: 300ms;
+    cursor: pointer;
+  }
+`;

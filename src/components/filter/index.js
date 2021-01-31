@@ -7,7 +7,8 @@ import {
   Wrapper,
   Name,
   Element,
-  Input,
+  Select,
+  Option,
   Button,
 } from "./styles/filter";
 
@@ -39,6 +40,10 @@ Filter.Button = function FilterButton({ children, ...rest }) {
   return <Button {...rest}>{children}</Button>;
 };
 
-Filter.Input = function FilterInput({ ...rest }) {
-  return <Input {...rest} />;
+Filter.Select = function FilterSelect({ children, ...rest }) {
+  return <Select {...rest}>{children}</Select>;
+};
+
+Filter.Option = function FilterOption({ children, ...rest }) {
+  return <Option {...rest}>{children}</Option>;
 };

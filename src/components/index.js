@@ -36,3 +36,4 @@ export { default as EditModal } from "./edit-modal";
 export { default as AccountPanel } from "./account-panel";
 export { default as RowListItem } from "./row-list-item";
 export { default as VotePopup } from "./vote-popup";
+export { default as Filter } from "./filter";

@@ -17,14 +17,18 @@ export default function FilterContainer() {
 
   const [filter, setFilter] = useState({
     sortBy: "date",
-    listType: "vote",
+    listType: "votes",
     list: null,
     show: "all",
     dateRange: [null, null],
     amount: 10,
   });
-
-  const handleCustomize = () => {};
+  const handleCustomize = ({ target, value }) => {
+    if (target === "list" && filter.listType !== "lists") {
+      return;
+    }
+    setFilter((prev) => ({ ...prev, [target]: value }));
+  };
 
   return (
     <Filter>
@@ -33,6 +37,9 @@ export default function FilterContainer() {
         <Filter.Name>sort by:</Filter.Name>
         {filterRows[0].map((item) => (
           <Filter.Element
+            onClick={() =>
+              handleCustomize({ target: "sortBy", value: item.name })
+            }
             selected={item.name === filter.sortBy && 1}
             key={item.name}
           >
@@ -44,6 +51,9 @@ export default function FilterContainer() {
         <Filter.Name>list type:</Filter.Name>
         {filterRows[1].map((item) => (
           <Filter.Element
+            onClick={() =>
+              handleCustomize({ target: "listType", value: item.name })
+            }
             selected={item.name === filter.listType && 1}
             key={item.name}
           >
@@ -53,10 +63,33 @@ export default function FilterContainer() {
       </Filter.Item>
       <Filter.Item>
         <Filter.Name>choose list:</Filter.Name>
+        {!loadingLists && lists.length === 0 && (
+          <Filter.Element disabled>you do not have any list :c</Filter.Element>
+        )}
+        {!loadingLists &&
+          lists.length > 0 &&
+          lists.map((item) => {
+            console.log(filter.list, item.name);
+            return (
+              <Filter.Element
+                key={item.id}
+                selected={filter.list === item.id && 1}
+                disabled={filter.listType !== "lists" && 1}
+                onClick={() =>
+                  handleCustomize({ target: "list", value: item.id })
+                }
+              >
+                {item.name.slice(0, 8)}
+              </Filter.Element>
+            );
+          })}
       </Filter.Item>
       <Filter.Item>
         <Filter.Name>show:</Filter.Name>
-        <Filter.Element selected={filter.show === "all" && 1}>
+        <Filter.Element
+          selected={filter.show === "all" && 1}
+          onClick={() => handleCustomize({ target: "show", value: "all" })}
+        >
           all rating
         </Filter.Element>
         {Array(10)
@@ -65,6 +98,9 @@ export default function FilterContainer() {
             <Filter.Element
               key={index}
               selected={filter.show === index + 1 && 1}
+              onClick={() =>
+                handleCustomize({ target: "show", value: index + 1 })
+              }
             >
               {index + 1}
             </Filter.Element>
@@ -94,6 +130,9 @@ export default function FilterContainer() {
           <Filter.Element
             selected={filter.amount === item.value && 1}
             key={item.value}
+            onClick={() =>
+              handleCustomize({ target: "amount", value: item.value })
+            }
           >
             {item.value}
           </Filter.Element>

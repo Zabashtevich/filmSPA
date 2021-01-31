@@ -27,6 +27,7 @@ export const Item = styled.div`
   font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
   white-space: nowrap;
   align-items: center;
+  margin: 0.3rem 0.3rem;
 `;
 
 export const Name = styled.span`
@@ -43,35 +44,48 @@ export const Wrapper = styled.div`
 `;
 
 export const Element = styled(ReactRouterLink)`
-  margin: 0.5rem 0.3rem;
   text-decoration: none;
   color: black;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 1);
   color: white;
   padding: 0.3rem 0.5rem;
+  margin: 0 0.2rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
   ${({ selected }) =>
     selected &&
     css`
-      background-color: black;
+      background-color: white;
+      color: black;
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        transition: 500ms;
+      }
+    `}
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      background-color: gray;
+      cursor: not-allowed;
     `}
   &:hover {
-    background-color: rgba(0, 0, 0, 1);
+    background-color: rgba(0, 0, 0, 0.5);
     transition: 500ms;
   }
 `;
 
 export const Select = styled.select`
   width: 100px;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 1);
   outline: none;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 0.1rem;
-  margin: 0.5rem 0.3rem;
   padding: 0.15rem 0.5rem;
+  margin: 0 0.2rem;
   color: white;
   font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
   &:focus {
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.5);
   }
 `;
 
@@ -86,7 +100,6 @@ export const Button = styled.button`
   border: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: 0.1rem;
   padding: 0.25rem 0.1rem;
-  margin: 0.5rem 0.3rem;
   color: black;
   background-color: white;
   text-align: center;

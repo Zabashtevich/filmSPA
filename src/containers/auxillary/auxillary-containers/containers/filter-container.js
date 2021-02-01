@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { stringify } from "query-string";
+import { useHistory } from "react-router-dom";
 
 import { Filter } from "../../../../components";
 import { filterRows } from "../../../../constants/constants";
@@ -7,7 +8,8 @@ import useAuthListener from "../../../../hooks/useAuthListener";
 import useFirestore from "../../../../hooks/useFirestore";
 import { range } from "../../../../utils/utils";
 
-export default function FilterContainer() {
+export default function FilterContainer({ slug }) {
+  const history = useHistory();
   const { user } = useAuthListener();
   const [loadingLists, lists] = useFirestore(user.displayName, "collection");
   const [favoriteLoading, favorites] = useFirestore(
@@ -17,19 +19,35 @@ export default function FilterContainer() {
   );
 
   const [filter, setFilter] = useState({
-    sortBy: "date",
-    listType: "votes",
+    sortBy: null,
+    listType: null,
     list: null,
-    show: "all",
+    show: null,
     dateRange: [null, null],
-    rangeActive: false,
-    amount: 10,
+    amount: null,
   });
+
+  const [rangeActive, setRangeActive] = useState(false);
+  const [historyUpdate, setHistoryUpdate] = useState(false);
+
+  useEffect(() => {
+    if (!historyUpdate) return;
+    history.push({
+      pathname: `/account/${slug}/filter`,
+      search: stringify(filter, {
+        skipNull: true,
+        sort: false,
+      }),
+    });
+    setHistoryUpdate(false);
+  }, [historyUpdate]);
+
   const handleCustomize = ({ target, value }) => {
     if (target === "list" && filter.listType !== "lists") {
       return;
     }
     setFilter((prev) => ({ ...prev, [target]: value }));
+    setHistoryUpdate(true);
   };
 
   return (
@@ -37,15 +55,13 @@ export default function FilterContainer() {
       <Filter.Title>Customize your rating list</Filter.Title>
       <Filter.Item>
         <Filter.Name>sort by:</Filter.Name>
-        {filterRows[0].map((item) => (
+        {filterRows[0].map((item, i) => (
           <Filter.Element
             onClick={() =>
-              handleCustomize({ target: "sortBy", value: item.name })
+              handleCustomize({ target: "sortBy", value: item.value })
             }
-            selected={item.name === filter.sortBy && 1}
+            selected={item.value === filter.sortBy && 1}
             key={item.name}
-            to={"?filter"}
-            replace
           >
             {item.name}
           </Filter.Element>
@@ -53,16 +69,13 @@ export default function FilterContainer() {
       </Filter.Item>
       <Filter.Item>
         <Filter.Name>list type:</Filter.Name>
-        {filterRows[1].map((item) => (
+        {filterRows[1].map((item, i) => (
           <Filter.Element
             onClick={() =>
               handleCustomize({ target: "listType", value: item.name })
             }
             selected={item.name === filter.listType && 1}
             key={item.name}
-            to={(prev) => {
-              console.log(prev);
-            }}
           >
             {item.name}
           </Filter.Element>
@@ -93,7 +106,7 @@ export default function FilterContainer() {
       <Filter.Item>
         <Filter.Name>show:</Filter.Name>
         <Filter.Element
-          selected={filter.show === "all" && 1}
+          selected={filter.show === null && 1}
           onClick={() => handleCustomize({ target: "show", value: "all" })}
         >
           all rating
@@ -121,10 +134,7 @@ export default function FilterContainer() {
               target: "dateRange",
               value: [e.target.value, filter.dateRange[1]],
             });
-            handleCustomize({
-              target: "rangeActive",
-              value: false,
-            });
+            setRangeActive(true);
           }}
         >
           <Filter.Option value="all">all</Filter.Option>
@@ -139,10 +149,7 @@ export default function FilterContainer() {
               target: "dateRange",
               value: [filter.dateRange[0], e.target.value],
             });
-            handleCustomize({
-              target: "rangeActive",
-              value: false,
-            });
+            setRangeActive(true);
           }}
         >
           <Filter.Option value="all">all</Filter.Option>
@@ -151,17 +158,15 @@ export default function FilterContainer() {
           ))}
         </Filter.Select>
         <Filter.Button
-          disabled={filter.rangeActive === true && 1}
-          onClick={() =>
-            handleCustomize({ target: "rangeActive", value: true })
-          }
+          disabled={!rangeActive && 1}
+          onClick={() => setRangeActive(false)}
         >
           choose
         </Filter.Button>
       </Filter.Item>
       <Filter.Item>
         <Filter.Name>amount</Filter.Name>
-        {filterRows[2].map((item) => (
+        {filterRows[2].map((item, i) => (
           <Filter.Element
             selected={filter.amount === item.value && 1}
             key={item.value}

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 import { AccountPanel } from "../components";
 import {
@@ -7,9 +8,10 @@ import {
 } from "./auxillary/auxillary-containers";
 
 export default function AccountPanelContainer() {
+  const params = useParams();
   return (
     <AccountPanel>
-      <FilterContainer />
+      <FilterContainer slug={params.slug} />
     </AccountPanel>
   );
 }

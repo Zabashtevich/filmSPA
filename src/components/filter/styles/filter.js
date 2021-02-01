@@ -51,6 +51,7 @@ export const Element = styled.span`
   padding: 0.3rem 0.5rem;
   margin: 0 0.2rem;
   border: 1px solid rgba(0, 0, 0, 0.2);
+  cursor: pointer;
   ${({ selected }) =>
     selected &&
     css`

@@ -11,10 +11,10 @@ export const bodyFirstTab = [
 
 export const filterRows = [
   [
-    { name: "date" },
-    { name: "rating" },
-    { name: "your rating" },
-    { name: "amount of votes" },
+    { name: "date", value: "date" },
+    { name: "rating", value: "rating" },
+    { name: "your rating", value: "yourRating" },
+    { name: "amount of votes", value: "amountOfVotes" },
   ],
   [{ name: "votes" }, { name: "lists" }, { name: "favorite" }],
   [{ value: 10 }, { value: 25 }, { value: 50 }],

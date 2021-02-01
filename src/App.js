@@ -29,7 +29,11 @@ function App() {
           component={ReviewPage}
           exact
         />
-        <Route path="/account/:slug" component={AccountPage} />
+        <Route
+          path={["/account/:slug", "/account/:slug/:filter"]}
+          component={AccountPage}
+          exact
+        />
         <Route path="/account/:slug/edit" component={AccountEditPage} exact />
       </Switch>
     </Router>

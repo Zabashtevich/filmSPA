@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { AcclistCreateItem } from "../../../../components";
-import ItemDescriptionPopupContainer from "./item-description-popup-container";
+import ItemDescriptionPopupContainer from "../../description-popup-container";
 
 export default function AccountCreateList({
   visible,

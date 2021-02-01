@@ -1,7 +1,7 @@
 import React from "react";
 import { CSSTransition } from "react-transition-group";
 
-import { ConfirmPopup } from "../../../../components";
+import { ConfirmPopup } from "../../../components";
 
 export default function ConfirmPopupContainer({
   message,

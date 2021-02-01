@@ -82,6 +82,7 @@ export default function BodyMainContainer() {
           {loading
             ? skeletonAmount.map((_) => <CardListSkeleton key={_} />)
             : list.results.map((item) => {
+                console.log(item);
                 return (
                   <CardList.ItemContainer
                     key={item.id}

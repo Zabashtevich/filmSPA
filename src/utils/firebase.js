@@ -400,7 +400,7 @@ export const rateLogic = (
       ...userRatingData,
       { id: itemID, value: rateScore, title, time: new Date().getTime() },
     ];
-    return firebase
+    firebase
       .firestore()
       .collection(`${user.displayName}`)
       .doc(`moviesrated`)

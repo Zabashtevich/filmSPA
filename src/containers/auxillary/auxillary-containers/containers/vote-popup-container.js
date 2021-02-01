@@ -1,9 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
 
 import { VotePopup } from "../../../../components";
+import { AuthContext } from "../../../../context/auth-context";
+import { rateLogic } from "../../../../utils/firebase";
 
-export default function VotePopupContainer({ item, index }) {
+export default function VotePopupContainer({ item, userData, user }) {
   const [popupVisible, setPopupVisible] = useState(false);
+
+  const { firebase } = useContext(AuthContext);
+  const history = useHistory();
 
   const popupToggler = (event) => {
     if (
@@ -14,6 +20,22 @@ export default function VotePopupContainer({ item, index }) {
     ) {
       setPopupVisible((prev) => !prev);
     }
+  };
+
+  const showErrorModal = () => {};
+
+  const handleRate = (rateScore) => {
+    rateLogic(
+      user,
+      history,
+      userData,
+      item.id,
+      rateScore,
+      firebase,
+      showErrorModal,
+      item.title,
+    );
+    setPopupVisible(false);
   };
 
   return (
@@ -27,7 +49,10 @@ export default function VotePopupContainer({ item, index }) {
             .fill(1)
             .map((_, index) => {
               return (
-                <VotePopup.Item key={index}>
+                <VotePopup.Item
+                  key={index}
+                  onClick={() => handleRate(index + 1)}
+                >
                   <VotePopup.Number>{index + 1}</VotePopup.Number>
                   {Array(10)
                     .fill(1)

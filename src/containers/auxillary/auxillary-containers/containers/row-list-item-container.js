@@ -60,7 +60,13 @@ export default function RowListItemContainer({ array, user }) {
                 <RowListItem.Date>
                   {getRightReleasedDate(item.release_date)}
                 </RowListItem.Date>
-                {item.rated && <VotePopupContainer item={item} index={index} />}
+                {item.rated && (
+                  <VotePopupContainer
+                    item={item}
+                    userData={userData}
+                    user={user}
+                  />
+                )}
               </RowListItem>
             </CSSTransition>
           );

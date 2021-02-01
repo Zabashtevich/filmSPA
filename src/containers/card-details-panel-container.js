@@ -87,7 +87,6 @@ export default function CardDetailsPanelContainer() {
       title,
     );
   };
-  console.log(list);
   return list ? (
     <DetailsPanel>
       <DetailsPanel.ContentWrapper>

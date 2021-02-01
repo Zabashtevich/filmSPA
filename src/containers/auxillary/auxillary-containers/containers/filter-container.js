@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { stringify } from "query-string";
 
 import { Filter } from "../../../../components";
 import { filterRows } from "../../../../constants/constants";
@@ -21,6 +22,7 @@ export default function FilterContainer() {
     list: null,
     show: "all",
     dateRange: [null, null],
+    rangeActive: false,
     amount: 10,
   });
   const handleCustomize = ({ target, value }) => {
@@ -42,6 +44,8 @@ export default function FilterContainer() {
             }
             selected={item.name === filter.sortBy && 1}
             key={item.name}
+            to={"?filter"}
+            replace
           >
             {item.name}
           </Filter.Element>
@@ -56,6 +60,9 @@ export default function FilterContainer() {
             }
             selected={item.name === filter.listType && 1}
             key={item.name}
+            to={(prev) => {
+              console.log(prev);
+            }}
           >
             {item.name}
           </Filter.Element>
@@ -69,7 +76,6 @@ export default function FilterContainer() {
         {!loadingLists &&
           lists.length > 0 &&
           lists.map((item) => {
-            console.log(filter.list, item.name);
             return (
               <Filter.Element
                 key={item.id}
@@ -109,20 +115,49 @@ export default function FilterContainer() {
       <Filter.Item>
         <Filter.Name>date rang:</Filter.Name>
         since
-        <Filter.Select>
-          <Filter.Option value="none">none</Filter.Option>
+        <Filter.Select
+          onChange={(e) => {
+            handleCustomize({
+              target: "dateRange",
+              value: [e.target.value, filter.dateRange[1]],
+            });
+            handleCustomize({
+              target: "rangeActive",
+              value: false,
+            });
+          }}
+        >
+          <Filter.Option value="all">all</Filter.Option>
           {range(1971, 50).map((item) => (
             <Filter.Option key={item}>{item}</Filter.Option>
           ))}
         </Filter.Select>
         to
-        <Filter.Select>
-          <Filter.Option value="none">none</Filter.Option>
+        <Filter.Select
+          onChange={(e) => {
+            handleCustomize({
+              target: "dateRange",
+              value: [filter.dateRange[0], e.target.value],
+            });
+            handleCustomize({
+              target: "rangeActive",
+              value: false,
+            });
+          }}
+        >
+          <Filter.Option value="all">all</Filter.Option>
           {range(1971, 50).map((item) => (
             <Filter.Option key={item}>{item}</Filter.Option>
           ))}
         </Filter.Select>
-        <Filter.Button>choose</Filter.Button>
+        <Filter.Button
+          disabled={filter.rangeActive === true && 1}
+          onClick={() =>
+            handleCustomize({ target: "rangeActive", value: true })
+          }
+        >
+          choose
+        </Filter.Button>
       </Filter.Item>
       <Filter.Item>
         <Filter.Name>amount</Filter.Name>

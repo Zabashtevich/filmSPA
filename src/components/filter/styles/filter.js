@@ -43,7 +43,7 @@ export const Wrapper = styled.div`
   display: flex;
 `;
 
-export const Element = styled(ReactRouterLink)`
+export const Element = styled.span`
   text-decoration: none;
   color: black;
   background-color: rgba(0, 0, 0, 1);
@@ -72,6 +72,7 @@ export const Element = styled(ReactRouterLink)`
     background-color: rgba(0, 0, 0, 0.5);
     transition: 500ms;
   }
+  transition: 500ms;
 `;
 
 export const Select = styled.select`
@@ -84,6 +85,7 @@ export const Select = styled.select`
   margin: 0 0.2rem;
   color: white;
   font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
+  cursor: pointer;
   &:focus {
     background-color: rgba(0, 0, 0, 0.5);
   }
@@ -103,10 +105,16 @@ export const Button = styled.button`
   color: black;
   background-color: white;
   text-align: center;
+  cursor: pointer;
+  user-select: none;
   &:hover {
     background-color: ${({ theme }) => theme.colors.secondary};
     color: white;
     transition: 300ms;
-    cursor: pointer;
+  }
+  &:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+    color: white;
   }
 `;

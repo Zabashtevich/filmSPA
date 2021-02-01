@@ -5,6 +5,7 @@ import { AuthContext } from "../context/auth-context";
 import useAuthListener from "../hooks/useAuthListener";
 import useFetch from "../hooks/useFetchData";
 import useFirestore from "../hooks/useFirestore";
+import { rateLogic } from "../utils/firebase";
 import { getCorrectReviewsArray, offsetListener } from "../utils/utils";
 import {
   ErrorModalContainer,
@@ -74,23 +75,19 @@ export default function CardDetailsPanelContainer() {
     setErrorModalVisible(false);
   };
 
-  const handleRate = (rateScore, itemID) => {
-    if (user === null) {
-      history.push("/authentication/login");
-    } else {
-      const newUserRatingData = [
-        ...userRatingData,
-        { id: itemID, value: rateScore },
-      ];
-      firebase
-        .firestore()
-        .collection(`${user.displayName}`)
-        .doc(`moviesrated`)
-        .update({ list: newUserRatingData })
-        .catch((error) => showErrorModal(error));
-    }
+  const handleRate = (rateScore, itemID, title) => {
+    rateLogic(
+      user,
+      history,
+      userRatingData,
+      itemID,
+      rateScore,
+      firebase,
+      showErrorModal,
+      title,
+    );
   };
-
+  console.log(list);
   return list ? (
     <DetailsPanel>
       <DetailsPanel.ContentWrapper>
@@ -104,7 +101,7 @@ export default function CardDetailsPanelContainer() {
             return (
               <StarRating.Star
                 onClick={() => {
-                  handleRate(i + 1, list.id);
+                  handleRate(i + 1, list.id, list.title);
                   setRatedValue(i + 1);
                 }}
                 key={i}

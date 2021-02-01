@@ -12,11 +12,6 @@ export default function FilterContainer({ slug }) {
   const history = useHistory();
   const { user } = useAuthListener();
   const [loadingLists, lists] = useFirestore(user.displayName, "collection");
-  const [favoriteLoading, favorites] = useFirestore(
-    user.displayName,
-    "collection",
-    "favorite",
-  );
 
   const [filter, setFilter] = useState({
     sortBy: null,

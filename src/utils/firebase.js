@@ -382,3 +382,29 @@ export const renameList = (firebase, nickname, array, id, name) => {
     .doc(`collection`)
     .update({ list: [...newArray] });
 };
+
+export const rateLogic = (
+  user,
+  history,
+  userRatingData,
+  itemID,
+  rateScore,
+  firebase,
+  showErrorModal,
+  title,
+) => {
+  if (user === null) {
+    history.push("/authentication/login");
+  } else {
+    const newUserRatingData = [
+      ...userRatingData,
+      { id: itemID, value: rateScore, title, time: new Date().getTime() },
+    ];
+    return firebase
+      .firestore()
+      .collection(`${user.displayName}`)
+      .doc(`moviesrated`)
+      .update({ list: newUserRatingData })
+      .catch((error) => showErrorModal(error));
+  }
+};

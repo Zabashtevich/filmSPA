@@ -1,7 +1,5 @@
 import styled, { css } from "styled-components/macro";
 
-import { Link as ReactRouterLink } from "react-router-dom";
-
 export const Container = styled.div`
   margin-top: 1rem;
   font-family: ${({ theme }) => theme.fontFamily.secondary};

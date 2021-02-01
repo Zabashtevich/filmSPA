@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 
 import { AccountPanel } from "../components";
@@ -12,6 +12,7 @@ export default function AccountPanelContainer() {
   return (
     <AccountPanel>
       <FilterContainer slug={params.slug} />
+      <RowListItemContainer />
     </AccountPanel>
   );
 }

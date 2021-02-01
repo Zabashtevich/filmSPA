@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 
-import { Header } from "../components";
-import useAuthListener from "../hooks/useAuthListener";
-import { getHeaderProps } from "../utils/utils";
+import { Header } from "../../components";
+import useAuthListener from "../../hooks/useAuthListener";
+import { getHeaderProps } from "../../utils/utils";
 import { HeaderProfileContainer } from "./auxillary/auxillary-containers";
 
 export default function HeaderMainContainer() {

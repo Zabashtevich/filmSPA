@@ -7,9 +7,9 @@ import {
   DetailsHeader,
   ModalGallery,
   PosterColumn,
-} from "../components";
-import useFetch from "../hooks/useFetchData";
-import { getKnownFor } from "../utils/utils";
+} from "../../components";
+import useFetch from "../../hooks/useFetchData";
+import { getKnownFor } from "../../utils/utils";
 
 import {
   ModalGalleryContainer,
@@ -19,7 +19,7 @@ import {
 
 import { ActorRows } from "./auxillary/auxillary-items";
 
-import useAuthListener from "../hooks/useAuthListener";
+import useAuthListener from "../../hooks/useAuthListener";
 
 export default function ActorRootContainer() {
   const location = useParams();

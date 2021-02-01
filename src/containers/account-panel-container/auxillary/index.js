@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { stringify } from "query-string";
 import { useHistory } from "react-router-dom";
 
-import { Filter } from "../../../../components";
-import { filterRows } from "../../../../constants/constants";
-import useAuthListener from "../../../../hooks/useAuthListener";
-import useFirestore from "../../../../hooks/useFirestore";
-import { range } from "../../../../utils/utils";
+import { Filter } from "../../../components";
+import { filterRows } from "../../../constants/constants";
+import useAuthListener from "../../../hooks/useAuthListener";
+import useFirestore from "../../../hooks/useFirestore";
+import { range } from "../../../utils/utils";
 
 export default function FilterContainer({ slug }) {
   const history = useHistory();

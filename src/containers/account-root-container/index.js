@@ -2,16 +2,16 @@ import React, { useState, useEffect, useContext } from "react";
 import { createPortal } from "react-dom";
 import { CSSTransition } from "react-transition-group";
 
-import { AuthContext } from "../context/auth-context";
-import { deleteList, renameList } from "../utils/firebase";
+import { AuthContext } from "../../context/auth-context";
+import { deleteList, renameList } from "../../utils/firebase";
 import {
   closeModalSwitcher,
   createListSwitcher,
   showModalSwitcher,
-} from "../utils/switcher";
-import { Account, AccountList } from "./../components";
-import useAuthListener from "./../hooks/useAuthListener";
-import useFirestore from "./../hooks/useFirestore";
+} from "../../utils/switcher";
+import { Account, AccountList } from "../../components";
+import useAuthListener from "../../hooks/useAuthListener";
+import useFirestore from "../../hooks/useFirestore";
 import {
   ConfirmPopupContainer,
   EditModalContainer,
@@ -23,7 +23,7 @@ import {
   AccountListPlaceholder,
 } from "./auxillary/auxillary-items";
 
-export default function AccountContainer() {
+export default function AccountRootContainer() {
   const { user } = useAuthListener();
   const [loadingData, data] = useFirestore(user.displayName, "collection");
   const { firebase } = useContext(AuthContext);

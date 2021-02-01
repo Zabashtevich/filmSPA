@@ -1,12 +1,17 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import { DetailsPanel, RelevantList, StarRating, Votes } from "../components";
-import { AuthContext } from "../context/auth-context";
-import useAuthListener from "../hooks/useAuthListener";
-import useFetch from "../hooks/useFetchData";
-import useFirestore from "../hooks/useFirestore";
-import { rateLogic } from "../utils/firebase";
-import { getCorrectReviewsArray, offsetListener } from "../utils/utils";
+import {
+  DetailsPanel,
+  RelevantList,
+  StarRating,
+  Votes,
+} from "../../components";
+import { AuthContext } from "../../context/auth-context";
+import useAuthListener from "../../hooks/useAuthListener";
+import useFetch from "../../hooks/useFetchData";
+import useFirestore from "../../hooks/useFirestore";
+import { rateLogic } from "../../utils/firebase";
+import { getCorrectReviewsArray, offsetListener } from "../../utils/utils";
 import {
   ErrorModalContainer,
   RelevantListContainer,

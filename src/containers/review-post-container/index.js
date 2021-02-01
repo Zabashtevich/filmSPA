@@ -3,13 +3,13 @@ import { CSSTransition } from "react-transition-group";
 import { useForm } from "react-hook-form";
 import { useHistory, useParams } from "react-router-dom";
 
-import useFirestore from "../hooks/useFirestore";
-import useAuthListener from "../hooks/useAuthListener";
+import useFirestore from "../../hooks/useFirestore";
+import useAuthListener from "../../hooks/useAuthListener";
 
-import { ReviewPost } from "../components";
+import { ReviewPost } from "../../components";
 import { ErrorModalContainer } from "./auxillary/auxillary-containers";
-import { postReviewLogic } from "../utils/firebase";
-import { AuthContext } from "../context/auth-context";
+import { postReviewLogic } from "../../utils/firebase";
+import { AuthContext } from "../../context/auth-context";
 
 export default function ReviewPostContainer() {
   const [visibleDropdown, setVisibleDropdown] = useState(false);

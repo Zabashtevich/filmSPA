@@ -8,8 +8,8 @@ import {
   DescriptionHeader,
   Votes,
   ModalGallery,
-} from "../components";
-import useFetch from "../hooks/useFetchData";
+} from "../../components";
+import useFetch from "../../hooks/useFetchData";
 import {
   ErrorModalContainer,
   ModalGalleryContainer,

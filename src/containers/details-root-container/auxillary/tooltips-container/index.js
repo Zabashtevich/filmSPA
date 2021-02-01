@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 
-import { AuthContext } from "../../../context/auth-context";
-import useFirestore from "../../../hooks/useFirestore";
-import { Tooltips } from "../../../components";
-import useAuthListener from "../../../hooks/useAuthListener";
+import { AuthContext } from "../../../../context/auth-context";
+import useFirestore from "../../../../hooks/useFirestore";
+import { Tooltips } from "../../../../components";
+import useAuthListener from "../../../../hooks/useAuthListener";
 import { ItemDescriptionPopupContainer } from "../../auxillary/auxillary-items";
 import WatchListContainer from "./watch-list-container";
-import { favoriteLogic } from "../../../utils/firebase";
+import { favoriteLogic } from "../../../../utils/firebase";
 
 export default function TooltipsContainer({ slug }) {
   const { user } = useAuthListener();

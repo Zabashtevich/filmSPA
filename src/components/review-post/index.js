@@ -22,26 +22,19 @@ import {
   IconLeft,
 } from "./styles/review-post-form";
 
-export default function ReviewPostForm({ children, ...rest }) {
+export default function ReviewPost({ children, ...rest }) {
   return <Container {...rest}>{children}</Container>;
 }
 
-ReviewPostForm.Nickname = function ReviewPostFormNickname({
-  children,
-  ...rest
-}) {
+ReviewPost.Nickname = function ReviewPostNickname({ children, ...rest }) {
   return <Nickname {...rest}>{children}</Nickname>;
 };
 
-ReviewPostForm.Form = function ReviewPostForm({ children, ...rest }) {
+ReviewPost.Form = function ReviewPost({ children, ...rest }) {
   return <Form {...rest}>{children}</Form>;
 };
 
-ReviewPostForm.Input = function ReviewPostFormInput({
-  children,
-  inputRef,
-  ...rest
-}) {
+ReviewPost.Input = function ReviewPostInput({ children, inputRef, ...rest }) {
   return (
     <Input ref={inputRef} {...rest} autoComplete="off">
       {children}
@@ -49,64 +42,52 @@ ReviewPostForm.Input = function ReviewPostFormInput({
   );
 };
 
-ReviewPostForm.Textfield = function ReviewPostFormTextfield({
-  textfieldRef,
-  ...rest
-}) {
+ReviewPost.Textfield = function ReviewPostTextfield({ textfieldRef, ...rest }) {
   return <Textfield ref={textfieldRef} {...rest} />;
 };
 
-ReviewPostForm.RadioWrapper = function ReviewPostFormRadioWrapper({
+ReviewPost.RadioWrapper = function ReviewPostRadioWrapper({
   children,
   ...rest
 }) {
   return <RadioWrapper {...rest}>{children}</RadioWrapper>;
 };
 
-ReviewPostForm.RadioElement = function ReviewPostFormRadioElement({
+ReviewPost.RadioElement = function ReviewPostRadioElement({
   children,
   ...rest
 }) {
   return <RadioElement {...rest} />;
 };
 
-ReviewPostForm.Button = function ReviewPostFormButton({ children, ...rest }) {
+ReviewPost.Button = function ReviewPostButton({ children, ...rest }) {
   return <Button {...rest}>{children}</Button>;
 };
 
-ReviewPostForm.BackLink = function ReviewPostFormBackLink({
-  children,
-  ...rest
-}) {
+ReviewPost.BackLink = function ReviewPostBackLink({ children, ...rest }) {
   return <BackLink {...rest}>{children}</BackLink>;
 };
 
-ReviewPostForm.ProfileWrapper = function ReviewPostFormProfileWrapper({
+ReviewPost.ProfileWrapper = function ReviewPostProfileWrapper({
   children,
   ...rest
 }) {
   return <ProfileWrapper {...rest}>{children}</ProfileWrapper>;
 };
 
-ReviewPostForm.Title = function ReviewPostFormTitle({ children, ...rest }) {
+ReviewPost.Title = function ReviewPostTitle({ children, ...rest }) {
   return <Title {...rest}>{children}</Title>;
 };
 
-ReviewPostForm.RadioLabel = function ReviewPostFormRadioLabel({
-  children,
-  ...rest
-}) {
+ReviewPost.RadioLabel = function ReviewPostRadioLabel({ children, ...rest }) {
   return <RadioLabel {...rest}>{children}</RadioLabel>;
 };
 
-ReviewPostForm.RadioInner = function ReviewPostFormRadioInner({
-  children,
-  ...rest
-}) {
+ReviewPost.RadioInner = function ReviewPostRadioInner({ children, ...rest }) {
   return <RadioInner {...rest}>{children}</RadioInner>;
 };
 
-ReviewPostForm.RadioTitle = function ReviewPostFormRadioTitle({
+ReviewPost.RadioTitle = function ReviewPostRadioTitle({
   children,
   radioRef,
   ...rest
@@ -118,31 +99,28 @@ ReviewPostForm.RadioTitle = function ReviewPostFormRadioTitle({
   );
 };
 
-ReviewPostForm.RadioElementsContainer = function ReviewPostFormRadioElementsContainer({
+ReviewPost.RadioElementsContainer = function ReviewPostRadioElementsContainer({
   children,
   ...rest
 }) {
   return <RadioElementsContainer {...rest}>{children}</RadioElementsContainer>;
 };
 
-ReviewPostForm.Icon = function ReviewPostFormIcon({ children, ...rest }) {
+ReviewPost.Icon = function ReviewPostIcon({ children, ...rest }) {
   return <Icon {...rest}>{children}</Icon>;
 };
 
-ReviewPostForm.ButtonsWrapper = function ReviewPostFormButtonsWrapper({
+ReviewPost.ButtonsWrapper = function ReviewPostButtonsWrapper({
   children,
   ...rest
 }) {
   return <ButtonsWrapper {...rest}>{children}</ButtonsWrapper>;
 };
 
-ReviewPostForm.Avatar = function ReviewPostFormAvatar({ children, ...rest }) {
+ReviewPost.Avatar = function ReviewPostAvatar({ children, ...rest }) {
   return <Avatar {...rest}>{children}</Avatar>;
 };
 
-ReviewPostForm.IconLeft = function ReviewPostFormIconLeft({
-  children,
-  ...rest
-}) {
+ReviewPost.IconLeft = function ReviewPostIconLeft({ children, ...rest }) {
   return <IconLeft {...rest}>{children}</IconLeft>;
 };

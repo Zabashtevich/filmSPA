@@ -21,7 +21,7 @@ import { ActorRows } from "./auxillary/auxillary-items";
 
 import useAuthListener from "../hooks/useAuthListener";
 
-export default function ActorDetailsRootContainer() {
+export default function ActorRootContainer() {
   const location = useParams();
 
   const [knownForList, setKnownForList] = useState(null);

@@ -6,12 +6,12 @@ import { useHistory, useParams } from "react-router-dom";
 import useFirestore from "../hooks/useFirestore";
 import useAuthListener from "../hooks/useAuthListener";
 
-import { ReviewPostForm } from "../components";
+import { ReviewPost } from "../components";
 import { ErrorModalContainer } from "./auxillary/auxillary-containers";
 import { postReviewLogic } from "../utils/firebase";
 import { AuthContext } from "../context/auth-context";
 
-export default function ReviewPostFormContainer() {
+export default function ReviewPostContainer() {
   const [visibleDropdown, setVisibleDropdown] = useState(false);
   const [ratingValue, setRatingValue] = useState("");
   const [errorModalVisible, setErrorModalVisible] = useState(false);
@@ -64,7 +64,7 @@ export default function ReviewPostFormContainer() {
     setErrorModalVisible(false);
   };
   return (
-    <ReviewPostForm>
+    <ReviewPost>
       {errorModalVisible && (
         <ErrorModalContainer
           errorMessage={errorMessage}
@@ -72,19 +72,17 @@ export default function ReviewPostFormContainer() {
           errorModalVisible={errorModalVisible}
         />
       )}
-      <ReviewPostForm.Form onSubmit={handleSubmit(onPostReview)}>
-        <ReviewPostForm.Title>Create your review</ReviewPostForm.Title>
+      <ReviewPost.Form onSubmit={handleSubmit(onPostReview)}>
+        <ReviewPost.Title>Create your review</ReviewPost.Title>
         {user && (
-          <ReviewPostForm.ProfileWrapper>
-            <ReviewPostForm.Avatar
+          <ReviewPost.ProfileWrapper>
+            <ReviewPost.Avatar
               src={user.photoURL || "./../../../assets/images/poster.png"}
             />
-            <ReviewPostForm.Nickname>
-              {user.displayName}
-            </ReviewPostForm.Nickname>
-          </ReviewPostForm.ProfileWrapper>
+            <ReviewPost.Nickname>{user.displayName}</ReviewPost.Nickname>
+          </ReviewPost.ProfileWrapper>
         )}
-        <ReviewPostForm.Input
+        <ReviewPost.Input
           placeholder={"Title"}
           name="title"
           inputRef={register({
@@ -94,8 +92,8 @@ export default function ReviewPostFormContainer() {
             },
           })}
         />
-        <ReviewPostForm.RadioWrapper onClick={onIconClick}>
-          <ReviewPostForm.RadioTitle
+        <ReviewPost.RadioWrapper onClick={onIconClick}>
+          <ReviewPost.RadioTitle
             placeholder="Rate score"
             name="rating"
             readOnly
@@ -105,17 +103,17 @@ export default function ReviewPostFormContainer() {
               required: { value: true, message: "Choose rate score" },
             })}
           />
-          <ReviewPostForm.Icon rotate={visibleDropdown ? "180deg" : "0"} />
+          <ReviewPost.Icon rotate={visibleDropdown ? "180deg" : "0"} />
           {visibleDropdown && (
             <CSSTransition timeout={150} appear={true} in={visibleDropdown}>
               {(state) => (
-                <ReviewPostForm.RadioElementsContainer state={state}>
+                <ReviewPost.RadioElementsContainer state={state}>
                   {Array(10)
                     .fill("_")
                     .map((_, i) => {
                       return (
-                        <ReviewPostForm.RadioInner key={i + 1}>
-                          <ReviewPostForm.RadioElement
+                        <ReviewPost.RadioInner key={i + 1}>
+                          <ReviewPost.RadioElement
                             type="radio"
                             name="radioValue"
                             value={i + 1}
@@ -125,21 +123,21 @@ export default function ReviewPostFormContainer() {
                               setRatingValue(i + 1);
                             }}
                           />
-                          <ReviewPostForm.RadioLabel
+                          <ReviewPost.RadioLabel
                             htmlFor={i + 1}
                             onClick={() => setRatingValue(i + 1)}
                           >
                             {i + 1}
-                          </ReviewPostForm.RadioLabel>
-                        </ReviewPostForm.RadioInner>
+                          </ReviewPost.RadioLabel>
+                        </ReviewPost.RadioInner>
                       );
                     })}
-                </ReviewPostForm.RadioElementsContainer>
+                </ReviewPost.RadioElementsContainer>
               )}
             </CSSTransition>
           )}
-        </ReviewPostForm.RadioWrapper>
-        <ReviewPostForm.Textfield
+        </ReviewPost.RadioWrapper>
+        <ReviewPost.Textfield
           name="textfield"
           textfieldRef={register({
             required: {
@@ -156,18 +154,18 @@ export default function ReviewPostFormContainer() {
             },
           })}
         />
-        <ReviewPostForm.ButtonsWrapper>
-          <ReviewPostForm.BackLink to={`../${slug.slug}`}>
-            <ReviewPostForm.IconLeft /> GO BACK
-          </ReviewPostForm.BackLink>
-          <ReviewPostForm.Button
+        <ReviewPost.ButtonsWrapper>
+          <ReviewPost.BackLink to={`../${slug.slug}`}>
+            <ReviewPost.IconLeft /> GO BACK
+          </ReviewPost.BackLink>
+          <ReviewPost.Button
             type="submit"
             disabled={reviewLoading || pushingReview}
           >
             PUBLIC
-          </ReviewPostForm.Button>
-        </ReviewPostForm.ButtonsWrapper>
-      </ReviewPostForm.Form>
-    </ReviewPostForm>
+          </ReviewPost.Button>
+        </ReviewPost.ButtonsWrapper>
+      </ReviewPost.Form>
+    </ReviewPost>
   );
 }

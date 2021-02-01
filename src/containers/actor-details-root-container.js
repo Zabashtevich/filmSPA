@@ -14,7 +14,7 @@ import { getKnownFor } from "../utils/utils";
 import {
   ModalGalleryContainer,
   RelevantListContainer,
-  RowListItemContainer,
+  ActorRowListItem,
 } from "./auxillary/auxillary-containers";
 
 import { ActorRows } from "./auxillary/auxillary-items";
@@ -79,7 +79,7 @@ export default function ActorDetailsRootContainer() {
         <ActorMainColumn.Title>Credits list</ActorMainColumn.Title>
         {!loading && (
           <ActorMainColumn.CreditsWrapper>
-            <RowListItemContainer array={list.credits.cast} user={user} />
+            <ActorRowListItem array={list.credits.cast} user={user} />
           </ActorMainColumn.CreditsWrapper>
         )}
       </ActorMainColumn>

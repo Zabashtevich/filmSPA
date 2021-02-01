@@ -27,7 +27,6 @@ export default function FilterContainer({ slug }) {
     amount: null,
   });
 
-  const [rangeActive, setRangeActive] = useState(false);
   const [historyUpdate, setHistoryUpdate] = useState(false);
 
   useEffect(() => {
@@ -37,6 +36,7 @@ export default function FilterContainer({ slug }) {
       search: stringify(filter, {
         skipNull: true,
         sort: false,
+        arrayFormat: "comma",
       }),
     });
     setHistoryUpdate(false);
@@ -60,7 +60,10 @@ export default function FilterContainer({ slug }) {
             onClick={() =>
               handleCustomize({ target: "sortBy", value: item.value })
             }
-            selected={item.value === filter.sortBy && 1}
+            selected={
+              (item.value === filter.sortBy && 1) ||
+              (filter.sortBy === null && i === 0 && 1)
+            }
             key={item.name}
           >
             {item.name}
@@ -74,7 +77,10 @@ export default function FilterContainer({ slug }) {
             onClick={() =>
               handleCustomize({ target: "listType", value: item.name })
             }
-            selected={item.name === filter.listType && 1}
+            selected={
+              (item.name === filter.listType && 1) ||
+              (filter.listType === null && i === 0 && 1)
+            }
             key={item.name}
           >
             {item.name}
@@ -88,11 +94,17 @@ export default function FilterContainer({ slug }) {
         )}
         {!loadingLists &&
           lists.length > 0 &&
-          lists.map((item) => {
+          lists.map((item, i) => {
             return (
               <Filter.Element
                 key={item.id}
-                selected={filter.list === item.id && 1}
+                selected={
+                  (filter.list === item.id && 1) ||
+                  (filter.listType === "lists" &&
+                    filter.list === null &&
+                    i === 0 &&
+                    1)
+                }
                 disabled={filter.listType !== "lists" && 1}
                 onClick={() =>
                   handleCustomize({ target: "list", value: item.id })
@@ -106,7 +118,7 @@ export default function FilterContainer({ slug }) {
       <Filter.Item>
         <Filter.Name>show:</Filter.Name>
         <Filter.Element
-          selected={filter.show === null && 1}
+          selected={filter.show === null}
           onClick={() => handleCustomize({ target: "show", value: "all" })}
         >
           all rating
@@ -134,7 +146,6 @@ export default function FilterContainer({ slug }) {
               target: "dateRange",
               value: [e.target.value, filter.dateRange[1]],
             });
-            setRangeActive(true);
           }}
         >
           <Filter.Option value="all">all</Filter.Option>
@@ -149,7 +160,6 @@ export default function FilterContainer({ slug }) {
               target: "dateRange",
               value: [filter.dateRange[0], e.target.value],
             });
-            setRangeActive(true);
           }}
         >
           <Filter.Option value="all">all</Filter.Option>
@@ -157,18 +167,15 @@ export default function FilterContainer({ slug }) {
             <Filter.Option key={item}>{item}</Filter.Option>
           ))}
         </Filter.Select>
-        <Filter.Button
-          disabled={!rangeActive && 1}
-          onClick={() => setRangeActive(false)}
-        >
-          choose
-        </Filter.Button>
       </Filter.Item>
       <Filter.Item>
         <Filter.Name>amount</Filter.Name>
         {filterRows[2].map((item, i) => (
           <Filter.Element
-            selected={filter.amount === item.value && 1}
+            selected={
+              (filter.amount === item.value && 1) ||
+              (filter.amount === null && i === 0 && 1)
+            }
             key={item.value}
             onClick={() =>
               handleCustomize({ target: "amount", value: item.value })

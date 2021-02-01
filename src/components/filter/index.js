@@ -9,7 +9,6 @@ import {
   Element,
   Select,
   Option,
-  Button,
 } from "./styles/filter";
 
 export default function Filter({ children, ...rest }) {
@@ -34,10 +33,6 @@ Filter.Wrapper = function FilterWrapper({ children, ...rest }) {
 
 Filter.Element = function FilterElement({ children, ...rest }) {
   return <Element {...rest}>{children}</Element>;
-};
-
-Filter.Button = function FilterButton({ children, ...rest }) {
-  return <Button {...rest}>{children}</Button>;
 };
 
 Filter.Select = function FilterSelect({ children, ...rest }) {

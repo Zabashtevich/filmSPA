@@ -96,26 +96,3 @@ export const Option = styled.option`
   background-color: gray;
   font-weight: inherit;
 `;
-
-export const Button = styled.button`
-  width: 100px;
-  outline: none;
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  border-radius: 0.1rem;
-  padding: 0.25rem 0.1rem;
-  color: black;
-  background-color: white;
-  text-align: center;
-  cursor: pointer;
-  user-select: none;
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.secondary};
-    color: white;
-    transition: 300ms;
-  }
-  &:disabled {
-    background-color: gray;
-    cursor: not-allowed;
-    color: white;
-  }
-`;

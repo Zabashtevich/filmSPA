@@ -3,7 +3,6 @@ import { createPortal } from "react-dom";
 import { CSSTransition } from "react-transition-group";
 
 import { WatchList } from "../../../../components";
-import ErrorModalContainer from "./error-modal-container";
 import { AuthContext } from "../../../../context/auth-context";
 import {
   createListLogic,
@@ -12,12 +11,10 @@ import {
   saveMovieInList,
 } from "../../../../utils/firebase";
 import useFirestore from "../../../../hooks/useFirestore";
-import {
-  WatchListCreateItemContainer,
-  WatchListItemContainer,
-  WatchListPlaceholderContainer,
-} from "../../auxillary-items";
-import ConfirmPopupContainer from "./confirm-popup-container";
+import CreateItemContainer from "./items/create-item-container";
+import ItemContainer from "./items/item-container";
+import PlaceholderContainer from "./items/placeholder-container";
+import { ConfirmPopupContainer, ErrorModalContainer } from "../../../";
 
 export default function WatchListContainer({
   user,
@@ -153,7 +150,7 @@ export default function WatchListContainer({
           {!dataLoading && (
             <>
               {data.length > 0 ? (
-                <WatchListItemContainer
+                <ItemContainer
                   deleteListSubmit={deleteListSubmit}
                   data={data}
                   onAddToList={onAddToList}
@@ -161,10 +158,10 @@ export default function WatchListContainer({
                   onRemoveFromList={onRemoveFromList}
                 />
               ) : (
-                <WatchListPlaceholderContainer />
+                <PlaceholderContainer />
               )}
 
-              <WatchListCreateItemContainer
+              <CreateItemContainer
                 inputValue={inputValue}
                 setInputValue={setInputValue}
                 setInputVisible={setInputVisible}

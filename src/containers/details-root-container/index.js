@@ -10,12 +10,8 @@ import {
   ModalGallery,
 } from "../../components";
 import useFetch from "../../hooks/useFetchData";
-import {
-  ErrorModalContainer,
-  ModalGalleryContainer,
-  TooltipsContainer,
-} from "./auxillary/auxillary-containers";
-import { CardRows } from "./auxillary/auxillary-items";
+import { TooltipsContainer, CardRowsContainer } from "./auxillary";
+import { ErrorModalContainer, ModalGalleryContainer } from "../";
 
 export default function CardDetailsRootContainer() {
   const [visibleGallery, setVisibleGallery] = useState(false);
@@ -68,7 +64,7 @@ export default function CardDetailsRootContainer() {
                 {list.tagline}
               </DescriptionHeader.SubTitle>
             </DescriptionHeader>
-            <CardRows list={list} />
+            <CardRowsContainer list={list} />
           </CardDescriptionColumn>
           <ListColumn>
             <ListColumn.Title>Credits list</ListColumn.Title>

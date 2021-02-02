@@ -1,16 +1,16 @@
 import React from "react";
 
 import {
-  MainPageContainer,
+  ActorRootContainer,
   FooterContainer,
   HeaderContainer,
 } from "../containers";
 
-export default function MainPage() {
+export default function ActorPage() {
   return (
     <>
       <HeaderContainer />
-      <MainPageContainer />
+      <ActorRootContainer />
       <FooterContainer />
     </>
   );

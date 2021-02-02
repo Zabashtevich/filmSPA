@@ -23,7 +23,7 @@ export { default as ModalGallery } from "./modal-gallery";
 export { default as AuthenticationForm } from "./auth-form";
 export { default as ErrorModal } from "./error-modal";
 export { default as ReviewPost } from "./review-post";
-export { default as AuxillaryPagination } from "./auxillary-pagination";
+export { default as PaginationSecondary } from "./pagination-secondary";
 export { default as HeaderProfile } from "./header-profile";
 export { default as Account } from "./account";
 export { default as Tooltips } from "./tooltips";

@@ -1,9 +1,9 @@
 import React from "react";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
-import { WatchList } from "../../../../components";
+import { WatchList } from "../../../../../components";
 
-export default function WatchListPlaceholderContainer() {
+export default function PlaceholderContainer() {
   return (
     <TransitionGroup>
       <CSSTransition

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { AcclistCreateItem } from "../../../../components";
-import ItemDescriptionPopupContainer from "../../../auxillary-containers/description-popup-container";
+import { DescriptionPopupContainer } from "../../../";
 
 export default function AccountCreateList({
   visible,
@@ -31,7 +31,7 @@ export default function AccountCreateList({
         }}
         visible={creatingList}
       />
-      <ItemDescriptionPopupContainer
+      <DescriptionPopupContainer
         text={"Create list"}
         visible={createDesc}
         backgroundsecondary={1}
@@ -61,12 +61,12 @@ export default function AccountCreateList({
             createToggler(e);
           }}
         />
-        <ItemDescriptionPopupContainer
+        <DescriptionPopupContainer
           text={"Confirm"}
           visible={confirmDesc}
           backgroundsecondary={1}
         />
-        <ItemDescriptionPopupContainer
+        <DescriptionPopupContainer
           text={"Decline"}
           visible={delcineDesc}
           backgroundsecondary={1}

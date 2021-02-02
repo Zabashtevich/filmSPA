@@ -4,8 +4,8 @@ import { AuthContext } from "../../../../context/auth-context";
 import useFirestore from "../../../../hooks/useFirestore";
 import { Tooltips } from "../../../../components";
 import useAuthListener from "../../../../hooks/useAuthListener";
-import { ItemDescriptionPopupContainer } from "../../auxillary/auxillary-items";
-import WatchListContainer from "./watch-list-container";
+import { DescriptionPopupContainer } from "../../../";
+import { WatchListContainer } from "../";
 import { favoriteLogic } from "../../../../utils/firebase";
 
 export default function TooltipsContainer({ slug }) {
@@ -61,14 +61,14 @@ export default function TooltipsContainer({ slug }) {
           onClick={onWatchlistClick}
         />
         {user && !descriptionBlocker && (
-          <ItemDescriptionPopupContainer
+          <DescriptionPopupContainer
             left={1}
             text={"Add movie to list"}
             visible={watchlistDesc}
           />
         )}
         {!user && !descriptionBlocker && (
-          <ItemDescriptionPopupContainer
+          <DescriptionPopupContainer
             left={1}
             text={"Please, sign in to add movie to list"}
             visible={watchlistDesc}
@@ -88,21 +88,21 @@ export default function TooltipsContainer({ slug }) {
           isfavorite={isFavorite ? 1 : 0}
         />
         {user && !descriptionBlocker && (
-          <ItemDescriptionPopupContainer
+          <DescriptionPopupContainer
             right={1}
             text={"Add movie to favorite"}
             visible={favoriteDesc}
           />
         )}
         {!user && !descriptionBlocker && (
-          <ItemDescriptionPopupContainer
+          <DescriptionPopupContainer
             right={1}
             text={"Please, sign in to add movie to favorite"}
             visible={favoriteDesc}
           />
         )}
         {user && !descriptionBlocker && isFavorite && (
-          <ItemDescriptionPopupContainer
+          <DescriptionPopupContainer
             right={1}
             text={"Delete film from favorite"}
             visible={favoriteDesc}

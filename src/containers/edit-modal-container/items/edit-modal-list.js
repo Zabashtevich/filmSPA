@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { EditModal } from "../../../../components";
+import { EditModal } from "../../../components";
 
 export default function EditModalList({ closeModal }) {
   const [listInputValue, setListInputValue] = useState("");

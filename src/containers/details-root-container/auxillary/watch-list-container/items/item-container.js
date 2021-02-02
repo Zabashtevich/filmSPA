@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
-import { WatchList } from "../../../../components";
-import ItemDescriptionPopupContainer from "./item-description-popup-container";
+import { WatchList } from "../../../../../components";
+import { DescriptionPopupContainer } from "./../../../../";
 
-export default function WatchListItemContainer({
+export default function ItemContainer({
   data,
   deleteListSubmit,
   onAddToList,
@@ -56,17 +56,17 @@ export default function WatchListItemContainer({
                 />
                 {i === data.length - 1 && (
                   <>
-                    <ItemDescriptionPopupContainer
+                    <DescriptionPopupContainer
                       backgroundsecondary={1}
                       text={"Delete list"}
                       visible={removeDesc}
                     />
-                    <ItemDescriptionPopupContainer
+                    <DescriptionPopupContainer
                       backgroundsecondary={1}
                       text={"Add movie to list"}
                       visible={addDesc}
                     />
-                    <ItemDescriptionPopupContainer
+                    <DescriptionPopupContainer
                       backgroundsecondary={1}
                       text={"Delete movie from list"}
                       visible={deleteDesc}

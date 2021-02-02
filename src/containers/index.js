@@ -14,3 +14,5 @@ export { default as RelevantListContainer } from "./relevant-list-container";
 export { default as ReviewPostContainer } from "./review-post-container";
 export { default as RowListItemContainer } from "./row-list-item-container";
 export { default as TabContainer } from "./tab-container";
+export { default as ConfirmPopupContainer } from "./confirm-popup-container";
+export { default as ModalGalleryContainer } from "./modal-gallery-container";

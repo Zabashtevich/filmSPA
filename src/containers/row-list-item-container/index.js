@@ -7,7 +7,7 @@ import { getRightReleasedDate } from "../../utils/utils";
 import useFirestore from "../../hooks/useFirestore";
 
 import { getArrayOfMovies, checkMovieRated } from "../../utils/utils";
-import VotePopupContainer from "./vote-popup-container";
+import { VotePopupContainer } from "./auxillary";
 
 export default function RowListItemContainer({ array, user }) {
   const [itemsCount, setItemsCount] = useState(10);

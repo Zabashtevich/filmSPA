@@ -6,17 +6,14 @@ import {
   StarRating,
   Votes,
 } from "../../components";
+import { ErrorModalContainer, RelevantListContainer } from "../";
 import { AuthContext } from "../../context/auth-context";
 import useAuthListener from "../../hooks/useAuthListener";
 import useFetch from "../../hooks/useFetchData";
 import useFirestore from "../../hooks/useFirestore";
 import { rateLogic } from "../../utils/firebase";
 import { getCorrectReviewsArray, offsetListener } from "../../utils/utils";
-import {
-  ErrorModalContainer,
-  RelevantListContainer,
-  ReviewsContainer,
-} from "./auxillary/auxillary-containers";
+import { ReviewsContainer } from "./auxillary";
 
 export default function CardDetailsPanelContainer() {
   const [starValue, setStarValue] = useState(0);

@@ -8,17 +8,14 @@ import {
   ModalGallery,
   PosterColumn,
 } from "../../components";
-import useFetch from "../../hooks/useFetchData";
-import { getKnownFor } from "../../utils/utils";
-
 import {
   ModalGalleryContainer,
   RelevantListContainer,
-  ActorRowListItem,
-} from "./auxillary/auxillary-containers";
-
-import { ActorRows } from "./auxillary/auxillary-items";
-
+  RowListItemContainer,
+} from "../";
+import useFetch from "../../hooks/useFetchData";
+import { getKnownFor } from "../../utils/utils";
+import { ActorRowsContainer } from "./auxillary";
 import useAuthListener from "../../hooks/useAuthListener";
 
 export default function ActorRootContainer() {
@@ -64,7 +61,7 @@ export default function ActorRootContainer() {
           <ActorPosterDescription.Title>
             Personal information
           </ActorPosterDescription.Title>
-          <ActorRows list={list} />
+          <ActorRowsContainer list={list} />
         </ActorPosterDescription>
       </PosterColumn>
       <ActorMainColumn>
@@ -79,7 +76,7 @@ export default function ActorRootContainer() {
         <ActorMainColumn.Title>Credits list</ActorMainColumn.Title>
         {!loading && (
           <ActorMainColumn.CreditsWrapper>
-            <ActorRowListItem array={list.credits.cast} user={user} />
+            <RowListItemContainer array={list.credits.cast} user={user} />
           </ActorMainColumn.CreditsWrapper>
         )}
       </ActorMainColumn>

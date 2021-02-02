@@ -1,12 +1,12 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-import { AccountPanel } from "../components";
-import useAuthListener from "../hooks/useAuthListener";
+import { AccountPanel } from "../../components";
+import useAuthListener from "../../hooks/useAuthListener";
 import {
   FilterContainer,
   // RowListItemContainer,
-} from "./auxillary/auxillary-containers";
+} from "./auxillary";
 
 export default function AccountPanelContainer() {
   const params = useParams();

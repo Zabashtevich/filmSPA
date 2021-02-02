@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
-import { WatchList } from "../../../../components";
-import ItemDescriptionPopupContainer from "../../description-popup-container";
+import { WatchList } from "../../../../../components";
+import { DescriptionPopupContainer } from "../../../../";
 
-export default function WatchListCreateItemContainer({
+export default function CreateItemContainer({
   inputValue,
   setInputValue,
   inputVisible,
@@ -42,7 +42,7 @@ export default function WatchListCreateItemContainer({
           onMouseEnter={() => setFinishDesc(true)}
           onMouseLeave={() => setFinishDesc(false)}
         />
-        <ItemDescriptionPopupContainer
+        <DescriptionPopupContainer
           text={"Finish creating"}
           visible={finishDesc}
         />
@@ -51,7 +51,7 @@ export default function WatchListCreateItemContainer({
           onMouseEnter={() => setCancelDesc(true)}
           onMouseLeave={() => setCancelDesc(false)}
         />
-        <ItemDescriptionPopupContainer text={"Cancel"} visible={cancelDesc} />
+        <DescriptionPopupContainer text={"Cancel"} visible={cancelDesc} />
       </WatchList.CreateListIconsWrapper>
       <WatchList.CreateListIconsWrapper
         visibleFirst={!inputVisible}

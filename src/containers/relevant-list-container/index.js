@@ -1,5 +1,5 @@
 import React from "react";
-import { RelevantList } from "../../../../components";
+import { RelevantList } from "../../components";
 
 export default function RelevantListContainer({ recommendations, slug }) {
   const setWindowOffset = () => {

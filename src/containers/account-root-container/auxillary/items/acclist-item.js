@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { AccountList } from "../../../../components";
-import ItemDescriptionPopupContainer from "./item-description-popup-container";
+import { DescriptionPopupContainer } from "../../../";
 
 export default function AccountListItem({ item, i, showModal }) {
   const [deleteDesc, setDeleteDesc] = useState(false);
@@ -37,12 +37,12 @@ export default function AccountListItem({ item, i, showModal }) {
               showModal({ target: "delete", id: item.id, name: item.name })
             }
           />
-          <ItemDescriptionPopupContainer
+          <DescriptionPopupContainer
             text={"Rename list"}
             visible={renameDesc}
             backgroundsecondary={1}
           />
-          <ItemDescriptionPopupContainer
+          <DescriptionPopupContainer
             text={"Delete list"}
             visible={deleteDesc}
             backgroundsecondary={1}

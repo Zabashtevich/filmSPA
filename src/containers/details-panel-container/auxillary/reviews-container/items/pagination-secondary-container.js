@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { AuxillaryPagination } from "../../../../components";
+import { PaginationSecondary } from "../../../../../components";
 
 export default function PaginationSecondaryContainer({
   reviewsLength,
@@ -16,10 +16,10 @@ export default function PaginationSecondaryContainer({
   return (
     <>
       {!amountLoading && (
-        <AuxillaryPagination>
+        <PaginationSecondary>
           {paginationAmount.map((_, i) => {
             return (
-              <AuxillaryPagination.Item
+              <PaginationSecondary.Item
                 onClick={() => {
                   setActivePaginationItem(i + 1);
                   calculateReviewsOffset(i + 1);
@@ -28,10 +28,10 @@ export default function PaginationSecondaryContainer({
                 active={i + 1 === activePaginationItem ? 1 : 0}
               >
                 {i + 1}
-              </AuxillaryPagination.Item>
+              </PaginationSecondary.Item>
             );
           })}
-        </AuxillaryPagination>
+        </PaginationSecondary>
       )}
     </>
   );

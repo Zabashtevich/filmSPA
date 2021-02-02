@@ -16,12 +16,12 @@ import {
   ConfirmPopupContainer,
   EditModalContainer,
   ErrorModalContainer,
-} from "./auxillary/auxillary-containers";
+} from "../";
 import {
   AccountCreateList,
   AccountListItem,
   AccountListPlaceholder,
-} from "./auxillary/auxillary-items";
+} from "./auxillary";
 
 export default function AccountRootContainer() {
   const { user } = useAuthListener();

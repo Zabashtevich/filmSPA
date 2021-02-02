@@ -2,10 +2,10 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import {
-  CardDetailsPage,
+  DetailsPage,
   MainPage,
-  ActorDetailsPage,
-  AuthenticationPage,
+  ActorPage,
+  AuthPage,
   ReviewPage,
   AccountPage,
   AccountEditPage,
@@ -17,13 +17,9 @@ function App() {
       <Switch>
         {/* <ProtectedRoute user={user} path="/details/:slug"></ProtectedRoute> */}
         <Route path="/" component={MainPage} exact />
-        <Route
-          path="/details/:direction/:slug"
-          component={CardDetailsPage}
-          exact
-        />
-        <Route path="/actor/:slug" component={ActorDetailsPage} />
-        <Route path="/authentication/:slug" component={AuthenticationPage} />
+        <Route path="/details/:direction/:slug" component={DetailsPage} exact />
+        <Route path="/actor/:slug" component={ActorPage} />
+        <Route path="/authentication/:slug" component={AuthPage} />
         <Route
           path="/details/:direction/:slug/review"
           component={ReviewPage}

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ModalGallery } from "../../../../components";
+import { ModalGallery } from "../../components";
 import { CSSTransition } from "react-transition-group";
 
 export default function ModalGalleryContainer({

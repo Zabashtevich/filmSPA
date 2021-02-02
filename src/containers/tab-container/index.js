@@ -1,5 +1,5 @@
 import React from "react";
-import { Tab } from "../components";
+import { Tab } from "../../components";
 
 export default function TabContainer({
   title,

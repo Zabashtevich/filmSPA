@@ -1,5 +1,5 @@
 import React from "react";
-import { ErrorModal } from "../../../../components";
+import { ErrorModal } from "../../components";
 import { CSSTransition } from "react-transition-group";
 
 export default function ErrorModalContainer({

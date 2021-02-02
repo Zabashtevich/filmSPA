@@ -4,7 +4,7 @@ import { CSSTransition } from "react-transition-group";
 import { firebase } from "../../../../libs/firebase";
 
 import { HeaderProfile } from "../../../../components";
-import ErrorModalContainer from "./error-modal-container";
+import { ErrorModalContainer } from "./../../../";
 import { useHistory } from "react-router-dom";
 
 export default function HeaderProfileContainer({ user, positionchanged }) {

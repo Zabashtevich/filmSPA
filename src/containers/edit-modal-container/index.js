@@ -1,7 +1,7 @@
 import React from "react";
 
-import EditModal from "../../../../components/edit-modal";
-import { EditModalList } from "../../auxillary-items";
+import { EditModal } from "../../components";
+import EditModalList from "./items/edit-modal-list";
 
 export default function EditModalContainer({ text, visible, closeModal }) {
   return (

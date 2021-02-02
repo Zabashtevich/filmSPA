@@ -6,11 +6,8 @@ import { BodyMain, CardList, CardListSkeleton } from "../../components";
 import { range, getPaginator, getRightReleasedDate } from "../../utils/utils";
 import Data from "../../constants/data.json";
 import useFetch from "../../hooks/useFetchData";
-import TabContainer from "../tab-container";
-import {
-  SliderContainer,
-  PaginationMainPageContainer,
-} from "./auxillary/auxillary-containers";
+import { TabContainer } from "../";
+import { SliderContainer, PaginationMainPageContainer } from "./auxillary";
 
 export default function MainPageContainer() {
   const [sliderIndex, setSliderIndex] = useState(1);

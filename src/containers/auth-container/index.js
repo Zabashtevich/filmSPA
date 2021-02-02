@@ -7,10 +7,10 @@ import AuthForm from "../../components/auth-form";
 import { getErrorsList, getPreviewSrc, validateImg } from "../../utils/utils";
 import { authLogic } from "../../utils/firebase";
 import { AuthContext } from "../../context/auth-context";
-import { RegistrationForm, LoginForm } from "./auxillary/auxillary-items";
+import { RegistrationFormContainer, LoginFormContainer } from "./auxillary";
 import LoadingSpinner from "../../components/loading-spinner";
 
-export default function AuthPageContainer() {
+export default function AuthContainer() {
   const location = useParams();
   const history = useHistory();
 
@@ -96,10 +96,10 @@ export default function AuthPageContainer() {
             )}
             <AuthForm.Title>{location.slug.toUpperCase()}</AuthForm.Title>
             {location.slug === "login" && !userLoading && (
-              <LoginForm register={register} />
+              <LoginFormContainer register={register} />
             )}
             {location.slug === "registration" && !userLoading && (
-              <RegistrationForm
+              <RegistrationFormContainer
                 register={register}
                 avatarSrc={avatarSrc}
                 fileValidation={fileValidation}

@@ -1,7 +1,7 @@
 import React from "react";
 import { ActorPosterDescription } from "../../../../components";
 
-export default function ActorRows({ list }) {
+export default function ActorRowsContainer({ list }) {
   return (
     <ActorPosterDescription.ContentWrapper>
       <ActorPosterDescription.RowContainer>

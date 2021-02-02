@@ -2,7 +2,7 @@ import React from "react";
 
 import { AuthenticationForm } from "../../../../components";
 
-export default function LoginForm({ register }) {
+export default function LoginFormContainer({ register }) {
   return (
     <>
       <AuthenticationForm.Wrapper>

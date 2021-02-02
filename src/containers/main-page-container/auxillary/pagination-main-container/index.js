@@ -7,7 +7,7 @@ import {
   getPaginatorEnd,
 } from "../../../../utils/utils";
 
-export default function PaginationMainPageContainer({ currentPage }) {
+export default function PaginationMainContainer({ currentPage }) {
   const paginatorStart = getPaginatorStart(currentPage);
   const paginatorEnd = getPaginatorEnd(currentPage);
   const pagesAmount = range(paginatorStart, paginatorEnd);

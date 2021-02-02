@@ -6,7 +6,7 @@ import {
   getRightReleasedDate,
 } from "../../../../utils/utils";
 
-export default function CardRows({ list }) {
+export default function CardRowsContainer({ list }) {
   return (
     <CardDescriptionColumn.ContentWrapper>
       <CardDescriptionColumn.Title>About film</CardDescriptionColumn.Title>

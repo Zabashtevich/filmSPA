@@ -3,7 +3,7 @@ import { CSSTransition } from "react-transition-group";
 
 import { AuthenticationForm } from "../../../../components";
 
-export default function RegistrationForm({
+export default function RegistrationFormContainer({
   register,
   avatarSrc,
   fileValidation,

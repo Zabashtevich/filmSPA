@@ -3,14 +3,14 @@ import { Redirect, useHistory, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { CSSTransition } from "react-transition-group";
 
-import AuthenticationForm from "../../components/authentication-form";
+import AuthForm from "../../components/auth-form";
 import { getErrorsList, getPreviewSrc, validateImg } from "../../utils/utils";
 import { authLogic } from "../../utils/firebase";
 import { AuthContext } from "../../context/auth-context";
 import { RegistrationForm, LoginForm } from "./auxillary/auxillary-items";
 import LoadingSpinner from "../../components/loading-spinner";
 
-export default function AuthenticationPageContainer() {
+export default function AuthPageContainer() {
   const location = useParams();
   const history = useHistory();
 
@@ -75,28 +75,26 @@ export default function AuthenticationPageContainer() {
       {userRedirect ? (
         <Redirect to={"/"} />
       ) : (
-        <AuthenticationForm>
-          <AuthenticationForm.Form onSubmit={handleSubmit(onSubmit)}>
+        <AuthForm>
+          <AuthForm.Form onSubmit={handleSubmit(onSubmit)}>
             {errorsList && (
               <CSSTransition timeout={100} appear={true} in={!!errorsList}>
                 {(state) => {
                   return (
-                    <AuthenticationForm.ErrorContainer state={state}>
+                    <AuthForm.ErrorContainer state={state}>
                       {errorsList.map((item, i) => {
                         return (
-                          <AuthenticationForm.ErrorMessage key={item + i}>
+                          <AuthForm.ErrorMessage key={item + i}>
                             {item}
-                          </AuthenticationForm.ErrorMessage>
+                          </AuthForm.ErrorMessage>
                         );
                       })}
-                    </AuthenticationForm.ErrorContainer>
+                    </AuthForm.ErrorContainer>
                   );
                 }}
               </CSSTransition>
             )}
-            <AuthenticationForm.Title>
-              {location.slug.toUpperCase()}
-            </AuthenticationForm.Title>
+            <AuthForm.Title>{location.slug.toUpperCase()}</AuthForm.Title>
             {location.slug === "login" && !userLoading && (
               <LoginForm register={register} />
             )}
@@ -109,14 +107,14 @@ export default function AuthenticationPageContainer() {
               />
             )}
             {userLoading && <LoadingSpinner />}
-            <AuthenticationForm.Button
+            <AuthForm.Button
               type="submit"
               disabled={userLoading || avatarLoading}
             >
               {(!userLoading && location.slug.toUpperCase()) || "LOADING"}
-            </AuthenticationForm.Button>
-          </AuthenticationForm.Form>
-        </AuthenticationForm>
+            </AuthForm.Button>
+          </AuthForm.Form>
+        </AuthForm>
       )}
     </>
   );

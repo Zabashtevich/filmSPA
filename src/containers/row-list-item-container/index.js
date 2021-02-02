@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
-import { LoadMore, RowListItem } from "../../../../components";
-import { getRightReleasedDate } from "../../../../utils/utils";
-import useFirestore from "../../../../hooks/useFirestore";
+import { LoadMore, RowListItem } from "../../components";
+import { getRightReleasedDate } from "../../utils/utils";
+import useFirestore from "../../hooks/useFirestore";
 
-import { getArrayOfMovies, checkMovieRated } from "../../../../utils/utils";
+import { getArrayOfMovies, checkMovieRated } from "../../utils/utils";
 import VotePopupContainer from "./vote-popup-container";
 
-export default function ActorRowListItem({ array, user }) {
+export default function RowListItemContainer({ array, user }) {
   const [itemsCount, setItemsCount] = useState(10);
   const history = useHistory();
 

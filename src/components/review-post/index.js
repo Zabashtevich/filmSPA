@@ -20,7 +20,7 @@ import {
   BackLink,
   Avatar,
   IconLeft,
-} from "./styles/review-post-form";
+} from "./styles/review-post";
 
 export default function ReviewPost({ children, ...rest }) {
   return <Container {...rest}>{children}</Container>;

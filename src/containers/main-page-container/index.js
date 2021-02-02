@@ -12,7 +12,7 @@ import {
   PaginationMainPageContainer,
 } from "./auxillary/auxillary-containers";
 
-export default function BodyMainContainer() {
+export default function MainPageContainer() {
   const [sliderIndex, setSliderIndex] = useState(1);
   const [tabFirst, setTabFirst] = useState({
     title: "Sort by:",

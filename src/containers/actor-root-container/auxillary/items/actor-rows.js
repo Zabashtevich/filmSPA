@@ -1,5 +1,5 @@
 import React from "react";
-import { ActorPosterDescription } from "../../components";
+import { ActorPosterDescription } from "../../../../components";
 
 export default function ActorRows({ list }) {
   return (

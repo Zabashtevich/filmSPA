@@ -16,7 +16,7 @@ export default function RowListItemContainer({ item, index, user, userData }) {
     setRated(
       userData.find((data) => {
         if (data.id === item.id) {
-          return { id: data.id, value: data.value };
+          return { id: data.id, value: data.value, title: data.title };
         }
       }),
     );
@@ -34,32 +34,33 @@ export default function RowListItemContainer({ item, index, user, userData }) {
     }
   };
 
-  return null;
-  // <CSSTransition
-  //   classNames="fade"
-  //   appear={true}
-  //   timeout={{ enter: 1000, exit: 2000, appear: 1000 }}
-  //   mountOnEnter
-  //   unmountOnExit
-  //   key={item.id + index}
-  //   in={!!item}
-  // >
-  //   <RowListItem
-  //     onClick={(e) => handleRedirect(e, item.id)}
-  //     backgroundsecondary={index % 2 === 1 ? 1 : 0}
-  //     rated={userData.find((card) => card.id === item.id)}
-  //   >
-  //     <RowListItem.Numerator>{index + 1}</RowListItem.Numerator>
-  //     <RowListItem.Wrapper>
-  //       <RowListItem.Name>{item.title}</RowListItem.Name>
-  //       <RowListItem.Character>{item.character}</RowListItem.Character>
-  //     </RowListItem.Wrapper>
-  //     <RowListItem.Date>
-  //       {getRightReleasedDate(item.release_date)}
-  //     </RowListItem.Date>
-  //     {item.rated && (
-  //       <VotePopupContainer item={item} userData={userData} user={user} />
-  //     )}
-  //   </RowListItem>
-  // </CSSTransition>
+  return (
+    <CSSTransition
+      classNames="fade"
+      appear={true}
+      timeout={{ enter: 1000, exit: 2000, appear: 1000 }}
+      mountOnEnter
+      unmountOnExit
+      key={item.id + index}
+      in={!!item}
+    >
+      <RowListItem
+        onClick={(e) => handleRedirect(e, item.id)}
+        backgroundsecondary={index % 2 === 1 ? 1 : 0}
+        rated={userData.find((card) => card.id === item.id)}
+      >
+        <RowListItem.Numerator>{index + 1}</RowListItem.Numerator>
+        <RowListItem.Wrapper>
+          <RowListItem.Name>{item.title}</RowListItem.Name>
+          <RowListItem.Character>{item.character}</RowListItem.Character>
+        </RowListItem.Wrapper>
+        <RowListItem.Date>
+          {getRightReleasedDate(item.release_date)}
+        </RowListItem.Date>
+        {rated && (
+          <VotePopupContainer rated={rated} userData={userData} user={user} />
+        )}
+      </RowListItem>
+    </CSSTransition>
+  );
 }

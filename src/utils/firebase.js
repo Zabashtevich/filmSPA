@@ -386,7 +386,7 @@ export const renameList = (firebase, nickname, array, id, name) => {
 export const rateLogic = (
   user,
   history,
-  userRatingData,
+  userData,
   itemID,
   rateScore,
   firebase,
@@ -396,15 +396,16 @@ export const rateLogic = (
   if (user === null) {
     history.push("/authentication/login");
   } else {
-    const newUserRatingData = [
-      ...userRatingData,
-      { id: itemID, value: rateScore, title, time: new Date().getTime() },
-    ];
     firebase
       .firestore()
       .collection(`${user.displayName}`)
       .doc(`moviesrated`)
-      .update({ list: newUserRatingData })
+      .update({
+        list: [
+          ...userData.filter((item) => item.id !== itemID),
+          { id: itemID, value: rateScore, title, time: new Date().getTime() },
+        ],
+      })
       .catch((error) => showErrorModal(error));
   }
 };

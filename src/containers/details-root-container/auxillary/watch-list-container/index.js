@@ -21,7 +21,10 @@ export default function WatchListContainer({
   watchListPopupVisible,
   slug,
 }) {
-  const [dataLoading, data] = useFirestore(user.displayName, "collection");
+  const [dataLoading, data] = useFirestore(
+    user && `${user.displayName}`,
+    "collection",
+  );
   const [inputValue, setInputValue] = useState("");
   const [dataSubmiting, setDataSubmiting] = useState(false);
   const [errorModalVisible, setErrorModalVisible] = useState(false);

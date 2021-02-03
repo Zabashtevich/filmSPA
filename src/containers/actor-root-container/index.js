@@ -15,7 +15,7 @@ import {
   RowListItemContainer,
 } from "../";
 import useFetch from "../../hooks/useFetchData";
-import { checkMovieRated, getKnownFor } from "../../utils/utils";
+import { getArrayOfMovies, getKnownFor } from "../../utils/utils";
 import { ActorRowsContainer } from "./auxillary";
 import useAuthListener from "../../hooks/useAuthListener";
 import useFirestore from "../../hooks/useFirestore";
@@ -89,17 +89,19 @@ export default function ActorRootContainer() {
           {!loading && !userDataLoading && (
             <>
               <ActorMainColumn.CreditsWrapper>
-                {list.credits.cast.slice(0, itemsCount).map((item, index) => {
-                  return (
-                    <RowListItemContainer
-                      key={item.credit_id}
-                      item={item}
-                      index={index}
-                      user={user}
-                      userData={userData}
-                    />
-                  );
-                })}
+                {getArrayOfMovies(list.credits.cast)
+                  .slice(0, itemsCount)
+                  .map((item, index) => {
+                    return (
+                      <RowListItemContainer
+                        key={item.credit_id}
+                        item={item}
+                        index={index}
+                        user={user}
+                        userData={userData}
+                      />
+                    );
+                  })}
               </ActorMainColumn.CreditsWrapper>
               <LoadMore>
                 <LoadMore.Wrapper>

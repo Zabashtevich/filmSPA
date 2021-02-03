@@ -5,7 +5,7 @@ import { VotePopup } from "../../../../components";
 import { AuthContext } from "../../../../context/auth-context";
 import { rateLogic } from "../../../../utils/firebase";
 
-export default function VotePopupContainer({ item, userData, user }) {
+export default function VotePopupContainer({ rated, userData, user }) {
   const [popupVisible, setPopupVisible] = useState(false);
 
   const { firebase } = useContext(AuthContext);
@@ -29,11 +29,11 @@ export default function VotePopupContainer({ item, userData, user }) {
       user,
       history,
       userData,
-      item.id,
+      rated.id,
       rateScore,
       firebase,
       showErrorModal,
-      item.title,
+      rated.title,
     );
     setPopupVisible(false);
   };
@@ -41,7 +41,7 @@ export default function VotePopupContainer({ item, userData, user }) {
   return (
     <VotePopup onClick={(e) => popupToggler(e)}>
       <VotePopup.VoteStar votestar={1} />
-      <VotePopup.Highscore>{item.highscore}</VotePopup.Highscore>
+      <VotePopup.Highscore>{rated.value}</VotePopup.Highscore>
       <VotePopup.Icon />
       {popupVisible && (
         <VotePopup.Popup>

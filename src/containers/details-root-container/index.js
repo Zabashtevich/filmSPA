@@ -15,11 +15,10 @@ import { ErrorModalContainer, ModalGalleryContainer } from "../";
 
 export default function CardDetailsRootContainer() {
   const [visibleGallery, setVisibleGallery] = useState(false);
-
   const history = useHistory();
   const location = useParams();
 
-  const { list, loading, error } = useFetch(location.direction, location.slug, [
+  const [list, loading, error] = useFetch(location.direction, location.slug, [
     {
       append_to_response:
         "credits,recommendations,images,videos,reviews,account_states",

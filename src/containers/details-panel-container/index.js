@@ -27,7 +27,7 @@ export default function CardDetailsPanelContainer() {
 
   const { firebase } = useContext(AuthContext);
 
-  const { user } = useAuthListener();
+  const [user, userLoading] = useAuthListener();
 
   const [, userRatingData] = useFirestore(
     user && `${user.displayName}`,
@@ -36,7 +36,7 @@ export default function CardDetailsPanelContainer() {
 
   const [reviewLoading, reviewData] = useFirestore("Reviews", location.slug);
 
-  const { list } = useFetch(location.direction, location.slug, [
+  const [list] = useFetch(location.direction, location.slug, [
     {
       append_to_response:
         "credits,recommendations,images,videos,reviews,account_states",
@@ -90,7 +90,6 @@ export default function CardDetailsPanelContainer() {
     );
   };
 
-  console.log(list);
   return list ? (
     <DetailsPanel>
       <DetailsPanel.ContentWrapper>

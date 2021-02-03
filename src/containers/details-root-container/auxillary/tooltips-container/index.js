@@ -9,15 +9,15 @@ import { WatchListContainer } from "../";
 import { favoriteLogic } from "../../../../utils/firebase";
 
 export default function TooltipsContainer({ slug }) {
-  const { user } = useAuthListener();
-
+  const [user, loading] = useAuthListener();
   const [watchlistDesc, setWatchlistDesc] = useState(false);
   const [favoriteDesc, setFavoriteDesc] = useState(false);
   const [watchListPopupVisible, setWatchListPopupVisible] = useState(false);
   const [descriptionBlocker, setDescriptionBlocker] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
+  console.log(user);
   const [dataLoading, data] = useFirestore(
-    user.displayName,
+    user && `${user.displayName}`,
     "collection",
     "favorite",
   );

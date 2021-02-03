@@ -1,4 +1,5 @@
 import React from "react";
+import { TransitionGroup } from "react-transition-group";
 
 import {
   Container,
@@ -27,7 +28,11 @@ ActorMainColumn.CreditsWrapper = function ActorMainColumnCreditsWrapper({
   children,
   ...rest
 }) {
-  return <CreditsWrapper {...rest}>{children}</CreditsWrapper>;
+  return (
+    <TransitionGroup component={CreditsWrapper} {...rest}>
+      {children}
+    </TransitionGroup>
+  );
 };
 
 ActorMainColumn.Name = function ActorMainColumnName({ children, ...rest }) {

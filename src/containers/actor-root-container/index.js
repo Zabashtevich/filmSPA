@@ -7,6 +7,7 @@ import {
   DetailsHeader,
   ModalGallery,
   PosterColumn,
+  LoadMore,
 } from "../../components";
 import {
   ModalGalleryContainer,
@@ -14,9 +15,10 @@ import {
   RowListItemContainer,
 } from "../";
 import useFetch from "../../hooks/useFetchData";
-import { getKnownFor } from "../../utils/utils";
+import { checkMovieRated, getKnownFor } from "../../utils/utils";
 import { ActorRowsContainer } from "./auxillary";
 import useAuthListener from "../../hooks/useAuthListener";
+import useFirestore from "../../hooks/useFirestore";
 
 export default function ActorRootContainer() {
   const location = useParams();
@@ -26,16 +28,20 @@ export default function ActorRootContainer() {
     loading: true,
   });
   const [visibleGallery, setVisibleGallery] = useState(false);
+  const [itemsCount, setItemsCount] = useState(10);
+  const [creditsRow, setCreditsRow] = useState({ loading: true, list: null });
 
-  const { user } = useAuthListener();
-
+  const [user, userLoading] = useAuthListener();
   const [list, loading, error] = useFetch("person", location.slug, [
     { append_to_response: "credits,images" },
   ]);
+  const [userDataLoading, userData] = useFirestore(
+    user && `${user.displayName}`,
+    `moviesrated`,
+  );
 
   useEffect(() => {
     if (!list) return;
-
     setKnownForList({ list: getKnownFor(list.credits.cast), loading: false });
   }, [list]);
 
@@ -43,9 +49,11 @@ export default function ActorRootContainer() {
     document.body.style.overflow = "hidden";
     setVisibleGallery(true);
   };
-  console.log(list, loading);
+
   return (
-    !loading && (
+    !loading &&
+    !userLoading &&
+    !knownForList.loading && (
       <DetailsHeader background={"light"}>
         <PosterColumn>
           <PosterColumn.Poster src={list.profile_path} />
@@ -78,14 +86,33 @@ export default function ActorRootContainer() {
             slug={"movie"}
           />
           <ActorMainColumn.Title>Credits list</ActorMainColumn.Title>
-          {!loading && (
-            <ActorMainColumn.CreditsWrapper>
-              <>
-                {list.credits.cast.map(({ credit_id }, index) =>
-                  console.log("hi"),
-                )}
-              </>
-            </ActorMainColumn.CreditsWrapper>
+          {!loading && !userDataLoading && (
+            <>
+              <ActorMainColumn.CreditsWrapper>
+                {list.credits.cast.slice(0, itemsCount).map((item, index) => {
+                  return (
+                    <RowListItemContainer
+                      key={item.credit_id}
+                      item={item}
+                      index={index}
+                      user={user}
+                      userData={userData}
+                    />
+                  );
+                })}
+              </ActorMainColumn.CreditsWrapper>
+              <LoadMore>
+                <LoadMore.Wrapper>
+                  {itemsCount < list.credits.cast.length ? (
+                    <LoadMore.Button
+                      onClick={() => setItemsCount((prev) => prev + 10)}
+                    >
+                      Load more
+                    </LoadMore.Button>
+                  ) : null}
+                </LoadMore.Wrapper>
+              </LoadMore>
+            </>
           )}
         </ActorMainColumn>
       </DetailsHeader>

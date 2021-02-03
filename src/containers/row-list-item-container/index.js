@@ -1,27 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { CSSTransition } from "react-transition-group";
 
-import { LoadMore, RowListItem } from "../../components";
+import { RowListItem } from "../../components";
 import { getRightReleasedDate } from "../../utils/utils";
-import useFirestore from "../../hooks/useFirestore";
-import useFetch from "../../hooks/useFetchData";
 
-import { getArrayOfMovies, checkMovieRated } from "../../utils/utils";
 import { VotePopupContainer } from "./auxillary";
 
-export default function RowListItemContainer({ id, user }) {
-  const [itemsCount, setItemsCount] = useState(10);
+export default function RowListItemContainer({ item, index, user, userData }) {
+  const [rated, setRated] = useState(null);
   const history = useHistory();
 
-  const [userLoading, userData] = useFirestore(
-    user && `${user.displayName}`,
-    `moviesrated`,
-  );
-  console.log("hi");
-  // const { list, loading, error } = useFetch(`credit`, id, [
-  //   { language: "en-US" },
-  // ]);
+  useEffect(() => {
+    if (userData.length === 0) return;
+    setRated(
+      userData.find((data) => {
+        if (data.id === item.id) {
+          return { id: data.id, value: data.value };
+        }
+      }),
+    );
+  }, [item, userData]);
 
   const handleRedirect = (event, slug) => {
     if (
@@ -35,58 +34,32 @@ export default function RowListItemContainer({ id, user }) {
     }
   };
 
-  return (
-    <>
-      {/* <TransitionGroup>
-        {checkMovieRated(getArrayOfMovies(array), userData)
-          .slice(0, itemsCount)
-          .map((item, index) => {
-            return (
-              <CSSTransition
-                classNames="fade"
-                appear={true}
-                timeout={{ enter: 1000, exit: 2000, appear: 1000 }}
-                mountOnEnter
-                unmountOnExit
-                key={item.id + index}
-                in={!userLoading}
-              >
-                <RowListItem
-                  onClick={(e) => handleRedirect(e, item.id)}
-                  backgroundsecondary={index % 2 === 1 ? 1 : 0}
-                  rated={userData.find((card) => card.id === item.id)}
-                >
-                  <RowListItem.Numerator>{index + 1}</RowListItem.Numerator>
-                  <RowListItem.Wrapper>
-                    <RowListItem.Name>{item.title}</RowListItem.Name>
-                    <RowListItem.Character>
-                      {item.character}
-                    </RowListItem.Character>
-                  </RowListItem.Wrapper>
-                  <RowListItem.Date>
-                    {getRightReleasedDate(item.release_date)}
-                  </RowListItem.Date>
-                  {item.rated && (
-                    <VotePopupContainer
-                      item={item}
-                      userData={userData}
-                      user={user}
-                    />
-                  )}
-                </RowListItem>
-              </CSSTransition>
-            );
-          })}
-      </TransitionGroup>
-      <LoadMore>
-        <LoadMore.Wrapper>
-          {itemsCount < array.length ? (
-            <LoadMore.Button onClick={() => setItemsCount((prev) => prev + 10)}>
-              Load more
-            </LoadMore.Button>
-          ) : null}
-        </LoadMore.Wrapper>
-      </LoadMore> */}
-    </>
-  );
+  return null;
+  // <CSSTransition
+  //   classNames="fade"
+  //   appear={true}
+  //   timeout={{ enter: 1000, exit: 2000, appear: 1000 }}
+  //   mountOnEnter
+  //   unmountOnExit
+  //   key={item.id + index}
+  //   in={!!item}
+  // >
+  //   <RowListItem
+  //     onClick={(e) => handleRedirect(e, item.id)}
+  //     backgroundsecondary={index % 2 === 1 ? 1 : 0}
+  //     rated={userData.find((card) => card.id === item.id)}
+  //   >
+  //     <RowListItem.Numerator>{index + 1}</RowListItem.Numerator>
+  //     <RowListItem.Wrapper>
+  //       <RowListItem.Name>{item.title}</RowListItem.Name>
+  //       <RowListItem.Character>{item.character}</RowListItem.Character>
+  //     </RowListItem.Wrapper>
+  //     <RowListItem.Date>
+  //       {getRightReleasedDate(item.release_date)}
+  //     </RowListItem.Date>
+  //     {item.rated && (
+  //       <VotePopupContainer item={item} userData={userData} user={user} />
+  //     )}
+  //   </RowListItem>
+  // </CSSTransition>
 }

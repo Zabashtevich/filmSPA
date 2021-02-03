@@ -21,10 +21,13 @@ import useAuthListener from "../../hooks/useAuthListener";
 export default function ActorRootContainer() {
   const location = useParams();
 
-  const [knownForList, setKnownForList] = useState(null);
+  const [knownForList, setKnownForList] = useState({
+    list: null,
+    loading: true,
+  });
   const [visibleGallery, setVisibleGallery] = useState(false);
 
-  // const { user } = useAuthListener();
+  const { user } = useAuthListener();
 
   const [list, loading, error] = useFetch("person", location.slug, [
     { append_to_response: "credits,images" },
@@ -33,7 +36,7 @@ export default function ActorRootContainer() {
   useEffect(() => {
     if (!list) return;
 
-    setKnownForList(getKnownFor(list.credits.cast));
+    setKnownForList({ list: getKnownFor(list.credits.cast), loading: false });
   }, [list]);
 
   const showModal = () => {

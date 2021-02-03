@@ -4,7 +4,7 @@ import { getQuerry } from "../utils/utils";
 
 export default function useFetch(paths, searchParam, ...rest) {
   const [data, setData] = useState({
-    loading: false,
+    loading: true,
     list: null,
     error: false,
   });
@@ -14,7 +14,6 @@ export default function useFetch(paths, searchParam, ...rest) {
   useEffect(() => {
     let isMounted = true;
     if (isMounted) {
-      setData((prev) => ({ ...prev, loading: true }));
       fetch(
         `${fetchBaseUrl}${paths}/${searchParam}?api_key=${process.env.REACT_APP_API_KEY}${querry}`,
       )
@@ -28,7 +27,6 @@ export default function useFetch(paths, searchParam, ...rest) {
         });
     }
     return () => {
-      setData((prev) => ({ ...prev, loading: false }));
       isMounted = false;
     };
   }, [paths, searchParam, querry]);

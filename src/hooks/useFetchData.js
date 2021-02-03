@@ -3,33 +3,36 @@ import { fetchBaseUrl } from "../constants/constants";
 import { getQuerry } from "../utils/utils";
 
 export default function useFetch(paths, searchParam, ...rest) {
-  const [list, setList] = useState();
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState({
+    loading: false,
+    list: null,
+    error: false,
+  });
 
   const querry = getQuerry(...rest);
+
   useEffect(() => {
     let isMounted = true;
     if (isMounted) {
-      setLoading(true);
+      setData((prev) => ({ ...prev, loading: true }));
       fetch(
         `${fetchBaseUrl}${paths}/${searchParam}?api_key=${process.env.REACT_APP_API_KEY}${querry}`,
       )
         .then((response) => response.json())
         .then((data) => {
           if (data.success === false) {
-            setError(true);
+            setData((prev) => ({ ...prev, error: true }));
           } else {
-            setList(data);
-            setLoading(false);
+            setData((prev) => ({ ...prev, loading: false, list: data }));
           }
         });
     }
-
     return () => {
-      setLoading(false);
+      setData((prev) => ({ ...prev, loading: false }));
       isMounted = false;
     };
-  }, [searchParam, paths, querry]);
-  return { list, loading, error };
+  }, [paths, searchParam, querry]);
+
+  const { list, loading, error } = data;
+  return [list, loading, error];
 }

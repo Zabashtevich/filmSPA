@@ -5,11 +5,12 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { LoadMore, RowListItem } from "../../components";
 import { getRightReleasedDate } from "../../utils/utils";
 import useFirestore from "../../hooks/useFirestore";
+import useFetch from "../../hooks/useFetchData";
 
 import { getArrayOfMovies, checkMovieRated } from "../../utils/utils";
 import { VotePopupContainer } from "./auxillary";
 
-export default function RowListItemContainer({ array, user }) {
+export default function RowListItemContainer({ id, user }) {
   const [itemsCount, setItemsCount] = useState(10);
   const history = useHistory();
 
@@ -17,6 +18,10 @@ export default function RowListItemContainer({ array, user }) {
     user && `${user.displayName}`,
     `moviesrated`,
   );
+  console.log("hi");
+  // const { list, loading, error } = useFetch(`credit`, id, [
+  //   { language: "en-US" },
+  // ]);
 
   const handleRedirect = (event, slug) => {
     if (
@@ -32,7 +37,7 @@ export default function RowListItemContainer({ array, user }) {
 
   return (
     <>
-      <TransitionGroup>
+      {/* <TransitionGroup>
         {checkMovieRated(getArrayOfMovies(array), userData)
           .slice(0, itemsCount)
           .map((item, index) => {
@@ -81,7 +86,7 @@ export default function RowListItemContainer({ array, user }) {
             </LoadMore.Button>
           ) : null}
         </LoadMore.Wrapper>
-      </LoadMore>
+      </LoadMore> */}
     </>
   );
 }

@@ -24,11 +24,11 @@ export default function RowListItemContainer({ item, index, user, userData }) {
 
   const handleRedirect = (event, slug) => {
     if (
-      event.target.classList.value.includes("Numerator") ||
-      event.target.classList.value.includes("Container") ||
-      event.target.classList.value.includes("Name") ||
-      event.target.classList.value.includes("Character") ||
-      event.target.classList.value.includes("Date")
+      event.target.classList.value.includes("item__Numerator") ||
+      event.target.classList.value.includes("item__Container") ||
+      event.target.classList.value.includes("item__Name") ||
+      event.target.classList.value.includes("item__Character") ||
+      event.target.classList.value.includes("item__Date")
     ) {
       history.push(`/details/movie/${slug}`);
     }

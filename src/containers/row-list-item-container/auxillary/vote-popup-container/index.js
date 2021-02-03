@@ -12,11 +12,13 @@ export default function VotePopupContainer({ rated, userData, user }) {
   const history = useHistory();
 
   const popupToggler = (event) => {
+    console.log(event.target.classList.value);
     if (
       event.target.classList.value.includes("VoteStar") ||
       event.target.classList.value.includes("Vote") ||
       event.target.classList.value.includes("Icon") ||
-      event.target.classList.value.includes("Highscore")
+      event.target.classList.value.includes("Highscore") ||
+      event.target.classList.value.includes("popup__Container")
     ) {
       setPopupVisible((prev) => !prev);
     }

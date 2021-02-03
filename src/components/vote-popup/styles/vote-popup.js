@@ -12,6 +12,13 @@ export const Container = styled.div`
   color: white;
   padding: 0.3rem 0.5rem;
   position: relative;
+  border: 1px solid black;
+  &:hover {
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: black;
+    transition: 500ms;
+  }
 `;
 
 export const Item = styled.div`

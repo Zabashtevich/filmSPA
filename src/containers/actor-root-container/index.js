@@ -7,7 +7,6 @@ import {
   DetailsHeader,
   ModalGallery,
   PosterColumn,
-  LoadMore,
 } from "../../components";
 import {
   ModalGalleryContainer,
@@ -19,6 +18,7 @@ import { getArrayOfMovies, getKnownFor } from "../../utils/utils";
 import { ActorRowsContainer } from "./auxillary";
 import useAuthListener from "../../hooks/useAuthListener";
 import useFirestore from "../../hooks/useFirestore";
+import { LoadMoreContainer } from "../";
 
 export default function ActorRootContainer() {
   const location = useParams();
@@ -104,17 +104,7 @@ export default function ActorRootContainer() {
                     );
                   })}
               </ActorMainColumn.CreditsWrapper>
-              <LoadMore>
-                <LoadMore.Wrapper>
-                  {itemsCount < list.credits.cast.length ? (
-                    <LoadMore.Button
-                      onClick={() => setItemsCount((prev) => prev + 10)}
-                    >
-                      Load more
-                    </LoadMore.Button>
-                  ) : null}
-                </LoadMore.Wrapper>
-              </LoadMore>
+              <LoadMoreContainer />
             </>
           )}
         </ActorMainColumn>

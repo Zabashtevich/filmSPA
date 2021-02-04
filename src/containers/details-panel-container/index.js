@@ -77,16 +77,15 @@ export default function CardDetailsPanelContainer() {
     setErrorModalVisible(false);
   };
 
-  const handleRate = (rateScore, itemID, title) => {
+  const handleRate = (rateScore, item) => {
     rateLogic(
       user,
       history,
       userRatingData,
-      itemID,
       rateScore,
       firebase,
       showErrorModal,
-      title,
+      item,
     );
   };
 
@@ -103,7 +102,13 @@ export default function CardDetailsPanelContainer() {
             return (
               <StarRating.Star
                 onClick={() => {
-                  handleRate(i + 1, list.id, list.title);
+                  handleRate(i + 1, {
+                    id: list.id,
+                    title: list.title,
+                    date: list.release_date,
+                    vote_average: list.vote_average,
+                    vote_count: list.vote_count,
+                  });
                   setRatedValue(i + 1);
                 }}
                 key={i}

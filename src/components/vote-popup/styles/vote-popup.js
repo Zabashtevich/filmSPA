@@ -7,6 +7,7 @@ export const Container = styled.div`
   display: flex;
   margin-right: 1rem;
   align-items: center;
+  justify-content: space-between;
   margin-left: auto;
   background-color: ${({ theme }) => theme.colors.secondary};
   color: white;

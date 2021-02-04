@@ -104,7 +104,11 @@ export default function ActorRootContainer() {
                     );
                   })}
               </ActorMainColumn.CreditsWrapper>
-              <LoadMoreContainer />
+              <LoadMoreContainer
+                setItemsCount={setItemsCount}
+                visible={list.credits.cast.length > itemsCount}
+                offset={10}
+              />
             </>
           )}
         </ActorMainColumn>

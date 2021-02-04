@@ -387,13 +387,11 @@ export const rateLogic = (
   user,
   history,
   userData,
-  itemID,
   rateScore,
   firebase,
   showErrorModal,
-  title,
+  item,
 ) => {
-  console.log(userData, itemID);
   if (user === null) {
     history.push("/authentication/login");
   } else {
@@ -403,8 +401,8 @@ export const rateLogic = (
       .doc(`moviesrated`)
       .update({
         list: [
-          ...userData.filter((item) => item.id !== itemID),
-          { id: itemID, value: rateScore, title, time: new Date().getTime() },
+          ...userData.filter((card) => card.id !== item.id),
+          { value: rateScore, time: new Date().getTime(), ...item },
         ],
       })
       .catch((error) => showErrorModal(error));

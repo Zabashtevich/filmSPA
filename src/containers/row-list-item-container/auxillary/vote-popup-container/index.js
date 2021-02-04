@@ -30,11 +30,10 @@ export default function VotePopupContainer({ rated, userData, user }) {
       user,
       history,
       userData,
-      rated.id,
       rateScore,
       firebase,
       showErrorModal,
-      rated.title,
+      rated,
     );
     setPopupVisible(false);
   };

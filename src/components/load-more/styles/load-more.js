@@ -6,6 +6,7 @@ export const Container = styled.div`
   margin-top: 1rem;
   font-family: ${({ theme }) => theme.fontFamily.secondary};
   font-size: ${({ theme }) => theme.fontSize.normal};
+  ${({ theme }) => theme.animations.fadeLtR};
 `;
 
 export const Wrapper = styled.div`

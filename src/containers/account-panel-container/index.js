@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-import { AccountPanel } from "../../components";
+import { Account, AccountPanel } from "../../components";
 import useAuthListener from "../../hooks/useAuthListener";
 import useFirestore from "../../hooks/useFirestore";
 import { FilterContainer } from "./auxillary";
@@ -16,15 +16,22 @@ export default function AccountPanelContainer() {
     `moviesrated`,
   );
 
-  console.log(userData);
-
   return (
     <AccountPanel>
       <FilterContainer slug={params.slug} />
-      {!userDataLoading &&
-        userData.map((item, index) => (
-          <RowListItemContainer item={item} index={index} user={user} />
-        ))}
+      <AccountPanel.CardsContainer>
+        {!userDataLoading &&
+          userData.map((item, index) => (
+            <RowListItemContainer
+              key={item.id}
+              item={item}
+              index={index}
+              user={user}
+              userData={userData}
+              accountPanelRow={true}
+            />
+          ))}
+      </AccountPanel.CardsContainer>
     </AccountPanel>
   );
 }

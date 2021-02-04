@@ -9,6 +9,7 @@ export const Numerator = styled.div`
   align-items: center;
   width: 50px;
   user-select: none;
+  border-right: 1px solid rgba(0, 0, 0, 0.5);
 `;
 
 export const Number = styled.div``;
@@ -45,6 +46,7 @@ export const Container = styled.div`
   align-items: center;
   padding: 0.2rem;
   cursor: pointer;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25), 0 3px 3px rgba(0, 0, 0, 0.22);
   ${({ backgroundsecondary }) =>
     backgroundsecondary &&
     css`

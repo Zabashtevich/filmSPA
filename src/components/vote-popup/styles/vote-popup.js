@@ -13,6 +13,7 @@ export const Container = styled.div`
   padding: 0.3rem 0.5rem;
   position: relative;
   border: 1px solid black;
+  width: 90px;
   &:hover {
     background-color: white;
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -40,6 +41,7 @@ export const Popup = styled.div`
   padding-top: 2rem;
   position: absolute;
   color: black;
+  z-index: 1000;
 `;
 
 export const Wrapper = styled.div`

@@ -12,7 +12,6 @@ export default function VotePopupContainer({ rated, userData, user }) {
   const history = useHistory();
 
   const popupToggler = (event) => {
-    console.log(event.target.classList.value);
     if (
       event.target.classList.value.includes("VoteStar") ||
       event.target.classList.value.includes("Vote") ||

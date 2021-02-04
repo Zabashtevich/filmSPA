@@ -12,12 +12,13 @@ export default function RowListItemContainer({
   index,
   user,
   userData = [],
+  accountPanelRow = false,
 }) {
   const [rated, setRated] = useState(null);
   const history = useHistory();
 
   useEffect(() => {
-    if (userData.length === 0) return;
+    if (userData.length === 0 && accountPanelRow) return;
     setRated(
       userData.find((data) => {
         if (data.id === item.id) {
@@ -26,6 +27,11 @@ export default function RowListItemContainer({
       }),
     );
   }, [item, userData]);
+
+  useEffect(() => {
+    if (!accountPanelRow) return;
+    setRated(item);
+  });
 
   const handleRedirect = (event, slug) => {
     if (
@@ -52,7 +58,7 @@ export default function RowListItemContainer({
       <RowListItem
         onClick={(e) => handleRedirect(e, item.id)}
         backgroundsecondary={index % 2 === 1 ? 1 : 0}
-        rated={userData.find((card) => card.id === item.id)}
+        rated={accountPanelRow ? 0 : rated ? 1 : 0}
       >
         <RowListItem.Numerator>{index + 1}</RowListItem.Numerator>
         <RowListItem.Wrapper>
@@ -60,7 +66,10 @@ export default function RowListItemContainer({
           <RowListItem.Character>{item.character}</RowListItem.Character>
         </RowListItem.Wrapper>
         <RowListItem.Date>
-          {getRightReleasedDate(item.release_date)}
+          {accountPanelRow && new Date(item.time).toLocaleString()}
+        </RowListItem.Date>
+        <RowListItem.Date>
+          {!accountPanelRow && getRightReleasedDate(item.release_date)}
         </RowListItem.Date>
         {rated && (
           <VotePopupContainer rated={rated} userData={userData} user={user} />

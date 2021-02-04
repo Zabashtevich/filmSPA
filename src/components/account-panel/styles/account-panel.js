@@ -7,22 +7,8 @@ export const Container = styled.div`
   flex-direction: column;
 `;
 
-export const Wrapper = styled.div`
-  ${({ tabs }) =>
-    tabs &&
-    css`
-      display: flex;
-      justify-content: space-between;
-    `}
-`;
-
-export const Inner = styled.div`
-  display: flex;
-`;
-
-export const CardContainer = styled.div`
-  min-height: 500px;
-  min-width: 1000px;
-  background-color: black;
-  margin-top: 2rem;
+export const CardsContainer = styled.div`
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.05);
+  padding: 3rem 4rem;
 `;

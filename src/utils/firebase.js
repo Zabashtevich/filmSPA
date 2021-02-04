@@ -393,6 +393,7 @@ export const rateLogic = (
   showErrorModal,
   title,
 ) => {
+  console.log(userData, itemID);
   if (user === null) {
     history.push("/authentication/login");
   } else {

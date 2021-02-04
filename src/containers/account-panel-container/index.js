@@ -10,7 +10,7 @@ import {
 
 export default function AccountPanelContainer() {
   const params = useParams();
-  const { user } = useAuthListener();
+  const [user] = useAuthListener();
 
   return (
     <AccountPanel>

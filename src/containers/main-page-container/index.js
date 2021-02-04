@@ -29,7 +29,7 @@ export default function MainPageContainer() {
   const location = useLocation();
   const skeletonAmount = range(1, 20);
   const currentPage = getPaginator(location);
-  const { list, loading } = useFetch(
+  const [list, loading] = useFetch(
     `trending/${tabSecondary.param}`,
     tabFirst.param,
     [{ page: currentPage }],

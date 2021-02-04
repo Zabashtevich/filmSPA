@@ -10,8 +10,11 @@ import { range } from "../../../../utils/utils";
 
 export default function FilterContainer({ slug }) {
   const history = useHistory();
-  const { user } = useAuthListener();
-  const [loadingLists, lists] = useFirestore(user.displayName, "collection");
+  const [user] = useAuthListener();
+  const [loadingLists, lists] = useFirestore(
+    user && `${user.displayName}`,
+    "collection",
+  );
 
   const [filter, setFilter] = useState({
     sortBy: null,

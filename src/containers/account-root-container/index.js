@@ -24,8 +24,11 @@ import {
 } from "./auxillary";
 
 export default function AccountRootContainer() {
-  const { user } = useAuthListener();
-  const [loadingData, data] = useFirestore(user.displayName, "collection");
+  const [user, userLoading] = useAuthListener();
+  const [loadingData, data] = useFirestore(
+    user && `${user.displayName}`,
+    "collection",
+  );
   const { firebase } = useContext(AuthContext);
   const [dataSubmiting, setDataSubmiting] = useState(false);
   const [creatingList, setCreatingList] = useState(false);
@@ -129,13 +132,15 @@ export default function AccountRootContainer() {
           document.querySelector("#root"),
         )}
       <Account>
-        <Account.ColumnContainer leftcolumn={1}>
-          <Account.Avatar src={user.photoURL} />
-          <Account.Nickname>{user.displayName}</Account.Nickname>
-          <Account.Link to={`${user.displayName}/edit`}>
-            Edit profile
-          </Account.Link>
-        </Account.ColumnContainer>
+        {!userLoading && (
+          <Account.ColumnContainer leftcolumn={1}>
+            <Account.Avatar src={user.photoURL} />
+            <Account.Nickname>{user.displayName}</Account.Nickname>
+            <Account.Link to={`${user.displayName}/edit`}>
+              Edit profile
+            </Account.Link>
+          </Account.ColumnContainer>
+        )}
         <Account.ColumnContainer>
           <Account.Title>YOUR ACTIVITY</Account.Title>
           <Account.Wrapper>

@@ -45,7 +45,6 @@ export default function FilterContainer({ slug }) {
       return;
     }
     setFilter((prev) => ({ ...prev, [target]: value }));
-    setHistoryUpdate(true);
   };
 
   return (
@@ -184,8 +183,20 @@ export default function FilterContainer({ slug }) {
         ))}
       </Filter.Item>
       <Filter.Item buttonswrapper={1}>
-        <Filter.Button applybutton={1}>APPLY</Filter.Button>
-        <Filter.Button discardbutton={1}>DISCARD</Filter.Button>
+        <Filter.Button applybutton={1} onClick={() => setHistoryUpdate(true)}>
+          APPLY
+        </Filter.Button>
+        <Filter.Button
+          discardbutton={1}
+          onClick={() => {
+            setHistoryUpdate(false);
+            history.push({
+              search: null,
+            });
+          }}
+        >
+          DISCARD
+        </Filter.Button>
       </Filter.Item>
     </Filter>
   );

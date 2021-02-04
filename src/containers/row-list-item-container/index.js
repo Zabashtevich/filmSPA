@@ -7,7 +7,12 @@ import { getRightReleasedDate } from "../../utils/utils";
 
 import { VotePopupContainer } from "./auxillary";
 
-export default function RowListItemContainer({ item, index, user, userData }) {
+export default function RowListItemContainer({
+  item,
+  index,
+  user,
+  userData = [],
+}) {
   const [rated, setRated] = useState(null);
   const history = useHistory();
 

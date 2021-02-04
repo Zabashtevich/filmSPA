@@ -35,6 +35,7 @@ export default function ActorRootContainer() {
   const [list, loading, error] = useFetch("person", location.slug, [
     { append_to_response: "credits,images" },
   ]);
+
   const [userDataLoading, userData] = useFirestore(
     user && `${user.displayName}`,
     `moviesrated`,

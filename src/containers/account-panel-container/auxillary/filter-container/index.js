@@ -183,6 +183,10 @@ export default function FilterContainer({ slug }) {
           </Filter.Element>
         ))}
       </Filter.Item>
+      <Filter.Item buttonswrapper={1}>
+        <Filter.Button applybutton={1}>APPLY</Filter.Button>
+        <Filter.Button discardbutton={1}>DISCARD</Filter.Button>
+      </Filter.Item>
     </Filter>
   );
 }

@@ -9,6 +9,7 @@ import {
   Element,
   Select,
   Option,
+  Button,
 } from "./styles/filter";
 
 export default function Filter({ children, ...rest }) {
@@ -41,4 +42,8 @@ Filter.Select = function FilterSelect({ children, ...rest }) {
 
 Filter.Option = function FilterOption({ children, ...rest }) {
   return <Option {...rest}>{children}</Option>;
+};
+
+Filter.Button = function FilterButton({ children, ...rest }) {
+  return <Button {...rest}>{children}</Button>;
 };

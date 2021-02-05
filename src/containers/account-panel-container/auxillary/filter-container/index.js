@@ -42,12 +42,8 @@ export default function FilterContainer() {
   }, [historyUpdate]);
 
   const handleCustomize = ({ target, value }) => {
-    if (target === "list" && filter.listType !== "lists") {
-      return;
-    }
     setFilter((prev) => ({ ...prev, [target]: value }));
   };
-
   return (
     <Filter>
       <Filter.Title>Customize your rating list</Filter.Title>
@@ -72,7 +68,7 @@ export default function FilterContainer() {
             onClick={() => {
               handleCustomize({ target: "listType", value: item.name });
               if (item.name === "lists") {
-                handleCustomize({ target: "list", value: lists[0] });
+                handleCustomize({ target: "list", value: lists[0].id });
               }
             }}
             disabled={item.name === "lists" && lists.length === 0 && 1}
@@ -90,7 +86,7 @@ export default function FilterContainer() {
         )}
         {!loadingLists &&
           lists.length > 0 &&
-          lists.map((item, i) => {
+          lists.map((item) => {
             return (
               <Filter.Element
                 key={item.id}

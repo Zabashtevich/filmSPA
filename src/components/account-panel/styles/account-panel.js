@@ -12,3 +12,9 @@ export const CardsContainer = styled.div`
   background: rgba(0, 0, 0, 0.05);
   padding: 3rem 4rem;
 `;
+
+export const Placeholder = styled.div`
+  color: rgba(0, 0, 0, 0.5);
+  text-align: center;
+  font-size: ${({ theme }) => theme.fontSize.large};
+`;

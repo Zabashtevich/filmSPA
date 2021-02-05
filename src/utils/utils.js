@@ -260,5 +260,5 @@ export const filterLogic = (props, array, setArray) => {
       return correctDate >= correctRange[0] && correctDate <= correctRange[1];
     });
   }
-  setArray(result);
+  setArray({ loading: false, content: result });
 };

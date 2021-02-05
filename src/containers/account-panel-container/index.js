@@ -24,11 +24,19 @@ export default function AccountPanelContainer() {
     dateRange: null,
     amount: null,
   });
-  const [accountArray, setAccountArray] = useState(null);
+  const [accountArray, setAccountArray] = useState({
+    loading: true,
+    content: null,
+  });
 
   const [userDataLoading, userData] = useFirestore(
     user && `${user.displayName}`,
     `moviesrated`,
+  );
+
+  const [listsLoading, lists] = useFirestore(
+    user && `${user.displayName}`,
+    `collection`,
   );
 
   useEffect(() => {
@@ -37,7 +45,15 @@ export default function AccountPanelContainer() {
       return;
     }
     if (filterProperties.changed && !userDataLoading) {
-      filterLogic(filterProperties, userData, setAccountArray);
+      if (!!filterProperties.list && !listsLoading) {
+        filterLogic(
+          filterProperties,
+          lists.find((item) => item.id === +filterProperties.list)["content"],
+          setAccountArray,
+        );
+      } else {
+        filterLogic(filterProperties, userData, setAccountArray);
+      }
     }
   }, [filterProperties, userDataLoading, userData]);
 
@@ -49,13 +65,14 @@ export default function AccountPanelContainer() {
       changed: true,
     }));
   }, [search]);
-
+  console.log(accountArray);
   return (
     <AccountPanel>
       <FilterContainer />
       <AccountPanel.CardsContainer>
-        {!!accountArray &&
-          accountArray.map((item, index) => (
+        {!accountArray.loading &&
+          accountArray.content.length > 0 &&
+          accountArray.content.map((item, index) => (
             <RowListItemContainer
               key={item.id}
               item={item}
@@ -70,6 +87,11 @@ export default function AccountPanelContainer() {
           visible={userData.length > itemsCount}
           offset={10}
         />
+        {!accountArray.loading && accountArray.content.length === 0 && (
+          <AccountPanel.Placeholder>
+            You do not have any movie in your list :c
+          </AccountPanel.Placeholder>
+        )}
       </AccountPanel.CardsContainer>
     </AccountPanel>
   );

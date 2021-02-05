@@ -408,3 +408,21 @@ export const rateLogic = (
       .catch((error) => showErrorModal(error));
   }
 };
+
+export const logoutLogic = (
+  setErrorMessage,
+  setErrorModalVisible,
+  history,
+  firebase,
+) => {
+  firebase
+    .auth()
+    .signOut()
+    .then(() => {
+      history.push("/");
+    })
+    .catch(() => {
+      setErrorMessage(["Sorry, now you can not log out"]);
+      setErrorModalVisible(true);
+    });
+};

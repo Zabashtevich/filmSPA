@@ -5,6 +5,7 @@ import { firebase } from "../../../../libs/firebase";
 import { HeaderProfile } from "../../../../components";
 import { ErrorModalContainer } from "./../../../";
 import { useHistory } from "react-router-dom";
+import { logoutLogic } from "../../../../utils/firebase";
 
 export default function HeaderProfileContainer({ user, positionchanged }) {
   const [popupVisible, setPopupVisible] = useState(false);
@@ -14,16 +15,7 @@ export default function HeaderProfileContainer({ user, positionchanged }) {
   const history = useHistory();
 
   const logOut = () => {
-    firebase
-      .auth()
-      .signOut()
-      .then(() => {
-        history.push("/");
-      })
-      .catch(() => {
-        setErrorMessage(["Sorry, now you can not log out"]);
-        setErrorModalVisible(true);
-      });
+    logoutLogic(setErrorMessage, setErrorModalVisible, history, firebase);
   };
 
   const hideErrorModal = () => {

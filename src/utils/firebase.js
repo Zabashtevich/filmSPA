@@ -402,7 +402,7 @@ export const rateLogic = (
       .update({
         list: [
           ...userData.filter((card) => card.id !== item.id),
-          { value: rateScore, time: new Date().getTime(), ...item },
+          { ...item, value: rateScore, time: new Date().getTime() },
         ],
       })
       .catch((error) => showErrorModal(error));

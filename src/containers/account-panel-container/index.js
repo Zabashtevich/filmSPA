@@ -21,7 +21,7 @@ export default function AccountPanelContainer() {
     listType: "votes",
     list: null,
     show: null,
-    dateRange: [null, null],
+    dateRange: null,
     amount: null,
   });
   const [accountArray, setAccountArray] = useState(null);
@@ -37,7 +37,7 @@ export default function AccountPanelContainer() {
       return;
     }
     filterLogic(filterProperties, userData, setAccountArray);
-  }, [filterProperties, userDataLoading]);
+  }, [filterProperties, userDataLoading, userData]);
 
   useEffect(() => {
     if (!search) return;
@@ -52,8 +52,8 @@ export default function AccountPanelContainer() {
     <AccountPanel>
       <FilterContainer />
       <AccountPanel.CardsContainer>
-        {!userDataLoading &&
-          userData.map((item, index) => (
+        {!!accountArray &&
+          accountArray.map((item, index) => (
             <RowListItemContainer
               key={item.id}
               item={item}

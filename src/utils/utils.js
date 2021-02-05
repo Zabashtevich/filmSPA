@@ -249,4 +249,15 @@ export const filterLogic = (props, array, setArray) => {
         return item1.vote_count - item2.vote_count;
     }
   });
+  if (props.show !== "all") {
+    result.filter((item) => item.value !== props.show);
+  }
+  if (props.dateRange) {
+    result.filter((item) => {
+      const correctDate = getRightReleasedDate(item.date);
+      return (
+        correctDate >= props.dateRange[0] && correctDate <= props.dateRange[1]
+      );
+    });
+  }
 };

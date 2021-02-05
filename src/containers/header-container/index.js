@@ -15,7 +15,8 @@ export default function HeaderMainContainer() {
 
   const inputRef = useRef();
 
-  const [user] = useAuthListener();
+  const [user, userLoading] = useAuthListener();
+
   useEffect(() => {
     const listener = () => {
       getHeaderProps(setHeaderProp, headerProp);
@@ -83,7 +84,7 @@ export default function HeaderMainContainer() {
           />
         </Header.Wrapper>
 
-        {user === null && (
+        {!userLoading && user === null && (
           <>
             <Header.Link
               to={"/authentication/login"}
@@ -100,7 +101,7 @@ export default function HeaderMainContainer() {
           </>
         )}
 
-        {user && (
+        {!userLoading && user && (
           <HeaderProfileContainer
             positionchanged={headerProp.positionchanged ? "true" : null}
             user={user}

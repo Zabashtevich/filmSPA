@@ -1,4 +1,5 @@
 import React from "react";
+import { CSSTransition } from "react-transition-group";
 
 import {
   Container,
@@ -21,9 +22,20 @@ HeaderProfile.Icon = function HeaderProfileIcon({ ...rest }) {
 
 HeaderProfile.PopupContainer = function HeaderProfilePopupContainer({
   children,
+  visible,
   ...rest
 }) {
-  return <PopupContainer {...rest}>{children}</PopupContainer>;
+  return (
+    <CSSTransition
+      appear={true}
+      in={visible}
+      timeout={{ enter: 600, exit: 600 }}
+      unmountOnExit
+      classNames="my-node"
+    >
+      <PopupContainer {...rest}>{children}</PopupContainer>
+    </CSSTransition>
+  );
 };
 
 HeaderProfile.PopupNickname = function HeaderProfilePopupNickname({

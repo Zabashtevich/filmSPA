@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { CSSTransition } from "react-transition-group";
 
 import { firebase } from "../../../../libs/firebase";
 
@@ -13,6 +12,7 @@ export default function HeaderProfileContainer({ user, positionchanged }) {
   const [errorModalVisible, setErrorModalVisible] = useState(false);
 
   const history = useHistory();
+
   const logOut = () => {
     firebase
       .auth()
@@ -31,7 +31,6 @@ export default function HeaderProfileContainer({ user, positionchanged }) {
     setErrorMessage(null);
     setErrorModalVisible(false);
   };
-
   return (
     <HeaderProfile>
       {errorModalVisible && (
@@ -47,31 +46,23 @@ export default function HeaderProfileContainer({ user, positionchanged }) {
         positionchanged={positionchanged}
       />
 
-      <CSSTransition
-        appear={true}
-        in={popupVisible}
-        timeout={{ enter: 600, exit: 600 }}
-        unmountOnExit
-        classNames="my-node"
-      >
-        <HeaderProfile.PopupContainer>
-          <HeaderProfile.PopupMetawrapper popupVisible={popupVisible}>
-            <HeaderProfile.PopupNickname>
-              {user.displayName}
-            </HeaderProfile.PopupNickname>
-            <HeaderProfile.PopupEmail>{user.email}</HeaderProfile.PopupEmail>
-          </HeaderProfile.PopupMetawrapper>
-          <HeaderProfile.PopupLink to={`/account/${user.displayName}`}>
-            To profile
-          </HeaderProfile.PopupLink>
-          <HeaderProfile.PopupLink to={`/account/${user.displayName}/edit`}>
-            Edit profile
-          </HeaderProfile.PopupLink>
-          <HeaderProfile.PopupLogout onClick={logOut}>
-            Log out
-          </HeaderProfile.PopupLogout>
-        </HeaderProfile.PopupContainer>
-      </CSSTransition>
+      <HeaderProfile.PopupContainer visible={popupVisible}>
+        <HeaderProfile.PopupMetawrapper popupVisible={popupVisible}>
+          <HeaderProfile.PopupNickname>
+            {user.displayName}
+          </HeaderProfile.PopupNickname>
+          <HeaderProfile.PopupEmail>{user.email}</HeaderProfile.PopupEmail>
+        </HeaderProfile.PopupMetawrapper>
+        <HeaderProfile.PopupLink to={`/account/${user.displayName}`}>
+          To profile
+        </HeaderProfile.PopupLink>
+        <HeaderProfile.PopupLink to={`/account/${user.displayName}/edit`}>
+          Edit profile
+        </HeaderProfile.PopupLink>
+        <HeaderProfile.PopupLogout onClick={logOut}>
+          Log out
+        </HeaderProfile.PopupLogout>
+      </HeaderProfile.PopupContainer>
     </HeaderProfile>
   );
 }

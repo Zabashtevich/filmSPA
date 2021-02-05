@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { parse } from "query-string";
 
 import { AccountPanel } from "../../components";
@@ -8,25 +8,49 @@ import useFirestore from "../../hooks/useFirestore";
 import { FilterContainer } from "./auxillary";
 import { RowListItemContainer } from "../";
 import LoadMoreContainer from "../load-more-container";
+import { filterLogic } from "../../utils/utils";
 
 export default function AccountPanelContainer() {
-  const params = useParams();
   const [user] = useAuthListener();
   const { search } = useLocation();
   const [itemsCount, setItemsCount] = useState(10);
-  const [parsedSearch, setParsedSearch] = useState(null);
+
+  const [filterProperties, setFilterProperties] = useState({
+    changed: false,
+    sortBy: "date",
+    listType: "votes",
+    list: null,
+    show: null,
+    dateRange: [null, null],
+    amount: null,
+  });
+  const [accountArray, setAccountArray] = useState(null);
 
   const [userDataLoading, userData] = useFirestore(
     user && `${user.displayName}`,
     `moviesrated`,
   );
+
   useEffect(() => {
-    console.log(parse(search));
+    if (!filterProperties.changed && !userDataLoading) {
+      setAccountArray(userData);
+      return;
+    }
+    filterLogic(filterProperties, userData, setAccountArray);
+  }, [filterProperties, userDataLoading]);
+
+  useEffect(() => {
+    if (!search) return;
+    setFilterProperties((prev) => ({
+      ...prev,
+      ...parse(search),
+      changed: true,
+    }));
   }, [search]);
-  console.log(userData);
+
   return (
     <AccountPanel>
-      <FilterContainer slug={params.slug} />
+      <FilterContainer />
       <AccountPanel.CardsContainer>
         {!userDataLoading &&
           userData.map((item, index) => (

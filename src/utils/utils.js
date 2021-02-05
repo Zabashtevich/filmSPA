@@ -235,3 +235,18 @@ export const checkMovieRated = (array, moviesrated) => {
   }
   return array;
 };
+
+export const filterLogic = (props, array, setArray) => {
+  const result = array.sort((item1, item2) => {
+    switch (props.sortBy) {
+      case "date":
+        return item1.time - item2.time;
+      case "rating":
+        return item1.vote_average - item2.vote_average;
+      case "yourRating":
+        return item1.value - item2.value;
+      case "yourRating":
+        return item1.vote_count - item2.vote_count;
+    }
+  });
+};

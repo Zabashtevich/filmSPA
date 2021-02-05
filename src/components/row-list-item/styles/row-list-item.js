@@ -16,7 +16,7 @@ export const Number = styled.div``;
 
 export const Wrapper = styled.div`
   width: 400px;
-  margin-left: 5rem;
+  margin-left: 3rem;
 `;
 
 export const Name = styled.div`
@@ -25,9 +25,24 @@ export const Name = styled.div`
 
 export const Character = styled.div`
   margin: 0.4rem;
+  white-space: nowrap;
 `;
 
 export const Date = styled.div``;
+
+export const Inner = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const VoteAmount = styled.div`
+  color: gray;
+  margin-left: 5px;
+`;
+
+export const VoteAverage = styled.div`
+  font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
+`;
 
 export const Star = styled(IoIosStar)`
   font-size: ${({ theme }) => theme.fontSize.small};

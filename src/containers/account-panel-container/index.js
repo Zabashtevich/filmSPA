@@ -41,7 +41,7 @@ export default function AccountPanelContainer() {
 
   useEffect(() => {
     if (!filterProperties.changed && !userDataLoading) {
-      setAccountArray(userData);
+      setAccountArray({ loading: false, content: userData });
       return;
     }
     if (filterProperties.changed && !userDataLoading) {

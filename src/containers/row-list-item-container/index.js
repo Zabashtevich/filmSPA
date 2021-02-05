@@ -63,7 +63,13 @@ export default function RowListItemContainer({
         <RowListItem.Numerator>{index + 1}</RowListItem.Numerator>
         <RowListItem.Wrapper>
           <RowListItem.Name>{item.title}</RowListItem.Name>
-          <RowListItem.Character>{item.character}</RowListItem.Character>
+          <RowListItem.Inner>
+            <RowListItem.Character>{item.character}</RowListItem.Character>
+            <RowListItem.VoteAverage>
+              {item.vote_average}
+            </RowListItem.VoteAverage>
+            <RowListItem.VoteAmount>({item.vote_count})</RowListItem.VoteAmount>
+          </RowListItem.Inner>
         </RowListItem.Wrapper>
         <RowListItem.Date>
           {accountPanelRow && new Date(item.time).toLocaleString()}

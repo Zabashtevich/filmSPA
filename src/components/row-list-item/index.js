@@ -1,7 +1,5 @@
 import React from "react";
 
-import { CSSTransition } from "react-transition-group";
-
 import {
   Container,
   Date,
@@ -10,6 +8,9 @@ import {
   Character,
   Wrapper,
   Star,
+  VoteAmount,
+  VoteAverage,
+  Inner,
 } from "./styles/row-list-item";
 
 export default function RowListItem({ children, ...rest }) {
@@ -34,6 +35,21 @@ RowListItem.Character = function RowListItemCharacter({ children, ...rest }) {
 
 RowListItem.Wrapper = function RowListItemWrapper({ children, ...rest }) {
   return <Wrapper {...rest}>{children}</Wrapper>;
+};
+
+RowListItem.Inner = function RowListItemInner({ children, ...rest }) {
+  return <Inner {...rest}>{children}</Inner>;
+};
+
+RowListItem.VoteAmount = function RowListItemVoteAmount({ children, ...rest }) {
+  return <VoteAmount {...rest}>{children}</VoteAmount>;
+};
+
+RowListItem.VoteAverage = function RowListItemVoteAverage({
+  children,
+  ...rest
+}) {
+  return <VoteAverage {...rest}>{children}</VoteAverage>;
 };
 
 RowListItem.Star = function RowListItemStar({ ...rest }) {

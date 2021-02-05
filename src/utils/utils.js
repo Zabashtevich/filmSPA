@@ -1,7 +1,7 @@
 import { parse } from "query-string";
 
 export const range = (start, end) => {
-  return [...Array(end)].map((_, index) => index + start);
+  return [...Array(end)].map((_, index) => index + +start);
 };
 
 export const getPaginator = ({ search }) => {
@@ -237,27 +237,28 @@ export const checkMovieRated = (array, moviesrated) => {
 };
 
 export const filterLogic = (props, array, setArray) => {
-  const result = array.sort((item1, item2) => {
+  let result;
+  result = array.sort((item1, item2) => {
     switch (props.sortBy) {
       case "date":
-        return item1.time - item2.time;
+        return item2.time - item1.time;
       case "rating":
-        return item1.vote_average - item2.vote_average;
+        return item2.vote_average - item1.vote_average;
       case "yourRating":
-        return item1.value - item2.value;
+        return item2.value - item1.value;
       case "yourRating":
-        return item1.vote_count - item2.vote_count;
+        return item2.vote_count - item1.vote_count;
     }
   });
   if (props.show !== "all") {
-    result.filter((item) => item.value !== props.show);
+    result = result.filter((item) => item.value === +props.show);
   }
   if (props.dateRange) {
-    result.filter((item) => {
+    result = result.filter((item) => {
       const correctDate = getRightReleasedDate(item.date);
-      return (
-        correctDate >= props.dateRange[0] && correctDate <= props.dateRange[1]
-      );
+      const correctRange = props.dateRange.split(",");
+      return correctDate >= correctRange[0] && correctDate <= correctRange[1];
     });
   }
+  setArray(result);
 };

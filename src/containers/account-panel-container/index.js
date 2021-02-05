@@ -36,7 +36,9 @@ export default function AccountPanelContainer() {
       setAccountArray(userData);
       return;
     }
-    filterLogic(filterProperties, userData, setAccountArray);
+    if (filterProperties.changed && !userDataLoading) {
+      filterLogic(filterProperties, userData, setAccountArray);
+    }
   }, [filterProperties, userDataLoading, userData]);
 
   useEffect(() => {

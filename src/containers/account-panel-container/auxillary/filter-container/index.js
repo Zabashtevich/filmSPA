@@ -153,7 +153,10 @@ export default function FilterContainer() {
           }}
         >
           <Filter.Option value="all">all</Filter.Option>
-          {range(1971, 50).map((item) => (
+          {range(
+            filter.dateRange[0] || 1971,
+            (filter.dateRange[0] && 2021 - filter.dateRange[0]) || 50,
+          ).map((item) => (
             <Filter.Option key={item}>{item}</Filter.Option>
           ))}
         </Filter.Select>

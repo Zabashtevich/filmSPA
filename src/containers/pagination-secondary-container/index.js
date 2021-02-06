@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { PaginationSecondary } from "../../../../../components";
+import { PaginationSecondary } from "../../components";
 
 export default function PaginationSecondaryContainer({
   reviewsLength,

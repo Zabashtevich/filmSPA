@@ -7,8 +7,8 @@ import useAuthListener from "../../hooks/useAuthListener";
 import useFirestore from "../../hooks/useFirestore";
 import { FilterContainer } from "./auxillary";
 import { RowListItemContainer } from "../";
-import LoadMoreContainer from "../load-more-container";
 import { filterLogic } from "../../utils/utils";
+import { PaginationSecondaryContainer, LoadMoreContainer } from "../";
 
 export default function AccountPanelContainer() {
   const [user] = useAuthListener();
@@ -92,6 +92,7 @@ export default function AccountPanelContainer() {
             You do not have any movie in your list :c
           </AccountPanel.Placeholder>
         )}
+        <PaginationSecondaryContainer />
       </AccountPanel.CardsContainer>
     </AccountPanel>
   );

@@ -3,7 +3,7 @@ import { useParams, useHistory } from "react-router-dom";
 
 import { LoadMore, ReviewsList } from "../../../../components";
 import { getCorrectSrc } from "../../../../utils/utils";
-import PaginationSecondaryContainer from "./items/pagination-secondary-container";
+import { PaginationSecondaryContainer } from "../../../";
 
 export default function ReviewsContainer({
   fullReviewsArray,

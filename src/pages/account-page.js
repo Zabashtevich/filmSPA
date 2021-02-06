@@ -3,6 +3,7 @@ import {
   AccountRootContainer,
   HeaderContainer,
   AccountPanelContainer,
+  FooterContainer,
 } from "../containers";
 
 export default function AccountPage() {
@@ -11,6 +12,7 @@ export default function AccountPage() {
       <HeaderContainer />
       <AccountRootContainer />
       <AccountPanelContainer />
+      <FooterContainer />
     </>
   );
 }

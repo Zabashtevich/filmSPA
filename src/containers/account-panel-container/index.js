@@ -13,7 +13,6 @@ import { filterLogic } from "../../utils/utils";
 export default function AccountPanelContainer() {
   const [user] = useAuthListener();
   const { search } = useLocation();
-  const [itemsCount, setItemsCount] = useState(10);
 
   const [filterProperties, setFilterProperties] = useState({
     changed: false,
@@ -28,6 +27,7 @@ export default function AccountPanelContainer() {
     loading: true,
     content: null,
   });
+  const [itemsCount, setItemsCount] = useState(filterProperties.amount || 10);
 
   const [userDataLoading, userData] = useFirestore(
     user && `${user.displayName}`,
@@ -65,7 +65,7 @@ export default function AccountPanelContainer() {
       changed: true,
     }));
   }, [search]);
-  console.log(accountArray);
+
   return (
     <AccountPanel>
       <FilterContainer />
@@ -84,8 +84,8 @@ export default function AccountPanelContainer() {
           ))}
         <LoadMoreContainer
           setItemsCount={setItemsCount}
-          visible={userData.length > itemsCount}
-          offset={10}
+          visible={accountArray.length > itemsCount}
+          offset={filterProperties.amount || 10}
         />
         {!accountArray.loading && accountArray.content.length === 0 && (
           <AccountPanel.Placeholder>

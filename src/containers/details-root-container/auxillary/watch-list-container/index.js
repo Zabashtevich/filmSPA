@@ -115,11 +115,8 @@ export default function WatchListContainer({
       setAddedToList(true);
     });
   };
-
-  const onRemoveFromList = () => {
-    deleteFromList(firebase, user.displayName, item, data).then(() => {
-      setAddedToList(false);
-    });
+  const onRemoveFromList = (id) => {
+    deleteFromList(firebase, user.displayName, id, item, data);
   };
 
   return (

@@ -327,42 +327,42 @@ export const deleteList = (firebase, id, array, nickname) => {
 };
 
 export const addToList = (firebase, nickname, id, item, data) => {
-  console.log(item);
-  const newArray = data.map(
-    (i) =>
-      i.id === id && {
-        content: [
-          ...i.content,
-          {
-            id: item.id,
-            title: item.title,
-            vote_average: item.vote_average,
-            vote_count: item.vote_count,
-            time: new Date().getTime(),
-            date: item.release_date,
-          },
-        ],
-        name: i.name,
-        id: i.id,
-      },
-  );
+  const newArray = data.filter((list) => {
+    if (list.id === id)
+      list.content.push({
+        id: item.id,
+        title: item.title,
+        vote_average: item.vote_average,
+        vote_count: item.vote_count,
+        time: new Date().getTime(),
+        date: item.release_date,
+      });
+    return list.id === id;
+  });
+
   return firebase
     .firestore()
     .collection(`${nickname}`)
     .doc(`collection`)
-    .update({ list: [...newArray] });
+    .update({
+      list: [...data.filter((list) => list.id !== id), ...newArray],
+    });
 };
 
-export const deleteFromList = (firebase, nickname, item, data) => {
-  const newArray = data.map((a) => ({
-    ...a,
-    content: a.content.filter((i) => i.id !== item.id),
-  }));
+export const deleteFromList = (firebase, nickname, id, item, data) => {
+  const newArray = data.filter((list) => list.id === id);
+  const result = newArray.map((i) => {
+    const array = i.content.filter((b) => b.id !== item.id);
+    return { ...i, content: [...array] };
+  });
+
   return firebase
     .firestore()
     .collection(`${nickname}`)
     .doc(`collection`)
-    .update({ list: [...newArray] });
+    .update({
+      list: [...data.filter((list) => list.id !== id).concat(result)],
+    });
 };
 
 export const favoriteLogic = (firebase, item, nickname, isFavorite, array) => {

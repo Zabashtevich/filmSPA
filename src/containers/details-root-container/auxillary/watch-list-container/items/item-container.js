@@ -41,7 +41,7 @@ export default function ItemContainer({
                 {addedToList && (
                   <WatchList.Delete
                     onClick={() => {
-                      onRemoveFromList();
+                      onRemoveFromList(item.id);
                       setAddDesc(false);
                       setDeleteDesc(false);
                     }}

@@ -35,7 +35,7 @@ export default function TooltipsContainer({ slug, item }) {
     setDescriptionBlocker((prev) => !prev);
     setWatchListPopupVisible((prev) => !prev);
   };
-  console.log(item);
+
   const onFavoriteClick = () => {
     if (!user) return;
     setFavoriteDesc(false);
@@ -77,6 +77,7 @@ export default function TooltipsContainer({ slug, item }) {
           user={user}
           watchListPopupVisible={watchListPopupVisible}
           slug={slug}
+          item={item}
         />
       </Tooltips.ItemWrapper>
       <Tooltips.ItemWrapper rightposition={1}>

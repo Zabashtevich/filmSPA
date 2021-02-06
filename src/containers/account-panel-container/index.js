@@ -8,7 +8,7 @@ import useFirestore from "../../hooks/useFirestore";
 import { FilterContainer } from "./auxillary";
 import { RowListItemContainer } from "../";
 import { filterLogic } from "../../utils/utils";
-import { PaginationSecondaryContainer, LoadMoreContainer } from "../";
+import { PaginationSecondaryContainer } from "../";
 
 export default function AccountPanelContainer() {
   const [user] = useAuthListener();
@@ -37,38 +37,37 @@ export default function AccountPanelContainer() {
     dateRange: null,
     amount: 10,
   });
-  const { amount } = filterProperties;
+
+  const [array, setArray] = useState({
+    loading: true,
+    content: [],
+  });
+
+  const { amount, changed, list, listType } = filterProperties;
+  const { loading, content } = array;
 
   const [paginationOffset, setPaginationOffset] = useState({
     first: 0,
     last: amount,
   });
 
-  const [accountArray, setAccountArray] = useState({
-    loading: true,
-    content: [],
-  });
-
   useEffect(() => {
-    if (!filterProperties.changed && !userDataLoading) {
-      setAccountArray({ loading: false, content: userData });
+    if (!changed && !userDataLoading) {
+      setArray({ loading: false, content: userData });
       return;
     }
-    if (filterProperties.changed && !userDataLoading) {
-      if (!!filterProperties.list && !listsLoading) {
+    if (changed && !userDataLoading) {
+      if (!!list && !listsLoading) {
         filterLogic(
           filterProperties,
-          lists.find((item) => item.id === +filterProperties.list)["content"],
-          setAccountArray,
+          lists.find((item) => item.id === +list)["content"],
+          setArray,
         );
       } else {
-        filterLogic(filterProperties, userData, setAccountArray);
+        filterLogic(filterProperties, userData, setArray);
       }
-      if (
-        filterProperties.changed &&
-        filterProperties.listType === "favorite"
-      ) {
-        filterLogic(filterProperties, favorite, setAccountArray);
+      if (changed && listType === "favorite") {
+        filterLogic(filterProperties, favorite, setArray);
       }
     }
   }, [filterProperties, userDataLoading, userData]);
@@ -93,9 +92,9 @@ export default function AccountPanelContainer() {
     <AccountPanel>
       <FilterContainer />
       <AccountPanel.CardsContainer>
-        {!accountArray.loading &&
-          accountArray.content.length > 0 &&
-          accountArray.content
+        {!loading &&
+          content.length > 0 &&
+          content
             .slice(paginationOffset.first, paginationOffset.last)
             .map((item, index) => (
               <RowListItemContainer
@@ -103,23 +102,21 @@ export default function AccountPanelContainer() {
                 item={item}
                 index={index}
                 user={user}
-                userData={accountArray.content}
+                array={content}
                 accountPanelRow={true}
-                favoriteRow={
-                  filterProperties.listType === "favorite" ? true : false
-                }
+                hideVotePopup={listType === "favorite" ? true : false}
               />
             ))}
-        {!accountArray.loading && accountArray.content.length === 0 && (
+        {!loading && content.length === 0 && (
           <AccountPanel.Placeholder>
             You do not have any movie in your list :c
           </AccountPanel.Placeholder>
         )}
-        {accountArray.content.length > 0 && (
+        {content.length > 0 && (
           <PaginationSecondaryContainer
-            length={accountArray.content.length}
+            length={content.length}
             calculateOffset={calculateOffset}
-            itemsAmount={filterProperties.amount}
+            itemsAmount={amount}
           />
         )}
       </AccountPanel.CardsContainer>

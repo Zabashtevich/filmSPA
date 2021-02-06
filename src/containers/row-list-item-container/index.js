@@ -11,28 +11,28 @@ export default function RowListItemContainer({
   item,
   index,
   user,
-  userData = [],
+  array = [],
   accountPanelRow = false,
-  favoriteRow = false,
+  hideVotePopup = false,
 }) {
   const [rated, setRated] = useState(null);
   const history = useHistory();
 
   useEffect(() => {
-    if (favoriteRow) return;
-    if (userData.length === 0 && !accountPanelRow) return;
+    if (hideVotePopup) return;
+    if (array.length === 0 && !accountPanelRow) return;
     setRated(
-      userData.find((data) => {
+      array.find((data) => {
         if (data.id === item.id) {
           return { id: data.id, value: data.value, title: data.title };
         }
       }),
     );
-  }, [item, userData]);
+  }, [item, array]);
 
   useEffect(() => {
     if (!accountPanelRow) return;
-    if (favoriteRow) return;
+    if (hideVotePopup) return;
     setRated(item);
   });
 
@@ -75,15 +75,16 @@ export default function RowListItemContainer({
           </RowListItem.Inner>
         </RowListItem.Wrapper>
         <RowListItem.Date>
-          {accountPanelRow && new Date(item.time).toLocaleString() || favoriteRow && new Date(item.time).toLocaleString()}
+          {(accountPanelRow && new Date(item.time).toLocaleString()) ||
+            (hideVotePopup && new Date(item.time).toLocaleString())}
         </RowListItem.Date>
         <RowListItem.Date>
           {!accountPanelRow &&
-            !favoriteRow &&
+            !hideVotePopup &&
             getRightReleasedDate(item.release_date)}
         </RowListItem.Date>
         {rated && (
-          <VotePopupContainer rated={rated} userData={userData} user={user} />
+          <VotePopupContainer rated={rated} array={array} user={user} />
         )}
       </RowListItem>
     </CSSTransition>

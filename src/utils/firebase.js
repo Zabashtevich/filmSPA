@@ -326,13 +326,24 @@ export const deleteList = (firebase, id, array, nickname) => {
     .update({ list: [...newArray] });
 };
 
-export const saveMovieInList = (firebase, nickname, id, data, slug) => {
+export const addToList = (firebase, nickname, id, item, data) => {
+  console.log(item);
   const newArray = data.map(
-    (item) =>
-      item.id === id && {
-        content: [...item.content, +slug],
-        name: item.name,
-        id: item.id,
+    (i) =>
+      i.id === id && {
+        content: [
+          ...i.content,
+          {
+            id: item.id,
+            title: item.title,
+            vote_average: item.vote_average,
+            vote_count: item.vote_count,
+            time: new Date().getTime(),
+            date: item.release_date,
+          },
+        ],
+        name: i.name,
+        id: i.id,
       },
   );
   return firebase
@@ -342,10 +353,10 @@ export const saveMovieInList = (firebase, nickname, id, data, slug) => {
     .update({ list: [...newArray] });
 };
 
-export const deleteMovieFormList = (firebase, nickname, data, slug) => {
-  const newArray = data.map((item) => ({
-    ...item,
-    content: item.content.filter((item) => item !== +slug),
+export const deleteFromList = (firebase, nickname, item, data) => {
+  const newArray = data.map((a) => ({
+    ...a,
+    content: a.content.filter((i) => i.id !== item.id),
   }));
   return firebase
     .firestore()

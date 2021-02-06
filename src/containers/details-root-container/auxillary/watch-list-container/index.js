@@ -7,8 +7,8 @@ import { AuthContext } from "../../../../context/auth-context";
 import {
   createListLogic,
   deleteList,
-  deleteMovieFormList,
-  saveMovieInList,
+  deleteFromList,
+  addToList,
 } from "../../../../utils/firebase";
 import useFirestore from "../../../../hooks/useFirestore";
 import CreateItemContainer from "./items/create-item-container";
@@ -20,6 +20,7 @@ export default function WatchListContainer({
   user,
   watchListPopupVisible,
   slug,
+  item,
 }) {
   const [dataLoading, data] = useFirestore(
     user && `${user.displayName}`,
@@ -79,7 +80,6 @@ export default function WatchListContainer({
       }
     }
   };
-
   const createListSubmit = (e) => {
     if (!e.target.classList.value.includes("Confirm")) return;
     setInputVisible(false);
@@ -111,13 +111,13 @@ export default function WatchListContainer({
   };
 
   const onAddToList = (id) => {
-    saveMovieInList(firebase, user.displayName, id, data, slug).then(() => {
+    addToList(firebase, user.displayName, id, item, data).then(() => {
       setAddedToList(true);
     });
   };
 
   const onRemoveFromList = () => {
-    deleteMovieFormList(firebase, user.displayName, data, slug).then(() => {
+    deleteFromList(firebase, user.displayName, item, data).then(() => {
       setAddedToList(false);
     });
   };

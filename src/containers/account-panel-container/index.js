@@ -14,7 +14,19 @@ export default function AccountPanelContainer() {
   const [user] = useAuthListener();
   const { search } = useLocation();
 
-  
+  const [userDataLoading, userData] = useFirestore(
+    user && `${user.displayName}`,
+    `moviesrated`,
+  );
+  const [listsLoading, lists] = useFirestore(
+    user && `${user.displayName}`,
+    `collection`,
+  );
+  const [favoriteLoading, favorite] = useFirestore(
+    user && `${user.displayName}`,
+    "collection",
+    "favorite",
+  );
 
   const [filterProperties, setFilterProperties] = useState({
     changed: false,
@@ -23,33 +35,20 @@ export default function AccountPanelContainer() {
     list: null,
     show: null,
     dateRange: null,
-    amount: null,
+    amount: 10,
   });
+  const { amount } = filterProperties;
 
-  const [firstOffsetNumber, setFirstOffsetNumber] = useState(0);
-  const [lastOffsetNumber, setLastOffsetNumber] = useState(filterProperties.amount || 10);
+  const [paginationOffset, setPaginationOffset] = useState({
+    first: 0,
+    last: amount,
+  });
 
   const [accountArray, setAccountArray] = useState({
     loading: true,
     content: [],
   });
-  const [itemsCount, setItemsCount] = useState(filterProperties.amount || 10);
 
-  const [userDataLoading, userData] = useFirestore(
-    user && `${user.displayName}`,
-    `moviesrated`,
-  );
-
-  const [listsLoading, lists] = useFirestore(
-    user && `${user.displayName}`,
-    `collection`,
-  );
-
-  const [favoriteLoading, favorite] = useFirestore(
-    user && `${user.displayName}`,
-    "collection",
-    "favorite",
-  );
   useEffect(() => {
     if (!filterProperties.changed && !userDataLoading) {
       setAccountArray({ loading: false, content: userData });
@@ -83,9 +82,11 @@ export default function AccountPanelContainer() {
     }));
   }, [search]);
 
-  const calculateReviewsOffset = (buttonNumber) => {
-    setFirstOffsetNumber(buttonNumber * 5 - 5);
-    setLastOffsetNumber(buttonNumber * 5);
+  const calculateOffset = (paginationIndex) => {
+    setPaginationOffset({
+      first: paginationIndex * amount - amount,
+      last: amount * paginationIndex,
+    });
   };
 
   return (
@@ -94,30 +95,33 @@ export default function AccountPanelContainer() {
       <AccountPanel.CardsContainer>
         {!accountArray.loading &&
           accountArray.content.length > 0 &&
-          accountArray.content.slice(firstOffsetNumber, lastOffsetNumber).map((item, index) => (
-            <RowListItemContainer
-              key={item.id}
-              item={item}
-              index={index}
-              user={user}
-              userData={accountArray.content}
-              accountPanelRow={true}
-              favoriteRow={
-                filterProperties.listType === "favorite" ? true : false
-              }
-            />
-          ))}
-        <LoadMoreContainer
-          setItemsCount={setItemsCount}
-          visible={accountArray.length > itemsCount}
-          offset={filterProperties.amount || 10}
-        />
+          accountArray.content
+            .slice(paginationOffset.first, paginationOffset.last)
+            .map((item, index) => (
+              <RowListItemContainer
+                key={item.id}
+                item={item}
+                index={index}
+                user={user}
+                userData={accountArray.content}
+                accountPanelRow={true}
+                favoriteRow={
+                  filterProperties.listType === "favorite" ? true : false
+                }
+              />
+            ))}
         {!accountArray.loading && accountArray.content.length === 0 && (
           <AccountPanel.Placeholder>
             You do not have any movie in your list :c
           </AccountPanel.Placeholder>
         )}
-        {filterProperties.amount < accountArray.content.length && <PaginationSecondaryContainer length={accountArray.content.length} calculateReviewsOffset={calculateReviewsOffset}/>}
+        {accountArray.content.length > 0 && (
+          <PaginationSecondaryContainer
+            length={accountArray.content.length}
+            calculateOffset={calculateOffset}
+            itemsAmount={filterProperties.amount}
+          />
+        )}
       </AccountPanel.CardsContainer>
     </AccountPanel>
   );

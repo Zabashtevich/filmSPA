@@ -3,29 +3,32 @@ import { PaginationSecondary } from "../../components";
 
 export default function PaginationSecondaryContainer({
   length,
-  calculateReviewsOffset,
+  calculateOffset,
+  itemsAmount,
 }) {
-  const [paginationAmount, setPaginationAmount] = useState(null);
+  const [pagination, setPagination] = useState({ loading: true, amount: null });
   const [activePaginationItem, setActivePaginationItem] = useState(1);
-  const [amountLoading, setAmountLoading] = useState(true);
+
   useEffect(() => {
-    setPaginationAmount(Array(Math.ceil(length / 5)).fill(1));
-    setAmountLoading(false);
+    setPagination({
+      loading: false,
+      amount: Array(Math.ceil(length / itemsAmount)).fill(1),
+    });
   }, [length]);
 
   return (
     <>
-      {!amountLoading && (
+      {!pagination.loading && (
         <PaginationSecondary>
-          {paginationAmount.map((_, i) => {
+          {pagination.amount.map((_, i) => {
             return (
               <PaginationSecondary.Item
                 onClick={() => {
                   setActivePaginationItem(i + 1);
-                  calculateReviewsOffset(i + 1);
+                  calculateOffset(i + 1);
                 }}
                 key={i}
-                active={i + 1 === activePaginationItem ? 1 : 0}
+                active={i + 1 === activePaginationItem && 1}
               >
                 {i + 1}
               </PaginationSecondary.Item>

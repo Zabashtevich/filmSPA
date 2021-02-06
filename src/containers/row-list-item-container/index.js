@@ -13,12 +13,14 @@ export default function RowListItemContainer({
   user,
   userData = [],
   accountPanelRow = false,
+  favoriteRow = false,
 }) {
   const [rated, setRated] = useState(null);
   const history = useHistory();
 
   useEffect(() => {
-    if (userData.length === 0 && accountPanelRow) return;
+    if (favoriteRow) return;
+    if (userData.length === 0 && !accountPanelRow) return;
     setRated(
       userData.find((data) => {
         if (data.id === item.id) {
@@ -30,6 +32,7 @@ export default function RowListItemContainer({
 
   useEffect(() => {
     if (!accountPanelRow) return;
+    if (favoriteRow) return;
     setRated(item);
   });
 
@@ -72,10 +75,12 @@ export default function RowListItemContainer({
           </RowListItem.Inner>
         </RowListItem.Wrapper>
         <RowListItem.Date>
-          {accountPanelRow && new Date(item.time).toLocaleString()}
+          {accountPanelRow && new Date(item.time).toLocaleString() || favoriteRow && new Date(item.time).toLocaleString()}
         </RowListItem.Date>
         <RowListItem.Date>
-          {!accountPanelRow && getRightReleasedDate(item.release_date)}
+          {!accountPanelRow &&
+            !favoriteRow &&
+            getRightReleasedDate(item.release_date)}
         </RowListItem.Date>
         {rated && (
           <VotePopupContainer rated={rated} userData={userData} user={user} />

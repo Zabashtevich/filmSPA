@@ -8,14 +8,13 @@ import { DescriptionPopupContainer } from "../../../";
 import { WatchListContainer } from "../";
 import { favoriteLogic } from "../../../../utils/firebase";
 
-export default function TooltipsContainer({ slug }) {
+export default function TooltipsContainer({ slug, item }) {
   const [user, loading] = useAuthListener();
   const [watchlistDesc, setWatchlistDesc] = useState(false);
   const [favoriteDesc, setFavoriteDesc] = useState(false);
   const [watchListPopupVisible, setWatchListPopupVisible] = useState(false);
   const [descriptionBlocker, setDescriptionBlocker] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
-  console.log(user);
   const [dataLoading, data] = useFirestore(
     user && `${user.displayName}`,
     "collection",
@@ -36,11 +35,11 @@ export default function TooltipsContainer({ slug }) {
     setDescriptionBlocker((prev) => !prev);
     setWatchListPopupVisible((prev) => !prev);
   };
-
+  console.log(item);
   const onFavoriteClick = () => {
     if (!user) return;
     setFavoriteDesc(false);
-    favoriteLogic(firebase, slug, user.displayName, isFavorite, data).then(
+    favoriteLogic(firebase, item, user.displayName, isFavorite, data).then(
       () => {
         if (isFavorite) {
           setIsFavorite(false);

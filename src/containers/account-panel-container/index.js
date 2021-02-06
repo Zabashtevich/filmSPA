@@ -39,6 +39,11 @@ export default function AccountPanelContainer() {
     `collection`,
   );
 
+  const [favoriteLoading, favorite] = useFirestore(
+    user && `${user.displayName}`,
+    "collection",
+    "favorite",
+  );
   useEffect(() => {
     if (!filterProperties.changed && !userDataLoading) {
       setAccountArray({ loading: false, content: userData });
@@ -53,6 +58,12 @@ export default function AccountPanelContainer() {
         );
       } else {
         filterLogic(filterProperties, userData, setAccountArray);
+      }
+      if (
+        filterProperties.changed &&
+        filterProperties.listType === "favorite"
+      ) {
+        filterLogic(filterProperties, favorite, setAccountArray);
       }
     }
   }, [filterProperties, userDataLoading, userData]);
@@ -78,8 +89,11 @@ export default function AccountPanelContainer() {
               item={item}
               index={index}
               user={user}
-              userData={userData}
+              userData={accountArray.content}
               accountPanelRow={true}
+              favoriteRow={
+                filterProperties.listType === "favorite" ? true : false
+              }
             />
           ))}
         <LoadMoreContainer
@@ -92,7 +106,7 @@ export default function AccountPanelContainer() {
             You do not have any movie in your list :c
           </AccountPanel.Placeholder>
         )}
-        <PaginationSecondaryContainer />
+        {/* <PaginationSecondaryContainer /> */}
       </AccountPanel.CardsContainer>
     </AccountPanel>
   );

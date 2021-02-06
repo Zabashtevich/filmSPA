@@ -354,19 +354,31 @@ export const deleteMovieFormList = (firebase, nickname, data, slug) => {
     .update({ list: [...newArray] });
 };
 
-export const favoriteLogic = (firebase, slug, nickname, isFavorite, array) => {
+export const favoriteLogic = (firebase, item, nickname, isFavorite, array) => {
   if (isFavorite) {
     return firebase
       .firestore()
       .collection(`${nickname}`)
       .doc(`collection`)
-      .update({ favorite: [...array.filter((item) => item !== slug)] });
+      .update({ favorite: [...array.filter((i) => i.id !== item.id)] });
   } else {
     return firebase
       .firestore()
       .collection(`${nickname}`)
       .doc(`collection`)
-      .update({ favorite: [...array, slug] });
+      .update({
+        favorite: [
+          ...array,
+          {
+            id: item.id,
+            title: item.title,
+            vote_average: item.vote_average,
+            vote_count: item.vote_count,
+            time: new Date().getTime(),
+            date: item.release_date,
+          },
+        ],
+      });
   }
 };
 

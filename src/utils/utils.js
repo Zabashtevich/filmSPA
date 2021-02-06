@@ -239,7 +239,6 @@ export const checkMovieRated = (array, moviesrated) => {
 export const filterLogic = (props, array, setArray) => {
   let result;
   result = array.sort((item1, item2) => {
-    console.log(item1, item2);
     switch (props.sortBy) {
       case "date":
         return item2.time - item1.time;

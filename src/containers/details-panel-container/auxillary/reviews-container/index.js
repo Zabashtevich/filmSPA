@@ -76,7 +76,7 @@ export default function ReviewsContainer({
       )}
       {fullReviewsArray.length > 5 && (
         <PaginationSecondaryContainer
-          reviewsLength={fullReviewsArray.length}
+          length={fullReviewsArray.length}
           calculateReviewsOffset={calculateReviewsOffset}
         />
       )}

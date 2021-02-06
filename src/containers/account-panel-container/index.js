@@ -14,6 +14,8 @@ export default function AccountPanelContainer() {
   const [user] = useAuthListener();
   const { search } = useLocation();
 
+  
+
   const [filterProperties, setFilterProperties] = useState({
     changed: false,
     sortBy: "date",
@@ -23,9 +25,13 @@ export default function AccountPanelContainer() {
     dateRange: null,
     amount: null,
   });
+
+  const [firstOffsetNumber, setFirstOffsetNumber] = useState(0);
+  const [lastOffsetNumber, setLastOffsetNumber] = useState(filterProperties.amount || 10);
+
   const [accountArray, setAccountArray] = useState({
     loading: true,
-    content: null,
+    content: [],
   });
   const [itemsCount, setItemsCount] = useState(filterProperties.amount || 10);
 
@@ -77,13 +83,18 @@ export default function AccountPanelContainer() {
     }));
   }, [search]);
 
+  const calculateReviewsOffset = (buttonNumber) => {
+    setFirstOffsetNumber(buttonNumber * 5 - 5);
+    setLastOffsetNumber(buttonNumber * 5);
+  };
+
   return (
     <AccountPanel>
       <FilterContainer />
       <AccountPanel.CardsContainer>
         {!accountArray.loading &&
           accountArray.content.length > 0 &&
-          accountArray.content.map((item, index) => (
+          accountArray.content.slice(firstOffsetNumber, lastOffsetNumber).map((item, index) => (
             <RowListItemContainer
               key={item.id}
               item={item}
@@ -106,7 +117,7 @@ export default function AccountPanelContainer() {
             You do not have any movie in your list :c
           </AccountPanel.Placeholder>
         )}
-        {/* <PaginationSecondaryContainer /> */}
+        {filterProperties.amount < accountArray.content.length && <PaginationSecondaryContainer length={accountArray.content.length} calculateReviewsOffset={calculateReviewsOffset}/>}
       </AccountPanel.CardsContainer>
     </AccountPanel>
   );

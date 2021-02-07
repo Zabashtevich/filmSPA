@@ -16,7 +16,11 @@ export const filterRows = [
     { name: "your rating", value: "yourRating" },
     { name: "amount of votes", value: "amountOfVotes" },
   ],
-  [{ name: "votes" }, { name: "lists" }, { name: "favorite" }],
+  [
+    { name: "votes", value: "votes" },
+    { name: "your list", value: "userList" },
+    { name: "favorite", value: "favorite" },
+  ],
   [{ value: 10 }, { value: 25 }, { value: 50 }],
 ];
 

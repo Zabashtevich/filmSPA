@@ -19,43 +19,24 @@ export default function FilterContainer() {
   );
 
   const [state, dispatch] = useFilterContext();
-  console.log(state);
-  const [filter, setFilter] = useState({
-    sortBy: "date",
-    listType: "votes",
-    list: null,
-    show: "all",
-    dateRange: [null, null],
-    amount: 10,
-    searchUpdate: false,
-  });
-
-  const { searchUpdate } = filter;
 
   useEffect(() => {
-    if (!searchUpdate) return;
-    history.push({
-      pathname: `/account/${slug}/filter`,
-      search: stringify(filter, {
-        skipNull: true,
-        sort: false,
-        arrayFormat: "comma",
-      }),
-    });
-    setFilter((prev) => ({ ...prev, searchUpdate }));
-  }, [searchUpdate]);
-
-  const handleCustomize = ({ target, value }) => {
-    setFilter((prev) => ({ ...prev, [target]: value }));
-  };
+    // history.push({
+    //   pathname: `/account/${slug}/filter`,
+    //   search: stringify(filter, {
+    //     skipNull: true,
+    //     sort: false,
+    //     arrayFormat: "comma",
+    //   }),
+    // });
+  }, []);
 
   return (
     <Filter>
       <FilterRowsContainer
-        handleCustomize={handleCustomize}
-        filter={filter}
+        state={state}
+        dispatch={dispatch}
         lists={lists}
-        setFilter={setFilter}
         loadingLists={loadingLists}
       />
     </Filter>

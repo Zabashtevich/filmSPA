@@ -11,12 +11,13 @@ function filterReducer(state, action) {
 
 export default function FilterContextProvider({ children }) {
   const [filterState, filterDispatch] = useReducer(filterReducer, {
+    processed: false,
     sortBy: null,
     listType: null,
     listID: null,
-    show: null,
-    firstDate: null,
-    secondaDate: null,
+    byRating: null,
+    rangeStart: null,
+    rangeEnd: null,
     amount: null,
   });
 

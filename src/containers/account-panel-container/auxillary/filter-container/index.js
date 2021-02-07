@@ -6,6 +6,7 @@ import { Filter } from "../../../../components";
 import useAuthListener from "../../../../hooks/useAuthListener";
 import useFirestore from "../../../../hooks/useFirestore";
 import FilterRowsContainer from "./items/filter-rows-container";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function FilterContainer() {
   const { slug } = useParams();
@@ -16,6 +17,9 @@ export default function FilterContainer() {
     user && `${user.displayName}`,
     "collection",
   );
+
+  const filterState = useSelector((state) => state.account);
+  const dispatch = useDispatch();
 
   const [filter, setFilter] = useState({
     sortBy: "date",

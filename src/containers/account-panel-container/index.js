@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { parse } from "query-string";
+import { useDispatch } from "react-redux";
 
 import { AccountPanel } from "../../components";
 import useAuthListener from "../../hooks/useAuthListener";
@@ -9,6 +10,7 @@ import { FilterContainer } from "./auxillary";
 import { RowListItemContainer } from "../";
 import { filterLogic } from "../../utils/utils";
 import { PaginationSecondaryContainer } from "../";
+import { dataIsFetched } from "../../actions/account-page/userData";
 
 export default function AccountPanelContainer() {
   const [user] = useAuthListener();
@@ -27,6 +29,14 @@ export default function AccountPanelContainer() {
     "collection",
     "favorite",
   );
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (userDataLoading || listsLoading || favoriteLoading) return;
+    console.log("ha");
+    dispatch(dataIsFetched());
+  }, [userDataLoading, listsLoading, favoriteLoading]);
 
   const [filterProperties, setFilterProperties] = useState({
     changed: false,

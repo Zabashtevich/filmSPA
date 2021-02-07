@@ -9,8 +9,6 @@ import "normalize.css";
 import App from "./App";
 import { GlobalStyles } from "./theme/global-style";
 import Theme from "./theme/theme";
-import { firebase } from "./libs/firebase";
-import { AuthContext } from "./context/auth-context";
 import { rootReducer } from "./reducers";
 
 const store = createStore(
@@ -21,10 +19,8 @@ const store = createStore(
 ReactDOM.render(
   <ThemeProvider theme={Theme}>
     <Provider store={store}>
-      <AuthContext.Provider value={{ firebase }}>
-        <GlobalStyles />
-        <App />
-      </AuthContext.Provider>
+      <GlobalStyles />
+      <App />
     </Provider>
   </ThemeProvider>,
   document.getElementById("root"),

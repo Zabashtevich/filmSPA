@@ -35,7 +35,7 @@ export default function AccountPanelContainer() {
   useEffect(() => {
     if (userDataLoading || listsLoading || favoriteLoading) return;
     console.log("ha");
-    dispatch(dataIsFetched());
+    dispatch(dataIsFetched);
   }, [userDataLoading, listsLoading, favoriteLoading]);
 
   const [filterProperties, setFilterProperties] = useState({

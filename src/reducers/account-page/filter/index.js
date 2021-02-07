@@ -12,9 +12,6 @@ const initialState = {
 
 const filter = (state = initialState, action) => {
   switch (action.type) {
-    case DATA_FETCHED_SUCCESS:
-      console.log("123123123");
-      break;
     default:
       return state;
   }

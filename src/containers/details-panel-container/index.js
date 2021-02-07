@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import {
   DetailsPanel,
@@ -7,13 +7,13 @@ import {
   Votes,
 } from "../../components";
 import { ErrorModalContainer, RelevantListContainer } from "../";
-import { AuthContext } from "../../context/auth-context";
 import useAuthListener from "../../hooks/useAuthListener";
 import useFetch from "../../hooks/useFetchData";
 import useFirestore from "../../hooks/useFirestore";
 import { rateLogic } from "../../utils/firebase";
 import { getCorrectReviewsArray, offsetListener } from "../../utils/utils";
 import { ReviewsContainer } from "./auxillary";
+import { useAuthContext } from "../../context";
 
 export default function CardDetailsPanelContainer() {
   const [starValue, setStarValue] = useState(0);
@@ -25,7 +25,7 @@ export default function CardDetailsPanelContainer() {
   const location = useParams();
   const history = useHistory();
 
-  const { firebase } = useContext(AuthContext);
+  const firebase = useAuthContext();
 
   const [user, userLoading] = useAuthListener();
 

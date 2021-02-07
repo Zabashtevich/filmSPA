@@ -1,9 +1,8 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { CSSTransition } from "react-transition-group";
 
 import { WatchList } from "../../../../components";
-import { AuthContext } from "../../../../context/auth-context";
 import {
   createListLogic,
   deleteList,
@@ -15,6 +14,7 @@ import CreateItemContainer from "./items/create-item-container";
 import ItemContainer from "./items/item-container";
 import PlaceholderContainer from "./items/placeholder-container";
 import { ConfirmPopupContainer, ErrorModalContainer } from "../../../";
+import { useAuthContext } from "../../../../context";
 
 export default function WatchListContainer({
   user,
@@ -36,7 +36,7 @@ export default function WatchListContainer({
   const [deletingList, setDeletingList] = useState({ id: "", delete: false });
   const [addedToList, setAddedToList] = useState(false);
 
-  const { firebase } = useContext(AuthContext);
+  const firebase = useAuthContext();
 
   useEffect(() => {
     if (!deletingList.delete) return;

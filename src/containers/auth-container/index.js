@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { Redirect, useHistory, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { CSSTransition } from "react-transition-group";
@@ -6,9 +6,9 @@ import { CSSTransition } from "react-transition-group";
 import AuthForm from "../../components/auth-form";
 import { getErrorsList, getPreviewSrc, validateImg } from "../../utils/utils";
 import { authLogic } from "../../utils/firebase";
-import { AuthContext } from "../../context/auth-context";
 import { RegistrationFormContainer, LoginFormContainer } from "./auxillary";
 import LoadingSpinner from "../../components/loading-spinner";
+import { useAuthContext } from "../../context";
 
 export default function AuthContainer() {
   const location = useParams();
@@ -24,7 +24,7 @@ export default function AuthContainer() {
   const [isAvatarChanged, setIsAvatarChanged] = useState(false);
   const [imgIsValid, setImgIsValid] = useState(false);
 
-  const { firebase } = useContext(AuthContext);
+  const firebase = useAuthContext();
 
   useEffect(() => {
     if (imgIsValid) {

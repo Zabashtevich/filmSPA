@@ -1,11 +1,11 @@
-import { useContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { useAuthContext } from "../context";
 
-import { AuthContext } from "../context/auth-context";
 
 export default function useFirestoreListener(collectionTarget, docTarget) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { firebase } = useContext(AuthContext);
+  const firebase = useAuthContext()
   useEffect(() => {
     let mounted = true;
     if (!mounted) return;

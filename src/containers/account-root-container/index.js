@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { CSSTransition } from "react-transition-group";
 
-import { AuthContext } from "../../context/auth-context";
 import { deleteList, renameList } from "../../utils/firebase";
 import {
   closeModalSwitcher,
@@ -22,6 +21,7 @@ import {
   AccountListItem,
   AccountListPlaceholder,
 } from "./auxillary";
+import { useAuthContext } from "../../context";
 
 export default function AccountRootContainer() {
   const [user, userLoading] = useAuthListener();
@@ -29,7 +29,7 @@ export default function AccountRootContainer() {
     user && `${user.displayName}`,
     "collection",
   );
-  const { firebase } = useContext(AuthContext);
+  const firebase = useAuthContext();
   const [dataSubmiting, setDataSubmiting] = useState(false);
   const [creatingList, setCreatingList] = useState(false);
   const [inputValue, setInputValue] = useState("");

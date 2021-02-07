@@ -10,6 +10,7 @@ import App from "./App";
 import { GlobalStyles } from "./theme/global-style";
 import Theme from "./theme/theme";
 import { rootReducer } from "./reducers";
+import AuthContextProvider from "./context/auth-context/context";
 
 const store = createStore(
   rootReducer,
@@ -18,10 +19,12 @@ const store = createStore(
 
 ReactDOM.render(
   <ThemeProvider theme={Theme}>
-    <Provider store={store}>
-      <GlobalStyles />
-      <App />
-    </Provider>
+    <AuthContextProvider>
+      <Provider store={store}>
+        <GlobalStyles />
+        <App />
+      </Provider>
+    </AuthContextProvider>
   </ThemeProvider>,
   document.getElementById("root"),
 );

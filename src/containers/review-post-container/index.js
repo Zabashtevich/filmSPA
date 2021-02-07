@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { CSSTransition } from "react-transition-group";
 import { useForm } from "react-hook-form";
 import { useHistory, useParams } from "react-router-dom";
@@ -9,7 +9,7 @@ import useAuthListener from "../../hooks/useAuthListener";
 import { ReviewPost } from "../../components";
 import { ErrorModalContainer } from "../";
 import { postReviewLogic } from "../../utils/firebase";
-import { AuthContext } from "../../context/auth-context";
+import { useAuthContext } from "../../context";
 
 export default function ReviewPostContainer() {
   const [visibleDropdown, setVisibleDropdown] = useState(false);
@@ -21,7 +21,7 @@ export default function ReviewPostContainer() {
   const history = useHistory();
   const slug = useParams();
 
-  const { firebase } = useContext(AuthContext);
+  const firebase = useAuthContext();
   const { user } = useAuthListener();
 
   const [reviewLoading, reviewData] = useFirestore(`Reviews`, slug.slug);

@@ -11,6 +11,7 @@ import { GlobalStyles } from "./theme/global-style";
 import Theme from "./theme/theme";
 import { rootReducer } from "./reducers";
 import AuthContextProvider from "./context/auth-context/context";
+import FilterContextProvider from "./context/filter-context/context";
 
 const store = createStore(
   rootReducer,
@@ -20,10 +21,12 @@ const store = createStore(
 ReactDOM.render(
   <ThemeProvider theme={Theme}>
     <AuthContextProvider>
-      <Provider store={store}>
-        <GlobalStyles />
-        <App />
-      </Provider>
+      <FilterContextProvider>
+        <Provider store={store}>
+          <GlobalStyles />
+          <App />
+        </Provider>
+      </FilterContextProvider>
     </AuthContextProvider>
   </ThemeProvider>,
   document.getElementById("root"),

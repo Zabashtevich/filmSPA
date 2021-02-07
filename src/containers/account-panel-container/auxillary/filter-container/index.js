@@ -6,7 +6,7 @@ import { Filter } from "../../../../components";
 import useAuthListener from "../../../../hooks/useAuthListener";
 import useFirestore from "../../../../hooks/useFirestore";
 import FilterRowsContainer from "./items/filter-rows-container";
-import { useSelector, useDispatch } from "react-redux";
+import { useFilterContext } from "../../../../context";
 
 export default function FilterContainer() {
   const { slug } = useParams();
@@ -18,9 +18,8 @@ export default function FilterContainer() {
     "collection",
   );
 
-  const filterState = useSelector((state) => state.account);
-  const dispatch = useDispatch();
-
+  const [state, dispatch] = useFilterContext();
+  console.log(state);
   const [filter, setFilter] = useState({
     sortBy: "date",
     listType: "votes",

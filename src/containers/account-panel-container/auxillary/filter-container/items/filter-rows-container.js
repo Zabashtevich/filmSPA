@@ -10,7 +10,6 @@ export default function FilterRowsContainer({
   updateFilterState,
 }) {
   const { sortBy, listType, listID, byRating, amount, rangeStart } = state;
-  console.log(state);
   return (
     <>
       <Filter.Title>Customize your rating list</Filter.Title>
@@ -127,10 +126,7 @@ export default function FilterRowsContainer({
         >
           APPLY
         </Filter.Button>
-        <Filter.Button
-          discardbutton={1}
-          onClick={() => updateFilterState(null, "reset")}
-        >
+        <Filter.Button discardbutton={1} onClick={() => updateFilterState()}>
           DISCARD
         </Filter.Button>
       </Filter.Item>

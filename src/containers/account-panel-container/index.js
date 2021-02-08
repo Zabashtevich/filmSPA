@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import { parse } from "query-string";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { AccountPanel } from "../../components";
 import useAuthListener from "../../hooks/useAuthListener";
@@ -10,43 +8,19 @@ import { FilterContainer } from "./auxillary";
 import { RowListItemContainer } from "../";
 import { filterLogic } from "../../utils/utils";
 import { PaginationSecondaryContainer } from "../";
+import { useFilterContext } from "../../context";
+import { List } from "../../components/pagination/styles/pagination";
 
 export default function AccountPanelContainer() {
+  const [array, setArray] = useState({ processed: false, content: [] });
   const [user] = useAuthListener();
-  const { search } = useLocation();
-  const [userDataLoading, userData] = useFirestore(
-    user && `${user.displayName}`,
-    `moviesrated`,
-  );
-  const [listsLoading, lists] = useFirestore(
-    user && `${user.displayName}`,
-    `collection`,
-  );
-  const [favoriteLoading, favorite] = useFirestore(
-    user && `${user.displayName}`,
-    "collection",
-    "favorite",
-  );
 
-  const dispatch = useDispatch();
+  const userData = useSelector((store) => store.userData);
+  const [state, dispatchFilter] = useFilterContext();
 
-  const [filterProperties, setFilterProperties] = useState({
-    changed: false,
-    sortBy: "date",
-    listType: "votes",
-    list: null,
-    show: null,
-    dateRange: null,
-    amount: 10,
-  });
-
-  const [array, setArray] = useState({
-    loading: true,
-    content: [],
-  });
-
-  const { amount, changed, list, listType } = filterProperties;
-  const { loading, content } = array;
+  const { loading, userLists, favoritedMovies, ratedMovies } = userData;
+  const { listType, listID, amount } = state;
+  const { processed, content } = array;
 
   const [paginationOffset, setPaginationOffset] = useState({
     first: 0,
@@ -54,34 +28,23 @@ export default function AccountPanelContainer() {
   });
 
   useEffect(() => {
-    if (!changed && !userDataLoading) {
-      setArray({ loading: false, content: userData });
-      return;
-    }
-    if (changed && !userDataLoading) {
-      if (!!list && !listsLoading) {
+    if (!loading || !state.applied) return;
+    if (listType === null || "votes") {
+      filterLogic(state, ratedMovies, setArray);
+    } else if (listType === "userLists") {
+      if (!!listID) {
         filterLogic(
-          filterProperties,
-          lists.find((item) => item.id === +list)["content"],
+          state,
+          userLists.find((item) => item.id === listID),
           setArray,
         );
       } else {
-        filterLogic(filterProperties, userData, setArray);
+        filterLogic(state, userLists[0], setArray);
       }
-      if (changed && listType === "favorite") {
-        filterLogic(filterProperties, favorite, setArray);
-      }
+    } else if (listType === "favorite") {
+      filterLogic(state, favoritedMovies, setArray);
     }
-  }, [filterProperties, userDataLoading, userData]);
-
-  useEffect(() => {
-    if (!search) return;
-    setFilterProperties((prev) => ({
-      ...prev,
-      ...parse(search),
-      changed: true,
-    }));
-  }, [search]);
+  }, [state]);
 
   const calculateOffset = (paginationIndex) => {
     setPaginationOffset({

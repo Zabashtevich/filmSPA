@@ -9,6 +9,7 @@ import {
 } from "../../../../context/filter-context/actions";
 import { filterRows } from "../../../../constants/constants";
 import { checkFilterItemSelected, range } from "../../../../utils/utils";
+import LoadingSpinner from "../../../../components/loading-spinner";
 
 export default function FilterContainer() {
   const userData = useSelector((store) => store.userData);
@@ -42,40 +43,47 @@ export default function FilterContainer() {
       </Filter.Item>
       <Filter.Item>
         <Filter.Name>list type:</Filter.Name>
-        {filterRows[1].map(({ value, name }, i) => (
-          <Filter.Element
-            selected={checkFilterItemSelected(i, listType, value)}
-            key={value}
-            disabled={value === "userList" && lists.length === 0 && 1}
-            onClick={() => {
-              if (value === "userList") {
-                updateFilterState({ listType: value, listID: lists[0].id });
-              } else {
-                updateFilterState({ listType: value });
-              }
-            }}
-          >
-            {name}
-          </Filter.Element>
-        ))}
+        {loading && <LoadingSpinner />}
+        {!loading &&
+          filterRows[1].map(({ value, name }, i) => (
+            <Filter.Element
+              selected={checkFilterItemSelected(i, listType, value)}
+              key={value}
+              disabled={value === "userList" && userLists.length === 0 && 1}
+              onClick={() => {
+                if (value === "userList") {
+                  updateFilterState({
+                    listType: value,
+                    listID: userLists[0].id,
+                  });
+                } else {
+                  updateFilterState({ listType: value });
+                }
+              }}
+            >
+              {name}
+            </Filter.Element>
+          ))}
       </Filter.Item>
       <Filter.Item>
         <Filter.Name>choose list:</Filter.Name>
-        {lists.length === 0 && (
+        {loading && <LoadingSpinner />}
+        {!loading && userLists.length === 0 && (
           <Filter.Element disabled>you do not have any list :c</Filter.Element>
         )}
-        {lists.map(({ name, id }) => {
-          return (
-            <Filter.Element
-              selected={listID === id && 1}
-              disabled={listType !== "userList" && 1}
-              key={id}
-              onClick={() => updateFilterState({ listID: id })}
-            >
-              {name.slice(0, 8) + "..."}
-            </Filter.Element>
-          );
-        })}
+        {!loading &&
+          userLists.map(({ name, id }) => {
+            return (
+              <Filter.Element
+                selected={listID === id && 1}
+                disabled={listType !== "userList" && 1}
+                key={id}
+                onClick={() => updateFilterState({ listID: id })}
+              >
+                {name.slice(0, 8) + "..."}
+              </Filter.Element>
+            );
+          })}
       </Filter.Item>
       <Filter.Item>
         <Filter.Name>show:</Filter.Name>

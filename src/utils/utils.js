@@ -240,7 +240,7 @@ export const filterLogic = (props, array, setArray) => {
   let result;
   result = array.sort((item1, item2) => {
     switch (props.sortBy) {
-      case "date":
+      case "date" || null:
         return item2.time - item1.time;
       case "rating":
         return item2.vote_average - item1.vote_average;
@@ -250,17 +250,11 @@ export const filterLogic = (props, array, setArray) => {
         return item2.vote_count - item1.vote_count;
     }
   });
-  if (props.show !== "all") {
+  if (props.show !== "all" || null) {
     result = result.filter((item) => item.value === +props.show);
   }
-  if (props.dateRange) {
-    result = result.filter((item) => {
-      const correctDate = getRightReleasedDate(item.date);
-      const correctRange = props.dateRange.split(",");
-      return correctDate >= correctRange[0] && correctDate <= correctRange[1];
-    });
-  }
-  setArray({ loading: false, content: result });
+
+  setArray({ processed: false, content: result });
 };
 
 export const checkFilterItemSelected = (i, item, value) => {

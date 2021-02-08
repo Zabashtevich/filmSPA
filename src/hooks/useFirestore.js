@@ -6,9 +6,9 @@ export default function useFirestore(
   docTarget,
   auxTarget = "list",
 ) {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState({ loading: true, content: [] });
   const firebase = useAuthContext();
+
   useEffect(() => {
     let mounted = true;
     if (!mounted) return;
@@ -19,18 +19,17 @@ export default function useFirestore(
       .onSnapshot((doc) => {
         if (doc.exists) {
           const answer = doc.data()[`${auxTarget}`];
-          setData(answer);
-          setLoading(false);
+          setData({ loading: false, content: answer });
         } else {
-          setLoading(false);
+          setData((prev) => ({ ...prev, loading: false }));
         }
       });
     return () => {
       mounted = false;
-      setData([]);
       unsubscribe();
     };
   }, [docTarget, collectionTarget]);
 
-  return [loading, data];
+  const { loading, content } = data;
+  return [loading, content];
 }

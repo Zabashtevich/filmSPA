@@ -39,7 +39,15 @@ export default function AccountPage() {
     dispatch(setRatedMovies(moviesrated));
     dispatch(setUserLists(userlists));
     dispatch(setFavoritedMovies(favorited));
-  }, [moviesratedLoading, userlistsLoading, favoritedLoading]);
+  }, [
+    moviesrated,
+    userlists,
+    favorited,
+    dispatch,
+    favoritedLoading,
+    moviesratedLoading,
+    userlistsLoading,
+  ]);
 
   return (
     <>

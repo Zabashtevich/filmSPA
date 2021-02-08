@@ -10,7 +10,6 @@ import { FilterContainer } from "./auxillary";
 import { RowListItemContainer } from "../";
 import { filterLogic } from "../../utils/utils";
 import { PaginationSecondaryContainer } from "../";
-import { dataIsFetched } from "../../actions/account-page/userData";
 
 export default function AccountPanelContainer() {
   const [user] = useAuthListener();
@@ -34,8 +33,6 @@ export default function AccountPanelContainer() {
 
   useEffect(() => {
     if (userDataLoading || listsLoading || favoriteLoading) return;
-    console.log("ha");
-    dispatch(dataIsFetched);
   }, [userDataLoading, listsLoading, favoriteLoading]);
 
   const [filterProperties, setFilterProperties] = useState({

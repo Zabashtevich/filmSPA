@@ -1,25 +1,13 @@
 import { createContext, useReducer } from "react";
+import filterReducer, { filterInitialState } from "./reducer";
 
 export const FilterContext = createContext(null);
 
-function filterReducer(state, action) {
-  switch (action.type) {
-    default:
-      return state;
-  }
-}
-
 export default function FilterContextProvider({ children }) {
-  const [filterState, filterDispatch] = useReducer(filterReducer, {
-    processed: false,
-    sortBy: null,
-    listType: null,
-    listID: null,
-    byRating: null,
-    rangeStart: null,
-    rangeEnd: null,
-    amount: null,
-  });
+  const [filterState, filterDispatch] = useReducer(
+    filterReducer,
+    filterInitialState,
+  );
 
   return (
     <FilterContext.Provider value={[filterState, filterDispatch]}>

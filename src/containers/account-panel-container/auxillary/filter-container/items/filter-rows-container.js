@@ -3,6 +3,7 @@ import React from "react";
 import { Filter } from "../../../../../components";
 import { filterRows } from "../../../../../constants/constants";
 import { range } from "../../../../../utils/utils";
+import { setFilterParams } from "../../../../../context/filter-context/actions";
 
 export default function FilterRowsContainer({
   state,
@@ -13,7 +14,7 @@ export default function FilterRowsContainer({
   rangeEnd,
 }) {
   const { sortBy, listType, listID, byRating, amount } = state;
-
+  console.log(state);
   return (
     <>
       <Filter.Title>Customize your rating list</Filter.Title>
@@ -25,6 +26,7 @@ export default function FilterRowsContainer({
               (sortBy === null && i === 0 && 1) || (sortBy === value && 1)
             }
             key={value}
+            onClick={() => dispatch(setFilterParams({ sortBy: value }))}
           >
             {name}
           </Filter.Element>
@@ -85,10 +87,7 @@ export default function FilterRowsContainer({
         to
         <Filter.Select>
           <Filter.Option value="all">all</Filter.Option>
-          {range(
-            rangeStart || 1971,
-            (rangeStart && 2021 - rangeStart) || 50,
-          ).map((item) => (
+          {range(rangeStart || 1971, 2021 - rangeStart || 50).map((item) => (
             <Filter.Option key={item}>{item}</Filter.Option>
           ))}
         </Filter.Select>

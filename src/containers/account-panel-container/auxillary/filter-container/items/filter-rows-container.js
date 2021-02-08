@@ -2,18 +2,14 @@ import React from "react";
 
 import { Filter } from "../../../../../components";
 import { filterRows } from "../../../../../constants/constants";
-import { range } from "../../../../../utils/utils";
-import { setFilterParams } from "../../../../../context/filter-context/actions";
+import { checkFilterItemSelected, range } from "../../../../../utils/utils";
 
 export default function FilterRowsContainer({
   state,
-  dispatch,
   lists,
-  loadingLists,
-  rangeStart,
-  rangeEnd,
+  updateFilterState,
 }) {
-  const { sortBy, listType, listID, byRating, amount } = state;
+  const { sortBy, listType, listID, byRating, amount, rangeStart } = state;
   console.log(state);
   return (
     <>
@@ -22,11 +18,9 @@ export default function FilterRowsContainer({
         <Filter.Name>sort by:</Filter.Name>
         {filterRows[0].map(({ value, name }, i) => (
           <Filter.Element
-            selected={
-              (sortBy === null && i === 0 && 1) || (sortBy === value && 1)
-            }
+            selected={checkFilterItemSelected(i, sortBy, value)}
             key={value}
-            onClick={() => dispatch(setFilterParams({ sortBy: value }))}
+            onClick={() => updateFilterState({ sortBy: value })}
           >
             {name}
           </Filter.Element>
@@ -36,10 +30,16 @@ export default function FilterRowsContainer({
         <Filter.Name>list type:</Filter.Name>
         {filterRows[1].map(({ value, name }, i) => (
           <Filter.Element
-            selected={
-              (listType === null && i === 0 && 1) || (sortBy === value && 1)
-            }
+            selected={checkFilterItemSelected(i, listType, value)}
             key={value}
+            disabled={value === "userList" && lists.length === 0 && 1}
+            onClick={() => {
+              if (value === "userList") {
+                updateFilterState({ listType: value, listID: lists[0].id });
+              } else {
+                updateFilterState({ listType: value });
+              }
+            }}
           >
             {name}
           </Filter.Element>
@@ -47,7 +47,7 @@ export default function FilterRowsContainer({
       </Filter.Item>
       <Filter.Item>
         <Filter.Name>choose list:</Filter.Name>
-        {!loadingLists && lists.length === 0 && (
+        {lists.length === 0 && (
           <Filter.Element disabled>you do not have any list :c</Filter.Element>
         )}
         {lists.map(({ name, id }) => {
@@ -56,21 +56,29 @@ export default function FilterRowsContainer({
               selected={listID === id && 1}
               disabled={listType !== "userList" && 1}
               key={id}
+              onClick={() => updateFilterState({ listID: id })}
             >
-              {name.slice(0, 8)}
+              {name.slice(0, 8) + "..."}
             </Filter.Element>
           );
         })}
       </Filter.Item>
       <Filter.Item>
         <Filter.Name>show:</Filter.Name>
-        <Filter.Element selected={byRating === null && 1}>
+        <Filter.Element
+          selected={byRating === null && 1}
+          onClick={() => updateFilterState({ byRating: null })}
+        >
           all rating
         </Filter.Element>
         {Array(10)
           .fill(1)
           .map((_, index) => (
-            <Filter.Element selected={byRating === index && 1} key={index}>
+            <Filter.Element
+              selected={byRating === index && 1}
+              key={index}
+              onClick={() => updateFilterState({ byRating: index + 1 })}
+            >
               {index + 1}
             </Filter.Element>
           ))}
@@ -78,17 +86,25 @@ export default function FilterRowsContainer({
       <Filter.Item>
         <Filter.Name>date rang:</Filter.Name>
         since
-        <Filter.Select>
+        <Filter.Select
+          onChange={(e) => updateFilterState({ rangeStart: e.target.value })}
+        >
           <Filter.Option value="all">all</Filter.Option>
           {range(1971, 50).map((item) => (
-            <Filter.Option key={item}>{item}</Filter.Option>
+            <Filter.Option key={item} value={item}>
+              {item}
+            </Filter.Option>
           ))}
         </Filter.Select>
         to
-        <Filter.Select>
+        <Filter.Select
+          onChange={(e) => updateFilterState({ rangeEnd: e.target.value })}
+        >
           <Filter.Option value="all">all</Filter.Option>
-          {range(rangeStart || 1971, 2021 - rangeStart || 50).map((item) => (
-            <Filter.Option key={item}>{item}</Filter.Option>
+          {range(+rangeStart || 1971, 2021 - +rangeStart || 50).map((item) => (
+            <Filter.Option key={item} value={item}>
+              {item}
+            </Filter.Option>
           ))}
         </Filter.Select>
       </Filter.Item>
@@ -96,10 +112,9 @@ export default function FilterRowsContainer({
         <Filter.Name>amount</Filter.Name>
         {filterRows[2].map(({ value }, i) => (
           <Filter.Element
-            selected={
-              (i === 0 && amount === null && 1) || (amount === value && 1)
-            }
+            selected={checkFilterItemSelected(i, amount, value)}
             key={value}
+            onClick={() => updateFilterState({ amount: value })}
           >
             {value}
           </Filter.Element>

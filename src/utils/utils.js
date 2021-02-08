@@ -262,3 +262,7 @@ export const filterLogic = (props, array, setArray) => {
   }
   setArray({ loading: false, content: result });
 };
+
+export const checkFilterItemSelected = (i, item, value) => {
+  return (i === 0 && item === null && 1) || (item === value && 1);
+};

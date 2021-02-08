@@ -14,7 +14,6 @@ import { PaginationSecondaryContainer } from "../";
 export default function AccountPanelContainer() {
   const [user] = useAuthListener();
   const { search } = useLocation();
-
   const [userDataLoading, userData] = useFirestore(
     user && `${user.displayName}`,
     `moviesrated`,
@@ -30,10 +29,6 @@ export default function AccountPanelContainer() {
   );
 
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (userDataLoading || listsLoading || favoriteLoading) return;
-  }, [userDataLoading, listsLoading, favoriteLoading]);
 
   const [filterProperties, setFilterProperties] = useState({
     changed: false,

@@ -1,4 +1,4 @@
-import { SET_FILTER_PARAMS } from "./constants";
+import { SET_FILTER_PARAMS, RESET_FILTER_PARAMS } from "./constants";
 
 export const filterInitialState = {
   applied: false,
@@ -15,6 +15,8 @@ export default function filterReducer(state, action) {
   switch (action.type) {
     case SET_FILTER_PARAMS:
       return { ...state, ...action.payload };
+    case RESET_FILTER_PARAMS:
+      return { ...state, ...filterInitialState };
     default:
       return state;
   }

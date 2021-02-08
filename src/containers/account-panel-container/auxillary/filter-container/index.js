@@ -7,7 +7,10 @@ import useAuthListener from "../../../../hooks/useAuthListener";
 import useFirestore from "../../../../hooks/useFirestore";
 import FilterRowsContainer from "./items/filter-rows-container";
 import { useFilterContext } from "../../../../context";
-import { setFilterParams } from "../../../../context/filter-context/actions";
+import {
+  setFilterParams,
+  resetFilterParams,
+} from "../../../../context/filter-context/actions";
 
 export default function FilterContainer() {
   const { slug } = useParams();
@@ -32,8 +35,12 @@ export default function FilterContainer() {
     // });
   }, []);
 
-  const updateFilterState = (params) => {
-    dispatch(setFilterParams(params));
+  const updateFilterState = (params, reset = false) => {
+    if (!!reset) {
+      dispatch(resetFilterParams());
+    } else {
+      dispatch(setFilterParams(params));
+    }
   };
 
   return (

@@ -4,4 +4,6 @@ export const setFilterParams = (params) => {
   return { type: SET_FILTER_PARAMS, payload: params };
 };
 
-export const resetFilterParams = () => ({ type: RESET_FILTER_PARAMS });
+export const resetFilterParams = () => {
+  return { type: RESET_FILTER_PARAMS };
+};

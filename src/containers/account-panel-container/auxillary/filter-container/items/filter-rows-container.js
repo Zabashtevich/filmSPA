@@ -121,8 +121,18 @@ export default function FilterRowsContainer({
         ))}
       </Filter.Item>
       <Filter.Item buttonswrapper={1}>
-        <Filter.Button applybutton={1}>APPLY</Filter.Button>
-        <Filter.Button discardbutton={1}>DISCARD</Filter.Button>
+        <Filter.Button
+          applybutton={1}
+          onClick={() => updateFilterState({ applied: true })}
+        >
+          APPLY
+        </Filter.Button>
+        <Filter.Button
+          discardbutton={1}
+          onClick={() => updateFilterState(null, "reset")}
+        >
+          DISCARD
+        </Filter.Button>
       </Filter.Item>
     </>
   );

@@ -9,7 +9,7 @@ import {
 } from "../../../../context/filter-context/actions";
 import { filterRows } from "../../../../constants/constants";
 import { checkFilterItemSelected, range } from "../../../../utils/utils";
-import LoadingSpinner from "../../../../components/loading-spinner";
+import { SpinnerSmall } from "../../../../components/loading-spinner";
 
 export default function FilterContainer() {
   const userData = useSelector((store) => store.userData);
@@ -43,7 +43,7 @@ export default function FilterContainer() {
       </Filter.Item>
       <Filter.Item>
         <Filter.Name>list type:</Filter.Name>
-        {loading && <LoadingSpinner />}
+        {loading && <SpinnerSmall />}
         {!loading &&
           filterRows[1].map(({ value, name }, i) => (
             <Filter.Element
@@ -67,7 +67,7 @@ export default function FilterContainer() {
       </Filter.Item>
       <Filter.Item>
         <Filter.Name>choose list:</Filter.Name>
-        {loading && <LoadingSpinner />}
+        {loading && <SpinnerSmall />}
         {!loading && userLists.length === 0 && (
           <Filter.Element disabled>you do not have any list :c</Filter.Element>
         )}

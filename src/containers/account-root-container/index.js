@@ -21,7 +21,7 @@ export default function AccountRootContainer() {
 
   return (
     <>
-      {modal.editModal &&
+      {/* {modal.editModal &&
         createPortal(
           <EditModalContainer
             text={"Enter new list name"}
@@ -47,7 +47,7 @@ export default function AccountRootContainer() {
             popupConfirmVisible={modal.confirm}
           />,
           document.querySelector("#root"),
-        )}
+        )} */}
       <AccountRoot>
         {!userLoading && (
           <AccountRoot.ColumnContainer leftcolumn={1}>
@@ -64,7 +64,7 @@ export default function AccountRootContainer() {
             <AccountRoot.Subtitle>Your lists:</AccountRoot.Subtitle>
           </AccountRoot.Wrapper>
           <AccountList>
-            {!loadingData &&
+            {/* {!loadingData &&
               !placeholderDeelay &&
               data.length > 0 &&
               data.map((item, i) => {
@@ -94,7 +94,7 @@ export default function AccountRootContainer() {
               inputValue={inputValue}
               setInputValue={setInputValue}
               createList={createList}
-            />
+            /> */}
           </AccountList>
           <AccountRoot.Wrapper>
             <AccountRoot.Subtitle>Your grades:</AccountRoot.Subtitle>

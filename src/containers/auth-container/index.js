@@ -7,7 +7,7 @@ import AuthForm from "../../components/auth-form";
 import { getErrorsList, getPreviewSrc, validateImg } from "../../utils/utils";
 import { authLogic } from "../../utils/firebase";
 import { RegistrationFormContainer, LoginFormContainer } from "./auxillary";
-import LoadingSpinner from "../../components/loading-spinner";
+import { SpinnerSmall } from "../../components/loading-spinner";
 import { useAuthContext } from "../../context";
 
 export default function AuthContainer() {
@@ -106,7 +106,7 @@ export default function AuthContainer() {
                 isAvatarChanged={isAvatarChanged}
               />
             )}
-            {userLoading && <LoadingSpinner />}
+            {userLoading && <SpinnerSmall />}
             <AuthForm.Button
               type="submit"
               disabled={userLoading || avatarLoading}

@@ -16,37 +16,37 @@ export default function AccountRoot({ children, ...rest }) {
   return <Container {...rest}>{children}</Container>;
 }
 
-AccountRoot.Nickname = function AccountNickname({ children, ...rest }) {
+AccountRoot.Nickname = function AccountRootNickname({ children, ...rest }) {
   return <Nickname {...rest}>{children}</Nickname>;
 };
 
-AccountRoot.ColumnContainer = function AccountColumnContainer({
+AccountRoot.ColumnContainer = function AccountRootColumnContainer({
   children,
   ...rest
 }) {
   return <ColumnContainer {...rest}>{children}</ColumnContainer>;
 };
 
-AccountRoot.Avatar = function AccountAvatar({ children, ...rest }) {
+AccountRoot.Avatar = function AccountRootAvatar({ children, ...rest }) {
   return <Avatar {...rest} />;
 };
 
-AccountRoot.Link = function AccountLink({ children, ...rest }) {
+AccountRoot.Link = function AccountRootLink({ children, ...rest }) {
   return <Link {...rest}>{children}</Link>;
 };
 
-AccountRoot.Title = function AccountTitle({ children, ...rest }) {
+AccountRoot.Title = function AccountRootTitle({ children, ...rest }) {
   return <Title {...rest}>{children}</Title>;
 };
 
-AccountRoot.Wrapper = function AccountWrapper({ children, ...rest }) {
+AccountRoot.Wrapper = function AccountRootWrapper({ children, ...rest }) {
   return <Wrapper {...rest}>{children}</Wrapper>;
 };
 
-AccountRoot.Subtitle = function AccountSubtitle({ children, ...rest }) {
+AccountRoot.Subtitle = function AccountRootSubtitle({ children, ...rest }) {
   return <Subtitle {...rest}>{children}</Subtitle>;
 };
 
-AccountRoot.TabInner = function AccountTabInner({ children, ...rest }) {
+AccountRoot.TabInner = function AccountRootTabInner({ children, ...rest }) {
   return <TabInner {...rest}>{children}</TabInner>;
 };

@@ -16,7 +16,7 @@ export default function AccountPanelContainer() {
   const [user] = useAuthListener();
 
   const userData = useSelector((store) => store.userData);
-  const [filterSettings, dispatchFilter] = useFilterContext();
+  const [filterSettings] = useFilterContext();
 
   const { loading, userLists, favoritedMovies, ratedMovies } = userData;
   const { listType, amount } = filterSettings;
@@ -39,9 +39,10 @@ export default function AccountPanelContainer() {
   }, [loading, filterSettings]);
 
   const calculateOffset = (paginationIndex) => {
+    const itemsAmount = amount || 10;
     setPaginationOffset({
-      first: paginationIndex * amount - amount,
-      last: amount * paginationIndex,
+      first: paginationIndex * itemsAmount - itemsAmount,
+      last: itemsAmount * paginationIndex,
     });
   };
 
@@ -50,6 +51,7 @@ export default function AccountPanelContainer() {
       <FilterContainer />
       <AccountPanel.CardsContainer>
         {!loading &&
+          !processed &&
           content.length > 0 &&
           content
             .slice(paginationOffset.first, paginationOffset.last)
@@ -69,13 +71,13 @@ export default function AccountPanelContainer() {
             You do not have any movie in your list :c
           </AccountPanel.Placeholder>
         )}
-        {/* {content.length > 0 && (
+        {!loading && !processed && content.length > 0 && (
           <PaginationSecondaryContainer
             length={content.length}
             calculateOffset={calculateOffset}
-            itemsAmount={amount}
+            itemsAmount={amount || 10}
           />
-        )} */}
+        )}
       </AccountPanel.CardsContainer>
     </AccountPanel>
   );

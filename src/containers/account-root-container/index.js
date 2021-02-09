@@ -1,16 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { createPortal } from "react-dom";
 import { CSSTransition } from "react-transition-group";
 
-import { deleteList, renameList } from "../../utils/firebase";
-import {
-  closeModalSwitcher,
-  createListSwitcher,
-  showModalSwitcher,
-} from "../../utils/switcher";
-import { Account, AccountList } from "../../components";
+import { AccountRoot, AccountList } from "../../components";
 import useAuthListener from "../../hooks/useAuthListener";
-import useFirestore from "../../hooks/useFirestore";
 import {
   ConfirmPopupContainer,
   EditModalContainer,
@@ -25,82 +18,6 @@ import { useAuthContext } from "../../context";
 
 export default function AccountRootContainer() {
   const [user, userLoading] = useAuthListener();
-  const [loadingData, data] = useFirestore(
-    user && `${user.displayName}`,
-    "collection",
-  );
-  const firebase = useAuthContext();
-  const [dataSubmiting, setDataSubmiting] = useState(false);
-  const [creatingList, setCreatingList] = useState(false);
-  const [inputValue, setInputValue] = useState("");
-  const [placeholderDeelay, setPlaceholderDeelay] = useState(false);
-  const [itemDeelay, setItemDeelay] = useState(false);
-  const [modal, setModal] = useState({
-    confirm: false,
-    confirmMessage: "",
-    errorModal: false,
-    errorMessage: "",
-    editModal: false,
-    edit: false,
-    editName: "",
-    editID: null,
-    delete: false,
-    deleteID: null,
-  });
-
-  useEffect(() => {
-    if (modal.delete) {
-      deleteList(firebase, modal.deleteID, data, user.displayName).then(() => {
-        setModal({ deleteID: null, delete: false });
-      });
-    }
-    if (modal.edit) {
-      renameList(
-        firebase,
-        user.displayName,
-        data,
-        modal.editID,
-        modal.editName,
-      );
-    }
-  }, [modal]);
-
-  const createToggler = (e) => {
-    if (dataSubmiting) {
-      return;
-    } else {
-      if (
-        e.target.classList.value.includes("Abort") ||
-        e.target.classList.value.includes("CreateIcon")
-      ) {
-        setCreatingList((prev) => !prev);
-      }
-    }
-  };
-
-  const createList = (event) => {
-    createListSwitcher(
-      event,
-      setCreatingList,
-      setDataSubmiting,
-      inputValue,
-      setModal,
-      firebase,
-      data,
-      user.displayName,
-      setInputValue,
-    );
-  };
-
-  const showModal = ({ target, id, value }) => {
-    document.body.style.overflow = "hidden";
-    showModalSwitcher(target, id, value, setModal);
-  };
-
-  const closeModal = ({ target, value }) => {
-    closeModalSwitcher(target, value, setModal);
-    document.body.style.overflow = "auto";
-  };
 
   return (
     <>
@@ -131,21 +48,21 @@ export default function AccountRootContainer() {
           />,
           document.querySelector("#root"),
         )}
-      <Account>
+      <AccountRoot>
         {!userLoading && (
-          <Account.ColumnContainer leftcolumn={1}>
-            <Account.Avatar src={user.photoURL} />
-            <Account.Nickname>{user.displayName}</Account.Nickname>
-            <Account.Link to={`${user.displayName}/edit`}>
+          <AccountRoot.ColumnContainer leftcolumn={1}>
+            <AccountRoot.Avatar src={user.photoURL} />
+            <AccountRoot.Nickname>{user.displayName}</AccountRoot.Nickname>
+            <AccountRoot.Link to={`${user.displayName}/edit`}>
               Edit profile
-            </Account.Link>
-          </Account.ColumnContainer>
+            </AccountRoot.Link>
+          </AccountRoot.ColumnContainer>
         )}
-        <Account.ColumnContainer>
-          <Account.Title>YOUR ACTIVITY</Account.Title>
-          <Account.Wrapper>
-            <Account.Subtitle>Your lists:</Account.Subtitle>
-          </Account.Wrapper>
+        <AccountRoot.ColumnContainer>
+          <AccountRoot.Title>YOUR ACTIVITY</AccountRoot.Title>
+          <AccountRoot.Wrapper>
+            <AccountRoot.Subtitle>Your lists:</AccountRoot.Subtitle>
+          </AccountRoot.Wrapper>
           <AccountList>
             {!loadingData &&
               !placeholderDeelay &&
@@ -179,11 +96,11 @@ export default function AccountRootContainer() {
               createList={createList}
             />
           </AccountList>
-          <Account.Wrapper>
-            <Account.Subtitle>Your grades:</Account.Subtitle>
-          </Account.Wrapper>
-        </Account.ColumnContainer>
-      </Account>
+          <AccountRoot.Wrapper>
+            <AccountRoot.Subtitle>Your grades:</AccountRoot.Subtitle>
+          </AccountRoot.Wrapper>
+        </AccountRoot.ColumnContainer>
+      </AccountRoot>
     </>
   );
 }

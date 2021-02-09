@@ -263,7 +263,7 @@ export const filterLogic = (
       result = ratedMovies;
       break;
     case "userList":
-      result = userLists.find((item) => +item.id === +listID);
+      result = userLists.find((item) => +item.id === +listID).content;
       break;
     case "favorite":
       result = favoritedMovies;

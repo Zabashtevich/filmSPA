@@ -25,7 +25,7 @@ export { default as ErrorModal } from "./error-modal";
 export { default as ReviewPost } from "./review-post";
 export { default as PaginationSecondary } from "./pagination-secondary";
 export { default as HeaderProfile } from "./header-profile";
-export { default as Account } from "./account";
+export { default as AccountRoot } from "./account-root";
 export { default as Tooltips } from "./tooltips";
 export { default as WatchList } from "./watch-list";
 export { default as ConfirmPopup } from "./confirm-popup";

@@ -143,14 +143,8 @@ export default function FilterContainer() {
         ))}
       </Filter.Item>
       <Filter.Item buttonswrapper={1}>
-        <Filter.Button
-          applybutton={1}
-          onClick={() => updateFilterState({ applied: true })}
-        >
-          APPLY
-        </Filter.Button>
-        <Filter.Button discardbutton={1} onClick={() => updateFilterState()}>
-          DISCARD
+        <Filter.Button applybutton={1} onClick={() => updateFilterState()}>
+          REFRESH SETTINGS
         </Filter.Button>
       </Filter.Item>
     </Filter>

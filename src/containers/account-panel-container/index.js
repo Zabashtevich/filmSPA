@@ -12,14 +12,14 @@ import { useFilterContext } from "../../context";
 import { List } from "../../components/pagination/styles/pagination";
 
 export default function AccountPanelContainer() {
-  const [array, setArray] = useState({ processed: false, content: [] });
+  const [array, setArray] = useState({ processed: true, content: [] });
   const [user] = useAuthListener();
 
   const userData = useSelector((store) => store.userData);
-  const [state, dispatchFilter] = useFilterContext();
+  const [filterSettings, dispatchFilter] = useFilterContext();
 
   const { loading, userLists, favoritedMovies, ratedMovies } = userData;
-  const { listType, listID, amount, applied } = state;
+  const { listType, amount } = filterSettings;
   const { processed, content } = array;
 
   const [paginationOffset, setPaginationOffset] = useState({
@@ -29,26 +29,14 @@ export default function AccountPanelContainer() {
 
   useEffect(() => {
     if (loading) return;
-    if (!applied) {
-      filterLogic(state, ratedMovies, setArray);
-    } else {
-      if (listType === null || "votes") {
-        filterLogic(state, ratedMovies, setArray);
-      } else if (listType === "userLists") {
-        if (!!listID) {
-          filterLogic(
-            state,
-            userLists.find((item) => item.id === listID),
-            setArray,
-          );
-        } else {
-          filterLogic(state, userLists[0], setArray);
-        }
-      } else if (listType === "favorite") {
-        filterLogic(state, favoritedMovies, setArray);
-      }
-    }
-  }, [state, userData]);
+    filterLogic(
+      filterSettings,
+      ratedMovies,
+      userLists,
+      favoritedMovies,
+      setArray,
+    );
+  }, [loading, filterSettings]);
 
   const calculateOffset = (paginationIndex) => {
     setPaginationOffset({

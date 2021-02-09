@@ -19,32 +19,36 @@ export default function AccountPanelContainer() {
   const [state, dispatchFilter] = useFilterContext();
 
   const { loading, userLists, favoritedMovies, ratedMovies } = userData;
-  const { listType, listID, amount } = state;
+  const { listType, listID, amount, applied } = state;
   const { processed, content } = array;
 
   const [paginationOffset, setPaginationOffset] = useState({
     first: 0,
-    last: amount,
+    last: amount || 10,
   });
 
   useEffect(() => {
-    if (!loading || !state.applied) return;
-    if (listType === null || "votes") {
+    if (loading) return;
+    if (!applied) {
       filterLogic(state, ratedMovies, setArray);
-    } else if (listType === "userLists") {
-      if (!!listID) {
-        filterLogic(
-          state,
-          userLists.find((item) => item.id === listID),
-          setArray,
-        );
-      } else {
-        filterLogic(state, userLists[0], setArray);
+    } else {
+      if (listType === null || "votes") {
+        filterLogic(state, ratedMovies, setArray);
+      } else if (listType === "userLists") {
+        if (!!listID) {
+          filterLogic(
+            state,
+            userLists.find((item) => item.id === listID),
+            setArray,
+          );
+        } else {
+          filterLogic(state, userLists[0], setArray);
+        }
+      } else if (listType === "favorite") {
+        filterLogic(state, favoritedMovies, setArray);
       }
-    } else if (listType === "favorite") {
-      filterLogic(state, favoritedMovies, setArray);
     }
-  }, [state]);
+  }, [state, userData]);
 
   const calculateOffset = (paginationIndex) => {
     setPaginationOffset({
@@ -77,13 +81,13 @@ export default function AccountPanelContainer() {
             You do not have any movie in your list :c
           </AccountPanel.Placeholder>
         )}
-        {content.length > 0 && (
+        {/* {content.length > 0 && (
           <PaginationSecondaryContainer
             length={content.length}
             calculateOffset={calculateOffset}
             itemsAmount={amount}
           />
-        )}
+        )} */}
       </AccountPanel.CardsContainer>
     </AccountPanel>
   );

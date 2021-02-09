@@ -236,11 +236,14 @@ export const checkMovieRated = (array, moviesrated) => {
   return array;
 };
 
-export const filterLogic = (props, array, setArray) => {
+export const filterLogic = (state, array, setArray) => {
+  const { sortBy, byRating, rangeStart, rangeEnd } = state;
   let result;
   result = array.sort((item1, item2) => {
-    switch (props.sortBy) {
-      case "date" || null:
+    switch (sortBy) {
+      case "date":
+        return item2.time - item1.time;
+      case null:
         return item2.time - item1.time;
       case "rating":
         return item2.vote_average - item1.vote_average;
@@ -250,8 +253,20 @@ export const filterLogic = (props, array, setArray) => {
         return item2.vote_count - item1.vote_count;
     }
   });
-  if (props.show !== "all" || null) {
-    result = result.filter((item) => item.value === +props.show);
+  if (byRating !== null) {
+    result = result.filter((item) => item.value === +byRating);
+  }
+
+  if (rangeStart !== null) {
+    result = result.filter(
+      (item) => getRightReleasedDate(item.date) >= +rangeStart,
+    );
+  }
+
+  if (rangeEnd !== null) {
+    result = result.filter(
+      (item) => getRightReleasedDate(item.date) <= +rangeEnd,
+    );
   }
 
   setArray({ processed: false, content: result });

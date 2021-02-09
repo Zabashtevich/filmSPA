@@ -122,7 +122,7 @@ export default function FilterContainer() {
         <Filter.Select
           onChange={(e) => updateFilterState({ rangeEnd: e.target.value })}
         >
-          <Filter.Option value="all">all</Filter.Option>
+          <Filter.Option value={null}>all</Filter.Option>
           {range(+rangeStart || 1971, 2021 - +rangeStart || 50).map((item) => (
             <Filter.Option key={item} value={item}>
               {item}

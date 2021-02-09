@@ -3,7 +3,8 @@ import React from "react";
 import {
   Container,
   Nickname,
-  ColumnContainer,
+  PosterColumn,
+  ContentColumn,
   Avatar,
   Link,
   Title,
@@ -20,11 +21,18 @@ AccountRoot.Nickname = function AccountRootNickname({ children, ...rest }) {
   return <Nickname {...rest}>{children}</Nickname>;
 };
 
-AccountRoot.ColumnContainer = function AccountRootColumnContainer({
+AccountRoot.PosterColumn = function AccountRootPosterColumn({
   children,
   ...rest
 }) {
-  return <ColumnContainer {...rest}>{children}</ColumnContainer>;
+  return <PosterColumn {...rest}>{children}</PosterColumn>;
+};
+
+AccountRoot.ContentColumn = function AccountRootContentColumn({
+  children,
+  ...rest
+}) {
+  return <ContentColumn {...rest}>{children}</ContentColumn>;
 };
 
 AccountRoot.Avatar = function AccountRootAvatar({ children, ...rest }) {

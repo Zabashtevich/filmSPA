@@ -15,17 +15,19 @@ export const Nickname = styled.div`
   margin-top: 2rem;
 `;
 
-export const ColumnContainer = styled.div`
+export const PosterColumn = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  ${({ leftcolumn }) =>
-    leftcolumn &&
-    css`
-      border-right: 1px solid gray;
-      padding: 1rem 2rem;
-      width: 20%;
-    `};
+  border-right: 1px solid gray;
+  padding: 1rem 2rem;
+  width: 20%;
+`;
+
+export const ContentColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const Avatar = styled.img`

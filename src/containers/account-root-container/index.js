@@ -15,10 +15,10 @@ import {
   AccountListPlaceholder,
 } from "./auxillary";
 import { useAuthContext } from "../../context";
+import { useParams } from "react-router-dom";
 
 export default function AccountRootContainer() {
   const [user, userLoading] = useAuthListener();
-
   return (
     <>
       {/* {modal.editModal &&
@@ -50,15 +50,15 @@ export default function AccountRootContainer() {
         )} */}
       <AccountRoot>
         {!userLoading && (
-          <AccountRoot.ColumnContainer leftcolumn={1}>
+          <AccountRoot.PosterColumn>
             <AccountRoot.Avatar src={user.photoURL} />
             <AccountRoot.Nickname>{user.displayName}</AccountRoot.Nickname>
             <AccountRoot.Link to={`${user.displayName}/edit`}>
               Edit profile
             </AccountRoot.Link>
-          </AccountRoot.ColumnContainer>
+          </AccountRoot.PosterColumn>
         )}
-        <AccountRoot.ColumnContainer>
+        <AccountRoot.ContentColumn>
           <AccountRoot.Title>YOUR ACTIVITY</AccountRoot.Title>
           <AccountRoot.Wrapper>
             <AccountRoot.Subtitle>Your lists:</AccountRoot.Subtitle>
@@ -99,7 +99,7 @@ export default function AccountRootContainer() {
           <AccountRoot.Wrapper>
             <AccountRoot.Subtitle>Your grades:</AccountRoot.Subtitle>
           </AccountRoot.Wrapper>
-        </AccountRoot.ColumnContainer>
+        </AccountRoot.ContentColumn>
       </AccountRoot>
     </>
   );

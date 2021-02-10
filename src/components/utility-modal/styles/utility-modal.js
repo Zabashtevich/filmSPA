@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 
 import { ImWarning } from "react-icons/im";
 import { BiErrorAlt } from "react-icons/bi";
@@ -24,15 +24,25 @@ export const Container = styled.div`
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25), 0 3px 3px rgba(0, 0, 0, 0.22);
   border-radius: 0.4rem;
   font-family: ${({ theme }) => theme.fontFamily.secondary};
+  ${({ theme }) => theme.animations.LtR}
 `;
 
 export const Header = styled.div`
   height: 45%;
   width: 100%;
-  background: ${({ theme }) => theme.colors.error};
   position: relative;
   overflow: hidden;
   border-radius: 0.4rem 0.4rem 0 0;
+  ${({ type }) =>
+    type === "error" &&
+    css`
+      background: ${({ theme }) => theme.colors.error};
+    `}
+  ${({ type }) =>
+    type === "warning" &&
+    css`
+      background: ${({ theme }) => theme.colors.warning};
+    `}
 `;
 
 export const ErrorIcon = styled(BiErrorAlt)`
@@ -58,6 +68,10 @@ export const Close = styled(RiCloseFill)`
   right: 0;
   color: white;
   font-size: 2.5rem;
+  cursor: pointer;
+  & > * {
+    pointer-events: none;
+  }
 `;
 
 export const Title = styled.span`
@@ -67,6 +81,7 @@ export const Title = styled.span`
   font-size: 3rem;
   border-bottom: 1px solid white;
   color: white;
+  user-select: none;
 `;
 
 export const Body = styled.div`
@@ -81,22 +96,41 @@ export const Message = styled.span`
   margin-left: 3rem;
   font-size: ${({ theme }) => theme.fontSize.large};
   font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
+  user-select: none;
 `;
 
 export const Wrapper = styled.div`
   align-self: flex-end;
   margin-right: 3rem;
   font-size: ${({ theme }) => theme.fontSize.large};
+  user-select: none;
 `;
 
 export const AcceptButton = styled.button`
   background: ${({ theme }) => theme.colors.error};
   color: white;
   outline: none;
-  border: 1px solid ${({ theme }) => theme.colors.error};
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   cursor: pointer;
+  ${({ type }) =>
+    type === "error" &&
+    css`
+      background: ${({ theme }) => theme.colors.error};
+      border: 1px solid ${({ theme }) => theme.colors.error};
+    `}
+  ${({ type }) =>
+    type === "warning" &&
+    css`
+      background: ${({ theme }) => theme.colors.warning};
+      border: 1px solid ${({ theme }) => theme.colors.warning};
+    `}
+  &:hover {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    color: black;
+    transition: 500ms;
+  }
 `;
 
 export const DeclineButton = styled.button`
@@ -108,4 +142,10 @@ export const DeclineButton = styled.button`
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   cursor: pointer;
+  &:hover {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    color: black;
+    transition: 500ms;
+  }
 `;

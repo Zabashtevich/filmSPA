@@ -8,6 +8,7 @@ import {
   ConfirmPopupContainer,
   EditModalContainer,
   ErrorModalContainer,
+  UtilityModalContainer,
 } from "../";
 import {
   AccountCreateList,
@@ -48,6 +49,7 @@ export default function AccountRootContainer() {
           />,
           document.querySelector("#root"),
         )} */}
+      <UtilityModalContainer />
       <AccountRoot>
         {!userLoading && (
           <AccountRoot.PosterColumn>

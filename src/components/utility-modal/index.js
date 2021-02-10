@@ -4,11 +4,13 @@ import { CSSTransition } from "react-transition-group";
 import {
   Background,
   Container,
+  IconInner,
   ErrorIcon,
   WarningIcon,
   Title,
   Message,
   Wrapper,
+  ContentInner,
   AcceptButton,
   DeclineButton,
 } from "./styles/utility-modal";
@@ -32,6 +34,17 @@ UtilityModal.Container = function UtilityModalContainer({
       <Container {...rest}>{children}</Container>
     </CSSTransition>
   );
+};
+
+UtilityModal.IconInner = function UtilityModalIconInner({ children, ...rest }) {
+  return <IconInner {...rest}>{children}</IconInner>;
+};
+
+UtilityModal.ContentInner = function UtilityModalContentInner({
+  children,
+  ...rest
+}) {
+  return <ContentInner {...rest}>{children}</ContentInner>;
 };
 
 UtilityModal.ErrorIcon = function UtilityModalErrorIcon({ children, ...rest }) {

@@ -4,15 +4,16 @@ import { CSSTransition } from "react-transition-group";
 import {
   Background,
   Container,
-  IconInner,
+  Header,
   ErrorIcon,
   WarningIcon,
   Title,
   Message,
   Wrapper,
-  ContentInner,
+  Body,
   AcceptButton,
   DeclineButton,
+  Close,
 } from "./styles/utility-modal";
 
 export default function UtilityModal({ children, ...rest }) {
@@ -36,15 +37,12 @@ UtilityModal.Container = function UtilityModalContainer({
   );
 };
 
-UtilityModal.IconInner = function UtilityModalIconInner({ children, ...rest }) {
-  return <IconInner {...rest}>{children}</IconInner>;
+UtilityModal.Header = function UtilityModalHeader({ children, ...rest }) {
+  return <Header {...rest}>{children}</Header>;
 };
 
-UtilityModal.ContentInner = function UtilityModalContentInner({
-  children,
-  ...rest
-}) {
-  return <ContentInner {...rest}>{children}</ContentInner>;
+UtilityModal.Body = function UtilityModalBody({ children, ...rest }) {
+  return <Body {...rest}>{children}</Body>;
 };
 
 UtilityModal.ErrorIcon = function UtilityModalErrorIcon({ children, ...rest }) {
@@ -82,4 +80,8 @@ UtilityModal.DeclineButton = function UtilityModalDeclineButton({
   ...rest
 }) {
   return <DeclineButton {...rest}>{children}</DeclineButton>;
+};
+
+UtilityModal.Close = function UtilityModalClose({ ...rest }) {
+  return <Close {...rest} />;
 };

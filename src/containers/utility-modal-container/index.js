@@ -6,16 +6,19 @@ export default function UtilityModalContainer({ visible, text, type }) {
   return (
     <UtilityModal>
       <UtilityModal.Container>
-        <UtilityModal.IconInner>
+        <UtilityModal.Header>
+          <UtilityModal.Title>ERROR</UtilityModal.Title>
           <UtilityModal.ErrorIcon />
-          <UtilityModal.WarningIcon />
-        </UtilityModal.IconInner>
-        <UtilityModal.Title></UtilityModal.Title>
-        <UtilityModal.Message></UtilityModal.Message>
-        <UtilityModal.Wrapper>
-          <UtilityModal.DeclineButton>DECLINE</UtilityModal.DeclineButton>
-          <UtilityModal.AcceptButton>ACCEPT</UtilityModal.AcceptButton>
-        </UtilityModal.Wrapper>
+          {/* <UtilityModal.WarningIcon /> */}
+          <UtilityModal.Close />
+        </UtilityModal.Header>
+        <UtilityModal.Body>
+          <UtilityModal.Message>Hahahahahaha</UtilityModal.Message>
+          <UtilityModal.Wrapper>
+            <UtilityModal.DeclineButton>DECLINE</UtilityModal.DeclineButton>
+            <UtilityModal.AcceptButton>ACCEPT</UtilityModal.AcceptButton>
+          </UtilityModal.Wrapper>
+        </UtilityModal.Body>
       </UtilityModal.Container>
     </UtilityModal>
   );

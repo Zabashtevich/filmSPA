@@ -2,6 +2,7 @@ import styled from "styled-components/macro";
 
 import { ImWarning } from "react-icons/im";
 import { BiErrorAlt } from "react-icons/bi";
+import { RiCloseFill } from "react-icons/ri";
 
 export const Background = styled.div`
   position: fixed;
@@ -17,28 +18,94 @@ export const Background = styled.div`
 `;
 
 export const Container = styled.div`
-  width: 60%;
-  height: 70%;
+  width: 900px;
+  height: 600px;
   background: white;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25), 0 3px 3px rgba(0, 0, 0, 0.22);
-  border-radius: 1rem;
-  border: 0.5rem solid ${({ theme }) => theme.colors.error};
+  border-radius: 0.4rem;
+  font-family: ${({ theme }) => theme.fontFamily.secondary};
 `;
 
-export const IconInner = styled.div``;
+export const Header = styled.div`
+  height: 45%;
+  width: 100%;
+  background: ${({ theme }) => theme.colors.error};
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.4rem 0.4rem 0 0;
+`;
 
-export const ContentInner = styled.div``;
+export const ErrorIcon = styled(BiErrorAlt)`
+  position: absolute;
+  font-size: 15rem;
+  top: 50%;
+  right: 10%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 1);
+`;
 
-export const ErrorIcon = styled(BiErrorAlt)``;
+export const WarningIcon = styled(ImWarning)`
+  position: absolute;
+  font-size: 14rem;
+  top: 50%;
+  right: 10%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 1);
+`;
 
-export const WarningIcon = styled(ImWarning)``;
+export const Close = styled(RiCloseFill)`
+  position: absolute;
+  right: 0;
+  color: white;
+  font-size: 2.5rem;
+`;
 
-export const Title = styled.span``;
+export const Title = styled.span`
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  font-size: 3rem;
+  border-bottom: 1px solid white;
+  color: white;
+`;
 
-export const Message = styled.span``;
+export const Body = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 55%;
+  width: 100%;
+`;
 
-export const Wrapper = styled.div``;
+export const Message = styled.span`
+  margin-left: 3rem;
+  font-size: ${({ theme }) => theme.fontSize.large};
+  font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
+`;
 
-export const AcceptButton = styled.button``;
+export const Wrapper = styled.div`
+  align-self: flex-end;
+  margin-right: 3rem;
+  font-size: ${({ theme }) => theme.fontSize.large};
+`;
 
-export const DeclineButton = styled.button``;
+export const AcceptButton = styled.button`
+  background: ${({ theme }) => theme.colors.error};
+  color: white;
+  outline: none;
+  border: 1px solid ${({ theme }) => theme.colors.error};
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+`;
+
+export const DeclineButton = styled.button`
+  margin-right: 1rem;
+  background: rgba(0, 0, 0, 0.2);
+  color: white;
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+`;

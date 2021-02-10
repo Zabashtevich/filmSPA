@@ -25,7 +25,6 @@ export const Container = styled.div`
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25), 0 3px 3px rgba(0, 0, 0, 0.22);
   border-radius: 0.4rem;
   font-family: ${({ theme }) => theme.fontFamily.secondary};
-  ${({ theme }) => theme.animations.LtR}
 `;
 
 export const Header = styled.div`
@@ -43,6 +42,11 @@ export const Header = styled.div`
     type === "warning" &&
     css`
       background: ${({ theme }) => theme.colors.warning};
+    `}
+    ${({ type }) =>
+    type === "rename" &&
+    css`
+      background: ${({ theme }) => theme.colors.secondary};
     `}
 `;
 
@@ -100,6 +104,14 @@ export const Message = styled.span`
   user-select: none;
 `;
 
+export const Input = styled.input`
+  width: 75%;
+  align-self: center;
+  font-size: ${({ theme }) => theme.fontSize.large};
+  font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
+  padding: 0.4rem 1.2rem;
+`;
+
 export const Wrapper = styled.div`
   align-self: flex-end;
   margin-right: 3rem;
@@ -126,11 +138,20 @@ export const AcceptButton = styled.button`
       background: ${({ theme }) => theme.colors.warning};
       border: 1px solid ${({ theme }) => theme.colors.warning};
     `}
-  &:hover {
+    ${({ type }) =>
+    type === "rename" &&
+    css`
+      background: ${({ theme }) => theme.colors.secondary};
+      border: 1px solid ${({ theme }) => theme.colors.secondary};
+    `}
+  &:enabled:hover {
     background: white;
     border: 1px solid rgba(0, 0, 0, 0.2);
     color: black;
     transition: 500ms;
+  }
+  &:disabled {
+    cursor: not-allowed;
   }
 `;
 

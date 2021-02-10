@@ -9,6 +9,7 @@ import {
   WarningIcon,
   Title,
   Message,
+  Input,
   Wrapper,
   Body,
   AcceptButton,
@@ -31,23 +32,8 @@ export default function UtilityModal({ visible, children, ...rest }) {
   );
 }
 
-UtilityModal.Container = function UtilityModalContainer({
-  visible,
-  children,
-  ...rest
-}) {
-  return (
-    <CSSTransition
-      classNames="fade"
-      appear={true}
-      in={visible}
-      timeout={{ enter: 500, exit: 600, appear: 500 }}
-      mountOnEnter
-      unmountOnExit
-    >
-      <Container {...rest}>{children}</Container>
-    </CSSTransition>
-  );
+UtilityModal.Container = function UtilityModalContainer({ children, ...rest }) {
+  return <Container {...rest}>{children}</Container>;
 };
 
 UtilityModal.Header = function UtilityModalHeader({ children, ...rest }) {
@@ -75,6 +61,10 @@ UtilityModal.Title = function UtilityModalTitle({ children, ...rest }) {
 
 UtilityModal.Message = function UtilityModalMessage({ children, ...rest }) {
   return <Message {...rest}>{children}</Message>;
+};
+
+UtilityModal.Input = function UtilityModalInput({ ...rest }) {
+  return <Input {...rest} />;
 };
 
 UtilityModal.Wrapper = function UtilityModalWrapper({ children, ...rest }) {

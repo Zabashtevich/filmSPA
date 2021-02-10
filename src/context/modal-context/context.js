@@ -1,45 +1,60 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState } from "react";
 
 export const ModalContext = createContext(null);
 
 export default function ModalContextProvider({ children }) {
   const [modalstate, setModalstate] = useState({
-    visible: false,
+    visible: true,
     accepted: false,
-    message: null,
-    type: null,
+    message: "Enter a new name",
+    type: "rename",
+    name: null,
   });
 
-  const { visible, accepted } = modalstate;
-
   const showModal = (message, type) => {
-    setModalstate((prev) => ({ ...prev, type, message, visible: true }));
+    setModalstate((prev) => ({
+      ...prev,
+      type,
+      message,
+      name: null,
+      accepted: false,
+      visible: true,
+    }));
   };
 
   const closeModal = () => {
     setModalstate((prev) => ({
       ...prev,
+      message: null,
+      type: null,
       visible: false,
     }));
   };
 
   const confirmModal = () => {
-    setModalstate((prev) => ({ ...prev, visible: false, accepted: true }));
+    setModalstate((prev) => ({
+      ...prev,
+      message: null,
+      type: null,
+      visible: false,
+      accepted: true,
+    }));
   };
 
-  useEffect(() => {
-    return () =>
-      setModalstate((prev) => ({
-        ...prev,
-        message: null,
-        type: null,
-        accepted: false,
-      }));
-  }, []);
+  const renameModal = (name) => {
+    setModalstate((prev) => ({
+      ...prev,
+      message: null,
+      type: null,
+      visible: false,
+      accepted: true,
+      name,
+    }));
+  };
 
   return (
     <ModalContext.Provider
-      value={[modalstate, { showModal, closeModal, confirmModal }]}
+      value={[modalstate, { showModal, closeModal, confirmModal, renameModal }]}
     >
       {children}
     </ModalContext.Provider>

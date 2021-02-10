@@ -15,11 +15,14 @@ import {
   AccountListItem,
   AccountListPlaceholder,
 } from "./auxillary";
-import { useAuthContext } from "../../context";
+import { useAuthContext, useModalContext } from "../../context";
 import { useParams } from "react-router-dom";
 
 export default function AccountRootContainer() {
   const [user, userLoading] = useAuthListener();
+  const [modalstate, modalinterface] = useModalContext();
+  const { showModal } = modalinterface;
+
   return (
     <>
       {/* {modal.editModal &&
@@ -53,7 +56,10 @@ export default function AccountRootContainer() {
       <AccountRoot>
         {!userLoading && (
           <AccountRoot.PosterColumn>
-            <AccountRoot.Avatar src={user.photoURL} />
+            <AccountRoot.Avatar
+              src={user.photoURL}
+              onClick={() => showModal("ahaha ahagdsfg ahsadf afd", "warning")}
+            />
             <AccountRoot.Nickname>{user.displayName}</AccountRoot.Nickname>
             <AccountRoot.Link to={`${user.displayName}/edit`}>
               Edit profile

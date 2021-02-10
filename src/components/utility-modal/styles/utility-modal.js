@@ -1,6 +1,6 @@
 import styled from "styled-components/macro";
 
-import { IoWarningOutline } from "react-icons/io5";
+import { ImWarning } from "react-icons/im";
 import { BiErrorAlt } from "react-icons/bi";
 
 export const Background = styled.div``;
@@ -9,9 +9,9 @@ export const Container = styled.div``;
 
 export const ErrorIcon = styled(BiErrorAlt)``;
 
-export const WarningIcon = styled(IoWarningOutline)``;
+export const WarningIcon = styled(ImWarning)``;
 
-export const ErrorIcon = styled.span``;
+export const Title = styled.span``;
 
 export const Message = styled.span``;
 

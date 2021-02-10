@@ -1,4 +1,5 @@
 import React from "react";
+import { CSSTransition } from "react-transition-group";
 
 import {
   Background,
@@ -16,8 +17,21 @@ export default function UtilityModal({ children, ...rest }) {
   return <Background {...rest}>{children}</Background>;
 }
 
-UtilityModal.Container = function UtilityModalContainer({ children, ...rest }) {
-  return <Container {...rest}>{children}</Container>;
+UtilityModal.Container = function UtilityModalContainer({
+  visible,
+  children,
+  ...rest
+}) {
+  return (
+    <CSSTransition
+      classNames="fade"
+      appear={true}
+      in={visible}
+      timeout={{ enter: 500, exit: 600, appear: 500 }}
+    >
+      <Container {...rest}>{children}</Container>
+    </CSSTransition>
+  );
 };
 
 UtilityModal.ErrorIcon = function UtilityModalErrorIcon({ children, ...rest }) {

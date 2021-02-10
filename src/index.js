@@ -12,6 +12,7 @@ import Theme from "./theme/theme";
 import { rootReducer } from "./reducers";
 import AuthContextProvider from "./context/auth-context/context";
 import FilterContextProvider from "./context/filter-context/context";
+import ModalContextProvider from "./context/modal-context/context";
 
 const store = createStore(
   rootReducer,
@@ -22,10 +23,12 @@ ReactDOM.render(
   <ThemeProvider theme={Theme}>
     <AuthContextProvider>
       <FilterContextProvider>
-        <Provider store={store}>
-          <GlobalStyles />
-          <App />
-        </Provider>
+        <ModalContextProvider>
+          <Provider store={store}>
+            <GlobalStyles />
+            <App />
+          </Provider>
+        </ModalContextProvider>
       </FilterContextProvider>
     </AuthContextProvider>
   </ThemeProvider>,

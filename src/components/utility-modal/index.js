@@ -31,6 +31,8 @@ UtilityModal.Container = function UtilityModalContainer({
       appear={true}
       in={visible}
       timeout={{ enter: 500, exit: 600, appear: 500 }}
+      mountOnEnter
+      unmountOnExit
     >
       <Container {...rest}>{children}</Container>
     </CSSTransition>

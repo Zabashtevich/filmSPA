@@ -6,29 +6,40 @@ export default function ModalContextProvider({ children }) {
   const [modalstate, setModalstate] = useState({
     visible: false,
     accepted: false,
+    message: null,
+    type: null,
   });
 
   const { visible, accepted } = modalstate;
 
-  const showModal = () => {
-    setModalstate((prev) => ({ ...prev, visible: true }));
+  const showModal = (message, type) => {
+    setModalstate((prev) => ({ ...prev, type, message, visible: true }));
   };
 
   const closeModal = () => {
-    setModalstate((prev) => ({ ...prev, visible: false }));
+    setModalstate((prev) => ({
+      ...prev,
+      visible: false,
+    }));
   };
 
-  const acceptModal = () => {
-    setModalstate({ visible: false, accepted: true });
+  const confirmModal = () => {
+    setModalstate((prev) => ({ ...prev, visible: false, accepted: true }));
   };
 
   useEffect(() => {
-    return () => setModalstate((prev) => ({ ...prev, accepted: false }));
+    return () =>
+      setModalstate((prev) => ({
+        ...prev,
+        message: null,
+        type: null,
+        accepted: false,
+      }));
   }, []);
 
   return (
     <ModalContext.Provider
-      value={[accepted, visible, acceptModal, showModal, closeModal]}
+      value={[modalstate, { showModal, closeModal, confirmModal }]}
     >
       {children}
     </ModalContext.Provider>

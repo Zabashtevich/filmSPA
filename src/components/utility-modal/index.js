@@ -16,8 +16,19 @@ import {
   Close,
 } from "./styles/utility-modal";
 
-export default function UtilityModal({ children, ...rest }) {
-  return <Background {...rest}>{children}</Background>;
+export default function UtilityModal({ visible, children, ...rest }) {
+  return (
+    <CSSTransition
+      classNames="fade"
+      appear={true}
+      in={visible}
+      timeout={{ enter: 500, exit: 600, appear: 500 }}
+      mountOnEnter
+      unmountOnExit
+    >
+      <Background {...rest}>{children}</Background>
+    </CSSTransition>
+  );
 }
 
 UtilityModal.Container = function UtilityModalContainer({

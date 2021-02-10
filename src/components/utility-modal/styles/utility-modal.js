@@ -15,6 +15,7 @@ export const Background = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  ${({ theme }) => theme.animations.opacity};
 `;
 
 export const Container = styled.div`

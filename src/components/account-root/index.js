@@ -8,9 +8,8 @@ import {
   Avatar,
   Link,
   Title,
-  Wrapper,
   Subtitle,
-  TabInner,
+  Userlist,
 } from "./styles/account-root";
 
 export default function AccountRoot({ children, ...rest }) {
@@ -47,14 +46,10 @@ AccountRoot.Title = function AccountRootTitle({ children, ...rest }) {
   return <Title {...rest}>{children}</Title>;
 };
 
-AccountRoot.Wrapper = function AccountRootWrapper({ children, ...rest }) {
-  return <Wrapper {...rest}>{children}</Wrapper>;
-};
-
 AccountRoot.Subtitle = function AccountRootSubtitle({ children, ...rest }) {
   return <Subtitle {...rest}>{children}</Subtitle>;
 };
 
-AccountRoot.TabInner = function AccountRootTabInner({ children, ...rest }) {
-  return <TabInner {...rest}>{children}</TabInner>;
+AccountRoot.Userlist = function AccountRootUserlist({ children, ...rest }) {
+  return <Userlist {...rest}>{children}</Userlist>;
 };

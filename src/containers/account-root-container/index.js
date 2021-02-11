@@ -3,13 +3,11 @@ import React from "react";
 import { AccountRoot } from "../../components";
 import useAuthListener from "../../hooks/useAuthListener";
 import { UtilityModalContainer } from "../";
-
-import { useModalContext } from "../../context";
+import { useSelector } from "react-redux";
 
 export default function AccountRootContainer() {
   const [user, userLoading] = useAuthListener();
-  const [modalstate, modalinterface] = useModalContext();
-  const { showModal } = modalinterface;
+  const userData = useSelector((store) => store.userData);
 
   return (
     <>
@@ -17,10 +15,7 @@ export default function AccountRootContainer() {
       <AccountRoot>
         {!userLoading && (
           <AccountRoot.PosterColumn>
-            <AccountRoot.Avatar
-              src={user.photoURL}
-              onClick={() => showModal("ahaha ahagdsfg ahsadf afd", "warning")}
-            />
+            <AccountRoot.Avatar src={user.photoURL} />
             <AccountRoot.Nickname>{user.displayName}</AccountRoot.Nickname>
             <AccountRoot.Link to={`${user.displayName}/edit`}>
               Edit profile
@@ -28,13 +23,9 @@ export default function AccountRootContainer() {
           </AccountRoot.PosterColumn>
         )}
         <AccountRoot.ContentColumn>
-          <AccountRoot.Title>YOUR ACTIVITY</AccountRoot.Title>
-          <AccountRoot.Wrapper>
-            <AccountRoot.Subtitle>Your lists:</AccountRoot.Subtitle>
-          </AccountRoot.Wrapper>
-          <AccountRoot.Wrapper>
-            <AccountRoot.Subtitle>Your grades:</AccountRoot.Subtitle>
-          </AccountRoot.Wrapper>
+          <AccountRoot.Title>YOUR PROFILE ACTIVITY</AccountRoot.Title>
+          <AccountRoot.Subtitle>your lists:</AccountRoot.Subtitle>
+          <AccountRoot.Userlist></AccountRoot.Userlist>
         </AccountRoot.ContentColumn>
       </AccountRoot>
     </>

@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components/macro";
+import styled from "styled-components/macro";
 
 import { Link as ReactRouterLink } from "react-router-dom";
 
@@ -22,12 +22,6 @@ export const PosterColumn = styled.div`
   border-right: 1px solid gray;
   padding: 1rem 2rem;
   width: 20%;
-`;
-
-export const ContentColumn = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 `;
 
 export const Avatar = styled.img`
@@ -54,24 +48,31 @@ export const Link = styled(ReactRouterLink)`
   }
 `;
 
-export const Title = styled.span`
-  font-size: ${({ theme }) => theme.fontSize.large};
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
-  text-align: center;
-  margin-bottom: 4rem;
+export const ContentColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 `;
 
-export const Wrapper = styled.div`
-  align-self: flex-start;
-  margin: 2rem 0;
+export const Title = styled.span`
+  margin-top: 2rem;
+  font-size: ${({ theme }) => theme.fontSize.large};
+  font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 `;
 
 export const Subtitle = styled.span`
+  align-self: flex-start;
+  margin: 4rem 4rem;
   font-size: ${({ theme }) => theme.fontSize.normal};
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
-  margin-left: 3rem;
 `;
 
-export const TabInner = styled.div`
-  display: flex;
+export const Userlist = styled.div`
+  height: 250px;
+  width: 90%;
+  margin: 1rem 2rem;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 0.3rem;
+  overflow-x: scroll;
 `;

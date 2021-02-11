@@ -13,6 +13,7 @@ import {
   setFavoritedMovies,
   setRatedMovies,
   setUserLists,
+  setUserData,
 } from "../reducers/user-data/actions";
 
 export default function AccountPage() {
@@ -20,7 +21,7 @@ export default function AccountPage() {
 
   const [user] = useAuthListener();
 
-  const [moviesratedLoading, moviesrated] = useFirestore(
+  const [ratedMoviesLoading, ratedMovies] = useFirestore(
     user && `${user.displayName}`,
     `moviesrated`,
   );
@@ -28,24 +29,23 @@ export default function AccountPage() {
     user && `${user.displayName}`,
     `collection`,
   );
-  const [favoritedLoading, favorited] = useFirestore(
+  const [favoritedLoading, favoritedMovies] = useFirestore(
     user && `${user.displayName}`,
     "collection",
     "favorite",
   );
 
   useEffect(() => {
-    if (moviesratedLoading || userlistsLoading || favoritedLoading) return;
-    dispatch(setRatedMovies(moviesrated));
-    dispatch(setUserLists(userlists));
-    dispatch(setFavoritedMovies(favorited));
+    if (ratedMoviesLoading || userlistsLoading || favoritedLoading) return;
+
+    dispatch(setUserData({ userlists, favoritedMovies, ratedMovies }));
   }, [
-    moviesrated,
+    ratedMovies,
     userlists,
-    favorited,
+    favoritedMovies,
     dispatch,
     favoritedLoading,
-    moviesratedLoading,
+    ratedMoviesLoading,
     userlistsLoading,
   ]);
 

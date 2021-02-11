@@ -10,6 +10,12 @@ import {
   Title,
   Subtitle,
   Userlist,
+  Item,
+  Icon,
+  Info,
+  Row,
+  Name,
+  Content,
 } from "./styles/account-root";
 
 export default function AccountRoot({ children, ...rest }) {
@@ -52,4 +58,28 @@ AccountRoot.Subtitle = function AccountRootSubtitle({ children, ...rest }) {
 
 AccountRoot.Userlist = function AccountRootUserlist({ children, ...rest }) {
   return <Userlist {...rest}>{children}</Userlist>;
+};
+
+AccountRoot.Item = function AccountRootItem({ children, ...rest }) {
+  return <Item {...rest}>{children}</Item>;
+};
+
+AccountRoot.Icon = function AccountRootIcon({ children, ...rest }) {
+  return <Icon {...rest} />;
+};
+
+AccountRoot.Info = function AccountRootInfo({ children, ...rest }) {
+  return <Info {...rest}>{children}</Info>;
+};
+
+AccountRoot.Row = function AccountRootRow({ children, ...rest }) {
+  return <Row {...rest}>{children}</Row>;
+};
+
+AccountRoot.Name = function AccountRootName({ children, ...rest }) {
+  return <Name {...rest}>{children}</Name>;
+};
+
+AccountRoot.Content = function AccountRootContent({ children, ...rest }) {
+  return <Content {...rest}>{children}</Content>;
 };

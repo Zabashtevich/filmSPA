@@ -1,6 +1,6 @@
 import styled from "styled-components/macro";
-
 import { Link as ReactRouterLink } from "react-router-dom";
+import { BsList } from "react-icons/bs";
 
 export const Container = styled.div`
   max-width: 1200px;
@@ -76,3 +76,15 @@ export const Userlist = styled.div`
   border-radius: 0.3rem;
   overflow-x: scroll;
 `;
+
+export const Item = styled.div``;
+
+export const Icon = styled(BsList)``;
+
+export const Info = styled.div``;
+
+export const Row = styled.div``;
+
+export const Name = styled.span``;
+
+export const Content = styled.span``;

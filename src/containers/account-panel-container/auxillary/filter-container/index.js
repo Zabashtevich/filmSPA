@@ -16,7 +16,7 @@ export default function FilterContainer() {
   const [state, dispatch] = useFilterContext();
 
   const { sortBy, listType, listID, byRating, amount, rangeStart } = state;
-  const { userLists, loading } = userData;
+  const { userlists, loading } = userData;
 
   const updateFilterState = (params) => {
     if (!!params) {
@@ -49,12 +49,12 @@ export default function FilterContainer() {
             <Filter.Element
               selected={checkFilterItemSelected(i, listType, value)}
               key={value}
-              disabled={value === "userList" && userLists.length === 0 && 1}
+              disabled={value === "userList" && userlists.length === 0 && 1}
               onClick={() => {
                 if (value === "userList") {
                   updateFilterState({
                     listType: value,
-                    listID: userLists[0].id,
+                    listID: userlists[0].id,
                   });
                 } else {
                   updateFilterState({ listType: value });
@@ -68,11 +68,11 @@ export default function FilterContainer() {
       <Filter.Item>
         <Filter.Name>choose list:</Filter.Name>
         {loading && <SpinnerSmall />}
-        {!loading && userLists.length === 0 && (
+        {!loading && userlists.length === 0 && (
           <Filter.Element disabled>you do not have any list :c</Filter.Element>
         )}
         {!loading &&
-          userLists.map(({ name, id }) => {
+          userlists.map(({ name, id }) => {
             return (
               <Filter.Element
                 selected={listID === id && 1}

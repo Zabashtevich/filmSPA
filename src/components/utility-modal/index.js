@@ -14,6 +14,7 @@ import {
   Body,
   AcceptButton,
   DeclineButton,
+  RenameButton,
   Close,
 } from "./styles/utility-modal";
 
@@ -23,7 +24,7 @@ export default function UtilityModal({ visible, children, ...rest }) {
       classNames="fade"
       appear={true}
       in={visible}
-      timeout={{ enter: 500, exit: 600, appear: 500 }}
+      timeout={{ enter: 500, exit: 300, appear: 500 }}
       mountOnEnter
       unmountOnExit
     >
@@ -76,6 +77,13 @@ UtilityModal.AcceptButton = function UtilityModalAcceptButton({
   ...rest
 }) {
   return <AcceptButton {...rest}>{children}</AcceptButton>;
+};
+
+UtilityModal.RenameButton = function UtilityModalRenameButton({
+  children,
+  ...rest
+}) {
+  return <RenameButton {...rest}>{children}</RenameButton>;
 };
 
 UtilityModal.DeclineButton = function UtilityModalDeclineButton({

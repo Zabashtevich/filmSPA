@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 export const ModalContext = createContext(null);
 
@@ -44,10 +44,10 @@ export default function ModalContextProvider({ children }) {
   const renameModal = (name) => {
     setModalstate((prev) => ({
       ...prev,
-      message: null,
-      type: null,
       visible: false,
+      message: null,
       accepted: true,
+      type: null,
       name,
     }));
   };

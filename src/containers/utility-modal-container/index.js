@@ -43,19 +43,13 @@ export default function UtilityModalContainer() {
                 CANCEL
               </UtilityModal.DeclineButton>
             )}
-            {type !== "rename" && (
-              <UtilityModal.AcceptButton type={type} onClick={confirmModal}>
-                ACCEPT
-              </UtilityModal.AcceptButton>
-            )}
             {type === "rename" && (
-              <UtilityModal.AcceptButton
-                type={type}
+              <UtilityModal.RenameButton
                 onClick={() => renameModal(name)}
                 disabled={name.length < 3 && 1}
               >
                 ACCEPT
-              </UtilityModal.AcceptButton>
+              </UtilityModal.RenameButton>
             )}
           </UtilityModal.Wrapper>
         </UtilityModal.Body>

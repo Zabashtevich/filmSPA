@@ -155,6 +155,26 @@ export const AcceptButton = styled.button`
   }
 `;
 
+export const RenameButton = styled.button`
+  background: ${({ theme }) => theme.colors.error};
+  color: white;
+  outline: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  background: ${({ theme }) => theme.colors.secondary};
+  border: 1px solid ${({ theme }) => theme.colors.secondary};
+  &:enabled:hover {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    color: black;
+    transition: 500ms;
+  }
+  &:disabled {
+    cursor: not-allowed;
+  }
+`;
+
 export const DeclineButton = styled.button`
   margin-right: 1rem;
   background: rgba(0, 0, 0, 0.2);

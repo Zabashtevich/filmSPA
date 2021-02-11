@@ -25,33 +25,6 @@ export default function AccountRootContainer() {
 
   return (
     <>
-      {/* {modal.editModal &&
-        createPortal(
-          <EditModalContainer
-            text={"Enter new list name"}
-            visible={modal.editModal}
-            closeModal={closeModal}
-          />,
-          document.querySelector("#root"),
-        )}
-      {modal.errorModal &&
-        createPortal(
-          <ErrorModalContainer
-            errorMessage={modal.errorMessage}
-            closeModal={closeModal}
-            errorModalVisible={modal.errorModal}
-          />,
-          document.querySelector("#root"),
-        )}
-      {modal.confirm &&
-        createPortal(
-          <ConfirmPopupContainer
-            message={modal.confirmMessage}
-            closeConfirmWindow={closeModal}
-            popupConfirmVisible={modal.confirm}
-          />,
-          document.querySelector("#root"),
-        )} */}
       <UtilityModalContainer />
       <AccountRoot>
         {!userLoading && (
@@ -71,39 +44,7 @@ export default function AccountRootContainer() {
           <AccountRoot.Wrapper>
             <AccountRoot.Subtitle>Your lists:</AccountRoot.Subtitle>
           </AccountRoot.Wrapper>
-          <AccountList>
-            {/* {!loadingData &&
-              !placeholderDeelay &&
-              data.length > 0 &&
-              data.map((item, i) => {
-                return (
-                  <CSSTransition
-                    classNames="fade"
-                    timeout={{ enter: 500, exit: 600, appear: 500 }}
-                    appear={true}
-                    key={item.id}
-                    onEnter={() => setItemDeelay(true)}
-                    onExited={() => setItemDeelay(false)}
-                    unmountOnExit
-                    mountOnEnter
-                  >
-                    <AccountListItem i={i} item={item} showModal={showModal} />
-                  </CSSTransition>
-                );
-              })}
-            <AccountListPlaceholder
-              visible={!loadingData && data.length === 0 && !itemDeelay}
-              setPlaceholderDeelay={setPlaceholderDeelay}
-            />
-            <AccountCreateList
-              visible={data.length <= 4 && !loadingData}
-              creatingList={creatingList}
-              createToggler={createToggler}
-              inputValue={inputValue}
-              setInputValue={setInputValue}
-              createList={createList}
-            /> */}
-          </AccountList>
+          <AccountList></AccountList>
           <AccountRoot.Wrapper>
             <AccountRoot.Subtitle>Your grades:</AccountRoot.Subtitle>
           </AccountRoot.Wrapper>

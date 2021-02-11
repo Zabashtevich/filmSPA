@@ -28,8 +28,6 @@ export { default as AccountRoot } from "./account-root";
 export { default as Tooltips } from "./tooltips";
 export { default as WatchList } from "./watch-list";
 export { default as DescriptionPopup } from "./description-popup";
-export { default as AccountList } from "./acclist";
-export { default as AcclistCreateItem } from "./acclist-create-item";
 export { default as AccountPanel } from "./account-panel";
 export { default as RowListItem } from "./row-list-item";
 export { default as VotePopup } from "./vote-popup";

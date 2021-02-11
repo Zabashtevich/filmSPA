@@ -4,10 +4,10 @@ export const ModalContext = createContext(null);
 
 export default function ModalContextProvider({ children }) {
   const [modalstate, setModalstate] = useState({
-    visible: true,
+    visible: false,
     accepted: false,
-    message: "Enter a new name",
-    type: "rename",
+    message: null,
+    type: null,
     name: null,
   });
 

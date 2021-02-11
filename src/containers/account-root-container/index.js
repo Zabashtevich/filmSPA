@@ -1,22 +1,10 @@
 import React from "react";
-import { createPortal } from "react-dom";
-import { CSSTransition } from "react-transition-group";
 
-import { AccountRoot, AccountList } from "../../components";
+import { AccountRoot } from "../../components";
 import useAuthListener from "../../hooks/useAuthListener";
-import {
-  ConfirmPopupContainer,
-  EditModalContainer,
-  ErrorModalContainer,
-  UtilityModalContainer,
-} from "../";
-import {
-  AccountCreateList,
-  AccountListItem,
-  AccountListPlaceholder,
-} from "./auxillary";
-import { useAuthContext, useModalContext } from "../../context";
-import { useParams } from "react-router-dom";
+import { UtilityModalContainer } from "../";
+
+import { useModalContext } from "../../context";
 
 export default function AccountRootContainer() {
   const [user, userLoading] = useAuthListener();
@@ -44,7 +32,6 @@ export default function AccountRootContainer() {
           <AccountRoot.Wrapper>
             <AccountRoot.Subtitle>Your lists:</AccountRoot.Subtitle>
           </AccountRoot.Wrapper>
-          <AccountList></AccountList>
           <AccountRoot.Wrapper>
             <AccountRoot.Subtitle>Your grades:</AccountRoot.Subtitle>
           </AccountRoot.Wrapper>

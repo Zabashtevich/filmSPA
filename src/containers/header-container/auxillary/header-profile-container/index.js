@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { firebase } from "../../../../libs/firebase";
 
 import { HeaderProfile } from "../../../../components";
-import { ErrorModalContainer } from "./../../../";
 import { useHistory } from "react-router-dom";
 import { logoutLogic } from "../../../../utils/firebase";
 
@@ -25,13 +24,7 @@ export default function HeaderProfileContainer({ user, positionchanged }) {
   };
   return (
     <HeaderProfile>
-      {errorModalVisible && (
-        <ErrorModalContainer
-          errorMessage={errorMessage}
-          closeModal={hideErrorModal}
-          errorModalVisible={errorModalVisible}
-        />
-      )}
+      {/* TODO ERROR MODAL */}
       <HeaderProfile.Icon
         src={user.photoURL || "./assets/images/poster.png"}
         onClick={() => setPopupVisible((prev) => !prev)}

@@ -11,7 +11,7 @@ import {
 } from "../../components";
 import useFetch from "../../hooks/useFetchData";
 import { TooltipsContainer, CardRowsContainer } from "./auxillary";
-import { ErrorModalContainer, ModalGalleryContainer } from "../";
+import { ModalGalleryContainer } from "../";
 
 export default function CardDetailsRootContainer() {
   const [visibleGallery, setVisibleGallery] = useState(false);
@@ -97,13 +97,7 @@ export default function CardDetailsRootContainer() {
           </ListColumn>
         </DetailsHeader>
       )}
-      {error && (
-        <ErrorModalContainer
-          errorMessage={`Oops! We can not find the page you are looking for.`}
-          closeModal={onRedirect}
-          errorModalVisible={error}
-        />
-      )}
+      {/* TODO ERROR MODAL */}
     </>
   );
 }

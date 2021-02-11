@@ -13,7 +13,6 @@ import useFirestore from "../../../../hooks/useFirestore";
 import CreateItemContainer from "./items/create-item-container";
 import ItemContainer from "./items/item-container";
 import PlaceholderContainer from "./items/placeholder-container";
-import { ConfirmPopupContainer, ErrorModalContainer } from "../../../";
 import { useAuthContext } from "../../../../context";
 
 export default function WatchListContainer({
@@ -121,24 +120,8 @@ export default function WatchListContainer({
 
   return (
     <>
-      {popupConfirmVisible &&
-        createPortal(
-          <ConfirmPopupContainer
-            message={confirmMessage}
-            closeConfirmWindow={closeConfirmWindow}
-            popupConfirmVisible={popupConfirmVisible}
-          />,
-          document.querySelector("#root"),
-        )}
-      {errorModalVisible &&
-        createPortal(
-          <ErrorModalContainer
-            errorMessage={errorMessage}
-            closeModal={hideErrorModal}
-            errorModalVisible={errorModalVisible}
-          />,
-          document.querySelector("#root"),
-        )}
+      {/* TODO CONFIRM MODAL */}
+      {/* TODO ERROR MODAL */}
       <CSSTransition
         in={user && watchListPopupVisible}
         appear={true}

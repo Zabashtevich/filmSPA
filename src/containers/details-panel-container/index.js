@@ -6,7 +6,7 @@ import {
   StarRating,
   Votes,
 } from "../../components";
-import { ErrorModalContainer, RelevantListContainer } from "../";
+import { RelevantListContainer } from "../";
 import useAuthListener from "../../hooks/useAuthListener";
 import useFetch from "../../hooks/useFetchData";
 import useFirestore from "../../hooks/useFirestore";
@@ -143,13 +143,7 @@ export default function CardDetailsPanelContainer() {
           reviewData={reviewData}
         />
       )}
-      {errorModalVisible && (
-        <ErrorModalContainer
-          errorMessage={errorMessage}
-          closeModal={hideErrorModal}
-          errorModalVisible={errorModalVisible}
-        />
-      )}
+      {/* TODO ERROR MODAL */}
     </DetailsPanel>
   ) : null;
 }

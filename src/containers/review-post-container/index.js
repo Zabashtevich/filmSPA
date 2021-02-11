@@ -7,7 +7,6 @@ import useFirestore from "../../hooks/useFirestore";
 import useAuthListener from "../../hooks/useAuthListener";
 
 import { ReviewPost } from "../../components";
-import { ErrorModalContainer } from "../";
 import { postReviewLogic } from "../../utils/firebase";
 import { useAuthContext } from "../../context";
 
@@ -65,13 +64,7 @@ export default function ReviewPostContainer() {
   };
   return (
     <ReviewPost>
-      {errorModalVisible && (
-        <ErrorModalContainer
-          errorMessage={errorMessage}
-          closeModal={hideErrorModal}
-          errorModalVisible={errorModalVisible}
-        />
-      )}
+      {/* TODO ERROR MODAL */}
       <ReviewPost.Form onSubmit={handleSubmit(onPostReview)}>
         <ReviewPost.Title>Create your review</ReviewPost.Title>
         {user && (

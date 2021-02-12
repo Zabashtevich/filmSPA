@@ -14,50 +14,50 @@ import {
   Placeholder,
 } from "./styles/account-userlists";
 
-export default function AccountUserLists({ children, ...rest }) {
+export default function AccountUserlists({ children, ...rest }) {
   return <Container {...rest}>{children}</Container>;
 }
 
-AccountUserLists.List = function AccountUserListsList(children, ...rest) {
+AccountUserlists.List = function AccountUserlistsList(children, ...rest) {
   return <List {...rest}>{children}</List>;
 };
 
-AccountUserLists.Thumbnail = function AccountUserListsThumbnail(
+AccountUserlists.Thumbnail = function AccountUserlistsThumbnail(
   children,
   ...rest
 ) {
   return <Thumbnail {...rest}>{children}</Thumbnail>;
 };
 
-AccountUserLists.Wrapper = function AccountUserListsWrapper(children, ...rest) {
+AccountUserlists.Wrapper = function AccountUserlistsWrapper(children, ...rest) {
   return <Wrapper {...rest}>{children}</Wrapper>;
 };
 
-AccountUserLists.Row = function AccountUserListsRow(children, ...rest) {
+AccountUserlists.Row = function AccountUserlistsRow(children, ...rest) {
   return <Row {...rest}>{children}</Row>;
 };
 
-AccountUserLists.Title = function AccountUserListsTitle(children, ...rest) {
+AccountUserlists.Title = function AccountUserlistsTitle(children, ...rest) {
   return <Title {...rest}>{children}</Title>;
 };
 
-AccountUserLists.Content = function AccountUserListsContent(children, ...rest) {
+AccountUserlists.Content = function AccountUserlistsContent(children, ...rest) {
   return <Content {...rest}>{children}</Content>;
 };
 
-AccountUserLists.Rename = function AccountUserListsRename(children, ...rest) {
+AccountUserlists.Rename = function AccountUserlistsRename(children, ...rest) {
   return <Rename {...rest}>{children}</Rename>;
 };
 
-AccountUserLists.Delete = function AccountUserListsDelete(children, ...rest) {
+AccountUserlists.Delete = function AccountUserlistsDelete(children, ...rest) {
   return <Delete {...rest}>{children}</Delete>;
 };
 
-AccountUserLists.Create = function AccountUserListsCreate(children, ...rest) {
+AccountUserlists.Create = function AccountUserlistsCreate(children, ...rest) {
   return <Create {...rest}>{children}</Create>;
 };
 
-AccountUserLists.Placeholder = function AccountUserListsPlaceholder(
+AccountUserlists.Placeholder = function AccountUserlistsPlaceholder(
   children,
   ...rest
 ) {

@@ -15,11 +15,18 @@ import {
   Body,
   AcceptButton,
   DeclineButton,
-  RenameButton,
   Close,
 } from "./styles/utility-modal";
 
-export default function UtilityModal({ visible, children, ...rest }) {
+export default function UtilityModal({ children, ...rest }) {
+  return <Background {...rest}>{children}</Background>;
+}
+
+UtilityModal.Container = function UtilityModalContainer({
+  visible,
+  children,
+  ...rest
+}) {
   return (
     <CSSTransition
       classNames="fade"
@@ -29,13 +36,9 @@ export default function UtilityModal({ visible, children, ...rest }) {
       mountOnEnter
       unmountOnExit
     >
-      <Background {...rest}>{children}</Background>
+      <Container {...rest}>{children}</Container>{" "}
     </CSSTransition>
   );
-}
-
-UtilityModal.Container = function UtilityModalContainer({ children, ...rest }) {
-  return <Container {...rest}>{children}</Container>;
 };
 
 UtilityModal.Header = function UtilityModalHeader({ children, ...rest }) {
@@ -82,13 +85,6 @@ UtilityModal.AcceptButton = function UtilityModalAcceptButton({
   ...rest
 }) {
   return <AcceptButton {...rest}>{children}</AcceptButton>;
-};
-
-UtilityModal.RenameButton = function UtilityModalRenameButton({
-  children,
-  ...rest
-}) {
-  return <RenameButton {...rest}>{children}</RenameButton>;
 };
 
 UtilityModal.DeclineButton = function UtilityModalDeclineButton({

@@ -54,9 +54,22 @@ export default function ModalContextProvider({ children }) {
     }));
   };
 
+  const createList = (name) => {
+    setModalstate((prev) => ({
+      ...prev,
+      visible: false,
+      message: null,
+      accepted: true,
+      type: null,
+      name,
+    }));
+  };
   return (
     <ModalContext.Provider
-      value={[modalstate, { showModal, closeModal, confirmModal, renameModal }]}
+      value={[
+        modalstate,
+        { showModal, closeModal, confirmModal, renameModal, createList },
+      ]}
     >
       {children}
     </ModalContext.Provider>

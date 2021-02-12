@@ -11,8 +11,10 @@ export function ErrorHeader() {
   );
 }
 
-export function ErrorButtons({ closeModal }) {
+export function ErrorButtons({ closeModal, type }) {
   return (
-    <UtilityModal.ErrorButton onClick={closeModal}>OK</UtilityModal.ErrorButton>
+    <UtilityModal.AcceptButtons onClick={closeModal} type={type}>
+      OK
+    </UtilityModal.AcceptButtons>
   );
 }

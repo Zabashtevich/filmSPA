@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { UtilityModal } from "../../../components";
 
@@ -21,18 +21,19 @@ export function RenameInput({ setName, name }) {
   );
 }
 
-export function RenameButtons({ closeModal, renameModal, name }) {
+export function RenameButtons({ type, closeModal, renameModal, name }) {
   return (
     <>
       <UtilityModal.DeclineButton onClick={closeModal}>
         CANCEL
       </UtilityModal.DeclineButton>
-      <UtilityModal.RenameButton
+      <UtilityModal.AcceptButton
+        type={type}
         onClick={() => renameModal(name)}
         disabled={name.length < 3 && 1}
       >
         ACCEPT
-      </UtilityModal.RenameButton>
+      </UtilityModal.AcceptButton>
     </>
   );
 }

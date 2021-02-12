@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState } from "react";
 
 export const ModalContext = createContext(null);
 
@@ -9,9 +9,10 @@ export default function ModalContextProvider({ children }) {
     message: null,
     type: null,
     name: null,
+    deleteID: null,
   });
 
-  const showModal = (message, type) => {
+  const showModal = (message, type, id = null) => {
     setModalstate((prev) => ({
       ...prev,
       type,
@@ -19,6 +20,7 @@ export default function ModalContextProvider({ children }) {
       name: null,
       accepted: false,
       visible: true,
+      deleteID: id,
     }));
   };
 

@@ -22,6 +22,10 @@ export default function UtilityModalContainer() {
           {type === "warning" && <UtilityModal.WarningIcon />}
           {type === "rename" && <UtilityModal.Title>RENAME</UtilityModal.Title>}
           {type === "rename" && <UtilityModal.WarningIcon />}
+          {type === "newlist" && (
+            <UtilityModal.Title>NEW LIST</UtilityModal.Title>
+          )}
+          {type === "newlist" && <UtilityModal.Newlist />}
           <UtilityModal.Close onClick={closeModal} />
         </UtilityModal.Header>
         <UtilityModal.Body>
@@ -30,6 +34,14 @@ export default function UtilityModalContainer() {
             <UtilityModal.Input
               value={name}
               onChange={(e) => setName(e.target.value)}
+              placeholder={"Enter a name"}
+            />
+          )}
+          {type === "newlist" && (
+            <UtilityModal.Input
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder={"Enter a new name"}
             />
           )}
           <UtilityModal.Wrapper>
@@ -44,6 +56,19 @@ export default function UtilityModalContainer() {
               </UtilityModal.DeclineButton>
             )}
             {type === "rename" && (
+              <UtilityModal.RenameButton
+                onClick={() => renameModal(name)}
+                disabled={name.length < 3 && 1}
+              >
+                ACCEPT
+              </UtilityModal.RenameButton>
+            )}
+            {type === "newlist" && (
+              <UtilityModal.DeclineButton onClick={closeModal}>
+                CANCEL
+              </UtilityModal.DeclineButton>
+            )}
+            {type === "newlist" && (
               <UtilityModal.RenameButton
                 onClick={() => renameModal(name)}
                 disabled={name.length < 3 && 1}

@@ -12,7 +12,7 @@ export const Container = styled.div`
   padding: 0.6rem 0.6rem;
   position: absolute;
   top: 110%;
-  left: -20%;
+  left: 25%;
   &.fade-enter {
     opacity: 0;
     transform: translateX(-200px);

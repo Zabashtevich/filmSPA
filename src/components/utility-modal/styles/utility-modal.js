@@ -3,6 +3,7 @@ import styled, { css } from "styled-components/macro";
 import { ImWarning } from "react-icons/im";
 import { BiErrorAlt } from "react-icons/bi";
 import { RiCloseFill } from "react-icons/ri";
+import { FiSettings } from "react-icons/fi";
 
 export const Background = styled.div`
   position: fixed;
@@ -60,6 +61,15 @@ export const ErrorIcon = styled(BiErrorAlt)`
 `;
 
 export const WarningIcon = styled(ImWarning)`
+  position: absolute;
+  font-size: 14rem;
+  top: 50%;
+  right: 10%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 1);
+`;
+
+export const Newlist = styled(FiSettings)`
   position: absolute;
   font-size: 14rem;
   top: 50%;

@@ -64,27 +64,61 @@ export const Title = styled.span`
 
 export const Subtitle = styled.span`
   align-self: flex-start;
-  margin: 4rem 4rem;
+  margin: 4rem 0 0 3rem;
   font-size: ${({ theme }) => theme.fontSize.normal};
 `;
 
 export const Userlist = styled.div`
-  height: 250px;
+  height: 150px;
   width: 90%;
   margin: 1rem 2rem;
   background: rgba(0, 0, 0, 0.05);
   border-radius: 0.3rem;
   overflow-x: scroll;
+  display: flex;
+  align-items: center;
 `;
 
-export const Item = styled.div``;
+export const Item = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 200px;
+  height: 100px;
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.5rem;
+  margin-left: 1rem;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25), 0 1px 3px rgba(0, 0, 0, 0.22);
+`;
 
-export const Icon = styled(BsList)``;
+export const Icon = styled(BsList)`
+  font-size: ${({ theme }) => theme.fontSize.large};
+  margin: 0 auto;
+`;
 
-export const Info = styled.div``;
+export const Info = styled.div`
+  width: 120px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid rgba(0, 0, 0, 0.2);
+  font-size: 0.8rem;
+  font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
+`;
 
-export const Row = styled.div``;
+export const Row = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+`;
 
-export const Name = styled.span``;
+export const Name = styled.span`
+  width: 50px;
+`;
 
-export const Content = styled.span``;
+export const Content = styled.span`
+  margin: 0 auto;
+`;

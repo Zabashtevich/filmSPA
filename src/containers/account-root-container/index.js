@@ -34,11 +34,11 @@ export default function AccountRootContainer() {
                     <AccountRoot.Icon />
                     <AccountRoot.Info>
                       <AccountRoot.Row>
-                        <AccountRoot.Name>name</AccountRoot.Name>
+                        <AccountRoot.Name>name:</AccountRoot.Name>
                         <AccountRoot.Content>{item.name}</AccountRoot.Content>
                       </AccountRoot.Row>
                       <AccountRoot.Row>
-                        <AccountRoot.Name>amount</AccountRoot.Name>
+                        <AccountRoot.Name>amount:</AccountRoot.Name>
                         <AccountRoot.Content>
                           {item.content.length}
                         </AccountRoot.Content>

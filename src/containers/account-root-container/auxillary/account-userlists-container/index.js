@@ -11,13 +11,15 @@ export default function AccountUserlistsContainer() {
       {!loading &&
         userlists.map((item) => {
           return (
-            <AccountUserlists.Item>
+            <AccountUserlists.List key={item.id}>
               <AccountUserlists.Thumbnail />
               <AccountUserlists.Wrapper>
                 <AccountUserlists.Row>
                   <AccountUserlists.Title>name:</AccountUserlists.Title>
                   <AccountUserlists.Content>
-                    {item.name}
+                    {item.name.length > 8
+                      ? item.name.slice(0, 8) + "..."
+                      : item.name}
                   </AccountUserlists.Content>
                 </AccountUserlists.Row>
                 <AccountUserlists.Row>
@@ -26,16 +28,14 @@ export default function AccountUserlistsContainer() {
                     {item.content.length}
                   </AccountUserlists.Content>
                 </AccountUserlists.Row>
-                <AccountUserlists.Row>
+                <AccountUserlists.Inner>
                   <AccountUserlists.Rename />
                   <AccountUserlists.Delete />
-                </AccountUserlists.Row>
+                </AccountUserlists.Inner>
               </AccountUserlists.Wrapper>
-            </AccountUserlists.Item>
+            </AccountUserlists.List>
           );
         })}
-      {}
-      {}
     </AccountUserlists>
   );
 }

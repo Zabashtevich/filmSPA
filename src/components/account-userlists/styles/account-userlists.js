@@ -1,22 +1,85 @@
 import styled from "styled-components/macro";
 
-export const Container = styled.div``;
+import { BsList } from "react-icons/bs";
+import { RiListSettingsLine } from "react-icons/ri";
+import { FiDelete } from "react-icons/fi";
 
-export const List = styled.div``;
+export const Container = styled.div`
+  background-color: rgba(0, 0, 0, 0.05);
+  width: 90%;
+  margin-top: 1rem;
+  border-radius: 0.2rem;
+  font-family: ${({ theme }) => theme.fontFamily.secondary};
+  font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
+`;
 
-export const Thumbnail = styled.div``;
+export const List = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100px;
+  width: 200px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 0.2rem;
+  margin: 1rem;
+  cursor: pointer;
+  &:hover {
+    background: white;
+    transition: 500ms;
+  }
+`;
 
-export const Wrapper = styled.div``;
+export const Thumbnail = styled(BsList)`
+  font-size: ${({ theme }) => theme.fontSize.huge};
+  margin: 0 auto;
+`;
 
-export const Row = styled.div``;
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 70%;
+  height: 100%;
+  border-left: 1px solid rgba(0, 0, 0, 0.2);
+`;
 
-export const Title = styled.div``;
+export const Row = styled.div`
+  display: flex;
+  width: 90%;
+  align-self: center;
+  font-size: 0.9rem;
+`;
 
-export const Content = styled.div``;
+export const Title = styled.div`
+  width: 50px;
+`;
 
-export const Rename = styled.div``;
+export const Content = styled.div`
+  margin: 0 auto;
+`;
 
-export const Delete = styled.div``;
+export const Inner = styled.div`
+  align-self: center;
+  margin-top: 0.5rem;
+  margin-bottom: -1rem;
+  width: 45%;
+  display: flex;
+  justify-content: space-around;
+`;
+
+export const Rename = styled(RiListSettingsLine)`
+  font-size: ${({ theme }) => theme.fontSize.normal};
+  & > * {
+    pointer-events: none;
+  }
+`;
+
+export const Delete = styled(FiDelete)`
+  font-size: ${({ theme }) => theme.fontSize.normal};
+  & > * {
+    pointer-events: none;
+  }
+`;
 
 export const Create = styled.div``;
 

@@ -2,74 +2,46 @@ import { createContext, useState } from "react";
 
 export const ModalContext = createContext(null);
 
+const initialState = {
+  rename: { id: null, accepted: false },
+  newlist: { name: null, accepted: false },
+  confirm: { id: null, accepted: false },
+  message: null,
+  visible: false,
+};
+
 export default function ModalContextProvider({ children }) {
-  const [modalstate, setModalstate] = useState({
-    visible: false,
-    accepted: false,
-    message: null,
-    type: null,
-    name: null,
-    deleteID: null,
-  });
+  const [modalstate, setModalstate] = useState(initialState);
 
-  const showModal = (message, type, id = null) => {
-    setModalstate((prev) => ({
-      ...prev,
-      type,
-      message,
-      name: null,
-      accepted: false,
-      visible: true,
-      deleteID: id,
-    }));
+  const showModal = (target, message, settings) => {
+    setModalstate((prev) => ({ ...prev, [target]: { ...settings }, message }));
   };
 
-  const closeModal = () => {
+  const closeModal = (target = null) => {
+    if (!!target) {
+      setModalstate((prev) => ({
+        ...prev,
+        [target]: { ...initialState[target] },
+        message: null,
+        visible: false,
+      }));
+    } else {
+      setModalstate((prev) => ({ ...prev, message: null, visible: false }));
+    }
+  };
+
+  const confirmModal = (target, id = null) => {
     setModalstate((prev) => ({
       ...prev,
+      [target]: { id, accepted: true },
       message: null,
-      type: null,
       visible: false,
     }));
   };
 
-  const confirmModal = () => {
-    setModalstate((prev) => ({
-      ...prev,
-      message: null,
-      type: null,
-      visible: false,
-      accepted: true,
-    }));
-  };
-
-  const renameModal = (name) => {
-    setModalstate((prev) => ({
-      ...prev,
-      visible: false,
-      message: null,
-      accepted: true,
-      type: null,
-      name,
-    }));
-  };
-
-  const createList = (name) => {
-    setModalstate((prev) => ({
-      ...prev,
-      visible: false,
-      message: null,
-      accepted: true,
-      type: null,
-      name,
-    }));
-  };
   return (
     <ModalContext.Provider
-      value={[
-        modalstate,
-        { showModal, closeModal, confirmModal, renameModal, createList },
-      ]}
+      value={[modalstate, { showModal, closeModal, confirmModal }]}
     >
       {children}
     </ModalContext.Provider>

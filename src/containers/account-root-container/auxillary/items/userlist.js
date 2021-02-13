@@ -62,11 +62,7 @@ export default function UserListContainer({ item }) {
             }
             onClick={() => {
               setDescriptionVisible((prev) => ({ ...prev, deleteList: false }));
-              showModal(
-                `Are you sure you want to delete "${item.name}" list`,
-                "confirm",
-                item.id,
-              );
+              showModal("confirm", { id: 2, accepted: true });
             }}
           />
           <DescriptionPopupContainer

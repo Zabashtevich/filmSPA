@@ -11,7 +11,7 @@ export function ErrorHeader() {
   );
 }
 
-export function ErrorButtons({ closeModal, type }) {
+export function ErrorButtons({ type, closeModal }) {
   return (
     <UtilityModal.AcceptButton onClick={closeModal} type={type}>
       OK

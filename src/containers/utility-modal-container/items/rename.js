@@ -21,16 +21,16 @@ export function RenameInput({ setName, name }) {
   );
 }
 
-export function RenameButtons({ type, closeModal, renameModal, name }) {
+export function RenameButtons({ type, name, closeModal, confirmModal }) {
   return (
     <>
-      <UtilityModal.DeclineButton onClick={closeModal}>
+      <UtilityModal.DeclineButton onClick={() => closeModal("rename")}>
         CANCEL
       </UtilityModal.DeclineButton>
       <UtilityModal.AcceptButton
-        type={type}
-        onClick={() => renameModal(name)}
         disabled={name.length < 3 && 1}
+        type={type}
+        onClick={() => confirmModal("rename", { name })}
       >
         ACCEPT
       </UtilityModal.AcceptButton>

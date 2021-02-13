@@ -31,27 +31,29 @@ export default function UtilityModalContainer() {
           {type === "newlist" && <NewlistInput setName={setName} name={name} />}
           <UtilityModal.Wrapper>
             {type === "error" && (
-              <ErrorButtons closeModal={closeModal} type={type} />
+              <ErrorButtons type={type} closeModal={closeModal} />
             )}
             {type === "rename" && (
               <RenameButtons
                 type={type}
-                renameModal={renameModal}
                 name={name}
+                closeModal={closeModal}
+                confirmModal={confirmModal}
               />
             )}
             {type === "newlist" && (
               <NewlistButtons
-                closeModal={closeModal}
-                createList={createList}
                 type={type}
+                name={name}
+                closeModal={closeModal}
+                confirmModal={confirmModal}
               />
             )}
             {type === "confirm" && (
               <ConfirmButtons
+                type={type}
                 closeModal={closeModal}
                 confirmModal={confirmModal}
-                type={type}
               />
             )}
           </UtilityModal.Wrapper>

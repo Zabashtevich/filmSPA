@@ -20,16 +20,16 @@ export function NewlistInput({ setName, name }) {
   );
 }
 
-export function NewlistButtons({ closeModal, createList, name, type }) {
+export function NewlistButtons({ type, name, closeModal, confirmModal }) {
   return (
     <>
-      <UtilityModal.DeclineButton onClick={closeModal}>
+      <UtilityModal.DeclineButton onClick={() => closeModal("newlist")}>
         CANCEL
       </UtilityModal.DeclineButton>
       <UtilityModal.AcceptButton
-        onClick={() => createList(name)}
         disabled={name.length < 3 && 1}
         type={type}
+        onClick={() => confirmModal("newlist", { name })}
       >
         ACCEPT
       </UtilityModal.AcceptButton>

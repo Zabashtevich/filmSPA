@@ -4,7 +4,11 @@ import { useSelector } from "react-redux";
 import { AccountRoot } from "../../components";
 import useAuthListener from "../../hooks/useAuthListener";
 import { UtilityModalContainer } from "../";
-import { UserlistContainer } from "./auxillary";
+import {
+  UserlistContainer,
+  UserlistPlaceholder,
+  UserlistCreatelist,
+} from "./auxillary";
 
 export default function AccountRootContainer() {
   const [user, userLoading] = useAuthListener();
@@ -27,8 +31,17 @@ export default function AccountRootContainer() {
         <AccountRoot.ContentColumn>
           <AccountRoot.Title>YOUR PROFILE ACTIVITY</AccountRoot.Title>
           <AccountRoot.Subtitle>your lists:</AccountRoot.Subtitle>
-          {!loading &&
-            userlists.map((item) => <UserListContainer item={item} />)}
+          <AccountRoot.Lists>
+            <div style={{ display: "flex" }}>
+              {!loading &&
+                userlists.length > 0 &&
+                userlists.map((item) => (
+                  <UserlistContainer item={item} key={item.id} />
+                ))}
+              {!loading && userlists.length < 5 && <UserlistCreatelist />}
+              {!loading && userlists.length === 0 && <UserlistPlaceholder />}
+            </div>
+          </AccountRoot.Lists>
         </AccountRoot.ContentColumn>
       </AccountRoot>
     </>

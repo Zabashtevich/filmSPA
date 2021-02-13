@@ -69,7 +69,7 @@ export const Subtitle = styled.span`
 
 export const Lists = styled.div`
   background-color: rgba(0, 0, 0, 0.05);
-  width: 90%;
+  width: 900px;
   margin-top: 1rem;
   border-radius: 0.2rem;
   font-family: ${({ theme }) => theme.fontFamily.secondary};

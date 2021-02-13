@@ -23,7 +23,7 @@ export default function UtilityModalContainer() {
           {type === "error" && <ErrorHeader />}
           {type === "rename" && <RenameHeader />}
           {type === "newlist" && <NewlistHeader />}
-          {type === "delete" && <DeleteHeader />}
+          {type === "remove" && <DeleteHeader />}
           {type === "confirm" && <ConfirmHeader />}
           <UtilityModal.Close onClick={closeModal} />
         </UtilityModal.Header>
@@ -51,7 +51,7 @@ export default function UtilityModalContainer() {
                 confirmModal={confirmModal}
               />
             )}
-            {type === "delete" && (
+            {type === "remove" && (
               <DeleteButtons
                 type={type}
                 closeModal={closeModal}

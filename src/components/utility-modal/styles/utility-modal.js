@@ -55,7 +55,7 @@ export const Header = styled.div`
       background: ${({ theme }) => theme.colors.secondary};
     `}
     ${({ type }) =>
-    type === "delete" &&
+    type === "remove" &&
     css`
       background: ${({ theme }) => theme.colors.secondary};
     `}
@@ -170,7 +170,7 @@ export const AcceptButton = styled.button`
       border: 1px solid ${({ theme }) => theme.colors.secondary};
     `}
     ${({ type }) =>
-    type === "delete" &&
+    type === "remove" &&
     css`
       background: ${({ theme }) => theme.colors.secondary};
       border: 1px solid ${({ theme }) => theme.colors.secondary};

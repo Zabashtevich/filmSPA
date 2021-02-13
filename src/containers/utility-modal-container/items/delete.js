@@ -18,7 +18,7 @@ export function DeleteButtons({ type, closeModal, confirmModal }) {
         CANCEL
       </UtilityModal.DeclineButton>
       <UtilityModal.AcceptButton
-        onClick={() => confirmModal("delete")}
+        onClick={() => confirmModal("remove")}
         type={type}
       >
         ACCEPT

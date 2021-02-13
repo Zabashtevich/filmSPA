@@ -6,7 +6,7 @@ const initialState = {
   rename: { id: null, accepted: false, name: null },
   newlist: { name: null, accepted: false },
   confirm: { accepted: false },
-  delete: { id: null, accepted: false },
+  remove: { id: null, accepted: false },
   message: null,
   visible: false,
   type: null,
@@ -25,7 +25,7 @@ export default function ModalContextProvider({ children }) {
       visible: true,
     }));
   };
-  console.log(modalstate);
+
   const closeModal = (type = null) => {
     if (!!type) {
       setModalstate((prev) => ({

@@ -63,7 +63,7 @@ export default function UserListContainer({ item }) {
             onClick={() => {
               setDescriptionVisible((prev) => ({ ...prev, deleteList: false }));
               showModal(
-                "delete",
+                "remove",
                 `Are you sure you want to delete "${item.name}" list`,
                 { id: item.id },
               );

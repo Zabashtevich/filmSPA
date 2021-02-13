@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import { Userlist } from "../../../../components";
 import { DescriptionPopupContainer } from "../../..";
+import { useModalContext } from "../../../../context";
 
 export default function UserListContainer({ item }) {
   const [descriptionVisible, setDescriptionVisible] = useState({
@@ -9,6 +10,9 @@ export default function UserListContainer({ item }) {
     deleteList: false,
   });
   const { renameList, deleteList } = descriptionVisible;
+
+  const [, modalinterface] = useModalContext();
+  const { showModal } = modalinterface;
 
   return (
     <Userlist>
@@ -38,6 +42,10 @@ export default function UserListContainer({ item }) {
                 renameList: false,
               }))
             }
+            onClick={() => {
+              setDescriptionVisible((prev) => ({ ...prev, renameList: false }));
+              showModal("Enter a new list name", "rename");
+            }}
           />
           <Userlist.Delete
             onMouseEnter={() =>
@@ -52,6 +60,14 @@ export default function UserListContainer({ item }) {
                 deleteList: false,
               }))
             }
+            onClick={() => {
+              setDescriptionVisible((prev) => ({ ...prev, deleteList: false }));
+              showModal(
+                `Are you sure you want to delete "${item.name}" list`,
+                "confirm",
+                item.id,
+              );
+            }}
           />
           <DescriptionPopupContainer
             backgroundsecondary={1}

@@ -17,9 +17,9 @@ export function ConfirmButtons({ closeModal, confirmModal, type }) {
       <UtilityModal.DeclineButton onClick={closeModal}>
         CANCEL
       </UtilityModal.DeclineButton>
-      <UtilityModal.ConfirmButton onClick={confirmModal} type={type}>
+      <UtilityModal.AcceptButton onClick={confirmModal} type={type}>
         ACCEPT
-      </UtilityModal.ConfirmButton>
+      </UtilityModal.AcceptButton>
     </>
   );
 }

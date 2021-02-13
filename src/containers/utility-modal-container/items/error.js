@@ -13,8 +13,8 @@ export function ErrorHeader() {
 
 export function ErrorButtons({ closeModal, type }) {
   return (
-    <UtilityModal.AcceptButtons onClick={closeModal} type={type}>
+    <UtilityModal.AcceptButton onClick={closeModal} type={type}>
       OK
-    </UtilityModal.AcceptButtons>
+    </UtilityModal.AcceptButton>
   );
 }

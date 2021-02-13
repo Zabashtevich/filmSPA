@@ -6,12 +6,13 @@ import { ErrorButtons, ErrorHeader } from "./items/error";
 import { NewlistButtons, NewlistHeader, NewlistInput } from "./items/newlist";
 import { RenameButtons, RenameHeader, RenameInput } from "./items/rename";
 import { ConfirmButtons, ConfirmHeader } from "./items/confirm";
+import { DeleteButtons, DeleteHeader } from "./items/delete";
 
 export default function UtilityModalContainer() {
   const [modalstate, modalinterface] = useModalContext();
 
   const { type, message, visible } = modalstate;
-  const { closeModal, confirmModal, renameModal, createList } = modalinterface;
+  const { closeModal, confirmModal } = modalinterface;
 
   const [name, setName] = useState("");
 
@@ -22,6 +23,7 @@ export default function UtilityModalContainer() {
           {type === "error" && <ErrorHeader />}
           {type === "rename" && <RenameHeader />}
           {type === "newlist" && <NewlistHeader />}
+          {type === "delete" && <DeleteHeader />}
           {type === "confirm" && <ConfirmHeader />}
           <UtilityModal.Close onClick={closeModal} />
         </UtilityModal.Header>
@@ -45,6 +47,13 @@ export default function UtilityModalContainer() {
               <NewlistButtons
                 type={type}
                 name={name}
+                closeModal={closeModal}
+                confirmModal={confirmModal}
+              />
+            )}
+            {type === "delete" && (
+              <DeleteButtons
+                type={type}
                 closeModal={closeModal}
                 confirmModal={confirmModal}
               />

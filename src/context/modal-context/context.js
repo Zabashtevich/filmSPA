@@ -5,37 +5,49 @@ export const ModalContext = createContext(null);
 const initialState = {
   rename: { id: null, accepted: false, name: null },
   newlist: { name: null, accepted: false },
-  confirm: { id: null, accepted: false },
+  confirm: { accepted: false },
+  delete: { id: null, accepted: false },
   message: null,
   visible: false,
+  type: null,
+  processed: false,
 };
 
 export default function ModalContextProvider({ children }) {
   const [modalstate, setModalstate] = useState(initialState);
 
-  const showModal = (target, message, settings) => {
-    setModalstate((prev) => ({ ...prev, [target]: { ...settings }, message }));
+  const showModal = (type, message, settings = {}) => {
+    setModalstate((prev) => ({
+      ...prev,
+      [type]: { ...initialState[type], ...settings },
+      message,
+      type,
+      visible: true,
+    }));
   };
-
-  const closeModal = (target = null) => {
-    if (!!target) {
+  console.log(modalstate);
+  const closeModal = (type = null) => {
+    if (!!type) {
       setModalstate((prev) => ({
         ...prev,
-        [target]: { ...initialState[target] },
+        [type]: { ...initialState[type] },
         message: null,
         visible: false,
+        type: null,
       }));
     } else {
       setModalstate((prev) => ({ ...prev, message: null, visible: false }));
     }
   };
 
-  const confirmModal = (target, settings = {}) => {
+  const confirmModal = (type, settings = {}) => {
     setModalstate((prev) => ({
       ...prev,
-      [target]: { ...initialState[target], ...settings, accepted: true },
+      [type]: { ...prev[type], ...settings, accepted: true },
       message: null,
       visible: false,
+      type: null,
+      processed: true,
     }));
   };
 

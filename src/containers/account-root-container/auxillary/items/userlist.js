@@ -44,7 +44,7 @@ export default function UserListContainer({ item }) {
             }
             onClick={() => {
               setDescriptionVisible((prev) => ({ ...prev, renameList: false }));
-              showModal("Enter a new list name", "rename");
+              showModal("rename", "Enter a new list name", { id: item.id });
             }}
           />
           <Userlist.Delete
@@ -62,7 +62,11 @@ export default function UserListContainer({ item }) {
             }
             onClick={() => {
               setDescriptionVisible((prev) => ({ ...prev, deleteList: false }));
-              showModal("confirm", { id: 2, accepted: true });
+              showModal(
+                "delete",
+                `Are you sure you want to delete "${item.name}" list`,
+                { id: item.id },
+              );
             }}
           />
           <DescriptionPopupContainer

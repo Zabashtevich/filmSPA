@@ -54,6 +54,11 @@ export const Header = styled.div`
     css`
       background: ${({ theme }) => theme.colors.secondary};
     `}
+    ${({ type }) =>
+    type === "delete" &&
+    css`
+      background: ${({ theme }) => theme.colors.secondary};
+    `}
 `;
 
 export const ErrorIcon = styled(BiErrorAlt)`
@@ -160,6 +165,12 @@ export const AcceptButton = styled.button`
     `}
     ${({ type }) =>
     type === "newlist" &&
+    css`
+      background: ${({ theme }) => theme.colors.secondary};
+      border: 1px solid ${({ theme }) => theme.colors.secondary};
+    `}
+    ${({ type }) =>
+    type === "delete" &&
     css`
       background: ${({ theme }) => theme.colors.secondary};
       border: 1px solid ${({ theme }) => theme.colors.secondary};

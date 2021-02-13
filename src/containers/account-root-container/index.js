@@ -9,15 +9,12 @@ import {
   UserlistPlaceholder,
   UserlistCreatelist,
 } from "./auxillary";
-import { useModalContext } from "../../context";
 
 export default function AccountRootContainer() {
   const [user, userLoading] = useAuthListener();
 
   const userData = useSelector(({ userData }) => userData);
   const { userlists, loading } = userData;
-
-  const [modalstate] = useModalContext();
 
   return (
     <>

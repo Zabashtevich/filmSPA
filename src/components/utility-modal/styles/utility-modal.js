@@ -16,6 +16,7 @@ export const Background = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  ${({ theme }) => theme.animations.opacity};
 `;
 
 export const Container = styled.div`
@@ -25,7 +26,6 @@ export const Container = styled.div`
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25), 0 3px 3px rgba(0, 0, 0, 0.22);
   border-radius: 0.4rem;
   font-family: ${({ theme }) => theme.fontFamily.secondary};
-  ${({ theme }) => theme.animations.LtR};
 `;
 
 export const Header = styled.div`

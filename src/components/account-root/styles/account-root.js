@@ -66,3 +66,16 @@ export const Subtitle = styled.span`
   margin: 4rem 0 0 3rem;
   font-size: ${({ theme }) => theme.fontSize.normal};
 `;
+
+export const Lists = styled.div`
+  background-color: rgba(0, 0, 0, 0.05);
+  width: 90%;
+  margin-top: 1rem;
+  border-radius: 0.2rem;
+  font-family: ${({ theme }) => theme.fontFamily.secondary};
+  font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: 175px;
+`;

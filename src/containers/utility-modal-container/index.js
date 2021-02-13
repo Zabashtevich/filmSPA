@@ -16,8 +16,8 @@ export default function UtilityModalContainer() {
   const [name, setName] = useState("");
 
   return (
-    <UtilityModal>
-      <UtilityModal.Container visible={visible}>
+    <UtilityModal visible={visible}>
+      <UtilityModal.Container>
         <UtilityModal.Header type={type}>
           {type === "error" && <ErrorHeader />}
           {type === "rename" && <RenameHeader />}

@@ -5,19 +5,6 @@ import { RiListSettingsLine } from "react-icons/ri";
 import { FiDelete } from "react-icons/fi";
 import { BsPlusSquare } from "react-icons/bs";
 
-export const Container = styled.div`
-  background-color: rgba(0, 0, 0, 0.05);
-  width: 90%;
-  margin-top: 1rem;
-  border-radius: 0.2rem;
-  font-family: ${({ theme }) => theme.fontFamily.secondary};
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
-  display: flex;
-  overflow-x: auto;
-  overflow-y: hidden;
-  height: 175px;
-`;
-
 export const List = styled.div`
   display: flex;
   align-items: center;

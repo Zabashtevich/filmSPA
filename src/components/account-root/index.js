@@ -9,6 +9,7 @@ import {
   Link,
   Title,
   Subtitle,
+  Lists,
 } from "./styles/account-root";
 
 export default function AccountRoot({ children, ...rest }) {
@@ -47,4 +48,8 @@ AccountRoot.Title = function AccountRootTitle({ children, ...rest }) {
 
 AccountRoot.Subtitle = function AccountRootSubtitle({ children, ...rest }) {
   return <Subtitle {...rest}>{children}</Subtitle>;
+};
+
+AccountRoot.Lists = function AccountRootLists({ children, ...rest }) {
+  return <Lists {...rest}>{children}</Lists>;
 };

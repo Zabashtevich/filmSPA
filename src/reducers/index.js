@@ -1,4 +1,8 @@
 import { combineReducers } from "redux";
-import userData from "./user-data";
+import userDataReducer from "./user-data";
+import userReviewsReducer from "./review-data";
 
-export const rootReducer = combineReducers({ userData });
+export const rootReducer = combineReducers({
+  userData: userDataReducer,
+  reviewData: userReviewsReducer,
+});

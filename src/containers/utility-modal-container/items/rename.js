@@ -21,7 +21,13 @@ export function RenameInput({ setName, name }) {
   );
 }
 
-export function RenameButtons({ type, name, closeModal, confirmModal }) {
+export function RenameButtons({
+  type,
+  name,
+  setName,
+  closeModal,
+  confirmModal,
+}) {
   return (
     <>
       <UtilityModal.DeclineButton onClick={() => closeModal("rename")}>
@@ -30,7 +36,10 @@ export function RenameButtons({ type, name, closeModal, confirmModal }) {
       <UtilityModal.AcceptButton
         disabled={name.length < 3 && 1}
         type={type}
-        onClick={() => confirmModal("rename", { name })}
+        onClick={() => {
+          setName("");
+          confirmModal("rename", { name });
+        }}
       >
         ACCEPT
       </UtilityModal.AcceptButton>

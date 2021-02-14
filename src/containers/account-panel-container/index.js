@@ -18,7 +18,7 @@ export default function AccountPanelContainer() {
   const userData = useSelector((store) => store.userData);
   const [filterSettings] = useFilterContext();
 
-  const { loading, userLists, favoritedMovies, ratedMovies } = userData;
+  const { loading, userlists, favoritedMovies, ratedMovies } = userData;
   const { listType, amount } = filterSettings;
   const { processed, content } = array;
 
@@ -32,7 +32,7 @@ export default function AccountPanelContainer() {
     filterLogic(
       filterSettings,
       ratedMovies,
-      userLists,
+      userlists,
       favoritedMovies,
       setArray,
     );

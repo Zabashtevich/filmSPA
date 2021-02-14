@@ -13,7 +13,6 @@ export default function UtilityModalContainer() {
 
   const { type, message, visible } = modalstate;
   const { closeModal, confirmModal } = modalinterface;
-
   const [name, setName] = useState("");
 
   return (
@@ -39,6 +38,7 @@ export default function UtilityModalContainer() {
               <RenameButtons
                 type={type}
                 name={name}
+                setName={setName}
                 closeModal={closeModal}
                 confirmModal={confirmModal}
               />
@@ -47,6 +47,7 @@ export default function UtilityModalContainer() {
               <NewlistButtons
                 type={type}
                 name={name}
+                setName={setName}
                 closeModal={closeModal}
                 confirmModal={confirmModal}
               />

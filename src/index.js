@@ -14,6 +14,7 @@ import AuthContextProvider from "./context/auth-context/context";
 import FilterContextProvider from "./context/filter-context/context";
 import ModalContextProvider from "./context/modal-context/context";
 import MetalogicContextProvider from "./context/metalogic-context/context";
+import UserDataLogic from "./helpers/user-data-logic";
 
 const store = createStore(
   rootReducer,
@@ -24,14 +25,16 @@ ReactDOM.render(
   <Provider store={store}>
     <ThemeProvider theme={Theme}>
       <AuthContextProvider>
-        <FilterContextProvider>
-          <ModalContextProvider>
-            <MetalogicContextProvider>
-              <GlobalStyles />
-              <App />
-            </MetalogicContextProvider>
-          </ModalContextProvider>
-        </FilterContextProvider>
+        <UserDataLogic>
+          <FilterContextProvider>
+            <ModalContextProvider>
+              <MetalogicContextProvider>
+                <GlobalStyles />
+                <App />
+              </MetalogicContextProvider>
+            </ModalContextProvider>
+          </FilterContextProvider>
+        </UserDataLogic>
       </AuthContextProvider>
     </ThemeProvider>
   </Provider>,

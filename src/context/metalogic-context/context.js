@@ -22,18 +22,6 @@ export default function MetalogicContextProvider({ children }) {
   const { refreshModal } = modalinterface;
 
   useEffect(() => {
-    if (remove.accepted && !userLoading) {
-      removeLogic(
-        firebase,
-        remove.target,
-        remove.id,
-        userlists,
-        user.displayName,
-      ).then(() => refreshModal());
-    }
-  }, [remove]);
-
-  useEffect(() => {
     if (rename.accepted && !userLoading) {
       renameLogic(
         firebase,
@@ -43,9 +31,17 @@ export default function MetalogicContextProvider({ children }) {
         user.displayName,
       ).then(() => refreshModal());
     }
-  }, [rename]);
 
-  useEffect(() => {
+    if (remove.accepted && !userLoading) {
+      removeLogic(
+        firebase,
+        remove.target,
+        remove.id,
+        userlists,
+        user.displayName,
+      ).then(() => refreshModal());
+    }
+
     if (newlist.accepted && !userLoading) {
       createListLogic(
         firebase,
@@ -54,7 +50,7 @@ export default function MetalogicContextProvider({ children }) {
         user.displayName,
       ).then(() => refreshModal());
     }
-  }, []);
+  }, [rename, remove, newlist]);
 
   return (
     <MetalogicContext.Provider value={[]}>{children}</MetalogicContext.Provider>

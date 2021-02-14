@@ -239,7 +239,7 @@ export const checkMovieRated = (array, moviesrated) => {
 export const filterLogic = (
   filterSettings,
   ratedMovies,
-  userLists,
+  userlists,
   favoritedMovies,
   setArray,
 ) => {
@@ -263,7 +263,7 @@ export const filterLogic = (
       result = ratedMovies;
       break;
     case "userList":
-      result = userLists.find((item) => +item.id === +listID).content;
+      result = userlists.find((item) => +item.id === +listID).content;
       break;
     case "favorite":
       result = favoritedMovies;

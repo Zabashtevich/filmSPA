@@ -20,7 +20,13 @@ export function NewlistInput({ setName, name }) {
   );
 }
 
-export function NewlistButtons({ type, name, closeModal, confirmModal }) {
+export function NewlistButtons({
+  type,
+  name,
+  setName,
+  closeModal,
+  confirmModal,
+}) {
   return (
     <>
       <UtilityModal.DeclineButton onClick={() => closeModal("newlist")}>
@@ -29,7 +35,10 @@ export function NewlistButtons({ type, name, closeModal, confirmModal }) {
       <UtilityModal.AcceptButton
         disabled={name.length < 3 && 1}
         type={type}
-        onClick={() => confirmModal("newlist", { name })}
+        onClick={() => {
+          setName("");
+          confirmModal("newlist", { name });
+        }}
       >
         ACCEPT
       </UtilityModal.AcceptButton>

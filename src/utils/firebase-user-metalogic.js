@@ -1,11 +1,11 @@
 export function removeLogic(firebase, target, id, userlists, nickname) {
   switch (target) {
     case "list":
-      return removeList(firebase, target, id, userlists, nickname);
+      return removeList(firebase, id, userlists, nickname);
   }
 }
 
-const removeList = (firebase, target, id, userlists, nickname) => {
+const removeList = (firebase, id, userlists, nickname) => {
   return firebase
     .firestore()
     .collection(`${nickname}`)

@@ -6,7 +6,7 @@ const initialState = {
   rename: { id: null, accepted: false, name: null },
   newlist: { name: null, accepted: false },
   confirm: { accepted: false },
-  remove: { id: null, accepted: false },
+  remove: { id: null, accepted: false, target: null },
   message: null,
   visible: false,
   type: null,

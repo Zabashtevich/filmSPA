@@ -65,7 +65,7 @@ export default function UserListContainer({ item }) {
               showModal(
                 "remove",
                 `Are you sure you want to delete "${item.name}" list`,
-                { id: item.id },
+                { id: item.id, target: "list" },
               );
             }}
           />

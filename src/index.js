@@ -21,19 +21,19 @@ const store = createStore(
 );
 
 ReactDOM.render(
-  <ThemeProvider theme={Theme}>
-    <AuthContextProvider>
-      <FilterContextProvider>
-        <ModalContextProvider>
-          <MetalogicContextProvider>
-            <Provider store={store}>
+  <Provider store={store}>
+    <ThemeProvider theme={Theme}>
+      <AuthContextProvider>
+        <FilterContextProvider>
+          <ModalContextProvider>
+            <MetalogicContextProvider>
               <GlobalStyles />
               <App />
-            </Provider>
-          </MetalogicContextProvider>
-        </ModalContextProvider>
-      </FilterContextProvider>
-    </AuthContextProvider>
-  </ThemeProvider>,
+            </MetalogicContextProvider>
+          </ModalContextProvider>
+        </FilterContextProvider>
+      </AuthContextProvider>
+    </ThemeProvider>
+  </Provider>,
   document.getElementById("root"),
 );

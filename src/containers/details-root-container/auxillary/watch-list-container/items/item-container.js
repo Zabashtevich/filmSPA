@@ -13,12 +13,12 @@ export default function ItemContainer(
     // onRemoveFromList,
   },
 ) {
-  const [addDesc, setAddDesc] = useState(false);
-  const [removeDesc, setRemoveDesc] = useState(false);
-  const [deleteDesc, setDeleteDesc] = useState(false);
+  // const [addDesc, setAddDesc] = useState(false);
+  // const [removeDesc, setRemoveDesc] = useState(false);
+  // const [deleteDesc, setDeleteDesc] = useState(false);
   return (
     <TransitionGroup>
-      {data.map((item, i) => {
+      {/* {data.map((item, i) => {
         return (
           <CSSTransition
             key={item.id}
@@ -79,7 +79,7 @@ export default function ItemContainer(
             </WatchList.ItemContainer>
           </CSSTransition>
         );
-      })}
+      })} */}
     </TransitionGroup>
   );
 }

@@ -79,7 +79,6 @@ export default function MainPageContainer() {
           {loading
             ? skeletonAmount.map((_) => <CardListSkeleton key={_} />)
             : list.results.map((item) => {
-                console.log(item);
                 return (
                   <CardList.ItemContainer
                     key={item.id}
@@ -87,7 +86,7 @@ export default function MainPageContainer() {
                       history.push(`/details/${item.media_type}/${item.id}`)
                     }
                   >
-                    {item.poster_path === null ? console.log(item.id) : null}
+                    {item.poster_path === null ? null : null}
                     <CardList.ItemContentWrapper>
                       <CardList.ItemImage src={item.poster_path} />
                       <CardList.ItemDescriptionInner

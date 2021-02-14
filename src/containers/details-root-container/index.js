@@ -6,7 +6,6 @@ import {
   ListColumn,
   PosterColumn,
   DescriptionHeader,
-  Votes,
   ModalGallery,
 } from "../../components";
 import useFetch from "../../hooks/useFetchData";
@@ -85,14 +84,6 @@ export default function CardDetailsRootContainer() {
                     </ListColumn.ItemContainer>
                   );
                 })}
-            <Votes margin={true}>
-              <Votes.Wrapper>
-                <Votes.VotesScore>{list.vote_average} /</Votes.VotesScore>
-              </Votes.Wrapper>
-              <Votes.Wrapper>
-                <Votes.VotesAmount>{list.vote_count}</Votes.VotesAmount>
-              </Votes.Wrapper>
-            </Votes>
             <TooltipsContainer slug={location.slug} item={list} />
           </ListColumn>
         </DetailsHeader>

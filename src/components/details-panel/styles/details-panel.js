@@ -1,30 +1,47 @@
 import styled from "styled-components/macro";
 
-import { Link as ReactRouterLink } from "react-router-dom";
+import { IoIosStar } from "react-icons/io";
 
 export const Container = styled.div`
   max-width: 1300px;
-  margin: 4rem auto;
-  font-family: ${({ theme }) => theme.fontFamily.secondary};
+  width: 100%;
+  margin: 0 auto;
   display: flex;
+  justify-content: center;
   flex-direction: column;
+  align-items: center;
+  font-family: ${({ theme }) => theme.fontFamily.secondary};
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  padding-top: 6rem;
 `;
 
 export const Wrapper = styled.div`
-  max-width: 1000px;
-  margin: 0 auto;
+  align-self: flex-start;
+  width: 100%;
+  padding: 1rem 2rem;
 `;
 
-export const Overview = styled.h4`
-  font-size: ${({ theme }) => theme.fontSize.normal};
+export const Title = styled.div`
+  font-size: ${({ theme }) => theme.fontSize.huge};
   font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
-  margin: 0 1rem;
-  padding: 1rem;
-  border-top: 1px solid gray;
 `;
 
-export const Title = styled.h3`
-  margin-bottom: 1rem;
-  font-size: ${({ theme }) => theme.fontSize.large};
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
+export const Overview = styled.div`
+  font-size: ${({ theme }) => theme.fontSize.small};
+  font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
+  width: 600px;
+  margin: 2rem auto;
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 2rem 4rem;
+  border-radius: 0.4rem;
 `;
+
+export const Star = styled(IoIosStar)``;
+
+export const Rating = styled.div``;
+
+export const Votes = styled.div``;
+
+export const Average = styled.div``;
+
+export const Reviews = styled.div``;

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { DetailsPanel } from "../../components";
 
 import useAuthListener from "../../hooks/useAuthListener";
 import useFetch from "../../hooks/useFetchData";
@@ -24,6 +25,24 @@ export default function CardDetailsPanelContainer() {
     window.addEventListener("scroll", offsetListener);
     return () => window.removeEventListener("scroll", offsetListener);
   }, []);
-
-  return null;
+  return (
+    list && (
+      <DetailsPanel>
+        <DetailsPanel.Wrapper>
+          <DetailsPanel.Title>Overview</DetailsPanel.Title>
+          <DetailsPanel.Overview>{list.overview}</DetailsPanel.Overview>
+        </DetailsPanel.Wrapper>
+        <DetailsPanel.Rating>
+          <DetailsPanel.Votes></DetailsPanel.Votes>
+          <DetailsPanel.Average></DetailsPanel.Average>
+        </DetailsPanel.Rating>
+        <DetailsPanel.Wrapper>
+          <DetailsPanel.Star />
+        </DetailsPanel.Wrapper>
+        <DetailsPanel.Wrapper>
+          <DetailsPanel.Title>Reviews</DetailsPanel.Title>
+        </DetailsPanel.Wrapper>
+      </DetailsPanel>
+    )
+  );
 }

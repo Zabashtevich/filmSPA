@@ -5,7 +5,7 @@ import { Tooltips } from "../../../../components";
 import useAuthListener from "../../../../hooks/useAuthListener";
 import { DescriptionPopupContainer } from "../../../";
 import { WatchListContainer } from "../";
-import { favoriteLogic } from "../../../../utils/firebase";
+// import { favoriteLogic } from "../../../../utils/firebase";
 import { useAuthContext } from "../../../../context";
 
 export default function TooltipsContainer({ slug, item }) {
@@ -36,20 +36,20 @@ export default function TooltipsContainer({ slug, item }) {
     setWatchListPopupVisible((prev) => !prev);
   };
 
-  const onFavoriteClick = () => {
-    if (!user) return;
-    setFavoriteDesc(false);
-    favoriteLogic(firebase, item, user.displayName, isFavorite, data).then(
-      () => {
-        if (isFavorite) {
-          setIsFavorite(false);
-        } else {
-          setIsFavorite(true);
-        }
-        setFavoriteDesc(true);
-      },
-    );
-  };
+  // const onFavoriteClick = () => {
+  //   if (!user) return;
+  //   setFavoriteDesc(false);
+  //   favoriteLogic(firebase, item, user.displayName, isFavorite, data).then(
+  //     () => {
+  //       if (isFavorite) {
+  //         setIsFavorite(false);
+  //       } else {
+  //         setIsFavorite(true);
+  //       }
+  //       setFavoriteDesc(true);
+  //     },
+  //   );
+  // };
 
   return (
     <Tooltips>
@@ -84,7 +84,7 @@ export default function TooltipsContainer({ slug, item }) {
         <Tooltips.Favorite
           onMouseEnter={() => setFavoriteDesc(true)}
           onMouseLeave={() => setFavoriteDesc(false)}
-          onClick={onFavoriteClick}
+          // onClick={onFavoriteClick}
           isfavorite={isFavorite ? 1 : 0}
         />
         {user && !descriptionBlocker && (

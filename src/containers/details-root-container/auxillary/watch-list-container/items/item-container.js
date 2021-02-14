@@ -4,13 +4,15 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { WatchList } from "../../../../../components";
 import { DescriptionPopupContainer } from "./../../../../";
 
-export default function ItemContainer({
-  data,
-  deleteListSubmit,
-  onAddToList,
-  addedToList,
-  onRemoveFromList,
-}) {
+export default function ItemContainer(
+  {
+    // data,
+    // deleteListSubmit,
+    // onAddToList,
+    // addedToList,
+    // onRemoveFromList,
+  },
+) {
   const [addDesc, setAddDesc] = useState(false);
   const [removeDesc, setRemoveDesc] = useState(false);
   const [deleteDesc, setDeleteDesc] = useState(false);

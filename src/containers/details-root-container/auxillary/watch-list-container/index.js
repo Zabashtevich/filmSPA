@@ -3,12 +3,12 @@ import { createPortal } from "react-dom";
 import { CSSTransition } from "react-transition-group";
 
 import { WatchList } from "../../../../components";
-import {
-  createListLogic,
-  deleteList,
-  deleteFromList,
-  addToList,
-} from "../../../../utils/firebase";
+// import {
+//   createListLogic,
+//   deleteList,
+//   deleteFromList,
+//   addToList,
+// } from "../../../../utils/firebase";
 import useFirestore from "../../../../hooks/useFirestore";
 import CreateItemContainer from "./items/create-item-container";
 import ItemContainer from "./items/item-container";
@@ -37,86 +37,86 @@ export default function WatchListContainer({
 
   const firebase = useAuthContext();
 
-  useEffect(() => {
-    if (!deletingList.delete) return;
-    deleteList(firebase, deletingList.id, data, user.displayName).then(() => {
-      setDeletingList({ id: "", delete: false });
-    });
-  }, [deletingList]);
+  // useEffect(() => {
+  //   if (!deletingList.delete) return;
+  //   deleteList(firebase, deletingList.id, data, user.displayName).then(() => {
+  //     setDeletingList({ id: "", delete: false });
+  //   });
+  // }, [deletingList]);
 
-  useEffect(() => {
-    if (data.length === 0) return;
-    if (data.map((item) => item.content.includes(+slug))[0]) {
-      setAddedToList(true);
-    }
-  }, [data, slug]);
+  // useEffect(() => {
+  //   if (data.length === 0) return;
+  //   if (data.map((item) => item.content.includes(+slug))[0]) {
+  //     setAddedToList(true);
+  //   }
+  // }, [data, slug]);
 
-  const showErrorModal = (errorText) => {
-    document.body.style.overflow = "hidden";
-    setErrorMessage([errorText]);
-    setErrorModalVisible(true);
-  };
+  // const showErrorModal = (errorText) => {
+  //   document.body.style.overflow = "hidden";
+  //   setErrorMessage([errorText]);
+  //   setErrorModalVisible(true);
+  // };
 
-  const hideErrorModal = () => {
-    document.body.style.overflow = "auto";
-    setErrorMessage(null);
-    setErrorModalVisible(false);
-  };
+  // const hideErrorModal = () => {
+  //   document.body.style.overflow = "auto";
+  //   setErrorMessage(null);
+  //   setErrorModalVisible(false);
+  // };
 
-  const creatListToogler = (e) => {
-    if (dataSubmiting) {
-      return;
-    } else {
-      if (data.length === 5) {
-        showErrorModal("Sorry but now you can create ony 5 lists");
-        return;
-      }
-      if (
-        e.target.classList.value.includes("Abort") ||
-        e.target.classList.value.includes("CreateIcon")
-      ) {
-        setInputVisible((prev) => !prev);
-      }
-    }
-  };
-  const createListSubmit = (e) => {
-    if (!e.target.classList.value.includes("Confirm")) return;
-    setInputVisible(false);
-    setDataSubmiting(true);
-    if (inputValue.length > 20) {
-      showErrorModal("Name can be max 20 characters long");
-      setDataSubmiting(false);
-    } else if (inputValue.length === 0 || inputValue.length < 3) {
-      showErrorModal("Name should be at least 4 characters long");
-      setDataSubmiting(false);
-    } else {
-      createListLogic(firebase, inputValue, data, user.displayName).then(() => {
-        setInputValue("");
-        setDataSubmiting(false);
-      });
-    }
-  };
+  // const creatListToogler = (e) => {
+  //   if (dataSubmiting) {
+  //     return;
+  //   } else {
+  //     if (data.length === 5) {
+  //       showErrorModal("Sorry but now you can create ony 5 lists");
+  //       return;
+  //     }
+  //     if (
+  //       e.target.classList.value.includes("Abort") ||
+  //       e.target.classList.value.includes("CreateIcon")
+  //     ) {
+  //       setInputVisible((prev) => !prev);
+  //     }
+  //   }
+  // };
+  // const createListSubmit = (e) => {
+  //   if (!e.target.classList.value.includes("Confirm")) return;
+  //   setInputVisible(false);
+  //   setDataSubmiting(true);
+  //   if (inputValue.length > 20) {
+  //     showErrorModal("Name can be max 20 characters long");
+  //     setDataSubmiting(false);
+  //   } else if (inputValue.length === 0 || inputValue.length < 3) {
+  //     showErrorModal("Name should be at least 4 characters long");
+  //     setDataSubmiting(false);
+  //   } else {
+  //     createListLogic(firebase, inputValue, data, user.displayName).then(() => {
+  //       setInputValue("");
+  //       setDataSubmiting(false);
+  //     });
+  //   }
+  // };
 
-  const deleteListSubmit = (id, name) => {
-    setDeletingList((prev) => ({ ...prev, id }));
-    setPopupConfirmVisible(true);
-    setConfirmMessage(`Are you sure you want to delete list ${name}?`);
-  };
+  // const deleteListSubmit = (id, name) => {
+  //   setDeletingList((prev) => ({ ...prev, id }));
+  //   setPopupConfirmVisible(true);
+  //   setConfirmMessage(`Are you sure you want to delete list ${name}?`);
+  // };
 
-  const closeConfirmWindow = (value) => {
-    setDeletingList((prev) => ({ ...prev, delete: value }));
-    setConfirmMessage("");
-    setPopupConfirmVisible(false);
-  };
+  // const closeConfirmWindow = (value) => {
+  //   setDeletingList((prev) => ({ ...prev, delete: value }));
+  //   setConfirmMessage("");
+  //   setPopupConfirmVisible(false);
+  // };
 
-  const onAddToList = (id) => {
-    addToList(firebase, user.displayName, id, item, data).then(() => {
-      setAddedToList(true);
-    });
-  };
-  const onRemoveFromList = (id) => {
-    deleteFromList(firebase, user.displayName, id, item, data);
-  };
+  // const onAddToList = (id) => {
+  //   addToList(firebase, user.displayName, id, item, data).then(() => {
+  //     setAddedToList(true);
+  //   });
+  // };
+  // const onRemoveFromList = (id) => {
+  //   deleteFromList(firebase, user.displayName, id, item, data);
+  // };
 
   return (
     <>

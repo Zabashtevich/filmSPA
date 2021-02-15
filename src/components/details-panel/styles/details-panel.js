@@ -16,7 +16,9 @@ export const Container = styled.div`
 `;
 
 export const Wrapper = styled.div`
+  display: flex;
   align-self: flex-start;
+  flex-direction: column;
   width: 100%;
   margin-top: 1rem;
 `;
@@ -41,8 +43,7 @@ export const Rating = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 4rem 0;
-  height: 80px;
+  margin: 4rem 0 0;
   user-select: none;
   position: relative;
 `;
@@ -67,18 +68,36 @@ export const Star = styled(IoIosStar)`
   }
 `;
 
-export const Inner = styled.div`
-  display: flex;
-  align-items: center;
-  margin-left: 1rem;
-`;
-
 export const Votes = styled.span`
   font-size: ${({ theme }) => theme.fontSize.normal};
+  color: rgba(0, 0, 0, 0.2);
 `;
 
 export const Average = styled.span`
   font-size: ${({ theme }) => theme.fontSize.huge};
+  margin-left: 1rem;
+  ${({ average }) =>
+    +average > 5 &&
+    css`
+      color: green;
+    `}
+  ${({ average }) =>
+    +average < 5 &&
+    css`
+      color: ${({ theme }) => theme.colors.error};
+    `}
 `;
+
+export const UserRating = styled.div`
+  margin: 1rem auto;
+  background-color: rgba(0, 0, 0, 0.1);
+  display: flex;
+`;
+
+export const UserTitle = styled.div``;
+
+export const UserValue = styled.div``;
+
+export const Button = styled.div``;
 
 export const Reviews = styled.div``;

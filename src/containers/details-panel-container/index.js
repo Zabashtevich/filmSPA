@@ -30,13 +30,16 @@ export default function CardDetailsPanelContainer() {
           <DetailsPanel.Title>Rating</DetailsPanel.Title>
           <DetailsPanel.Rating>
             <DetailsPanel.Stars average={list.vote_average} />
-            <DetailsPanel.Inner>
-              <DetailsPanel.Average>
-                {list.vote_average + "/"}
-              </DetailsPanel.Average>
-              <DetailsPanel.Votes>{list.vote_count}</DetailsPanel.Votes>
-            </DetailsPanel.Inner>
+            <DetailsPanel.Average average={list.vote_average}>
+              {list.vote_average}
+            </DetailsPanel.Average>
+            <DetailsPanel.Votes>{"/" + list.vote_count}</DetailsPanel.Votes>
           </DetailsPanel.Rating>
+          <DetailsPanel.UserRating>
+            <DetailsPanel.UserTitle>Your vote</DetailsPanel.UserTitle>
+            <DetailsPanel.UserValue>1</DetailsPanel.UserValue>
+            <DetailsPanel.Button></DetailsPanel.Button>
+          </DetailsPanel.UserRating>
         </DetailsPanel.Wrapper>
         <DetailsPanel.Wrapper>
           <DetailsPanel.Title>Reviews</DetailsPanel.Title>

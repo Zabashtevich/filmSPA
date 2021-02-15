@@ -9,9 +9,12 @@ import {
   Overview,
   Star,
   Rating,
-  Inner,
   Votes,
   Average,
+  UserRating,
+  UserTitle,
+  UserValue,
+  Button,
   Reviews,
 } from "./styles/details-panel";
 
@@ -53,16 +56,39 @@ DetailsPanel.Rating = function DetailsPanelRating({ children, ...rest }) {
   return <Rating {...rest}>{children}</Rating>;
 };
 
-DetailsPanel.Inner = function DetailsPanelInner({ children, ...rest }) {
-  return <Inner {...rest}>{children}</Inner>;
-};
-
 DetailsPanel.Votes = function DetailsPanelVotes({ children, ...rest }) {
   return <Votes {...rest}>{children}</Votes>;
 };
 
-DetailsPanel.Average = function DetailsPanelAverage({ children, ...rest }) {
-  return <Average {...rest}>{children}</Average>;
+DetailsPanel.Average = function DetailsPanelAverage({
+  average,
+  children,
+  ...rest
+}) {
+  return (
+    <Average {...rest} average={average}>
+      {children}
+    </Average>
+  );
+};
+
+DetailsPanel.UserRating = function DetailsPanelUserRating({
+  children,
+  ...rest
+}) {
+  return <UserRating {...rest}>{children}</UserRating>;
+};
+
+DetailsPanel.UserTitle = function DetailsPanelUserTitle({ children, ...rest }) {
+  return <UserTitle {...rest}>{children}</UserTitle>;
+};
+
+DetailsPanel.UserValue = function DetailsPanelUserValue({ children, ...rest }) {
+  return <UserValue {...rest}>{children}</UserValue>;
+};
+
+DetailsPanel.Button = function DetailsPanelButton({ children, ...rest }) {
+  return <Button {...rest}>{children}</Button>;
 };
 
 DetailsPanel.Reviews = function DetailsPanelReviews({ children, ...rest }) {

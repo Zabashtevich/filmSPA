@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { Review } from "../../../../components";
 
 export default function ReviewContainer({ item }) {
-  const [showMore, setShowMore] = useState({ amount: 500, visible: true });
+  const [showMore, setShowMore] = useState({
+    amount: 500,
+    visible: item.text.length > 500 ? true : false,
+  });
   return (
     <Review rating={item.rating}>
       <Review.Header>
@@ -14,8 +17,15 @@ export default function ReviewContainer({ item }) {
         <Review.Time>{item.time}</Review.Time>
       </Review.Header>
       <Review.Body>
-        <Review.Text>{item.text}</Review.Text>
-        <Review.Show visible={showMore.visible}>SHOW MORE</Review.Show>
+        <Review.Text buttonsettings={showMore}>{item.text}</Review.Text>
+        <Review.Show
+          visible={showMore.visible}
+          onClick={() =>
+            setShowMore({ amount: item.text.length, visible: false })
+          }
+        >
+          SHOW MORE
+        </Review.Show>
       </Review.Body>
     </Review>
   );

@@ -64,8 +64,10 @@ Review.Body = function ReviewBody({ children, ...rest }) {
   return <Body {...rest}>{children}</Body>;
 };
 
-Review.Text = function ReviewText({ children, ...rest }) {
-  const [firstLine, ...rst] = children.split("\n");
+Review.Text = function ReviewText({ buttonsettings, children, ...rest }) {
+  const [firstLine, ...rst] = children
+    .slice(0, buttonsettings.amount)
+    .split("\n");
   return (
     <Text {...rest}>
       <Paragraph>{firstLine}</Paragraph>
@@ -76,7 +78,10 @@ Review.Text = function ReviewText({ children, ...rest }) {
               {item}
             </Link>
           ) : (
-            <Paragraph key={i}>{item}</Paragraph>
+            <Paragraph key={i}>
+              {item}
+              {buttonsettings.visible && i === rst.length - 1 ? "..." : null}
+            </Paragraph>
           );
         })}
     </Text>

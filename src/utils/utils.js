@@ -309,7 +309,7 @@ export const getCombinedReviews = (listreviews, userreview) => {
       time: item.created_at,
       text: item.content,
       nickname: item.author,
-      avatar: item.author_details.avatar || null,
+      avatar: item.author_details.avatar_path.slice(1) || null,
     })),
     ...userreview,
   ];

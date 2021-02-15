@@ -1,12 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import { DetailsPanel } from "../../components";
 
 import useAuthListener from "../../hooks/useAuthListener";
 import useFetch from "../../hooks/useFetchData";
 import useFirestore from "../../hooks/useFirestore";
-
-import { offsetListener } from "../../utils/utils";
 
 export default function CardDetailsPanelContainer() {
   const location = useParams();
@@ -21,10 +19,6 @@ export default function CardDetailsPanelContainer() {
     },
   ]);
 
-  useEffect(() => {
-    window.addEventListener("scroll", offsetListener);
-    return () => window.removeEventListener("scroll", offsetListener);
-  }, []);
   return (
     list && (
       <DetailsPanel>
@@ -32,12 +26,17 @@ export default function CardDetailsPanelContainer() {
           <DetailsPanel.Title>Overview</DetailsPanel.Title>
           <DetailsPanel.Overview>{list.overview}</DetailsPanel.Overview>
         </DetailsPanel.Wrapper>
-        <DetailsPanel.Rating>
-          <DetailsPanel.Votes></DetailsPanel.Votes>
-          <DetailsPanel.Average></DetailsPanel.Average>
-        </DetailsPanel.Rating>
         <DetailsPanel.Wrapper>
-          <DetailsPanel.Star />
+          <DetailsPanel.Title>Rating</DetailsPanel.Title>
+          <DetailsPanel.Rating>
+            <DetailsPanel.Stars average={list.vote_average} />
+            <DetailsPanel.Inner>
+              <DetailsPanel.Average>
+                {list.vote_average + "/"}
+              </DetailsPanel.Average>
+              <DetailsPanel.Votes>{list.vote_count}</DetailsPanel.Votes>
+            </DetailsPanel.Inner>
+          </DetailsPanel.Rating>
         </DetailsPanel.Wrapper>
         <DetailsPanel.Wrapper>
           <DetailsPanel.Title>Reviews</DetailsPanel.Title>

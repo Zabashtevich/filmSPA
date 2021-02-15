@@ -156,15 +156,6 @@ export const getCorrectReviewsArray = (array) => {
   return result;
 };
 
-export const offsetListener = () => {
-  const offset = window.pageYOffset;
-  if (offset < 1500) {
-    document.body.style.backgroundColor = "#fff";
-  } else {
-    document.body.style.backgroundColor = "#f2f2f2";
-  }
-};
-
 export async function validateImg(
   setErrorsList,
   setAvatarLoading,

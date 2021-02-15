@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+
+import { range } from "../../utils/utils";
 
 import {
   Container,
@@ -7,6 +9,7 @@ import {
   Overview,
   Star,
   Rating,
+  Inner,
   Votes,
   Average,
   Reviews,
@@ -28,12 +31,30 @@ DetailsPanel.Overview = function DetailsPanelOverview({ children, ...rest }) {
   return <Overview {...rest}>{children}</Overview>;
 };
 
-DetailsPanel.Star = function DetailsPanelStar({ children, ...rest }) {
-  return <Star {...rest} />;
+DetailsPanel.Stars = function DetailsPanelStars({
+  average,
+  children,
+  ...rest
+}) {
+  const [hover, setHover] = useState(null);
+  return range(0, 10).map((_, index) => (
+    <Star
+      {...rest}
+      key={index}
+      onMouseEnter={() => setHover(index + 1)}
+      onMouseLeave={() => setHover(null)}
+      hoverActive={index + 1 <= hover && 1}
+      rated={average >= index + 1 && 1}
+    />
+  ));
 };
 
 DetailsPanel.Rating = function DetailsPanelRating({ children, ...rest }) {
   return <Rating {...rest}>{children}</Rating>;
+};
+
+DetailsPanel.Inner = function DetailsPanelInner({ children, ...rest }) {
+  return <Inner {...rest}>{children}</Inner>;
 };
 
 DetailsPanel.Votes = function DetailsPanelVotes({ children, ...rest }) {

@@ -49,6 +49,7 @@ export default function CardDetailsPanelContainer() {
         <DetailsPanel.Wrapper>
           <DetailsPanel.Title>Reviews</DetailsPanel.Title>
         </DetailsPanel.Wrapper>
+        <DetailsPanel.Reviews></DetailsPanel.Reviews>
       </DetailsPanel>
     )
   );

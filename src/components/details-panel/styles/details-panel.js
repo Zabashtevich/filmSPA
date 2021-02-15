@@ -20,7 +20,7 @@ export const Wrapper = styled.div`
   align-self: flex-start;
   flex-direction: column;
   width: 100%;
-  margin-top: 1rem;
+  margin-top: 4rem;
 `;
 
 export const Title = styled.span`
@@ -58,8 +58,8 @@ export const Star = styled(IoIosStar)`
     css`
       color: ${({ theme }) => theme.colors.secondary};
     `}
-  ${({ hoverActive }) =>
-    hoverActive &&
+  ${({ hoveractive }) =>
+    hoveractive &&
     css`
       color: rgba(50, 25, 255, 0.6);
     `}
@@ -98,6 +98,7 @@ export const UserRating = styled.div`
   background: rgba(0, 0, 0, 0.05);
   padding: 1rem 2rem;
   border-radius: 0.5rem;
+  ${({ theme }) => theme.animations.opacity};
 `;
 
 export const UserWrapper = styled.div`
@@ -137,4 +138,11 @@ export const Time = styled.span`
   font-size: ${({ theme }) => theme.fontSize.small};
 `;
 
-export const Reviews = styled.div``;
+export const Reviews = styled.div`
+  max-width: 800px;
+  width: 100%;
+  min-height: 300px;
+  background-color: ${({ theme }) => theme.colors.reviewsBackground};
+  margin-top: 4rem;
+  border-radius: 0.5rem;
+`;

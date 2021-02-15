@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { CSSTransition } from "react-transition-group";
 
 import { range } from "../../utils/utils";
 
@@ -48,8 +49,8 @@ DetailsPanel.Stars = function DetailsPanelStars({
       key={index}
       onMouseEnter={() => setHover(index + 1)}
       onMouseLeave={() => setHover(null)}
-      hoverActive={index + 1 <= hover && 1}
-      rated={average >= index + 1 && 1}
+      hoveractive={index + 1 <= hover ? 1 : 0}
+      rated={average >= index + 1 ? 1 : 0}
     />
   ));
 };
@@ -75,10 +76,22 @@ DetailsPanel.Average = function DetailsPanelAverage({
 };
 
 DetailsPanel.UserRating = function DetailsPanelUserRating({
+  visible,
   children,
   ...rest
 }) {
-  return <UserRating {...rest}>{children}</UserRating>;
+  return (
+    <CSSTransition
+      appear={true}
+      mountOnEnter
+      unmountOnExit
+      classNames="opacity"
+      timeout={{ enter: 500, exit: 500, appear: 500 }}
+      in={visible}
+    >
+      <UserRating {...rest}>{children}</UserRating>
+    </CSSTransition>
+  );
 };
 
 DetailsPanel.UserWrapper = function DetailsPanelUserWrapper({

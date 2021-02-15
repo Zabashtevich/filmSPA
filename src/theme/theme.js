@@ -60,24 +60,24 @@ export default {
       transform: translateX(0);
       transition: 500ms;
     }`,
-    opacity: `&.fade-enter {
+    opacity: `&.opacity-enter {
       opacity: 0;
     }
-    &.fade-enter-active {
+    &.opacity-enter-active {
       opacity: 1;
       transition: 500ms;
     }
-    &.fade-exit {
+    &.opacity-exit {
       opacity: 1;
     }
-    &.fade-exit-active {
+    &.opacity-exit-active {
       opacity: 0;
       transition: 500ms;
     }
-    &.fade-appear {
+    &.opacity-appear {
       opacity: 0;
     }
-    &.fade-appear-active {
+    &.opacity-appear-active {
       opacity: 1;
       transition: 500ms;
     }`,

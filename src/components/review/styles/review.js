@@ -12,6 +12,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 0.5rem;
+  ${({ theme }) => theme.animations.opacity};
 `;
 
 export const Header = styled.div`
@@ -40,14 +41,37 @@ export const Avatar = styled.img`
 
 export const Time = styled.span``;
 
-export const Body = styled.div``;
+export const Body = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
 export const Text = styled.div``;
 
 export const Paragraph = styled.p``;
 
-export const Link = styled.a``;
+export const Link = styled.a`
+  text-decoration: none;
+  color: gray;
+`;
 
-export const Show = styled.button``;
+export const Show = styled.button`
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background-color: ${({ theme }) => theme.colors.secondary};
+  font-size: ${({ theme }) => theme.fontSize.small};
+  font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
+  border-radius: 0.5rem;
+  color: white;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  ${({ theme }) => theme.animations.opacity};
+  &:hover {
+    color: black;
+    background-color: white;
+  }
+`;
 
 export const Delete = styled.button``;

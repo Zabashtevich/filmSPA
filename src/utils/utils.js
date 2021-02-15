@@ -304,13 +304,18 @@ export const checkFilterItemSelected = (i, item, value) => {
 
 export const getCombinedReviews = (listreviews, userreview) => {
   return [
-    ...listreviews.map((item) => ({
-      id: item.id,
-      time: item.created_at,
-      text: item.content,
-      nickname: item.author,
-      avatar: item.author_details.avatar_path.slice(1) || null,
-    })),
+    ...listreviews.map((item) => {
+      const date = new Date(`${item.created_at}`);
+      return {
+        id: item.id,
+        time: `${date.getUTCFullYear()}/${
+          date.getUTCMonth() + 1
+        }/${date.getUTCDate()}`,
+        text: item.content,
+        nickname: item.author,
+        avatar: item.author_details.avatar_path.slice(1) || null,
+      };
+    }),
     ...userreview,
   ];
 };

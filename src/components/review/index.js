@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import { CSSTransition } from "react-transition-group";
 
 import {
   Container,
@@ -16,7 +17,18 @@ import {
 } from "./styles/review";
 
 export default function Review({ children, ...rest }) {
-  return <Container {...rest}>{children}</Container>;
+  return (
+    <CSSTransition
+      in={true}
+      appear={true}
+      classNames="opacity"
+      mountOnEnter
+      unmountOnExit
+      timeout={{ enter: 500, exit: 500, appear: 500 }}
+    >
+      <Container {...rest}>{children}</Container>
+    </CSSTransition>
+  );
 }
 
 Review.Header = function ReviewHeader({ children, ...rest }) {
@@ -54,19 +66,13 @@ Review.Text = function ReviewText({ children, ...rest }) {
       <Paragraph>{firstLine}</Paragraph>
       {rst.length > 0 &&
         rst.map((item, i) => {
-          if (item.indexOf("https") > -1) {
-            return (
-              <Link key={i} href={item} target="_blank">
-                {item}
-              </Link>
-            );
-          } else {
-            return (
-              <Paragraph key={i} style={{ margin: 0 }}>
-                <br /> {item}
-              </Paragraph>
-            );
-          }
+          return item.indexOf("https") > -1 ? (
+            <Link key={i} href={item} target="_blank">
+              {item}
+            </Link>
+          ) : (
+            <Paragraph key={i}>{item}</Paragraph>
+          );
         })}
     </Text>
   );
@@ -76,8 +82,19 @@ Review.Link = function ReviewLink({ children, ...rest }) {
   return <Link {...rest}>{children}</Link>;
 };
 
-Review.Show = function ReviewShow({ children, ...rest }) {
-  return <Show {...rest}>{children}</Show>;
+Review.Show = function ReviewShow({ visible, children, ...rest }) {
+  return (
+    <CSSTransition
+      in={visible}
+      classNames="opacity"
+      appear={true}
+      mountOnEnter
+      unmountOnExit
+      timeout={{ enter: 50000, exit: 50000, appear: 50000 }}
+    >
+      <Show {...rest}>{children}</Show>
+    </CSSTransition>
+  );
 };
 
 Review.Delete = function ReviewDelete({ children, ...rest }) {

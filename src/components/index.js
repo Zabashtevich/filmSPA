@@ -19,7 +19,7 @@ export { default as LoadMore } from "./load-more";
 export { default as ModalGallery } from "./modal-gallery";
 export { default as AuthenticationForm } from "./auth-form";
 export { default as ReviewPost } from "./review-post";
-export { default as PaginationSecondary } from "./pagination-secondary";
+export { default as StatePagination } from "./state-pagination";
 export { default as HeaderProfile } from "./header-profile";
 export { default as AccountRoot } from "./account-root";
 export { default as Tooltips } from "./tooltips";

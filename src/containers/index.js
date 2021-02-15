@@ -14,5 +14,5 @@ export { default as RowListItemContainer } from "./row-list-item-container";
 export { default as TabContainer } from "./tab-container";
 export { default as ModalGalleryContainer } from "./modal-gallery-container";
 export { default as LoadMoreContainer } from "./load-more-container";
-export { default as PaginationSecondaryContainer } from "./pagination-secondary-container";
+export { default as StatePaginationContainer } from "./state-pagination-container";
 export { default as UtilityModalContainer } from "./utility-modal-container";

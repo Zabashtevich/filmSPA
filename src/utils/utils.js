@@ -301,3 +301,16 @@ export const filterLogic = (
 export const checkFilterItemSelected = (i, item, value) => {
   return (i === 0 && item === null && 1) || (item === value && 1);
 };
+
+export const getCombinedReviews = (listreviews, userreview) => {
+  return [
+    ...listreviews.map((item) => ({
+      id: item.id,
+      time: item.created_at,
+      text: item.content,
+      nickname: item.author,
+      avatar: item.author_details.avatar || null,
+    })),
+    ...userreview,
+  ];
+};

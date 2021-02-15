@@ -1,1 +1,1 @@
-export { default as ReviewsContainer } from "./reviews-container";
+export { default as RatingContainer } from "./rating-container";

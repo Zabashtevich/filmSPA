@@ -12,8 +12,10 @@ import {
   Votes,
   Average,
   UserRating,
+  UserWrapper,
   UserTitle,
   UserValue,
+  Time,
   Button,
   Reviews,
 } from "./styles/details-panel";
@@ -79,12 +81,23 @@ DetailsPanel.UserRating = function DetailsPanelUserRating({
   return <UserRating {...rest}>{children}</UserRating>;
 };
 
+DetailsPanel.UserWrapper = function DetailsPanelUserWrapper({
+  children,
+  ...rest
+}) {
+  return <UserWrapper {...rest}>{children}</UserWrapper>;
+};
+
 DetailsPanel.UserTitle = function DetailsPanelUserTitle({ children, ...rest }) {
   return <UserTitle {...rest}>{children}</UserTitle>;
 };
 
 DetailsPanel.UserValue = function DetailsPanelUserValue({ children, ...rest }) {
   return <UserValue {...rest}>{children}</UserValue>;
+};
+
+DetailsPanel.Time = function DetailsPanelTime({ children, ...rest }) {
+  return <Time {...rest}>{children}</Time>;
 };
 
 DetailsPanel.Button = function DetailsPanelButton({ children, ...rest }) {

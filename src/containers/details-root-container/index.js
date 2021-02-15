@@ -88,7 +88,6 @@ export default function CardDetailsRootContainer() {
           </ListColumn>
         </DetailsHeader>
       )}
-      {/* TODO ERROR MODAL */}
     </>
   );
 }

@@ -90,14 +90,51 @@ export const Average = styled.span`
 
 export const UserRating = styled.div`
   margin: 1rem auto;
-  background-color: rgba(0, 0, 0, 0.1);
   display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-size: ${({ theme }) => theme.fontSize.normal};
+  font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
+  background: rgba(0, 0, 0, 0.05);
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
 `;
 
-export const UserTitle = styled.div``;
+export const UserWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 0.2rem 0;
+`;
 
-export const UserValue = styled.div``;
+export const UserTitle = styled.span``;
 
-export const Button = styled.div``;
+export const UserValue = styled.span`
+  text-align: center;
+  color: white;
+  border-radius: 50%;
+  padding: 0.1rem;
+  margin-left: 0.5rem;
+  background: ${({ theme }) => theme.colors.secondary};
+  width: 30px;
+`;
+
+export const Button = styled.button`
+  font-size: ${({ theme }) => theme.fontSize.small};
+  margin-left: 0.5rem;
+  border: none;
+  background: none;
+  color: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  outline: none;
+  &:hover {
+    color: black;
+    transition: 500ms;
+  }
+`;
+
+export const Time = styled.span`
+  font-size: ${({ theme }) => theme.fontSize.small};
+`;
 
 export const Reviews = styled.div``;

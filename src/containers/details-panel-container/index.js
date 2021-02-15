@@ -36,9 +36,14 @@ export default function CardDetailsPanelContainer() {
             <DetailsPanel.Votes>{"/" + list.vote_count}</DetailsPanel.Votes>
           </DetailsPanel.Rating>
           <DetailsPanel.UserRating>
-            <DetailsPanel.UserTitle>Your vote</DetailsPanel.UserTitle>
-            <DetailsPanel.UserValue>1</DetailsPanel.UserValue>
-            <DetailsPanel.Button></DetailsPanel.Button>
+            <DetailsPanel.UserWrapper>
+              <DetailsPanel.UserTitle>Your vote:</DetailsPanel.UserTitle>
+              <DetailsPanel.UserValue>1</DetailsPanel.UserValue>
+              <DetailsPanel.Button>Delete</DetailsPanel.Button>
+            </DetailsPanel.UserWrapper>
+            <DetailsPanel.UserWrapper>
+              <DetailsPanel.Time>2021 1</DetailsPanel.Time>
+            </DetailsPanel.UserWrapper>
           </DetailsPanel.UserRating>
         </DetailsPanel.Wrapper>
         <DetailsPanel.Wrapper>

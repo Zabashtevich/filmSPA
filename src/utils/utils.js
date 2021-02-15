@@ -314,6 +314,7 @@ export const getCombinedReviews = (listreviews, userreview) => {
         text: item.content,
         nickname: item.author,
         avatar: item.author_details.avatar_path.slice(1) || null,
+        rating: item.author_details.rating || null,
       };
     }),
     ...userreview,

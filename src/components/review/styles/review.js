@@ -1,11 +1,10 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 
 export const Container = styled.div`
   width: 600px;
-  margin: 0 auto;
+  margin: 1rem auto;
   margin-top: 3rem;
   font-family: ${({ theme }) => theme.fontFamily.secondary};
-  background-color: white;
   padding: 1rem 2rem;
   display: flex;
   flex-direction: column;
@@ -13,6 +12,26 @@ export const Container = styled.div`
   justify-content: center;
   border-radius: 0.5rem;
   ${({ theme }) => theme.animations.opacity};
+  ${({ rating }) =>
+    rating > 5 &&
+    css`
+      background-color: ${({ theme }) => theme.colors.positiveReview};
+    `}
+  ${({ rating }) =>
+    rating < 5 &&
+    css`
+      background-color: ${({ theme }) => theme.colors.negativeReview};
+    `}
+    ${({ rating }) =>
+    rating === 5 &&
+    css`
+      background-color: white;
+    `}
+    ${({ rating }) =>
+    rating === null &&
+    css`
+      background-color: white;
+    `}
 `;
 
 export const Header = styled.div`
@@ -37,6 +56,18 @@ export const Nickname = styled.span`
 export const Avatar = styled.img`
   width: 50px;
   border-radius: 50%;
+`;
+
+export const Rating = styled.span`
+  width: 40px;
+  text-align: center;
+  background-color: ${({ theme }) => theme.colors.secondary};
+  padding: 0.5rem 1rem;
+  margin-left: 1rem;
+  border-radius: 0.5rem;
+  color: white;
+  font-size: ${({ theme }) => theme.fontSize.normal};
+  font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
 `;
 
 export const Time = styled.span``;

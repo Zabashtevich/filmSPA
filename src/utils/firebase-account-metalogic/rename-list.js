@@ -1,4 +1,4 @@
-import { firebase } from "./../libs/firebase";
+import { firebase } from "./../../libs/firebase";
 
 export default function renameList(id, listname, userlists, nickname) {
   return firebase

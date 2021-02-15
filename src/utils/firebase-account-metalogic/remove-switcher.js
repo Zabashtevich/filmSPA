@@ -1,4 +1,4 @@
-import { removeList } from "./remove-list";
+import removeList from "./remove-list";
 
 export default function removeLogic(target, id, userlists, nickname) {
   switch (target) {

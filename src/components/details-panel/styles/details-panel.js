@@ -143,6 +143,6 @@ export const Reviews = styled.div`
   width: 100%;
   min-height: 300px;
   background-color: ${({ theme }) => theme.colors.reviewsBackground};
-  margin-top: 4rem;
+  margin: 4rem 0;
   border-radius: 0.5rem;
 `;

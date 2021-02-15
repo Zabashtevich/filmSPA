@@ -7,6 +7,7 @@ import {
   Profile,
   Nickname,
   Avatar,
+  Rating,
   Time,
   Body,
   Text,
@@ -41,6 +42,10 @@ Review.Profile = function ReviewProfile({ children, ...rest }) {
 
 Review.Nickname = function ReviewNickname({ children, ...rest }) {
   return <Nickname {...rest}>{children}</Nickname>;
+};
+
+Review.Rating = function ReviewRating({ children, ...rest }) {
+  return <Rating {...rest}>{children}</Rating>;
 };
 
 Review.Avatar = function ReviewAvatar({ src, children, ...rest }) {

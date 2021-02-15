@@ -1,4 +1,4 @@
-import { firebase } from "./../libs/firebase";
+import { firebase } from "./../../libs/firebase";
 
 export default function removeList(id, userlists, nickname) {
   return firebase

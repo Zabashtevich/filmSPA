@@ -11,7 +11,7 @@ import { RatingContainer, ReviewContainer } from "./auxillary";
 export default function CardDetailsPanelContainer() {
   const reviewData = useSelector((store) => store.reviewData);
   const userProfile = useSelector((store) => store.userProfile);
-  const location = useParams();
+  const params = useParams();
 
   const [combinedReviews, setCombinedReviews] = useState({
     processed: true,
@@ -26,7 +26,7 @@ export default function CardDetailsPanelContainer() {
   const { amount, active } = paginationSettings;
   const { profile, profileLoading } = userProfile;
 
-  const [list, loadingList] = useFetch(location.direction, location.slug, [
+  const [list, loadingList] = useFetch(params.direction, params.slug, [
     {
       append_to_response:
         "credits,recommendations,images,videos,reviews,account_states",
@@ -42,7 +42,7 @@ export default function CardDetailsPanelContainer() {
         ],
       });
     }
-  }, [loadingList, reviewData, list.reviews.results]);
+  }, [loadingList, reviewData]);
 
   return (
     list && (

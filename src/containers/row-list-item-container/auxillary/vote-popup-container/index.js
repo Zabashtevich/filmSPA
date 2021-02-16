@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 
 import { VotePopup } from "../../../../components";
 import { useAuthContext } from "../../../../context";
-import { rateLogic } from "../../../../utils/firebase";
 
 export default function VotePopupContainer({ rated, userData, user }) {
   const [popupVisible, setPopupVisible] = useState(false);
@@ -25,50 +24,50 @@ export default function VotePopupContainer({ rated, userData, user }) {
 
   const showErrorModal = () => {};
 
-  const handleRate = (rateScore) => {
-    rateLogic(
-      user,
-      history,
-      userData,
-      rateScore,
-      firebase,
-      showErrorModal,
-      rated,
-    );
-    setPopupVisible(false);
-  };
-
-  return (
-    <VotePopup onClick={(e) => popupToggler(e)}>
-      <VotePopup.VoteStar votestar={1} />
-      <VotePopup.Highscore>{rated.value}</VotePopup.Highscore>
-      <VotePopup.Icon />
-      {popupVisible && (
-        <VotePopup.Popup>
-          {Array(10)
-            .fill(1)
-            .map((_, index) => {
-              return (
-                <VotePopup.Item
-                  key={index}
-                  onClick={() => handleRate(index + 1)}
-                >
-                  <VotePopup.Number>{index + 1}</VotePopup.Number>
-                  {Array(10)
-                    .fill(1)
-                    .map((_, i) => {
-                      return (
-                        <VotePopup.Inner key={i + Math.random()}>
-                          {i > index && <VotePopup.EmptyStar />}
-                          {i <= index && <VotePopup.Star />}
-                        </VotePopup.Inner>
-                      );
-                    })}
-                </VotePopup.Item>
-              );
-            })}
-        </VotePopup.Popup>
-      )}
-    </VotePopup>
-  );
+  // const handleRate = (rateScore) => {
+  //   rateLogic(
+  //     user,
+  //     history,
+  //     userData,
+  //     rateScore,
+  //     firebase,
+  //     showErrorModal,
+  //     rated,
+  //   );
+  //   setPopupVisible(false);
+  // };
+  //TODO RATE LOGIC
+  return null;
+  // <VotePopup onClick={(e) => popupToggler(e)}>
+  //   <VotePopup.VoteStar votestar={1} />
+  //   <VotePopup.Highscore>{rated.value}</VotePopup.Highscore>
+  //   <VotePopup.Icon />
+  //   {popupVisible && (
+  //     <VotePopup.Popup>
+  //       {Array(10)
+  //         .fill(1)
+  //         .map((_, index) => {
+  //           return (
+  //             <VotePopup.Item
+  //               key={index}
+  //               onClick={() => handleRate(index + 1)}
+  //             >
+  //               <VotePopup.Number>{index + 1}</VotePopup.Number>
+  //               {Array(10)
+  //                 .fill(1)
+  //                 .map((_, i) => {
+  //                   return (
+  //                     <VotePopup.Inner key={i + Math.random()}>
+  //                       {i > index && <VotePopup.EmptyStar />}
+  //                       {i <= index && <VotePopup.Star />}
+  //                     </VotePopup.Inner>
+  //                   );
+  //                 })}
+  //             </VotePopup.Item>
+  //           );
+  //         })}
+  //     </VotePopup.Popup>
+  //   )}
+  // </VotePopup>
+  //TODO REFACT
 }

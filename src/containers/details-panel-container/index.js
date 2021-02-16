@@ -10,6 +10,7 @@ import { RatingContainer, ReviewContainer } from "./auxillary";
 
 export default function CardDetailsPanelContainer() {
   const reviewData = useSelector((store) => store.reviewData);
+  const userProfile = useSelector((store) => store.userProfile);
   const location = useParams();
 
   const [combinedReviews, setCombinedReviews] = useState({

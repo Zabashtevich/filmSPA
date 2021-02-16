@@ -5,6 +5,7 @@ import useFirestore from "./../hooks/useFirestore";
 import useAuthListener from "./../hooks/useAuthListener";
 import { setUserData } from "../reducers/user-data/actions";
 import { setReviews } from "../reducers/review-data/actions";
+import { setUserProfile } from "../reducers/user-profile/actions";
 
 export default function UserDataLogic({ children }) {
   const dispatch = useDispatch();
@@ -28,6 +29,12 @@ export default function UserDataLogic({ children }) {
     user && `${user.displayName}`,
     "reviews",
   );
+
+  useEffect(() => {
+    if (!userLoading) {
+      dispatch(setUserProfile(user));
+    }
+  }, [userLoading, dispatch, user]);
 
   useEffect(() => {
     if (reviewsLoading) return;

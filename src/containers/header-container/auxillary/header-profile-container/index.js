@@ -4,24 +4,13 @@ import { firebase } from "../../../../libs/firebase";
 
 import { HeaderProfile } from "../../../../components";
 import { useHistory } from "react-router-dom";
-import { logoutLogic } from "../../../../utils/firebase";
+import { logout } from "../../../../utils";
 
 export default function HeaderProfileContainer({ user, positionchanged }) {
   const [popupVisible, setPopupVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const [errorModalVisible, setErrorModalVisible] = useState(false);
 
-  const history = useHistory();
-
-  const logOut = () => {
-    logoutLogic(setErrorMessage, setErrorModalVisible, history, firebase);
-  };
-
-  const hideErrorModal = () => {
-    document.body.style.overflow = "auto";
-    setErrorMessage(null);
-    setErrorModalVisible(false);
-  };
   return (
     <HeaderProfile>
       {/* TODO ERROR MODAL */}
@@ -44,7 +33,7 @@ export default function HeaderProfileContainer({ user, positionchanged }) {
         <HeaderProfile.PopupLink to={`/account/${user.displayName}/edit`}>
           Edit profile
         </HeaderProfile.PopupLink>
-        <HeaderProfile.PopupLogout onClick={logOut}>
+        <HeaderProfile.PopupLogout onClick={logout}>
           Log out
         </HeaderProfile.PopupLogout>
       </HeaderProfile.PopupContainer>

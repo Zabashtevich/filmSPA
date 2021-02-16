@@ -3,16 +3,19 @@ import { StatePagination } from "../../components";
 import { range } from "../../utils";
 
 export default function StatePaginationContainer({
-  amount,
-  setPagination,
-  pagination,
+  total,
+  setPaginationSettings,
+  active,
 }) {
   return (
     <StatePagination>
-      {range(0, amount).map((item) => (
+      {range(1, total).map((item) => (
         <StatePagination.Item
-          onClick={() => setPagination(item)}
-          active={pagination === item && 1}
+          onClick={() =>
+            setPaginationSettings((prev) => ({ ...prev, active: item }))
+          }
+          active={active === item && 1}
+          key={item}
         >
           {item}
         </StatePagination.Item>

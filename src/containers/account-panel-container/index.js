@@ -7,7 +7,6 @@ import useFirestore from "../../hooks/useFirestore";
 import { FilterContainer } from "./auxillary";
 import { RowListItemContainer } from "../";
 import { filterLogic } from "../../utils/utils";
-import { PaginationSecondaryContainer } from "../";
 import { useFilterContext } from "../../context";
 import { List } from "../../components/pagination/styles/pagination";
 
@@ -71,13 +70,13 @@ export default function AccountPanelContainer() {
             You do not have any movie in your list :c
           </AccountPanel.Placeholder>
         )}
-        {!loading && !processed && content.length > 0 && (
+        {/* {!loading && !processed && content.length > 0 && (
           <PaginationSecondaryContainer
             length={content.length}
             calculateOffset={calculateOffset}
             itemsAmount={amount || 10}
           />
-        )}
+        )} */}
       </AccountPanel.CardsContainer>
     </AccountPanel>
   );

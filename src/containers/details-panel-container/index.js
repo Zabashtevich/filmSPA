@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import { DetailsPanel } from "../../components";
-import { UtilityModalContainer } from "../";
+import { StatePaginationContainer, UtilityModalContainer } from "../";
 import useFetch from "../../hooks/useFetchData";
 import { getCombinedReviews } from "../../utils/utils";
 import { RatingContainer, ReviewContainer } from "./auxillary";
@@ -14,6 +14,12 @@ export default function CardDetailsPanelContainer() {
     reviews: null,
   });
 
+  const [paginationSettings, setPaginationSettings] = useState({
+    active: 1,
+    amount: 5,
+  });
+  const { amount, active } = paginationSettings;
+
   const location = useParams();
   const reviewData = useSelector((store) => store.reviewData);
   const [list, loadingList] = useFetch(location.direction, location.slug, [
@@ -22,6 +28,7 @@ export default function CardDetailsPanelContainer() {
         "credits,recommendations,images,videos,reviews,account_states",
     },
   ]);
+
   useEffect(() => {
     if (!loadingList && !reviewData.loading) {
       setCombinedReviews({
@@ -54,9 +61,16 @@ export default function CardDetailsPanelContainer() {
           </DetailsPanel.Wrapper>
           <DetailsPanel.Reviews>
             {!combinedReviews.processed &&
-              combinedReviews.reviews.map((item) => {
+              combinedReviews.reviews.slice(0, amount * active).map((item) => {
                 return <ReviewContainer key={item.id} item={item} />;
               })}
+            {!combinedReviews.processed && (
+              <StatePaginationContainer
+                total={Math.ceil(combinedReviews.reviews.length / 5)}
+                setPaginationSettings={setPaginationSettings}
+                active={active}
+              />
+            )}
           </DetailsPanel.Reviews>
         </DetailsPanel>
       </>

@@ -8,7 +8,8 @@ import {
   resetFilterParams,
 } from "../../../../context/filter-context/actions";
 import { filterRows } from "../../../../constants/constants";
-import { checkFilterItemSelected, range } from "../../../../utils/utils";
+import { checkFilterItemSelected } from "../../../../utils/utils";
+import { range } from "../../../../utils";
 import { SpinnerSmall } from "../../../../components/loading-spinner";
 
 export default function FilterContainer() {

@@ -297,29 +297,3 @@ export const createUserWithoutAvatar = (
       setUserLoading(false);
     });
 };
-
-export const rateLogic = (
-  user,
-  history,
-  userData,
-  rateScore,
-  firebase,
-  showErrorModal,
-  item,
-) => {
-  if (user === null) {
-    history.push("/authentication/login");
-  } else {
-    firebase
-      .firestore()
-      .collection(`${user.displayName}`)
-      .doc(`moviesrated`)
-      .update({
-        list: [
-          ...userData.filter((card) => card.id !== item.id),
-          { ...item, value: rateScore, time: new Date().getTime() },
-        ],
-      })
-      .catch((error) => showErrorModal(error));
-  }
-};

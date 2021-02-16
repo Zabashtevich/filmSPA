@@ -32,3 +32,4 @@ export { default as Filter } from "./filter";
 export { default as UtilityModal } from "./utility-modal";
 export { default as Userlist } from "./userlist";
 export { default as Review } from "./review";
+export { default as Notification } from "./notification";

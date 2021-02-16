@@ -1,6 +1,6 @@
 import { SET_USER_PROFILE, USER_LOGOUT } from "./constants";
 
-const initialState = { loading: true, profile: null };
+const initialState = { loading: true, profileLoading: null };
 
 const userProfileReducer = (state = initialState, { type, payload }) => {
   switch (type) {

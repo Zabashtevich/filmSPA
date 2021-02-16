@@ -22,7 +22,9 @@ export default function CardDetailsPanelContainer() {
     active: 1,
     amount: 5,
   });
+
   const { amount, active } = paginationSettings;
+  const { profile, profileLoading } = userProfile;
 
   const [list, loadingList] = useFetch(location.direction, location.slug, [
     {
@@ -40,7 +42,7 @@ export default function CardDetailsPanelContainer() {
         ],
       });
     }
-  }, [loadingList, reviewData]);
+  }, [loadingList, reviewData, list.reviews.results]);
 
   return (
     list && (
@@ -66,11 +68,13 @@ export default function CardDetailsPanelContainer() {
               combinedReviews.reviews.slice(0, amount * active).map((item) => {
                 return <ReviewContainer key={item.id} item={item} />;
               })}
-            {!combinedReviews.processed && (
-              <DetailsPanel.CreateReview to="/">
-                CREATE OWN REVIEW
-              </DetailsPanel.CreateReview>
-            )}
+            {!combinedReviews.processed &&
+              !profileLoading &&
+              profile !== null && (
+                <DetailsPanel.CreateReview to="/">
+                  CREATE OWN REVIEW
+                </DetailsPanel.CreateReview>
+              )}
             {!combinedReviews.processed && (
               <StatePaginationContainer
                 total={Math.ceil(combinedReviews.reviews.length / 5)}

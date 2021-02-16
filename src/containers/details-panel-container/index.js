@@ -9,6 +9,9 @@ import { getCombinedReviews } from "../../utils/utils";
 import { RatingContainer, ReviewContainer } from "./auxillary";
 
 export default function CardDetailsPanelContainer() {
+  const reviewData = useSelector((store) => store.reviewData);
+  const location = useParams();
+
   const [combinedReviews, setCombinedReviews] = useState({
     processed: true,
     reviews: null,
@@ -20,8 +23,6 @@ export default function CardDetailsPanelContainer() {
   });
   const { amount, active } = paginationSettings;
 
-  const location = useParams();
-  const reviewData = useSelector((store) => store.reviewData);
   const [list, loadingList] = useFetch(location.direction, location.slug, [
     {
       append_to_response:
@@ -64,6 +65,11 @@ export default function CardDetailsPanelContainer() {
               combinedReviews.reviews.slice(0, amount * active).map((item) => {
                 return <ReviewContainer key={item.id} item={item} />;
               })}
+            {!combinedReviews.processed && (
+              <DetailsPanel.CreateReview to="/">
+                CREATE OWN REVIEW
+              </DetailsPanel.CreateReview>
+            )}
             {!combinedReviews.processed && (
               <StatePaginationContainer
                 total={Math.ceil(combinedReviews.reviews.length / 5)}

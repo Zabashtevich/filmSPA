@@ -8,7 +8,7 @@ import { setReviews } from "../reducers/review-data/actions";
 
 export default function UserDataLogic({ children }) {
   const dispatch = useDispatch();
-  const [user] = useAuthListener();
+  const [user, userLoading] = useAuthListener();
 
   const [ratedMoviesLoading, ratedMovies] = useFirestore(
     user && `${user.displayName}`,

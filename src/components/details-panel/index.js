@@ -19,6 +19,7 @@ import {
   Time,
   Button,
   Reviews,
+  CreateReview,
 } from "./styles/details-panel";
 
 export default function DetailsPanel({ children, ...rest }) {
@@ -119,4 +120,11 @@ DetailsPanel.Button = function DetailsPanelButton({ children, ...rest }) {
 
 DetailsPanel.Reviews = function DetailsPanelReviews({ children, ...rest }) {
   return <Reviews {...rest}>{children}</Reviews>;
+};
+
+DetailsPanel.CreateReview = function DetailsPanelCreateReview({
+  children,
+  ...rest
+}) {
+  return <CreateReview {...rest}>{children}</CreateReview>;
 };

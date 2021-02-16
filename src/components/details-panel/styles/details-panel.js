@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components/macro";
 
 import { IoIosStar } from "react-icons/io";
+import { Link as ReactRouterLink } from "react-router-dom";
 
 export const Container = styled.div`
   max-width: 1300px;
@@ -145,4 +146,22 @@ export const Reviews = styled.div`
   background-color: ${({ theme }) => theme.colors.reviewsBackground};
   margin: 4rem 0;
   border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const CreateReview = styled(ReactRouterLink)`
+  font-size: ${({ theme }) => theme.fontSize.normal};
+  background-color: ${({ theme }) => theme.colors.secondary};
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  color: white;
+  margin: 1rem auto;
+  &:hover {
+    background-color: white;
+    color: black;
+    transition: 500ms;
+  }
 `;

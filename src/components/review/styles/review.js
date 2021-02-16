@@ -11,6 +11,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 0.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   ${({ theme }) => theme.animations.opacity};
   ${({ rating }) =>
     rating > 5 &&

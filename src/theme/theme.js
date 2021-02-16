@@ -117,7 +117,7 @@ export default {
     }
     &.fade-exit-active {
       opacity: 0;
-      transition: 600ms;
+      transition: 500ms;
       transform: translateX(-300px);
     }
     &.fade-appear {

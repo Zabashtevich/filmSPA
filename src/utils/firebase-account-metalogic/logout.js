@@ -1,8 +1,6 @@
 import { firebase } from "../../libs/firebase";
-import { useHistory } from "react-router-dom";
 
-export default function logoutLogic() {
-  const history = useHistory();
+export default function logoutLogic(history) {
   firebase
     .auth()
     .signOut()

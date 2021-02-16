@@ -3,7 +3,11 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import { DetailsPanel } from "../../components";
-import { StatePaginationContainer, UtilityModalContainer } from "../";
+import {
+  StatePaginationContainer,
+  UtilityModalContainer,
+  WarningContainer,
+} from "../";
 import useFetch from "../../hooks/useFetchData";
 import { getCombinedReviews } from "../../utils/utils";
 import { RatingContainer, ReviewContainer } from "./auxillary";
@@ -43,10 +47,10 @@ export default function CardDetailsPanelContainer() {
       });
     }
   }, [loadingList, reviewData]);
-
   return (
     list && (
       <>
+        <WarningContainer />
         <UtilityModalContainer />
         <DetailsPanel>
           <DetailsPanel.Wrapper>

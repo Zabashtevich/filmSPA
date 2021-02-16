@@ -1,20 +1,28 @@
 import React from "react";
+import { CSSTransition } from "react-transition-group";
 
-import { Container, Wrapper, Message, Spinner } from "./styles/warning";
-import notificationSpinner from "../../assets/spinner-small.svg";
+import { Container, Message, Spinner } from "./styles/warning";
+import warningSpinner from "../../assets/spinner-small.svg";
 
 export default function Warning({ children, ...rest }) {
-  return <Container {...rest}>{children}</Container>;
+  return (
+    <CSSTransition
+      in={true}
+      classNames="fade"
+      appear={true}
+      timeout={500}
+      mountOnEnter
+      unmountOnExit
+    >
+      <Container {...rest}>{children}</Container>
+    </CSSTransition>
+  );
 }
-
-Warning.Wrapper = function WarningWrapper({ children, ...rest }) {
-  return <Wrapper {...rest}>{children}</Wrapper>;
-};
 
 Warning.Message = function WarningMessage({ children, ...rest }) {
   return <Message {...rest}>{children}</Message>;
 };
 
 Warning.Spinner = function WarningSpinner({ ...rest }) {
-  return <Spinner src={notificationSpinner} {...rest} />;
+  return <Spinner src={warningSpinner} {...rest} />;
 };

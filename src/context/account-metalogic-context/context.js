@@ -1,13 +1,73 @@
-import { createContext, useReducer } from "react";
-import accountReducer, { initialState } from "./reducer";
+import { useReducer } from "react";
 
-export const AccountMetalogicContext = createContext(null);
+import {
+  initialState,
+  AccountMetalogicContext,
+  SHOW_ERROR_MODAL,
+  HIDE_ERROR_MODAL,
+  SHOW_WARNING_MODAL,
+  HIDE_WARNING_MODAL,
+  SHOW_REMOVE_MODAL,
+  HIDE_REMOVE_MODAL,
+  CONFIRM_MODAL,
+} from "./constants";
+import accountReducer from "./reducer";
 
 export default function AccountMetalogicContextProvider({ children }) {
-  const [accountState, metaDispatch] = useReducer(accountReducer, initialState);
+  const [state, dispatch] = useReducer(accountReducer, initialState);
+
+  const showErrorModal = (message) => {
+    dispatch({ type: SHOW_ERROR_MODAL, payload: message });
+  };
+
+  const hideErrorModal = () => {
+    dispatch({ type: HIDE_ERROR_MODAL });
+  };
+
+  const showWarningModal = (message) => {
+    dispatch({
+      type: SHOW_WARNING_MODAL,
+      payload: message,
+    });
+  };
+
+  const hideWarningModal = () => {
+    dispatch({ type: HIDE_WARNING_MODAL });
+  };
+
+  const showRemoveModal = (payload) => {
+    dispatch({
+      type: SHOW_REMOVE_MODAL,
+      payload,
+    });
+  };
+
+  const hideRemoveModal = () => {
+    dispatch({ type: HIDE_REMOVE_MODAL });
+  };
+
+  const confirmModal = (subtype) => {
+    dispatch({
+      type: CONFIRM_MODAL,
+      payload: subtype,
+    });
+  };
 
   return (
-    <AccountMetalogicContext.Provider value={[accountState, {}]}>
+    <AccountMetalogicContext.Provider
+      value={[
+        state,
+        {
+          showErrorModal,
+          hideErrorModal,
+          showWarningModal,
+          hideWarningModal,
+          showRemoveModal,
+          hideRemoveModal,
+          confirmModal,
+        },
+      ]}
+    >
       {children}
     </AccountMetalogicContext.Provider>
   );

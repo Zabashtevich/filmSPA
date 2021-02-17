@@ -4,10 +4,7 @@ import filterReducer, { initialState } from "./reducer";
 export const FilterContext = createContext(null);
 
 export default function FilterContextProvider({ children }) {
-  const [filterState, filterDispatch] = useReducer(
-    filterReducer,
-    filterInitialState,
-  );
+  const [filterState, filterDispatch] = useReducer(filterReducer, initialState);
 
   return (
     <FilterContext.Provider value={[filterState, filterDispatch]}>

@@ -2,7 +2,7 @@ export const initialState = {
   warning: { visible: false, message: "" },
   errorModal: { visible: false, message: "" },
   confirmModal: { visible: false, message: "", id: null, confirmed: false },
-  remove: { x },
+  remove: { x: null },
 };
 
 export default function accountReducer(

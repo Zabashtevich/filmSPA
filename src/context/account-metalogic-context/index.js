@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { AccountContext } from "./context";
+import { AccountMetalogicContext } from "./context";
 
-export default function userAccountContext() {
-  const [accountState, accountinterface] = useContext(AccountContext);
+export default function useAccountMetalogicContext() {
+  const [accountState, accountinterface] = useContext(AccountMetalogicContext);
   return [accountState, accountinterface];
 }

@@ -11,14 +11,14 @@ export function ConfirmHeader() {
   );
 }
 
-export function ConfirmButtons({ type, closeModal, confirmModal }) {
+export function ConfirmButtons({ type, closeModal, hideRemoveModal }) {
   return (
     <>
-      <UtilityModal.DeclineButton onClick={() => closeModal("confirm")}>
+      <UtilityModal.DeclineButton onClick={closeModal}>
         CANCEL
       </UtilityModal.DeclineButton>
       <UtilityModal.AcceptButton
-        onClick={() => confirmModal("confirm")}
+        onClick={() => hideRemoveModal("confirm")}
         type={type}
       >
         ACCEPT

@@ -1,72 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { UtilityModal } from "../../components";
-import { useModalContext } from "../../context";
+import { useAccountContext } from "../../context";
 import { ErrorButtons, ErrorHeader } from "./items/error";
-import { NewlistButtons, NewlistHeader, NewlistInput } from "./items/newlist";
-import { RenameButtons, RenameHeader, RenameInput } from "./items/rename";
 import { ConfirmButtons, ConfirmHeader } from "./items/confirm";
-import { DeleteButtons, DeleteHeader } from "./items/delete";
+import { DeleteButtons, DeleteHeader } from "./items/remove";
 
 export default function UtilityModalContainer() {
-  // const [modalstate, modalinterface] = useModalContext();
-
-  // const { type, message, visible } = modalstate;
-  // const { closeModal, confirmModal } = modalinterface;
   const [name, setName] = useState("");
+
+  const [accountstate, accountinterface] = useAccountContext();
+  const { removeModal, confirmModal, errorModal } = accountstate;
+  const { hideRemoveModal, acceptModal } = accountinterface;
 
   return (
     <UtilityModal visible={visible}>
       <UtilityModal.Container>
-        {/* <UtilityModal.Header type={type}>
-          {type === "error" && <ErrorHeader />}
-          {type === "rename" && <RenameHeader />}
-          {type === "newlist" && <NewlistHeader />}
-          {type === "remove" && <DeleteHeader />}
-          {type === "confirm" && <ConfirmHeader />}
-          <UtilityModal.Close onClick={closeModal} />
-        </UtilityModal.Header> */}
+        <UtilityModal.Header type={subtype}>
+          {removeModal.visible && (
+            <RemoveHeader>{removeModal.title}</RemoveHeader>
+          )}
+          {confirmModal.visible && (
+            <ConfirmHeader>{confirmModal.title}</ConfirmHeader>
+          )}
+          {errorModal.visible && <ErrorHeader>{errorModal.title}</ErrorHeader>}
+          <UtilityModal.Close onClick={hideRemoveModal} />
+        </UtilityModal.Header>
         <UtilityModal.Body>
-          {/* <UtilityModal.Message>{message}</UtilityModal.Message>
-          {type === "rename" && <RenameInput setName={setName} name={name} />}
-          {type === "newlist" && <NewlistInput setName={setName} name={name} />}
+          <UtilityModal.Message>{message}</UtilityModal.Message>
+          {subtype === "rename" && (
+            <RenameInput setName={setName} name={name} />
+          )}
+
           <UtilityModal.Wrapper>
-            {type === "error" && (
-              <ErrorButtons type={type} closeModal={closeModal} />
+            {subtype === "error" && (
+              <ErrorButtons type={subtype} hideRemoveModal={hideRemoveModal} />
             )}
-            {type === "rename" && (
-              <RenameButtons
-                type={type}
-                name={name}
-                setName={setName}
-                closeModal={closeModal}
-                confirmModal={confirmModal}
-              />
-            )}
-            {type === "newlist" && (
-              <NewlistButtons
-                type={type}
-                name={name}
-                setName={setName}
-                closeModal={closeModal}
-                confirmModal={confirmModal}
-              />
-            )}
-            {type === "remove" && (
-              <DeleteButtons
-                type={type}
-                closeModal={closeModal}
-                confirmModal={confirmModal}
-              />
-            )}
-            {type === "confirm" && (
-              <ConfirmButtons
-                type={type}
-                closeModal={closeModal}
-                confirmModal={confirmModal}
-              />
-            )}
-          </UtilityModal.Wrapper> */}
+          </UtilityModal.Wrapper>
         </UtilityModal.Body>
       </UtilityModal.Container>
     </UtilityModal>

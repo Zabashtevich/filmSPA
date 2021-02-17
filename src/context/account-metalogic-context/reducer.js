@@ -1,5 +1,5 @@
 import {
-  CONFIRM_MODAL,
+  ACCEPT_MODAL,
   HIDE_ERROR_MODAL,
   HIDE_REMOVE_MODAL,
   HIDE_WARNING_MODAL,
@@ -29,8 +29,8 @@ export default function accountReducer(
         ...state,
         removeModal: { visible: false, id: null, message: "", subtype: null },
       };
-    case CONFIRM_MODAL:
-      return { ...state, confirmed: true, subtype: payload };
+    case ACCEPT_MODAL:
+      return { ...state, accepted: true, target: payload };
     default:
       return state;
   }

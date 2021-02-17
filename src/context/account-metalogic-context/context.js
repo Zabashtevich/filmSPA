@@ -9,7 +9,7 @@ import {
   HIDE_WARNING_MODAL,
   SHOW_REMOVE_MODAL,
   HIDE_REMOVE_MODAL,
-  CONFIRM_MODAL,
+  ACCEPT_MODAL,
 } from "./constants";
 import accountReducer from "./reducer";
 
@@ -46,9 +46,9 @@ export default function AccountMetalogicContextProvider({ children }) {
     dispatch({ type: HIDE_REMOVE_MODAL });
   };
 
-  const confirmModal = (subtype) => {
+  const acceptModal = (subtype) => {
     dispatch({
-      type: CONFIRM_MODAL,
+      type: ACCEPT_MODAL,
       payload: subtype,
     });
   };
@@ -64,7 +64,7 @@ export default function AccountMetalogicContextProvider({ children }) {
           hideWarningModal,
           showRemoveModal,
           hideRemoveModal,
-          confirmModal,
+          acceptModal,
         },
       ]}
     >

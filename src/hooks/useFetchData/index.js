@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { fetchBaseUrl } from "../constants/constants";
-import { getQuerry } from "../utils/utils";
+import { fetchBaseUrl } from "./../../constants/constants";
+import { getQuerry } from "./../../utils/utils";
 
 export default function useFetch(paths, searchParam, ...rest) {
   const [data, setData] = useState({

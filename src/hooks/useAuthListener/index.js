@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
-import { useAuthContext } from "../context";
+import { firebase } from "./../../libs/firebase";
 
 export default function useAuthListener() {
   const [data, setData] = useState({
     data: JSON.parse(localStorage.getItem("loggedUser")),
     loading: true,
   });
-  const firebase = useAuthContext();
 
   useEffect(() => {
     const listener = firebase.auth().onAuthStateChanged((authUser) => {

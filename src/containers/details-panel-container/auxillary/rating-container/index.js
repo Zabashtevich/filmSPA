@@ -4,20 +4,22 @@ import { useParams } from "react-router-dom";
 
 import { DetailsPanel } from "../../../../components";
 import { useModalContext } from "../../../../context";
-import { rate } from "./../../../../utils";
+import { useRate } from "../../../../hooks";
 
 export default function RatingContainer({ list }) {
   const userData = useSelector((store) => store.userData);
   const { slug } = useParams();
   const [, modalinterface] = useModalContext();
-  const { showModal } = modalinterface;
-  const { loading, ratedMovies } = userData;
+  const [setSettings] = useRate();
 
   const [isRated, setIsRated] = useState({
     rated: false,
     value: null,
     time: null,
   });
+
+  const { showModal } = modalinterface;
+  const { loading, ratedMovies } = userData;
   const { rated, value, time } = isRated;
 
   useEffect(() => {
@@ -30,7 +32,7 @@ export default function RatingContainer({ list }) {
   }, [loading, ratedMovies, slug]);
 
   const handleRate = (value) => {
-    rate(value, list);
+    setSettings({ value, item: list, setted: true });
   };
 
   return (
@@ -54,7 +56,7 @@ export default function RatingContainer({ list }) {
               onClick={() =>
                 showModal("remove", "Are you sure you want to unrate?", {
                   id: slug,
-                  target: "rated",
+                  target: "vote",
                   //TODO UNRATE LOGIC IN MODAL CONTEXT
                 })
               }

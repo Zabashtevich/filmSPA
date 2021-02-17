@@ -1,15 +1,14 @@
-import { useSelector } from "react-redux";
 import { firebase } from "./../../libs/firebase";
 
-export default function removeList(id) {
+export default function removeVote(id) {
   const userProfile = useSelector((store) => store.userProfile);
   const userData = useSelector((store) => store.userData);
 
-  const { userlists } = userData;
+  const { ratedMovies } = userData;
 
   return firebase
     .firestore()
     .collection(`${userProfile.profile.displayName}`)
     .doc("collection")
-    .update({ list: [...userlists.filter((item) => +item.id !== id)] });
+    .update({ list: [...ratedMovies.filter((item) => +item.id !== id)] });
 }

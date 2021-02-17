@@ -59,10 +59,7 @@ export default function CardDetailsPanelContainer() {
           </DetailsPanel.Wrapper>
           <DetailsPanel.Wrapper>
             <DetailsPanel.Title>Rating</DetailsPanel.Title>
-            <RatingContainer
-              average={list.vote_average}
-              votecount={list.vote_count}
-            />
+            <RatingContainer list={list} />
           </DetailsPanel.Wrapper>
           <DetailsPanel.Wrapper>
             <DetailsPanel.Title>Reviews</DetailsPanel.Title>

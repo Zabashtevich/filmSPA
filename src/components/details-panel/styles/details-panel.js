@@ -58,12 +58,12 @@ export const Star = styled(IoIosStar)`
     rated &&
     css`
       color: ${({ theme }) => theme.colors.secondary};
-    `}
+    `};
   ${({ hoveractive }) =>
     hoveractive &&
     css`
       color: rgba(50, 25, 255, 0.6);
-    `}
+    `};
   & > * {
     pointer-events: none;
   }

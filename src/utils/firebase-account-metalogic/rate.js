@@ -1,27 +1,42 @@
 import { firebase } from "./../../libs/firebase";
-import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useModalContext, useWarningContext } from "../../context";
 
-export default function rate(value, item) {}
-const history = useHistory();
-const userProfile = useSelector();
-const { profile, profileLoading } = userProfile;
+export default function rate(value, item) {
+  const userProfile = useSelector();
+  const userData = useSelector((store) => store.userData);
+  const { profile } = userProfile;
+  const { showModal } = modalinterface;
+  const { show, close } = warninginterface;
+  const { ratedMovies } = userData;
+  const [, warninginterface] = useWarningContext();
+  const [, modalinterface] = useModalContext();
 
-useEffect(() => {}, []);
-export const rateLogic = () => {
   if (user === null) {
-    history.push("/authentication/login");
+    showModal("error", "Sorry, but you need to login before rate something");
   } else {
+    const date = new Date();
+    show("Processing your vote");
     firebase
       .firestore()
-      .collection(`${user.displayName}`)
+      .collection(`${profile.displayName}`)
       .doc(`moviesrated`)
       .update({
         list: [
-          ...userData.filter((card) => card.id !== item.id),
-          { ...item, value: rateScore, time: new Date().getTime() },
+          ...ratedMovies.filter((card) => card.id !== item.id),
+          {
+            title: item.title,
+            id: item.id,
+            value: value,
+            time: `${date.getUTCFullYear()}/${
+              date.getUTCMonth() + 1
+            }/${date.getUTCDate()}`,
+          },
         ],
       })
-      .catch((error) => showErrorModal(error));
+      .then(() => close())
+      .catch(() =>
+        showModal("error", "Something went wrong, try to rate later :c"),
+      );
   }
-};
+}

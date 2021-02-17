@@ -4,7 +4,7 @@ import { useWarningContext } from "./../../context";
 import { Warning } from "../../components";
 
 export default function WarningContainer() {
-  const [warningsettings, warninginterface] = useWarningContext();
+  const [warningsettings] = useWarningContext();
   const { message, visible } = warningsettings;
 
   return (

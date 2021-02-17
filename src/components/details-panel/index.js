@@ -40,18 +40,20 @@ DetailsPanel.Overview = function DetailsPanelOverview({ children, ...rest }) {
 
 DetailsPanel.Stars = function DetailsPanelStars({
   average,
+  handleRate,
   children,
   ...rest
 }) {
   const [hover, setHover] = useState(null);
-  return range(0, 10).map((_, index) => (
+  return range(1, 10).map((item) => (
     <Star
       {...rest}
-      key={index}
-      onMouseEnter={() => setHover(index + 1)}
+      key={item}
+      onMouseEnter={() => setHover(item)}
       onMouseLeave={() => setHover(null)}
-      hoveractive={index + 1 <= hover ? 1 : 0}
-      rated={average >= index + 1 ? 1 : 0}
+      rated={average >= item ? 1 : 0}
+      hoveractive={hover >= item ? 1 : 0}
+      onClick={() => handleRate(item)}
     />
   ));
 };

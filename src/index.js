@@ -12,8 +12,7 @@ import Theme from "./theme/theme";
 import { rootReducer } from "./reducers";
 import AuthContextProvider from "./context/auth-context/context";
 import FilterContextProvider from "./context/filter-context/context";
-import ModalContextProvider from "./context/modal-context/context";
-import MetalogicContextProvider from "./context/metalogic-context/context";
+import AccountMetalogicContextProvider from "./context/account-metalogic-context/context";
 import UserDataLogic from "./helpers/user-data-logic";
 import WarningContextProvider from "./context/warning-context/context";
 
@@ -28,14 +27,10 @@ ReactDOM.render(
       <AuthContextProvider>
         <UserDataLogic>
           <FilterContextProvider>
-            <ModalContextProvider>
-              <WarningContextProvider>
-                <MetalogicContextProvider>
-                  <GlobalStyles />
-                  <App />
-                </MetalogicContextProvider>
-              </WarningContextProvider>
-            </ModalContextProvider>
+            <AccountContextProvider>
+              <GlobalStyles />
+              <App />
+            </AccountContextProvider>
           </FilterContextProvider>
         </UserDataLogic>
       </AuthContextProvider>

@@ -11,8 +11,8 @@ export default function UserListContainer({ item }) {
   });
   const { renameList, deleteList } = descriptionVisible;
 
-  const [, modalinterface] = useModalContext();
-  const { showModal } = modalinterface;
+  // // const [, modalinterface] = useModalContext();
+  // const { showModal } = modalinterface;
 
   return (
     <Userlist>
@@ -44,7 +44,8 @@ export default function UserListContainer({ item }) {
             }
             onClick={() => {
               setDescriptionVisible((prev) => ({ ...prev, renameList: false }));
-              showModal("rename", "Enter a new list name", { id: item.id });
+              // showModal("rename", "Enter a new list name", { id: item.id });
+              //TODO CONNECT MODAL CONTAINER
             }}
           />
           <Userlist.Delete
@@ -62,11 +63,11 @@ export default function UserListContainer({ item }) {
             }
             onClick={() => {
               setDescriptionVisible((prev) => ({ ...prev, deleteList: false }));
-              showModal(
-                "remove",
-                `Are you sure you want to delete "${item.name}" list`,
-                { id: item.id, target: "list" },
-              );
+              // showModal(
+              //   "remove",
+              //   `Are you sure you want to delete "${item.name}" list`,
+              //   { id: item.id, target: "list" },
+              // );
             }}
           />
           <DescriptionPopupContainer

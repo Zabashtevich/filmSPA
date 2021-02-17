@@ -1,11 +1,13 @@
 export const initialState = {
   warning: { visible: false, message: "" },
-  modal: { visible: false, message: "", confirmed: false },
+  errorModal: { visible: false, message: "" },
+  confirmModal: { visible: false, message: "", id: null, confirmed: false },
+  remove: { x },
 };
 
 export default function accountReducer(
   state = initialState,
-  { type, payload },
+  { type, payload, subtype = null },
 ) {
   switch (type) {
     default:

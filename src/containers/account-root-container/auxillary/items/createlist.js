@@ -10,8 +10,8 @@ export default function UserlistCreatelist() {
   });
   const { createList } = descriptionVisible;
 
-  const [, modalinterface] = useModalContext();
-  const { showModal } = modalinterface;
+  // const [, modalinterface] = useModalContext();
+  // const { showModal } = modalinterface;
 
   return (
     <Userlist>
@@ -25,7 +25,8 @@ export default function UserlistCreatelist() {
         }
         onClick={() => {
           setDescriptionVisible({ createList: false });
-          showModal("newlist", "Enter list name");
+          // showModal("newlist", "Enter list name");
+          //TODO CONNECT MODAL CONTAINER
         }}
       />
       <DescriptionPopupContainer

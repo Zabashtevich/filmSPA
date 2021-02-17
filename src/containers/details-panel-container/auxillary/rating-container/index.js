@@ -3,14 +3,12 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import { DetailsPanel } from "../../../../components";
-import { useModalContext } from "../../../../context";
-import { useRate } from "../../../../hooks";
 
 export default function RatingContainer({ list }) {
   const userData = useSelector((store) => store.userData);
   const { slug } = useParams();
-  const [, modalinterface] = useModalContext();
-  const [setSettings] = useRate("rate");
+  // const [, modalinterface] = useModalContext();
+  // const [setSettings] = useRate("rate");
 
   const [isRated, setIsRated] = useState({
     rated: false,
@@ -18,7 +16,7 @@ export default function RatingContainer({ list }) {
     time: null,
   });
 
-  const { showModal } = modalinterface;
+  // const { showModal } = modalinterface;
   const { loading, ratedMovies } = userData;
   const { rated, value, time } = isRated;
 
@@ -32,7 +30,8 @@ export default function RatingContainer({ list }) {
   }, [loading, ratedMovies, slug]);
 
   const handleRate = (value) => {
-    setSettings({ value, item: list, setted: true });
+    // setSettings({ value, item: list, setted: true });
+    //TODO RATE LOGIC
   };
 
   return (
@@ -53,13 +52,11 @@ export default function RatingContainer({ list }) {
             <DetailsPanel.UserTitle>Your vote:</DetailsPanel.UserTitle>
             <DetailsPanel.UserValue>{value}</DetailsPanel.UserValue>
             <DetailsPanel.Button
-              onClick={() =>
-                showModal("remove", "Are you sure you want to unrate?", {
-                  id: slug,
-                  target: "vote",
-                  //TODO UNRATE LOGIC IN MODAL CONTEXT
-                })
-              }
+            //TODO CONNTECT MODAL CONTAINER
+            // showModal("remove", "Are you sure you want to unrate?", {
+            //   id: slug,
+            //   target: "vote",
+            //TODO UNRATE LOGIC IN MODAL CONTEXT
             >
               Delete
             </DetailsPanel.Button>

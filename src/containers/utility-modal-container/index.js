@@ -9,25 +9,25 @@ import { ConfirmButtons, ConfirmHeader } from "./items/confirm";
 import { DeleteButtons, DeleteHeader } from "./items/delete";
 
 export default function UtilityModalContainer() {
-  const [modalstate, modalinterface] = useModalContext();
+  // const [modalstate, modalinterface] = useModalContext();
 
-  const { type, message, visible } = modalstate;
-  const { closeModal, confirmModal } = modalinterface;
+  // const { type, message, visible } = modalstate;
+  // const { closeModal, confirmModal } = modalinterface;
   const [name, setName] = useState("");
 
   return (
     <UtilityModal visible={visible}>
       <UtilityModal.Container>
-        <UtilityModal.Header type={type}>
+        {/* <UtilityModal.Header type={type}>
           {type === "error" && <ErrorHeader />}
           {type === "rename" && <RenameHeader />}
           {type === "newlist" && <NewlistHeader />}
           {type === "remove" && <DeleteHeader />}
           {type === "confirm" && <ConfirmHeader />}
           <UtilityModal.Close onClick={closeModal} />
-        </UtilityModal.Header>
+        </UtilityModal.Header> */}
         <UtilityModal.Body>
-          <UtilityModal.Message>{message}</UtilityModal.Message>
+          {/* <UtilityModal.Message>{message}</UtilityModal.Message>
           {type === "rename" && <RenameInput setName={setName} name={name} />}
           {type === "newlist" && <NewlistInput setName={setName} name={name} />}
           <UtilityModal.Wrapper>
@@ -66,7 +66,7 @@ export default function UtilityModalContainer() {
                 confirmModal={confirmModal}
               />
             )}
-          </UtilityModal.Wrapper>
+          </UtilityModal.Wrapper> */}
         </UtilityModal.Body>
       </UtilityModal.Container>
     </UtilityModal>

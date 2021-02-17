@@ -1,7 +1,7 @@
 import { createContext, useReducer } from "react";
 import accountReducer, { initialState } from "./reducer";
 
-export const AccountlogicContext = createContext(null);
+export const AccountContext = createContext(null);
 
 export default function AccountContextProvider({ children }) {
   const [accountState, metaDispatch] = useReducer(accountReducer, initialState);

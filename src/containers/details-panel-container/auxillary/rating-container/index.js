@@ -10,7 +10,7 @@ export default function RatingContainer({ list }) {
   const userData = useSelector((store) => store.userData);
   const { slug } = useParams();
   const [, modalinterface] = useModalContext();
-  const [setSettings] = useRate();
+  const [setSettings] = useRate("rate");
 
   const [isRated, setIsRated] = useState({
     rated: false,

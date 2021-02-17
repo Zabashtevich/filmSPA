@@ -1,6 +1,6 @@
 import { SET_FILTER_PARAMS, RESET_FILTER_PARAMS } from "./constants";
 
-export const filterInitialState = {
+export const initialState = {
   sortBy: null,
   listType: null,
   listID: null,

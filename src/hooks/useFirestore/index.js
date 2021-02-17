@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useAuthContext } from "../context";
+import { useAuthContext } from "../../context";
 
 export default function useFirestore(
   collectionTarget,

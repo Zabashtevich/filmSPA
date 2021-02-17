@@ -1,8 +1,8 @@
-import { firebase } from "./../../libs/firebase";
 import { useSelector } from "react-redux";
 import { useModalContext, useWarningContext } from "../../context";
+import { firebase } from "../../libs/firebase";
 
-export default function rate(value, item) {
+export default function useRate(value, item) {
   const userProfile = useSelector();
   const userData = useSelector((store) => store.userData);
   const { profile } = userProfile;

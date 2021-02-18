@@ -1,10 +1,10 @@
 import React from "react";
 import { CSSTransition } from "react-transition-group";
 
-import { Container, Message, Spinner } from "./styles/warning";
+import { Container, Message, Spinner } from "./styles/processing-window";
 import warningSpinner from "../../assets/spinner-small.svg";
 
-export default function Warning({ visible, children, ...rest }) {
+export default function ProcessingWindow({ visible, children, ...rest }) {
   return (
     <CSSTransition
       in={visible}
@@ -19,10 +19,13 @@ export default function Warning({ visible, children, ...rest }) {
   );
 }
 
-Warning.Message = function WarningMessage({ children, ...rest }) {
+ProcessingWindow.Message = function ProcessingWindowMessage({
+  children,
+  ...rest
+}) {
   return <Message {...rest}>{children}</Message>;
 };
 
-Warning.Spinner = function WarningSpinner({ ...rest }) {
+ProcessingWindow.Spinner = function ProcessingWindowSpinner({ ...rest }) {
   return <Spinner src={warningSpinner} {...rest} />;
 };

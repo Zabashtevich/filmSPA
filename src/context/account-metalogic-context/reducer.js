@@ -6,6 +6,8 @@ import {
   CLOSE_MODAL,
   ACCEPT_CONFIRM_MODAL,
   ACCEPT_UTILITY_MODAL,
+  SHOW_PROCESSING_WINDOW,
+  CLOSE_PROCESSING_WINDOW,
 } from "./constants";
 
 export default function accountReducer(
@@ -37,6 +39,10 @@ export default function accountReducer(
       return { ...state, visible: false, accepted: true };
     case ACCEPT_UTILITY_MODAL:
       return { ...state, visible: false, accepted: true, value: payload };
+    case SHOW_PROCESSING_WINDOW:
+      return { ...state, processing: true, message: payload };
+    case CLOSE_PROCESSING_WINDOW:
+      return { ...state, processing: false };
     default:
       return state;
   }

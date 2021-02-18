@@ -32,4 +32,4 @@ export { default as Filter } from "./filter";
 export { default as UtilityModal } from "./utility-modal";
 export { default as Userlist } from "./userlist";
 export { default as Review } from "./review";
-export { default as Warning } from "./warning";
+export { default as ProcessingWindow } from "./processing-window";

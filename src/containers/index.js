@@ -16,4 +16,4 @@ export { default as ModalGalleryContainer } from "./modal-gallery-container";
 export { default as LoadMoreContainer } from "./load-more-container";
 export { default as StatePaginationContainer } from "./state-pagination-container";
 export { default as UtilityModalContainer } from "./utility-modal-container";
-export { default as WarningContainer } from "./warning-container";
+export { default as ProcessingWindowContainer } from "./processing-window-container";

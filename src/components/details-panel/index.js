@@ -40,7 +40,7 @@ DetailsPanel.Overview = function DetailsPanelOverview({ children, ...rest }) {
 
 DetailsPanel.Stars = function DetailsPanelStars({
   average,
-  handleRate,
+  handleEstimate,
   children,
   ...rest
 }) {
@@ -53,7 +53,7 @@ DetailsPanel.Stars = function DetailsPanelStars({
       onMouseLeave={() => setHover(null)}
       rated={average >= item ? 1 : 0}
       hoveractive={hover >= item ? 1 : 0}
-      onClick={() => handleRate(item)}
+      onClick={() => handleEstimate(item)}
     />
   ));
 };

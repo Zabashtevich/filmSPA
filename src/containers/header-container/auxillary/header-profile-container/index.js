@@ -4,7 +4,6 @@ import { firebase } from "../../../../libs/firebase";
 
 import { HeaderProfile } from "../../../../components";
 import { useHistory } from "react-router-dom";
-import { logout } from "../../../../utils";
 
 export default function HeaderProfileContainer({ user, positionchanged }) {
   const [popupVisible, setPopupVisible] = useState(false);
@@ -33,9 +32,10 @@ export default function HeaderProfileContainer({ user, positionchanged }) {
         <HeaderProfile.PopupLink to={`/account/${user.displayName}/edit`}>
           Edit profile
         </HeaderProfile.PopupLink>
-        <HeaderProfile.PopupLogout onClick={logout}>
+        {/* <HeaderProfile.PopupLogout onClick={logout}>
           Log out
-        </HeaderProfile.PopupLogout>
+          TODO LOGOUT
+        </HeaderProfile.PopupLogout> */}
       </HeaderProfile.PopupContainer>
     </HeaderProfile>
   );

@@ -4,9 +4,9 @@ import { useParams } from "react-router-dom";
 
 import { DetailsPanel } from "../../components";
 import {
+  ProcessingWindowContainer,
   StatePaginationContainer,
   UtilityModalContainer,
-  WarningContainer,
 } from "../";
 import useFetch from "../../hooks/useFetchData";
 import { getCombinedReviews } from "../../utils/utils";
@@ -50,7 +50,7 @@ export default function CardDetailsPanelContainer() {
   return (
     list && (
       <>
-        <WarningContainer />
+        <ProcessingWindowContainer />
         <UtilityModalContainer />
         <DetailsPanel>
           <DetailsPanel.Wrapper>

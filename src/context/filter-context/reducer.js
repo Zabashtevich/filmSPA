@@ -15,7 +15,7 @@ export default function filterReducer(state, action) {
     case SET_FILTER_PARAMS:
       return { ...state, ...action.payload };
     case RESET_FILTER_PARAMS:
-      return { ...state, ...filterInitialState };
+      return { ...state, ...initialState };
     default:
       return state;
   }

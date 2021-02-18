@@ -25,12 +25,12 @@ export function UtilityButtons({
   type,
   name,
   setname,
-  hideModal,
+  closeModal,
   acceptModal,
 }) {
   return (
     <>
-      <UtilityModal.DeclineButton onClick={hideModal}>
+      <UtilityModal.DeclineButton onClick={closeModal}>
         CANCEL
       </UtilityModal.DeclineButton>
       <UtilityModal.AcceptButton

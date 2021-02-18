@@ -1,40 +1,54 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { UtilityModal } from "../../components";
 import { useAccountContext } from "../../context";
-import { ErrorButtons, ErrorHeader } from "./items/error";
-import { ConfirmButtons, ConfirmHeader } from "./items/confirm";
-import { DeleteButtons, DeleteHeader } from "./items/remove";
+import { ConfirmHeader, ConfirmButtons } from "./items/confirm";
+import { ErrorHeader, ErrorButtons } from "./items/error";
+import { UtilityHeader, UtilityInput, UtilityButtons } from "./items/utility";
 
 export default function UtilityModalContainer() {
-  const [name, setName] = useState("");
+  const [name, setname] = useState("");
 
   const [accountstate, accountinterface] = useAccountContext();
-  const { removeModal, confirmModal, errorModal } = accountstate;
-  const { hideRemoveModal, acceptModal } = accountinterface;
+  const { type, title, message, visible } = accountstate;
+  const { closeModal, acceptModal } = accountinterface;
 
   return (
     <UtilityModal visible={visible}>
       <UtilityModal.Container>
-        <UtilityModal.Header type={subtype}>
-          {removeModal.visible && (
-            <RemoveHeader>{removeModal.title}</RemoveHeader>
+        <UtilityModal.Header type={type}>
+          {visible && type === "confirm" && (
+            <ConfirmHeader>{title}</ConfirmHeader>
           )}
-          {confirmModal.visible && (
-            <ConfirmHeader>{confirmModal.title}</ConfirmHeader>
+          {visible && type === "error" && <ErrorHeader>{title}</ErrorHeader>}
+          {visible && type === "utility" && (
+            <UtilityHeader>{title}</UtilityHeader>
           )}
-          {errorModal.visible && <ErrorHeader>{errorModal.title}</ErrorHeader>}
-          <UtilityModal.Close onClick={hideRemoveModal} />
+          <UtilityModal.Close onClick={closeModal} />
         </UtilityModal.Header>
         <UtilityModal.Body>
           <UtilityModal.Message>{message}</UtilityModal.Message>
-          {subtype === "rename" && (
-            <RenameInput setName={setName} name={name} />
+          {visible && type === "utility" && (
+            <UtilityInput setname={setname} name={name} />
           )}
-
           <UtilityModal.Wrapper>
-            {subtype === "error" && (
-              <ErrorButtons type={subtype} hideRemoveModal={hideRemoveModal} />
+            {visible && type === "error" && (
+              <ErrorButtons type={type} closeModal={closeModal} />
+            )}
+            {visible && type === "confirm " && (
+              <ConfirmButtons
+                type={type}
+                closeModal={closeModal}
+                acceptModal={acceptModal}
+              />
+            )}
+            {visible && type === "utility " && (
+              <UtilityButtons
+                type={type}
+                name={name}
+                setname={setname}
+                closeModal={closeModal}
+              />
             )}
           </UtilityModal.Wrapper>
         </UtilityModal.Body>

@@ -1,4 +1,4 @@
-import Reacr from "react";
+import React from "react";
 
 import { UtilityModal } from "./../../../components";
 
@@ -11,10 +11,10 @@ export function ConfirmHeader({ children }) {
   );
 }
 
-export function name({ type, hideModal, acceptModal }) {
+export function ConfirmButtons({ type, closeModal, acceptModal }) {
   return (
     <>
-      <UtilityModal.DeclineButton onClick={hideModal}>
+      <UtilityModal.DeclineButton onClick={closeModal}>
         CANCEL
       </UtilityModal.DeclineButton>
       <UtilityModal.AcceptButton onClick={acceptModal} type={type}>

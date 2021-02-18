@@ -11,9 +11,9 @@ export function ErrorHeader({ children }) {
   );
 }
 
-export function ErrorButtons({ type, hideModal }) {
+export function ErrorButtons({ type, closeModal }) {
   return (
-    <UtilityModal.AcceptButton onClick={hideModal} type={type}>
+    <UtilityModal.AcceptButton onClick={closeModal} type={type}>
       OK
     </UtilityModal.AcceptButton>
   );

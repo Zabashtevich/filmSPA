@@ -38,27 +38,17 @@ export const Header = styled.div`
     type === "error" &&
     css`
       background: ${({ theme }) => theme.colors.error};
-    `}
+    `};
   ${({ type }) =>
     type === "confirm" &&
     css`
       background: ${({ theme }) => theme.colors.warning};
-    `}
-    ${({ type }) =>
-    type === "rename" &&
+    `};
+  ${({ type }) =>
+    type === "utility" &&
     css`
       background: ${({ theme }) => theme.colors.secondary};
-    `}
-    ${({ type }) =>
-    type === "newlist" &&
-    css`
-      background: ${({ theme }) => theme.colors.secondary};
-    `}
-    ${({ type }) =>
-    type === "remove" &&
-    css`
-      background: ${({ theme }) => theme.colors.secondary};
-    `}
+    `};
 `;
 
 export const ErrorIcon = styled(BiErrorAlt)`
@@ -150,31 +140,19 @@ export const AcceptButton = styled.button`
     css`
       background: ${({ theme }) => theme.colors.error};
       border: 1px solid ${({ theme }) => theme.colors.error};
-    `}
+    `};
   ${({ type }) =>
     type === "confirm" &&
     css`
       background: ${({ theme }) => theme.colors.warning};
       border: 1px solid ${({ theme }) => theme.colors.warning};
-    `}
-    ${({ type }) =>
-    type === "rename" &&
+    `};
+  ${({ type }) =>
+    type === "utility" &&
     css`
       background: ${({ theme }) => theme.colors.secondary};
       border: 1px solid ${({ theme }) => theme.colors.secondary};
-    `}
-    ${({ type }) =>
-    type === "newlist" &&
-    css`
-      background: ${({ theme }) => theme.colors.secondary};
-      border: 1px solid ${({ theme }) => theme.colors.secondary};
-    `}
-    ${({ type }) =>
-    type === "remove" &&
-    css`
-      background: ${({ theme }) => theme.colors.secondary};
-      border: 1px solid ${({ theme }) => theme.colors.secondary};
-    `}
+    `};
   &:enabled:hover {
     background: white;
     border: 1px solid rgba(0, 0, 0, 0.2);

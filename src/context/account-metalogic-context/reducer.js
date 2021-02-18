@@ -1,12 +1,11 @@
 import {
-  ACCEPT_MODAL,
-  HIDE_ERROR_MODAL,
-  HIDE_REMOVE_MODAL,
-  HIDE_WARNING_MODAL,
-  SHOW_ERROR_MODAL,
-  SHOW_REMOVE_MODAL,
-  SHOW_WARNING_MODAL,
   initialState,
+  SHOW_CONFIRM_MODAL,
+  SHOW_ERROR_MODAL,
+  SHOW_UTILITY_MODAL,
+  CLOSE_MODAL,
+  ACCEPT_CONFIRM_MODAL,
+  ACCEPT_UTILITY_MODAL,
 } from "./constants";
 
 export default function accountReducer(
@@ -15,22 +14,29 @@ export default function accountReducer(
 ) {
   switch (type) {
     case SHOW_ERROR_MODAL:
-      return { ...state, errorModal: { visible: true, message: payload } };
-    case HIDE_ERROR_MODAL:
-      return { ...state, errorModal: { visible: false, message: "" } };
-    case SHOW_WARNING_MODAL:
-      return { ...state, warningModal: { visible: true, message: payload } };
-    case HIDE_WARNING_MODAL:
-      return { ...state, warningModal: { visible: false, message: "" } };
-    case SHOW_REMOVE_MODAL:
-      return { ...state, removeModal: { visible: true, ...payload } };
-    case HIDE_REMOVE_MODAL:
       return {
         ...state,
-        removeModal: { visible: false, id: null, message: "", subtype: null },
+        type: "error",
+        visible: true,
+        title: "ERROR",
+        message: payload,
       };
-    case ACCEPT_MODAL:
-      return { ...state, accepted: true, target: payload };
+    case SHOW_CONFIRM_MODAL:
+      return {
+        ...state,
+        ...payload,
+        type: "confirm",
+        visible: true,
+        title: "CONFIRM",
+      };
+    case SHOW_UTILITY_MODAL:
+      return { ...state, ...payload, type: "utility", visible: true };
+    case CLOSE_MODAL:
+      return { ...initialState };
+    case ACCEPT_CONFIRM_MODAL:
+      return { ...state, visible: false, accepted: true };
+    case ACCEPT_UTILITY_MODAL:
+      return { ...state, visible: false, accepted: true, value: payload };
     default:
       return state;
   }

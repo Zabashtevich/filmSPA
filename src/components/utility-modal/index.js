@@ -7,7 +7,7 @@ import {
   Header,
   ErrorIcon,
   WarningIcon,
-  Newlist,
+  UtilityIcon,
   Title,
   Message,
   Input,
@@ -56,8 +56,11 @@ UtilityModal.WarningIcon = function UtilityModalWarningIcon({
   return <WarningIcon {...rest}>{children}</WarningIcon>;
 };
 
-UtilityModal.Newlist = function UtilityModalNewlist({ children, ...rest }) {
-  return <Newlist {...rest}>{children}</Newlist>;
+UtilityModal.UtilityIcon = function UtilityModalUtilityIcon({
+  children,
+  ...rest
+}) {
+  return <UtilityIcon {...rest}>{children}</UtilityIcon>;
 };
 
 UtilityModal.Title = function UtilityModalTitle({ children, ...rest }) {

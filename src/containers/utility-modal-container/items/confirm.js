@@ -1,26 +1,23 @@
-import React from "react";
+import Reacr from "react";
 
-import { UtilityModal } from "../../../components";
+import { UtilityModal } from "./../../../components";
 
-export function ConfirmHeader() {
+export function ConfirmHeader({ children }) {
   return (
     <>
-      <UtilityModal.Title>CONFIRM</UtilityModal.Title>
+      <UtilityModal.Title>{children}</UtilityModal.Title>
       <UtilityModal.WarningIcon />
     </>
   );
 }
 
-export function ConfirmButtons({ type, closeModal, hideRemoveModal }) {
+export function name({ type, hideModal, acceptModal }) {
   return (
     <>
-      <UtilityModal.DeclineButton onClick={closeModal}>
+      <UtilityModal.DeclineButton onClick={hideModal}>
         CANCEL
       </UtilityModal.DeclineButton>
-      <UtilityModal.AcceptButton
-        onClick={() => hideRemoveModal("confirm")}
-        type={type}
-      >
+      <UtilityModal.AcceptButton onClick={acceptModal} type={type}>
         ACCEPT
       </UtilityModal.AcceptButton>
     </>

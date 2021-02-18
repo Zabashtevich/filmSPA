@@ -79,7 +79,7 @@ export const WarningIcon = styled(ImWarning)`
   color: rgba(255, 255, 255, 1);
 `;
 
-export const Newlist = styled(FiSettings)`
+export const UtilityIcon = styled(FiSettings)`
   position: absolute;
   font-size: 14rem;
   top: 50%;

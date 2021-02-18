@@ -17,11 +17,13 @@ export const ACCEPT_MODAL = "ACCEPT_MODAL";
 export const AccountMetalogicContext = createContext(null);
 
 export const initialState = {
+  id: null,
+  type: null,
+  value: null,
+  title: null,
+  subtype: null,
+  message: null,
+  visible: false,
   accepted: false,
-  target: null,
-  warningModal: { visible: false, message: "" },
-  errorModal: { visible: false, message: "" },
-  confirmModal: { visible: false, message: "", id: null },
-  editModal: {},
-  removeModal: { visible: false, id: null, message: "", subtype: null },
+  processing: false,
 };

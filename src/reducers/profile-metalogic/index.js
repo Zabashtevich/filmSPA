@@ -10,7 +10,7 @@ import {
   CLOSE_PROCESSING_WINDOW,
 } from "./constants";
 
-export default function accountReducer(
+export default function profileMetalogicReducer(
   state = initialState,
   { type, payload },
 ) {

@@ -1,21 +1,9 @@
-import { createContext, useState } from "react";
-import { firebase } from "../../libs/firebase";
-
+import { createContext, useReducer } from "react";
+import modalReducer, { initialState } from "./reducer";
 export const ModalContext = createContext(null);
 
 export default function ModalContextProvider({ children }) {
-  const [state, setState] = useState({
-    accepted: false,
-    visible: false,
-    message: null,
-    type: null,
-    title: null,
-    value: null,
-  });
+  const [state, dispatch] = useReducer(modalReducer, initialState);
 
-  return (
-    <ModalContext.Provider value={[state, setState]}>
-      {children}
-    </ModalContext.Provider>
-  );
+  return <ModalContext.Provider value={[]}>{children}</ModalContext.Provider>;
 }

@@ -10,7 +10,7 @@ export default function useRate(nickname) {
   const userData = useSelector((state) => state.userData);
   const [, modalController] = useModalContext();
 
-  const { loading } = userData;
+  const { loading, ratedMovies } = userData;
   const {
     showProcessingWindow,
     closeProcessingWindow,

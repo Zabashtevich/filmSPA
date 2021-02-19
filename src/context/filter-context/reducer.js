@@ -10,7 +10,7 @@ export const initialState = {
   amount: null,
 };
 
-export default function filterReducer(state, action) {
+export default function filterReducer(state = initialState, action) {
   switch (action.type) {
     case SET_FILTER_PARAMS:
       return { ...state, ...action.payload };

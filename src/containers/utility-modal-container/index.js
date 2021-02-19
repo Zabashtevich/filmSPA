@@ -4,13 +4,14 @@ import { UtilityModal } from "../../components";
 import { ConfirmHeader, ConfirmButtons } from "./items/confirm";
 import { ErrorHeader, ErrorButtons } from "./items/error";
 import { UtilityHeader, UtilityInput, UtilityButtons } from "./items/utility";
+import { useModalContext } from "./../../context";
 
 export default function UtilityModalContainer() {
   const [name, setname] = useState("");
 
-  // const [accountstate, accountinterface] = useAccountContext();
-  const { type, title, message, visible } = accountstate;
-  const { closeModal, acceptModal } = accountinterface;
+  const [modalstate, modalinterface] = useModalContext();
+  const { type, title, message, visible } = modalstate;
+  const { closeModal, acceptModal } = modalinterface;
 
   return (
     <UtilityModal visible={visible}>

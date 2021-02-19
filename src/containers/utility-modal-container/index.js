@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 import { UtilityModal } from "../../components";
-import { useAccountContext } from "../../context";
 import { ConfirmHeader, ConfirmButtons } from "./items/confirm";
 import { ErrorHeader, ErrorButtons } from "./items/error";
 import { UtilityHeader, UtilityInput, UtilityButtons } from "./items/utility";
@@ -9,7 +8,7 @@ import { UtilityHeader, UtilityInput, UtilityButtons } from "./items/utility";
 export default function UtilityModalContainer() {
   const [name, setname] = useState("");
 
-  const [accountstate, accountinterface] = useAccountContext();
+  // const [accountstate, accountinterface] = useAccountContext();
   const { type, title, message, visible } = accountstate;
   const { closeModal, acceptModal } = accountinterface;
 

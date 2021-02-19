@@ -2,12 +2,10 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import { VotePopup } from "../../../../components";
-import { useAuthContext } from "../../../../context";
 
 export default function VotePopupContainer({ rated, userData, user }) {
   const [popupVisible, setPopupVisible] = useState(false);
 
-  const firebase = useAuthContext();
   const history = useHistory();
 
   const popupToggler = (event) => {

@@ -8,7 +8,6 @@ import { getErrorsList, getPreviewSrc, validateImg } from "../../utils/utils";
 import { authLogic } from "../../utils/firebase";
 import { RegistrationFormContainer, LoginFormContainer } from "./auxillary";
 import { SpinnerSmall } from "../../components/loading-spinner";
-import { useAuthContext } from "../../context";
 
 export default function AuthContainer() {
   const location = useParams();
@@ -23,8 +22,7 @@ export default function AuthContainer() {
   const [file, setFile] = useState(null);
   const [isAvatarChanged, setIsAvatarChanged] = useState(false);
   const [imgIsValid, setImgIsValid] = useState(false);
-
-  const firebase = useAuthContext();
+  //TODO FIREBASE
 
   useEffect(() => {
     if (imgIsValid) {

@@ -6,7 +6,6 @@ import useAuthListener from "../../../../hooks/useAuthListener";
 import { DescriptionPopupContainer } from "../../../";
 import { WatchListContainer } from "../";
 // import { favoriteLogic } from "../../../../utils/firebase";
-import { useAuthContext } from "../../../../context";
 
 export default function TooltipsContainer({ slug, item }) {
   const [user, loading] = useAuthListener();
@@ -21,7 +20,6 @@ export default function TooltipsContainer({ slug, item }) {
     "favorite",
   );
 
-  const firebase = useAuthContext();
   useEffect(() => {
     if (data.length === 0) return;
     if (data.filter((item) => item === slug).length > 0) {

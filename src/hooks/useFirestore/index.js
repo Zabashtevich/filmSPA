@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useAuthContext } from "../../context";
+import { firebase } from "./../../libs/firebase";
 
 export default function useFirestore(
   collectionTarget,
@@ -7,7 +7,6 @@ export default function useFirestore(
   auxTarget = "list",
 ) {
   const [data, setData] = useState({ loading: true, content: [] });
-  const firebase = useAuthContext();
 
   useEffect(() => {
     let mounted = true;

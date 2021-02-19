@@ -3,12 +3,10 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import { DetailsPanel } from "../../../../components";
-import { useAccountContext } from "../../../../context";
 
 export default function RatingContainer({ list }) {
   const userData = useSelector((store) => store.userData);
   const { slug } = useParams();
-  const [, accountinerface] = useAccountContext();
 
   const [isRated, setIsRated] = useState({
     rated: false,
@@ -18,7 +16,6 @@ export default function RatingContainer({ list }) {
 
   const { loading, ratedMovies } = userData;
   const { rated, value, time } = isRated;
-  const { estimate } = accountinerface;
 
   useEffect(() => {
     if (!loading) {
@@ -29,9 +26,10 @@ export default function RatingContainer({ list }) {
     }
   }, [loading, ratedMovies, slug]);
 
-  const handleEstimate = (value) => {
-    estimate(value, slug);
-  };
+  // const handleEstimate = (value) => {
+  //   estimate(value, slug);
+  // };
+  //TODO
 
   return (
     <>

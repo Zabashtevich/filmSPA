@@ -8,7 +8,7 @@ import useAuthListener from "../../hooks/useAuthListener";
 
 import { ReviewPost } from "../../components";
 import { postReviewLogic } from "../../utils/firebase";
-import { useAuthContext } from "../../context";
+import { firebase } from "./../../libs/firebase";
 
 export default function ReviewPostContainer() {
   const [visibleDropdown, setVisibleDropdown] = useState(false);
@@ -19,8 +19,7 @@ export default function ReviewPostContainer() {
 
   const history = useHistory();
   const slug = useParams();
-
-  const firebase = useAuthContext();
+  //TODO FIREBASE
   const { user } = useAuthListener();
 
   const [reviewLoading, reviewData] = useFirestore(`Reviews`, slug.slug);

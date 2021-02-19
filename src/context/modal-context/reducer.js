@@ -1,3 +1,11 @@
+import {
+  CLOSE_MODAL,
+  CONFIRM_MODAL,
+  SHOW_CONFIRM_MODAL,
+  SHOW_ERROR_MODAL,
+  SHOW_UTILITY_MODAL,
+} from "./constants";
+
 export const initialState = {
   accepted: false,
   visible: false,
@@ -32,6 +40,17 @@ export default function modalRe(state = initialState, { type, payload }) {
         title: "ENTER A NAME",
         type: "utility",
         message: payload,
+      };
+    case CLOSE_MODAL:
+      return { ...initialState };
+    case CONFIRM_MODAL:
+      return {
+        ...state,
+        visible: false,
+        message: null,
+        type: null,
+        title: null,
+        value: payload,
       };
     default:
       return state;

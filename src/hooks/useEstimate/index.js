@@ -1,3 +1,54 @@
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
-export default function useEstimate(nickname) {}
+import { firebase } from "./../../libs/firebase";
+import { useModalContext } from "./../../context";
+
+export default function useEstimate(nickname) {
+  const [props, setProps] = useState({ type: null, value: null });
+
+  const userData = useSelector((state) => state.userData);
+  const [, modalinterface] = useModalContext();
+
+  const { type, value } = props;
+  const { ratedMovies, loading } = userData;
+  const {
+    showErrorModal,
+    showProcessingWindow,
+    closeProcessingWindow,
+  } = modalinterface;
+
+  useEffect(() => {
+    if (!loading && type === "rate") {
+      showProcessingWindow("Processing your vote :3");
+      firebase
+        .firestore()
+        .collection(nickname)
+        .doc("moviesrated")
+        .update({
+          list: ratedMovies
+            .filter((item) => +item.id !== +value.id)
+            .concat(value),
+        })
+        .then(() => closeProcessingWindow())
+        .catch(() => {
+          closeProcessingWindow();
+          showErrorModal("Something gone wrong. The vote was not saved :c");
+        });
+    } else if (!loading && type === "unrate") {
+      showProcessingWindow("Deleting your vote");
+      firebase
+        .firestore()
+        .collection(nickname)
+        .doc("moviesrated")
+        .update({ list: ratedMovies.filter((item) => +item.id !== +value) })
+        .then(() => closeProcessingWindow())
+        .catch(() => {
+          closeProcessingWindow();
+          showErrorModal("Something gone wrong. The vote was not deleted :c");
+        });
+    }
+  }, [loading, props]);
+
+  return [setProps];
+}

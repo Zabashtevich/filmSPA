@@ -10,7 +10,7 @@ export default function useUserlist(nickname) {
   const userData = useSelector((store) => store.userData);
   const [, modalinterface] = useModalContext();
 
-  const { userDataLoading, userlists } = userData;
+  const { loading, userlists } = userData;
   const {
     showProcessingWindow,
     closeProcessingWindow,
@@ -19,32 +19,30 @@ export default function useUserlist(nickname) {
   const { value, type } = props;
 
   useEffect(() => {
-    if (!userDataLoading) {
-      if (type === "create") {
-        showProcessingWindow("Creating your list");
-        firebase
-          .firestore()
-          .collection(nickname)
-          .doc("collection")
-          .update({ list: userlists.concat(value) })
-          .then(() => closeProcessingWindow())
-          .catch(() =>
-            showErrorModal("Something gone wrong. The list was not created."),
-          );
-      } else if (type === "delete") {
-        showProcessingWindow("Deleting your list");
-        firebase
-          .firestore()
-          .collection(nickname)
-          .doc("collection")
-          .update({ list: userlists.filter((item) => +item.id !== +value) })
-          .then(() => closeProcessingWindow())
-          .catch(() =>
-            showErrorModal("Something gone wrong. The list was not created."),
-          );
-      }
+    if (!loading && type === "create") {
+      showProcessingWindow("Creating your list");
+      firebase
+        .firestore()
+        .collection(nickname)
+        .doc("collection")
+        .update({ list: userlists.concat(value) })
+        .then(() => closeProcessingWindow())
+        .catch(() =>
+          showErrorModal("Something gone wrong. The list was not created."),
+        );
+    } else if (!loading && type === "delete") {
+      showProcessingWindow("Deleting your list");
+      firebase
+        .firestore()
+        .collection(nickname)
+        .doc("collection")
+        .update({ list: userlists.filter((item) => +item.id !== +value) })
+        .then(() => closeProcessingWindow())
+        .catch(() =>
+          showErrorModal("Something gone wrong. The list was not created."),
+        );
     }
-  }, [userDataLoading, props]);
+  }, [loading, props]);
 
   return [setProps];
 }

@@ -2,10 +2,10 @@ import React from "react";
 
 import { UtilityModal } from "./../../../components";
 
-export function UtilityHeader({ children }) {
+export function UtilityHeader() {
   return (
     <>
-      <UtilityModal.Title>{children}</UtilityModal.Title>
+      <UtilityModal.Title>ENTER A NAME</UtilityModal.Title>
       <UtilityModal.UtilityIcon />
     </>
   );
@@ -26,7 +26,7 @@ export function UtilityButtons({
   name,
   setname,
   closeModal,
-  acceptModal,
+  confirmModal,
 }) {
   return (
     <>
@@ -38,7 +38,7 @@ export function UtilityButtons({
         type={type}
         onClick={() => {
           setname("");
-          acceptModal(name);
+          confirmModal(name);
         }}
       >
         ACCEPT

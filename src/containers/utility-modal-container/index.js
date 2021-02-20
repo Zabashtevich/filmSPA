@@ -10,44 +10,39 @@ export default function UtilityModalContainer() {
   const [name, setname] = useState("");
 
   const [modalstate, modalinterface] = useModalContext();
-  const { type, title, message, visible } = modalstate;
-  const { closeModal, acceptModal } = modalinterface;
+  const { type, message, visible } = modalstate;
+  const { closeModal, confirmModal } = modalinterface;
 
   return (
     <UtilityModal visible={visible}>
       <UtilityModal.Container>
         <UtilityModal.Header type={type}>
-          {visible && type === "confirm" && (
-            <ConfirmHeader>{title}</ConfirmHeader>
-          )}
-          {visible && type === "error" && <ErrorHeader>{title}</ErrorHeader>}
-          {visible && type === "utility" && (
-            <UtilityHeader>{title}</UtilityHeader>
-          )}
+          {type === "confirm" && <ConfirmHeader />}
+          {type === "error" && <ErrorHeader />}
+          {type === "utility" && <UtilityHeader />}
           <UtilityModal.Close onClick={closeModal} />
         </UtilityModal.Header>
         <UtilityModal.Body>
           <UtilityModal.Message>{message}</UtilityModal.Message>
-          {visible && type === "utility" && (
-            <UtilityInput setname={setname} name={name} />
-          )}
+          {type === "utility" && <UtilityInput setname={setname} name={name} />}
           <UtilityModal.Wrapper>
-            {visible && type === "error" && (
+            {type === "error" && (
               <ErrorButtons type={type} closeModal={closeModal} />
             )}
-            {visible && type === "confirm " && (
+            {type === "confirm " && (
               <ConfirmButtons
                 type={type}
                 closeModal={closeModal}
-                acceptModal={acceptModal}
+                confirmModal={confirmModal}
               />
             )}
-            {visible && type === "utility " && (
+            {type === "utility " && (
               <UtilityButtons
                 type={type}
                 name={name}
                 setname={setname}
                 closeModal={closeModal}
+                confirmModal={confirmModal}
               />
             )}
           </UtilityModal.Wrapper>

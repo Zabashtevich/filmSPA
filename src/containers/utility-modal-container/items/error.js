@@ -2,10 +2,10 @@ import React from "react";
 
 import { UtilityModal } from "./../../../components";
 
-export function ErrorHeader({ children }) {
+export function ErrorHeader() {
   return (
     <>
-      <UtilityModal.Title>{children}</UtilityModal.Title>
+      <UtilityModal.Title>ERROR</UtilityModal.Title>
       <UtilityModal.ErrorIcon />
     </>
   );
@@ -13,7 +13,7 @@ export function ErrorHeader({ children }) {
 
 export function ErrorButtons({ type, closeModal }) {
   return (
-    <UtilityModal.AcceptButton onClick={closeModal} type={type}>
+    <UtilityModal.AcceptButton type={type} onClick={closeModal}>
       OK
     </UtilityModal.AcceptButton>
   );

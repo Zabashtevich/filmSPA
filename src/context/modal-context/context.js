@@ -36,8 +36,8 @@ export default function ModalContextProvider({ children }) {
   return (
     <ModalContext.Provider
       value={[
+        { state },
         {
-          state,
           showErrorModal,
           showConfirmModal,
           showUtilityModal,

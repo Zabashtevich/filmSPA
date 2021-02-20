@@ -26,10 +26,15 @@ export default function useUserlist(nickname) {
         .collection(nickname)
         .doc("collection")
         .update({ list: userlists.concat(value) })
-        .then(() => closeProcessingWindow())
-        .catch(() =>
-          showErrorModal("Something gone wrong. The list was not created."),
-        );
+        .then(() => {
+          closeProcessingWindow();
+          setProps({ type: null, value: null });
+        })
+        .catch(() => {
+          closeProcessingWindow();
+          showErrorModal("Something gone wrong. The list was not created.");
+          setProps({ type: null, value: null });
+        });
     } else if (!loading && type === "delete") {
       showProcessingWindow("Deleting your list");
       firebase
@@ -37,10 +42,15 @@ export default function useUserlist(nickname) {
         .collection(nickname)
         .doc("collection")
         .update({ list: userlists.filter((item) => +item.id !== +value) })
-        .then(() => closeProcessingWindow())
-        .catch(() =>
-          showErrorModal("Something gone wrong. The list was not created."),
-        );
+        .then(() => {
+          closeProcessingWindow();
+          setProps({ type: null, value: null });
+        })
+        .catch(() => {
+          closeProcessingWindow();
+          showErrorModal("Something gone wrong. The list was not created.");
+          setProps({ type: null, value: null });
+        });
     }
   }, [loading, props]);
 

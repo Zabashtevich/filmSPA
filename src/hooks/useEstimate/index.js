@@ -30,10 +30,14 @@ export default function useEstimate(nickname) {
             .filter((item) => +item.id !== +value.id)
             .concat(value),
         })
-        .then(() => closeProcessingWindow())
+        .then(() => {
+          closeProcessingWindow();
+          setProps({ type: null, value: null });
+        })
         .catch(() => {
           closeProcessingWindow();
           showErrorModal("Something gone wrong. The vote was not saved :c");
+          setProps({ type: null, value: null });
         });
     } else if (!loading && type === "unrate") {
       showProcessingWindow("Deleting your vote");
@@ -42,10 +46,14 @@ export default function useEstimate(nickname) {
         .collection(nickname)
         .doc("moviesrated")
         .update({ list: ratedMovies.filter((item) => +item.id !== +value) })
-        .then(() => closeProcessingWindow())
+        .then(() => {
+          closeProcessingWindow();
+          setProps({ type: null, value: null });
+        })
         .catch(() => {
           closeProcessingWindow();
           showErrorModal("Something gone wrong. The vote was not deleted :c");
+          setProps({ type: null, value: null });
         });
     }
   }, [loading, props]);

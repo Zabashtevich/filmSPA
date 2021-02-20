@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Snippet } from "../../../../components";
 import SnippetPopup from "./item";
 
 export default function SnipperContainer() {
+  const [popupVisible, setPopupVisible] = useState(false);
+
   return (
     <Snippet>
-      <Snippet.Element>
+      <Snippet.Element onClick={() => setPopupVisible((prev) => !prev)}>
         <Snippet.Userlist />
-        <SnippetPopup />
+        <SnippetPopup visible={popupVisible} />
       </Snippet.Element>
       <Snippet.Element>
         <Snippet.Favorite />

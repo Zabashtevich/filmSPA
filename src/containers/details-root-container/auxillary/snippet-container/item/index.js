@@ -2,9 +2,9 @@ import React from "react";
 
 import { Snippet } from "../../../../../components";
 
-export default function SnippetPopup({ userlists }) {
+export default function SnippetPopup({ visible, userlists = [] }) {
   return (
-    <Snippet.Backdrop>
+    <Snippet.Backdrop visible={visible}>
       {userlists.length === 0 && (
         <Snippet.Item>
           <Snippet.Placeholder />

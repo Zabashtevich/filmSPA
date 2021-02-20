@@ -11,6 +11,7 @@ import {
 import useFetch from "../../hooks/useFetchData";
 import { CardRowsContainer } from "./auxillary";
 import { ModalGalleryContainer } from "../";
+import SnippetContainer from "./auxillary/snippet-container";
 
 export default function CardDetailsRootContainer() {
   const [visibleGallery, setVisibleGallery] = useState(false);
@@ -80,6 +81,7 @@ export default function CardDetailsRootContainer() {
                     </ListColumn.ItemContainer>
                   );
                 })}
+            <SnippetContainer />
           </ListColumn>
         </DetailsHeader>
       )}

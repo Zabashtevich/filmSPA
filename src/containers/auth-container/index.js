@@ -8,6 +8,7 @@ import { getErrorsList, getPreviewSrc, validateImg } from "../../utils/utils";
 import { authLogic } from "../../utils/firebase";
 import { RegistrationFormContainer, LoginFormContainer } from "./auxillary";
 import { SpinnerSmall } from "../../components/loading-spinner";
+import { firebase } from "./../../libs/firebase";
 
 export default function AuthContainer() {
   const location = useParams();

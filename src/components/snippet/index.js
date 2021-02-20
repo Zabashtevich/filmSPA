@@ -1,4 +1,5 @@
 import React from "react";
+import { CSSTransition } from "react-transition-group";
 
 import {
   Container,
@@ -38,8 +39,19 @@ Snippet.Userlist = function SnippetUserlist({ ...rest }) {
   return <Userlist {...rest} />;
 };
 
-Snippet.Backdrop = function SnippetBackdrop({ children, ...rest }) {
-  return <Backdrop {...rest}>{children}</Backdrop>;
+Snippet.Backdrop = function SnippetBackdrop({ visible, children, ...rest }) {
+  return (
+    <CSSTransition
+      in={visible}
+      classNames="opacity"
+      timeout={{ enter: 500, exit: 500, appear: 500 }}
+      mountOnEnter
+      unmountOnExit
+      appear={true}
+    >
+      <Backdrop {...rest}>{children}</Backdrop>
+    </CSSTransition>
+  );
 };
 
 Snippet.Item = function SnippetItem({ children, ...rest }) {

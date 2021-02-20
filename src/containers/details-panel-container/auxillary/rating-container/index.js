@@ -15,7 +15,7 @@ export default function RatingContainer({ list }) {
     value: null,
     time: null,
   });
-  console.log(metalogicInterface);
+
   const { accepted } = modalstate;
   const { showConfirmModal } = modalinterface;
   const { loading, ratedMovies } = userData;

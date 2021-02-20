@@ -1,6 +1,6 @@
 import styled from "styled-components/macro";
 
-import { AiFillHeart } from "react-icons/ai";
+import { RiHeartAddFill } from "react-icons/ri";
 import { RiPlayList2Fill } from "react-icons/ri";
 import { VscDiffAdded } from "react-icons/vsc";
 import { GoDiffRemoved } from "react-icons/go";
@@ -13,6 +13,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-around;
   font-family: ${({ theme }) => theme.fontFamily.secondary};
+  margin-top: 3rem;
 `;
 
 export const Element = styled.span`
@@ -20,13 +21,32 @@ export const Element = styled.span`
   align-items: center;
   justify-content: center;
   font-size: ${({ theme }) => theme.fontSize.large};
+  background-color: white;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
 `;
 
-export const Favorite = styled(AiFillHeart)``;
+export const Favorite = styled(RiHeartAddFill)`
+  padding: 0.6rem;
+  color: ${({ theme }) => theme.colors.secondary};
+  & > * {
+    pointer-events: none;
+  }
+`;
 
-export const Userlist = styled(RiPlayList2Fill)``;
+export const Userlist = styled(RiPlayList2Fill)`
+  padding: 0.6rem;
+  color: ${({ theme }) => theme.colors.secondary};
+  & > * {
+    pointer-events: none;
+  }
+`;
 
-export const Backdrop = styled.div``;
+export const Backdrop = styled.div`
+  ${({ theme }) => theme.animations.opacity}
+  position: absolute;
+`;
 
 export const Item = styled.div``;
 

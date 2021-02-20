@@ -9,7 +9,7 @@ import {
   ModalGallery,
 } from "../../components";
 import useFetch from "../../hooks/useFetchData";
-import { TooltipsContainer, CardRowsContainer } from "./auxillary";
+import { CardRowsContainer } from "./auxillary";
 import { ModalGalleryContainer } from "../";
 
 export default function CardDetailsRootContainer() {

@@ -6,6 +6,7 @@ export default function ReviewContainer({ item }) {
     amount: 500,
     visible: item.text.length > 500 ? true : false,
   });
+
   return (
     <Review rating={item.rating}>
       <Review.Header>

@@ -29,10 +29,6 @@ export default function CardDetailsRootContainer() {
     setVisibleGallery(true);
   };
 
-  const onRedirect = () => {
-    document.body.style.overflow = "auto";
-    history.push("/");
-  };
   return (
     <>
       {list && (
@@ -84,7 +80,6 @@ export default function CardDetailsRootContainer() {
                     </ListColumn.ItemContainer>
                   );
                 })}
-            <TooltipsContainer slug={location.slug} item={list} />
           </ListColumn>
         </DetailsHeader>
       )}

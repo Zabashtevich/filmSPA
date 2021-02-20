@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 
 import { DetailsPanel } from "../../../../components";
-import { useMetalogicContext } from "../../../../context";
+import { useMetalogicContext, useModalContext } from "../../../../context";
 import { getCorrectDate } from "../../../../utils";
 
 export default function RatingContainer({ list }) {
   const [, metalogicInterface] = useMetalogicContext();
+  const [modalstate, modalinterface] = useModalContext();
   const userData = useSelector((store) => store.userData);
 
   const [isRated, setIsRated] = useState({
@@ -16,20 +16,28 @@ export default function RatingContainer({ list }) {
     time: null,
   });
 
+  const { accepted } = modalstate;
+  const { showConfirmModal } = modalinterface;
   const { loading, ratedMovies } = userData;
   const { rated, value, time } = isRated;
   const { setEstimatingProps } = metalogicInterface;
 
   useEffect(() => {
     if (!loading) {
-      const result = ratedMovies.find((item) => +item.id === slug);
+      const result = ratedMovies.find((item) => +item.id === +list.id);
       if (result) {
         setIsRated({ rated: true, value: result.value, time: result.time });
       }
     }
-  }, [loading, ratedMovies, slug]);
+  }, [loading, ratedMovies]);
 
-  const handleEstimate = (value) => {
+  useEffect(() => {
+    if (accepted) {
+      setEstimatingProps({ type: "unrate", value: list.id });
+    }
+  }, [accepted]);
+
+  const rate = (value) => {
     setEstimatingProps({
       type: "rate",
       value: {
@@ -47,10 +55,7 @@ export default function RatingContainer({ list }) {
   return (
     <>
       <DetailsPanel.Rating>
-        <DetailsPanel.Stars
-          average={list.vote_average}
-          handleEstimate={handleEstimate}
-        />
+        <DetailsPanel.Stars average={list.vote_average} rate={rate} />
         <DetailsPanel.Average average={list.vote_average}>
           {list.vote_average}
         </DetailsPanel.Average>
@@ -61,7 +66,13 @@ export default function RatingContainer({ list }) {
           <DetailsPanel.UserWrapper>
             <DetailsPanel.UserTitle>Your vote:</DetailsPanel.UserTitle>
             <DetailsPanel.UserValue>{value}</DetailsPanel.UserValue>
-            <DetailsPanel.Button>Delete</DetailsPanel.Button>
+            <DetailsPanel.Button
+              onClick={() =>
+                showConfirmModal("Are you sure you want to delete your vote?")
+              }
+            >
+              Delete
+            </DetailsPanel.Button>
           </DetailsPanel.UserWrapper>
           <DetailsPanel.UserWrapper>
             <DetailsPanel.Time>{time}</DetailsPanel.Time>

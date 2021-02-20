@@ -46,6 +46,7 @@ export default function ModalContextProvider({ children }) {
           showErrorModal,
           showConfirmModal,
           showUtilityModal,
+          showProcessingWindow,
           closeModal,
           confirmModal,
         },

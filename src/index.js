@@ -24,14 +24,14 @@ ReactDOM.render(
   <Provider store={store}>
     <ThemeProvider theme={Theme}>
       <UserDataLogic>
-        <MetalogicContextProvider>
-          <ModalContextProvider>
+        <ModalContextProvider>
+          <MetalogicContextProvider>
             <FilterContextProvider>
               <GlobalStyles />
               <App />
             </FilterContextProvider>
-          </ModalContextProvider>
-        </MetalogicContextProvider>
+          </MetalogicContextProvider>
+        </ModalContextProvider>
       </UserDataLogic>
     </ThemeProvider>
   </Provider>,

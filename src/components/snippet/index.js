@@ -18,6 +18,8 @@ import {
   Input,
   Confirm,
   Cancel,
+  Inner,
+  Placeholder,
 } from "./styles/snippet";
 
 export default function Snippet({ children, ...rest }) {

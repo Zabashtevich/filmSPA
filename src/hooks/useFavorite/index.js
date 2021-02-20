@@ -9,17 +9,16 @@ export default function useFavorite(nickname) {
 
   const userData = useSelector((state) => state.userData);
   const [, modalinterface] = useModalContext();
-
   const { type, value } = props;
   const { loading, favoritedMovies } = userData;
-  const { showProccesingWindow, closeModal, showErrorModal } = modalinterface;
+  const { showProcessingWindow, closeModal, showErrorModal } = modalinterface;
 
   useEffect(() => {
     if (!loading && type === "favorite") {
-      showProccesingWindow("Processing...");
+      showProcessingWindow("Processing...");
       firebase
         .firestore()
-        .collection(nickname)
+        .collection(`${nickname}`)
         .doc("collection")
         .update({ favorite: favoritedMovies.concat(value) })
         .then(() => {
@@ -31,11 +30,11 @@ export default function useFavorite(nickname) {
           showErrorModal("Something gone wrong. Movie was not favorited :c");
           setProps({ type: null, value: null });
         });
-    } else if (!loading && type !== "unfavorite") {
-      showProccesingWindow("Processing...");
+    } else if (!loading && type === "unfavorite") {
+      showProcessingWindow("Processing...");
       firebase
         .firestore()
-        .collection(nickname)
+        .collection(`${nickname}`)
         .doc("collection")
         .update({
           favorite: favoritedMovies.filter((item) => +item.id !== +value),

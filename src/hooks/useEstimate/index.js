@@ -19,7 +19,7 @@ export default function useEstimate(nickname) {
       showProcessingWindow("Processing your vote :3");
       firebase
         .firestore()
-        .collection(nickname)
+        .collection(`${nickname}`)
         .doc("moviesrated")
         .update({
           list: ratedMovies
@@ -39,7 +39,7 @@ export default function useEstimate(nickname) {
       showProcessingWindow("Deleting your vote");
       firebase
         .firestore()
-        .collection(nickname)
+        .collection(`${nickname}`)
         .doc("moviesrated")
         .update({ list: ratedMovies.filter((item) => +item.id !== +value) })
         .then(() => {

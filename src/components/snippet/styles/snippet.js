@@ -8,11 +8,21 @@ import { FiEdit } from "react-icons/fi";
 import { AiFillCheckSquare } from "react-icons/ai";
 import { AiFillCloseSquare } from "react-icons/ai";
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  font-family: ${({ theme }) => theme.fontFamily.secondary};
+`;
 
-export const Element = styled.span``;
+export const Element = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: ${({ theme }) => theme.fontSize.large};
+`;
 
-export const Favorie = styled(AiFillHeart)``;
+export const Favorite = styled(AiFillHeart)``;
 
 export const Userlist = styled(RiPlayList2Fill)``;
 
@@ -37,6 +47,10 @@ export const Popup = styled.div``;
 export const Title = styled.span``;
 
 export const Input = styled.input``;
+
+export const Inner = styled.div``;
+
+export const Placeholder = styled.span``;
 
 export const Confirm = styled(AiFillCheckSquare)``;
 

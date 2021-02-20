@@ -309,7 +309,7 @@ export const getCombinedReviews = (listreviews, userreview) => {
         }/${date.getUTCDate()}`,
         text: item.content,
         nickname: item.author,
-        avatar: item.author_details.avatar_path.slice(1) || null,
+        avatar: item.author_details.avatar_path || null,
         rating: item.author_details.rating || null,
       };
     }),

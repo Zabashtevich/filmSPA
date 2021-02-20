@@ -19,7 +19,7 @@ export default function useUserlist(nickname) {
       showProcessingWindow("Creating your list");
       firebase
         .firestore()
-        .collection(nickname)
+        .collection(`${nickname}`)
         .doc("collection")
         .update({ list: userlists.concat(value) })
         .then(() => {
@@ -35,7 +35,7 @@ export default function useUserlist(nickname) {
       showProcessingWindow("Deleting your list");
       firebase
         .firestore()
-        .collection(nickname)
+        .collection(`${nickname}`)
         .doc("collection")
         .update({ list: userlists.filter((item) => +item.id !== +value) })
         .then(() => {

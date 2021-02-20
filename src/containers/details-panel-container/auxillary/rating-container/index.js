@@ -6,7 +6,7 @@ import { useMetalogicContext, useModalContext } from "../../../../context";
 import { getCorrectDate } from "../../../../utils";
 
 export default function RatingContainer({ list }) {
-  const [, metalogicInterface] = useMetalogicContext();
+  const [metalogicInterface] = useMetalogicContext();
   const [modalstate, modalinterface] = useModalContext();
   const userData = useSelector((store) => store.userData);
 
@@ -15,7 +15,7 @@ export default function RatingContainer({ list }) {
     value: null,
     time: null,
   });
-
+  console.log(metalogicInterface);
   const { accepted } = modalstate;
   const { showConfirmModal } = modalinterface;
   const { loading, ratedMovies } = userData;

@@ -11,11 +11,7 @@ export default function useUserlist(nickname) {
   const [, modalinterface] = useModalContext();
 
   const { loading, userlists } = userData;
-  const {
-    showProcessingWindow,
-    closeProcessingWindow,
-    showErrorModal,
-  } = modalinterface;
+  const { showProcessingWindow, closeModal, showErrorModal } = modalinterface;
   const { value, type } = props;
 
   useEffect(() => {
@@ -27,11 +23,11 @@ export default function useUserlist(nickname) {
         .doc("collection")
         .update({ list: userlists.concat(value) })
         .then(() => {
-          closeProcessingWindow();
+          closeModal();
           setProps({ type: null, value: null });
         })
         .catch(() => {
-          closeProcessingWindow();
+          closeModal();
           showErrorModal("Something gone wrong. The list was not created.");
           setProps({ type: null, value: null });
         });
@@ -43,11 +39,11 @@ export default function useUserlist(nickname) {
         .doc("collection")
         .update({ list: userlists.filter((item) => +item.id !== +value) })
         .then(() => {
-          closeProcessingWindow();
+          closeModal();
           setProps({ type: null, value: null });
         })
         .catch(() => {
-          closeProcessingWindow();
+          closeModal();
           showErrorModal("Something gone wrong. The list was not created.");
           setProps({ type: null, value: null });
         });

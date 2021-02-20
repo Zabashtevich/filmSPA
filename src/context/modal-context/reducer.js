@@ -9,19 +9,18 @@ import {
 export const initialState = {
   accepted: false,
   visible: false,
+  processing: false,
+  value: null,
   message: null,
   type: null,
-  title: null,
-  value: null,
 };
 
-export default function modalRe(state = initialState, { type, payload }) {
+export default function modalReducer(state = initialState, { type, payload }) {
   switch (type) {
     case SHOW_ERROR_MODAL:
       return {
         ...state,
         visible: true,
-        title: "ERROR",
         type: "error",
         message: payload,
       };
@@ -29,7 +28,6 @@ export default function modalRe(state = initialState, { type, payload }) {
       return {
         ...state,
         visible: true,
-        title: "CONFIRM",
         type: "confirm",
         message: payload,
       };
@@ -37,9 +35,8 @@ export default function modalRe(state = initialState, { type, payload }) {
       return {
         ...state,
         visible: true,
-        title: "ENTER A NAME",
         type: "utility",
-        message: payload,
+        ...payload,
       };
     case CLOSE_MODAL:
       return { ...initialState };
@@ -49,8 +46,8 @@ export default function modalRe(state = initialState, { type, payload }) {
         visible: false,
         message: null,
         type: null,
-        title: null,
         value: payload,
+        accepted: true,
       };
     default:
       return state;

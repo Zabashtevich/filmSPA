@@ -1,14 +1,18 @@
 import { createContext } from "react";
-import { useRate, useUnrate } from "../../hooks";
+
+import { useEstimate, useUserlist, useFavorite } from "./../../hooks";
 
 export const MetalogicContext = createContext(null);
 
 export default function MetalogicContextProvider({ children }) {
-  const [setEstimatingValue] = useRate();
-  const [setUnratingId] = useUnrate();
+  const [setEstimatingProps] = useEstimate();
+  const [setUserlistProps] = useUserlist();
+  const [setFavoritingProps] = useFavorite();
 
   return (
-    <MetalogicContext.Provider value={[setEstimatingValue]}>
+    <MetalogicContext.Provider
+      value={[{ setEstimatingProps, setUserlistProps, setFavoritingProps }]}
+    >
       {children}
     </MetalogicContext.Provider>
   );

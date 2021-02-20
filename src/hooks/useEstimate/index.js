@@ -12,11 +12,7 @@ export default function useEstimate(nickname) {
 
   const { type, value } = props;
   const { ratedMovies, loading } = userData;
-  const {
-    showErrorModal,
-    showProcessingWindow,
-    closeProcessingWindow,
-  } = modalinterface;
+  const { showErrorModal, showProcessingWindow, closeModal } = modalinterface;
 
   useEffect(() => {
     if (!loading && type === "rate") {
@@ -31,11 +27,11 @@ export default function useEstimate(nickname) {
             .concat(value),
         })
         .then(() => {
-          closeProcessingWindow();
+          closeModal();
           setProps({ type: null, value: null });
         })
         .catch(() => {
-          closeProcessingWindow();
+          closeModal();
           showErrorModal("Something gone wrong. The vote was not saved :c");
           setProps({ type: null, value: null });
         });
@@ -47,11 +43,11 @@ export default function useEstimate(nickname) {
         .doc("moviesrated")
         .update({ list: ratedMovies.filter((item) => +item.id !== +value) })
         .then(() => {
-          closeProcessingWindow();
+          closeModal();
           setProps({ type: null, value: null });
         })
         .catch(() => {
-          closeProcessingWindow();
+          closeModal();
           showErrorModal("Something gone wrong. The vote was not deleted :c");
           setProps({ type: null, value: null });
         });

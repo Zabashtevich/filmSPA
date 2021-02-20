@@ -44,6 +44,10 @@ Snippet.Item = function SnippetItem({ children, ...rest }) {
   return <Item {...rest}>{children}</Item>;
 };
 
+Snippet.Placeholder = function SnippetPlaceholder({ ...rest }) {
+  return <Placeholder {...rest}>You have not any lists</Placeholder>;
+};
+
 Snippet.Number = function SnippetNumber({ children, ...rest }) {
   return <Number {...rest}>{children}</Number>;
 };
@@ -52,8 +56,8 @@ Snippet.Name = function SnippetName({ children, ...rest }) {
   return <Name {...rest}>{children}</Name>;
 };
 
-Snippet.Wrapper = function SnippetWrapper({ children, ...rest }) {
-  return <Wrapper {...rest}>{children}</Wrapper>;
+Snippet.Inner = function SnippetInner({ children, ...rest }) {
+  return <Inner {...rest}>{children}</Inner>;
 };
 
 Snippet.Add = function SnippetAdd({ ...rest }) {
@@ -74,6 +78,10 @@ Snippet.Popup = function SnippetPopup({ children, ...rest }) {
 
 Snippet.Title = function SnippetTitle({ children, ...rest }) {
   return <Title {...rest}>{children}</Title>;
+};
+
+Snippet.Wrapper = function SnippetWrapper({ children, ...rest }) {
+  return <Wrapper {...rest}>{children}</Wrapper>;
 };
 
 Snippet.Input = function SnippetInput({ ...rest }) {

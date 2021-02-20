@@ -4,6 +4,7 @@ import {
   SHOW_CONFIRM_MODAL,
   SHOW_ERROR_MODAL,
   SHOW_UTILITY_MODAL,
+  SHOW_PROCESSING_WINDOW,
 } from "./constants";
 
 export const initialState = {
@@ -38,14 +39,13 @@ export default function modalReducer(state = initialState, { type, payload }) {
         type: "utility",
         ...payload,
       };
+    case SHOW_PROCESSING_WINDOW:
+      return { ...state, processing: true, message: payload };
     case CLOSE_MODAL:
       return { ...initialState };
     case CONFIRM_MODAL:
       return {
-        ...state,
-        visible: false,
-        message: null,
-        type: null,
+        ...initialState,
         value: payload,
         accepted: true,
       };

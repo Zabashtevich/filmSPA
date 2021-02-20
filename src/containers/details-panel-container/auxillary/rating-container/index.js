@@ -3,10 +3,12 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import { DetailsPanel } from "../../../../components";
+import { useMetalogicContext } from "../../../../context";
+import { getCorrectDate } from "../../../../utils";
 
 export default function RatingContainer({ list }) {
+  const [, metalogicInterface] = useMetalogicContext();
   const userData = useSelector((store) => store.userData);
-  const { slug } = useParams();
 
   const [isRated, setIsRated] = useState({
     rated: false,
@@ -16,6 +18,7 @@ export default function RatingContainer({ list }) {
 
   const { loading, ratedMovies } = userData;
   const { rated, value, time } = isRated;
+  const { setEstimatingProps } = metalogicInterface;
 
   useEffect(() => {
     if (!loading) {
@@ -26,10 +29,20 @@ export default function RatingContainer({ list }) {
     }
   }, [loading, ratedMovies, slug]);
 
-  // const handleEstimate = (value) => {
-  //   estimate(value, slug);
-  // };
-  //TODO
+  const handleEstimate = (value) => {
+    setEstimatingProps({
+      type: "rate",
+      value: {
+        date: list.released_date,
+        id: list.id,
+        time: getCorrectDate(),
+        title: list.title,
+        vote_average: list.vote_average,
+        vote_count: list.vote_count,
+        value,
+      },
+    });
+  };
 
   return (
     <>

@@ -47,6 +47,7 @@ export default function CardDetailsPanelContainer() {
       });
     }
   }, [loadingList, reviewData]);
+
   return (
     list && (
       <>

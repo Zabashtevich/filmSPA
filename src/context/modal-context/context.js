@@ -4,6 +4,7 @@ import {
   CONFIRM_MODAL,
   SHOW_CONFIRM_MODAL,
   SHOW_ERROR_MODAL,
+  SHOW_PROCESSING_WINDOW,
   SHOW_UTILITY_MODAL,
 } from "./constants";
 import modalReducer, { initialState } from "./reducer";
@@ -23,6 +24,10 @@ export default function ModalContextProvider({ children }) {
 
   function showUtilityModal(payload) {
     dispatch({ type: SHOW_UTILITY_MODAL, payload });
+  }
+
+  function showProcessingWindow(payload) {
+    dispatch({ type: SHOW_PROCESSING_WINDOW, payload });
   }
 
   function closeModal() {

@@ -22,7 +22,6 @@ export { default as ReviewPost } from "./review-post";
 export { default as StatePagination } from "./state-pagination";
 export { default as HeaderProfile } from "./header-profile";
 export { default as AccountRoot } from "./account-root";
-export { default as DescriptionPopup } from "./description-popup";
 export { default as AccountPanel } from "./account-panel";
 export { default as RowListItem } from "./row-list-item";
 export { default as VotePopup } from "./vote-popup";

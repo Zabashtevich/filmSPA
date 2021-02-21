@@ -11,16 +11,12 @@ import {
   Number,
   Name,
   Wrapper,
-  Add,
-  Remove,
-  Edit,
   Popup,
   Title,
   Input,
-  Confirm,
-  Cancel,
   Inner,
   Placeholder,
+  Button,
 } from "./styles/snippet";
 
 export default function Snippet({ children, ...rest }) {
@@ -62,6 +58,10 @@ Snippet.Placeholder = function SnippetPlaceholder({ ...rest }) {
   return <Placeholder {...rest}>You have not any lists</Placeholder>;
 };
 
+Snippet.Button = function SnippetButton({ children, ...rest }) {
+  return <Button {...rest}>{children}</Button>;
+};
+
 Snippet.Number = function SnippetNumber({ children, ...rest }) {
   return <Number {...rest}>{children}</Number>;
 };
@@ -74,20 +74,19 @@ Snippet.Inner = function SnippetInner({ children, ...rest }) {
   return <Inner {...rest}>{children}</Inner>;
 };
 
-Snippet.Add = function SnippetAdd({ ...rest }) {
-  return <Add {...rest} />;
-};
-
-Snippet.Remove = function SnippetRemove({ ...rest }) {
-  return <Remove {...rest} />;
-};
-
-Snippet.Edit = function SnippetEdit({ ...rest }) {
-  return <Edit {...rest} />;
-};
-
-Snippet.Popup = function SnippetPopup({ children, ...rest }) {
-  return <Popup {...rest}>{children}</Popup>;
+Snippet.Popup = function SnippetPopup({ visible, children, ...rest }) {
+  return (
+    <CSSTransition
+      in={visible}
+      classNames="opacity"
+      timeout={{ enter: 500, exit: 500, appear: 500 }}
+      mountOnEnter
+      unmountOnExit
+      appear={true}
+    >
+      <Popup {...rest}>{children}</Popup>
+    </CSSTransition>
+  );
 };
 
 Snippet.Title = function SnippetTitle({ children, ...rest }) {
@@ -100,12 +99,4 @@ Snippet.Wrapper = function SnippetWrapper({ children, ...rest }) {
 
 Snippet.Input = function SnippetInput({ ...rest }) {
   return <Input {...rest} />;
-};
-
-Snippet.Confirm = function SnippetConfirm({ ...rest }) {
-  return <Confirm {...rest} />;
-};
-
-Snippet.Cancel = function SnippetCancel({ ...rest }) {
-  return <Cancel {...rest} />;
 };

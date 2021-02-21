@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Snippet } from "../../../../../components";
 
-export default function SnippetPopup({ visible, userlists = [] }) {
+export default function SnippetPopup({
+  visible,
+  userlists = [{ name: "hahaha" }],
+}) {
+  const [popupVisible, setPopupVisible] = useState(false);
   return (
     <Snippet.Backdrop visible={visible}>
       {userlists.length === 0 && (
@@ -17,10 +21,15 @@ export default function SnippetPopup({ visible, userlists = [] }) {
               <Snippet.Number>{index + 1}</Snippet.Number>
               <Snippet.Name>{name}</Snippet.Name>
               <Snippet.Inner>
-                <Snippet.Edit />
-                <Snippet.Remove />
+                <Snippet.Button
+                  borderactive={1}
+                  onClick={() => setPopupVisible((prev) => !prev)}
+                >
+                  EDIT
+                </Snippet.Button>
+                <Snippet.Button borderactive={1}>ADD</Snippet.Button>
               </Snippet.Inner>
-              <Snippet.Popup>
+              <Snippet.Popup visible={popupVisible}>
                 <Snippet.Title>Enter a list name</Snippet.Title>
                 <Snippet.Wrapper>
                   <Snippet.Input />

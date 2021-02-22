@@ -54,6 +54,7 @@ export const Backdrop = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0.2rem 0.4rem;
   cursor: default;
   &::after {
     content: "";
@@ -75,7 +76,7 @@ export const Item = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  margin: 0.3rem 0.5rem;
+  margin: 0.3rem 0;
 `;
 
 export const Number = styled.span`
@@ -115,7 +116,8 @@ export const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  &:hover {
+  position: relative;
+  &:enabled:hover {
     background-color: ${({ theme }) => theme.colors.secondary};
     color: white;
     transition: 500ms;
@@ -130,6 +132,59 @@ export const Button = styled.button`
     css`
       border: 1px solid rgba(0, 0, 0, 0.2);
     `};
+  ${({ editbutton }) =>
+    editbutton &&
+    css`
+      &::after {
+        content: "Name length must be min 5 and max 10 characters";
+        position: absolute;
+        white-space: nowrap;
+        top: 0;
+        transform: translateY(150%);
+        background-color: #b8b8b8;
+        border-radius: 0.2rem;
+        padding: 0.2rem 0.4rem;
+        color: white;
+        cursor: default;
+        outline: none;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25), 0 3px 3px rgba(0, 0, 0, 0.22);
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s, opacity 500ms;
+      }
+    `}
+  ${({ addesc }) =>
+    addesc &&
+    css`
+      &::after {
+        content: "Add movie to list";
+        position: absolute;
+        white-space: nowrap;
+        top: 0;
+        transform: translateY(150%);
+        background-color: #b8b8b8;
+        border-radius: 0.2rem;
+        padding: 0.2rem 0.4rem;
+        color: white;
+        cursor: default;
+        outline: none;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25), 0 3px 3px rgba(0, 0, 0, 0.22);
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s, opacity 500ms;
+      }
+      &:hover::after {
+        visibility: visible;
+        opacity: 1;
+      }
+    `};
+  &:disabled {
+    cursor: not-allowed;
+    &:hover::after {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
 `;
 
 export const Create = styled.div`
@@ -144,7 +199,7 @@ export const Create = styled.div`
   padding: 0.2rem 0;
   width: 100%;
   top: 0;
-  transform: translateY(-108%);
+  transform: translateY(-107%);
   z-index: 100;
   ${({ theme }) => theme.animations.opacity};
 `;
@@ -152,14 +207,15 @@ export const Create = styled.div`
 export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
-  height: 20px;
-  width: 100%;
   padding-bottom: 1.5rem;
+  width: 100%;
+  height: 25px;
 `;
 
 export const Title = styled.span`
   font-size: ${({ theme }) => theme.fontSize.small};
   font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
+  margin-top: 0.2rem;
   margin-bottom: 1rem;
   user-select: none;
 `;
@@ -170,6 +226,8 @@ export const Input = styled.input`
   outline: none;
   width: 150px;
   margin-right: 0.4rem;
+  border-radius: 0;
+  border: 1px solid rgba(0, 0, 0, 1);
 `;
 
 export const Placeholder = styled.span``;

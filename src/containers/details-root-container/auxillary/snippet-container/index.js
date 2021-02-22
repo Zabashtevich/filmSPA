@@ -8,7 +8,7 @@ export default function SnipperContainer() {
 
   return (
     <Snippet>
-      <Snippet.Element onClick={() => setPopupVisible((prev) => !prev)}>
+      <Snippet.Element onClick={() => setPopupVisible(true)}>
         <Snippet.Userlist />
         <SnippetPopup visible={popupVisible} />
       </Snippet.Element>

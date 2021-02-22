@@ -49,9 +49,11 @@ export const Backdrop = styled.div`
   left: 0;
   width: 400px;
   min-height: 150px;
-  z-index: 1000;
+  z-index: 300;
   border-radius: 0 0 1rem;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   cursor: default;
   &::after {
     content: "";
@@ -118,19 +120,56 @@ export const Button = styled.button`
     color: white;
     transition: 500ms;
   }
-  ${({ borderactive }) =>
-    borderactive &&
+  ${({ borderleft }) =>
+    borderleft &&
     css`
       border-left: 1px solid rgba(0, 0, 0, 0.2);
     `};
+  ${({ borderactive }) =>
+    borderactive &&
+    css`
+      border: 1px solid rgba(0, 0, 0, 0.2);
+    `};
 `;
 
-export const Popup = styled.div``;
+export const Create = styled.div`
+  background-color: white;
+  color: ${({ theme }) => theme.colors.secondary};
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  margin: 0.4rem;
+  padding: 0.2rem 0;
+  width: 100%;
+  top: 0;
+  transform: translateY(-108%);
+  z-index: 100;
+  ${({ theme }) => theme.animations.opacity};
+`;
 
-export const Wrapper = styled.div``;
+export const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  height: 20px;
+  width: 100%;
+  padding-bottom: 1.5rem;
+`;
 
-export const Title = styled.span``;
+export const Title = styled.span`
+  font-size: ${({ theme }) => theme.fontSize.small};
+  font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
+  margin-bottom: 1rem;
+  user-select: none;
+`;
 
-export const Input = styled.input``;
+export const Input = styled.input`
+  font-size: ${({ theme }) => theme.fontSize.small};
+  font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
+  outline: none;
+  width: 150px;
+  margin-right: 0.4rem;
+`;
 
 export const Placeholder = styled.span``;

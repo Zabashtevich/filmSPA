@@ -11,7 +11,7 @@ import {
   Number,
   Name,
   Wrapper,
-  Popup,
+  Create,
   Title,
   Input,
   Inner,
@@ -74,7 +74,7 @@ Snippet.Inner = function SnippetInner({ children, ...rest }) {
   return <Inner {...rest}>{children}</Inner>;
 };
 
-Snippet.Popup = function SnippetPopup({ visible, children, ...rest }) {
+Snippet.Create = function SnippetCreate({ visible, children, ...rest }) {
   return (
     <CSSTransition
       in={visible}
@@ -84,7 +84,7 @@ Snippet.Popup = function SnippetPopup({ visible, children, ...rest }) {
       unmountOnExit
       appear={true}
     >
-      <Popup {...rest}>{children}</Popup>
+      <Create {...rest}>{children}</Create>
     </CSSTransition>
   );
 };

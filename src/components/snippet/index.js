@@ -20,6 +20,10 @@ export default function Snippet({ children, ...rest }) {
   return <Element {...rest}>{children}</Element>;
 }
 
+Snippet.Container = function SnippetContainer({ children, ...rest }) {
+  return <Container {...rest}>{children}</Container>;
+};
+
 Snippet.Userlist = function SnippetUserlist({ ...rest }) {
   return <Userlist {...rest} />;
 };

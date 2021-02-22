@@ -41,6 +41,7 @@ export const Userlist = styled(RiPlayList2Fill)`
 
 export const Backdrop = styled.div`
   ${({ theme }) => theme.animations.opacity}
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25), 0 3px 3px rgba(0, 0, 0, 0.22);
   transform: translate(-100%, -100%);
   background-color: white;
   position: absolute;
@@ -121,14 +122,14 @@ export const Button = styled.button`
     borderactive &&
     css`
       border-left: 1px solid rgba(0, 0, 0, 0.2);
-    `}
+    `};
 `;
 
 export const Popup = styled.div``;
 
-export const Title = styled.span``;
-
 export const Wrapper = styled.div``;
+
+export const Title = styled.span``;
 
 export const Input = styled.input``;
 

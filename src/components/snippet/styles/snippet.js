@@ -178,6 +178,17 @@ export const Button = styled.button`
         opacity: 1;
       }
     `};
+  ${({ close }) =>
+    close &&
+    css`
+      margin-top: auto;
+      margin-bottom: 0.2rem;
+      padding: 0.2rem 0.6rem;
+      align-self: flex-start;
+      background: ${({ theme }) => theme.colors.secondary};
+      border-radius: 0.2rem;
+      color: white;
+    `}
   &:disabled {
     cursor: not-allowed;
     &:hover::after {
@@ -230,4 +241,6 @@ export const Input = styled.input`
   border: 1px solid rgba(0, 0, 0, 1);
 `;
 
-export const Placeholder = styled.span``;
+export const Placeholder = styled.span`
+  margin-left: 1rem;
+`;

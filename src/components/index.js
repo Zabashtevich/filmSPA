@@ -27,7 +27,6 @@ export { default as RowListItem } from "./row-list-item";
 export { default as VotePopup } from "./vote-popup";
 export { default as Filter } from "./filter";
 export { default as UtilityModal } from "./utility-modal";
-export { default as Userlist } from "./userlist";
 export { default as Review } from "./review";
 export { default as ProcessingWindow } from "./processing-window";
 export { default as Snippet } from "./snippet";

@@ -55,7 +55,7 @@ Snippet.Item = function SnippetItem({ children, ...rest }) {
 };
 
 Snippet.Placeholder = function SnippetPlaceholder({ ...rest }) {
-  return <Placeholder {...rest}>You have not any lists</Placeholder>;
+  return <Placeholder {...rest}>YOU HAVE NOT ANY LISTS</Placeholder>;
 };
 
 Snippet.Button = function SnippetButton({ children, ...rest }) {

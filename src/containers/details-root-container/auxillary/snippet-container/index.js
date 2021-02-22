@@ -2,9 +2,7 @@ import React, { useState } from "react";
 
 import { Snippet } from "../../../../components";
 
-export default function SnipperContainer({
-  userlists = [{ name: "list", id: 1 }],
-}) {
+export default function SnipperContainer({ userlists = [] }) {
   const [popupVisible, setPopupVisible] = useState(false);
   const [editProps, setEditProps] = useState({
     mounted: false,
@@ -17,10 +15,16 @@ export default function SnipperContainer({
     setEditProps((prev) => ({ ...prev, mounted: false }));
     setValue("");
   }
-
+  console.log(popupVisible);
   return (
     <Snippet>
-      <Snippet.Element onClick={() => setPopupVisible(true)}>
+      <Snippet.Element
+        onClick={() => {
+          if (!popupVisible) {
+            setPopupVisible(true);
+          }
+        }}
+      >
         <Snippet.Userlist />
         <Snippet.Backdrop visible={popupVisible}>
           <Snippet.Create visible={mounted}>
@@ -75,6 +79,9 @@ export default function SnipperContainer({
                 </Snippet.Item>
               );
             })}
+          <Snippet.Button close={1} onClick={() => setPopupVisible(false)}>
+            CLOSE
+          </Snippet.Button>
         </Snippet.Backdrop>
       </Snippet.Element>
       <Snippet.Element>

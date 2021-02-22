@@ -1,5 +1,4 @@
 export { default as AccountPanelContainer } from "./account-panel-container";
-export { default as AccountRootContainer } from "./account-root-container";
 export { default as ActorRootContainer } from "./actor-root-container";
 export { default as AuthContainer } from "./auth-container";
 export { default as DetailsPanelContainer } from "./details-panel-container";

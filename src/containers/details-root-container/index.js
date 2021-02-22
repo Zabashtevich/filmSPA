@@ -80,7 +80,6 @@ export default function CardDetailsRootContainer() {
                     </ListColumn.ItemContainer>
                   );
                 })}
-            <SnippetContainer />
           </ListColumn>
         </DetailsHeader>
       )}

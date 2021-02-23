@@ -167,9 +167,11 @@ export const Name = styled.input`
 `;
 
 export const Edit = styled(MdModeEdit)`
+  ${({ theme }) => theme.animations.fadeRtR};
   font-size: ${({ theme }) => theme.fontSize.normal};
   color: rgba(0, 0, 0, 0.3);
   cursor: pointer;
+  margin-left: auto;
   & > * {
     pointer-events: none;
   }
@@ -180,6 +182,7 @@ export const Edit = styled(MdModeEdit)`
 `;
 
 export const Delete = styled(AiFillDelete)`
+  ${({ theme }) => theme.animations.fadeRtR};
   font-size: ${({ theme }) => theme.fontSize.normal};
   color: rgba(0, 0, 0, 0.3);
   margin-left: 0.3rem;
@@ -211,6 +214,7 @@ export const Create = styled(BsThreeDotsVertical)`
 `;
 
 export const Ok = styled(BsCheckCircle)`
+  ${({ theme }) => theme.animations.fadeLtL};
   font-size: ${({ theme }) => theme.fontSize.normal};
   color: rgba(0, 0, 0, 0.3);
   margin-left: auto;
@@ -225,6 +229,7 @@ export const Ok = styled(BsCheckCircle)`
 `;
 
 export const Cancel = styled(RiRefreshLine)`
+  ${({ theme }) => theme.animations.fadeLtL};
   font-size: ${({ theme }) => theme.fontSize.normal};
   color: rgba(0, 0, 0, 0.3);
   margin-left: 0.3rem;
@@ -236,8 +241,4 @@ export const Cancel = styled(RiRefreshLine)`
     color: rgba(0, 0, 0, 0.7);
     transition: 500ms;
   }
-`;
-
-export const Wrapper = styled.span`
-  margin-left: auto;
 `;

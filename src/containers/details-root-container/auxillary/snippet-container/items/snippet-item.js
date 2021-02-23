@@ -33,13 +33,21 @@ export function SnippetItem({ name }) {
         />
       </Snippet.Circle>
       <Snippet.Edit
-        visible={!disabled}
+        visible={disabled}
         onClick={() =>
           setInputSettings((prev) => ({ ...prev, disabled: false }))
         }
         setDeelay={setDeelay}
       />
-      <Snippet.Delete visible={!disabled} setDeelay={setDeelay} />
+      <Snippet.Delete visible={disabled} setDeelay={setDeelay} />
+      <Snippet.Ok visible={!disabled && !deelay} setDeelay={setDeelay} />
+      <Snippet.Cancel
+        visible={!disabled && !deelay}
+        setDeelay={setDeelay}
+        onClick={() =>
+          setInputSettings((prev) => ({ ...prev, disabled: true }))
+        }
+      />
     </Snippet.Item>
   );
 }

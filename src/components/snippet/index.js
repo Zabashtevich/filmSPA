@@ -16,7 +16,6 @@ import {
   Create,
   Ok,
   Cancel,
-  Wrapper,
 } from "./styles/snippet";
 
 export default function Snippet({ children, ...rest }) {
@@ -52,10 +51,6 @@ Snippet.Item = function SnippetItem({ children, ...rest }) {
 
 Snippet.Circle = function SnippetCircle({ children, ...rest }) {
   return <Circle {...rest}>{children}</Circle>;
-};
-
-Snippet.Wrapper = function SnippetWrapper({ children, ...rest }) {
-  return <Wrapper {...rest}>{children}</Wrapper>;
 };
 
 Snippet.Add = function SnippetAdd({ ...rest }) {
@@ -104,10 +99,32 @@ Snippet.Create = function SnippetCreate({ children, ...rest }) {
   return <Create title="Create new list" {...rest} />;
 };
 
-Snippet.Ok = function SnippetOk({ ...rest }) {
-  return <Ok title="Create new list" {...rest} />;
+Snippet.Ok = function SnippetOk({ visible, setDeelay, ...rest }) {
+  return (
+    <CSSTransition
+      in={visible}
+      classNames="fade"
+      mountOnEnter
+      unmountOnExit
+      timeout={500}
+      onExited={() => setDeelay(false)}
+    >
+      <Ok title="Create new list" {...rest} />
+    </CSSTransition>
+  );
 };
 
-Snippet.Cancel = function SnippetCancel({ ...rest }) {
-  return <Cancel title="Cancel" {...rest} />;
+Snippet.Cancel = function SnippetCancel({ visible, setDeelay, ...rest }) {
+  return (
+    <CSSTransition
+      in={visible}
+      classNames="fade"
+      mountOnEnter
+      unmountOnExit
+      timeout={500}
+      onExited={() => setDeelay(false)}
+    >
+      <Cancel title="Cancel" {...rest} />
+    </CSSTransition>
+  );
 };

@@ -6,13 +6,17 @@ export function SnippetItem({ name }) {
   return (
     <Snippet.Item>
       <Snippet.Circle>
-        <Snippet.Add />
+        <Snippet.Inner>
+          <Snippet.Add />
+        </Snippet.Inner>
         <Snippet.Name value={name} disabled />
       </Snippet.Circle>
-      <Snippet.Wrapper>
+      <Snippet.Inner marginLeft={"auto"}>
         <Snippet.Edit />
+      </Snippet.Inner>
+      <Snippet.Inner>
         <Snippet.Delete />
-      </Snippet.Wrapper>
+      </Snippet.Inner>
     </Snippet.Item>
   );
 }

@@ -13,12 +13,12 @@ import {
   Add,
   Remove,
   Name,
-  Wrapper,
   Edit,
   Delete,
   Create,
   Ok,
   Cancel,
+  Inner,
 } from "./styles/snippet";
 
 export default function Snippet({ children, ...rest }) {
@@ -64,6 +64,10 @@ Snippet.Circle = function SnippetCircle({ children, ...rest }) {
   return <Circle {...rest}>{children}</Circle>;
 };
 
+Snippet.Inner = function SnippetInner({ children, ...rest }) {
+  return <Inner {...rest}>{children}</Inner>;
+};
+
 Snippet.Add = function SnippetAdd({ ...rest }) {
   return <Add {...rest} />;
 };
@@ -74,10 +78,6 @@ Snippet.Remove = function SnippetRemove({ ...rest }) {
 
 Snippet.Name = function SnippetName({ ...rest }) {
   return <Name {...rest} />;
-};
-
-Snippet.Wrapper = function SnippetWrapper({ children, ...rest }) {
-  return <Wrapper {...rest}>{children}</Wrapper>;
 };
 
 Snippet.Edit = function SnippetEdit({ ...rest }) {

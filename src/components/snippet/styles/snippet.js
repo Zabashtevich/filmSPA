@@ -108,7 +108,6 @@ export const Container = styled.div`
 
 export const Item = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
   width: 260px;
 `;
@@ -160,24 +159,29 @@ export const Name = styled.input`
   top: 50%;
 `;
 
-export const Wrapper = styled.span`
+export const Edit = styled(MdModeEdit)`
   font-size: ${({ theme }) => theme.fontSize.normal};
   color: rgba(0, 0, 0, 0.3);
-`;
-
-export const Edit = styled(MdModeEdit)`
+  margin-left: auto;
   cursor: pointer;
-  &::after {
-    content: "hahaha";
-    width: 100px;
-    background-color: yellow;
-  }
 `;
 
-export const Delete = styled(AiFillDelete)``;
+export const Delete = styled(AiFillDelete)`
+  font-size: ${({ theme }) => theme.fontSize.normal};
+  color: rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+`;
 
 export const Create = styled.div``;
 
 export const Ok = styled.div``;
 
 export const Cancel = styled.div``;
+
+export const Inner = styled.span`
+  ${({ marginLeft }) =>
+    marginLeft &&
+    css`
+      margin-left: ${marginLeft};
+    `}
+`;

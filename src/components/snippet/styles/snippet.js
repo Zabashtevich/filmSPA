@@ -73,11 +73,6 @@ export const Item = styled.div`
   width: 400px;
   transition: 500ms;
   margin: 1rem;
-  ${({ disabled }) =>
-    disabled &&
-    css`
-      width: 300px;
-    `};
 `;
 
 export const Circle = styled.div`
@@ -88,11 +83,6 @@ export const Circle = styled.div`
   width: 50px;
   height: 50px;
   margin: 1rem;
-  ${({ disabled }) =>
-    disabled &&
-    css`
-      border: 1px solid rgba(0, 0, 0, 0.1);
-    `};
 `;
 
 export const Add = styled(GrAdd)`
@@ -104,18 +94,6 @@ export const Add = styled(GrAdd)`
   z-index: 100;
   & > * {
     stroke: rgba(0, 0, 250, 1);
-  }
-  ${({ disabled }) =>
-    disabled &&
-    css`
-      & > * {
-        stroke: rgba(0, 0, 0, 0.3);
-        pointer-events: none;
-      }
-    `};
-  &:hover > * {
-    stroke: rgba(0, 0, 0, 0.7);
-    transition: 500ms;
   }
 `;
 
@@ -129,10 +107,6 @@ export const Remove = styled(IoMdRemove)`
   left: 50%;
   & > * {
     pointer-events: none;
-  }
-  &:hover > * {
-    color: rgba(0, 0, 0, 0.7);
-    transition: 500ms;
   }
 `;
 
@@ -150,17 +124,6 @@ export const Name = styled.input`
   &::placeholder {
     color: rgba(0, 0, 0, 0.3);
   }
-  &:disabled {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    color: rgba(0, 0, 0, 0.3);
-    cursor: not-allowed;
-    width: 80px;
-  }
-  &:enabled {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.6);
-    color: rgba(0, 0, 0, 0.6);
-    width: 170px;
-  }
 `;
 
 export const Edit = styled(MdModeEdit)`
@@ -170,10 +133,6 @@ export const Edit = styled(MdModeEdit)`
   cursor: pointer;
   & > * {
     pointer-events: none;
-  }
-  &:hover > * {
-    color: rgba(0, 0, 0, 0.7);
-    transition: 500ms;
   }
 `;
 
@@ -185,10 +144,6 @@ export const Delete = styled(AiFillDelete)`
   cursor: pointer;
   & > * {
     pointer-events: none;
-  }
-  &:hover > * {
-    color: rgba(0, 0, 0, 0.7);
-    transition: 500ms;
   }
 `;
 
@@ -203,10 +158,6 @@ export const Create = styled(BsThreeDotsVertical)`
   & > * {
     pointer-events: none;
   }
-  &:hover > * {
-    color: rgba(0, 0, 0, 0.7);
-    transition: 500ms;
-  }
 `;
 
 export const Ok = styled(BsCheckCircle)`
@@ -218,10 +169,6 @@ export const Ok = styled(BsCheckCircle)`
   & > * {
     pointer-events: none;
   }
-  &:hover > * {
-    color: rgba(0, 0, 0, 0.7);
-    transition: 500ms;
-  }
 `;
 
 export const Cancel = styled(RiRefreshLine)`
@@ -232,9 +179,5 @@ export const Cancel = styled(RiRefreshLine)`
   cursor: pointer;
   & > * {
     pointer-events: none;
-  }
-  &:hover > * {
-    color: rgba(0, 0, 0, 0.7);
-    transition: 500ms;
   }
 `;

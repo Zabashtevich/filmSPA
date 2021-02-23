@@ -4,8 +4,8 @@ export const SnippetContext = createContext(null);
 
 export default function SnippetContextProvider({ children }) {
   const [state, setState] = useState({
-    editDelay: true,
-    defaultDelay: false,
+    editButtonsDelay: true,
+    defaultButtonsDelay: false,
     editFormActive: false,
   });
 

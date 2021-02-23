@@ -6,6 +6,9 @@ import { GrAdd } from "react-icons/gr";
 import { IoMdRemove } from "react-icons/io";
 import { MdModeEdit } from "react-icons/md";
 import { AiFillDelete } from "react-icons/ai";
+import { BsThreeDotsVertical } from "react-icons/bs";
+import { BsCheckCircle } from "react-icons/bs";
+import { RiRefreshLine } from "react-icons/ri";
 
 export const Element = styled.div`
   font-family: ${({ theme }) => theme.fontFamily.secondary};
@@ -38,48 +41,6 @@ export const Favorite = styled(RiHeartAddFill)`
   cursor: pointer;
   & > * {
     pointer-events: none;
-  }
-`;
-
-export const FavInner = styled.span`
-  position: relative;
-  &::after {
-    content: "Add movie to favorite";
-    background-color: white;
-    padding: 0.2rem 0.4rem;
-    position: absolute;
-    visibility: hidden;
-    border-radius: 1rem;
-    color: black;
-    opacity: 0;
-    top: 100%;
-    left: -75%;
-    transition: 500ms;
-  }
-  &:hover::after {
-    visibility: visible;
-    opacity: 1;
-  }
-`;
-
-export const UslistInner = styled.span`
-  position: relative;
-  &::after {
-    content: "Add movie to list";
-    background-color: white;
-    padding: 0.2rem 0.4rem;
-    position: absolute;
-    visibility: hidden;
-    border-radius: 1rem;
-    color: black;
-    opacity: 0;
-    top: 100%;
-    left: -50%;
-    transition: 500ms;
-  }
-  &:hover::after {
-    visibility: visible;
-    opacity: 1;
   }
 `;
 
@@ -149,14 +110,18 @@ export const Name = styled.input`
   color: rgba(0, 0, 0, 0.3);
   transform: translate(10%, -50%);
   background-color: white;
-  text-align: center;
+  text-align: end;
   position: absolute;
   padding: 0.2rem 0;
+  padding-right: 1rem;
   outline: none;
   z-index: 200;
-  width: 150px;
+  width: 130px;
   left: 50%;
   top: 50%;
+  &::placeholder {
+    color: rgba(0, 0, 0, 0.3);
+  }
 `;
 
 export const Edit = styled(MdModeEdit)`
@@ -169,19 +134,30 @@ export const Edit = styled(MdModeEdit)`
 export const Delete = styled(AiFillDelete)`
   font-size: ${({ theme }) => theme.fontSize.normal};
   color: rgba(0, 0, 0, 0.3);
+  margin-left: 0.3rem;
   cursor: pointer;
 `;
 
-export const Create = styled.div``;
+export const Create = styled(BsThreeDotsVertical)`
+  font-size: ${({ theme }) => theme.fontSize.large};
+  transform: translate(-50%, -50%);
+  color: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  cursor: pointer;
+  top: 50%;
+  left: 50%;
+`;
 
-export const Ok = styled.div``;
+export const Ok = styled(BsCheckCircle)`
+  font-size: ${({ theme }) => theme.fontSize.normal};
+  color: rgba(0, 0, 0, 0.3);
+  margin-left: auto;
+  cursor: pointer;
+`;
 
-export const Cancel = styled.div``;
-
-export const Inner = styled.span`
-  ${({ marginLeft }) =>
-    marginLeft &&
-    css`
-      margin-left: ${marginLeft};
-    `}
+export const Cancel = styled(RiRefreshLine)`
+  font-size: ${({ theme }) => theme.fontSize.normal};
+  color: rgba(0, 0, 0, 0.3);
+  margin-left: 0.3rem;
+  cursor: pointer;
 `;

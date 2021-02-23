@@ -5,8 +5,6 @@ import {
   Element,
   Userlist,
   Favorite,
-  FavInner,
-  UslistInner,
   Container,
   Item,
   Circle,
@@ -18,7 +16,6 @@ import {
   Create,
   Ok,
   Cancel,
-  Inner,
 } from "./styles/snippet";
 
 export default function Snippet({ children, ...rest }) {
@@ -26,19 +23,11 @@ export default function Snippet({ children, ...rest }) {
 }
 
 Snippet.Userlist = function SnippetUserlist({ ...rest }) {
-  return (
-    <UslistInner>
-      <Userlist {...rest} />
-    </UslistInner>
-  );
+  return <Userlist title="Add movie to your userlists" {...rest} />;
 };
 
 Snippet.Favorite = function SnippetFavorite({ ...rest }) {
-  return (
-    <FavInner>
-      <Favorite {...rest} />
-    </FavInner>
-  );
+  return <Favorite title="Add movie to your favorite" {...rest} />;
 };
 
 Snippet.Container = function SnippetContainer({ visible, children, ...rest }) {
@@ -64,16 +53,12 @@ Snippet.Circle = function SnippetCircle({ children, ...rest }) {
   return <Circle {...rest}>{children}</Circle>;
 };
 
-Snippet.Inner = function SnippetInner({ children, ...rest }) {
-  return <Inner {...rest}>{children}</Inner>;
-};
-
 Snippet.Add = function SnippetAdd({ ...rest }) {
-  return <Add {...rest} />;
+  return <Add title="Add movie to list" {...rest} />;
 };
 
 Snippet.Remove = function SnippetRemove({ ...rest }) {
-  return <Remove {...rest} />;
+  return <Remove title="Remove movie from list" {...rest} />;
 };
 
 Snippet.Name = function SnippetName({ ...rest }) {
@@ -81,21 +66,21 @@ Snippet.Name = function SnippetName({ ...rest }) {
 };
 
 Snippet.Edit = function SnippetEdit({ ...rest }) {
-  return <Edit {...rest} />;
+  return <Edit title="Edit your list" {...rest} />;
 };
 
 Snippet.Delete = function SnippetDelete({ ...rest }) {
-  return <Delete {...rest} />;
+  return <Delete title="Delete your list" {...rest} />;
 };
 
 Snippet.Create = function SnippetCreate({ children, ...rest }) {
-  return <Create {...rest} />;
+  return <Create title="Create new list" {...rest} />;
 };
 
 Snippet.Ok = function SnippetOk({ ...rest }) {
-  return <Ok {...rest} />;
+  return <Ok title="Create new list" {...rest} />;
 };
 
 Snippet.Cancel = function SnippetCancel({ ...rest }) {
-  return <Cancel {...rest} />;
+  return <Cancel title="Cancel" {...rest} />;
 };

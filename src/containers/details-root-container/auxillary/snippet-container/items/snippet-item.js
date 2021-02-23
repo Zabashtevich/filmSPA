@@ -6,17 +6,11 @@ export function SnippetItem({ name }) {
   return (
     <Snippet.Item>
       <Snippet.Circle>
-        <Snippet.Inner>
-          <Snippet.Add />
-        </Snippet.Inner>
+        <Snippet.Add />
         <Snippet.Name value={name} disabled />
       </Snippet.Circle>
-      <Snippet.Inner marginLeft={"auto"}>
-        <Snippet.Edit />
-      </Snippet.Inner>
-      <Snippet.Inner>
-        <Snippet.Delete />
-      </Snippet.Inner>
+      <Snippet.Edit />
+      <Snippet.Delete />
     </Snippet.Item>
   );
 }
@@ -24,8 +18,10 @@ export function SnippetItem({ name }) {
 export function SnippetCreate() {
   return (
     <Snippet.Item>
-      <Snippet.Create />
-      <Snippet.Name />
+      <Snippet.Circle>
+        <Snippet.Create />
+        <Snippet.Name placeholder={"Create new list"} />
+      </Snippet.Circle>
       <Snippet.Ok />
       <Snippet.Cancel />
     </Snippet.Item>

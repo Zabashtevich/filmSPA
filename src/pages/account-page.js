@@ -1,7 +1,6 @@
 import React from "react";
 
 import {
-  AccountRootContainer,
   HeaderContainer,
   AccountPanelContainer,
   FooterContainer,
@@ -11,7 +10,6 @@ export default function AccountPage() {
   return (
     <>
       <HeaderContainer />
-      <AccountRootContainer />
       <AccountPanelContainer />
       <FooterContainer />
     </>

@@ -1,9 +1,12 @@
 import React from "react";
+import { CSSTransition } from "react-transition-group";
 
 import {
   Element,
   Userlist,
   Favorite,
+  FavInner,
+  UslistInner,
   Container,
   Item,
   Add,
@@ -20,20 +23,35 @@ export default function Snippet({ children, ...rest }) {
   return <Element {...rest}>{children}</Element>;
 }
 
-Snippet.Container = function SnippetContainer({ children, ...rest }) {
-  return <Container {...rest}>{children}</Container>;
-};
-
 Snippet.Userlist = function SnippetUserlist({ ...rest }) {
-  return <Userlist {...rest} />;
+  return (
+    <UslistInner>
+      <Userlist {...rest} />
+    </UslistInner>
+  );
 };
 
 Snippet.Favorite = function SnippetFavorite({ ...rest }) {
-  return <Favorite {...rest} />;
+  return (
+    <FavInner>
+      <Favorite {...rest} />
+    </FavInner>
+  );
 };
 
-Snippet.Container = function SnippetContainer({ children, ...rest }) {
-  return <Container {...rest}>{children}</Container>;
+Snippet.Container = function SnippetContainer({ visible, children, ...rest }) {
+  return (
+    <CSSTransition
+      in={visible}
+      appear={true}
+      classNames="opacity"
+      mountOnEnter
+      unmountOnExit
+      timeout={500}
+    >
+      <Container {...rest}>{children}</Container>
+    </CSSTransition>
+  );
 };
 
 Snippet.Item = function SnippetItem({ children, ...rest }) {

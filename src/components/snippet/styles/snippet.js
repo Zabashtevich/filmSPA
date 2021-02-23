@@ -72,6 +72,7 @@ export const Item = styled.div`
   align-items: center;
   width: 300px;
   transition: 500ms;
+  margin: 1rem;
   ${({ disabled }) =>
     disabled &&
     css`
@@ -96,13 +97,13 @@ export const Circle = styled.div`
 
 export const Add = styled(GrAdd)`
   font-size: ${({ theme }) => theme.fontSize.large};
-  transform: translate(-50%, -50%);
-  position: absolute;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
   cursor: pointer;
-  top: 50%;
-  left: 50%;
+  padding: 0.4rem;
+  z-index: 100;
   & > * {
-    stroke: rgba(0, 0, 0, 0.6);
+    stroke: rgba(0, 0, 250, 1);
   }
   ${({ disabled }) =>
     disabled &&
@@ -140,27 +141,23 @@ export const Name = styled.input`
   font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
   background-color: white;
   text-align: end;
-  position: absolute;
   padding: 0.2rem 0;
-  padding-right: 0.2rem;
+  padding-right: 0.4rem;
+  margin-left: -0.4rem;
   outline: none;
   z-index: 200;
-  left: 50%;
-  top: 50%;
-  transition: 500ms;
+  transition: 100ms;
   &::placeholder {
     color: rgba(0, 0, 0, 0.3);
   }
   &:disabled {
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    transform: translate(20%, -50%);
     color: rgba(0, 0, 0, 0.3);
     cursor: not-allowed;
     width: 80px;
   }
   &:enabled {
     border-bottom: 1px solid rgba(0, 0, 0, 0.6);
-    transform: translate(10%, -50%);
     color: rgba(0, 0, 0, 0.6);
     width: 170px;
   }
@@ -171,7 +168,6 @@ export const Edit = styled(MdModeEdit)`
   font-size: ${({ theme }) => theme.fontSize.normal};
   color: rgba(0, 0, 0, 0.3);
   cursor: pointer;
-  margin-left: auto;
   & > * {
     pointer-events: none;
   }

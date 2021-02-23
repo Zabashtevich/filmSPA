@@ -65,7 +65,7 @@ Snippet.Name = function SnippetName({ inputRef, ...rest }) {
   return <Name ref={inputRef} {...rest} />;
 };
 
-Snippet.Edit = function SnippetEdit({ visible, setDeelay, ...rest }) {
+Snippet.Edit = function SnippetEdit({ visible, setDelaySettings, ...rest }) {
   return (
     <CSSTransition
       in={visible}
@@ -73,14 +73,20 @@ Snippet.Edit = function SnippetEdit({ visible, setDeelay, ...rest }) {
       mountOnEnter
       unmountOnExit
       timeout={500}
-      onExited={() => setDeelay(false)}
+      onExited={() =>
+        setDelaySettings((prev) => ({ ...prev, editButtons: false }))
+      }
     >
       <Edit title="Edit your list" {...rest} />
     </CSSTransition>
   );
 };
 
-Snippet.Delete = function SnippetDelete({ visible, setDeelay, ...rest }) {
+Snippet.Delete = function SnippetDelete({
+  visible,
+  setDelaySettings,
+  ...rest
+}) {
   return (
     <CSSTransition
       in={visible}
@@ -88,7 +94,9 @@ Snippet.Delete = function SnippetDelete({ visible, setDeelay, ...rest }) {
       mountOnEnter
       unmountOnExit
       timeout={500}
-      onExited={() => setDeelay(false)}
+      onExited={() =>
+        setDelaySettings((prev) => ({ ...prev, editButtons: false }))
+      }
     >
       <Delete title="Delete your list" {...rest} />
     </CSSTransition>
@@ -99,7 +107,7 @@ Snippet.Create = function SnippetCreate({ children, ...rest }) {
   return <Create title="Create new list" {...rest} />;
 };
 
-Snippet.Ok = function SnippetOk({ visible, setDeelay, ...rest }) {
+Snippet.Ok = function SnippetOk({ visible, setDelaySettings, ...rest }) {
   return (
     <CSSTransition
       in={visible}
@@ -107,14 +115,20 @@ Snippet.Ok = function SnippetOk({ visible, setDeelay, ...rest }) {
       mountOnEnter
       unmountOnExit
       timeout={500}
-      onExited={() => setDeelay(false)}
+      onExited={() =>
+        setDelaySettings((prev) => ({ ...prev, defaultButtons: false }))
+      }
     >
       <Ok title="Create new list" {...rest} />
     </CSSTransition>
   );
 };
 
-Snippet.Cancel = function SnippetCancel({ visible, setDeelay, ...rest }) {
+Snippet.Cancel = function SnippetCancel({
+  visible,
+  setDelaySettings,
+  ...rest
+}) {
   return (
     <CSSTransition
       in={visible}
@@ -122,7 +136,9 @@ Snippet.Cancel = function SnippetCancel({ visible, setDeelay, ...rest }) {
       mountOnEnter
       unmountOnExit
       timeout={500}
-      onExited={() => setDeelay(false)}
+      onExited={() =>
+        setDelaySettings((prev) => ({ ...prev, defaultButtons: false }))
+      }
     >
       <Cancel title="Cancel" {...rest} />
     </CSSTransition>

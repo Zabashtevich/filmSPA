@@ -20,7 +20,7 @@ export default function SnippetContainer({ userlists = [{ name: "haha" }] }) {
           {userlists.map(({ name }) => {
             return <SnippetItem name={name} />;
           })}
-          <SnippetCreate />
+          {/* <SnippetCreate /> */}
         </Snippet.Container>
       </Snippet>
       <Snippet>

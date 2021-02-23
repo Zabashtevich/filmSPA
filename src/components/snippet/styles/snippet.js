@@ -75,16 +75,6 @@ export const Item = styled.div`
   margin: 1rem;
 `;
 
-export const Circle = styled.div`
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  border-radius: 50%;
-  position: relative;
-  z-index: 100;
-  width: 50px;
-  height: 50px;
-  margin: 1rem;
-`;
-
 export const Add = styled(GrAdd)`
   font-size: ${({ theme }) => theme.fontSize.large};
   border: 1px solid rgba(0, 0, 0, 0.2);

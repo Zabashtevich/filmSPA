@@ -1,6 +1,7 @@
 import React from "react";
 import { CSSTransition } from "react-transition-group";
 
+import { useSnippetContext } from "./../../context";
 
 import {
   Element,
@@ -8,7 +9,6 @@ import {
   Favorite,
   Container,
   Item,
-  Circle,
   Add,
   Remove,
   Name,
@@ -50,10 +50,6 @@ Snippet.Item = function SnippetItem({ children, ...rest }) {
   return <Item {...rest}>{children}</Item>;
 };
 
-Snippet.Circle = function SnippetCircle({ children, ...rest }) {
-  return <Circle {...rest}>{children}</Circle>;
-};
-
 Snippet.Add = function SnippetAdd({ ...rest }) {
   return <Add title="Add movie to list" {...rest} />;
 };
@@ -66,20 +62,19 @@ Snippet.Name = function SnippetName({ inputRef, ...rest }) {
   return <Name ref={inputRef} {...rest} />;
 };
 
-Snippet.Edit = function SnippetEdit({ ...rest }) {
-
-
+Snippet.Edit = function SnippetEdit({ visible, setSnippetSettings, ...rest }) {
   return (
     <CSSTransition
-      in={}
+      in={visible}
       classNames="fade"
       mountOnEnter
       unmountOnExit
       timeout={500}
-      onClick={() =>
-       
+      onEnter={() =>
+        setSnippetSettings((prev) => ({ ...prev, defaultButtonsDelay: true }))
       }
       onExited={() =>
+        setSnippetSettings((prev) => ({ ...prev, defaultButtonsDelay: false }))
       }
     >
       <Edit title="Edit your list" {...rest} />
@@ -87,17 +82,23 @@ Snippet.Edit = function SnippetEdit({ ...rest }) {
   );
 };
 
-Snippet.Delete = function SnippetDelete({ ...rest }) {
-  
-
+Snippet.Delete = function SnippetDelete({
+  visible,
+  setSnippetSettings,
+  ...rest
+}) {
   return (
     <CSSTransition
-      in={}
+      in={visible}
       classNames="fade"
       mountOnEnter
       unmountOnExit
       timeout={500}
+      onEnter={() =>
+        setSnippetSettings((prev) => ({ ...prev, defaultButtonsDelay: true }))
+      }
       onExited={() =>
+        setSnippetSettings((prev) => ({ ...prev, defaultButtonsDelay: false }))
       }
     >
       <Delete title="Delete your list" {...rest} />
@@ -109,15 +110,19 @@ Snippet.Create = function SnippetCreate({ children, ...rest }) {
   return <Create title="Create new list" {...rest} />;
 };
 
-Snippet.Ok = function SnippetOk({ ...rest }) {
+Snippet.Ok = function SnippetOk({ visible, setSnippetSettings, ...rest }) {
   return (
     <CSSTransition
-      in={}
+      in={visible}
       classNames="fade"
       mountOnEnter
       unmountOnExit
       timeout={500}
+      onEnter={() =>
+        setSnippetSettings((prev) => ({ ...prev, editButtonsDelay: true }))
+      }
       onExited={() =>
+        setSnippetSettings((prev) => ({ ...prev, editButtonsDelay: false }))
       }
     >
       <Ok title="Create new list" {...rest} />
@@ -125,15 +130,23 @@ Snippet.Ok = function SnippetOk({ ...rest }) {
   );
 };
 
-Snippet.Cancel = function SnippetCancel({ ...rest }) {
+Snippet.Cancel = function SnippetCancel({
+  visible,
+  setSnippetSettings,
+  ...rest
+}) {
   return (
     <CSSTransition
-      in={}
+      in={visible}
       classNames="fade"
       mountOnEnter
       unmountOnExit
       timeout={500}
+      onEnter={() =>
+        setSnippetSettings((prev) => ({ ...prev, editButtonsDelay: true }))
+      }
       onExited={() =>
+        setSnippetSettings((prev) => ({ ...prev, editButtonsDelay: false }))
       }
     >
       <Cancel title="Cancel" {...rest} />

@@ -61,8 +61,8 @@ Snippet.Remove = function SnippetRemove({ ...rest }) {
   return <Remove title="Remove movie from list" {...rest} />;
 };
 
-Snippet.Name = function SnippetName({ ...rest }) {
-  return <Name {...rest} />;
+Snippet.Name = function SnippetName({ inputRef, ...rest }) {
+  return <Name ref={inputRef} {...rest} />;
 };
 
 Snippet.Edit = function SnippetEdit({ ...rest }) {

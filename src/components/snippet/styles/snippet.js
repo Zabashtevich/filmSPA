@@ -70,27 +70,51 @@ export const Container = styled.div`
 export const Item = styled.div`
   display: flex;
   align-items: center;
-  width: 260px;
+  width: 300px;
+  transition: 500ms;
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      width: 200px;
+    `};
 `;
 
 export const Circle = styled.div`
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: 50%;
   position: relative;
   z-index: 100;
   width: 50px;
   height: 50px;
   margin: 1rem;
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    `};
 `;
 
 export const Add = styled(GrAdd)`
   font-size: ${({ theme }) => theme.fontSize.large};
   transform: translate(-50%, -50%);
   position: absolute;
+  cursor: pointer;
   top: 50%;
   left: 50%;
   & > * {
-    stroke: rgba(0, 0, 0, 0.3);
+    stroke: rgba(0, 0, 0, 0.6);
+  }
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      & > * {
+        stroke: rgba(0, 0, 0, 0.3);
+        pointer-events: none;
+      }
+    `};
+  &:hover > * {
+    stroke: rgba(0, 0, 0, 0.7);
+    transition: 500ms;
   }
 `;
 
@@ -99,28 +123,46 @@ export const Remove = styled(IoMdRemove)`
   transform: translate(-50%, -50%);
   color: rgba(0, 0, 0, 0.3);
   position: absolute;
+  cursor: pointer;
   top: 50%;
   left: 50%;
+  & > * {
+    pointer-events: none;
+  }
+  &:hover > * {
+    color: rgba(0, 0, 0, 0.7);
+    transition: 500ms;
+  }
 `;
 
 export const Name = styled.input`
   border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
-  color: rgba(0, 0, 0, 0.3);
-  transform: translate(10%, -50%);
   background-color: white;
   text-align: end;
   position: absolute;
   padding: 0.2rem 0;
-  padding-right: 1rem;
+  padding-right: 0.2rem;
   outline: none;
   z-index: 200;
-  width: 130px;
   left: 50%;
   top: 50%;
+  transition: 500ms;
   &::placeholder {
     color: rgba(0, 0, 0, 0.3);
+  }
+  &:disabled {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    transform: translate(20%, -50%);
+    color: rgba(0, 0, 0, 0.3);
+    cursor: not-allowed;
+    width: 80px;
+  }
+  &:enabled {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+    transform: translate(10%, -50%);
+    color: rgba(0, 0, 0, 0.6);
+    width: 170px;
   }
 `;
 
@@ -129,6 +171,13 @@ export const Edit = styled(MdModeEdit)`
   color: rgba(0, 0, 0, 0.3);
   margin-left: auto;
   cursor: pointer;
+  & > * {
+    pointer-events: none;
+  }
+  &:hover > * {
+    color: rgba(0, 0, 0, 0.7);
+    transition: 500ms;
+  }
 `;
 
 export const Delete = styled(AiFillDelete)`
@@ -136,6 +185,13 @@ export const Delete = styled(AiFillDelete)`
   color: rgba(0, 0, 0, 0.3);
   margin-left: 0.3rem;
   cursor: pointer;
+  & > * {
+    pointer-events: none;
+  }
+  &:hover > * {
+    color: rgba(0, 0, 0, 0.7);
+    transition: 500ms;
+  }
 `;
 
 export const Create = styled(BsThreeDotsVertical)`
@@ -146,6 +202,13 @@ export const Create = styled(BsThreeDotsVertical)`
   cursor: pointer;
   top: 50%;
   left: 50%;
+  & > * {
+    pointer-events: none;
+  }
+  &:hover > * {
+    color: rgba(0, 0, 0, 0.7);
+    transition: 500ms;
+  }
 `;
 
 export const Ok = styled(BsCheckCircle)`
@@ -153,6 +216,13 @@ export const Ok = styled(BsCheckCircle)`
   color: rgba(0, 0, 0, 0.3);
   margin-left: auto;
   cursor: pointer;
+  & > * {
+    pointer-events: none;
+  }
+  &:hover > * {
+    color: rgba(0, 0, 0, 0.7);
+    transition: 500ms;
+  }
 `;
 
 export const Cancel = styled(RiRefreshLine)`
@@ -160,4 +230,11 @@ export const Cancel = styled(RiRefreshLine)`
   color: rgba(0, 0, 0, 0.3);
   margin-left: 0.3rem;
   cursor: pointer;
+  & > * {
+    pointer-events: none;
+  }
+  &:hover > * {
+    color: rgba(0, 0, 0, 0.7);
+    transition: 500ms;
+  }
 `;

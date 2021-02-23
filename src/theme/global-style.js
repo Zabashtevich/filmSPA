@@ -17,5 +17,8 @@ export const GlobalStyles = createGlobalStyle`
         &::-webkit-scrollbar-thumb {
             background-color: darkgray;
             border-radius: 10px;
-        }
+        };
+    svg > * {
+        pointer-events: none;
+    }
     }`;

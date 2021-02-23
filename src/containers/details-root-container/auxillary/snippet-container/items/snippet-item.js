@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 
 import { Snippet } from "../../../../../components";
 import { useSnippetContext } from "./../../../../../context";
@@ -15,22 +15,24 @@ export function SnippetItem({ name }) {
 
   const inputRef = useRef(null);
 
+  function setFormActive() {
+    setSnippetSettings((prev) => ({ ...prev, editFormActive: true }));
+    inputRef.current.focus();
+  }
+
   return (
-    <Snippet.Item editFormActive={editFormActive && 1}>
+    <Snippet.Item>
       <Snippet.Add editFormActive={editFormActive && 1} />
-      <Snippet.Remove editFormActive={editFormActive && 1} />
       <Snippet.Name
         onChange={(e) => setInputValue(e.target.value)}
-        editFormActive={editFormActive && 1}
+        disabled={!editFormActive && 1}
         inputRef={inputRef}
         value={inputValue}
       />
       <Snippet.Edit
         visible={!editFormActive && !defaultButtonsDelay}
         setSnippetSettings={setSnippetSettings}
-        onClick={() =>
-          setSnippetSettings((prev) => ({ ...prev, editFormActive: true }))
-        }
+        onClick={setFormActive}
       />
       <Snippet.Delete
         visible={!editFormActive && !defaultButtonsDelay}

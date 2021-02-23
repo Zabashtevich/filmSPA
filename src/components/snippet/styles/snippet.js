@@ -27,9 +27,6 @@ export const Userlist = styled(RiPlayList2Fill)`
   color: black;
   padding: 0.5rem;
   cursor: pointer;
-  & > * {
-    pointer-events: none;
-  }
 `;
 
 export const Favorite = styled(RiHeartAddFill)`
@@ -39,9 +36,6 @@ export const Favorite = styled(RiHeartAddFill)`
   color: black;
   padding: 0.5rem;
   cursor: pointer;
-  & > * {
-    pointer-events: none;
-  }
 `;
 
 export const Container = styled.div`
@@ -70,7 +64,6 @@ export const Container = styled.div`
 export const Item = styled.div`
   display: flex;
   align-items: center;
-  width: 400px;
   transition: 500ms;
   margin: 1rem;
 `;
@@ -81,36 +74,45 @@ export const Add = styled(GrAdd)`
   border-radius: 50%;
   cursor: pointer;
   padding: 0.4rem;
-  z-index: 100;
+  transition: 300ms;
   & > * {
-    stroke: rgba(0, 0, 250, 1);
+    stroke: rgba(0, 0, 0, 0.3);
   }
+  ${({ editFormActive }) =>
+    editFormActive &&
+    css`
+      border: 1px solid rgba(0, 0, 0, 0.6);
+      & > * {
+        stroke: rgba(0, 0, 0, 6);
+      }
+    `};
 `;
 
 export const Remove = styled(IoMdRemove)`
   font-size: ${({ theme }) => theme.fontSize.large};
-  transform: translate(-50%, -50%);
   color: rgba(0, 0, 0, 0.3);
   position: absolute;
   cursor: pointer;
-  top: 50%;
-  left: 50%;
-  & > * {
-    pointer-events: none;
-  }
 `;
 
 export const Name = styled.input`
   border: none;
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
+  font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
   background-color: white;
   text-align: end;
   padding: 0.2rem 0;
   padding-right: 0.4rem;
-  margin-left: -0.4rem;
+  margin-left: -0.3rem;
   outline: none;
-  z-index: 200;
-  transition: 100ms;
+  transition: 300ms;
+  &:disabled {
+    width: 75px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  }
+  &:enabled {
+    width: 150px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+  }
   &::placeholder {
     color: rgba(0, 0, 0, 0.3);
   }
@@ -120,21 +122,32 @@ export const Edit = styled(MdModeEdit)`
   ${({ theme }) => theme.animations.fadeRtR};
   font-size: ${({ theme }) => theme.fontSize.normal};
   color: rgba(0, 0, 0, 0.3);
+  margin-left: 1rem;
   cursor: pointer;
-  & > * {
-    pointer-events: none;
-  }
 `;
 
 export const Delete = styled(AiFillDelete)`
   ${({ theme }) => theme.animations.fadeRtR};
   font-size: ${({ theme }) => theme.fontSize.normal};
   color: rgba(0, 0, 0, 0.3);
+  margin-left: 0.2rem;
+  cursor: pointer;
+`;
+
+export const Ok = styled(BsCheckCircle)`
+  ${({ theme }) => theme.animations.fadeLtL};
+  font-size: ${({ theme }) => theme.fontSize.normal};
+  color: rgba(0, 0, 0, 0.3);
+  margin-left: auto;
+  cursor: pointer;
+`;
+
+export const Cancel = styled(RiRefreshLine)`
+  ${({ theme }) => theme.animations.fadeLtL};
+  font-size: ${({ theme }) => theme.fontSize.normal};
+  color: rgba(0, 0, 0, 0.3);
   margin-left: 0.3rem;
   cursor: pointer;
-  & > * {
-    pointer-events: none;
-  }
 `;
 
 export const Create = styled(BsThreeDotsVertical)`
@@ -145,29 +158,4 @@ export const Create = styled(BsThreeDotsVertical)`
   cursor: pointer;
   top: 50%;
   left: 50%;
-  & > * {
-    pointer-events: none;
-  }
-`;
-
-export const Ok = styled(BsCheckCircle)`
-  ${({ theme }) => theme.animations.fadeLtL};
-  font-size: ${({ theme }) => theme.fontSize.normal};
-  color: rgba(0, 0, 0, 0.3);
-  margin-left: auto;
-  cursor: pointer;
-  & > * {
-    pointer-events: none;
-  }
-`;
-
-export const Cancel = styled(RiRefreshLine)`
-  ${({ theme }) => theme.animations.fadeLtL};
-  font-size: ${({ theme }) => theme.fontSize.normal};
-  color: rgba(0, 0, 0, 0.3);
-  margin-left: 0.3rem;
-  cursor: pointer;
-  & > * {
-    pointer-events: none;
-  }
 `;

@@ -169,7 +169,6 @@ export const Name = styled.input`
 export const Edit = styled(MdModeEdit)`
   font-size: ${({ theme }) => theme.fontSize.normal};
   color: rgba(0, 0, 0, 0.3);
-  margin-left: auto;
   cursor: pointer;
   & > * {
     pointer-events: none;
@@ -237,4 +236,8 @@ export const Cancel = styled(RiRefreshLine)`
     color: rgba(0, 0, 0, 0.7);
     transition: 500ms;
   }
+`;
+
+export const Wrapper = styled.span`
+  margin-left: auto;
 `;

@@ -7,6 +7,7 @@ export function SnippetItem({ name }) {
     value: name,
     disabled: true,
   });
+  const [deelay, setDeelay] = useState(true);
 
   const inputRef = useRef(null);
 
@@ -32,11 +33,13 @@ export function SnippetItem({ name }) {
         />
       </Snippet.Circle>
       <Snippet.Edit
+        visible={!disabled}
         onClick={() =>
           setInputSettings((prev) => ({ ...prev, disabled: false }))
         }
+        setDeelay={setDeelay}
       />
-      <Snippet.Delete />
+      <Snippet.Delete visible={!disabled} setDeelay={setDeelay} />
     </Snippet.Item>
   );
 }

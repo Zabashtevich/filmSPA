@@ -16,6 +16,7 @@ import {
   Create,
   Ok,
   Cancel,
+  Wrapper,
 } from "./styles/snippet";
 
 export default function Snippet({ children, ...rest }) {
@@ -53,6 +54,10 @@ Snippet.Circle = function SnippetCircle({ children, ...rest }) {
   return <Circle {...rest}>{children}</Circle>;
 };
 
+Snippet.Wrapper = function SnippetWrapper({ children, ...rest }) {
+  return <Wrapper {...rest}>{children}</Wrapper>;
+};
+
 Snippet.Add = function SnippetAdd({ ...rest }) {
   return <Add title="Add movie to list" {...rest} />;
 };
@@ -65,12 +70,34 @@ Snippet.Name = function SnippetName({ inputRef, ...rest }) {
   return <Name ref={inputRef} {...rest} />;
 };
 
-Snippet.Edit = function SnippetEdit({ ...rest }) {
-  return <Edit title="Edit your list" {...rest} />;
+Snippet.Edit = function SnippetEdit({ visible, setDeelay, ...rest }) {
+  return (
+    <CSSTransition
+      in={visible}
+      classNames="fade"
+      mountOnEnter
+      unmountOnExit
+      timeout={500}
+      onExited={() => setDeelay(false)}
+    >
+      <Edit title="Edit your list" {...rest} />
+    </CSSTransition>
+  );
 };
 
-Snippet.Delete = function SnippetDelete({ ...rest }) {
-  return <Delete title="Delete your list" {...rest} />;
+Snippet.Delete = function SnippetDelete({ visible, setDeelay, ...rest }) {
+  return (
+    <CSSTransition
+      in={visible}
+      classNames="fade"
+      mountOnEnter
+      unmountOnExit
+      timeout={500}
+      onExited={() => setDeelay(false)}
+    >
+      <Delete title="Delete your list" {...rest} />
+    </CSSTransition>
+  );
 };
 
 Snippet.Create = function SnippetCreate({ children, ...rest }) {

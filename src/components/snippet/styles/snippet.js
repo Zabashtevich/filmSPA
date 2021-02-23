@@ -70,13 +70,13 @@ export const Container = styled.div`
 export const Item = styled.div`
   display: flex;
   align-items: center;
-  width: 300px;
+  width: 400px;
   transition: 500ms;
   margin: 1rem;
   ${({ disabled }) =>
     disabled &&
     css`
-      width: 200px;
+      width: 300px;
     `};
 `;
 

@@ -2,13 +2,17 @@ import React from "react";
 
 import { Snippet } from "../../../../../components";
 
-export function SnippetItem() {
+export function SnippetItem({ name }) {
   return (
     <Snippet.Item>
-      <Snippet.Add />
-      <Snippet.Name />
-      <Snippet.Edit />
-      <Snippet.Delete />
+      <Snippet.Circle>
+        <Snippet.Add />
+        <Snippet.Name value={name} disabled />
+      </Snippet.Circle>
+      <Snippet.Wrapper>
+        <Snippet.Edit />
+        <Snippet.Delete />
+      </Snippet.Wrapper>
     </Snippet.Item>
   );
 }

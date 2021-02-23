@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Snippet } from "../../../../components";
 import { SnippetCreate, SnippetItem } from "./items/snippet-item";
 
-export default function SnippetContainer({ userlists = [] }) {
+export default function SnippetContainer({ userlists = [{ name: "haha" }] }) {
   const [popupVisible, setPopupVisible] = useState(false);
 
   function popupToggler(event) {
@@ -16,15 +16,15 @@ export default function SnippetContainer({ userlists = [] }) {
     <>
       <Snippet>
         <Snippet.Userlist onClick={(e) => popupToggler(e)} />
-      </Snippet>
-      <Snippet>
-        <Snippet.Favorite />
         <Snippet.Container visible={popupVisible}>
-          {userlists.map((item) => {
-            return <SnippetItem />;
+          {userlists.map(({ name }) => {
+            return <SnippetItem name={name} />;
           })}
           <SnippetCreate />
         </Snippet.Container>
+      </Snippet>
+      <Snippet>
+        <Snippet.Favorite />
       </Snippet>
     </>
   );

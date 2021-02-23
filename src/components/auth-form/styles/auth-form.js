@@ -27,6 +27,7 @@ export const Title = styled.span`
   font-weight: ${({ theme }) => theme.fontWeightSecondary.normal};
   margin-bottom: 2rem;
   border-bottom: 1px solid hsla(0, 0%, 0%, 0.2);
+  box-shadow: 4px 2px 6px 6px rgba(0, 0, 0, 0.3);
 `;
 
 export const Wrapper = styled.div`

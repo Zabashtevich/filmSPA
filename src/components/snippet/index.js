@@ -9,9 +9,11 @@ import {
   UslistInner,
   Container,
   Item,
+  Circle,
   Add,
   Remove,
   Name,
+  Wrapper,
   Edit,
   Delete,
   Create,
@@ -58,6 +60,10 @@ Snippet.Item = function SnippetItem({ children, ...rest }) {
   return <Item {...rest}>{children}</Item>;
 };
 
+Snippet.Circle = function SnippetCircle({ children, ...rest }) {
+  return <Circle {...rest}>{children}</Circle>;
+};
+
 Snippet.Add = function SnippetAdd({ ...rest }) {
   return <Add {...rest} />;
 };
@@ -68,6 +74,10 @@ Snippet.Remove = function SnippetRemove({ ...rest }) {
 
 Snippet.Name = function SnippetName({ ...rest }) {
   return <Name {...rest} />;
+};
+
+Snippet.Wrapper = function SnippetWrapper({ children, ...rest }) {
+  return <Wrapper {...rest}>{children}</Wrapper>;
 };
 
 Snippet.Edit = function SnippetEdit({ ...rest }) {

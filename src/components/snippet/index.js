@@ -77,7 +77,7 @@ Snippet.Edit = function SnippetEdit({ visible, setSnippetSettings, ...rest }) {
         setSnippetSettings((prev) => ({ ...prev, editButtonsDelay: false }))
       }
     >
-      <Edit title="Edit your list" {...rest} />
+      <Edit title="Rename your list" {...rest} />
     </CSSTransition>
   );
 };
@@ -125,7 +125,7 @@ Snippet.Ok = function SnippetOk({ visible, setSnippetSettings, ...rest }) {
         setSnippetSettings((prev) => ({ ...prev, defaultButtonsDelay: false }))
       }
     >
-      <Ok title="Create new list" {...rest} />
+      <Ok title="OK" {...rest} />
     </CSSTransition>
   );
 };

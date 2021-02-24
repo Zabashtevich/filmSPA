@@ -47,6 +47,26 @@ export default function useUserlist(nickname) {
           showErrorModal("Something gone wrong. The list was not created.");
           setProps({ type: null, value: null });
         });
+    } else if (!loading && type === "rename") {
+      showProcessingWindow("Renaming your list");
+      firebase
+        .firestore()
+        .collection(`${nickname}`)
+        .doc("collection")
+        .update({
+          list: userlists.map((item) =>
+            +item.id === +value.id ? { ...item, name: value.name } : item,
+          ),
+        })
+        .then(() => {
+          closeModal();
+          setProps({ type: null, value: null });
+        })
+        .catch(() => {
+          closeModal();
+          showErrorModal("Something gone wrong. The list was not renamed");
+          setProps({ type: null, value: null });
+        });
     }
   }, [loading, props]);
 

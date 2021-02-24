@@ -1,11 +1,15 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 
 import { Snippet } from "../../../../../components";
-import { useSnippetContext } from "./../../../../../context";
+import {
+  useSnippetContext,
+  useMetalogicContext,
+} from "./../../../../../context";
 
 export function SnippetItem({ name }) {
   const [inputValue, setInputValue] = useState(name);
   const [snippetSettings, setSnippetSettings] = useSnippetContext();
+  const [metalogicInterface] = useMetalogicContext();
 
   const {
     editButtonsDelay,
@@ -13,12 +17,23 @@ export function SnippetItem({ name }) {
     editFormActive,
   } = snippetSettings;
 
+  const { setUserlistProps } = metalogicInterface;
+
   const inputRef = useRef(null);
 
   function setFormActive() {
     setSnippetSettings((prev) => ({ ...prev, editFormActive: true }));
-    inputRef.current.focus();
   }
+
+  function setFormDisabled() {
+    setSnippetSettings((prev) => ({ ...prev, editFormActive: false }));
+  }
+
+  useEffect(() => {
+    if (editFormActive && !editButtonsDelay) {
+      inputRef.current.focus();
+    }
+  }, [editFormActive, editButtonsDelay]);
 
   return (
     <Snippet.Item>
@@ -39,12 +54,13 @@ export function SnippetItem({ name }) {
         setSnippetSettings={setSnippetSettings}
       />
       <Snippet.Ok
-        visible={editFormActive && editButtonsDelay}
+        visible={editFormActive && !editButtonsDelay}
         setSnippetSettings={setSnippetSettings}
       />
       <Snippet.Cancel
-        visible={editFormActive && editButtonsDelay}
+        visible={editFormActive && !editButtonsDelay}
         setSnippetSettings={setSnippetSettings}
+        onClick={setFormDisabled}
       />
     </Snippet.Item>
   );

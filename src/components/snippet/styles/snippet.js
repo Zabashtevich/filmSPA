@@ -86,6 +86,10 @@ export const Add = styled(GrAdd)`
         stroke: rgba(0, 0, 0, 6);
       }
     `};
+  &:hover > * {
+    stroke: rgba(0, 0, 0, 0.6);
+    transition: 300ms;
+  }
 `;
 
 export const Remove = styled(IoMdRemove)`
@@ -108,10 +112,12 @@ export const Name = styled.input`
   &:disabled {
     width: 75px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    color: rgba(0, 0, 0, 0.3);
   }
   &:enabled {
     width: 150px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+    color: rgba(0, 0, 0, 0.6);
   }
   &::placeholder {
     color: rgba(0, 0, 0, 0.3);
@@ -119,7 +125,7 @@ export const Name = styled.input`
 `;
 
 export const Edit = styled(MdModeEdit)`
-  ${({ theme }) => theme.animations.fadeRtR};
+  ${({ theme }) => theme.animations.opacity};
   font-size: ${({ theme }) => theme.fontSize.normal};
   color: rgba(0, 0, 0, 0.3);
   margin-left: 1rem;
@@ -127,7 +133,7 @@ export const Edit = styled(MdModeEdit)`
 `;
 
 export const Delete = styled(AiFillDelete)`
-  ${({ theme }) => theme.animations.fadeRtR};
+  ${({ theme }) => theme.animations.opacity};
   font-size: ${({ theme }) => theme.fontSize.normal};
   color: rgba(0, 0, 0, 0.3);
   margin-left: 0.2rem;
@@ -135,15 +141,15 @@ export const Delete = styled(AiFillDelete)`
 `;
 
 export const Ok = styled(BsCheckCircle)`
-  ${({ theme }) => theme.animations.fadeLtL};
+  ${({ theme }) => theme.animations.opacity};
   font-size: ${({ theme }) => theme.fontSize.normal};
   color: rgba(0, 0, 0, 0.3);
-  margin-left: auto;
+  margin-left: 1rem;
   cursor: pointer;
 `;
 
 export const Cancel = styled(RiRefreshLine)`
-  ${({ theme }) => theme.animations.fadeLtL};
+  ${({ theme }) => theme.animations.opacity};
   font-size: ${({ theme }) => theme.fontSize.normal};
   color: rgba(0, 0, 0, 0.3);
   margin-left: 0.3rem;

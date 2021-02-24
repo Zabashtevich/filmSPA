@@ -16,7 +16,7 @@ export default function SnippetContainer() {
       setPopupVisible((prev) => !prev);
     }
   }
-  console.log(userlists);
+
   return (
     !loading && (
       <>
@@ -24,7 +24,14 @@ export default function SnippetContainer() {
           <Snippet.Userlist onClick={(e) => popupToggler(e)} />
           <Snippet.Container visible={popupVisible}>
             {userlists.map(({ name, id }) => {
-              return <SnippetItem name={name} id={id} key={id} />;
+              return (
+                <SnippetItem
+                  name={name}
+                  id={id}
+                  key={id}
+                  setPopupVisible={setPopupVisible}
+                />
+              );
             })}
             {userlists.length !== 5 && <SnippetCreate />}
           </Snippet.Container>

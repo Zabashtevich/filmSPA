@@ -3,7 +3,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { Snippet } from "../../../../../components";
 import { useMetalogicContext, useModalContext } from "./../../../../../context";
 
-export default function SnippetItem({ name, id }) {
+export default function SnippetItem({ name, id, setPopupVisible }) {
   const [inputValue, setInputValue] = useState(name);
   const [editActive, setEditActive] = useState(false);
   const [delay, setDelay] = useState({
@@ -11,12 +11,13 @@ export default function SnippetItem({ name, id }) {
     defaultButtons: false,
   });
 
-  const [metalogicInterface] = useMetalogicContext();
+  const [sucessFlags, metalogicInterface] = useMetalogicContext();
   const [modalProps, setModalProps] = useModalContext();
 
   const { editButtons, defaultButtons } = delay;
   const { setUserlistProps } = metalogicInterface;
   const { showConfirmModal, showErrorModal } = setModalProps;
+  const { userlistSucess } = sucessFlags;
   const { accepted } = modalProps;
 
   const inputRef = useRef(null);
@@ -38,6 +39,16 @@ export default function SnippetItem({ name, id }) {
       setUserlistProps({ type: "delete", id });
     }
   }, [accepted]);
+
+  useEffect(() => {
+    if (userlistSucess !== null) {
+      setEditActive(false);
+      setDelay({ editButtons: true, defaultButtons: false });
+      setInputValue(name);
+      setPopupVisible(false);
+      setUserlistProps({ type: null, value: null, sucess: null });
+    }
+  }, [userlistSucess]);
 
   return (
     <Snippet.Item>

@@ -5,12 +5,16 @@ import { firebase } from "./../../libs/firebase";
 import { useModalContext } from "./../../context";
 
 export default function useEstimate(nickname) {
-  const [props, setProps] = useState({ type: null, value: null });
+  const [props, setProps] = useState({
+    type: null,
+    value: null,
+    sucess: null,
+  });
 
   const userData = useSelector((state) => state.userData);
   const [, modalinterface] = useModalContext();
 
-  const { type, value } = props;
+  const { type, value, sucess } = props;
   const { ratedMovies, loading } = userData;
   const { showErrorModal, showProcessingWindow, closeModal } = modalinterface;
 
@@ -28,12 +32,12 @@ export default function useEstimate(nickname) {
         })
         .then(() => {
           closeModal();
-          setProps({ type: null, value: null });
+          setProps({ type: null, value: null, sucess: true });
         })
         .catch(() => {
           closeModal();
           showErrorModal("Something gone wrong. The vote was not saved :c");
-          setProps({ type: null, value: null });
+          setProps({ type: null, value: null, sucess: false });
         });
     } else if (!loading && type === "unrate") {
       showProcessingWindow("Deleting your vote");
@@ -44,15 +48,15 @@ export default function useEstimate(nickname) {
         .update({ list: ratedMovies.filter((item) => +item.id !== +value) })
         .then(() => {
           closeModal();
-          setProps({ type: null, value: null });
+          setProps({ type: null, value: null, sucess: true });
         })
         .catch(() => {
           closeModal();
           showErrorModal("Something gone wrong. The vote was not deleted :c");
-          setProps({ type: null, value: null });
+          setProps({ type: null, value: null, sucess: false });
         });
     }
   }, [loading, props]);
 
-  return [setProps];
+  return [sucess, setProps];
 }

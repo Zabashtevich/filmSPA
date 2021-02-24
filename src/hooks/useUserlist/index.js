@@ -5,14 +5,18 @@ import { useModalContext } from "./../../context";
 import { firebase } from "./../../libs/firebase";
 
 export default function useUserlist(nickname) {
-  const [props, setProps] = useState({ type: null, value: null });
+  const [props, setProps] = useState({
+    type: null,
+    value: null,
+    sucess: null,
+  });
 
   const userData = useSelector((store) => store.userData);
   const [, modalinterface] = useModalContext();
 
   const { loading, userlists } = userData;
   const { showProcessingWindow, closeModal, showErrorModal } = modalinterface;
-  const { value, type } = props;
+  const { value, type, sucess } = props;
 
   useEffect(() => {
     if (!loading && type === "create") {
@@ -24,12 +28,12 @@ export default function useUserlist(nickname) {
         .update({ list: userlists.concat(value) })
         .then(() => {
           closeModal();
-          setProps({ type: null, value: null });
+          setProps({ type: null, value: null, sucess: true });
         })
         .catch(() => {
           closeModal();
           showErrorModal("Something gone wrong. The list was not created.");
-          setProps({ type: null, value: null });
+          setProps({ type: null, value: null, sucess: false });
         });
     } else if (!loading && type === "delete") {
       showProcessingWindow("Deleting your list");
@@ -40,15 +44,14 @@ export default function useUserlist(nickname) {
         .update({ list: userlists.filter((item) => +item.id !== +value) })
         .then(() => {
           closeModal();
-          setProps({ type: null, value: null });
+          setProps({ type: null, value: null, sucess: true });
         })
         .catch(() => {
           closeModal();
           showErrorModal("Something gone wrong. The list was not created.");
-          setProps({ type: null, value: null });
+          setProps({ type: null, value: null, sucess: false });
         });
     } else if (!loading && type === "rename") {
-      console.log(userlists, nickname);
       showProcessingWindow("Renaming your list");
       firebase
         .firestore()
@@ -61,15 +64,15 @@ export default function useUserlist(nickname) {
         })
         .then(() => {
           closeModal();
-          setProps({ type: null, value: null });
+          setProps({ type: null, value: null, sucess: true });
         })
         .catch(() => {
           closeModal();
           showErrorModal("Something gone wrong. The list was not renamed");
-          setProps({ type: null, value: null });
+          setProps({ type: null, value: null, sucess: false });
         });
     }
   }, [loading, props]);
 
-  return [setProps];
+  return [sucess, setProps];
 }

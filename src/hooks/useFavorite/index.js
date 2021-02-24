@@ -5,11 +5,15 @@ import { firebase } from "./../../libs/firebase";
 import { useModalContext } from "./../../context";
 
 export default function useFavorite(nickname) {
-  const [props, setProps] = useState({ type: null, value: null });
+  const [props, setProps] = useState({
+    type: null,
+    value: null,
+    sucess: null,
+  });
 
   const userData = useSelector((state) => state.userData);
   const [, modalinterface] = useModalContext();
-  const { type, value } = props;
+  const { type, value, sucess } = props;
   const { loading, favoritedMovies } = userData;
   const { showProcessingWindow, closeModal, showErrorModal } = modalinterface;
 
@@ -23,12 +27,12 @@ export default function useFavorite(nickname) {
         .update({ favorite: favoritedMovies.concat(value) })
         .then(() => {
           closeModal();
-          setProps({ type: null, value: null });
+          setProps({ type: null, value: null, sucess: true });
         })
         .catch(() => {
           closeModal();
           showErrorModal("Something gone wrong. Movie was not favorited :c");
-          setProps({ type: null, value: null });
+          setProps({ type: null, value: null, sucess: false });
         });
     } else if (!loading && type === "unfavorite") {
       showProcessingWindow("Processing...");
@@ -41,15 +45,15 @@ export default function useFavorite(nickname) {
         })
         .then(() => {
           closeModal();
-          setProps({ type: null, value: null });
+          setProps({ type: null, value: null, sucess: true });
         })
         .catch(() => {
           closeModal();
           showErrorModal("Something gone wrong. Movie was not unfavorited");
-          setProps({ type: null, value: null });
+          setProps({ type: null, value: null, sucess: false });
         });
     }
   }, [loading, props]);
 
-  return [setProps];
+  return [sucess, setProps];
 }

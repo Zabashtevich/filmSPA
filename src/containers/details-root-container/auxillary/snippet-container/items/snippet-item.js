@@ -24,7 +24,7 @@ export default function SnippetItem({ name, id }) {
   function renameList() {
     name === inputValue
       ? showErrorModal("You did not change list name")
-      : setUserlistProps({ type: "raname", value: { name: inputValue, id } });
+      : setUserlistProps({ type: "rename", value: { name: inputValue, id } });
   }
 
   useEffect(() => {

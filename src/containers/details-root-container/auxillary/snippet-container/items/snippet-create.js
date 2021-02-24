@@ -34,6 +34,7 @@ export default function SnippetCreate() {
       <Snippet.Edit
         visible={!editActive && !defaultButtons}
         setDelay={setDelay}
+        description={"Enter name"}
         onClick={() => setEditActive(true)}
       />
       <Snippet.Ok

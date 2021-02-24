@@ -48,6 +48,7 @@ export default function useUserlist(nickname) {
           setProps({ type: null, value: null });
         });
     } else if (!loading && type === "rename") {
+      console.log(userlists, nickname);
       showProcessingWindow("Renaming your list");
       firebase
         .firestore()

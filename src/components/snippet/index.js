@@ -60,7 +60,13 @@ Snippet.Name = function SnippetName({ inputRef, ...rest }) {
   return <Name ref={inputRef} {...rest} />;
 };
 
-Snippet.Edit = function SnippetEdit({ visible, setDelay, ...rest }) {
+Snippet.Edit = function SnippetEdit({
+  visible,
+  setDelay,
+  description,
+  ...rest
+}) {
+  description = description ?? "Rename your list";
   return (
     <CSSTransition
       in={visible}

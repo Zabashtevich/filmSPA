@@ -78,8 +78,8 @@ export const Add = styled(GrAdd)`
   & > * {
     stroke: rgba(0, 0, 0, 0.3);
   }
-  ${({ editFormActive }) =>
-    editFormActive &&
+  ${({ editActive }) =>
+    editActive &&
     css`
       border: 1px solid rgba(0, 0, 0, 0.6);
       & > * {

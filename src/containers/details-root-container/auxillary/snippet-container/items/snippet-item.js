@@ -9,30 +9,21 @@ import {
 
 export default function SnippetItem({ name, id }) {
   const [inputValue, setInputValue] = useState(name);
+  const [editActive, setEditActive] = useState(false);
+  const [delay, setDelay] = useState({
+    editButtons: true,
+    defaultButtons: false,
+  });
 
-  const [snippetSettings, setSnippetSettings] = useSnippetContext();
   const [metalogicInterface] = useMetalogicContext();
   const [modalProps, setModalProps] = useModalContext();
 
-  const {
-    editButtonsDelay,
-    defaultButtonsDelay,
-    editFormActive,
-  } = snippetSettings;
-
+  const { editButtons, defaultButtons } = delay;
   const { setUserlistProps } = metalogicInterface;
   const { showConfirmModal, showErrorModal } = setModalProps;
   const { accepted } = modalProps;
 
   const inputRef = useRef(null);
-
-  function setFormActive() {
-    setSnippetSettings((prev) => ({ ...prev, editFormActive: true }));
-  }
-
-  function setFormDisabled() {
-    setSnippetSettings((prev) => ({ ...prev, editFormActive: false }));
-  }
 
   function renameList() {
     name === inputValue
@@ -41,10 +32,10 @@ export default function SnippetItem({ name, id }) {
   }
 
   useEffect(() => {
-    if (editFormActive && !editButtonsDelay) {
+    if (editActive && !editButtons) {
       inputRef.current.focus();
     }
-  }, [editFormActive, editButtonsDelay]);
+  }, [editActive, editButtons]);
 
   useEffect(() => {
     if (accepted) {
@@ -54,34 +45,34 @@ export default function SnippetItem({ name, id }) {
 
   return (
     <Snippet.Item>
-      <Snippet.Add editFormActive={editFormActive && 1} />
+      <Snippet.Add editActive={editActive && 1} />
       <Snippet.Name
         onChange={(e) => setInputValue(e.target.value)}
-        disabled={!editFormActive && 1}
+        disabled={!editActive && 1}
         inputRef={inputRef}
         value={inputValue}
       />
       <Snippet.Edit
-        visible={!editFormActive && !defaultButtonsDelay}
-        setSnippetSettings={setSnippetSettings}
-        onClick={setFormActive}
+        visible={!editActive && !defaultButtons}
+        setDelay={setDelay}
+        onClick={() => setEditActive(true)}
       />
       <Snippet.Delete
-        visible={!editFormActive && !defaultButtonsDelay}
-        setSnippetSettings={setSnippetSettings}
+        visible={!editActive && !defaultButtons}
+        setDelay={setDelay}
         onClick={() =>
           showConfirmModal(`Are you sure you want to delete "${name}" list?`)
         }
       />
       <Snippet.Ok
-        visible={editFormActive && !editButtonsDelay}
-        setSnippetSettings={setSnippetSettings}
+        visible={editActive && !editButtons}
+        setDelay={setDelay}
         onClick={renameList}
       />
       <Snippet.Cancel
-        visible={editFormActive && !editButtonsDelay}
-        setSnippetSettings={setSnippetSettings}
-        onClick={setFormDisabled}
+        visible={editActive && !editButtons}
+        setDelay={setDelay}
+        onClick={() => setEditActive(false)}
       />
     </Snippet.Item>
   );

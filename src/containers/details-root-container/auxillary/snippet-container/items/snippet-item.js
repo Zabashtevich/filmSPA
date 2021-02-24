@@ -1,11 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 
 import { Snippet } from "../../../../../components";
-import {
-  useSnippetContext,
-  useMetalogicContext,
-  useModalContext,
-} from "./../../../../../context";
+import { useMetalogicContext, useModalContext } from "./../../../../../context";
 
 export default function SnippetItem({ name, id }) {
   const [inputValue, setInputValue] = useState(name);

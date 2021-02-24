@@ -96,7 +96,9 @@ Snippet.Create = function SnippetCreate({ children, ...rest }) {
   return <Create title="Create list" {...rest} />;
 };
 
-Snippet.Ok = function SnippetOk({ visible, setDelay, ...rest }) {
+Snippet.Ok = function SnippetOk({ visible, setDelay, description, ...rest }) {
+  description = description ?? "OK";
+
   return (
     <CSSTransition
       in={visible}
@@ -107,7 +109,7 @@ Snippet.Ok = function SnippetOk({ visible, setDelay, ...rest }) {
       onEnter={() => setDelay((prev) => ({ ...prev, defaultButtons: true }))}
       onExited={() => setDelay((prev) => ({ ...prev, defaultButtonsD: false }))}
     >
-      <Ok title="OK" {...rest} />
+      <Ok title={description} {...rest} />
     </CSSTransition>
   );
 };

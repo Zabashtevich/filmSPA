@@ -109,19 +109,20 @@ export const Name = styled.input`
   margin-left: -0.3rem;
   outline: none;
   transition: 300ms;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+  color: rgba(0, 0, 0, 0.6);
+  width: 150px;
+  &::placeholder {
+    color: rgba(0, 0, 0, 0.6);
+  }
   &:disabled {
     width: 75px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.3);
     color: rgba(0, 0, 0, 0.3);
     cursor: not-allowed;
-  }
-  &:enabled {
-    width: 150px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.6);
-    color: rgba(0, 0, 0, 0.6);
-  }
-  &::placeholder {
-    color: rgba(0, 0, 0, 0.3);
+    &::placeholder {
+      color: rgba(0, 0, 0, 0.3);
+    }
   }
 `;
 
@@ -147,6 +148,11 @@ export const Ok = styled(BsCheckCircle)`
   color: rgba(0, 0, 0, 0.3);
   margin-left: 1rem;
   cursor: pointer;
+  ${({ disable }) =>
+    disable &&
+    css`
+      cursor: not-allowed;
+    `};
 `;
 
 export const Cancel = styled(RiRefreshLine)`
@@ -165,4 +171,11 @@ export const Create = styled(BsThreeDotsVertical)`
   cursor: pointer;
   padding: 0.4rem;
   transition: 300ms;
+  ${({ editActive }) =>
+    editActive &&
+    css`
+      color: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(0, 0, 0, 0.6);
+      transition: 300ms;
+    `};
 `;

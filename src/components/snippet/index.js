@@ -1,8 +1,6 @@
 import React from "react";
 import { CSSTransition } from "react-transition-group";
 
-import { useSnippetContext } from "./../../context";
-
 import {
   Element,
   Userlist,
@@ -107,7 +105,7 @@ Snippet.Delete = function SnippetDelete({
 };
 
 Snippet.Create = function SnippetCreate({ children, ...rest }) {
-  return <Create title="Create new list" {...rest} />;
+  return <Create title="Create list" {...rest} />;
 };
 
 Snippet.Ok = function SnippetOk({ visible, setSnippetSettings, ...rest }) {

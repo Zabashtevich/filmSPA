@@ -159,10 +159,10 @@ export const Cancel = styled(RiRefreshLine)`
 
 export const Create = styled(BsThreeDotsVertical)`
   font-size: ${({ theme }) => theme.fontSize.large};
-  transform: translate(-50%, -50%);
-  color: rgba(0, 0, 0, 0.3);
-  position: absolute;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  color: rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
   cursor: pointer;
-  top: 50%;
-  left: 50%;
+  padding: 0.4rem;
+  transition: 300ms;
 `;

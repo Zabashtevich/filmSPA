@@ -7,11 +7,13 @@ import {
   useModalContext,
 } from "./../../../../../context";
 
-export function SnippetItem({ name, id }) {
+export default function SnippetItem({ name, id }) {
   const [inputValue, setInputValue] = useState(name);
+
   const [snippetSettings, setSnippetSettings] = useSnippetContext();
   const [metalogicInterface] = useMetalogicContext();
   const [modalProps, setModalProps] = useModalContext();
+
   const {
     editButtonsDelay,
     defaultButtonsDelay,
@@ -83,16 +85,4 @@ export function SnippetItem({ name, id }) {
       />
     </Snippet.Item>
   );
-}
-
-export function SnippetCreate() {
-  return null;
-  // <Snippet.Item>
-  //   <Snippet.Circle>
-  //     <Snippet.Create />
-  //     <Snippet.Name placeholder={"Create new list"} disabled />
-  //   </Snippet.Circle>
-  //   <Snippet.Ok />
-  //   <Snippet.Cancel />
-  // </Snippet.Item>
 }

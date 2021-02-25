@@ -4,7 +4,7 @@ export const Face = styled.div``;
 
 export const Title = styled.div``;
 
-export const Buttons = styled.div``;
+export const Button = styled.div``;
 
 export const Arrow = styled.div``;
 

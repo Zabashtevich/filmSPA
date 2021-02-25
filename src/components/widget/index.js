@@ -3,7 +3,7 @@ import React from "react";
 import {
   Face,
   Title,
-  Buttons,
+  Button,
   Arrow,
   Container,
   Subtitle,
@@ -21,8 +21,8 @@ Widget.Title = function WidgetTitle({ children, ...rest }) {
   return <Title {...rest}>{children}</Title>;
 };
 
-Widget.Buttons = function WidgetButtons({ children, ...rest }) {
-  return <Buttons {...rest}>{children}</Buttons>;
+Widget.Button = function WidgetButton({ children, ...rest }) {
+  return <Button {...rest}>{children}</Button>;
 };
 
 Widget.Arrow = function WidgetArrow({ ...rest }) {

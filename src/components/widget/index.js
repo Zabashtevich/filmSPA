@@ -5,8 +5,10 @@ import {
   Title,
   Button,
   Arrow,
+  Chevron,
   Container,
   Subtitle,
+  Name,
   Item,
   Backdrop,
   Element,
@@ -29,12 +31,20 @@ Widget.Arrow = function WidgetArrow({ ...rest }) {
   return <Arrow {...rest} />;
 };
 
+Widget.Chevron = function WidgetChevron({ ...rest }) {
+  return <Chevron {...rest} />;
+};
+
 Widget.Container = function WidgetContainer({ children, ...rest }) {
   return <Container {...rest}>{children}</Container>;
 };
 
 Widget.Subtitle = function WidgetSubtitle({ children, ...rest }) {
   return <Subtitle {...rest}>{children}</Subtitle>;
+};
+
+Widget.Name = function WidgetName({ children, ...rest }) {
+  return <Name {...rest}>{children}</Name>;
 };
 
 Widget.Item = function WidgetItem({ children, ...rest }) {

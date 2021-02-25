@@ -89,6 +89,8 @@ export const Subtitle = styled.div`
 
 export const Name = styled.span`
   padding: 0 0.8rem;
+  margin-left: auto;
+  user-select: none;
 `;
 
 export const Item = styled.div`
@@ -96,6 +98,7 @@ export const Item = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 30px;
+  position: relative;
   &:hover {
     background-color: #f2f2f2;
     transition: 500ms;
@@ -103,7 +106,13 @@ export const Item = styled.div`
 `;
 
 export const Backdrop = styled.div`
-  display: none;
+  display: flex;
+  position: absolute;
+  background-color: white;
+  right: calc(100% + 8px);
+  border-radius: 0.2rem;
+  width: 150px;
+  top: 0;
 `;
 
 export const Element = styled.div``;

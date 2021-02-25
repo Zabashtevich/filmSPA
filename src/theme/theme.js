@@ -1,24 +1,27 @@
 export default {
-  fontFamily: {
-    main: "'Source Sans Pro', sans-serif",
-    secondary: "'Roboto', sans-serif;",
-  },
-  fontWeightMain: {
-    light: "300",
-    normal: "400",
-    bold: "600",
-  },
-  fontWeightSecondary: {
-    light: "300",
-    normal: "400",
-    bold: "700",
-  },
-  fontSize: {
-    small: "1rem",
-    normal: "1.5rem",
-    large: "2rem",
-    huge: "3rem",
-    logo: "3.5rem",
+  font: {
+    main: {
+      family: "'Source Sans Pro', sans-serif",
+      weight: { light: "300", normal: "400", bold: "600" },
+      size: {
+        small: "0.8rem",
+        normal: "1rem",
+        big: "1.5rem",
+        large: "2rem",
+        huge: "3rem",
+      },
+    },
+    aux: {
+      family: "'Ubuntu', sans-serif",
+      weight: { light: "300", normal: "400", heavy: "500", bold: "700" },
+      size: {
+        small: "0.8rem",
+        normal: "1rem",
+        big: "1.5rem",
+        large: "2rem",
+        huge: "3rem",
+      },
+    },
   },
   colors: {
     header: "#032541",

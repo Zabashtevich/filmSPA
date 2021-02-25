@@ -5,14 +5,14 @@ import { Widget } from "../../../../components";
 export default function WidgetContainer() {
   return (
     <Widget>
-      <Widget.Title></Widget.Title>
+      <Widget.Title>Add to list</Widget.Title>
       <Widget.Button>
         <Widget.Arrow />
       </Widget.Button>
       <Widget.Container>
         <Widget.Title>Add to list</Widget.Title>
         <Widget.Item>
-          <Widget.Arror />
+          <Widget.Arrow />
           <Widget.Subtitle>Userlist</Widget.Subtitle>
           <Widget.Backdrop>
             <Widget.Element>
@@ -22,7 +22,7 @@ export default function WidgetContainer() {
           </Widget.Backdrop>
         </Widget.Item>
         <Widget.Item>
-          <Widget.Arror />
+          <Widget.Arrow />
           <Widget.Subtitle>Favorite</Widget.Subtitle>
         </Widget.Item>
       </Widget.Container>

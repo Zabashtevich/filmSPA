@@ -21,4 +21,7 @@ export const GlobalStyles = createGlobalStyle`
     svg > * {
         pointer-events: none;
     }
+    svg {
+        cursor: pointer;
+    }
     }`;

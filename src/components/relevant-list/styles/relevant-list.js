@@ -4,7 +4,7 @@ import { Link as ReactRouterLink } from "react-router-dom";
 export const Name = styled.span`
   margin: 1rem 1rem 1rem 0;
   font-size: ${({ theme }) => theme.font.aux.size.normal};
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.normal};
+  font-weight: ${({ theme }) => theme.font.aux.weight.normal};
   color: ${({ theme }) => theme.colors.secondary};
 `;
 
@@ -56,7 +56,7 @@ export const Container = styled.div`
 
 export const Title = styled.h3`
   font-size: ${({ theme }) => theme.font.aux.size.large};
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   margin-top: 1rem;
   max-width: 1000px;
   margin: 0 auto;
@@ -91,6 +91,6 @@ export const ErrorWrapper = styled.div`
   width: 100%;
   height: 200px;
   font-size: ${({ theme }) => theme.font.aux.size.normal};
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.normal};
+  font-weight: ${({ theme }) => theme.font.aux.weight.normal};
   color: ${({ theme }) => theme.colors.secondary};
 `;

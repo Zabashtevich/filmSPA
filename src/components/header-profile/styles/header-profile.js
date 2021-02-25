@@ -55,7 +55,7 @@ export const PopupLink = styled(ReactRouterLink)`
   color: #000;
   margin: 1rem 2rem 0.2rem 1rem;
   font-size: 1.1rem;
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.normal};
+  font-weight: ${({ theme }) => theme.font.aux.weight.normal};
   &:hover {
     color: gray;
     transition: 200ms;
@@ -66,7 +66,7 @@ export const PopupLogout = styled.span`
   margin: 1rem 2rem 1.3rem 1rem;
   cursor: pointer;
   font-size: 1.1rem;
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.normal};
+  font-weight: ${({ theme }) => theme.font.aux.weight.normal};
   &:hover {
     color: gray;
     transition: 200ms;

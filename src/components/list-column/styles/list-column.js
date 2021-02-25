@@ -11,7 +11,7 @@ export const Title = styled.h3`
   margin: 0 0 1rem 0;
 
   font-size: ${({ theme }) => theme.font.aux.size.normal};
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
 `;
 
 export const ItemContainer = styled.div`
@@ -22,7 +22,7 @@ export const ItemLink = styled(ReactRouterLink)`
   text-decoration: none;
   color: #fff;
   font-size: ${({ theme }) => theme.font.aux.size.small};
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
+  font-weight: ${({ theme }) => theme.font.aux.weight.light};
   margin: 0;
   transition: all 200ms linear;
   padding: 0.3rem;

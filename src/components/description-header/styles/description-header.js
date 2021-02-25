@@ -11,5 +11,5 @@ export const Title = styled.h1`
 
 export const SubTitle = styled.h2`
   font-size: ${({ theme }) => theme.font.aux.size.small};
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
+  font-weight: ${({ theme }) => theme.font.aux.weight.light};
 `;

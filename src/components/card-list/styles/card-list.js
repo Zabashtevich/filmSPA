@@ -19,7 +19,7 @@ export const ContentWrapper = styled.div`
 
 export const ItemTitle = styled.h4`
   font-size: ${({ theme }) => theme.font.aux.size.small};
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   margin: 0;
 `;
 export const ItemDate = styled.p`
@@ -77,7 +77,7 @@ export const MetaScore = styled.span`
   top: 3%;
   left: 5%;
   font-size: ${({ theme }) => theme.font.aux.size.normal};
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   padding: 0.2rem 0.4rem;
   border-radius: 0.5rem;
   ${({ error }) =>

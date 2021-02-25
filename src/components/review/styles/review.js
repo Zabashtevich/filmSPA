@@ -50,7 +50,7 @@ export const Profile = styled.div`
 
 export const Nickname = styled.span`
   font-size: ${({ theme }) => theme.font.aux.size.small};
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   margin-left: 1rem;
 `;
 
@@ -68,7 +68,7 @@ export const Rating = styled.span`
   border-radius: 0.5rem;
   color: white;
   font-size: ${({ theme }) => theme.font.aux.size.normal};
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
 `;
 
 export const Time = styled.span``;
@@ -94,7 +94,7 @@ export const Show = styled.button`
   border: 1px solid rgba(0, 0, 0, 0.2);
   background-color: ${({ theme }) => theme.colors.secondary};
   font-size: ${({ theme }) => theme.font.aux.size.small};
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   border-radius: 0.5rem;
   color: white;
   padding: 0.5rem 1rem;

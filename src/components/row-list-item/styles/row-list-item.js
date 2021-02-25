@@ -41,7 +41,7 @@ export const VoteAmount = styled.div`
 `;
 
 export const VoteAverage = styled.div`
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
 `;
 
 export const Star = styled(IoIosStar)`

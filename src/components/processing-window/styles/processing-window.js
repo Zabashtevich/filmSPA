@@ -16,7 +16,7 @@ export const Container = styled.div`
   justify-content: center;
   font-size: ${({ theme }) => theme.font.aux.size.small};
   font-family: ${({ theme }) => theme.font.aux.family};
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
+  font-weight: ${({ theme }) => theme.font.aux.weight.light};
   ${({ theme }) => theme.animations.fadeLtR};
 `;
 

@@ -94,7 +94,7 @@ export const Metadata = styled.div`
 `;
 
 export const Title = styled(ReactRouterLink)`
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   font-size: ${({ theme }) => theme.font.aux.size.huge};
   text-decoration: none;
   color: #fff;
@@ -117,7 +117,7 @@ export const TagItem = styled.span`
 export const Description = styled.div`
   line-height: 1.5rem;
   transition: all 0.5s;
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
+  font-weight: ${({ theme }) => theme.font.aux.weight.light};
   opacity: 0;
 `;
 

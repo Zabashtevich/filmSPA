@@ -21,7 +21,7 @@ export const Button = styled.button`
   border-radius: 1rem;
   padding: 0.5rem 1rem;
   cursor: pointer;
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
+  font-weight: ${({ theme }) => theme.font.aux.weight.light};
   ${({ reviewpage }) =>
     reviewpage &&
     css`

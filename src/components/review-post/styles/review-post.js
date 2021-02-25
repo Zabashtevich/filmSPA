@@ -23,7 +23,7 @@ export const Input = styled.input`
   outline: none;
   width: 75%;
   margin-top: 2rem;
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.normal};
+  font-weight: ${({ theme }) => theme.font.aux.weight.normal};
   font-size: ${({ theme }) => theme.font.aux.size.small};
   color: ${({ theme }) => theme.colors.secondary};
   border-radius: 0.5rem;
@@ -31,7 +31,7 @@ export const Input = styled.input`
   padding: 0.4rem 0.6rem;
   background-color: ${({ theme }) => theme.colors.reviewsBackground};
   &::placeholder {
-    font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
+    font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   }
 `;
 
@@ -45,7 +45,7 @@ export const Textfield = styled.textarea`
   padding: 0.5rem 1rem;
   outline: none;
   background-color: ${({ theme }) => theme.colors.reviewsBackground};
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
+  font-weight: ${({ theme }) => theme.font.aux.weight.light};
 `;
 
 export const RadioElement = styled.input`
@@ -60,7 +60,7 @@ export const Button = styled.button`
   border-radius: 1rem;
   cursor: pointer;
   border: 1px solid darkgray;
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   font-size: ${({ theme }) => theme.font.aux.size.normal};
   &:enabled:hover {
     color: ${({ theme }) => theme.colors.secondary};
@@ -83,7 +83,7 @@ export const RadioWrapper = styled.div`
 `;
 
 export const Nickname = styled.span`
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
+  font-weight: ${({ theme }) => theme.font.aux.weight.light};
   font-size: ${({ theme }) => theme.font.aux.size.normal};
   color: ${({ theme }) => theme.colors.secondary};
   margin-top: 0.4rem;
@@ -106,7 +106,7 @@ export const Avatar = styled.img`
 
 export const Title = styled.span`
   font-size: ${({ theme }) => theme.font.aux.size.large};
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   margin-bottom: 2rem;
   margin-top: 1rem;
   width: 100%;
@@ -125,7 +125,7 @@ export const RadioInner = styled.div`
 
 export const RadioTitle = styled.input`
   font-size: ${({ theme }) => theme.font.aux.size.small};
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   background-color: ${({ theme }) => theme.colors.reviewsBackground};
   cursor: pointer;
   width: 100%;
@@ -177,7 +177,7 @@ export const BackLink = styled(ReactRouterLink)`
   border-radius: 1rem;
   cursor: pointer;
   border: 1px solid darkgray;
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   font-size: ${({ theme }) => theme.font.aux.size.normal};
   text-decoration: none;
   &:hover {

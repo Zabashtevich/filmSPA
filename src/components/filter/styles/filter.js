@@ -22,7 +22,7 @@ export const Item = styled.div`
   width: 550px;
   display: flex;
   font-size: ${({ theme }) => theme.font.aux.size.small};
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
+  font-weight: ${({ theme }) => theme.font.aux.weight.light};
   white-space: nowrap;
   align-items: center;
   margin: 0.3rem 0.3rem;
@@ -88,7 +88,7 @@ export const Select = styled.select`
   padding: 0.15rem 0.5rem;
   margin: 0 0.2rem;
   color: white;
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
+  font-weight: ${({ theme }) => theme.font.aux.weight.light};
   cursor: pointer;
   &:focus {
     background-color: rgba(0, 0, 0, 0.5);

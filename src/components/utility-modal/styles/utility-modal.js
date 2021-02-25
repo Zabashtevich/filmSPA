@@ -110,7 +110,7 @@ export const Body = styled.div`
 export const Message = styled.span`
   margin-left: 3rem;
   font-size: ${({ theme }) => theme.font.aux.size.large};
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
+  font-weight: ${({ theme }) => theme.font.aux.weight.light};
   user-select: none;
 `;
 
@@ -118,7 +118,7 @@ export const Input = styled.input`
   width: 75%;
   align-self: center;
   font-size: ${({ theme }) => theme.font.aux.size.large};
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
+  font-weight: ${({ theme }) => theme.font.aux.weight.light};
   padding: 0.4rem 1.2rem;
 `;
 

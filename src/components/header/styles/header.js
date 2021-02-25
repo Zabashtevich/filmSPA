@@ -21,7 +21,7 @@ export const Link = styled(ReactRouterLink)`
   text-decoration: none;
   margin: 20px;
   font-size: ${({ theme }) => theme.font.aux.size.normal};
-  font-weight: ${({ theme }) => theme.fontWeightMain.bold};
+  font-weight: ${({ theme }) => theme.font.main.weight.bold};
   padding: 5px;
   display: block;
   transition: box-shadow 500ms;
@@ -68,7 +68,7 @@ export const Profile = styled.div`
   margin-left: 1rem;
   color: ${({ theme }) => theme.colors.secondary};
   font-size: ${({ theme }) => theme.font.aux.size.normal};
-  font-weight: ${({ theme }) => theme.fontWeightMain.bold};
+  font-weight: ${({ theme }) => theme.font.main.weight.bold};
   transition: box-shadow 500ms;
   padding: 5px;
   cursor: pointer;
@@ -84,9 +84,9 @@ export const Profile = styled.div`
   }
 `;
 export const Logo = styled(ReactRouterLink)`
-  font-size: ${({ theme }) => theme.fontSize.logo};
+  font-size: ${({ theme }) => theme.font.main.size.huge};
   letter-spacing: 0.1rem;
-  font-weight: ${({ theme }) => theme.fontWeightMain.bold};
+  font-weight: ${({ theme }) => theme.font.main.weight.bold};
   width: 200px;
   margin-right: 2rem;
   text-decoration: none;

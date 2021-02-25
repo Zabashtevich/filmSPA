@@ -95,7 +95,7 @@ export const UserRating = styled.div`
   align-items: center;
   flex-direction: column;
   font-size: ${({ theme }) => theme.font.aux.size.normal};
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
+  font-weight: ${({ theme }) => theme.font.aux.weight.light};
   background: rgba(0, 0, 0, 0.05);
   padding: 1rem 2rem;
   border-radius: 0.5rem;

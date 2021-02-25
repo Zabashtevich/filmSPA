@@ -2,7 +2,7 @@ import styled, { css } from "styled-components/macro";
 
 export const Container = styled.div`
   margin-top: 1rem;
-  font-family: ${({ theme }) => theme.fontFamily.secondary};
+  font-family: ${({ theme }) => theme.font.aux.family};
   background-color: rgba(0, 0, 0, 0.05);
   border-radius: 1rem 1rem 0 0;
   display: flex;
@@ -13,7 +13,7 @@ export const Container = styled.div`
 
 export const Title = styled.h3`
   text-align: center;
-  font-size: ${({ theme }) => theme.fontSize.large};
+  font-size: ${({ theme }) => theme.font.aux.size.large};
   color: gray;
   margin-bottom: 3rem;
 `;
@@ -21,7 +21,7 @@ export const Title = styled.h3`
 export const Item = styled.div`
   width: 550px;
   display: flex;
-  font-size: ${({ theme }) => theme.fontSize.small};
+  font-size: ${({ theme }) => theme.font.aux.size.small};
   font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
   white-space: nowrap;
   align-items: center;
@@ -101,7 +101,7 @@ export const Option = styled.option`
 `;
 
 export const Button = styled.button`
-  font-size: ${({ theme }) => theme.fontSize.normal};
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
   outline: none;
   border: 1px solid rgba(0, 0, 0, 0.4);
   margin: 1rem 0.5rem;

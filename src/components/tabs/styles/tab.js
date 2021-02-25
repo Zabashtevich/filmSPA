@@ -9,7 +9,7 @@ export const Container = styled.div`
 export const Category = styled.span`
   display: block;
   align-self: center;
-  font-size: ${({ theme }) => theme.fontSize.normal};
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
   user-select: none;
   white-space: nowrap;
 `;
@@ -49,7 +49,7 @@ export const Anchor = styled.div`
 `;
 
 export const Title = styled.h4`
-  font-size: ${({ theme }) => theme.fontSize.large};
+  font-size: ${({ theme }) => theme.font.aux.size.large};
   margin: 0;
   align-self: center;
   color: #000;
@@ -58,7 +58,7 @@ export const Title = styled.h4`
 
 export const TitleInner = styled.div`
   display: flex;
-  font-size: ${({ theme }) => theme.fontSize.large};
+  font-size: ${({ theme }) => theme.font.aux.size.large};
   margin-right: 20px;
   &:nth-child(1n + 2) {
     margin: 0 20px;

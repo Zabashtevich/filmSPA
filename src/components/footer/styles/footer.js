@@ -22,7 +22,7 @@ export const Item = styled.li`
 
 export const ItemLink = styled.a`
   text-decoration: none;
-  font-size: ${({ theme }) => theme.fontSize.normal};
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
   color: #fff;
   &:hover {
     box-shadow: inset 0 -1px #fff;

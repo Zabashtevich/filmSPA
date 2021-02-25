@@ -14,8 +14,8 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: ${({ theme }) => theme.fontSize.small};
-  font-family: ${({ theme }) => theme.fontFamily.secondary};
+  font-size: ${({ theme }) => theme.font.aux.size.small};
+  font-family: ${({ theme }) => theme.font.aux.family};
   font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
   ${({ theme }) => theme.animations.fadeLtR};
 `;

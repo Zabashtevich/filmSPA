@@ -11,7 +11,7 @@ export const Face = styled.div`
   background-color: white;
   border: 1px solid black;
   border-radius: 0.2rem;
-  font-family: ${({ theme }) => theme.fontFamily.secondary};
+  font-family: ${({ theme }) => theme.font.aux.family};
   color: black;
 `;
 

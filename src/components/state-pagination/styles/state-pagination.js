@@ -3,12 +3,12 @@ import styled, { css } from "styled-components";
 export const Container = styled.div`
   display: flex;
   width: 80%;
-  font-family: ${({ theme }) => theme.fontFamily.secondary};
+  font-family: ${({ theme }) => theme.font.aux.family};
   margin: 1rem auto;
 `;
 
 export const Item = styled.span`
-  font-size: ${({ theme }) => theme.fontSize.small};
+  font-size: ${({ theme }) => theme.font.aux.size.small};
   background-color: ${({ theme }) => theme.colors.secondary};
   border-radius: 0.5rem;
   padding: 0.4rem 0.6rem;

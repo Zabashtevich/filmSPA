@@ -20,7 +20,7 @@ export const PaginationLink = styled(ReactRouterLink)`
   width: 100%;
   height: 100%;
   text-decoration: none;
-  font-size: ${({ theme }) => theme.fontSize.normal};
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
   color: #000;
 `;
 
@@ -54,6 +54,6 @@ export const ItemEtc = styled.span`
   width: 100%;
   height: 100%;
   text-decoration: none;
-  font-size: ${({ theme }) => theme.fontSize.normal};
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
   cursor: pointer;
 `;

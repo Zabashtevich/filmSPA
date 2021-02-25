@@ -25,7 +25,7 @@ export const Container = styled.div`
   background: white;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25), 0 3px 3px rgba(0, 0, 0, 0.22);
   border-radius: 0.4rem;
-  font-family: ${({ theme }) => theme.fontFamily.secondary};
+  font-family: ${({ theme }) => theme.font.aux.family};
 `;
 
 export const Header = styled.div`
@@ -109,7 +109,7 @@ export const Body = styled.div`
 
 export const Message = styled.span`
   margin-left: 3rem;
-  font-size: ${({ theme }) => theme.fontSize.large};
+  font-size: ${({ theme }) => theme.font.aux.size.large};
   font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
   user-select: none;
 `;
@@ -117,7 +117,7 @@ export const Message = styled.span`
 export const Input = styled.input`
   width: 75%;
   align-self: center;
-  font-size: ${({ theme }) => theme.fontSize.large};
+  font-size: ${({ theme }) => theme.font.aux.size.large};
   font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
   padding: 0.4rem 1.2rem;
 `;
@@ -125,7 +125,7 @@ export const Input = styled.input`
 export const Wrapper = styled.div`
   align-self: flex-end;
   margin-right: 3rem;
-  font-size: ${({ theme }) => theme.fontSize.large};
+  font-size: ${({ theme }) => theme.font.aux.size.large};
   user-select: none;
 `;
 

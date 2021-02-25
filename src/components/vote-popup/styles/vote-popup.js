@@ -57,7 +57,7 @@ export const Wrapper = styled.div`
 
 export const Number = styled.div`
   width: 20px;
-  font-size: ${({ theme }) => theme.fontSize.small};
+  font-size: ${({ theme }) => theme.font.aux.size.small};
   text-align: center;
   margin-right: 0.5rem;
   user-select: none;
@@ -68,7 +68,7 @@ export const StarInner = styled.div`
 `;
 
 export const VoteStar = styled(IoIosStar)`
-  font-size: ${({ theme }) => theme.fontSize.normal};
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
   padding: 0.1rem 0.2rem;
   & > * {
     pointer-events: none;
@@ -76,26 +76,26 @@ export const VoteStar = styled(IoIosStar)`
 `;
 
 export const Star = styled(IoIosStar)`
-  font-size: ${({ theme }) => theme.fontSize.small};
+  font-size: ${({ theme }) => theme.font.aux.size.small};
   & > * {
     pointer-events: none;
   }
 `;
 
 export const EmptyStar = styled(IoIosStarOutline)`
-  font-size: ${({ theme }) => theme.fontSize.small};
+  font-size: ${({ theme }) => theme.font.aux.size.small};
   & > * {
     pointer-events: none;
   }
 `;
 
 export const Highscore = styled.div`
-  font-size: ${({ theme }) => theme.fontSize.normal};
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
   padding: 0.1rem 0.2rem;
 `;
 
 export const Icon = styled(VscTriangleDown)`
-  font-size: ${({ theme }) => theme.fontSize.normal};
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
   padding: 0.1rem 0.2rem;
   & > * {
     pointer-events: none;

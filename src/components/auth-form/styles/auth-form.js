@@ -8,7 +8,7 @@ export const Container = styled.div`
   margin: 1rem auto;
   background-color: ${({ theme }) => theme.colors.reviewsBackground};
   box-shadow: 4px 2px 6px 6px rgba(0, 0, 0, 0.3);
-  font-family: ${({ theme }) => theme.fontFamily.secondary};
+  font-family: ${({ theme }) => theme.font.aux.family};
   display: flex;
   justify-content: center;
   color: ${({ theme }) => theme.colors.secondary};
@@ -23,8 +23,8 @@ export const Form = styled.form`
 
 export const Title = styled.span`
   text-align: center;
-  font-size: ${({ theme }) => theme.fontSize.huge};
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.normal};
+  font-size: ${({ theme }) => theme.font.aux.size.huge};
+  font-weight: ${({ theme }) => theme.font.aux.weight.normal};
   margin-bottom: 2rem;
   border-bottom: 1px solid hsla(0, 0%, 0%, 0.2);
   box-shadow: 4px 2px 6px 6px rgba(0, 0, 0, 0.3);
@@ -34,8 +34,8 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
-  font-size: ${({ theme }) => theme.fontSize.normal};
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
+  font-weight: ${({ theme }) => theme.font.aux.weight.light};
   margin: 0.5rem;
 `;
 
@@ -46,7 +46,7 @@ export const Input = styled.input`
   color: #fff;
   min-width: 300px;
   background-color: ${({ theme }) => theme.colors.secondary};
-  font-size: ${({ theme }) => theme.fontSize.small};
+  font-size: ${({ theme }) => theme.font.aux.size.small};
   text-align: center;
   &:focus {
     color: ${({ theme }) => theme.colors.secondary};
@@ -70,7 +70,7 @@ export const Button = styled.button`
   padding: 0.5rem 1rem;
   outline: none;
   box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.3);
-  font-size: ${({ theme }) => theme.fontSize.normal};
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
   &:hover {
     background-color: #fff;
     color: #000;
@@ -95,7 +95,7 @@ export const ErrorContainer = styled.ul`
   border-radius: 1rem;
   background-color: #ffd2d2;
   padding-left: 0.2rem;
-  font-size: ${({ theme }) => theme.fontSize.small};
+  font-size: ${({ theme }) => theme.font.aux.size.small};
   max-width: 400px;
   transform: translateY(${({ state }) => (state === "entering" ? -600 : 0)}px);
   opacity: ${({ state }) => (state === "entering" ? 0 : 1)};

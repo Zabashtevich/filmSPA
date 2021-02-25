@@ -5,11 +5,11 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-size: ${({ theme }) => theme.fontSize.large};
+  font-size: ${({ theme }) => theme.font.aux.size.large};
   margin: 0;
 `;
 
 export const SubTitle = styled.h2`
-  font-size: ${({ theme }) => theme.fontSize.small};
+  font-size: ${({ theme }) => theme.font.aux.size.small};
   font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
 `;

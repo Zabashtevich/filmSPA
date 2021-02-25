@@ -12,20 +12,20 @@ export const ContentWrapper = styled.div`
 `;
 
 export const DarkTitle = styled.h4`
-  font-size: ${({ theme }) => theme.fontSize.small};
+  font-size: ${({ theme }) => theme.font.aux.size.small};
   font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
   color: ${({ theme }) => theme.colors.titleDark};
   margin: 0;
 `;
 
 export const LightTitle = styled.h4`
-  font-size: ${({ theme }) => theme.fontSize.small};
+  font-size: ${({ theme }) => theme.font.aux.size.small};
   font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
   margin: 0;
 `;
 
 export const Title = styled.h3`
-  font-size: ${({ theme }) => theme.fontSize.normal};
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
   font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
 `;
 

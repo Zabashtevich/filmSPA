@@ -7,8 +7,8 @@ export const Container = styled.div`
   width: 100%;
   margin: 0 auto;
   position: relative;
-  font-family: ${({ theme }) => theme.fontFamily.secondary};
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.normal};
+  font-family: ${({ theme }) => theme.font.aux.family};
+  font-weight: ${({ theme }) => theme.font.aux.weight.normal};
   ${({ background }) =>
     background === "dark"
       ? css`

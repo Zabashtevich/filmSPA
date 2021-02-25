@@ -4,8 +4,8 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 1rem;
-  font-family: ${({ theme }) => theme.fontFamily.secondary};
-  font-size: ${({ theme }) => theme.fontSize.normal};
+  font-family: ${({ theme }) => theme.font.aux.family};
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
   ${({ theme }) => theme.animations.fadeLtR};
 `;
 

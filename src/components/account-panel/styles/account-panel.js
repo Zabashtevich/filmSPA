@@ -16,5 +16,5 @@ export const CardsContainer = styled.div`
 export const Placeholder = styled.div`
   color: rgba(0, 0, 0, 0.5);
   text-align: center;
-  font-size: ${({ theme }) => theme.fontSize.large};
+  font-size: ${({ theme }) => theme.font.aux.size.large};
 `;

@@ -11,7 +11,7 @@ export const Container = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  font-family: ${({ theme }) => theme.fontFamily.secondary};
+  font-family: ${({ theme }) => theme.font.aux.family};
   border: 1px solid rgba(0, 0, 0, 0.1);
   padding-top: 6rem;
 `;
@@ -25,14 +25,14 @@ export const Wrapper = styled.div`
 `;
 
 export const Title = styled.span`
-  font-size: ${({ theme }) => theme.fontSize.huge};
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
+  font-size: ${({ theme }) => theme.font.aux.size.huge};
+  font-weight: ${({ theme }) => theme.font.aux.weight.light};
   padding: 1rem 2rem;
 `;
 
 export const Overview = styled.div`
-  font-size: ${({ theme }) => theme.fontSize.normal};
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
+  font-weight: ${({ theme }) => theme.font.aux.weight.light};
   width: 600px;
   margin: 2rem auto;
   background-color: rgba(0, 0, 0, 0.1);
@@ -50,7 +50,7 @@ export const Rating = styled.div`
 `;
 
 export const Star = styled(IoIosStar)`
-  font-size: ${({ theme }) => theme.fontSize.huge};
+  font-size: ${({ theme }) => theme.font.aux.size.huge};
   padding: 0.2rem;
   cursor: pointer;
   color: gray;
@@ -70,12 +70,12 @@ export const Star = styled(IoIosStar)`
 `;
 
 export const Votes = styled.span`
-  font-size: ${({ theme }) => theme.fontSize.normal};
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
   color: rgba(0, 0, 0, 0.2);
 `;
 
 export const Average = styled.span`
-  font-size: ${({ theme }) => theme.fontSize.huge};
+  font-size: ${({ theme }) => theme.font.aux.size.huge};
   margin-left: 1rem;
   ${({ average }) =>
     +average > 5 &&
@@ -94,7 +94,7 @@ export const UserRating = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  font-size: ${({ theme }) => theme.fontSize.normal};
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
   font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
   background: rgba(0, 0, 0, 0.05);
   padding: 1rem 2rem;
@@ -122,7 +122,7 @@ export const UserValue = styled.span`
 `;
 
 export const Button = styled.button`
-  font-size: ${({ theme }) => theme.fontSize.small};
+  font-size: ${({ theme }) => theme.font.aux.size.small};
   margin-left: 0.5rem;
   border: none;
   background: none;
@@ -136,7 +136,7 @@ export const Button = styled.button`
 `;
 
 export const Time = styled.span`
-  font-size: ${({ theme }) => theme.fontSize.small};
+  font-size: ${({ theme }) => theme.font.aux.size.small};
 `;
 
 export const Reviews = styled.div`
@@ -151,7 +151,7 @@ export const Reviews = styled.div`
 `;
 
 export const CreateReview = styled(ReactRouterLink)`
-  font-size: ${({ theme }) => theme.fontSize.normal};
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
   background-color: ${({ theme }) => theme.colors.secondary};
   padding: 0.5rem 1rem;
   border-radius: 1rem;

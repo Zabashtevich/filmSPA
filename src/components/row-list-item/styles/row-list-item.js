@@ -3,7 +3,7 @@ import styled, { css } from "styled-components/macro";
 import { IoIosStar } from "react-icons/io";
 
 export const Numerator = styled.div`
-  font-size: ${({ theme }) => theme.fontSize.small};
+  font-size: ${({ theme }) => theme.font.aux.size.small};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -45,7 +45,7 @@ export const VoteAverage = styled.div`
 `;
 
 export const Star = styled(IoIosStar)`
-  font-size: ${({ theme }) => theme.fontSize.small};
+  font-size: ${({ theme }) => theme.font.aux.size.small};
   & > * {
     pointer-events: none;
   }
@@ -56,7 +56,7 @@ export const Container = styled.div`
   background-color: white;
   margin: 1rem 1rem;
   display: flex;
-  font-family: ${({ theme }) => theme.fontFamily.secondary};
+  font-family: ${({ theme }) => theme.font.aux.family};
   height: 50px;
   align-items: center;
   padding: 0.2rem;

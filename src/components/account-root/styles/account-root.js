@@ -5,12 +5,12 @@ export const Container = styled.div`
   max-width: 1200px;
   margin: 2rem auto;
   display: flex;
-  font-family: ${({ theme }) => theme.fontFamily.secondary};
+  font-family: ${({ theme }) => theme.font.aux.family};
 `;
 
 export const Nickname = styled.div`
   color: #000;
-  font-size: ${({ theme }) => theme.fontSize.normal};
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
   margin-top: 2rem;
 `;
 
@@ -37,7 +37,7 @@ export const Link = styled(ReactRouterLink)`
   background-color: ${({ theme }) => theme.colors.secondary};
   padding: 0.3rem 0;
   border-radius: 1rem;
-  font-size: ${({ theme }) => theme.fontSize.small};
+  font-size: ${({ theme }) => theme.font.aux.size.small};
   border: 1px solid black;
   &:hover {
     color: black;
@@ -56,15 +56,15 @@ export const ContentColumn = styled.div`
 
 export const Title = styled.span`
   margin-top: 2rem;
-  font-size: ${({ theme }) => theme.fontSize.large};
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
+  font-size: ${({ theme }) => theme.font.aux.size.large};
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 `;
 
 export const Subtitle = styled.span`
   align-self: flex-start;
   margin: 4rem 0 0 3rem;
-  font-size: ${({ theme }) => theme.fontSize.normal};
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
 `;
 
 export const Lists = styled.div`
@@ -72,8 +72,8 @@ export const Lists = styled.div`
   width: 900px;
   margin-top: 1rem;
   border-radius: 0.2rem;
-  font-family: ${({ theme }) => theme.fontFamily.secondary};
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
+  font-family: ${({ theme }) => theme.font.aux.family};
+  font-weight: ${({ theme }) => theme.font.aux.weight.light};
   display: flex;
   overflow-x: auto;
   overflow-y: hidden;

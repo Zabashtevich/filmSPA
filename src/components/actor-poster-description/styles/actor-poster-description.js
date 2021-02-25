@@ -1,25 +1,25 @@
 import styled from "styled-components/macro";
 
 export const Container = styled.div`
-  font-family: ${({ theme }) => theme.fontFamily.secondary};
+  font-family: ${({ theme }) => theme.font.aux.family};
   color: ${({ theme }) => theme.colors.secondary};
   align-self: flex-start;
 `;
 
 export const Title = styled.h3`
-  font-size: ${({ theme }) => theme.fontSize.normal};
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
 `;
 
 export const Subtitle = styled.h4`
-  font-size: ${({ theme }) => theme.fontSize.small};
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
+  font-size: ${({ theme }) => theme.font.aux.size.small};
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   margin: 0;
 `;
 
 export const SubtitleValue = styled.h4`
-  font-size: ${({ theme }) => theme.fontSize.small};
-  font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
+  font-size: ${({ theme }) => theme.font.aux.size.small};
+  font-weight: ${({ theme }) => theme.font.aux.weight.light};
   margin: 0;
   padding: 0.2rem 0;
 `;

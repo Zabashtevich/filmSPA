@@ -20,7 +20,7 @@ export const Link = styled(ReactRouterLink)`
   color: ${({ theme }) => theme.colors.secondary};
   text-decoration: none;
   margin: 20px;
-  font-size: ${({ theme }) => theme.fontSize.normal};
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
   font-weight: ${({ theme }) => theme.fontWeightMain.bold};
   padding: 5px;
   display: block;
@@ -41,7 +41,7 @@ export const Input = styled.input`
   height: 30px;
   outline: none;
   transition: width 0.5s;
-  font-size: ${({ theme }) => theme.fontSize.normal};
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
   padding: 0.5rem;
   border: none;
   border-radius: 50px;
@@ -67,7 +67,7 @@ export const Input = styled.input`
 export const Profile = styled.div`
   margin-left: 1rem;
   color: ${({ theme }) => theme.colors.secondary};
-  font-size: ${({ theme }) => theme.fontSize.normal};
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
   font-weight: ${({ theme }) => theme.fontWeightMain.bold};
   transition: box-shadow 500ms;
   padding: 5px;
@@ -135,7 +135,7 @@ export const Background = styled.div`
 `;
 
 export const Icon = styled(FaSearch)`
-  font-size: ${({ theme }) => theme.fontSize.normal};
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
   text-align: center;
   margin: 0 1rem;
   cursor: pointer;

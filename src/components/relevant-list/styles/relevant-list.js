@@ -3,7 +3,7 @@ import { Link as ReactRouterLink } from "react-router-dom";
 
 export const Name = styled.span`
   margin: 1rem 1rem 1rem 0;
-  font-size: ${({ theme }) => theme.fontSize.normal};
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
   font-weight: ${({ theme }) => theme.fontWeightSecondary.normal};
   color: ${({ theme }) => theme.colors.secondary};
 `;
@@ -38,7 +38,7 @@ export const ItemContainer = styled(ReactRouterLink)`
 
 export const Container = styled.div`
   overflow: ${({ overflow }) => overflow};
-  font-family: ${({ theme }) => theme.fontFamily.secondary};
+  font-family: ${({ theme }) => theme.font.aux.family};
   overflow-y: hidden;
   &::-webkit-scrollbar {
     width: 1em;
@@ -55,7 +55,7 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h3`
-  font-size: ${({ theme }) => theme.fontSize.large};
+  font-size: ${({ theme }) => theme.font.aux.size.large};
   font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
   margin-top: 1rem;
   max-width: 1000px;
@@ -78,7 +78,7 @@ export const Wrapper = styled.div`
 export const Score = styled.h4`
   color: #fff;
   margin: 0;
-  font-size: ${({ theme }) => theme.fontSize.normal};
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
   margin: 0.2rem;
 `;
 
@@ -90,7 +90,7 @@ export const ErrorWrapper = styled.div`
   align-items: center;
   width: 100%;
   height: 200px;
-  font-size: ${({ theme }) => theme.fontSize.normal};
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
   font-weight: ${({ theme }) => theme.fontWeightSecondary.normal};
   color: ${({ theme }) => theme.colors.secondary};
 `;

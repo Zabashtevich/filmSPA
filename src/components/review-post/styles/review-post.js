@@ -6,7 +6,7 @@ import { Link as ReactRouterLink } from "react-router-dom";
 export const Container = styled.div`
   max-width: 750px;
   margin: 1rem auto;
-  font-family: ${({ theme }) => theme.fontFamily.secondary};
+  font-family: ${({ theme }) => theme.font.aux.family};
 `;
 
 export const Form = styled.form`
@@ -24,7 +24,7 @@ export const Input = styled.input`
   width: 75%;
   margin-top: 2rem;
   font-weight: ${({ theme }) => theme.fontWeightSecondary.normal};
-  font-size: ${({ theme }) => theme.fontSize.small};
+  font-size: ${({ theme }) => theme.font.aux.size.small};
   color: ${({ theme }) => theme.colors.secondary};
   border-radius: 0.5rem;
   border: 1px solid gray;
@@ -61,7 +61,7 @@ export const Button = styled.button`
   cursor: pointer;
   border: 1px solid darkgray;
   font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
-  font-size: ${({ theme }) => theme.fontSize.normal};
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
   &:enabled:hover {
     color: ${({ theme }) => theme.colors.secondary};
     background-color: #fff;
@@ -84,7 +84,7 @@ export const RadioWrapper = styled.div`
 
 export const Nickname = styled.span`
   font-weight: ${({ theme }) => theme.fontWeightSecondary.light};
-  font-size: ${({ theme }) => theme.fontSize.normal};
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
   color: ${({ theme }) => theme.colors.secondary};
   margin-top: 0.4rem;
   border-bottom: 1px solid black;
@@ -105,7 +105,7 @@ export const Avatar = styled.img`
 `;
 
 export const Title = styled.span`
-  font-size: ${({ theme }) => theme.fontSize.large};
+  font-size: ${({ theme }) => theme.font.aux.size.large};
   font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
   margin-bottom: 2rem;
   margin-top: 1rem;
@@ -124,7 +124,7 @@ export const RadioInner = styled.div`
 `;
 
 export const RadioTitle = styled.input`
-  font-size: ${({ theme }) => theme.fontSize.small};
+  font-size: ${({ theme }) => theme.font.aux.size.small};
   font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
   background-color: ${({ theme }) => theme.colors.reviewsBackground};
   cursor: pointer;
@@ -156,7 +156,7 @@ export const Icon = styled(VscTriangleUp)`
   position: absolute;
   top: 13%;
   right: 2%;
-  font-size: ${({ theme }) => theme.fontSize.normal};
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
   transform: rotate(${({ rotate }) => rotate});
   transition: 100ms;
 `;
@@ -178,7 +178,7 @@ export const BackLink = styled(ReactRouterLink)`
   cursor: pointer;
   border: 1px solid darkgray;
   font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
-  font-size: ${({ theme }) => theme.fontSize.normal};
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
   text-decoration: none;
   &:hover {
     color: #fff;

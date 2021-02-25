@@ -4,7 +4,7 @@ import { Link as ReactRouterLink } from "react-router-dom";
 
 export const Container = styled.div`
   position: relative;
-  font-family: ${({ theme }) => theme.fontFamily.secondary};
+  font-family: ${({ theme }) => theme.font.aux.family};
 `;
 
 export const Icon = styled.img`

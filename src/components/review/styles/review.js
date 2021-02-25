@@ -4,7 +4,7 @@ export const Container = styled.div`
   width: 600px;
   margin: 1rem auto;
   margin-top: 3rem;
-  font-family: ${({ theme }) => theme.fontFamily.secondary};
+  font-family: ${({ theme }) => theme.font.aux.family};
   padding: 1rem 2rem;
   display: flex;
   flex-direction: column;
@@ -49,7 +49,7 @@ export const Profile = styled.div`
 `;
 
 export const Nickname = styled.span`
-  font-size: ${({ theme }) => theme.fontSize.small};
+  font-size: ${({ theme }) => theme.font.aux.size.small};
   font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
   margin-left: 1rem;
 `;
@@ -67,7 +67,7 @@ export const Rating = styled.span`
   margin-left: 1rem;
   border-radius: 0.5rem;
   color: white;
-  font-size: ${({ theme }) => theme.fontSize.normal};
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
   font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
 `;
 
@@ -93,7 +93,7 @@ export const Show = styled.button`
   outline: none;
   border: 1px solid rgba(0, 0, 0, 0.2);
   background-color: ${({ theme }) => theme.colors.secondary};
-  font-size: ${({ theme }) => theme.fontSize.small};
+  font-size: ${({ theme }) => theme.font.aux.size.small};
   font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
   border-radius: 0.5rem;
   color: white;

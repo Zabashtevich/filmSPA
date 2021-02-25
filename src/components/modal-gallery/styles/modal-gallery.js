@@ -116,7 +116,7 @@ export const BottomWrapper = styled.div`
 `;
 
 export const IconSlider = styled(BsArrowLeft)`
-  font-size: ${({ theme }) => theme.fontSize.huge};
+  font-size: ${({ theme }) => theme.font.aux.size.huge};
   ${({ rightdirection }) =>
     rightdirection &&
     css`

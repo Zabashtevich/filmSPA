@@ -80,7 +80,7 @@ export const Color = styled.div`
 `;
 
 export const Metadata = styled.div`
-  font-family: ${({ theme }) => theme.fontFamily.secondary};
+  font-family: ${({ theme }) => theme.font.aux.family};
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -95,7 +95,7 @@ export const Metadata = styled.div`
 
 export const Title = styled(ReactRouterLink)`
   font-weight: ${({ theme }) => theme.fontWeightSecondary.bold};
-  font-size: ${({ theme }) => theme.fontSize.huge};
+  font-size: ${({ theme }) => theme.font.aux.size.huge};
   text-decoration: none;
   color: #fff;
 `;
@@ -107,7 +107,7 @@ export const TagWrapper = styled.div`
 `;
 
 export const TagItem = styled.span`
-  font-size: ${({ theme }) => theme.fontSize.small};
+  font-size: ${({ theme }) => theme.font.aux.size.small};
   font-weight: ${({ theme }) => theme.fontFamily.main};
   &:nth-child(2n) {
     margin: 0 10px;
@@ -228,7 +228,7 @@ export const LinkButton = styled(ReactRouterLink)`
 export const ButtonIcon = styled(HiOutlineArrowRight)`
   color: #fff;
   position: absolute;
-  font-size: ${({ theme }) => theme.fontSize.large};
+  font-size: ${({ theme }) => theme.font.aux.size.large};
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

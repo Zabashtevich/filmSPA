@@ -17,7 +17,6 @@ export const Face = styled.div`
   color: black;
   position: relative;
   margin-top: 2rem;
-  ${({ theme }) => theme.colors.haha("suka")};
 `;
 
 export const Title = styled.div`
@@ -80,6 +79,7 @@ export const Container = styled.div`
   right: 0;
   display: flex;
   flex-direction: column;
+  ${({ theme }) => theme.animations.slide({ x: -300, y: 0 }, { x: 300, y: 0 })};
 `;
 
 export const Subtitle = styled.div`
@@ -115,6 +115,8 @@ export const Backdrop = styled.div`
   right: calc(100% + 8px);
   border-radius: 0.2rem;
   top: 0;
+  ${({ theme }) =>
+    theme.animations.slide({ x: 0, y: -300 }, { x: 0, y: -300 })};
 `;
 
 export const Element = styled.div`

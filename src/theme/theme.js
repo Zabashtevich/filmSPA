@@ -34,9 +34,6 @@ export default {
     reviewsBackground: "#f2f2f2",
     negativeReview: "#ffe8d9",
     positiveReview: "#d9f0e1",
-    haha: (word) => {
-      console.log(word);
-    },
   },
   animations: {
     fade: `
@@ -64,12 +61,12 @@ export default {
     slide: (from, to) => `
     &.slide-enter {
       opacity: 0;
-      transform: translate(${from.x}, ${from.y});
+      transform: translate(${from.x}px, ${from.y}px);
     }
     &.slide-enter-active {
       opacity: 1;
       transform: translate(0, 0);
-      transition: 500ms;
+      transition: 300ms;
     }
     &.slide-exit {
       opacity: 1;
@@ -77,18 +74,18 @@ export default {
     }
     &.slide-exit-active {
       opacity: 0;
-      transition: 500ms;
-      transform: translate(${to.x}, ${to.y});
+      transition: 300ms;
+      transform: translate(${to.x}px, ${to.y}px);
     }
     &.slide-appear {
       opacity: 0;
-      transform: translate(${from.x}, ${from.y});
-      transition: 500ms;
+      transform: translate(${from.x}px, ${from.y}px);
+      transition: 300ms;
     }
     &.slide-appear-active {
       opacity: 1;
-      transform: translate(0,0);
-      transition: 500ms;
+      transform: translate(0, 0);
+      transition: 300ms;
     }`,
   },
 };

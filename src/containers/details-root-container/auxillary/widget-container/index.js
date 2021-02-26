@@ -8,15 +8,35 @@ export default function WidgetContainer({
   const [popupVisible, setPopupVisible] = useState({
     categories: false,
     lists: false,
-    favorite: false,
   });
 
-  const { categories, lists, favorite } = popupVisible;
+  const { categories, lists } = popupVisible;
 
   function categoriesToggler(classes) {
-    const classlist = ["Face", "Title", "Button", "Arrow"];
-    if (classlist.some((elem) => classes.includes(elem))) {
-      setPopupVisible((prev) => ({ ...prev, categories: !prev.categories }));
+    if (
+      ["Face", "Title", "Button", "Arrow"].some((elem) =>
+        classes.includes(elem),
+      )
+    ) {
+      if (lists) {
+        new Promise((resolve) => {
+          setPopupVisible((prev) => ({
+            ...prev,
+            lists: false,
+          }));
+          setTimeout(() => resolve(), 500);
+        }).then(() =>
+          setPopupVisible((prev) => ({
+            ...prev,
+            categories: !prev.categories,
+          })),
+        );
+      } else {
+        setPopupVisible((prev) => ({
+          ...prev,
+          categories: !prev.categories,
+        }));
+      }
     }
   }
 
@@ -24,20 +44,20 @@ export default function WidgetContainer({
     <Widget onClick={(e) => categoriesToggler(e.target.classList.value)}>
       <Widget.Title>Add to list</Widget.Title>
       <Widget.Button>
-        <Widget.Arrow dir={categories ? null : "down"} />
+        <Widget.Arrow dir={categories ? "down" : null} />
       </Widget.Button>
-      <Widget.Container>
+      <Widget.Container visible={categories}>
         <Widget.Subtitle>Add to list</Widget.Subtitle>
         <Widget.Item
           onClick={() =>
             setPopupVisible((prev) => ({ ...prev, lists: !prev.lists }))
           }
         >
-          <Widget.Chevron dir={lists && "rotate"} />
+          <Widget.Chevron dir={lists ? "rotate" : null} />
           <Widget.Added location={"middle"} />
           <Widget.Name>Userlist</Widget.Name>
         </Widget.Item>
-        <Widget.Backdrop>
+        <Widget.Backdrop visible={lists}>
           {userlist.map(({ name }) => (
             <Widget.Element>
               <Widget.Name>{name.toUpperCase()}</Widget.Name>

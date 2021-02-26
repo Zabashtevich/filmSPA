@@ -40,7 +40,7 @@ Widget.Container = function WidgetContainer({ visible, children, ...rest }) {
   return (
     <CSSTransition
       in={visible}
-      classNames="opacity"
+      classNames="slide"
       appear={true}
       mountOnEnter
       unmountOnExit
@@ -63,8 +63,19 @@ Widget.Item = function WidgetItem({ children, ...rest }) {
   return <Item {...rest}>{children}</Item>;
 };
 
-Widget.Backdrop = function WidgetBackdrop({ children, ...rest }) {
-  return <Backdrop {...rest}>{children}</Backdrop>;
+Widget.Backdrop = function WidgetBackdrop({ visible, children, ...rest }) {
+  return (
+    <CSSTransition
+      in={visible}
+      classNames="slide"
+      appear={true}
+      mountOnEnter
+      unmountOnExit
+      timeout={500}
+    >
+      <Backdrop {...rest}>{children}</Backdrop>
+    </CSSTransition>
+  );
 };
 
 Widget.Element = function WidgetElement({ children, ...rest }) {

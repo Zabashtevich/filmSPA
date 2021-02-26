@@ -8,6 +8,7 @@ export default function WidgetContainer({ slug }) {
     categories: false,
     lists: false,
     input: false,
+    form: false,
   });
 
   const userData = useSelector((state) => state.userData);
@@ -80,10 +81,12 @@ export default function WidgetContainer({ slug }) {
               <Widget.Wrapper>
                 <Widget.Input />
                 <Widget.OK>OK</Widget.OK>
-                <Widget.Cancel>Cancel</Widget.Cancel>
+                <Widget.Cancel>X</Widget.Cancel>
               </Widget.Wrapper>
               <Widget.Error>
-                <Widget.Message>fsdaf</Widget.Message>
+                <Widget.Message>
+                  List title length must be min 5 and max 10 symbols
+                </Widget.Message>
               </Widget.Error>
             </Widget.Form>
           </Widget.Backdrop>

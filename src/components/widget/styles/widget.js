@@ -157,16 +157,65 @@ export const Added = styled(BsCheck)`
     `};
 `;
 
-export const Form = styled.div``;
+export const Form = styled.div`
+  right: calc(100% + 8px);
+  background-color: white;
+  border-radius: 0.2rem;
+  position: absolute;
+  top: 0;
+`;
 
-export const Wrapper = styled.div``;
+export const Wrapper = styled.div`
+  font-size: ${({ theme }) => theme.font.aux.size.small};
+  margin: 0.2rem 0;
+  display: flex;
+  align-items: center;
+`;
 
-export const Input = styled.input``;
+export const Input = styled.input`
+  width: 150px;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  padding: 0.2rem 0.4rem;
+  margin: 0.1rem 0.2rem;
+  outline: none;
+`;
 
-export const OK = styled.button``;
+export const OK = styled.button`
+  background-color: ${({ theme }) => theme.colors.secondary};
+  outline: none;
+  border: 1px solid black;
+  border-radius: 0.2rem;
+  color: white;
+  cursor: pointer;
+  &:active {
+    transform: scale(0.95);
+  }
+`;
 
-export const Cancel = styled.button``;
+export const Cancel = styled.button`
+  background-color: ${({ theme }) => theme.colors.secondary};
+  outline: none;
+  border: 1px solid black;
+  border-radius: 0.2rem;
+  margin: 0 0.2rem;
+  color: white;
+  cursor: pointer;
+  &:active {
+    transform: scale(0.95);
+  }
+`;
 
-export const Error = styled.div``;
+export const Error = styled.div`
+  font-size: ${({ theme }) => theme.font.aux.size.small};
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
+  color: ${({ theme }) => theme.colors.error};
+  margin: 0.3rem 0;
+  display: flex;
+  align-items: center;
+  height: 25px;
+`;
 
-export const Message = styled.span``;
+export const Message = styled.span`
+  margin-left: 0.2rem;
+`;

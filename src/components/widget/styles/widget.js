@@ -2,6 +2,7 @@ import styled, { css } from "styled-components/macro";
 
 import { AiFillCaretUp } from "react-icons/ai";
 import { HiOutlineChevronLeft } from "react-icons/hi";
+import { BsCheck } from "react-icons/bs";
 
 export const Face = styled.div`
   width: 100%;
@@ -16,6 +17,7 @@ export const Face = styled.div`
   color: black;
   position: relative;
   margin-top: 2rem;
+  ${({ theme }) => theme.colors.haha("suka")};
 `;
 
 export const Title = styled.div`
@@ -107,14 +109,35 @@ export const Item = styled.div`
 
 export const Backdrop = styled.div`
   display: flex;
+  flex-direction: column;
   position: absolute;
   background-color: white;
   right: calc(100% + 8px);
   border-radius: 0.2rem;
-  width: 150px;
   top: 0;
 `;
 
-export const Element = styled.div``;
+export const Element = styled.div`
+  font-size: ${({ theme }) => theme.font.aux.size.small};
+  font-weight: ${({ theme }) => theme.font.aux.weight.light};
+  padding: 0.5rem 0.2rem 0.5rem 0;
+  border-radius: 0.2rem;
+  text-align: left;
+  position: relative;
+  width: 140px;
+  &:hover {
+    background-color: #f2f2f2;
+    transition: 500ms;
+  }
+`;
 
-export const Added = styled.div``;
+export const Added = styled(BsCheck)`
+  position: absolute;
+  color: darkgreen;
+  right: 10%;
+  ${({ location }) =>
+    location === "middle" &&
+    css`
+      left: 20%;
+    `};
+`;

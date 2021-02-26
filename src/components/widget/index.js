@@ -1,4 +1,5 @@
 import React from "react";
+import { CSSTransition } from "react-transition-group";
 
 import {
   Face,
@@ -35,8 +36,19 @@ Widget.Chevron = function WidgetChevron({ ...rest }) {
   return <Chevron {...rest} />;
 };
 
-Widget.Container = function WidgetContainer({ children, ...rest }) {
-  return <Container {...rest}>{children}</Container>;
+Widget.Container = function WidgetContainer({ visible, children, ...rest }) {
+  return (
+    <CSSTransition
+      in={visible}
+      classNames="opacity"
+      appear={true}
+      mountOnEnter
+      unmountOnExit
+      timeout={500}
+    >
+      <Container {...rest}>{children}</Container>
+    </CSSTransition>
+  );
 };
 
 Widget.Subtitle = function WidgetSubtitle({ children, ...rest }) {

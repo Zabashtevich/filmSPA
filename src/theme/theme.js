@@ -34,36 +34,13 @@ export default {
     reviewsBackground: "#f2f2f2",
     negativeReview: "#ffe8d9",
     positiveReview: "#d9f0e1",
+    haha: (word) => {
+      console.log(word);
+    },
   },
   animations: {
-    fadeLtR: `&.fade-enter {
-      opacity: 0;
-      transform: translateX(-300px);
-    }
-    &.fade-enter-active {
-      opacity: 1;
-      transform: translateX(0);
-      transition: 500ms;
-    }
-    &.fade-exit {
-      opacity: 1;
-      transform: translateX(0);
-    }
-    &.fade-exit-active {
-      opacity: 0;
-      transition: 600ms;
-      transform: translateX(300px);
-    }
-    &.fade-appear {
-      opacity: 0;
-      transform: translateX(-300px);
-    }
-    &.fade-appear-active {
-      opacity: 1;
-      transform: translateX(0);
-      transition: 500ms;
-    }`,
-    opacity: `&.opacity-enter {
+    fade: `
+    &.opacity-enter {
       opacity: 0;
     }
     &.opacity-enter-active {
@@ -84,133 +61,33 @@ export default {
       opacity: 1;
       transition: 500ms;
     }`,
-    opacityLong: `&.fade-enter {
+    slide: (from, to) => `
+    &.slide-enter {
       opacity: 0;
+      transform: translate(${from.x}, ${from.y});
     }
-    &.fade-enter-active {
+    &.slide-enter-active {
       opacity: 1;
-      transition: 1000ms;
-    }
-    &.fade-exit {
-      opacity: 1;
-    }
-    &.fade-exit-active {
-      opacity: 0;
-      transition: 2000ms;
-    }
-    &.fade-appear {
-      opacity: 0;
-    }
-    &.fade-appear-active {
-      opacity: 1;
-      transition: 1000ms;
-    }`,
-    fadeLtL: `&.fade-enter {
-      opacity: 0;
-      transform: translateX(-300px);
-    }
-    &.fade-enter-active {
-      opacity: 1;
-      transform: translateX(0);
+      transform: translate(0, 0);
       transition: 500ms;
     }
-    &.fade-exit {
+    &.slide-exit {
       opacity: 1;
-      transform: translateX(0);
+      transform: translate(0, 0);
     }
-    &.fade-exit-active {
+    &.slide-exit-active {
       opacity: 0;
       transition: 500ms;
-      transform: translateX(-300px);
+      transform: translate(${to.x}, ${to.y});
     }
-    &.fade-appear {
+    &.slide-appear {
       opacity: 0;
-      transform: translateX(-300px);
-    }
-    &.fade-appear-active {
-      opacity: 1;
-      transform: translateX(0);
-      transition: 500ms;
-    }`,
-    fadeRtR: `&.fade-enter {
-      opacity: 0;
-      transform: translateX(300px);
-    }
-    &.fade-enter-active {
-      opacity: 1;
-      transform: translateX(0);
+      transform: translate(${from.x}, ${from.y});
       transition: 500ms;
     }
-    &.fade-exit {
+    &.slide-appear-active {
       opacity: 1;
-      transform: translateX(0);
-    }
-    &.fade-exit-active {
-      opacity: 0;
-      transition: 600ms;
-      transform: translateX(300px);
-    }
-    &.fade-appear {
-      opacity: 0;
-      transform: translateX(300px);
-    }
-    &.fade-appear-active {
-      opacity: 1;
-      transform: translateX(0);
-      transition: 500ms;
-    }`,
-    fadeRtL: `&.fade-enter {
-      opacity: 0;
-      transform: translateX(300px);
-    }
-    &.fade-enter-active {
-      opacity: 1;
-      transform: translateX(0);
-      transition: 500ms;
-    }
-    &.fade-exit {
-      opacity: 1;
-      transform: translateX(0);
-    }
-    &.fade-exit-active {
-      opacity: 0;
-      transition: 600ms;
-      transform: translateX(-300px);
-    }
-    &.fade-appear {
-      opacity: 0;
-      transform: translateX(300px);
-    }
-    &.fade-appear-active {
-      opacity: 1;
-      transform: translateX(0);
-      transition: 500ms;
-    }`,
-    fadeRightTransform: `&.fade-enter {
-      left: 0;
-      opacity: 0;
-    }
-    &.fade-enter-active {
-      opacity: 0.5;
-      left: 50%;
-      transition: 500ms;
-    }
-    &.fade-exit {
-      opacity: 0.5;
-      left: 50%;
-    }
-    &.fade-exit-active {
-      opacity: 0;
-      transition: 600ms;
-      left: 100%;
-    }
-    &.fade-appear {
-      left: 0;
-      opacity: 0;
-    }
-    &.fade-appear-active {
-      opacity: 0.5;
-      left: 50%;
+      transform: translate(0,0);
       transition: 500ms;
     }`,
   },

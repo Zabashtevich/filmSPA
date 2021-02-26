@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Widget } from "../../../../components";
 
 export default function WidgetContainer({
-  userlist = [{ name: "hahahaha", id: 2 }],
+  userlist = [{ name: "hahahaha", id: 2 }, { name: "hehehehe" }],
 }) {
   const [popupVisible, setPopupVisible] = useState({
     categories: false,
@@ -34,17 +34,20 @@ export default function WidgetContainer({
           }
         >
           <Widget.Chevron dir={lists && "rotate"} />
+          <Widget.Added location={"middle"} />
           <Widget.Name>Userlist</Widget.Name>
-          <Widget.Backdrop>
-            {userlist.map(({ name }) => (
-              <Widget.Element>
-                <Widget.Name>{name.toUpperCase()}</Widget.Name>
-              </Widget.Element>
-            ))}
-          </Widget.Backdrop>
         </Widget.Item>
+        <Widget.Backdrop>
+          {userlist.map(({ name }) => (
+            <Widget.Element>
+              <Widget.Name>{name.toUpperCase()}</Widget.Name>
+              <Widget.Added />
+            </Widget.Element>
+          ))}
+        </Widget.Backdrop>
         <Widget.Item>
           <Widget.Name>Favorite</Widget.Name>
+          <Widget.Added location={"middle"} />
         </Widget.Item>
       </Widget.Container>
     </Widget>

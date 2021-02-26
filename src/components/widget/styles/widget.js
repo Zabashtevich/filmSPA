@@ -67,6 +67,16 @@ export const Chevron = styled(HiOutlineChevronLeft)`
     css`
       transform: rotate(180deg);
     `};
+  ${({ dir }) =>
+    dir === "top" &&
+    css`
+      transform: rotate(-90deg);
+    `};
+  ${({ dir }) =>
+    dir === "down" &&
+    css`
+      transform: rotate(90deg);
+    `};
 `;
 
 export const Container = styled.div`
@@ -127,6 +137,8 @@ export const Element = styled.div`
   text-align: left;
   position: relative;
   width: 140px;
+  display: flex;
+  align-items: center;
   &:hover {
     background-color: #f2f2f2;
     transition: 500ms;
@@ -134,6 +146,7 @@ export const Element = styled.div`
 `;
 
 export const Added = styled(BsCheck)`
+  ${({ theme }) => theme.animations.fade};
   position: absolute;
   color: darkgreen;
   right: 10%;
@@ -143,3 +156,17 @@ export const Added = styled(BsCheck)`
       left: 20%;
     `};
 `;
+
+export const Form = styled.div``;
+
+export const Wrapper = styled.div``;
+
+export const Input = styled.input``;
+
+export const OK = styled.button``;
+
+export const Cancel = styled.button``;
+
+export const Error = styled.div``;
+
+export const Message = styled.span``;

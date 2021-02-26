@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 import {
   DetailsHeader,
   CardDescriptionColumn,
@@ -14,6 +16,7 @@ import { ModalGalleryContainer } from "../";
 import WidgetContainer from "./auxillary/widget-container";
 
 export default function CardDetailsRootContainer() {
+  const userProfile = useSelector((state) => state.userProfile);
   const [visibleGallery, setVisibleGallery] = useState(false);
   const location = useParams();
 
@@ -28,6 +31,8 @@ export default function CardDetailsRootContainer() {
     document.body.style.overflow = "hidden";
     setVisibleGallery(true);
   };
+
+  const { profile } = userProfile;
 
   return (
     <>
@@ -80,7 +85,7 @@ export default function CardDetailsRootContainer() {
                     </ListColumn.ItemContainer>
                   );
                 })}
-            <WidgetContainer slug={list.id} />
+            <WidgetContainer slug={list.id} nickname={profile?.displayName} />
           </ListColumn>
         </DetailsHeader>
       )}

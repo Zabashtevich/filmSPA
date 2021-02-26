@@ -108,7 +108,7 @@ export const TagWrapper = styled.div`
 
 export const TagItem = styled.span`
   font-size: ${({ theme }) => theme.font.aux.size.small};
-  font-weight: ${({ theme }) => theme.fontFamily.main};
+  font-weight: ${({ theme }) => theme.font.aux.weight.normal};
   &:nth-child(2n) {
     margin: 0 10px;
   }

@@ -3,6 +3,7 @@ import styled, { css } from "styled-components/macro";
 import { AiFillCaretUp } from "react-icons/ai";
 import { HiOutlineChevronLeft } from "react-icons/hi";
 import { BsCheck } from "react-icons/bs";
+import { Link as ReactRouterLink } from "react-router-dom";
 
 export const Face = styled.div`
   width: 100%;
@@ -157,65 +158,25 @@ export const Added = styled(BsCheck)`
     `};
 `;
 
-export const Form = styled.div`
-  right: calc(100% + 8px);
-  background-color: white;
-  border-radius: 0.2rem;
-  position: absolute;
-  top: 0;
-`;
-
 export const Wrapper = styled.div`
   font-size: ${({ theme }) => theme.font.aux.size.small};
-  margin: 0.2rem 0;
+  font-weight: ${({ theme }) => theme.font.aux.weight.heavy};
+  padding: 0.5rem 0.2rem 0.5rem 0;
+  border-radius: 0.2rem;
+  text-align: left;
+  position: relative;
+  width: 140px;
   display: flex;
   align-items: center;
 `;
 
-export const Input = styled.input`
-  width: 150px;
-  border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-  padding: 0.2rem 0.4rem;
-  margin: 0.1rem 0.2rem;
-  outline: none;
-`;
-
-export const OK = styled.button`
-  background-color: ${({ theme }) => theme.colors.secondary};
-  outline: none;
-  border: 1px solid black;
-  border-radius: 0.2rem;
-  color: white;
-  cursor: pointer;
-  &:active {
-    transform: scale(0.95);
+export const Link = styled(ReactRouterLink)`
+  border-bottom: 1px solid rgba(255, 255, 255, 1);
+  user-select: none;
+  text-decoration: none;
+  color: gray;
+  &:hover {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    transition: 300ms;
   }
-`;
-
-export const Cancel = styled.button`
-  background-color: ${({ theme }) => theme.colors.secondary};
-  outline: none;
-  border: 1px solid black;
-  border-radius: 0.2rem;
-  margin: 0 0.2rem;
-  color: white;
-  cursor: pointer;
-  &:active {
-    transform: scale(0.95);
-  }
-`;
-
-export const Error = styled.div`
-  font-size: ${({ theme }) => theme.font.aux.size.small};
-  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
-  color: ${({ theme }) => theme.colors.error};
-  margin: 0.3rem 0;
-  display: flex;
-  align-items: center;
-  height: 25px;
-`;
-
-export const Message = styled.span`
-  margin-left: 0.2rem;
 `;

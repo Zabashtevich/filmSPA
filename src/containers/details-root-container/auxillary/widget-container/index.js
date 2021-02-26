@@ -1,19 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import { Widget } from "../../../../components";
+import WidgetItem from "./items/widget-item";
 
-export default function WidgetContainer({ slug }) {
+export default function WidgetContainer({ slug, nickname }) {
+  const userData = useSelector((state) => state.userData);
+
   const [popupVisible, setPopupVisible] = useState({
     categories: false,
     lists: false,
-    input: false,
     form: false,
   });
 
-  const userData = useSelector((state) => state.userData);
-
-  const { categories, lists, input } = popupVisible;
+  const { categories, lists } = popupVisible;
   const { loading, userlists, favoritedMovies } = userData;
 
   function categoriesToggler(classes) {
@@ -63,32 +63,15 @@ export default function WidgetContainer({ slug }) {
             <Widget.Name>Userlist</Widget.Name>
           </Widget.Item>
           <Widget.Backdrop visible={lists}>
-            {userlists.map(({ name, id }) => (
-              <Widget.Element key={id}>
-                <Widget.Name>{name.toUpperCase()}</Widget.Name>
-                <Widget.Added />
-              </Widget.Element>
+            {userlists.map((item) => (
+              <WidgetItem key={item.id} item={item} />
             ))}
-            <Widget.Element
-              onClick={() =>
-                setPopupVisible((prev) => ({ ...prev, input: !prev.input }))
-              }
-            >
-              <Widget.Chevron dir={input ? "down" : "top"} />
-              <Widget.Name>Create list</Widget.Name>
-            </Widget.Element>
-            <Widget.Form>
-              <Widget.Wrapper>
-                <Widget.Input />
-                <Widget.OK>OK</Widget.OK>
-                <Widget.Cancel>X</Widget.Cancel>
-              </Widget.Wrapper>
-              <Widget.Error>
-                <Widget.Message>
-                  List title length must be min 5 and max 10 symbols
-                </Widget.Message>
-              </Widget.Error>
-            </Widget.Form>
+            <Widget.Wrapper>
+              <Widget.Chevron />
+              <Widget.Link to={`/account/${nickname}/lists`}>
+                Create and edit list
+              </Widget.Link>
+            </Widget.Wrapper>
           </Widget.Backdrop>
           <Widget.Item>
             <Widget.Name>Favorite</Widget.Name>

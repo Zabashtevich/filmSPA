@@ -14,13 +14,8 @@ import {
   Backdrop,
   Element,
   Added,
-  Form,
-  Input,
-  OK,
-  Cancel,
-  Error,
-  Message,
   Wrapper,
+  Link,
 } from "./styles/widget";
 
 export default function Widget({ children, ...rest }) {
@@ -104,30 +99,10 @@ Widget.Added = function WidgetAdded({ visible, children, ...rest }) {
   );
 };
 
-Widget.Form = function WidgetForm({ children, ...rest }) {
-  return <Form {...rest}>{children}</Form>;
-};
-
 Widget.Wrapper = function WidgetWrapper({ children, ...rest }) {
   return <Wrapper {...rest}>{children}</Wrapper>;
 };
 
-Widget.Input = function WidgetInput({ ...rest }) {
-  return <Input {...rest} />;
-};
-
-Widget.OK = function WidgetOK({ children, ...rest }) {
-  return <OK {...rest}>{children}</OK>;
-};
-
-Widget.Cancel = function WidgetCancel({ children, ...rest }) {
-  return <Cancel {...rest}>{children}</Cancel>;
-};
-
-Widget.Error = function WidgetError({ children, ...rest }) {
-  return <Error {...rest}>{children}</Error>;
-};
-
-Widget.Message = function WidgetMessage({ children, ...rest }) {
-  return <Message {...rest}>{children}</Message>;
+Widget.Link = function WidgetLink({ children, ...rest }) {
+  return <Link {...rest}>{children}</Link>;
 };

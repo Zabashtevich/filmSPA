@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 import { DetailsPanel } from "../../../../components";
-import { useMetalogicContext, useModalContext } from "../../../../context";
+import { useModalContext } from "../../../../context";
 import { getCorrectDate } from "../../../../utils";
 
 export default function RatingContainer({ list }) {
-  const [metalogicInterface] = useMetalogicContext();
   const [modalstate, modalinterface] = useModalContext();
   const userData = useSelector((store) => store.userData);
 
@@ -20,7 +19,7 @@ export default function RatingContainer({ list }) {
   const { showConfirmModal } = modalinterface;
   const { loading, ratedMovies } = userData;
   const { rated, value, time } = isRated;
-  const { setEstimatingProps } = metalogicInterface;
+  // const { setEstimatingProps } = metalogicInterface;
 
   useEffect(() => {
     if (!loading) {
@@ -31,27 +30,28 @@ export default function RatingContainer({ list }) {
     }
   }, [loading, ratedMovies]);
 
-  useEffect(() => {
-    if (accepted) {
-      setEstimatingProps({ type: "unrate", value: list.id });
-    }
-  }, [accepted]);
+  // useEffect(() => {
+  //   if (accepted) {
+  //     setEstimatingProps({ type: "unrate", value: list.id });
+  //   }
+  // }, [accepted]);
 
-  const rate = (value) => {
-    setEstimatingProps({
-      type: "rate",
-      value: {
-        date: list.released_date,
-        id: list.id,
-        time: getCorrectDate(),
-        title: list.title,
-        vote_average: list.vote_average,
-        vote_count: list.vote_count,
-        value,
-      },
-    });
-  };
+  // const rate = (value) => {
+  //   setEstimatingProps({
+  //     type: "rate",
+  //     value: {
+  //       date: list.released_date,
+  //       id: list.id,
+  //       time: getCorrectDate(),
+  //       title: list.title,
+  //       vote_average: list.vote_average,
+  //       vote_count: list.vote_count,
+  //       value,
+  //     },
+  //   });
+  // };
 
+  //TODO REFACTOR RATE LOGIC
   return (
     <>
       <DetailsPanel.Rating>

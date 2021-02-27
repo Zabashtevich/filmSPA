@@ -4,19 +4,22 @@ import { useSelector } from "react-redux";
 import { useModalContext } from "./../../context";
 import { firebase } from "./../../libs/firebase";
 
+const initialState = {
+  type: null,
+  id: null,
+  item: null,
+};
+
 export default function useUserlist() {
   const [, modalinterface] = useModalContext();
 
   const userData = useSelector((store) => store.userData);
   const userProfile = useSelector((state) => state.userProfile);
 
-  const [props, setProps] = useState({
-    type: null,
-    value: null,
-  });
+  const [props, setProps] = useState(initialState);
 
   const { profile } = userProfile;
-  const { value, type } = props;
+  const { item, type, id } = props;
   const { loading, userlists } = userData;
   const { showProcessingWindow, closeModal, showErrorModal } = modalinterface;
 
@@ -27,15 +30,15 @@ export default function useUserlist() {
         .firestore()
         .collection(`${profile.displayName}`)
         .doc("collection")
-        .update({ list: userlists.concat(value) })
+        .update({ list: userlists.concat(item) })
         .then(() => {
           closeModal();
-          setProps({ type: null, value: null });
+          setProps(initialState);
         })
         .catch(() => {
           closeModal();
           showErrorModal("Something gone wrong. The list was not created.");
-          setProps({ type: null, value: null });
+          setProps(initialState);
         });
     } else if (!loading && type === "delete") {
       showProcessingWindow("Deleting your list");
@@ -43,15 +46,15 @@ export default function useUserlist() {
         .firestore()
         .collection(`${profile.displayName}`)
         .doc("collection")
-        .update({ list: userlists.filter((item) => +item.id !== +value) })
+        .update({ list: userlists.filter((item) => +item.id !== +id) })
         .then(() => {
           closeModal();
-          setProps({ type: null, value: null });
+          setProps(initialState);
         })
         .catch(() => {
           closeModal();
           showErrorModal("Something gone wrong. The list was not created.");
-          setProps({ type: null, value: null });
+          setProps(initialState);
         });
     } else if (!loading && type === "rename") {
       showProcessingWindow("Renaming your list");
@@ -60,18 +63,67 @@ export default function useUserlist() {
         .collection(`${profile.displayName}`)
         .doc("collection")
         .update({
-          list: userlists.map((item) =>
-            +item.id === +value.id ? { ...item, name: value.name } : item,
+          list: userlists.map((list) =>
+            +list.id === +item.id ? { ...list, name: item.name } : list,
           ),
         })
         .then(() => {
           closeModal();
-          setProps({ type: null, value: null });
+          setProps(initialState);
         })
         .catch(() => {
           closeModal();
           showErrorModal("Something gone wrong. The list was not renamed");
-          setProps({ type: null, value: null });
+          setProps(initialState);
+        });
+    } else if (!loading && type === "add to list") {
+      showProcessingWindow("Adding to list");
+      firebase
+        .firestore()
+        .collection(`${profile.displayName}`)
+        .doc("collection")
+        .update({
+          list: userlists.map((list) =>
+            +list.id === +id
+              ? { ...list, content: list.content.concat(item) }
+              : list,
+          ),
+        })
+        .then(() => {
+          closeModal();
+          setProps(initialState);
+        })
+        .catch(() => {
+          closeModal();
+          showErrorModal("Something gone wrong. Item was not added to list");
+          setProps(initialState);
+        });
+    } else if (!loading && type === "delete from list") {
+      showProcessingWindow("Deleting item from list");
+      firebase
+        .firestore()
+        .collection(`${profile.displayName}`)
+        .doc("collection")
+        .update({
+          list: userlists.map((list) =>
+            +list.id === +id
+              ? {
+                  ...list,
+                  content: list.content.filter((i) => +i.id !== +item.id),
+                }
+              : list,
+          ),
+        })
+        .then(() => {
+          closeModal();
+          setProps(initialState);
+        })
+        .catch(() => {
+          closeModal();
+          showErrorModal(
+            "Something gone wrong. Item was not deleted from list",
+          );
+          setProps(initialState);
         });
     }
   }, [loading, props]);

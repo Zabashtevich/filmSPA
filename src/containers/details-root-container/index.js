@@ -10,7 +10,7 @@ import {
   DescriptionHeader,
   ModalGallery,
 } from "../../components";
-import useFetch from "../../hooks/useFetchData";
+import { useFetch } from "../../hooks";
 import { CardRowsContainer } from "./auxillary";
 import { ModalGalleryContainer } from "../";
 import WidgetContainer from "./auxillary/widget-container";
@@ -20,12 +20,7 @@ export default function CardDetailsRootContainer() {
   const [visibleGallery, setVisibleGallery] = useState(false);
   const location = useParams();
 
-  const [list, loading, error] = useFetch(location.direction, location.slug, [
-    {
-      append_to_response:
-        "credits,recommendations,images,videos,reviews,account_states",
-    },
-  ]);
+  const [list, loading, error] = useFetch(location.direction, location.slug);
 
   const showModal = () => {
     document.body.style.overflow = "hidden";

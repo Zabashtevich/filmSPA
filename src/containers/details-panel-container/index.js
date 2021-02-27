@@ -8,7 +8,7 @@ import {
   StatePaginationContainer,
   UtilityModalContainer,
 } from "../";
-import useFetch from "../../hooks/useFetchData";
+import { useFetch } from "../../hooks";
 import { getCombinedReviews } from "../../utils/utils";
 import { RatingContainer, ReviewContainer } from "./auxillary";
 
@@ -30,12 +30,7 @@ export default function CardDetailsPanelContainer() {
   const { amount, active } = paginationSettings;
   const { profile, profileLoading } = userProfile;
 
-  const [list, loadingList] = useFetch(params.direction, params.slug, [
-    {
-      append_to_response:
-        "credits,recommendations,images,videos,reviews,account_states",
-    },
-  ]);
+  const [list, loadingList] = useFetch(params.direction, params.slug);
 
   useEffect(() => {
     if (!loadingList && !reviewData.loading) {

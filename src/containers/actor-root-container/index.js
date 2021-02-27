@@ -13,11 +13,9 @@ import {
   RelevantListContainer,
   RowListItemContainer,
 } from "../";
-import useFetch from "../../hooks/useFetchData";
 import { getArrayOfMovies, getKnownFor } from "../../utils/utils";
 import { ActorRowsContainer } from "./auxillary";
-import useAuthListener from "../../hooks/useAuthListener";
-import useFirestore from "../../hooks/useFirestore";
+import { useFirestore, useFetch, useAuthListener } from "../../hooks";
 import { LoadMoreContainer } from "../";
 
 export default function ActorRootContainer() {
@@ -32,9 +30,7 @@ export default function ActorRootContainer() {
   const [creditsRow, setCreditsRow] = useState({ loading: true, list: null });
 
   const [user, userLoading] = useAuthListener();
-  const [list, loading, error] = useFetch("person", location.slug, [
-    { append_to_response: "credits,images" },
-  ]);
+  const [list, loading, error] = useFetch("person", location.slug);
 
   const [userDataLoading, userData] = useFirestore(
     user && `${user.displayName}`,

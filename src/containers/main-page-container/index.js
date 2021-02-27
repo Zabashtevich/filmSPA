@@ -6,7 +6,7 @@ import { BodyMain, CardList, CardListSkeleton } from "../../components";
 import { getPaginator, getRightReleasedDate } from "../../utils/utils";
 import { range } from "../../utils";
 import Data from "../../constants/data.json";
-import useFetch from "../../hooks/useFetchData";
+import { useFetch } from "../../hooks";
 import { TabContainer } from "../";
 import { SliderContainer, PaginationMainPageContainer } from "./auxillary";
 
@@ -30,12 +30,12 @@ export default function MainPageContainer() {
   const location = useLocation();
   const skeletonAmount = range(1, 20);
   const currentPage = getPaginator(location);
-  const [list, loading] = useFetch(
-    `trending/${tabSecondary.param}`,
-    tabFirst.param,
-    [{ page: currentPage }],
-  );
-
+  // const [list, loading] = useFetch(
+  //   `trending/${tabSecondary.param}`,
+  //   tabFirst.param,
+  //   [{ page: currentPage }],
+  // );
+  // TODO FETCH TRENDING DATA
   useEffect(() => {
     setTabFirst((prev) => ({
       ...prev,

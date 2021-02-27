@@ -1,21 +1,19 @@
 import { useState, useEffect } from "react";
-import { fetchBaseUrl } from "./../../constants/constants";
-import { getQuerry } from "./../../utils/utils";
 
-export default function useFetch(paths, searchParam, ...rest) {
+export default function useFetch(type, id, querries = null) {
   const [data, setData] = useState({
     loading: true,
     list: null,
     error: false,
   });
 
-  const querry = getQuerry(...rest);
-
   useEffect(() => {
     let isMounted = true;
     if (isMounted) {
       fetch(
-        `${fetchBaseUrl}${paths}/${searchParam}?api_key=${process.env.REACT_APP_API_KEY}${querry}`,
+        `https://api.themoviedb.org/3/${type}/${id}?api_key=${
+          process.env.REACT_APP_API_KEY
+        }&&append_to_response=${querries.join()}`,
       )
         .then((response) => response.json())
         .then((data) => {
@@ -29,7 +27,7 @@ export default function useFetch(paths, searchParam, ...rest) {
     return () => {
       isMounted = false;
     };
-  }, [paths, searchParam, querry]);
+  }, [type, id, querries]);
 
   const { list, loading, error } = data;
   return [list, loading, error];

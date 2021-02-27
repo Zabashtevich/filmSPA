@@ -48,17 +48,6 @@ export const getHeaderProps = (setHeaderProp, headerProp) => {
   }
 };
 
-export const getQuerry = (data) => {
-  if (!data) return "";
-  const processedData = data.map((item) => {
-    const key = Object.keys(item);
-    const value = Object.values(item);
-    return [`&&${key}=${value}`];
-  });
-  const querry = processedData.join("");
-  return querry;
-};
-
 export const getRowFormat = (data) => {
   if (data.length !== 0) {
     const genres = [];

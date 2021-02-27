@@ -10,7 +10,7 @@ export default function MainPage() {
   return (
     <>
       <HeaderContainer />
-      <MainPageContainer />
+      {/* <MainPageContainer /> */}
       <FooterContainer />
     </>
   );

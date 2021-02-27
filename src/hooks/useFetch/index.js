@@ -15,8 +15,8 @@ export default function useFetch(type, id) {
       : null;
 
   useEffect(() => {
-    let isMounted = true;
-    if (isMounted) {
+    let mounted = true;
+    if (mounted) {
       fetch(
         `https://api.themoviedb.org/3/${type}/${id}?api_key=${process.env.REACT_APP_API_KEY}&&append_to_response=${querries}`,
       )
@@ -30,7 +30,7 @@ export default function useFetch(type, id) {
         });
     }
     return () => {
-      isMounted = false;
+      mounted = false;
     };
   }, [type, id, querries]);
 

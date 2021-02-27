@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
-import { Widget } from "../../../../components";
+import { Widget } from "../../components";
 import WidgetItem from "./items/widget-item";
 
 export default function WidgetContainer({ slug, nickname }) {

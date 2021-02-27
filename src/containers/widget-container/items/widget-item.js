@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Widget } from "../../../../../components";
+import { Widget } from "../../../components";
 
 export default function WidgetItem({ item }) {
   console.log(item);

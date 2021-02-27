@@ -12,8 +12,7 @@ import {
 } from "../../components";
 import { useFetch } from "../../hooks";
 import { CardRowsContainer } from "./auxillary";
-import { ModalGalleryContainer } from "../";
-import WidgetContainer from "./auxillary/widget-container";
+import { ModalGalleryContainer, WidgetContainer } from "../";
 
 export default function CardDetailsRootContainer() {
   const userProfile = useSelector((state) => state.userProfile);

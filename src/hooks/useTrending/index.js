@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
 
 export default function useTrending(type, period, page) {
-  const [data, setData] = useState({ loading: true, data: null, error: false });
+  const [data, setData] = useState({
+    loading: true,
+    result: null,
+    error: false,
+  });
 
   useEffect(() => {
     let mounted = true;
@@ -23,6 +27,6 @@ export default function useTrending(type, period, page) {
     };
   }, [type, period, page]);
 
-  const { loading, data, error } = data;
-  return [loading, loading, error];
+  const { loading, result, error } = data;
+  return [loading, result, error];
 }

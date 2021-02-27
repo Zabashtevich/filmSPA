@@ -14,7 +14,7 @@ export default function useFavorite() {
   const userData = useSelector((state) => state.userData);
   const userProfile = useSelector((state) => state.userProfile);
 
-  const [setProps] = useState(initialState);
+  const [props, setProps] = useState(initialState);
 
   const { type, value } = props;
   const { loading, favoritedMovies } = userData;

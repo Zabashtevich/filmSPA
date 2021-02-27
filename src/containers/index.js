@@ -6,7 +6,6 @@ export { default as DetailsRootContainer } from "./details-root-container";
 export { default as FooterContainer } from "./footer-container";
 export { default as HeaderContainer } from "./header-container";
 export { default as MainPageContainer } from "./main-page-container";
-export { default as RelevantListContainer } from "./relevant-list-container";
 export { default as ReviewPostContainer } from "./review-post-container";
 export { default as RowListItemContainer } from "./row-list-item-container";
 export { default as TabContainer } from "./tab-container";
@@ -16,3 +15,4 @@ export { default as StatePaginationContainer } from "./state-pagination-containe
 export { default as UtilityModalContainer } from "./utility-modal-container";
 export { default as ProcessingWindowContainer } from "./processing-window-container";
 export { default as WidgetContainer } from "./widget-container";
+export { default as RecommendationContainer } from "./recommendation-container";

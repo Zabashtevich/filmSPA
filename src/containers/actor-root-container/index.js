@@ -10,7 +10,7 @@ import {
 } from "../../components";
 import {
   ModalGalleryContainer,
-  RelevantListContainer,
+  RecommendationContainer,
   RowListItemContainer,
 } from "../";
 import { getArrayOfMovies, getKnownFor } from "../../utils/utils";
@@ -78,7 +78,7 @@ export default function ActorRootContainer() {
           <ActorMainColumn.Title>Overview</ActorMainColumn.Title>
           <ActorMainColumn.Overview>{list.biography}</ActorMainColumn.Overview>
           <ActorMainColumn.Title>Known for</ActorMainColumn.Title>
-          <RelevantListContainer
+          <RecommendationContainer
             recommendations={knownForList ? knownForList : []}
             slug={"movie"}
           />

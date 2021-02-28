@@ -6,17 +6,14 @@ import {
   SHOW_UTILITY_MODAL,
   ADD_FAVORITE,
   ADD_USERLIST,
-} from "./constants";
+} from "./types";
 
 export const initialState = {
   accepted: false,
   visible: false,
-  processing: false,
   value: null,
   message: null,
   type: null,
-  addingFavorite: false,
-  addingUserlist: false,
 };
 
 export default function modalReducer(state = initialState, { type, payload }) {

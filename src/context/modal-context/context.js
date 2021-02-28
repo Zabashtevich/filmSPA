@@ -7,7 +7,7 @@ import {
   SHOW_CONFIRM_MODAL,
   SHOW_ERROR_MODAL,
   SHOW_UTILITY_MODAL,
-} from "./constants";
+} from "./types";
 import modalReducer, { initialState } from "./reducer";
 
 export const ModalContext = createContext(null);

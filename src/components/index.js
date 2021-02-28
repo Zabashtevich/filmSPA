@@ -29,3 +29,4 @@ export { default as Review } from "./review";
 export { default as ProcessingWindow } from "./processing-window";
 export { default as Widget } from "./widget";
 export { default as Recommendation } from "./recommendation";
+export { default as Modal } from "./modal";

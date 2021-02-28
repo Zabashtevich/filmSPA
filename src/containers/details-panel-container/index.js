@@ -7,7 +7,7 @@ import {
   ProcessingWindowContainer,
   RecommendationContainer,
   StatePaginationContainer,
-  UtilityModalContainer,
+  ModalContainer,
 } from "../";
 import { useFetch } from "../../hooks";
 import { getCombinedReviews } from "../../utils/utils";
@@ -48,7 +48,7 @@ export default function CardDetailsPanelContainer() {
     list && (
       <>
         <ProcessingWindowContainer />
-        <UtilityModalContainer />
+        <ModalContainer />
         <DetailsPanel>
           <RecommendationContainer
             list={list?.recommendations?.results || []}

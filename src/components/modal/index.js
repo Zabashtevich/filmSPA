@@ -1,4 +1,5 @@
 import React from "react";
+import { CSSTransition } from "react-transition-group";
 
 import {
   Container,
@@ -7,10 +8,21 @@ import {
   Title,
   Message,
   Button,
+  Close,
 } from "./styles/modal";
 
-export default function Modal({ children, ...rest }) {
-  return <Container {...rest}>{children}</Container>;
+export default function Modal({ visible, children, ...rest }) {
+  return (
+    <CSSTransition
+      classNames="fade"
+      in={visible}
+      timeout={{ enter: 500, exit: 0, appear: 500 }}
+      mountOnEnter
+      unmountOnExit
+    >
+      <Container {...rest}>{children}</Container>
+    </CSSTransition>
+  );
 }
 
 Modal.Content = function ModalContent({ children, ...rest }) {
@@ -31,4 +43,8 @@ Modal.Message = function ModalMessage({ children, ...rest }) {
 
 Modal.Button = function ModalButton({ children, ...rest }) {
   return <Button {...rest}>{children}</Button>;
+};
+
+Modal.Close = function ModalClose({ ...rest }) {
+  return <Close {...rest} />;
 };

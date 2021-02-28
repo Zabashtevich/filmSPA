@@ -1,7 +1,5 @@
 import { createContext, useReducer } from "react";
 import {
-  ADD_FAVORITE,
-  ADD_USERLIST,
   CLOSE_MODAL,
   CONFIRM_MODAL,
   SHOW_CONFIRM_MODAL,
@@ -31,14 +29,6 @@ export default function ModalContextProvider({ children }) {
     dispatch({ type: CLOSE_MODAL });
   }
 
-  function addFavorite(payload) {
-    dispatch({ type: ADD_FAVORITE, payload });
-  }
-
-  function addUserlist(payload) {
-    dispatch({ type: ADD_USERLIST, payload });
-  }
-
   function confirmModal(payload = null) {
     dispatch({ type: CONFIRM_MODAL, payload });
   }
@@ -51,8 +41,6 @@ export default function ModalContextProvider({ children }) {
           showErrorModal,
           showConfirmModal,
           showUtilityModal,
-          addFavorite,
-          addUserlist,
           closeModal,
           confirmModal,
         },

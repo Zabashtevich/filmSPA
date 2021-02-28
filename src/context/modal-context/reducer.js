@@ -4,8 +4,6 @@ import {
   SHOW_CONFIRM_MODAL,
   SHOW_ERROR_MODAL,
   SHOW_UTILITY_MODAL,
-  ADD_FAVORITE,
-  ADD_USERLIST,
 } from "./types";
 
 export const initialState = {
@@ -38,20 +36,6 @@ export default function modalReducer(state = initialState, { type, payload }) {
         visible: true,
         type: "utility",
         ...payload,
-      };
-    case ADD_FAVORITE:
-      return {
-        ...state,
-        processing: true,
-        message: payload,
-        addingFavorite: true,
-      };
-    case ADD_USERLIST:
-      return {
-        ...state,
-        processing: true,
-        message: payload,
-        addingUserlist: true,
       };
     case CLOSE_MODAL:
       return { ...initialState };

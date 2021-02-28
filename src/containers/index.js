@@ -15,3 +15,4 @@ export { default as StatePaginationContainer } from "./state-pagination-containe
 export { default as ProcessingWindowContainer } from "./processing-window-container";
 export { default as WidgetContainer } from "./widget-container";
 export { default as RecommendationContainer } from "./recommendation-container";
+export { default as ModalContainer } from "./modal-container";

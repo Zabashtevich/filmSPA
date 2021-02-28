@@ -4,23 +4,26 @@ import { Modal } from "../../components";
 import { useModalContext } from "../../context";
 
 export default function ModalContainer() {
-  const [{ message, visible, type }] = useModalContext();
-
+  const [{ visible }] = useModalContext();
+  const type = "confirm";
+  const message = "hahaha";
   return (
     <Modal visible={true}>
-      <Modal.Close />
       <Modal.Content>
-        <Modal.Wrapper type={type}>
+        <Modal.Close />
+        <Modal.Header type={type}>
           {type === "error" && <Modal.Title>ERROR</Modal.Title>}
           {type === "confirm" && <Modal.Title>CONFIRM</Modal.Title>}
-        </Modal.Wrapper>
+        </Modal.Header>
         <Modal.Wrapper>
           <Modal.Message>{message}</Modal.Message>
-          {type === "confirm" && <Modal.Button>CANCEL</Modal.Button>}
-          {type === "confirm" && (
-            <Modal.Button type={type}>CONFIRM</Modal.Button>
-          )}
-          {type === "error" && <Modal.Button type={type}>OK</Modal.Button>}
+          <Modal.Inner>
+            {type === "confirm" && <Modal.Button>CANCEL</Modal.Button>}
+            {type === "confirm" && (
+              <Modal.Button type={type}>CONFIRM</Modal.Button>
+            )}
+            {type === "error" && <Modal.Button type={type}>OK</Modal.Button>}
+          </Modal.Inner>
         </Modal.Wrapper>
       </Modal.Content>
     </Modal>

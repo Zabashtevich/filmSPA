@@ -27,7 +27,7 @@ export default {
     header: "#032541",
     secondary: "#1f1f1f",
     titleDark: "hsla(0,0%,100%,.5)",
-    warning: "#ffbd45",
+    warning: "#ffc458",
     error: "#d45659",
     inputColor: "gray",
     appMainColor: "#f4f4f4",

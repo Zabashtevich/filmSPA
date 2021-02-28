@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 
 import { CgClose } from "react-icons/cg";
 
@@ -16,17 +16,71 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
+  background-color: white;
+  position: relative;
   width: 900px;
   height: 400px;
-  background-color: white;
 `;
 
-export const Wrapper = styled.div``;
+export const Header = styled.div`
+  height: 40%;
+  ${({ type }) =>
+    type === "error" &&
+    css`
+      background-color: ${({ theme }) => theme.colors.error};
+    `};
+  ${({ type }) =>
+    type === "confirm" &&
+    css`
+      background-color: ${({ theme }) => theme.colors.warning};
+    `};
+`;
 
-export const Title = styled.div``;
+export const Title = styled.div`
+  font-size: ${({ theme }) => theme.font.aux.size.huge};
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
+  padding: 1rem 2rem;
+  color: white;
+`;
 
-export const Message = styled.div``;
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 60%;
+`;
 
-export const Button = styled.div``;
+export const Message = styled.span`
+  font-size: ${({ theme }) => theme.font.aux.size.large};
+  margin: 2rem auto;
+`;
 
-export const Close = styled(CgClose)``;
+export const Inner = styled.div`
+  display: flex;
+  align-self: flex-end;
+  margin-top: auto;
+`;
+
+export const Button = styled.div`
+  font-size: ${({ theme }) => theme.font.aux.size.large};
+  background-color: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  margin: 0.5rem;
+  display: flex;
+  ${({ type }) =>
+    type === "confirm" &&
+    css`
+      background-color: ${({ theme }) => theme.colors.warning};
+      color: white;
+    `};
+`;
+
+export const Close = styled(CgClose)`
+  font-size: ${({ theme }) => theme.font.aux.size.large};
+  position: absolute;
+  color: white;
+  right: 1%;
+  top: 2%;
+`;

@@ -5,8 +5,10 @@ import {
   Container,
   Content,
   Wrapper,
+  Header,
   Title,
   Message,
+  Inner,
   Button,
   Close,
 } from "./styles/modal";
@@ -29,6 +31,10 @@ Modal.Content = function ModalContent({ children, ...rest }) {
   return <Content {...rest}>{children}</Content>;
 };
 
+Modal.Header = function ModalHeader({ children, ...rest }) {
+  return <Header {...rest}>{children}</Header>;
+};
+
 Modal.Wrapper = function ModalWrapper({ children, ...rest }) {
   return <Wrapper {...rest}>{children}</Wrapper>;
 };
@@ -39,6 +45,10 @@ Modal.Title = function ModalTitle({ children, ...rest }) {
 
 Modal.Message = function ModalMessage({ children, ...rest }) {
   return <Message {...rest}>{children}</Message>;
+};
+
+Modal.Inner = function ModalInner({ children, ...rest }) {
+  return <Inner {...rest}>{children}</Inner>;
 };
 
 Modal.Button = function ModalButton({ children, ...rest }) {

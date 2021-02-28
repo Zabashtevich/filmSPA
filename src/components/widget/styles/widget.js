@@ -180,3 +180,13 @@ export const Link = styled(ReactRouterLink)`
     transition: 300ms;
   }
 `;
+
+export const Spinner = styled.img`
+  position: absolute;
+  right: 10%;
+  ${({ location }) =>
+    location === "middle" &&
+    css`
+      left: 20%;
+    `};
+`;

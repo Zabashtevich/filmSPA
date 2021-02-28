@@ -11,7 +11,7 @@ export default function FirelogicContextProvider({ children }) {
 
   return (
     <FirelogicContext.Provider
-      value={{ setUserlistProps, setFavoriteProps, setEstimateProps }}
+      value={[{ setUserlistProps, setFavoriteProps, setEstimateProps }]}
     >
       {children}
     </FirelogicContext.Provider>

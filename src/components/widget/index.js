@@ -1,6 +1,8 @@
 import React from "react";
 import { CSSTransition } from "react-transition-group";
 
+import widgetSpinner from "../../assets/widget-spinner.gif";
+
 import {
   Face,
   Title,
@@ -16,6 +18,7 @@ import {
   Added,
   Wrapper,
   Link,
+  Spinner,
 } from "./styles/widget";
 
 export default function Widget({ children, ...rest }) {
@@ -84,7 +87,11 @@ Widget.Element = function WidgetElement({ children, ...rest }) {
   return <Element {...rest}>{children}</Element>;
 };
 
-Widget.Added = function WidgetAdded({ visible, children, ...rest }) {
+Widget.Spinner = function WidgetSpinner({ ...rest }) {
+  return <Spinner src={widgetSpinner} {...rest} />;
+};
+
+Widget.Added = function WidgetAdded({ visible, ...rest }) {
   return (
     <CSSTransition
       in={visible}

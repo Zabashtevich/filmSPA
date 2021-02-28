@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import { Widget } from "../../components";
+import WidgetFavorite from "./items/widget-favorite";
 import WidgetItem from "./items/widget-item";
 
 export default function WidgetContainer({ slug, nickname }) {
@@ -14,7 +15,7 @@ export default function WidgetContainer({ slug, nickname }) {
   });
 
   const { categories, lists } = popupVisible;
-  const { loading, userlists, favoritedMovies } = userData;
+  const { loading, userlists } = userData;
 
   function categoriesToggler(classes) {
     if (
@@ -73,13 +74,7 @@ export default function WidgetContainer({ slug, nickname }) {
               </Widget.Link>
             </Widget.Wrapper>
           </Widget.Backdrop>
-          <Widget.Item>
-            <Widget.Name>Favorite</Widget.Name>
-            <Widget.Added
-              location={"middle"}
-              visible={favoritedMovies.includes(slug)}
-            />
-          </Widget.Item>
+          <WidgetFavorite slug={slug} />
         </Widget.Container>
       </Widget>
     )

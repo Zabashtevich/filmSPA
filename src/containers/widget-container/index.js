@@ -5,8 +5,8 @@ import { Widget } from "../../components";
 import WidgetFavorite from "./items/widget-favorite";
 import WidgetItem from "./items/widget-item";
 
-export default function WidgetContainer({ slug, nickname }) {
-  const userData = useSelector((state) => state.userData);
+export default function WidgetContainer({ item, nickname }) {
+  const { loading, userlists } = useSelector((state) => state.userData);
 
   const [popupVisible, setPopupVisible] = useState({
     categories: false,
@@ -15,7 +15,6 @@ export default function WidgetContainer({ slug, nickname }) {
   });
 
   const { categories, lists } = popupVisible;
-  const { loading, userlists } = userData;
 
   function categoriesToggler(classes) {
     if (
@@ -74,7 +73,7 @@ export default function WidgetContainer({ slug, nickname }) {
               </Widget.Link>
             </Widget.Wrapper>
           </Widget.Backdrop>
-          <WidgetFavorite slug={slug} />
+          <WidgetFavorite item={item} />
         </Widget.Container>
       </Widget>
     )

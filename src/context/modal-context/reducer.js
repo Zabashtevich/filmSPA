@@ -4,7 +4,8 @@ import {
   SHOW_CONFIRM_MODAL,
   SHOW_ERROR_MODAL,
   SHOW_UTILITY_MODAL,
-  SHOW_PROCESSING_WINDOW,
+  ADD_FAVORITE,
+  ADD_USERLIST,
 } from "./constants";
 
 export const initialState = {
@@ -14,6 +15,8 @@ export const initialState = {
   value: null,
   message: null,
   type: null,
+  addingFavorite: false,
+  addingUserlist: false,
 };
 
 export default function modalReducer(state = initialState, { type, payload }) {
@@ -39,8 +42,20 @@ export default function modalReducer(state = initialState, { type, payload }) {
         type: "utility",
         ...payload,
       };
-    case SHOW_PROCESSING_WINDOW:
-      return { ...state, processing: true, message: payload };
+    case ADD_FAVORITE:
+      return {
+        ...state,
+        processing: true,
+        message: payload,
+        addingFavorite: true,
+      };
+    case ADD_USERLIST:
+      return {
+        ...state,
+        processing: true,
+        message: payload,
+        addingUserlist: true,
+      };
     case CLOSE_MODAL:
       return { ...initialState };
     case CONFIRM_MODAL:

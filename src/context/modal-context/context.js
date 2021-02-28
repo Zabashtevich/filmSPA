@@ -1,10 +1,11 @@
 import { createContext, useReducer } from "react";
 import {
+  ADD_FAVORITE,
+  ADD_USERLIST,
   CLOSE_MODAL,
   CONFIRM_MODAL,
   SHOW_CONFIRM_MODAL,
   SHOW_ERROR_MODAL,
-  SHOW_PROCESSING_WINDOW,
   SHOW_UTILITY_MODAL,
 } from "./constants";
 import modalReducer, { initialState } from "./reducer";
@@ -26,12 +27,16 @@ export default function ModalContextProvider({ children }) {
     dispatch({ type: SHOW_UTILITY_MODAL, payload });
   }
 
-  function showProcessingWindow(payload) {
-    dispatch({ type: SHOW_PROCESSING_WINDOW, payload });
-  }
-
   function closeModal() {
     dispatch({ type: CLOSE_MODAL });
+  }
+
+  function addFavorite(payload) {
+    dispatch({ type: ADD_FAVORITE, payload });
+  }
+
+  function addUserlist(payload) {
+    dispatch({ type: ADD_USERLIST, payload });
   }
 
   function confirmModal(payload = null) {
@@ -46,7 +51,8 @@ export default function ModalContextProvider({ children }) {
           showErrorModal,
           showConfirmModal,
           showUtilityModal,
-          showProcessingWindow,
+          addFavorite,
+          addUserlist,
           closeModal,
           confirmModal,
         },

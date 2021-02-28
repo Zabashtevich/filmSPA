@@ -10,19 +10,17 @@ const initialState = {
 };
 
 export default function useFavorite() {
-  const [, modalinterface] = useModalContext();
-  const userData = useSelector((state) => state.userData);
+  const [, { addFavorite, closeModal, showErrorModal }] = useModalContext();
+  const { loading, favoritedMovies } = useSelector((state) => state.userData);
   const userProfile = useSelector((state) => state.userProfile);
 
   const [props, setProps] = useState(initialState);
 
   const { type, value } = props;
-  const { loading, favoritedMovies } = userData;
-  const { showProcessingWindow, closeModal, showErrorModal } = modalinterface;
 
   useEffect(() => {
     if (!loading && type === "favorite") {
-      showProcessingWindow("Processing...");
+      addFavorite("Processing...");
       firebase
         .firestore()
         .collection(`${userProfile.displayName}`)
@@ -38,7 +36,7 @@ export default function useFavorite() {
           setProps(initialState);
         });
     } else if (!loading && type === "unfavorite") {
-      showProcessingWindow("Processing...");
+      addFavorite("Processing...");
       firebase
         .firestore()
         .collection(`${userProfile.displayName}`)

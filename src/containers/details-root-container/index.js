@@ -79,7 +79,7 @@ export default function CardDetailsRootContainer() {
                     </ListColumn.ItemContainer>
                   );
                 })}
-            <WidgetContainer slug={list.id} nickname={profile?.displayName} />
+            <WidgetContainer item={list} nickname={profile?.displayName} />
           </ListColumn>
         </DetailsHeader>
       )}

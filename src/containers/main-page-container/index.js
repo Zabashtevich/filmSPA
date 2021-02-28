@@ -47,63 +47,62 @@ export default function MainPageContainer() {
     }));
   }, [tabFirst.activeType, tabSecondary.activeType]);
 
-  return (
-    <BodyMain>
-      <BodyMain.Section>
-        <SliderContainer
-          data={Data[sliderIndex]}
-          setSliderIndex={setSliderIndex}
-          sliderIndex={sliderIndex}
-          Data={Data}
-        />
-      </BodyMain.Section>
-      <BodyMain.Section padding="1rem" background="#fff">
-        <BodyMain.Wrapper>
-          <BodyMain.Inner>
-            <TabContainer
-              title={tabFirst.title}
-              tabList={tabFirst.tabList}
-              setActiveType={setTabFirst}
-              activeType={tabFirst.activeType}
-            />
-          </BodyMain.Inner>
-          <BodyMain.Inner>
-            <TabContainer
-              title={tabSecondary.title}
-              tabList={tabSecondary.tabList}
-              setActiveType={setTabSecondary}
-              activeType={tabSecondary.activeType}
-            />
-          </BodyMain.Inner>
-        </BodyMain.Wrapper>
-        <CardList>
-          {loading
-            ? skeletonAmount.map((_) => <CardListSkeleton key={_} />)
-            : list.results.map((item) => {
-                return (
-                  <CardList.ItemContainer
-                    key={item.id}
-                    onClick={() =>
-                      history.push(`/details/${item.media_type}/${item.id}`)
-                    }
-                  >
-                    {item.poster_path === null ? null : null}
-                    <CardList.ItemContentWrapper>
-                      <CardList.ItemImage src={item.poster_path} />
-                      <CardList.ItemDescriptionInner
-                        title={item.title || item.name}
-                        date={getRightReleasedDate(item.release_date)}
-                      />
-                    </CardList.ItemContentWrapper>
-                    <CardList.MetaScore error={item.poster_path ? null : true}>
-                      {item.vote_average}
-                    </CardList.MetaScore>
-                  </CardList.ItemContainer>
-                );
-              })}
-        </CardList>
-        <PaginationMainPageContainer currentPage={currentPage} />
-      </BodyMain.Section>
-    </BodyMain>
-  );
+  return null;
+  // <BodyMain>
+  //   <BodyMain.Section>
+  //     <SliderContainer
+  //       data={Data[sliderIndex]}
+  //       setSliderIndex={setSliderIndex}
+  //       sliderIndex={sliderIndex}
+  //       Data={Data}
+  //     />
+  //   </BodyMain.Section>
+  //   <BodyMain.Section padding="1rem" background="#fff">
+  //     <BodyMain.Wrapper>
+  //       <BodyMain.Inner>
+  //         <TabContainer
+  //           title={tabFirst.title}
+  //           tabList={tabFirst.tabList}
+  //           setActiveType={setTabFirst}
+  //           activeType={tabFirst.activeType}
+  //         />
+  //       </BodyMain.Inner>
+  //       <BodyMain.Inner>
+  //         <TabContainer
+  //           title={tabSecondary.title}
+  //           tabList={tabSecondary.tabList}
+  //           setActiveType={setTabSecondary}
+  //           activeType={tabSecondary.activeType}
+  //         />
+  //       </BodyMain.Inner>
+  //     </BodyMain.Wrapper>
+  //     <CardList>
+  //       {loading
+  //         ? skeletonAmount.map((_) => <CardListSkeleton key={_} />)
+  //         : list.results.map((item) => {
+  //             return (
+  //               <CardList.ItemContainer
+  //                 key={item.id}
+  //                 onClick={() =>
+  //                   history.push(`/details/${item.media_type}/${item.id}`)
+  //                 }
+  //               >
+  //                 {item.poster_path === null ? null : null}
+  //                 <CardList.ItemContentWrapper>
+  //                   <CardList.ItemImage src={item.poster_path} />
+  //                   <CardList.ItemDescriptionInner
+  //                     title={item.title || item.name}
+  //                     date={getRightReleasedDate(item.release_date)}
+  //                   />
+  //                 </CardList.ItemContentWrapper>
+  //                 <CardList.MetaScore error={item.poster_path ? null : true}>
+  //                   {item.vote_average}
+  //                 </CardList.MetaScore>
+  //               </CardList.ItemContainer>
+  //             );
+  //           })}
+  //     </CardList>
+  //     <PaginationMainPageContainer currentPage={currentPage} />
+  //   </BodyMain.Section>
+  // </BodyMain>
 }

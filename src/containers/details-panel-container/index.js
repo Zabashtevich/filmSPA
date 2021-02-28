@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { DetailsPanel } from "../../components";
 import {
   ProcessingWindowContainer,
+  RecommendationContainer,
   StatePaginationContainer,
   UtilityModalContainer,
 } from "../";
@@ -15,7 +16,7 @@ import { RatingContainer, ReviewContainer } from "./auxillary";
 export default function CardDetailsPanelContainer() {
   const reviewData = useSelector((store) => store.reviewData);
   const userProfile = useSelector((store) => store.userProfile);
-  const params = useParams();
+  const { direction, slug } = useParams();
 
   const [combinedReviews, setCombinedReviews] = useState({
     processed: true,
@@ -30,7 +31,7 @@ export default function CardDetailsPanelContainer() {
   const { amount, active } = paginationSettings;
   const { profile, profileLoading } = userProfile;
 
-  const [list, loadingList] = useFetch(params.direction, params.slug);
+  const [list, loadingList] = useFetch(direction, slug);
 
   useEffect(() => {
     if (!loadingList && !reviewData.loading) {
@@ -49,6 +50,10 @@ export default function CardDetailsPanelContainer() {
         <ProcessingWindowContainer />
         <UtilityModalContainer />
         <DetailsPanel>
+          <RecommendationContainer
+            list={list?.recommendations?.results || []}
+            type={direction}
+          />
           <DetailsPanel.Wrapper>
             <DetailsPanel.Title>Overview</DetailsPanel.Title>
             <DetailsPanel.Overview>{list.overview}</DetailsPanel.Overview>

@@ -2,15 +2,23 @@ import React from "react";
 
 import { Recommendation } from "../../components";
 
-export default function RecommendationContainer({ list, type }) {
+export default function RecommendationContainer({ list = [], type }) {
   return (
-    <Recommendation>
+    <Recommendation disabled={list.length === 0 && 1}>
       <Recommendation.Container>
         {list.length > 0 &&
-          list.map(({ id, poster_path, title }) => (
+          list.map(({ id, backdrop_path, title }) => (
             <Recommendation.Item key={id} to={`/details/${type}/${id}`}>
-              {poster_path && <Recommendation.Poster src={poster_path} />}
-              {!poster_path && <Recommendation.ImagePlaceholder />}
+              {backdrop_path && (
+                <Recommendation.Poster
+                  src={"https://image.tmdb.org/t/p/w300" + backdrop_path}
+                />
+              )}
+              {!backdrop_path && (
+                <Recommendation.ImagePlaceholder
+                  src={"https://dummyimage.com/300x169/fff/fff"}
+                />
+              )}
               <Recommendation.Title>{title}</Recommendation.Title>
             </Recommendation.Item>
           ))}

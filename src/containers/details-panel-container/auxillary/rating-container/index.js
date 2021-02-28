@@ -55,7 +55,7 @@ export default function RatingContainer({ list }) {
   return (
     <>
       <DetailsPanel.Rating>
-        <DetailsPanel.Stars average={list.vote_average} rate={rate} />
+        <DetailsPanel.Stars average={list.vote_average} rate={null} />
         <DetailsPanel.Average average={list.vote_average}>
           {list.vote_average}
         </DetailsPanel.Average>

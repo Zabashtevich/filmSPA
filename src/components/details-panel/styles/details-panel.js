@@ -13,7 +13,6 @@ export const Container = styled.div`
   align-items: center;
   font-family: ${({ theme }) => theme.font.aux.family};
   border: 1px solid rgba(0, 0, 0, 0.1);
-  padding-top: 6rem;
 `;
 
 export const Wrapper = styled.div`

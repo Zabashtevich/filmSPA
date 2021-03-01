@@ -18,19 +18,23 @@ export default function GalleryContainer({ images }) {
               "https://image.tmdb.org/t/p/original/gJdIomQQ7pDnLIpzMyXLKFlAj05.jpg"
             }
           />
-          <Gallery.Wrapper>
+          <Gallery.Footer>
             <Gallery.Button>
-              <Gallery.Arrow />
+              <Gallery.ArrowLeft />
             </Gallery.Button>
-            {images.slice(0, 5).map((item) => (
-              <Gallery.Miniature
-                src={`https://image.tmdb.org/t/p/original${item.file_path}`}
-              />
-            ))}
+            <Gallery.Wrapper>
+              {images.slice(0, 5).map((item) => (
+                <Gallery.Inner>
+                  <Gallery.Miniature
+                    src={`https://image.tmdb.org/t/p/original${item.file_path}`}
+                  />
+                </Gallery.Inner>
+              ))}
+            </Gallery.Wrapper>
             <Gallery.Button direction={"right"}>
-              <Gallery.Arrow direction={"right"} />
+              <Gallery.ArrowRight />
             </Gallery.Button>
-          </Gallery.Wrapper>
+          </Gallery.Footer>
         </Gallery.Container>
       </Gallery.Backdrop>
     </>

@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components/macro";
 
 import { BsFillImageFill } from "react-icons/bs";
-import { BsChevronLeft } from "react-icons/bs";
+import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { CgClose } from "react-icons/cg";
 
 export const Face = styled.div``;
@@ -40,7 +40,7 @@ export const Close = styled(CgClose)`
   top: 1%;
   right: 1%;
   &:hover {
-    transform: scale(0.98);
+    transform: scale(0.95);
     transition: 300ms;
   }
 `;
@@ -49,39 +49,71 @@ export const Active = styled.img`
   border-radius: 0.4rem 0.4rem 0 0;
 `;
 
-export const Wrapper = styled.div`
+export const Footer = styled.div`
   display: flex;
-  align-items: center;
   justify-content: center;
   margin: 1rem;
 `;
 
 export const Button = styled.button`
-  background-color: transparent;
+  background-color: ${({ theme }) => theme.colors.secondary};
+  font-size: ${({ theme }) => theme.font.aux.size.big};
+  border: 1px solid black;
+  padding: 2rem 0.2rem;
   align-items: center;
+  cursor: pointer;
   outline: none;
-  border-radius: 20%;
-  padding: 0;
-  border: none;
+  color: white;
   display: flex;
+  height: 100%;
   &:active {
     transform: scale(0.98);
   }
+  &:hover {
+    background-color: white;
+    color: black;
+    transition: 300ms;
+  }
 `;
 
-export const Arrow = styled(BsChevronLeft)`
-  font-size: ${({ theme }) => theme.font.aux.size.large};
-  background-color: ${({ theme }) => theme.colors.secondary};
-  border-radius: 20%;
-  border: 1px solid rgba(0, 0, 0, 0.6);
-  color: white;
-  ${({ direction }) =>
-    direction === "right" &&
+export const ArrowLeft = styled(BsChevronLeft)``;
+
+export const ArrowRight = styled(BsChevronRight)``;
+
+export const Wrapper = styled.div`
+  display: flex;
+`;
+
+export const Inner = styled.div`
+  border: 1px solid black;
+  display: flex;
+  position: relative;
+  cursor: pointer;
+  &::before {
+    content: "";
+    position: absolute;
+    background: rgba(0, 0, 0, 0.2);
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+    opacity: 0;
+  }
+  &:hover {
+    border: 1px solid gray;
+    transition: 400ms;
+    &::before {
+      visibility: visible;
+      opacity: 1;
+      transition: 300ms;
+    }
+  }
+  ${({ selected }) =>
+    selected &&
     css`
-      transform: rotate(180deg);
+      border: 1px solid white;
     `};
 `;
 
 export const Miniature = styled.img`
-  width: 50px;
+  width: 150px;
 `;

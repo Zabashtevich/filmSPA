@@ -10,7 +10,10 @@ import {
   Active,
   Wrapper,
   Button,
-  Arrow,
+  Inner,
+  ArrowLeft,
+  ArrowRight,
+  Footer,
   Miniature,
 } from "./styles/gallery";
 
@@ -53,12 +56,24 @@ Gallery.Wrapper = function GalleryWrapper({ children, ...rest }) {
   return <Wrapper {...rest}>{children}</Wrapper>;
 };
 
+Gallery.Footer = function GalleryFooter({ children, ...rest }) {
+  return <Footer {...rest}>{children}</Footer>;
+};
+
 Gallery.Button = function GalleryButton({ children, ...rest }) {
   return <Button {...rest}>{children}</Button>;
 };
 
-Gallery.Arrow = function GalleryArrow({ ...rest }) {
-  return <Arrow {...rest} />;
+Gallery.ArrowLeft = function GalleryArrowLeft({ ...rest }) {
+  return <ArrowLeft {...rest} />;
+};
+
+Gallery.ArrowRight = function GalleryArrowRight({ ...rest }) {
+  return <ArrowRight {...rest} />;
+};
+
+Gallery.Inner = function GalleryInner({ children, ...rest }) {
+  return <Inner {...rest}>{children}</Inner>;
 };
 
 Gallery.Miniature = function GalleryMiniature({ ...rest }) {

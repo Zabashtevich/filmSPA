@@ -36,27 +36,27 @@ export default {
     positiveReview: "#d9f0e1",
   },
   animations: {
-    fade: `
+    fade: (enter = 500, exit = 500, appear = 500) => `
     &.opacity-enter {
       opacity: 0;
     }
     &.opacity-enter-active {
       opacity: 1;
-      transition: 500ms;
+      transition: ${enter}ms;
     }
     &.opacity-exit {
       opacity: 1;
     }
     &.opacity-exit-active {
       opacity: 0;
-      transition: 500ms;
+      transition: ${exit}ms;
     }
     &.opacity-appear {
       opacity: 0;
     }
     &.opacity-appear-active {
       opacity: 1;
-      transition: 500ms;
+      transition: ${appear}ms;
     }`,
     slide: (from, to) => `
     &.slide-enter {

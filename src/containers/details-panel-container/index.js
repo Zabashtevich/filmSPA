@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 
 import { DetailsPanel } from "../../components";
 import {
-  ProcessingWindowContainer,
+  ProcessWindowContainer,
   RecommendationContainer,
   StatePaginationContainer,
   ModalContainer,
@@ -47,7 +47,7 @@ export default function CardDetailsPanelContainer() {
   return (
     list && (
       <>
-        <ProcessingWindowContainer />
+        <ProcessWindowContainer />
         <ModalContainer />
         <DetailsPanel>
           <RecommendationContainer

@@ -152,7 +152,7 @@ export const Element = styled.div`
 `;
 
 export const Added = styled(BsCheck)`
-  ${({ theme }) => theme.animations.fade};
+  ${({ theme }) => theme.animations.fade(300, 0, 300)};
   position: absolute;
   color: darkgreen;
   left: 10%;
@@ -187,7 +187,7 @@ export const Link = styled(ReactRouterLink)`
 `;
 
 export const Spinner = styled.img`
-  ${({ theme }) => theme.animations.fade};
+  ${({ theme }) => theme.animations.fade(300, 0, 300)};
   position: absolute;
   left: 10%;
   ${({ location }) =>

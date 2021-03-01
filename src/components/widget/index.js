@@ -95,7 +95,7 @@ Widget.Spinner = function WidgetSpinner({ visible, ...rest }) {
       appear={true}
       mountOnEnter
       unmountOnExit
-      timeout={500}
+      timeout={{ enter: 300, exit: 0, appear: 300 }}
     >
       <Spinner src={widgetSpinner} {...rest} />
     </CSSTransition>
@@ -110,7 +110,7 @@ Widget.Added = function WidgetAdded({ visible, ...rest }) {
       appear={true}
       mountOnEnter
       unmountOnExit
-      timeout={500}
+      timeout={{ enter: 300, exit: 0, appear: 300 }}
     >
       <Added {...rest} />
     </CSSTransition>

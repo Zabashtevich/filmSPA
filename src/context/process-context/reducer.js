@@ -21,7 +21,7 @@ export default function processReducer(
         [payload.type]: true,
       };
     case CLOSE_PROCESS_WINDOW:
-      return { ...state, visible: false, message: null, [payload.type]: false };
+      return { ...state, visible: false, [payload.type]: false };
     default:
       return state;
   }

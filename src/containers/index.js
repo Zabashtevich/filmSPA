@@ -15,3 +15,4 @@ export { default as ProcessWindowContainer } from "./process-window-container";
 export { default as WidgetContainer } from "./widget-container";
 export { default as RecommendationContainer } from "./recommendation-container";
 export { default as ModalContainer } from "./modal-container";
+export { default as GalleryContainer } from "./gallery-container";

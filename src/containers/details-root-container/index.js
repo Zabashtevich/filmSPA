@@ -10,7 +10,7 @@ import {
 } from "../../components";
 import { useFetch } from "../../hooks";
 import { CardRowsContainer } from "./auxillary";
-import { WidgetContainer } from "../";
+import { GalleryContainer, WidgetContainer } from "../";
 import { useItemContext } from "../../context";
 
 export default function CardDetailsRootContainer() {
@@ -26,10 +26,13 @@ export default function CardDetailsRootContainer() {
     return () => setItem(null);
   }, [list, loading]);
 
+  console.log(list);
+
   return (
     <>
       {list && (
         <DetailsHeader background={"dark"}>
+          <GalleryContainer />
           <DetailsHeader.BackgroundContainer>
             <DetailsHeader.BackgroundImage src={list.backdrop_path} />
           </DetailsHeader.BackgroundContainer>

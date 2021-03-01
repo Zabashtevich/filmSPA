@@ -1,6 +1,5 @@
 import React from "react";
-import { backdropImageLink } from "../../constants/constants";
-
+// TODO IMAGE LINK
 import {
   Container,
   BackgroundImageColor,
@@ -22,7 +21,7 @@ DetailsHeader.BackgroundContainer = function DetailsHeaderBackgroundContainer({
 DetailsHeader.BackgroundImage = function DetailsHeaderBackgroundImage({ src }) {
   return (
     <BackgroundWrapper>
-      <BackgroundImage src={src ? backdropImageLink + src : null} />
+      <BackgroundImage src={src ? src : null} />
       <BackgroundImageColor />
     </BackgroundWrapper>
   );

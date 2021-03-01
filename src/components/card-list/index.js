@@ -1,7 +1,7 @@
 import React from "react";
-import { baseImageLink } from "../../constants/constants";
+// import { baseImageLink } from "../../constants/constants";
 import imageerror from "../../assets/404-error.svg";
-
+//TODO IMAGE LINK
 import {
   Container,
   ItemContainer,
@@ -28,12 +28,7 @@ CardList.ItemContentWrapper = function CardListItemContentWrapper({
 };
 
 CardList.ItemImage = function CardListItemImage({ src }) {
-  return (
-    <ItemImage
-      src={src ? baseImageLink + src : imageerror}
-      error={src ? null : true}
-    />
-  );
+  return <ItemImage src={src ? src : imageerror} error={src ? null : true} />;
 };
 
 CardList.ItemDescriptionInner = function CardListItemDescriptionInner({

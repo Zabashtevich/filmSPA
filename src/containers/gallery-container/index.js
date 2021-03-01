@@ -10,7 +10,7 @@ export default function GalleryContainer({ images }) {
       <Gallery onClick={() => setPopupVisible((prev) => !prev)}>
         <Gallery.Icon />
       </Gallery>
-      <Gallery.Backdrop visible={popupVisible}>
+      <Gallery.Backdrop visible={true}>
         <Gallery.Container>
           <Gallery.Close />
           <Gallery.Active src={"haha"} />

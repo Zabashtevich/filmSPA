@@ -1,6 +1,5 @@
 import React from "react";
 import { Pagination } from "../../../../components";
-import { maxPagination } from "../../../../constants/constants";
 import { getPaginatorStart, getPaginatorEnd } from "../../../../utils/utils";
 import { range } from "../../../../utils";
 
@@ -31,7 +30,7 @@ export default function PaginationMainContainer({ currentPage }) {
           <>
             <Pagination.Etc>...</Pagination.Etc>
             <Pagination.Max
-              to={`/?page=${maxPagination}`}
+              to={`/?page=${1000}`}
               selected={currentPage === 1000}
             >
               1000

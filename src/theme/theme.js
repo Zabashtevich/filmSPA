@@ -34,6 +34,7 @@ export default {
     reviewsBackground: "#f2f2f2",
     negativeReview: "#ffe8d9",
     positiveReview: "#d9f0e1",
+    auxillary: "#E0E0E0	",
   },
   animations: {
     fade: (enter = 500, exit = 500, appear = 500) => `

@@ -87,8 +87,19 @@ Widget.Element = function WidgetElement({ children, ...rest }) {
   return <Element {...rest}>{children}</Element>;
 };
 
-Widget.Spinner = function WidgetSpinner({ ...rest }) {
-  return <Spinner src={widgetSpinner} {...rest} />;
+Widget.Spinner = function WidgetSpinner({ visible, ...rest }) {
+  return (
+    <CSSTransition
+      in={visible}
+      classNames="fade"
+      appear={true}
+      mountOnEnter
+      unmountOnExit
+      timeout={500}
+    >
+      <Spinner src={widgetSpinner} {...rest} />
+    </CSSTransition>
+  );
 };
 
 Widget.Added = function WidgetAdded({ visible, ...rest }) {

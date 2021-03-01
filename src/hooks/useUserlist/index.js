@@ -12,7 +12,7 @@ const initialState = {
 
 export default function useUserlist() {
   const [, { showModal }] = useModalContext();
-  const [, { showProcessWindow, closeProcessingWindow }] = useProcessContext();
+  const [, { showProcessWindow, closeProcessWindow }] = useProcessContext();
 
   const { loading, userlists } = useSelector((store) => store.userData);
   const { profile } = useSelector((state) => state.userProfile);
@@ -33,11 +33,11 @@ export default function useUserlist() {
         .doc("collection")
         .update({ list: userlists.concat(item) })
         .then(() => {
-          closeProcessingWindow({ type: "userlistProcess" });
+          closeProcessWindow({ type: "userlistProcess" });
           setProps(initialState);
         })
         .catch(() => {
-          closeProcessingWindow({ type: "userlistProcess" });
+          closeProcessWindow({ type: "userlistProcess" });
           showModal({
             type: "error",
             message: "Something gone wrong. The list was not created.",
@@ -55,11 +55,11 @@ export default function useUserlist() {
         .doc("collection")
         .update({ list: userlists.filter((item) => +item.id !== +id) })
         .then(() => {
-          closeProcessingWindow({ type: "userlistProcess" });
+          closeProcessWindow({ type: "userlistProcess" });
           setProps(initialState);
         })
         .catch(() => {
-          closeProcessingWindow({ type: "userlistProcess" });
+          closeProcessWindow({ type: "userlistProcess" });
           showModal({
             type: "error",
             message: "Something gone wrong. The list was not created.",
@@ -81,11 +81,11 @@ export default function useUserlist() {
           ),
         })
         .then(() => {
-          closeProcessingWindow({ type: "userlistProcess" });
+          closeProcessWindow({ type: "userlistProcess" });
           setProps(initialState);
         })
         .catch(() => {
-          closeProcessingWindow({ type: "userlistProcess" });
+          closeProcessWindow({ type: "userlistProcess" });
           showModal({
             type: "error",
             message: "Something gone wrong. The list was not renamed",
@@ -109,11 +109,11 @@ export default function useUserlist() {
           ),
         })
         .then(() => {
-          closeProcessingWindow({ type: "userlistProcess" });
+          closeProcessWindow({ type: "userlistProcess" });
           setProps(initialState);
         })
         .catch(() => {
-          closeProcessingWindow({ type: "userlistProcess" });
+          closeProcessWindow({ type: "userlistProcess" });
           showModal({
             type: "error",
             message: "Something gone wrong. Item was not added to list",
@@ -140,11 +140,11 @@ export default function useUserlist() {
           ),
         })
         .then(() => {
-          closeProcessingWindow({ type: "userlistProcess" });
+          closeProcessWindow({ type: "userlistProcess" });
           setProps(initialState);
         })
         .catch(() => {
-          closeProcessingWindow({ type: "userlistProcess" });
+          closeProcessWindow({ type: "userlistProcess" });
           showModal({
             type: "error",
             message: "Something gone wrong. Item was not deleted from list",

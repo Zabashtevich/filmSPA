@@ -144,13 +144,18 @@ export const Element = styled.div`
     background-color: #f2f2f2;
     transition: 500ms;
   }
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      pointer-events: none;
+    `};
 `;
 
 export const Added = styled(BsCheck)`
   ${({ theme }) => theme.animations.fade};
   position: absolute;
   color: darkgreen;
-  right: 10%;
+  left: 10%;
   ${({ location }) =>
     location === "middle" &&
     css`
@@ -182,8 +187,9 @@ export const Link = styled(ReactRouterLink)`
 `;
 
 export const Spinner = styled.img`
+  ${({ theme }) => theme.animations.fade};
   position: absolute;
-  right: 10%;
+  left: 10%;
   ${({ location }) =>
     location === "middle" &&
     css`

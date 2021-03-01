@@ -1,4 +1,4 @@
-export default function createUserlistItem(item) {
+export default function createListItem(item) {
   return {
     id: item.id,
     title: item.title,

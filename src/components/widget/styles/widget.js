@@ -68,16 +68,6 @@ export const Chevron = styled(HiOutlineChevronLeft)`
     css`
       transform: rotate(180deg);
     `};
-  ${({ dir }) =>
-    dir === "top" &&
-    css`
-      transform: rotate(-90deg);
-    `};
-  ${({ dir }) =>
-    dir === "down" &&
-    css`
-      transform: rotate(90deg);
-    `};
 `;
 
 export const Container = styled.div`

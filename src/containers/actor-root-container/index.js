@@ -5,14 +5,9 @@ import {
   ActorMainColumn,
   ActorPosterDescription,
   DetailsHeader,
-  ModalGallery,
   PosterColumn,
 } from "../../components";
-import {
-  ModalGalleryContainer,
-  RecommendationContainer,
-  RowListItemContainer,
-} from "../";
+import { RecommendationContainer, RowListItemContainer } from "../";
 import { getArrayOfMovies, getKnownFor } from "../../utils/utils";
 import { ActorRowsContainer } from "./auxillary";
 import { useFirestore, useFetch, useAuthListener } from "../../hooks";
@@ -30,7 +25,7 @@ export default function ActorRootContainer() {
   const [creditsRow, setCreditsRow] = useState({ loading: true, list: null });
 
   const [user, userLoading] = useAuthListener();
-  const [list, loading, error] = useFetch("person", location.slug);
+  const [list, loading] = useFetch("person", location.slug);
 
   const [userDataLoading, userData] = useFirestore(
     user && `${user.displayName}`,
@@ -54,18 +49,6 @@ export default function ActorRootContainer() {
       <DetailsHeader background={"light"}>
         <PosterColumn>
           <PosterColumn.Poster src={list.profile_path} />
-          {visibleGallery && (
-            <ModalGalleryContainer
-              items={list.images.profiles}
-              setVisibleGallery={setVisibleGallery}
-              visibleGallery={visibleGallery}
-            />
-          )}
-          {list.images && list.images.profiles.length !== 1 ? (
-            <ModalGallery onClick={showModal}>
-              <ModalGallery.Icon />
-            </ModalGallery>
-          ) : null}
           <ActorPosterDescription>
             <ActorPosterDescription.Title>
               Personal information

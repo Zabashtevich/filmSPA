@@ -1,18 +1,16 @@
 import { useState, useEffect } from "react";
+import { useModalContext } from "../../context";
+import { getQuerries } from "../../utils";
 
 export default function useFetch(type, id) {
+  const [, { showModal }] = useModalContext();
+
   const [data, setData] = useState({
     loading: true,
     list: null,
-    error: false,
   });
 
-  const querries =
-    type === "person"
-      ? "credits,images"
-      : type === "movie"
-      ? "credits,recommendations,images,videos,reviews,account_states"
-      : null;
+  const querries = getQuerries(type);
 
   useEffect(() => {
     let mounted = true;
@@ -23,7 +21,10 @@ export default function useFetch(type, id) {
         .then((response) => response.json())
         .then((data) => {
           if (data.success === false) {
-            setData((prev) => ({ ...prev, error: true }));
+            showModal({
+              type: "error",
+              message: "Something went wrong while loading data",
+            });
           } else {
             setData((prev) => ({ ...prev, loading: false, list: data }));
           }
@@ -34,6 +35,6 @@ export default function useFetch(type, id) {
     };
   }, [type, id, querries]);
 
-  const { list, loading, error } = data;
-  return [list, loading, error];
+  const { list, loading } = data;
+  return [list, loading];
 }

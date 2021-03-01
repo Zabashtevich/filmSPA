@@ -1,39 +1,54 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import { Widget } from "../../../components";
-import { getCorrectDate } from "../../../utils";
-import { useFirelogicContext, useModalContext } from "./../../../context";
+import {
+  checkMovieInList,
+  createListItem,
+  getCorrectDate,
+} from "../../../utils";
+import {
+  useFirelogicContext,
+  useItemContext,
+  useModalContext,
+  useProcessContext,
+} from "./../../../context";
 
-export default function WidgetFavorite({ item }) {
+export default function WidgetFavorite() {
+  const [movieInFavorite, setMovieInFavorite] = useState(false);
+
   const [{ setFavoriteProps }] = useFirelogicContext();
   const [{ addingFavorite }] = useModalContext();
+  const [{ favoriteProcess }] = useProcessContext();
+  const [item] = useItemContext();
   const { favoritedMovies } = useSelector((state) => state.userData);
-  console.log(favoritedMovies.filter((i) => +i.id === item.id));
+
+  function handleOnFavorite() {
+    if (movieInFavorite) {
+      setFavoriteProps({
+        type: "unfavorite",
+        value: item.id,
+      });
+    } else {
+      setFavoriteProps({
+        type: "favorite",
+        value: createListItem(item),
+      });
+    }
+  }
+
+  useEffect(() => {
+    setMovieInFavorite(checkMovieInList(favoritedMovies, item));
+  }, [item, favoritedMovies]);
+
   return (
-    <Widget.Item
-      onClick={() =>
-        setFavoriteProps({
-          type: "favorite",
-          value: {
-            time: getCorrectDate(),
-            title: item.title,
-            id: item.id,
-            date: item.release_date,
-            vote_average: item.vote_average,
-            vote_count: item.vote_count,
-          },
-        })
-      }
-    >
+    <Widget.Item onClick={handleOnFavorite}>
       <Widget.Name>Favorite</Widget.Name>
       <Widget.Added
         location={"middle"}
-        visible={
-          favoritedMovies.filter((i) => +i.id === item.id).length > 0 && true
-        }
+        visible={movieInFavorite && !favoriteProcess}
       />
-      {addingFavorite && <Widget.Spinner location={"middle"} />}
+      <Widget.Spinner location={"middle"} visible={favoriteProcess} />
     </Widget.Item>
   );
 }

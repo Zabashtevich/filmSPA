@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 import {
   DetailsHeader,
@@ -8,25 +7,24 @@ import {
   ListColumn,
   PosterColumn,
   DescriptionHeader,
-  ModalGallery,
 } from "../../components";
 import { useFetch } from "../../hooks";
 import { CardRowsContainer } from "./auxillary";
-import { ModalGalleryContainer, WidgetContainer } from "../";
+import { WidgetContainer } from "../";
+import { useItemContext } from "../../context";
 
 export default function CardDetailsRootContainer() {
-  const userProfile = useSelector((state) => state.userProfile);
-  const [visibleGallery, setVisibleGallery] = useState(false);
+  const [, setItem] = useItemContext();
   const location = useParams();
 
-  const [list, loading, error] = useFetch(location.direction, location.slug);
+  const [list, loading] = useFetch(location.direction, location.slug);
 
-  const showModal = () => {
-    document.body.style.overflow = "hidden";
-    setVisibleGallery(true);
-  };
-
-  const { profile } = userProfile;
+  useEffect(() => {
+    if (!loading) {
+      setItem(list);
+    }
+    return () => setItem(null);
+  }, [list, loading]);
 
   return (
     <>
@@ -37,18 +35,6 @@ export default function CardDetailsRootContainer() {
           </DetailsHeader.BackgroundContainer>
           <PosterColumn>
             <PosterColumn.Poster src={list.poster_path} cardPage={true} />
-            {visibleGallery && list.images ? (
-              <ModalGalleryContainer
-                items={list.images.posters}
-                setVisibleGallery={setVisibleGallery}
-                visibleGallery={visibleGallery}
-              />
-            ) : null}
-            {list.images.posters.length > 1 && (
-              <ModalGallery onClick={showModal} cardPage={true}>
-                <ModalGallery.Icon />
-              </ModalGallery>
-            )}
           </PosterColumn>
           <CardDescriptionColumn>
             <DescriptionHeader>
@@ -79,7 +65,7 @@ export default function CardDetailsRootContainer() {
                     </ListColumn.ItemContainer>
                   );
                 })}
-            <WidgetContainer item={list} nickname={profile?.displayName} />
+            <WidgetContainer />
           </ListColumn>
         </DetailsHeader>
       )}

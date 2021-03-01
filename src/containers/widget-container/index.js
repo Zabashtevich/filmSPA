@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
 import { Widget } from "../../components";
 import WidgetFavorite from "./items/widget-favorite";
 import WidgetItem from "./items/widget-item";
 
-export default function WidgetContainer({ item, nickname }) {
+export default function WidgetContainer() {
   const { loading, userlists } = useSelector((state) => state.userData);
+  const { profile } = useSelector((state) => state.userProfile);
 
   const [popupVisible, setPopupVisible] = useState({
     categories: false,
@@ -59,21 +60,20 @@ export default function WidgetContainer({ item, nickname }) {
             }
           >
             <Widget.Chevron dir={lists ? "rotate" : null} />
-            <Widget.Added location={"middle"} />
             <Widget.Name>Userlist</Widget.Name>
           </Widget.Item>
           <Widget.Backdrop visible={lists}>
             {userlists.map((list) => (
-              <WidgetItem key={list.id} list={list} item={item} />
+              <WidgetItem key={list.id} list={list} />
             ))}
             <Widget.Wrapper>
               <Widget.Chevron />
-              <Widget.Link to={`/account/${nickname}/lists`}>
+              <Widget.Link to={`/account/${profile.displayName}/lists`}>
                 Create and edit list
               </Widget.Link>
             </Widget.Wrapper>
           </Widget.Backdrop>
-          <WidgetFavorite item={item} />
+          <WidgetFavorite />
         </Widget.Container>
       </Widget>
     )

@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from "react";
 
 import { Widget } from "../../../components";
-import { useFirelogicContext, useProcessContext } from "../../../context";
-import { checkMovieInList, createUserlistItem } from "../../../utils";
+import {
+  useFirelogicContext,
+  useItemContext,
+  useProcessContext,
+} from "../../../context";
+import { checkMovieInList, createListItem } from "../../../utils";
 
-export default function WidgetItem({ list, item }) {
+export default function WidgetItem({ list }) {
   const [movieInList, setMovieInList] = useState(false);
   const [{ setUserlistProps }] = useFirelogicContext();
   const [{ userlistProcess }] = useProcessContext();
+  const [item] = useItemContext();
 
   function handleOnUserlist() {
     if (movieInList) {
@@ -16,18 +21,17 @@ export default function WidgetItem({ list, item }) {
         id: list.id,
         item: { id: item.id },
       });
-      setMovieInList(false);
     } else {
       setUserlistProps({
         type: "add to list",
         id: list.id,
-        item: createUserlistItem(item),
+        item: createListItem(item),
       });
     }
   }
 
   useEffect(() => {
-    setMovieInList(checkMovieInList(list, item));
+    setMovieInList(checkMovieInList(list.content, item));
   }, [list, item]);
 
   return (

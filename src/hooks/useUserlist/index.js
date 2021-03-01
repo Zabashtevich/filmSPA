@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
-import { useModalContext } from "./../../context";
+import { useModalContext, useProcessContext } from "./../../context";
 import { firebase } from "./../../libs/firebase";
 
 const initialState = {
@@ -11,53 +11,66 @@ const initialState = {
 };
 
 export default function useUserlist() {
-  const [, modalinterface] = useModalContext();
+  const [, { showModal }] = useModalContext();
+  const [, { showProcessWindow, closeProcessingWindow }] = useProcessContext();
 
-  const userData = useSelector((store) => store.userData);
-  const userProfile = useSelector((state) => state.userProfile);
+  const { loading, userlists } = useSelector((store) => store.userData);
+  const { profile } = useSelector((state) => state.userProfile);
 
   const [props, setProps] = useState(initialState);
 
-  const { profile } = userProfile;
   const { item, type, id } = props;
-  const { loading, userlists } = userData;
-  const { showProcessingWindow, closeModal, showErrorModal } = modalinterface;
 
   useEffect(() => {
     if (!loading && type === "create") {
-      showProcessingWindow("Creating your list");
+      showProcessWindow({
+        type: "userlistProcess",
+        message: "Creating your list",
+      });
       firebase
         .firestore()
         .collection(`${profile.displayName}`)
         .doc("collection")
         .update({ list: userlists.concat(item) })
         .then(() => {
-          closeModal();
+          closeProcessingWindow({ type: "userlistProcess" });
           setProps(initialState);
         })
         .catch(() => {
-          closeModal();
-          showErrorModal("Something gone wrong. The list was not created.");
+          closeProcessingWindow({ type: "userlistProcess" });
+          showModal({
+            type: "error",
+            message: "Something gone wrong. The list was not created.",
+          });
           setProps(initialState);
         });
     } else if (!loading && type === "delete") {
-      showProcessingWindow("Deleting your list");
+      showProcessWindow({
+        type: "userlistProcess",
+        message: "Deleting your list",
+      });
       firebase
         .firestore()
         .collection(`${profile.displayName}`)
         .doc("collection")
         .update({ list: userlists.filter((item) => +item.id !== +id) })
         .then(() => {
-          closeModal();
+          closeProcessingWindow({ type: "userlistProcess" });
           setProps(initialState);
         })
         .catch(() => {
-          closeModal();
-          showErrorModal("Something gone wrong. The list was not created.");
+          closeProcessingWindow({ type: "userlistProcess" });
+          showModal({
+            type: "error",
+            message: "Something gone wrong. The list was not created.",
+          });
           setProps(initialState);
         });
     } else if (!loading && type === "rename") {
-      showProcessingWindow("Renaming your list");
+      showProcessWindow({
+        type: "userlistProcess",
+        message: "Renaming your list",
+      });
       firebase
         .firestore()
         .collection(`${profile.displayName}`)
@@ -68,16 +81,22 @@ export default function useUserlist() {
           ),
         })
         .then(() => {
-          closeModal();
+          closeProcessingWindow({ type: "userlistProcess" });
           setProps(initialState);
         })
         .catch(() => {
-          closeModal();
-          showErrorModal("Something gone wrong. The list was not renamed");
+          closeProcessingWindow({ type: "userlistProcess" });
+          showModal({
+            type: "error",
+            message: "Something gone wrong. The list was not renamed",
+          });
           setProps(initialState);
         });
     } else if (!loading && type === "add to list") {
-      showProcessingWindow("Adding to list");
+      showProcessWindow({
+        type: "userlistProcess",
+        message: "Adding to list",
+      });
       firebase
         .firestore()
         .collection(`${profile.displayName}`)
@@ -90,16 +109,22 @@ export default function useUserlist() {
           ),
         })
         .then(() => {
-          closeModal();
+          closeProcessingWindow({ type: "userlistProcess" });
           setProps(initialState);
         })
         .catch(() => {
-          closeModal();
-          showErrorModal("Something gone wrong. Item was not added to list");
+          closeProcessingWindow({ type: "userlistProcess" });
+          showModal({
+            type: "error",
+            message: "Something gone wrong. Item was not added to list",
+          });
           setProps(initialState);
         });
     } else if (!loading && type === "delete from list") {
-      showProcessingWindow("Deleting item from list");
+      showProcessWindow({
+        type: "userlistProcess",
+        message: "Deleting item from list",
+      });
       firebase
         .firestore()
         .collection(`${profile.displayName}`)
@@ -115,14 +140,15 @@ export default function useUserlist() {
           ),
         })
         .then(() => {
-          closeModal();
+          closeProcessingWindow({ type: "userlistProcess" });
           setProps(initialState);
         })
         .catch(() => {
-          closeModal();
-          showErrorModal(
-            "Something gone wrong. Item was not deleted from list",
-          );
+          closeProcessingWindow({ type: "userlistProcess" });
+          showModal({
+            type: "error",
+            message: "Something gone wrong. Item was not deleted from list",
+          });
           setProps(initialState);
         });
     }

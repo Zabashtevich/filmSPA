@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import { firebase } from "./../../libs/firebase";
-import { useModalContext } from "./../../context";
+import { useModalContext, useProcessContext } from "./../../context";
 
 const initialState = {
   type: null,
@@ -10,9 +10,10 @@ const initialState = {
 };
 
 export default function useFavorite() {
-  const [, { addFavorite, closeModal, showErrorModal }] = useModalContext();
+  const [, { showModal }] = useModalContext();
+  const [, { showProcessWindow, closeProcessWindow }] = useProcessContext();
   const { loading, favoritedMovies } = useSelector((state) => state.userData);
-  const userProfile = useSelector((state) => state.userProfile);
+  const { profile } = useSelector((state) => state.userProfile);
 
   const [props, setProps] = useState(initialState);
 
@@ -20,37 +21,49 @@ export default function useFavorite() {
 
   useEffect(() => {
     if (!loading && type === "favorite") {
-      addFavorite("Processing...");
+      showProcessWindow({
+        type: "favoriteProcess",
+        message: '"Processing..."',
+      });
       firebase
         .firestore()
-        .collection(`${userProfile.displayName}`)
+        .collection(`${profile.displayName}`)
         .doc("collection")
         .update({ favorite: favoritedMovies.concat(value) })
         .then(() => {
-          closeModal();
+          closeProcessWindow({ type: "favoriteProcess" });
           setProps(initialState);
         })
         .catch(() => {
-          closeModal();
-          showErrorModal("Something gone wrong. Movie was not favorited :c");
+          closeProcessWindow({ type: "favoriteProcess" });
+          showModal({
+            type: "error",
+            message: "Something gone wrong. Movie was not favorited :c",
+          });
           setProps(initialState);
         });
     } else if (!loading && type === "unfavorite") {
-      addFavorite("Processing...");
+      showProcessWindow({
+        type: "favoriteProcess",
+        message: '"Processing..."',
+      });
       firebase
         .firestore()
-        .collection(`${userProfile.displayName}`)
+        .collection(`${profile.displayName}`)
         .doc("collection")
         .update({
           favorite: favoritedMovies.filter((item) => +item.id !== +value),
         })
         .then(() => {
-          closeModal();
+          closeProcessWindow({ type: "favoriteProcess" });
           setProps(initialState);
         })
         .catch(() => {
-          closeModal();
-          showErrorModal("Something gone wrong. Movie was not unfavorited");
+          closeProcessWindow({ type: "favoriteProcess" });
+          showModal({
+            type: "error",
+            message: '"Something gone wrong. Movie was not unfavorited"',
+          });
           setProps(initialState);
         });
     }

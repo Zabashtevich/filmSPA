@@ -11,7 +11,7 @@ const initialState = {
 
 export default function useEstimate() {
   const { ratedMovies, loading } = useSelector((state) => state.userData);
-  const { loading, profile } = useSelector((state) => state.userProfile);
+  const { profile } = useSelector((state) => state.userProfile);
 
   const [props, setProps] = useState(initialState);
 

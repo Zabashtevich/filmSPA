@@ -11,6 +11,7 @@ import {
   Inner,
   Button,
   Close,
+  Icon,
 } from "./styles/modal";
 
 export default function Modal({ visible, children, ...rest }) {
@@ -57,4 +58,8 @@ Modal.Button = function ModalButton({ children, ...rest }) {
 
 Modal.Close = function ModalClose({ ...rest }) {
   return <Close {...rest} />;
+};
+
+Modal.Icon = function ModalIcon({ ...rest }) {
+  return <Icon {...rest} />;
 };

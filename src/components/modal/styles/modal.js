@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components/macro";
 
 import { CgClose } from "react-icons/cg";
+import { BiErrorAlt } from "react-icons/bi";
 
 export const Container = styled.div`
   z-index: 1000;
@@ -23,6 +24,7 @@ export const Content = styled.div`
 `;
 
 export const Header = styled.div`
+  position: relative;
   height: 40%;
   ${({ type }) =>
     type === "error" &&
@@ -34,6 +36,14 @@ export const Header = styled.div`
     css`
       background-color: ${({ theme }) => theme.colors.warning};
     `};
+`;
+
+export const Icon = styled(BiErrorAlt)`
+  position: absolute;
+  font-size: 10rem;
+  color: white;
+  right: 10%;
+  top: 0;
 `;
 
 export const Title = styled.div`
@@ -69,18 +79,47 @@ export const Button = styled.div`
   cursor: pointer;
   margin: 0.5rem;
   display: flex;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.secondary};
+    color: white;
+    transition: 300ms;
+  }
   ${({ type }) =>
     type === "confirm" &&
     css`
       background-color: ${({ theme }) => theme.colors.warning};
       color: white;
+      &:hover {
+        background-color: white;
+        color: ${({ theme }) => theme.colors.warning};
+        transition: 300ms;
+      }
+    `};
+  ${({ type }) =>
+    type === "error" &&
+    css`
+      background-color: ${({ theme }) => theme.colors.error};
+      color: white;
+      &:hover {
+        background-color: white;
+        color: ${({ theme }) => theme.colors.error};
+        transition: 300ms;
+      }
     `};
 `;
 
 export const Close = styled(CgClose)`
   font-size: ${({ theme }) => theme.font.aux.size.large};
+  background-color: white;
+  border-radius: 0.2rem;
   position: absolute;
-  color: white;
+  z-index: 200;
+  color: black;
   right: 1%;
   top: 2%;
+  &:hover {
+    background-color: black;
+    color: white;
+    transition: 300ms;
+  }
 `;

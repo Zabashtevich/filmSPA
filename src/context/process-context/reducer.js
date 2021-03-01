@@ -3,6 +3,7 @@ import {
   ADD_USERLIST,
   DELETE_FAVORITE_ITEM,
   DELETE_USERLIST,
+  CLOSE_WINDOW,
 } from "./types";
 
 export const initialState = {

@@ -1,14 +1,13 @@
 import React from "react";
 
 import { ProcessingWindow } from "../../components";
-import { useModalContext } from "./../../context";
+import { useProcessContext } from "./../../context";
 
 export default function ProcessingWindowContainer() {
-  const [modalstate] = useModalContext();
-  const { processing, message } = modalstate;
+  const [{ message, visible }] = useProcessContext();
 
   return (
-    <ProcessingWindow visible={processing}>
+    <ProcessingWindow visible={visible}>
       <ProcessingWindow.Message>{message}</ProcessingWindow.Message>
       <ProcessingWindow.Spinner />
     </ProcessingWindow>

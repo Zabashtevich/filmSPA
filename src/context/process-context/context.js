@@ -1,10 +1,6 @@
 import { createContext, useReducer } from "react";
-import {
-  ADD_FAVORITE_ITEM,
-  DELETE_FAVORITE_ITEM,
-  ADD_USERLIST,
-  DELETE_USERLIST,
-} from "./types";
+
+import { CLOSE_PROCESS_WINDOW, SHOW_PROCESS_WINDOW } from "./types";
 import processReducer, { initialState } from "./reducer";
 
 export const ProcessContext = createContext(null);
@@ -12,28 +8,17 @@ export const ProcessContext = createContext(null);
 export default function ProcessContextProvider({ children }) {
   const [state, dispatch] = useReducer(processReducer, initialState);
 
-  function addFavoriteItem(payload) {
-    dispatch({ type: ADD_FAVORITE_ITEM, payload });
+  function showProcessWindow(payload) {
+    dispatch({ type: SHOW_PROCESS_WINDOW, payload });
   }
 
-  function deleteFavoriteItem(payload) {
-    dispatch({ type: DELETE_FAVORITE_ITEM, payload });
-  }
-
-  function addUserlist(payload) {
-    dispatch({ type: ADD_USERLIST, payload });
-  }
-
-  function deleteUserlist(payload) {
-    dispatch({ type: DELETE_USERLIST, payload });
+  function closeProcessWindow(payload) {
+    dispatch({ type: CLOSE_PROCESS_WINDOW, payload });
   }
 
   return (
     <ProcessContext.Provider
-      value={[
-        { ...state },
-        { addFavoriteItem, deleteFavoriteItem, addUserlist, deleteUserlist },
-      ]}
+      value={[{ ...state }, { showProcessWindow, closeProcessWindow }]}
     >
       {children}
     </ProcessContext.Provider>

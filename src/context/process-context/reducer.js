@@ -1,15 +1,10 @@
-import {
-  ADD_FAVORITE_ITEM,
-  ADD_USERLIST,
-  DELETE_FAVORITE_ITEM,
-  DELETE_USERLIST,
-  CLOSE_WINDOW,
-} from "./types";
+import { SHOW_PROCESS_WINDOW } from "./types";
 
 export const initialState = {
   message: null,
-  processFavorite: false,
-  processUserlist: false,
+  favoriteProcess: false,
+  userlistProcess: false,
+  estimateProcess: false,
   visible: false,
 };
 
@@ -18,35 +13,16 @@ export default function processReducer(
   { type, payload },
 ) {
   switch (type) {
-    case ADD_FAVORITE_ITEM:
+    case SHOW_PROCESS_WINDOW:
       return {
         ...state,
         visible: true,
-        processFavorite: true,
-        message: payload,
+        message: payload.message,
+        [payload.type]: true,
       };
-    case DELETE_FAVORITE_ITEM:
-      return {
-        ...state,
-        process: true,
-        processFavorite: true,
-        message: payload,
-      };
-    case ADD_USERLIST:
-      return {
-        ...state,
-        visible: true,
-        processUserlist: true,
-        message: payload,
-      };
-    case DELETE_USERLIST:
-      return {
-        ...state,
-        visible: true,
-        processUserlist: true,
-        message: payload,
-      };
-    case CLOSE_WINDOW:
-      return { ...initialState };
+    case CLOSE_PROCESS_WINDOW:
+      return { ...state, visible: false, message: null, [payload.type]: false };
+    default:
+      return state;
   }
 }

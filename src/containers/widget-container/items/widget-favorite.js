@@ -2,15 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import { Widget } from "../../../components";
-import {
-  checkMovieInList,
-  createListItem,
-  getCorrectDate,
-} from "../../../utils";
+import { checkMovieInList, createListItem } from "../../../utils";
 import {
   useFirelogicContext,
   useItemContext,
-  useModalContext,
   useProcessContext,
 } from "./../../../context";
 
@@ -18,18 +13,17 @@ export default function WidgetFavorite() {
   const [movieInFavorite, setMovieInFavorite] = useState(false);
 
   const [{ setFavoriteProps }] = useFirelogicContext();
-  const [{ addingFavorite }] = useModalContext();
   const [{ favoriteProcess }] = useProcessContext();
   const [item] = useItemContext();
   const { favoritedMovies } = useSelector((state) => state.userData);
 
   function handleOnFavorite() {
-    if (movieInFavorite) {
+    if (movieInFavorite && !favoriteProcess) {
       setFavoriteProps({
         type: "unfavorite",
         value: item.id,
       });
-    } else {
+    } else if (!movieInFavorite && !favoriteProcess) {
       setFavoriteProps({
         type: "favorite",
         value: createListItem(item),

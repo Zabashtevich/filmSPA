@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { CSSTransition } from "react-transition-group";
 
 import widgetSpinner from "../../assets/widget-spinner.gif";
+import { useProcessContext } from "./../../context";
 
 import {
   Face,
@@ -65,7 +66,12 @@ Widget.Name = function WidgetName({ children, ...rest }) {
 };
 
 Widget.Item = function WidgetItem({ children, ...rest }) {
-  return <Item {...rest}>{children}</Item>;
+  const [{ favoriteProcess }] = useProcessContext();
+  return (
+    <Item {...rest} disabled={favoriteProcess && 1}>
+      {children}
+    </Item>
+  );
 };
 
 Widget.Backdrop = function WidgetBackdrop({ visible, children, ...rest }) {
@@ -84,7 +90,13 @@ Widget.Backdrop = function WidgetBackdrop({ visible, children, ...rest }) {
 };
 
 Widget.Element = function WidgetElement({ children, ...rest }) {
-  return <Element {...rest}>{children}</Element>;
+  const [{ userlistProcess }] = useProcessContext();
+
+  return (
+    <Element {...rest} disabled={userlistProcess && 1}>
+      {children}
+    </Element>
+  );
 };
 
 Widget.Spinner = function WidgetSpinner({ visible, ...rest }) {

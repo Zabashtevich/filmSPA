@@ -106,6 +106,11 @@ export const Item = styled.div`
     background-color: #f2f2f2;
     transition: 500ms;
   }
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      cursor: not-allowed;
+    `};
 `;
 
 export const Backdrop = styled.div`
@@ -137,7 +142,7 @@ export const Element = styled.div`
   ${({ disabled }) =>
     disabled &&
     css`
-      pointer-events: none;
+      cursor: not-allowed;
     `};
 `;
 

@@ -15,13 +15,13 @@ export default function WidgetItem({ list }) {
   const [item] = useItemContext();
 
   function handleOnUserlist() {
-    if (movieInList) {
+    if (movieInList && !userlistProcess) {
       setUserlistProps({
         type: "delete from list",
         id: list.id,
         item: { id: item.id },
       });
-    } else {
+    } else if (!movieInList && !userlistProcess) {
       setUserlistProps({
         type: "add to list",
         id: list.id,

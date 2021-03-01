@@ -63,8 +63,8 @@ export default function WidgetContainer({ item, nickname }) {
             <Widget.Name>Userlist</Widget.Name>
           </Widget.Item>
           <Widget.Backdrop visible={lists}>
-            {userlists.map((item) => (
-              <WidgetItem key={item.id} item={item} />
+            {userlists.map((list) => (
+              <WidgetItem key={list.id} list={list} item={item} />
             ))}
             <Widget.Wrapper>
               <Widget.Chevron />

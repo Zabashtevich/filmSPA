@@ -13,7 +13,8 @@ import { rootReducer } from "./reducers";
 import FilterContextProvider from "./context/filter-context/context";
 import UserDataLogic from "./helpers/user-data-logic";
 import ModalContextProvider from "./context/modal-context/context";
-import FirelogicContext from "./context/firelogic-context/context";
+import ProcessContextProvider from "./context/process-context/context";
+import FirelogicContextProvider from "./context/firelogic-context/context";
 
 const store = createStore(
   rootReducer,
@@ -24,14 +25,16 @@ ReactDOM.render(
   <Provider store={store}>
     <ThemeProvider theme={Theme}>
       <UserDataLogic>
-        <ModalContextProvider>
-          <FirelogicContext>
-            <FilterContextProvider>
-              <GlobalStyles />
-              <App />
-            </FilterContextProvider>
-          </FirelogicContext>
-        </ModalContextProvider>
+        <ProcessContextProvider>
+          <ModalContextProvider>
+            <FirelogicContextProvider>
+              <FilterContextProvider>
+                <GlobalStyles />
+                <App />
+              </FilterContextProvider>
+            </FirelogicContextProvider>
+          </ModalContextProvider>
+        </ProcessContextProvider>
       </UserDataLogic>
     </ThemeProvider>
   </Provider>,

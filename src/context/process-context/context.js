@@ -18,7 +18,7 @@ export default function ProcessContextProvider({ children }) {
 
   return (
     <ProcessContext.Provider
-      value={[{ ...state }, { showProcessWindow, closeProcessWindow }]}
+      value={[state, { showProcessWindow, closeProcessWindow }]}
     >
       {children}
     </ProcessContext.Provider>

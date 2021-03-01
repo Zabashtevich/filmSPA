@@ -1,4 +1,4 @@
-import { SHOW_PROCESS_WINDOW } from "./types";
+import { SHOW_PROCESS_WINDOW, CLOSE_PROCESS_WINDOW } from "./types";
 
 export const initialState = {
   message: null,

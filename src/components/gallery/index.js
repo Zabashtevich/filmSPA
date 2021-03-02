@@ -9,11 +9,10 @@ import {
   Container,
   Close,
   Active,
-  Wrapper,
   Button,
   Inner,
-  ArrowLeft,
-  ArrowRight,
+  Arrow,
+  Loading,
   Footer,
   Miniature,
 } from "./styles/gallery";
@@ -64,17 +63,21 @@ Gallery.Container = function GalleryContainer({ children, ...rest }) {
 };
 
 Gallery.Close = function GalleryClose({ ...rest }) {
-  const [, setGalleryVisible] = useContext(GalleryContext);
-
+  const [galleryVisible, setGalleryVisible] = useContext(GalleryContext);
+  console.log(galleryVisible);
   return <Close {...rest} onClick={() => setGalleryVisible} />;
 };
 
-Gallery.Active = function GalleryActive({ ...rest }) {
-  return <Active {...rest} />;
-};
+Gallery.Active = function GalleryActive({ link, imgRef, ...rest }) {
+  const [loading, setLoading] = useState(true);
 
-Gallery.Wrapper = function GalleryWrapper({ children, ...rest }) {
-  return <Wrapper {...rest}>{children}</Wrapper>;
+  return (
+    <Active
+      ref={imgRef}
+      src={`https://image.tmdb.org/t/p/original${link}`}
+      {...rest}
+    />
+  );
 };
 
 Gallery.Footer = function GalleryFooter({ children, ...rest }) {
@@ -85,18 +88,24 @@ Gallery.Button = function GalleryButton({ children, ...rest }) {
   return <Button {...rest}>{children}</Button>;
 };
 
-Gallery.ArrowLeft = function GalleryArrowLeft({ ...rest }) {
-  return <ArrowLeft {...rest} />;
-};
-
-Gallery.ArrowRight = function GalleryArrowRight({ ...rest }) {
-  return <ArrowRight {...rest} />;
+Gallery.Arrow = function GalleryArrow({ ...rest }) {
+  return <Arrow {...rest} />;
 };
 
 Gallery.Inner = function GalleryInner({ children, ...rest }) {
   return <Inner {...rest}>{children}</Inner>;
 };
 
-Gallery.Miniature = function GalleryMiniature({ ...rest }) {
-  return <Miniature {...rest} />;
+Gallery.Miniature = function GalleryMiniature({ link, ...rest }) {
+  const [loading, setLoading] = useState(true);
+  return (
+    <>
+      {loading && <Loading />}
+      <Miniature
+        src={`https://image.tmdb.org/t/p/w200${link}`}
+        onLoad={() => setLoading(false)}
+        {...rest}
+      />
+    </>
+  );
 };

@@ -25,7 +25,6 @@ export const Backdrop = styled.div`
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 900px;
   background-color: ${({ theme }) => theme.colors.auxillary};
   position: relative;
   border-radius: 0.4rem;
@@ -47,73 +46,57 @@ export const Close = styled(CgClose)`
 
 export const Active = styled.img`
   border-radius: 0.4rem 0.4rem 0 0;
+  user-select: none;
+  max-width: 1200px;
 `;
 
 export const Footer = styled.div`
-  display: flex;
+  background-color: rgba(255, 255, 255, 0.5);
+  transform: translateX(-50%);
   justify-content: center;
-  margin: 1rem;
+  align-items: center;
+  position: absolute;
+  display: flex;
+  bottom: 10%;
+  left: 50%;
+  width: 100%;
 `;
 
 export const Button = styled.button`
-  background-color: ${({ theme }) => theme.colors.secondary};
-  font-size: ${({ theme }) => theme.font.aux.size.big};
-  border: 1px solid black;
-  padding: 2rem 0.2rem;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  border-radius: 0.4rem;
   align-items: center;
-  cursor: pointer;
+  display: flex;
   outline: none;
-  color: white;
-  display: flex;
-  height: 100%;
   &:active {
-    transform: scale(0.98);
+    transform: scale(0.95);
   }
-  &:hover {
-    background-color: white;
-    color: black;
-    transition: 300ms;
+  &:disabled {
+    pointer-events: none;
   }
 `;
 
-export const ArrowLeft = styled(BsChevronLeft)``;
-
-export const ArrowRight = styled(BsChevronRight)``;
-
-export const Wrapper = styled.div`
-  display: flex;
-`;
-
-export const Inner = styled.div`
-  border: 1px solid black;
-  display: flex;
-  position: relative;
-  cursor: pointer;
-  &::before {
-    content: "";
-    position: absolute;
-    background: rgba(0, 0, 0, 0.2);
-    width: 100%;
-    height: 100%;
-    visibility: hidden;
-    opacity: 0;
-  }
-  &:hover {
-    border: 1px solid gray;
-    transition: 400ms;
-    &::before {
-      visibility: visible;
-      opacity: 1;
-      transition: 300ms;
-    }
-  }
-  ${({ selected }) =>
-    selected &&
+export const Arrow = styled(BsChevronLeft)`
+  font-size: ${({ theme }) => theme.font.aux.size.large};
+  ${({ dir }) =>
+    dir === "right" &&
     css`
-      border: 1px solid white;
+      transform: rotate(180deg);
     `};
 `;
 
-export const Miniature = styled.img`
+export const Inner = styled.div`
+  margin: 0.4rem 0.2rem;
+  cursor: pointer;
+  height: 85px;
   width: 150px;
+`;
+
+export const Loading = styled.div``;
+
+export const Miniature = styled.img`
+  border-radius: 0.5rem;
+  user-select: none;
+  width: inherit;
 `;

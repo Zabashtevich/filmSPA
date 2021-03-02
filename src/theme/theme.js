@@ -37,7 +37,7 @@ export default {
     auxillary: "#E0E0E0	",
   },
   animations: {
-    fade: (enter = 500, exit = 500, appear = 500) => `
+    fade: (enter, exit, appear) => `
     &.fade-enter {
       opacity: 0;
     }

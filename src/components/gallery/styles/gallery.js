@@ -43,9 +43,10 @@ export const Backdrop = styled.div`
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: ${({ theme }) => theme.colors.auxillary};
   position: relative;
   border-radius: 0.4rem;
+  width: 1200px;
+  height: 675px;
 `;
 
 export const Close = styled(CgClose)`
@@ -107,6 +108,7 @@ export const Arrow = styled(BsChevronLeft)`
 
 export const Inner = styled.div`
   margin: 0.4rem 0.2rem;
+  position: relative;
   cursor: pointer;
   height: 85px;
   width: 150px;
@@ -118,4 +120,14 @@ export const Miniature = styled.img`
   border-radius: 0.5rem;
   user-select: none;
   width: inherit;
+  ${({ selected }) =>
+    selected &&
+    css`
+      border: 2px solid white;
+    `};
+  &:hover {
+    border: 1px solid white;
+    transform: translateY(-2%);
+    transition: 300ms;
+  }
 `;

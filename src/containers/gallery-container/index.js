@@ -6,7 +6,10 @@ import { calculateOffset } from "../../utils";
 export default function GalleryContainer({ images }) {
   const [popupVisible, setPopupVisible] = useState(false);
   const [{ start, end }, setGalleryOffset] = useState({ start: 0, end: 5 });
-  const [active, setActive] = useState(null);
+  const [{ loading, link }, setActive] = useState({
+    loading: true,
+    link: images[0].file_path,
+  });
 
   function handleOffset(type) {
     calculateOffset(images, start, end, type, setGalleryOffset);
@@ -23,7 +26,7 @@ export default function GalleryContainer({ images }) {
               setPopupVisible(false);
             }}
           />
-          <Gallery.Active link={active || images[0].file_path} />
+          <Gallery.Active link={link} loading={loading} setActive={setActive} />
           <Gallery.Footer>
             <Gallery.Button
               onClick={(e) => {
@@ -37,10 +40,12 @@ export default function GalleryContainer({ images }) {
             {images.slice(start, end).map(({ file_path }) => (
               <Gallery.Inner
                 key={file_path}
-                onClick={() => setActive(file_path)}
-                selected={file_path === active && 1}
+                onClick={() => setActive({ link: file_path, loading: true })}
               >
-                <Gallery.Miniature link={file_path} />
+                <Gallery.Miniature
+                  link={file_path}
+                  selected={file_path === link && 1}
+                />
               </Gallery.Inner>
             ))}
             <Gallery.Button

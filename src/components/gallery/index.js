@@ -1,6 +1,8 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { useState } from "react";
 import { CSSTransition } from "react-transition-group";
-import { createPortal } from "react-dom";
+import { w200miniature, orinalImageSize } from "../../constants/constants";
+
+import { GalleryActiveSkeleton, GalleryMiniatureSkeleton } from "../skeleton";
 
 import {
   Face,
@@ -12,7 +14,6 @@ import {
   Button,
   Inner,
   Arrow,
-  Loading,
   Footer,
   Miniature,
 } from "./styles/gallery";
@@ -48,9 +49,16 @@ Gallery.Close = function GalleryClose({ ...rest }) {
   return <Close {...rest} />;
 };
 
-Gallery.Active = function GalleryActive({ link, ...rest }) {
+Gallery.Active = function GalleryActive({ link, loading, setActive, ...rest }) {
   return (
-    <Active src={`https://image.tmdb.org/t/p/original${link}`} {...rest} />
+    <>
+      <GalleryActiveSkeleton visible={loading} />
+      <Active
+        src={`${orinalImageSize}${link}`}
+        onLoad={() => setActive((prev) => ({ ...prev, loading: false }))}
+        {...rest}
+      />
+    </>
   );
 };
 
@@ -74,9 +82,9 @@ Gallery.Miniature = function GalleryMiniature({ link, ...rest }) {
   const [loading, setLoading] = useState(true);
   return (
     <>
-      {loading && <Loading />}
+      {loading && <GalleryMiniatureSkeleton />}
       <Miniature
-        src={`https://image.tmdb.org/t/p/w200${link}`}
+        src={`${w200miniature}${link}`}
         onLoad={() => setLoading(false)}
         {...rest}
       />

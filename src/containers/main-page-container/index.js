@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 
-import { bodyFirstTab, bodySecondaryTab } from "../../constants/constants";
-import { BodyMain, CardList, CardListSkeleton } from "../../components";
+import { BodyMain, CardList } from "../../components";
 import { getPaginator, getRightReleasedDate } from "../../utils/utils";
 import { range } from "../../utils";
 import Data from "../../constants/data.json";

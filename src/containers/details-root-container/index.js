@@ -30,12 +30,12 @@ export default function CardDetailsRootContainer() {
     <>
       {list && (
         <DetailsHeader background={"dark"}>
-          <GalleryContainer images={list.images.backdrops} />
           <DetailsHeader.BackgroundContainer>
             <DetailsHeader.BackgroundImage src={list.backdrop_path} />
           </DetailsHeader.BackgroundContainer>
           <PosterColumn>
             <PosterColumn.Poster src={list.poster_path} cardPage={true} />
+            <GalleryContainer images={list.images.backdrops} />
           </PosterColumn>
           <CardDescriptionColumn>
             <DescriptionHeader>

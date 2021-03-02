@@ -17,44 +17,26 @@ import {
   Miniature,
 } from "./styles/gallery";
 
-const GalleryContext = createContext(null);
-
 export default function Gallery({ children, ...rest }) {
-  const [galleryVisible, setGalleryVisible] = useState(true);
-
-  return (
-    <Face {...rest} onClick={() => setGalleryVisible((prev) => !prev)}>
-      <GalleryContext.Provider value={[galleryVisible, setGalleryVisible]}>
-        {children}
-      </GalleryContext.Provider>
-    </Face>
-  );
+  return <Face {...rest}>{children}</Face>;
 }
 
 Gallery.Icon = function GalleryIcon({ ...rest }) {
   return <Icon {...rest} />;
 };
 
-Gallery.Backdrop = function GalleryBackdrop({ children, ...rest }) {
-  const [galleryVisible, setGalleryVisible] = useContext(GalleryContext);
-
+Gallery.Backdrop = function GalleryBackdrop({ visible, children, ...rest }) {
   return (
-    galleryVisible &&
-    createPortal(
-      <CSSTransition
-        classNames="fade"
-        in={galleryVisible}
-        timeout={500}
-        appear={true}
-        mountOnEnter
-        unmountOnExit
-      >
-        <Backdrop {...rest} onClick={() => setGalleryVisible(false)}>
-          {children}
-        </Backdrop>
-      </CSSTransition>,
-      document.getElementById("root"),
-    )
+    <CSSTransition
+      classNames="fade"
+      in={visible}
+      timeout={500}
+      appear={true}
+      mountOnEnter
+      unmountOnExit
+    >
+      <Backdrop {...rest}>{children}</Backdrop>
+    </CSSTransition>
   );
 };
 
@@ -63,20 +45,12 @@ Gallery.Container = function GalleryContainer({ children, ...rest }) {
 };
 
 Gallery.Close = function GalleryClose({ ...rest }) {
-  const [galleryVisible, setGalleryVisible] = useContext(GalleryContext);
-  console.log(galleryVisible);
-  return <Close {...rest} onClick={() => setGalleryVisible} />;
+  return <Close {...rest} />;
 };
 
-Gallery.Active = function GalleryActive({ link, imgRef, ...rest }) {
-  const [loading, setLoading] = useState(true);
-
+Gallery.Active = function GalleryActive({ link, ...rest }) {
   return (
-    <Active
-      ref={imgRef}
-      src={`https://image.tmdb.org/t/p/original${link}`}
-      {...rest}
-    />
+    <Active src={`https://image.tmdb.org/t/p/original${link}`} {...rest} />
   );
 };
 

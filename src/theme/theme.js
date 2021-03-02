@@ -37,25 +37,25 @@ export default {
     auxillary: "#E0E0E0	",
   },
   animations: {
-    fade: (enter = 500, exit = 500, appear = 500) => `
-    &.opacity-enter {
+    fade: (enter, exit, appear) => `
+    &.fade-enter {
       opacity: 0;
     }
-    &.opacity-enter-active {
+    &.fade-enter-active {
       opacity: 1;
       transition: ${enter}ms;
     }
-    &.opacity-exit {
+    &.fade-exit {
       opacity: 1;
     }
-    &.opacity-exit-active {
+    &.fade-exit-active {
       opacity: 0;
       transition: ${exit}ms;
     }
-    &.opacity-appear {
+    &.fade-appear {
       opacity: 0;
     }
-    &.opacity-appear-active {
+    &.fade-appear-active {
       opacity: 1;
       transition: ${appear}ms;
     }`,

@@ -1,15 +1,33 @@
 import styled, { css } from "styled-components/macro";
 
 import { BsFillImageFill } from "react-icons/bs";
-import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
+import { BsChevronLeft } from "react-icons/bs";
 import { CgClose } from "react-icons/cg";
 
-export const Face = styled.div``;
+export const Icon = styled(BsFillImageFill)`
+  font-size: 6rem;
+  fill: gray;
+`;
 
-export const Icon = styled(BsFillImageFill)``;
+export const Face = styled.div`
+  background-color: white;
+  justify-content: center;
+  border-radius: 0.4rem;
+  align-items: center;
+  width: 150px;
+  height: 100px;
+  display: flex;
+  cursor: pointer;
+  &:hover {
+    ${Icon} {
+      fill: black;
+      transition: 300ms;
+    }
+  }
+`;
 
 export const Backdrop = styled.div`
-  ${({ theme }) => theme.animations.fade};
+  ${({ theme }) => theme.animations.fade(500, 500, 500)};
   background-color: rgba(0, 0, 0, 0.6);
   position: fixed;
   display: flex;

@@ -26,8 +26,6 @@ export default function CardDetailsRootContainer() {
     return () => setItem(null);
   }, [list, loading]);
 
-  console.log(list);
-
   return (
     <>
       {list && (

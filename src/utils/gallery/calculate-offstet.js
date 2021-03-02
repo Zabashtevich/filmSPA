@@ -7,20 +7,21 @@ export default function calculateOffset(
 ) {
   let newStart = null;
   let newEnd = null;
+  const length = images.length;
 
   switch (type) {
     case "previous":
-      newStart = start - 5 <= 0 ? 0 : start - 5;
-      newEnd = end - 5 <= 5 ? 5 : end - 5;
+      newStart = start - 5 >= 0 ? start - 5 : 0;
+      newEnd = newStart + 5;
       break;
     case "next":
-      newStart =
-        images.length - (end + 5) < 0 && images.length !== end
-          ? images.length
-          : images.length - (end + 5) >= 5
+      newEnd =
+        length - (end + 5) > 0
           ? end + 5
+          : length - (end + 5) < 0
+          ? length
           : end;
-      newEnd = newEnd - 5;
+      newStart = newEnd - 5;
       break;
   }
 

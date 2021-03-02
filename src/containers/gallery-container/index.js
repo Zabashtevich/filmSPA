@@ -5,10 +5,12 @@ import { calculateOffset } from "../../utils";
 
 export default function GalleryContainer({ images }) {
   const [{ start, end }, setGalleryOffset] = useState({ start: 0, end: 5 });
-
+  let newImages = images.slice(0, 18);
   function handleOffset(type) {
-    calculateOffset(images, start, end, type, setGalleryOffset);
+    calculateOffset(newImages, start, end, type, setGalleryOffset);
   }
+
+  console.log(start, end);
 
   return (
     <Gallery>
@@ -26,8 +28,8 @@ export default function GalleryContainer({ images }) {
               <Gallery.ArrowLeft />
             </Gallery.Button>
             <Gallery.Wrapper>
-              {images.slice(start, end).map((item) => (
-                <Gallery.Inner>
+              {newImages.slice(start, end).map((item) => (
+                <Gallery.Inner key={item.file_path}>
                   <Gallery.Miniature
                     src={`https://image.tmdb.org/t/p/original${item.file_path}`}
                   />
@@ -36,7 +38,7 @@ export default function GalleryContainer({ images }) {
             </Gallery.Wrapper>
             <Gallery.Button
               direction={"right"}
-              onClick={() => () => handleOffset("next")}
+              onClick={() => handleOffset("next")}
             >
               <Gallery.ArrowRight />
             </Gallery.Button>

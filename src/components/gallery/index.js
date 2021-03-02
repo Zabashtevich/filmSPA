@@ -1,5 +1,6 @@
-import React from "react";
+import React, { createContext, useContext, useState } from "react";
 import { CSSTransition } from "react-transition-group";
+import { createPortal } from "react-dom";
 
 import {
   Face,
@@ -17,26 +18,44 @@ import {
   Miniature,
 } from "./styles/gallery";
 
+const GalleryContext = createContext(null);
+
 export default function Gallery({ children, ...rest }) {
-  return <Face {...rest}>{children}</Face>;
+  const [galleryVisible, setGalleryVisible] = useState(true);
+
+  return (
+    <Face {...rest} onClick={() => setGalleryVisible((prev) => !prev)}>
+      <GalleryContext.Provider value={[galleryVisible, setGalleryVisible]}>
+        {children}
+      </GalleryContext.Provider>
+    </Face>
+  );
 }
 
 Gallery.Icon = function GalleryIcon({ ...rest }) {
   return <Icon {...rest} />;
 };
 
-Gallery.Backdrop = function GalleryBackdrop({ visible, children, ...rest }) {
+Gallery.Backdrop = function GalleryBackdrop({ children, ...rest }) {
+  const [galleryVisible, setGalleryVisible] = useContext(GalleryContext);
+
   return (
-    <CSSTransition
-      classNames="fade"
-      in={visible}
-      timeout={500}
-      appear={true}
-      mountOnEnter
-      unmountOnExit
-    >
-      <Backdrop {...rest}>{children}</Backdrop>
-    </CSSTransition>
+    galleryVisible &&
+    createPortal(
+      <CSSTransition
+        classNames="fade"
+        in={galleryVisible}
+        timeout={500}
+        appear={true}
+        mountOnEnter
+        unmountOnExit
+      >
+        <Backdrop {...rest} onClick={() => setGalleryVisible(false)}>
+          {children}
+        </Backdrop>
+      </CSSTransition>,
+      document.getElementById("root"),
+    )
   );
 };
 
@@ -45,7 +64,9 @@ Gallery.Container = function GalleryContainer({ children, ...rest }) {
 };
 
 Gallery.Close = function GalleryClose({ ...rest }) {
-  return <Close {...rest} />;
+  const [, setGalleryVisible] = useContext(GalleryContext);
+
+  return <Close {...rest} onClick={() => setGalleryVisible} />;
 };
 
 Gallery.Active = function GalleryActive({ ...rest }) {

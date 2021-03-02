@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 
 import { Gallery } from "../../components";
+import { calculateOffset } from "../../utils";
 
 export default function GalleryContainer({ images }) {
-  const [popupVisible, setPopupVisible] = useState(false);
-  console.log(images);
+  const [{ start, end }, setGalleryOffset] = useState({ start: 0, end: 5 });
+
+  function handleOffset(type) {
+    calculateOffset(images, start, end, type, setGalleryOffset);
+  }
+
   return (
-    <>
-      <Gallery onClick={() => setPopupVisible((prev) => !prev)}>
-        <Gallery.Icon />
-      </Gallery>
-      <Gallery.Backdrop visible={true}>
+    <Gallery>
+      <Gallery.Icon />
+      <Gallery.Backdrop>
         <Gallery.Container>
           <Gallery.Close />
           <Gallery.Active
@@ -19,11 +22,11 @@ export default function GalleryContainer({ images }) {
             }
           />
           <Gallery.Footer>
-            <Gallery.Button>
+            <Gallery.Button onClick={() => handleOffset("previous")}>
               <Gallery.ArrowLeft />
             </Gallery.Button>
             <Gallery.Wrapper>
-              {images.slice(0, 5).map((item) => (
+              {images.slice(start, end).map((item) => (
                 <Gallery.Inner>
                   <Gallery.Miniature
                     src={`https://image.tmdb.org/t/p/original${item.file_path}`}
@@ -31,12 +34,15 @@ export default function GalleryContainer({ images }) {
                 </Gallery.Inner>
               ))}
             </Gallery.Wrapper>
-            <Gallery.Button direction={"right"}>
+            <Gallery.Button
+              direction={"right"}
+              onClick={() => () => handleOffset("next")}
+            >
               <Gallery.ArrowRight />
             </Gallery.Button>
           </Gallery.Footer>
         </Gallery.Container>
       </Gallery.Backdrop>
-    </>
+    </Gallery>
   );
 }

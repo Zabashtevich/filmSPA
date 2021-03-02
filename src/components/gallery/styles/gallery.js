@@ -27,7 +27,7 @@ export const Face = styled.div`
 `;
 
 export const Backdrop = styled.div`
-  ${({ theme }) => theme.animations.fade(500, 500, 500)};
+  ${({ theme }) => theme.animations.fade()};
   background-color: rgba(0, 0, 0, 0.6);
   position: fixed;
   display: flex;
@@ -87,6 +87,7 @@ export const Button = styled.button`
   align-items: center;
   display: flex;
   outline: none;
+  cursor: pointer;
   &:active {
     transform: scale(0.95);
   }

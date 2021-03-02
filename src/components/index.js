@@ -30,3 +30,4 @@ export { default as Widget } from "./widget";
 export { default as Recommendation } from "./recommendation";
 export { default as Modal } from "./modal";
 export { default as Gallery } from "./gallery";
+export { default as Trailer } from "./trailer";

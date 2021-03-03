@@ -1,11 +1,13 @@
 import React from "react";
+import { CSSTransition } from "react-transition-group";
 
 import {
-  Thumbnail,
+  Face,
   Icon,
   Backdrop,
   Content,
   Videoplayer,
+  Thumbnail,
   Wrapper,
   Poster,
   Info,
@@ -21,15 +23,30 @@ import {
 } from "./styles/trailer";
 
 export default function Trailer({ children, ...rest }) {
-  return <Thumbnail {...rest}>{children}</Thumbnail>;
+  return <Face {...rest}>{children}</Face>;
 }
 
 Trailer.Icon = function TrailerIcon({ ...rest }) {
   return <Icon {...rest} />;
 };
 
-Trailer.Backdrop = function TrailerBackdrop({ children, ...rest }) {
-  return <Backdrop {...rest}>{children}</Backdrop>;
+Trailer.Thumbnail = function TrailerThumbnail({ ...rest }) {
+  return <Thumbnail {...rest} />;
+};
+
+Trailer.Backdrop = function TrailerBackdrop({ visible, children, ...rest }) {
+  return (
+    <CSSTransition
+      classNames="fade"
+      in={visible}
+      unmountOnExit
+      mountOnEnter
+      timeout={500}
+      appear={true}
+    >
+      <Backdrop {...rest}>{children}</Backdrop>
+    </CSSTransition>
+  );
 };
 
 Trailer.Content = function TrailerContent({ children, ...rest }) {

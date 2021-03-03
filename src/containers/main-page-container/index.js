@@ -1,50 +1,50 @@
-import React, { useState, useEffect } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+// import React, { useState, useEffect } from "react";
+// import { useHistory, useLocation } from "react-router-dom";
 
-import { BodyMain, CardList } from "../../components";
-import { getPaginator, getRightReleasedDate } from "../../utils/utils";
-import { range } from "../../utils";
-import Data from "../../constants/data.json";
-import { useFetch } from "../../hooks";
-import { TabContainer } from "../";
-import { SliderContainer, PaginationMainPageContainer } from "./auxillary";
+// import { BodyMain, CardList } from "../../components";
+// import { getPaginator, getRightReleasedDate } from "../../utils/utils";
+// import { range } from "../../utils";
+// import Data from "../../constants/data.json";
+// import { useFetch } from "../../hooks";
+// import { TabContainer } from "../";
+// import { SliderContainer, PaginationMainPageContainer } from "./auxillary";
 
 export default function MainPageContainer() {
-  const [sliderIndex, setSliderIndex] = useState(1);
-  const [tabFirst, setTabFirst] = useState({
-    title: "Sort by:",
-    tabList: bodyFirstTab,
-    activeType: 0,
-    param: "day",
-  });
+  // const [sliderIndex, setSliderIndex] = useState(1);
+  // const [tabFirst, setTabFirst] = useState({
+  //   title: "Sort by:",
+  //   tabList: bodyFirstTab,
+  //   activeType: 0,
+  //   param: "day",
+  // });
 
-  const [tabSecondary, setTabSecondary] = useState({
-    title: "List type:",
-    tabList: bodySecondaryTab,
-    activeType: 0,
-    param: "all",
-  });
+  // const [tabSecondary, setTabSecondary] = useState({
+  //   title: "List type:",
+  //   tabList: bodySecondaryTab,
+  //   activeType: 0,
+  //   param: "all",
+  // });
 
-  const history = useHistory();
-  const location = useLocation();
-  const skeletonAmount = range(1, 20);
-  const currentPage = getPaginator(location);
+  // const history = useHistory();
+  // const location = useLocation();
+  // const skeletonAmount = range(1, 20);
+  // const currentPage = getPaginator(location);
   // const [list, loading] = useFetch(
   //   `trending/${tabSecondary.param}`,
   //   tabFirst.param,
   //   [{ page: currentPage }],
   // );
   // TODO FETCH TRENDING DATA
-  useEffect(() => {
-    setTabFirst((prev) => ({
-      ...prev,
-      param: bodyFirstTab[tabFirst.activeType]["id"],
-    }));
-    setTabSecondary((prev) => ({
-      ...prev,
-      param: bodySecondaryTab[tabSecondary.activeType]["id"],
-    }));
-  }, [tabFirst.activeType, tabSecondary.activeType]);
+  // useEffect(() => {
+  //   setTabFirst((prev) => ({
+  //     ...prev,
+  //     param: bodyFirstTab[tabFirst.activeType]["id"],
+  //   }));
+  //   setTabSecondary((prev) => ({
+  //     ...prev,
+  //     param: bodySecondaryTab[tabSecondary.activeType]["id"],
+  //   }));
+  // }, [tabFirst.activeType, tabSecondary.activeType]);
 
   return null;
   // <BodyMain>

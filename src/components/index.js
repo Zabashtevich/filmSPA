@@ -5,7 +5,6 @@ export { default as Tab } from "./tabs";
 export { default as CardList } from "./card-list";
 export { default as Pagination } from "./pagination";
 export { default as Footer } from "./footer";
-export { default as PosterColumn } from "./poster-column";
 export { default as DetailsPanel } from "./details-panel";
 export { default as ActorPosterDescription } from "./actor-poster-description";
 export { default as ActorMainColumn } from "./actor-main-column";

@@ -1,17 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import {
-  ActorMainColumn,
-  ActorPosterDescription,
-  DetailsHeader,
-  PosterColumn,
-} from "../../components";
-import { RecommendationContainer, RowListItemContainer } from "../";
-import { getArrayOfMovies, getKnownFor } from "../../utils/utils";
-import { ActorRowsContainer } from "./auxillary";
+import { getKnownFor } from "../../utils/utils";
 import { useFirestore, useFetch, useAuthListener } from "../../hooks";
-import { LoadMoreContainer } from "../";
 
 export default function ActorRootContainer() {
   const location = useParams();
@@ -42,56 +33,54 @@ export default function ActorRootContainer() {
     setVisibleGallery(true);
   };
 
-  return (
-    !loading &&
-    !userLoading &&
-    !knownForList.loading && (
-      <DetailsHeader background={"light"}>
-        <PosterColumn>
-          <PosterColumn.Poster src={list.profile_path} />
-          <ActorPosterDescription>
-            <ActorPosterDescription.Title>
-              Personal information
-            </ActorPosterDescription.Title>
-            <ActorRowsContainer list={list} />
-          </ActorPosterDescription>
-        </PosterColumn>
-        <ActorMainColumn>
-          <ActorMainColumn.Name>{list.name}</ActorMainColumn.Name>
-          <ActorMainColumn.Title>Overview</ActorMainColumn.Title>
-          <ActorMainColumn.Overview>{list.biography}</ActorMainColumn.Overview>
-          <ActorMainColumn.Title>Known for</ActorMainColumn.Title>
-          <RecommendationContainer
-            recommendations={knownForList ? knownForList : []}
-            slug={"movie"}
-          />
-          <ActorMainColumn.Title>Credits list</ActorMainColumn.Title>
-          {!loading && !userDataLoading && (
-            <>
-              <ActorMainColumn.CreditsWrapper>
-                {getArrayOfMovies(list.credits.cast)
-                  .slice(0, itemsCount)
-                  .map((item, index) => {
-                    return (
-                      <RowListItemContainer
-                        key={item.credit_id}
-                        item={item}
-                        index={index}
-                        user={user}
-                        userData={userData}
-                      />
-                    );
-                  })}
-              </ActorMainColumn.CreditsWrapper>
-              <LoadMoreContainer
-                setItemsCount={setItemsCount}
-                visible={list.credits.cast.length > itemsCount}
-                offset={10}
-              />
-            </>
-          )}
-        </ActorMainColumn>
-      </DetailsHeader>
-    )
-  );
+  return null;
+  // !loading &&
+  // !userLoading &&
+  // !knownForList.loading && (
+  //   <DetailsHeader background={"light"}>
+  //     <PosterColumn>
+  //       <PosterColumn.Poster src={list.profile_path} />
+  //       <ActorPosterDescription>
+  //         <ActorPosterDescription.Title>
+  //           Personal information
+  //         </ActorPosterDescription.Title>
+  //         <ActorRowsContainer list={list} />
+  //       </ActorPosterDescription>
+  //     </PosterColumn>
+  //     <ActorMainColumn>
+  //       <ActorMainColumn.Name>{list.name}</ActorMainColumn.Name>
+  //       <ActorMainColumn.Title>Overview</ActorMainColumn.Title>
+  //       <ActorMainColumn.Overview>{list.biography}</ActorMainColumn.Overview>
+  //       <ActorMainColumn.Title>Known for</ActorMainColumn.Title>
+  //       <RecommendationContainer
+  //         recommendations={knownForList ? knownForList : []}
+  //         slug={"movie"}
+  //       />
+  //       <ActorMainColumn.Title>Credits list</ActorMainColumn.Title>
+  //       {!loading && !userDataLoading && (
+  //         <>
+  //           <ActorMainColumn.CreditsWrapper>
+  //             {getArrayOfMovies(list.credits.cast)
+  //               .slice(0, itemsCount)
+  //               .map((item, index) => {
+  //                 return (
+  //                   <RowListItemContainer
+  //                     key={item.credit_id}
+  //                     item={item}
+  //                     index={index}
+  //                     user={user}
+  //                     userData={userData}
+  //                   />
+  //                 );
+  //               })}
+  //           </ActorMainColumn.CreditsWrapper>
+  //           <LoadMoreContainer
+  //             setItemsCount={setItemsCount}
+  //             visible={list.credits.cast.length > itemsCount}
+  //             offset={10}
+  //           />
+  //         </>
+  //       )}
+  //     </ActorMainColumn>
+  //   </DetailsHeader>
 }

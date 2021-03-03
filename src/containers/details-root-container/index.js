@@ -1,16 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import {
-  DetailsHeader,
-  CardDescriptionColumn,
-  ListColumn,
-  PosterColumn,
-  DescriptionHeader,
-} from "../../components";
 import { useFetch } from "../../hooks";
-import { CardRowsContainer } from "./auxillary";
-import { GalleryContainer, TrailerContainer, WidgetContainer } from "../";
 import { useGalleryContext, useItemContext } from "../../context";
 
 export default function CardDetailsRootContainer() {
@@ -19,7 +10,7 @@ export default function CardDetailsRootContainer() {
   const location = useParams();
 
   const [list, loading] = useFetch(location.direction, location.slug);
-
+  console.log(list);
   useEffect(() => {
     if (!loading) {
       setItem({ fetching: false, item: list });

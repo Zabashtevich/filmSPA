@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import {
   DetailsPage,
   MainPage,
-  ActorPage,
   AuthPage,
   ReviewPage,
   AccountPage,
@@ -18,7 +17,6 @@ function App() {
         {/* <ProtectedRoute user={user} path="/details/:slug"></ProtectedRoute> */}
         <Route path="/" component={MainPage} exact />
         <Route path="/details/:direction/:slug" component={DetailsPage} exact />
-        <Route path="/actor/:slug" component={ActorPage} />
         <Route path="/authentication/:slug" component={AuthPage} />
         <Route
           path="/details/:direction/:slug/review"

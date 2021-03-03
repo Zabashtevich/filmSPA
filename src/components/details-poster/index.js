@@ -3,14 +3,15 @@ import React from "react";
 import {
   Container,
   Wallpaper,
+  Gradient,
   Column,
   Poster,
   Title,
   Overview,
   Subtitle,
   Row,
-  Name,
-  Value,
+  Fieldname,
+  Fieldvalue,
   Credits,
   Link,
   Wrapper,
@@ -22,11 +23,12 @@ export default function DetailsPoster({ children, ...rest }) {
   return <Container {...rest}>{children}</Container>;
 }
 
-DetailsPoster.Wallpaper = function PosterSecrionWallpaper({
-  children,
-  ...rest
-}) {
+DetailsPoster.Wallpaper = function PosterSecrionWallpaper({ ...rest }) {
   return <Wallpaper {...rest} />;
+};
+
+DetailsPoster.Gradient = function PosterSecrionGradient({ ...rest }) {
+  return <Gradient {...rest} />;
 };
 
 DetailsPoster.Column = function DetailsPosterColumn({ children, ...rest }) {
@@ -53,12 +55,18 @@ DetailsPoster.Row = function DetailsPosterRow({ children, ...rest }) {
   return <Row {...rest}>{children}</Row>;
 };
 
-DetailsPoster.Name = function DetailsPosterName({ children, ...rest }) {
-  return <Name {...rest}>{children}</Name>;
+DetailsPoster.Fieldname = function DetailsPosterFieldname({
+  children,
+  ...rest
+}) {
+  return <Fieldname {...rest}>{children}</Fieldname>;
 };
 
-DetailsPoster.Value = function DetailsPosterValue({ children, ...rest }) {
-  return <Value {...rest}>{children}</Value>;
+DetailsPoster.Fieldvalue = function DetailsPosterFieldvalue({
+  children,
+  ...rest
+}) {
+  return <Fieldvalue {...rest}>{children}</Fieldvalue>;
 };
 
 DetailsPoster.Credits = function DetailsPosterCredits({ children, ...rest }) {

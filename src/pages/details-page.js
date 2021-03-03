@@ -2,7 +2,7 @@ import React from "react";
 
 import {
   FooterContainer,
-  DetailsRootContainer,
+  DetailsPosterContainer,
   DetailsPanelContainer,
   HeaderContainer,
 } from "../containers";
@@ -11,7 +11,7 @@ export default function DetailsPage() {
   return (
     <>
       <HeaderContainer />
-      <DetailsRootContainer />
+      <DetailsPosterContainer />
       <DetailsPanelContainer />
       <FooterContainer />
     </>

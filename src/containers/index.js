@@ -13,3 +13,4 @@ export { default as RecommendationContainer } from "./recommendation-container";
 export { default as ModalContainer } from "./modal-container";
 export { default as GalleryContainer } from "./gallery-container";
 export { default as TrailerContainer } from "./trailer-container";
+export { default as DetailsPosterContainer } from "./details-poster-container";

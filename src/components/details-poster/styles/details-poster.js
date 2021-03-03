@@ -4,6 +4,8 @@ export const Container = styled.div``;
 
 export const Wallpaper = styled.div``;
 
+export const Gradient = styled.div``;
+
 export const Column = styled.div``;
 
 export const Poster = styled.div``;
@@ -16,9 +18,9 @@ export const Subtitle = styled.div``;
 
 export const Row = styled.div``;
 
-export const Name = styled.div``;
+export const Fieldname = styled.div``;
 
-export const Value = styled.div``;
+export const Fieldvalue = styled.div``;
 
 export const Credits = styled.div``;
 

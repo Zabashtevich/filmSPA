@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, createPortal } from "react";
 import { CSSTransition } from "react-transition-group";
 import { w200miniature, orinalImageSize } from "../../constants/constants";
 
@@ -82,7 +82,7 @@ Gallery.Miniature = function GalleryMiniature({ link, ...rest }) {
   const [loading, setLoading] = useState(true);
   return (
     <>
-      {loading && <GalleryMiniatureSkeleton />}
+      <GalleryMiniatureSkeleton visible={loading} />
       <Miniature
         src={`${w200miniature}${link}`}
         onLoad={() => setLoading(false)}

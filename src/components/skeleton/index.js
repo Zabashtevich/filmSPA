@@ -1,7 +1,7 @@
 import ContentLoader from "react-content-loader";
 import { CSSTransition } from "react-transition-group";
 
-import { ActiveWrapper } from "./styles/skeleton";
+import { ActiveWrapper, MiniatureWrapper } from "./styles/skeleton";
 
 export function CardListSkeleton() {
   return (
@@ -19,24 +19,29 @@ export function CardListSkeleton() {
   );
 }
 
-export function GalleryMiniatureSkeleton() {
+export function GalleryMiniatureSkeleton({ visible }) {
   return (
-    <ContentLoader
-      speed={2}
-      width={150}
-      height={85}
-      viewBox="0 0 150 85"
-      backgroundColor="#dadada"
-      foregroundColor="#fafafa"
-      style={{
-        position: "absolute",
-        top: "0",
-        left: "0",
-        borderRadius: "0.5rem",
-      }}
+    <CSSTransition
+      appear={true}
+      in={visible}
+      classNames="fade"
+      mountOnEnter
+      unmountOnExit
+      timeout={500}
     >
-      <rect x="0" y="0" rx="0" ry="0" width="150" height="85" />
-    </ContentLoader>
+      <MiniatureWrapper>
+        <ContentLoader
+          speed={2}
+          width={151}
+          height={86}
+          viewBox="0 0 150 85"
+          backgroundColor="#dadada"
+          foregroundColor="#fafafa"
+        >
+          <rect x="0" y="0" rx="8" ry="8" width="150" height="85" />
+        </ContentLoader>
+      </MiniatureWrapper>
+    </CSSTransition>
   );
 }
 

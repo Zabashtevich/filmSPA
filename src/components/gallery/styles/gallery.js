@@ -27,17 +27,17 @@ export const Face = styled.div`
 `;
 
 export const Backdrop = styled.div`
-  ${({ theme }) => theme.animations.fade()};
+  ${({ theme }) => theme.animations.fade(500, 500, 500)};
   background-color: rgba(0, 0, 0, 0.6);
   position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2000;
   top: 0;
   right: 0;
   left: 0;
   bottom: 0;
+  z-index: 2000;
 `;
 
 export const Container = styled.div`
@@ -112,9 +112,8 @@ export const Inner = styled.div`
   cursor: pointer;
   height: 85px;
   width: 150px;
+  box-sizing: content-box;
 `;
-
-export const Loading = styled.div``;
 
 export const Miniature = styled.img`
   border-radius: 0.5rem;
@@ -123,11 +122,11 @@ export const Miniature = styled.img`
   ${({ selected }) =>
     selected &&
     css`
-      border: 2px solid white;
+      border: 1px solid white;
+      transition: 300ms;
     `};
   &:hover {
-    border: 1px solid white;
-    transform: translateY(-2%);
+    transform: translateY(-1%);
     transition: 300ms;
   }
 `;

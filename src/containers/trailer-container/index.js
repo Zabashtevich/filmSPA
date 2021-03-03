@@ -1,10 +1,15 @@
 import React from "react";
-import { Trailer } from "../../components";
+import { createPortal } from "react-dom";
 
-export default function TrailerContainer() {
+import { Trailer } from "../../components";
+import TrailerPopup from "./items/trailer-popup";
+
+export default function TrailerContainer({ videos }) {
+  console.log(videos);
   return (
-    <Trailer>
+    <Trailer url={`http://i3.ytimg.com/vi/${videos[0].key}/mqdefault.jpg`}>
       <Trailer.Icon />
+      {createPortal(<TrailerPopup />, document.getElementById("root"))}
     </Trailer>
   );
 }

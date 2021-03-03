@@ -1,7 +1,7 @@
 import React from "react";
 
 import {
-  Face,
+  Thumbnail,
   Icon,
   Backdrop,
   Content,
@@ -17,10 +17,11 @@ import {
   Count,
   Else,
   Item,
+  Container,
 } from "./styles/trailer";
 
 export default function Trailer({ children, ...rest }) {
-  return <Face {...rest}>{children}</Face>;
+  return <Thumbnail {...rest}>{children}</Thumbnail>;
 }
 
 Trailer.Icon = function TrailerIcon({ ...rest }) {
@@ -77,6 +78,10 @@ Trailer.Count = function TrailerCount({ children, ...rest }) {
 
 Trailer.Else = function TrailerElse({ children, ...rest }) {
   return <Else {...rest}>{children}</Else>;
+};
+
+Trailer.Container = function TrailerContainer({ children, ...rest }) {
+  return <Container {...rest}>{children}</Container>;
 };
 
 Trailer.Item = function TrailerBackdrop({ ...rest }) {

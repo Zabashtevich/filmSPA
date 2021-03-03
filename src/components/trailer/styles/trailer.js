@@ -1,8 +1,18 @@
 import styled from "styled-components/macro";
 
-export const Face = styled.div``;
+import { AiFillYoutube } from "react-icons/ai";
 
-export const Icon = styled.div``;
+export const Thumbnail = styled.div`
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background-image: url(${({ url }) => url});
+`;
+
+export const Icon = styled(AiFillYoutube)`
+  font-size: 5rem;
+  color: #ff0000;
+`;
 
 export const Backdrop = styled.div``;
 
@@ -31,3 +41,5 @@ export const Count = styled.div``;
 export const Else = styled.div``;
 
 export const Item = styled.div``;
+
+export const Container = styled.div``;

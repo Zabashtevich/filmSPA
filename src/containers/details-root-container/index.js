@@ -10,7 +10,7 @@ import {
 } from "../../components";
 import { useFetch } from "../../hooks";
 import { CardRowsContainer } from "./auxillary";
-import { GalleryContainer, WidgetContainer } from "../";
+import { GalleryContainer, TrailerContainer, WidgetContainer } from "../";
 import { useGalleryContext, useItemContext } from "../../context";
 
 export default function CardDetailsRootContainer() {
@@ -27,7 +27,6 @@ export default function CardDetailsRootContainer() {
     }
     return () => setItem(null);
   }, [list, loading]);
-
   return (
     <>
       {list && (
@@ -38,6 +37,7 @@ export default function CardDetailsRootContainer() {
           <PosterColumn>
             <PosterColumn.Poster src={list.poster_path} cardPage={true} />
             <GalleryContainer />
+            <TrailerContainer list={list} />
           </PosterColumn>
           <CardDescriptionColumn>
             <DescriptionHeader>

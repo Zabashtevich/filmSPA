@@ -4,6 +4,7 @@ import {
   MainPageContainer,
   FooterContainer,
   HeaderContainer,
+  TrailerContainer,
 } from "../containers";
 
 export default function MainPage() {
@@ -11,6 +12,8 @@ export default function MainPage() {
     <>
       <HeaderContainer />
       {/* <MainPageContainer /> */}
+      <TrailerContainer />
+
       <FooterContainer />
     </>
   );

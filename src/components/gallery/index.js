@@ -53,11 +53,7 @@ Gallery.Active = function GalleryActive({ url, setProcess, process, ...rest }) {
   return (
     <>
       <GalleryActiveSkeleton visible={process} />
-      <Active
-        src={`${orinalImageSize}${url}`}
-        onLoad={setProcessing}
-        {...rest}
-      />
+      <Active src={`${orinalImageSize}${url}`} onLoad={setProcess} {...rest} />
     </>
   );
 };

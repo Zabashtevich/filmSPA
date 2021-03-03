@@ -16,7 +16,7 @@ import ModalContextProvider from "./context/modal-context/context";
 import ProcessContextProvider from "./context/process-context/context";
 import FirelogicContextProvider from "./context/firelogic-context/context";
 import ItemContextProvider from "./context/item-context/context";
-import { GalleryContext } from "./context/gallery-context/context";
+import GalleryContextProvider from "./context/gallery-context/context";
 
 const store = createStore(
   rootReducer,
@@ -32,10 +32,10 @@ ReactDOM.render(
             <FirelogicContextProvider>
               <FilterContextProvider>
                 <ItemContextProvider>
-                  <GalleryContext>
+                  <GalleryContextProvider>
                     <GlobalStyles />
                     <App />
-                  </GalleryContext>
+                  </GalleryContextProvider>
                 </ItemContextProvider>
               </FilterContextProvider>
             </FirelogicContextProvider>

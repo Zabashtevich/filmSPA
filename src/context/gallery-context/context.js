@@ -7,6 +7,7 @@ import {
   SET_LOADING,
   SET_URL,
   SHOW_GALLERY,
+  SET_PROCESS,
 } from "./types";
 
 export const GalleryContext = createContext(null);
@@ -14,8 +15,11 @@ export const GalleryContext = createContext(null);
 export default function GalleryContextProvider({ children }) {
   const [state, dispatch] = useReducer(galleryReducer, initialState);
 
-  function setImages(payload) {
-    dispatch({ type: SET_IMAGES, payload });
+  function setImages(array) {
+    dispatch({
+      type: SET_IMAGES,
+      payload: { array, url: array.length !== 0 && array[0].file_path },
+    });
   }
 
   function setUrl(payload) {
@@ -38,6 +42,10 @@ export default function GalleryContextProvider({ children }) {
     dispatch({ type: SET_LOADING, payload });
   }
 
+  function setProcessing() {
+    dispatch({ type: SET_PROCESS });
+  }
+
   return (
     <GalleryContext.Provider
       value={[
@@ -49,6 +57,7 @@ export default function GalleryContextProvider({ children }) {
           closeGallery,
           setOffset,
           setLoading,
+          setProcessing,
         },
       ]}
     >

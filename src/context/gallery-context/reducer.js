@@ -4,6 +4,8 @@ import {
   SET_IMAGES,
   SET_LOADING,
   SHOW_GALLERY,
+  SET_PROCESS,
+  SET_URL,
 } from "./types";
 
 export const initialState = {
@@ -12,6 +14,7 @@ export const initialState = {
   loading: true,
   visible: false,
   url: null,
+  process: true,
 };
 
 export default function galleryReducer(
@@ -20,9 +23,14 @@ export default function galleryReducer(
 ) {
   switch (type) {
     case SET_IMAGES:
-      return { ...state, images: payload, loading: false };
+      return {
+        ...state,
+        images: payload.array,
+        url: payload.url,
+        loading: false,
+      };
     case SET_URL:
-      return { ...state, url: payload };
+      return { ...state, url: payload, process: true };
     case SHOW_GALLERY:
       return { ...state, visible: true };
     case CLOSE_GALLERY:
@@ -31,6 +39,8 @@ export default function galleryReducer(
       return { ...state, offset: payload };
     case SET_LOADING:
       return { ...state, loading: payload };
+    case SET_PROCESS:
+      return { ...state, process: false };
     default:
       return state;
   }

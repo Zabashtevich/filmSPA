@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { CSSTransition } from "react-transition-group";
 import { w200miniature, orinalImageSize } from "../../constants/constants";
 import { useGalleryContext } from "../../context";
-import { GalleryContext } from "../../context/gallery-context/context";
 
 import { GalleryActiveSkeleton, GalleryMiniatureSkeleton } from "../skeleton";
 
@@ -51,13 +50,14 @@ Gallery.Close = function GalleryClose({ ...rest }) {
   return <Close {...rest} />;
 };
 
-Gallery.Active = function GalleryActive({ link, loading, setActive, ...rest }) {
+Gallery.Active = function GalleryActive({ ...rest }) {
+  const [{ url, process }, { setProcessing }] = useGalleryContext();
   return (
     <>
-      <GalleryActiveSkeleton visible={loading} />
+      <GalleryActiveSkeleton visible={process} />
       <Active
-        src={`${orinalImageSize}${link}`}
-        onLoad={() => setActive((prev) => ({ ...prev, loading: false }))}
+        src={`${orinalImageSize}${url}`}
+        onLoad={setProcessing}
         {...rest}
       />
     </>
@@ -68,16 +68,25 @@ Gallery.Footer = function GalleryFooter({ children, ...rest }) {
   return <Footer {...rest}>{children}</Footer>;
 };
 
-Gallery.Button = function GalleryButton({ children, ...rest }) {
-  return <Button {...rest}>{children}</Button>;
+Gallery.Left = function GalleryLeft({ ...rest }) {
+  return (
+    <Button {...rest}>
+      <Arrow />
+    </Button>
+  );
 };
 
-Gallery.Arrow = function GalleryArrow({ ...rest }) {
-  return <Arrow {...rest} />;
+Gallery.Right = function GalleryRight({ ...rest }) {
+  return (
+    <Button {...rest}>
+      <Arrow dir={"right"} />
+    </Button>
+  );
 };
 
 Gallery.Miniature = function GalleryMiniature({ path, url, ...rest }) {
   const [loading, setLoading] = useState(true);
+  console.log(path);
 
   return (
     <>
@@ -86,11 +95,12 @@ Gallery.Miniature = function GalleryMiniature({ path, url, ...rest }) {
         src={`${w200miniature}${path}`}
         onLoad={() => setLoading(false)}
         selected={path === url && 1}
+        {...rest}
       />
     </>
   );
 };
 
 Gallery.Inner = function GalleryInner({ children, ...rest }) {
-  return <Gallery.Inner {...rest}>{children}</Gallery.Inner>;
+  return <Inner {...rest}>{children}</Inner>;
 };

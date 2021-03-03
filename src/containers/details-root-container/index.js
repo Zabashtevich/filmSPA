@@ -11,9 +11,10 @@ import {
 import { useFetch } from "../../hooks";
 import { CardRowsContainer } from "./auxillary";
 import { GalleryContainer, WidgetContainer } from "../";
-import { useItemContext } from "../../context";
+import { useGalleryContext, useItemContext } from "../../context";
 
 export default function CardDetailsRootContainer() {
+  const [, { setImages }] = useGalleryContext();
   const [, setItem] = useItemContext();
   const location = useParams();
 
@@ -22,6 +23,7 @@ export default function CardDetailsRootContainer() {
   useEffect(() => {
     if (!loading) {
       setItem(list);
+      setImages(list.images.backdrops);
     }
     return () => setItem(null);
   }, [list, loading]);
@@ -35,7 +37,7 @@ export default function CardDetailsRootContainer() {
           </DetailsHeader.BackgroundContainer>
           <PosterColumn>
             <PosterColumn.Poster src={list.poster_path} cardPage={true} />
-            <GalleryContainer images={list.images.backdrops} />
+            <GalleryContainer />
           </PosterColumn>
           <CardDescriptionColumn>
             <DescriptionHeader>

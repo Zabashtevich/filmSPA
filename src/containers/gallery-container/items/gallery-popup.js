@@ -7,7 +7,7 @@ import { calculateOffset } from "../../../utils";
 export default function GalleryPopup() {
   const [
     { offset, visible, images, url, process },
-    { closeGallery, setOffset, setUrl, setProcess },
+    { closeGallery, setOffset, setUrl, finishProcess },
   ] = useGalleryContext();
   const { start, end } = offset;
 
@@ -30,7 +30,11 @@ export default function GalleryPopup() {
         }}
       />
       <Gallery.Container>
-        <Gallery.Active url={url} setProcess={setProcess} process={process} />
+        <Gallery.Active
+          url={url}
+          finishProcess={finishProcess}
+          process={process}
+        />
         <Gallery.Footer>
           <Gallery.Left
             disabled={start === 0 && 1}

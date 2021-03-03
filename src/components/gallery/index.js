@@ -49,11 +49,21 @@ Gallery.Close = function GalleryClose({ ...rest }) {
   return <Close {...rest} />;
 };
 
-Gallery.Active = function GalleryActive({ url, setProcess, process, ...rest }) {
+Gallery.Active = function GalleryActive({
+  url,
+  finishProcess,
+  process,
+  ...rest
+}) {
+  console.log(finishProcess, process);
   return (
     <>
       <GalleryActiveSkeleton visible={process} />
-      <Active src={`${orinalImageSize}${url}`} onLoad={setProcess} {...rest} />
+      <Active
+        src={`${orinalImageSize}${url}`}
+        onLoad={finishProcess}
+        {...rest}
+      />
     </>
   );
 };

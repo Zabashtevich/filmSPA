@@ -42,7 +42,7 @@ export default function GalleryContextProvider({ children }) {
     dispatch({ type: SET_LOADING, payload });
   }
 
-  function setProcessing() {
+  function finishProcess() {
     dispatch({ type: SET_PROCESS });
   }
 
@@ -57,7 +57,7 @@ export default function GalleryContextProvider({ children }) {
           closeGallery,
           setOffset,
           setLoading,
-          setProcessing,
+          finishProcess,
         },
       ]}
     >

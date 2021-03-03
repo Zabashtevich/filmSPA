@@ -14,7 +14,7 @@ export default function WidgetFavorite() {
 
   const [{ setFavoriteProps }] = useFirelogicContext();
   const [{ favoriteProcess }] = useProcessContext();
-  const [item] = useItemContext();
+  const [{ item }] = useItemContext();
   const { favoritedMovies } = useSelector((state) => state.userData);
 
   function handleOnFavorite() {

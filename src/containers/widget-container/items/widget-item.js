@@ -12,7 +12,7 @@ export default function WidgetItem({ list }) {
   const [movieInList, setMovieInList] = useState(false);
   const [{ setUserlistProps }] = useFirelogicContext();
   const [{ userlistProcess }] = useProcessContext();
-  const [item] = useItemContext();
+  const [{ item }] = useItemContext();
 
   function handleOnUserlist() {
     if (movieInList && !userlistProcess) {

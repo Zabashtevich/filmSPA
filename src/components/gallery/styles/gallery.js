@@ -28,7 +28,7 @@ export const Face = styled.div`
 
 export const Backdrop = styled.div`
   ${({ theme }) => theme.animations.fade(500, 500, 500)};
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: ${({ theme }) => theme.colors.backdrop};
   position: fixed;
   display: flex;
   justify-content: center;

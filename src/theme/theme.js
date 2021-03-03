@@ -35,6 +35,7 @@ export default {
     negativeReview: "#ffe8d9",
     positiveReview: "#d9f0e1",
     auxillary: "#E0E0E0	",
+    backdrop: "linear-gradient(to bottom,rgba(0,0,0,0.8),rgba(0,0,0,0.95))",
   },
   animations: {
     fade: (enter, exit, appear) => `

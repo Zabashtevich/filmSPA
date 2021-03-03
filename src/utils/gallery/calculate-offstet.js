@@ -24,5 +24,5 @@ export default function calculateOffset(
       break;
   }
 
-  setOffset({ start: newStart, end: newEnd });
+  return { start: newStart, end: newEnd };
 }

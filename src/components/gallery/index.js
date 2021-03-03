@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { CSSTransition } from "react-transition-group";
 import { w200miniature, orinalImageSize } from "../../constants/constants";
-import { useGalleryContext } from "../../context";
 
 import { GalleryActiveSkeleton, GalleryMiniatureSkeleton } from "../skeleton";
 
@@ -50,8 +49,7 @@ Gallery.Close = function GalleryClose({ ...rest }) {
   return <Close {...rest} />;
 };
 
-Gallery.Active = function GalleryActive({ ...rest }) {
-  const [{ url, process }, { setProcessing }] = useGalleryContext();
+Gallery.Active = function GalleryActive({ url, setProcess, process, ...rest }) {
   return (
     <>
       <GalleryActiveSkeleton visible={process} />
@@ -86,7 +84,6 @@ Gallery.Right = function GalleryRight({ ...rest }) {
 
 Gallery.Miniature = function GalleryMiniature({ path, url, ...rest }) {
   const [loading, setLoading] = useState(true);
-  console.log(path);
 
   return (
     <>

@@ -11,7 +11,7 @@ export default function TrailerContainer() {
   return (
     <Trailer>
       <Trailer.Thumbnail
-        src={`${w300miniature + item.videos.results.backdrop_path}`}
+        src={`${w300miniature + item?.videos.results.backdrop_path}`}
       />
       <Trailer.Icon />
       {createPortal(<TrailerPopup />, document.getElementById("root"))}

@@ -1,7 +1,6 @@
 import {
   CLOSE_GALLERY,
-  NEXT_OFFSET,
-  PREVIOUS_OFFSET,
+  SET_OFFSET,
   SET_IMAGES,
   SET_LOADING,
   SHOW_GALLERY,
@@ -28,9 +27,7 @@ export default function galleryReducer(
       return { ...state, visible: true };
     case CLOSE_GALLERY:
       return { ...state, visible: false };
-    case PREVIOUS_OFFSET:
-      return { ...state, offset: payload };
-    case NEXT_OFFSET:
+    case SET_OFFSET:
       return { ...state, offset: payload };
     case SET_LOADING:
       return { ...state, loading: payload };

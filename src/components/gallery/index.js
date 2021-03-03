@@ -1,6 +1,8 @@
-import React, { useState, createPortal } from "react";
+import React, { useState } from "react";
 import { CSSTransition } from "react-transition-group";
 import { w200miniature, orinalImageSize } from "../../constants/constants";
+import { useGalleryContext } from "../../context";
+import { GalleryContext } from "../../context/gallery-context/context";
 
 import { GalleryActiveSkeleton, GalleryMiniatureSkeleton } from "../skeleton";
 
@@ -74,20 +76,21 @@ Gallery.Arrow = function GalleryArrow({ ...rest }) {
   return <Arrow {...rest} />;
 };
 
-Gallery.Inner = function GalleryInner({ children, ...rest }) {
-  return <Inner {...rest}>{children}</Inner>;
-};
-
-Gallery.Miniature = function GalleryMiniature({ link, ...rest }) {
+Gallery.Miniature = function GalleryMiniature({ path, url, ...rest }) {
   const [loading, setLoading] = useState(true);
+
   return (
     <>
       <GalleryMiniatureSkeleton visible={loading} />
       <Miniature
-        src={`${w200miniature}${link}`}
+        src={`${w200miniature}${path}`}
         onLoad={() => setLoading(false)}
-        {...rest}
+        selected={path === url && 1}
       />
     </>
   );
+};
+
+Gallery.Inner = function GalleryInner({ children, ...rest }) {
+  return <Gallery.Inner {...rest}>{children}</Gallery.Inner>;
 };

@@ -2,58 +2,44 @@ import React, { useState } from "react";
 import { createPortal } from "react-dom";
 
 import { Gallery } from "../../components";
+import { useGalleryContext } from "../../context";
 import { calculateOffset } from "../../utils";
 
-export default function GalleryContainer({ images }) {
-  const [popupVisible, setPopupVisible] = useState(false);
-  const [{ start, end }, setGalleryOffset] = useState({ start: 0, end: 5 });
-  const [{ loading, link }, setActive] = useState({
-    loading: true,
-    link: images[0].file_path,
-  });
+export default function GalleryContainer() {
+  const [
+    { offset, visible, images },
+    { showGallery, closeGallery, setOffset },
+  ] = useGalleryContext();
 
   function handleOffset(type) {
-    calculateOffset(images, start, end, type, setGalleryOffset);
+    calculateOffset(images, offset, type, setOffset);
   }
 
+  const { start, end } = offset;
+
   return (
-    <Gallery onClick={() => setPopupVisible(true)}>
+    <Gallery onClick={showGallery}>
       <Gallery.Icon />
       {createPortal(
-        <Gallery.Backdrop visible={popupVisible}>
+        <Gallery.Backdrop visible={visible}>
           <Gallery.Container>
             <Gallery.Close
               onClick={(e) => {
                 e.stopPropagation();
-                setPopupVisible(false);
+                closeGallery();
               }}
             />
-            <Gallery.Active
-              link={link}
-              loading={loading}
-              setActive={setActive}
-            />
+            <Gallery.Active />
             <Gallery.Footer>
               <Gallery.Button
-                onClick={(e) => {
-                  e.stopPropagation();
+                onClick={() => {
                   handleOffset("previous");
                 }}
                 disabled={start === 0 && 1}
               >
                 <Gallery.Arrow />
               </Gallery.Button>
-              {images.slice(start, end).map(({ file_path }) => (
-                <Gallery.Inner
-                  key={file_path}
-                  onClick={() => setActive({ link: file_path, loading: true })}
-                >
-                  <Gallery.Miniature
-                    link={file_path}
-                    selected={file_path === link && 1}
-                  />
-                </Gallery.Inner>
-              ))}
+              <GalleryMiniatures />
               <Gallery.Button
                 onClick={() => handleOffset("next")}
                 disabled={end === images.length && 1}

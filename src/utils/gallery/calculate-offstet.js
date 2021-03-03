@@ -1,9 +1,8 @@
 export default function calculateOffset(
   images,
-  start,
-  end,
+  { start, end },
   type,
-  setGalleryOffset,
+  setOffset,
 ) {
   let newStart = null;
   let newEnd = null;
@@ -25,5 +24,5 @@ export default function calculateOffset(
       break;
   }
 
-  setGalleryOffset({ start: newStart, end: newEnd });
+  setOffset({ start: newStart, end: newEnd });
 }

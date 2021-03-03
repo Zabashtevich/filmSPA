@@ -2,8 +2,7 @@ import React, { createContext, useReducer } from "react";
 import galleryReducer, { initialState } from "./reducer";
 import {
   CLOSE_GALLERY,
-  NEXT_OFFSET,
-  PREVIOUS_OFFSET,
+  SET_OFFSET,
   SET_IMAGES,
   SET_LOADING,
   SET_URL,
@@ -31,12 +30,8 @@ export default function GalleryContextProvider({ children }) {
     dispatch({ type: CLOSE_GALLERY });
   }
 
-  function previousOffset(payload) {
-    dispatch({ type: PREVIOUS_OFFSET, payload });
-  }
-
-  function nextOffset(payload) {
-    dispatch({ type: NEXT_OFFSET, payload });
+  function setOffset(payload) {
+    dispatch({ type: SET_OFFSET, payload });
   }
 
   function setLoading(payload) {
@@ -52,8 +47,7 @@ export default function GalleryContextProvider({ children }) {
           setUrl,
           showGallery,
           closeGallery,
-          previousOffset,
-          nextOffset,
+          setOffset,
           setLoading,
         },
       ]}

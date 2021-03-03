@@ -1,9 +1,9 @@
 import React from "react";
+import { orinalImageSize, posterSize } from "../../constants/constants";
 
 import {
   Container,
   Wallpaper,
-  Gradient,
   Column,
   Poster,
   Title,
@@ -23,20 +23,16 @@ export default function DetailsPoster({ children, ...rest }) {
   return <Container {...rest}>{children}</Container>;
 }
 
-DetailsPoster.Wallpaper = function PosterSecrionWallpaper({ ...rest }) {
-  return <Wallpaper {...rest} />;
-};
-
-DetailsPoster.Gradient = function PosterSecrionGradient({ ...rest }) {
-  return <Gradient {...rest} />;
+DetailsPoster.Wallpaper = function PosterSecrionWallpaper({ src, ...rest }) {
+  return <Wallpaper {...rest} src={`${orinalImageSize + src}`} />;
 };
 
 DetailsPoster.Column = function DetailsPosterColumn({ children, ...rest }) {
   return <Column {...rest}>{children}</Column>;
 };
 
-DetailsPoster.Poster = function DetailsPosterPoster({ ...rest }) {
-  return <Poster {...rest} />;
+DetailsPoster.Poster = function DetailsPosterPoster({ src, ...rest }) {
+  return <Poster src={`${posterSize + src}`} {...rest} />;
 };
 
 DetailsPoster.Title = function DetailsPosterTitle({ children, ...rest }) {

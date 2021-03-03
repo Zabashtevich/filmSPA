@@ -1,14 +1,37 @@
 import styled from "styled-components/macro";
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  position: relative;
+  display: flex;
+`;
 
-export const Wallpaper = styled.div``;
+export const Wallpaper = styled.img`
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  &::after {
+    background-image: linear-gradient(180deg, transparent 36%, #000 96%),
+      linear-gradient(90deg, transparent 87%, #000),
+      linear-gradient(270deg, transparent 87%, #000);
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: "";
+  }
+`;
 
-export const Gradient = styled.div``;
+export const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
-export const Column = styled.div``;
-
-export const Poster = styled.div``;
+export const Poster = styled.img``;
 
 export const Title = styled.div``;
 

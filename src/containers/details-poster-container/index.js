@@ -5,6 +5,7 @@ import { useFetch } from "../../hooks";
 import { DetailsPoster } from "../../components";
 import DetailsPosterRows from "./items/details-poster-rows";
 import DetailsPosterCredits from "./items/details-poster-credits";
+import { GalleryContainer, TrailerContainer } from "..";
 
 export default function DetailsPosterContainer() {
   const { direction, slug } = useParams();
@@ -18,6 +19,8 @@ export default function DetailsPosterContainer() {
         </DetailsPoster.Inner>
         <DetailsPoster.Column type={"poster"}>
           <DetailsPoster.Poster src={data.poster_path} />
+          <GalleryContainer />
+          <TrailerContainer />
         </DetailsPoster.Column>
         <DetailsPoster.Column type={"content"}>
           <DetailsPosterRows data={data} />

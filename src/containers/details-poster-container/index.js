@@ -3,27 +3,29 @@ import { useParams } from "react-router";
 import { useFetch } from "../../hooks";
 
 import { DetailsPoster } from "../../components";
-import { getCharacterByRole } from "../../utils";
+import { getCharacterByRole, getYearFromString } from "../../utils";
 
 export default function DetailsPosterContainer() {
   const { direction, slug } = useParams();
   const [data, loading] = useFetch(direction, slug);
-  console.log(getCharacterByRole(data?.credits.crew || [], "Story"));
+  console.log(data);
   return (
     !loading && (
       <DetailsPoster>
-        <DetailsPoster.Wallpaper src={data.backdrop_path} />
-        <DetailsPoster.Column>
+        <DetailsPoster.Inner>
+          <DetailsPoster.Wallpaper src={data.backdrop_path} />
+        </DetailsPoster.Inner>
+        <DetailsPoster.Column type={"poster"}>
           <DetailsPoster.Poster src={data.poster_path} />
         </DetailsPoster.Column>
-        <DetailsPoster.Column>
+        <DetailsPoster.Column type={"content"}>
           <DetailsPoster.Title>{data.title}</DetailsPoster.Title>
           <DetailsPoster.Overview>{data.overview}</DetailsPoster.Overview>
           <DetailsPoster.Subtitle>About {direction}</DetailsPoster.Subtitle>
           <DetailsPoster.Row>
-            <DetailsPoster.Fieldname>Year</DetailsPoster.Fieldname>
+            <DetailsPoster.Fieldname>Year:</DetailsPoster.Fieldname>
             <DetailsPoster.Fieldvalue>
-              {data.release_date}
+              {getYearFromString(data.release_date)}
             </DetailsPoster.Fieldvalue>
           </DetailsPoster.Row>
           {/* <DetailsPoster.Row>
@@ -37,59 +39,59 @@ export default function DetailsPosterContainer() {
             <DetailsPoster.Fieldvalue>{data.genres}</DetailsPoster.Fieldvalue>
           </DetailsPoster.Row> */}
           <DetailsPoster.Row>
-            <DetailsPoster.Fieldname>Tagline</DetailsPoster.Fieldname>
+            <DetailsPoster.Fieldname>Tagline:</DetailsPoster.Fieldname>
             <DetailsPoster.Fieldvalue>{data.tagline}</DetailsPoster.Fieldvalue>
           </DetailsPoster.Row>
-          {/* <DetailsPoster.Row>
-            <DetailsPoster.Fieldname>Director</DetailsPoster.Fieldname> */}
-          {/* <DetailsPoster.Fieldvalue>
-              {getCharacterByRole(data?.credits?.crew || [], "director").join()}
+          <DetailsPoster.Row>
+            <DetailsPoster.Fieldname>Director:</DetailsPoster.Fieldname>
+            <DetailsPoster.Fieldvalue>
+              {getCharacterByRole(data?.credits?.crew || [], "Director")}
             </DetailsPoster.Fieldvalue>
           </DetailsPoster.Row>
           <DetailsPoster.Row>
-            <DetailsPoster.Fieldname>Story</DetailsPoster.Fieldname>
+            <DetailsPoster.Fieldname>Story:</DetailsPoster.Fieldname>
             <DetailsPoster.Fieldvalue>
-              {getCharacterByRole(data?.credits?.crew || [], "story").join()}
+              {getCharacterByRole(data?.credits?.crew || [], "Story")}
             </DetailsPoster.Fieldvalue>
           </DetailsPoster.Row>
           <DetailsPoster.Row>
-            <DetailsPoster.Fieldname>Producer</DetailsPoster.Fieldname>
+            <DetailsPoster.Fieldname>Producer:</DetailsPoster.Fieldname>
             <DetailsPoster.Fieldvalue>
-              {getCharacterByRole(data?.credits?.crew || [], "producer").join()}
+              {getCharacterByRole(data?.credits?.crew || [], "Producer")}
             </DetailsPoster.Fieldvalue>
           </DetailsPoster.Row>
           <DetailsPoster.Row>
-            <DetailsPoster.Fieldname>Designer</DetailsPoster.Fieldname>
+            <DetailsPoster.Fieldname>Designer:</DetailsPoster.Fieldname>
             <DetailsPoster.Fieldvalue>
-              {getCharacterByRole(data?.credits?.crew || [], "designer").join()}
+              {getCharacterByRole(data?.credits?.crew || [], "Designer")}
             </DetailsPoster.Fieldvalue>
           </DetailsPoster.Row>
           <DetailsPoster.Row>
-            <DetailsPoster.Fieldname>Composer</DetailsPoster.Fieldname>
+            <DetailsPoster.Fieldname>Composer:</DetailsPoster.Fieldname>
             <DetailsPoster.Fieldvalue>
-              {getCharacterByRole(data?.credits?.crew || [], "composer").join()}
+              {getCharacterByRole(data?.credits?.crew || [], "Composer")}
             </DetailsPoster.Fieldvalue>
           </DetailsPoster.Row>
           <DetailsPoster.Row>
-            <DetailsPoster.Fieldname>Editor</DetailsPoster.Fieldname>
+            <DetailsPoster.Fieldname>Editor:</DetailsPoster.Fieldname>
             <DetailsPoster.Fieldvalue>
-              {getCharacterByRole(data?.credits?.crew || [], "editor").join()}
-            </DetailsPoster.Fieldvalue> */}
-          {/* </DetailsPoster.Row> */}
+              {getCharacterByRole(data?.credits?.crew || [], "Editor")}
+            </DetailsPoster.Fieldvalue>
+          </DetailsPoster.Row>
           <DetailsPoster.Row>
-            <DetailsPoster.Fieldname>Budget</DetailsPoster.Fieldname>
+            <DetailsPoster.Fieldname>Budget:</DetailsPoster.Fieldname>
             <DetailsPoster.Fieldvalue>{data.budget}</DetailsPoster.Fieldvalue>
           </DetailsPoster.Row>
           <DetailsPoster.Row>
-            <DetailsPoster.Fieldname>Revenue</DetailsPoster.Fieldname>
+            <DetailsPoster.Fieldname>Revenue:</DetailsPoster.Fieldname>
             <DetailsPoster.Fieldvalue>{data.revenue}</DetailsPoster.Fieldvalue>
           </DetailsPoster.Row>
           <DetailsPoster.Row>
-            <DetailsPoster.Fieldname>Runtime</DetailsPoster.Fieldname>
+            <DetailsPoster.Fieldname>Runtime:</DetailsPoster.Fieldname>
             <DetailsPoster.Fieldvalue>{data.runtime}</DetailsPoster.Fieldvalue>
           </DetailsPoster.Row>
         </DetailsPoster.Column>
-        <DetailsPoster.Column>
+        {/* <DetailsPoster.Column>
           <DetailsPoster.Credits>
             <DetailsPoster.Wrapper>
               <DetailsPoster.Average>{data.vote_average}</DetailsPoster.Average>
@@ -97,7 +99,7 @@ export default function DetailsPosterContainer() {
             </DetailsPoster.Wrapper>
             <DetailsPoster.Link />
           </DetailsPoster.Credits>
-        </DetailsPoster.Column>
+        </DetailsPoster.Column> */}
       </DetailsPoster>
     )
   );

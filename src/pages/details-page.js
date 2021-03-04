@@ -12,7 +12,7 @@ export default function DetailsPage() {
     <>
       <HeaderContainer />
       <DetailsPosterContainer />
-      <DetailsPanelContainer />
+      {/* <DetailsPanelContainer /> */}
       <FooterContainer />
     </>
   );

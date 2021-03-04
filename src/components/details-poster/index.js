@@ -17,11 +17,16 @@ import {
   Wrapper,
   Average,
   Count,
+  Inner,
 } from "./styles/details-poster";
 
 export default function DetailsPoster({ children, ...rest }) {
   return <Container {...rest}>{children}</Container>;
 }
+
+DetailsPoster.Inner = function DetailsPosterInner({ children, ...rest }) {
+  return <Inner {...rest}>{children}</Inner>;
+};
 
 DetailsPoster.Wallpaper = function PosterSecrionWallpaper({ src, ...rest }) {
   return <Wallpaper {...rest} src={`${orinalImageSize + src}`} />;

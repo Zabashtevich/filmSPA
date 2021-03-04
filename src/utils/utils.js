@@ -57,12 +57,6 @@ export const getRowFormat = (data) => {
   return "Unknown";
 };
 
-export const getBudgetFormat = (data) => {
-  if (!data) return "Unknown";
-  const budget = data.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-  return budget + " $";
-};
-
 export const getCorrectSrc = (data) => {
   const correctSrc = { changed: false, src: null };
   if (data === null) {

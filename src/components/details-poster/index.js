@@ -12,11 +12,7 @@ import {
   Row,
   Fieldname,
   Fieldvalue,
-  Credits,
   Link,
-  Wrapper,
-  Average,
-  Count,
   Inner,
 } from "./styles/details-poster";
 
@@ -70,22 +66,6 @@ DetailsPoster.Fieldvalue = function DetailsPosterFieldvalue({
   return <Fieldvalue {...rest}>{children}</Fieldvalue>;
 };
 
-DetailsPoster.Credits = function DetailsPosterCredits({ children, ...rest }) {
-  return <Credits {...rest}>{children}</Credits>;
-};
-
 DetailsPoster.Link = function DetailsPosterLink({ children, ...rest }) {
   return <Link {...rest}>{children}</Link>;
-};
-
-DetailsPoster.Wrapper = function DetailsPosterWrapper({ children, ...rest }) {
-  return <Wrapper {...rest}>{children}</Wrapper>;
-};
-
-DetailsPoster.Average = function DetailsPosterAverage({ children, ...rest }) {
-  return <Average {...rest}>{children}</Average>;
-};
-
-DetailsPoster.Count = function DetailsPosterCount({ children, ...rest }) {
-  return <Count {...rest}>{children}</Count>;
 };

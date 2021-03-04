@@ -10,6 +10,7 @@ export const Container = styled.div`
   margin: 0 auto;
   display: flex;
   z-index: 50;
+  padding-bottom: 5rem;
 `;
 
 export const Inner = styled.div`
@@ -57,7 +58,7 @@ export const Column = styled.div`
     type === "cast" &&
     css`
       margin: 15rem 1rem;
-      width: 150px;
+      width: 200px;
     `};
 `;
 
@@ -85,6 +86,7 @@ export const Subtitle = styled.div`
 `;
 
 export const Row = styled.div`
+  font-size: ${({ theme }) => theme.font.aux.size.small};
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   padding: 10px 0;
   display: flex;
@@ -103,8 +105,6 @@ export const Fieldvalue = styled.div`
   width: 350px;
 `;
 
-export const Credits = styled.div``;
-
 export const Link = styled(ReactRouterLink)`
   font-weight: ${({ theme }) => theme.font.aux.weight.light};
   font-size: ${({ theme }) => theme.font.aux.size.small};
@@ -116,20 +116,4 @@ export const Link = styled(ReactRouterLink)`
     color: ${({ theme }) => theme.colors.aux};
     transition: 300ms;
   }
-`;
-
-export const Wrapper = styled.div`
-  display: flex;
-  align-items: baseline;
-  width: 100px;
-`;
-
-export const Average = styled.div`
-  font-size: ${({ theme }) => theme.font.aux.size.large};
-`;
-
-export const Count = styled.div`
-  font-size: ${({ theme }) => theme.font.aux.size.normal};
-  color: rgba(255, 255, 255, 0.7);
-  padding-left: 0.4rem;
 `;

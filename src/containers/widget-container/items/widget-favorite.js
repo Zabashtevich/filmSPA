@@ -5,7 +5,7 @@ import { Widget } from "../../../components";
 import { checkMovieInList, createListItem } from "../../../utils";
 import {
   useFirelogicContext,
-  useItemContext,
+  // useItemContext,
   useProcessContext,
 } from "./../../../context";
 
@@ -14,26 +14,26 @@ export default function WidgetFavorite() {
 
   const [{ setFavoriteProps }] = useFirelogicContext();
   const [{ favoriteProcess }] = useProcessContext();
-  const [{ item }] = useItemContext();
+  // const [{ item }] = useItemContext();//TODO ITEM
   const { favoritedMovies } = useSelector((state) => state.userData);
 
-  function handleOnFavorite() {
-    if (movieInFavorite && !favoriteProcess) {
-      setFavoriteProps({
-        type: "unfavorite",
-        value: item.id,
-      });
-    } else if (!movieInFavorite && !favoriteProcess) {
-      setFavoriteProps({
-        type: "favorite",
-        value: createListItem(item),
-      });
-    }
-  }
+  // function handleOnFavorite() {
+  //   if (movieInFavorite && !favoriteProcess) {
+  //     setFavoriteProps({
+  //       type: "unfavorite",
+  //       value: item.id,
+  //     });
+  //   } else if (!movieInFavorite && !favoriteProcess) {
+  //     setFavoriteProps({
+  //       type: "favorite",
+  //       value: createListItem(item),
+  //     });
+  //   }
+  // }
 
-  useEffect(() => {
-    setMovieInFavorite(checkMovieInList(favoritedMovies, item));
-  }, [item, favoritedMovies]);
+  // useEffect(() => {
+  //   setMovieInFavorite(checkMovieInList(favoritedMovies, item));
+  // }, [item, favoritedMovies]);
 
   return (
     <Widget.Item onClick={handleOnFavorite}>

@@ -1,5 +1,6 @@
-import { FaWeight } from "react-icons/fa";
 import styled, { css } from "styled-components/macro";
+
+import { Link as ReactRouterLink } from "react-router-dom";
 
 export const Container = styled.div`
   font-family: ${({ theme }) => theme.font.aux.family};
@@ -38,8 +39,7 @@ export const Wallpaper = styled.img`
 export const Column = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  margin: 0 auto;
   margin-top: 15rem;
   z-index: 200;
   color: white;
@@ -52,6 +52,12 @@ export const Column = styled.div`
     type === "content" &&
     css`
       width: 600px;
+    `};
+  ${({ type }) =>
+    type === "cast" &&
+    css`
+      margin: 15rem 1rem;
+      width: 150px;
     `};
 `;
 
@@ -75,23 +81,55 @@ export const Subtitle = styled.div`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   font-size: ${({ theme }) => theme.font.aux.size.normal};
   align-self: flex-start;
+  margin: 2rem 0;
 `;
 
 export const Row = styled.div`
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 10px 0;
   display: flex;
   color: white;
 `;
 
-export const Fieldname = styled.div``;
+export const Fieldname = styled.div`
+  color: rgba(255, 255, 255, 0.7);
+  user-select: none;
+  text-align: left;
+  width: 150px;
+`;
 
-export const Fieldvalue = styled.div``;
+export const Fieldvalue = styled.div`
+  font-weight: ${({ theme }) => theme.font.aux.weight.light};
+  width: 350px;
+`;
 
 export const Credits = styled.div``;
 
-export const Link = styled.div``;
+export const Link = styled(ReactRouterLink)`
+  font-weight: ${({ theme }) => theme.font.aux.weight.light};
+  font-size: ${({ theme }) => theme.font.aux.size.small};
+  text-decoration: none;
+  margin-top: 0.5rem;
+  display: block;
+  color: white;
+  &:hover {
+    color: ${({ theme }) => theme.colors.aux};
+    transition: 300ms;
+  }
+`;
 
-export const Wrapper = styled.div``;
+export const Wrapper = styled.div`
+  display: flex;
+  align-items: baseline;
+  width: 100px;
+`;
 
-export const Average = styled.div``;
+export const Average = styled.div`
+  font-size: ${({ theme }) => theme.font.aux.size.large};
+`;
 
-export const Count = styled.div``;
+export const Count = styled.div`
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
+  color: rgba(255, 255, 255, 0.7);
+  padding-left: 0.4rem;
+`;

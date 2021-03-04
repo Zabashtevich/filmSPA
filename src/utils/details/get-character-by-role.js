@@ -8,7 +8,6 @@ export default function getCharacterByRole(array, role) {
         .slice(0, 3)
         .map((item) => item.name)
         .join(", ") || "Unknown";
-    console.log(result);
   } else {
     result = "Unknown";
   }

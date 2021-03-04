@@ -28,16 +28,18 @@ export default function DetailsPosterContainer() {
               {getYearFromString(data.release_date)}
             </DetailsPoster.Fieldvalue>
           </DetailsPoster.Row>
-          {/* <DetailsPoster.Row>
+          <DetailsPoster.Row>
             <DetailsPoster.Fieldname>Language</DetailsPoster.Fieldname>
             <DetailsPoster.Fieldvalue>
-              {data.spoken_languages}
+              {data.spoken_languages.map((item) => item.name).join(", ")}
             </DetailsPoster.Fieldvalue>
-          </DetailsPoster.Row> */}
-          {/* <DetailsPoster.Row>
+          </DetailsPoster.Row>
+          <DetailsPoster.Row>
             <DetailsPoster.Fieldname>Genres</DetailsPoster.Fieldname>
-            <DetailsPoster.Fieldvalue>{data.genres}</DetailsPoster.Fieldvalue>
-          </DetailsPoster.Row> */}
+            <DetailsPoster.Fieldvalue>
+              {data.genres.map((item) => item.name).join(", ")}
+            </DetailsPoster.Fieldvalue>
+          </DetailsPoster.Row>
           <DetailsPoster.Row>
             <DetailsPoster.Fieldname>Tagline:</DetailsPoster.Fieldname>
             <DetailsPoster.Fieldvalue>{data.tagline}</DetailsPoster.Fieldvalue>
@@ -91,15 +93,20 @@ export default function DetailsPosterContainer() {
             <DetailsPoster.Fieldvalue>{data.runtime}</DetailsPoster.Fieldvalue>
           </DetailsPoster.Row>
         </DetailsPoster.Column>
-        {/* <DetailsPoster.Column>
+        <DetailsPoster.Column type={"cast"}>
           <DetailsPoster.Credits>
             <DetailsPoster.Wrapper>
               <DetailsPoster.Average>{data.vote_average}</DetailsPoster.Average>
               <DetailsPoster.Count>{data.vote_count}</DetailsPoster.Count>
             </DetailsPoster.Wrapper>
-            <DetailsPoster.Link />
+            <DetailsPoster.Subtitle>Cast:</DetailsPoster.Subtitle>
+            {data.credits.cast.slice(0, 10).map(({ name, id }) => (
+              <DetailsPoster.Link key={id} to={`/actor/${id}`}>
+                {name}
+              </DetailsPoster.Link>
+            ))}
           </DetailsPoster.Credits>
-        </DetailsPoster.Column> */}
+        </DetailsPoster.Column>
       </DetailsPoster>
     )
   );

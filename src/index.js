@@ -15,6 +15,8 @@ import UserDataLogic from "./helpers/user-data-logic";
 import ModalContextProvider from "./context/modal-context/context";
 import ProcessContextProvider from "./context/process-context/context";
 import FirelogicContextProvider from "./context/firelogic-context/context";
+import ItemContextProvider from "./context/item-context/context";
+import GalleryContextProvider from "./context/gallery-context/context";
 
 const store = createStore(
   rootReducer,
@@ -29,8 +31,12 @@ ReactDOM.render(
           <ModalContextProvider>
             <FirelogicContextProvider>
               <FilterContextProvider>
-                <GlobalStyles />
-                <App />
+                <ItemContextProvider>
+                  <GalleryContextProvider>
+                    <GlobalStyles />
+                    <App />
+                  </GalleryContextProvider>
+                </ItemContextProvider>
               </FilterContextProvider>
             </FirelogicContextProvider>
           </ModalContextProvider>

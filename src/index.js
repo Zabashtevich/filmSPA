@@ -17,6 +17,7 @@ import ProcessContextProvider from "./context/process-context/context";
 import FirelogicContextProvider from "./context/firelogic-context/context";
 import ItemContextProvider from "./context/item-context/context";
 import GalleryContextProvider from "./context/gallery-context/context";
+import TrailerContextProvider from "./context/trailer-context.js/context";
 
 const store = createStore(
   rootReducer,
@@ -33,8 +34,10 @@ ReactDOM.render(
               <FilterContextProvider>
                 <ItemContextProvider>
                   <GalleryContextProvider>
-                    <GlobalStyles />
-                    <App />
+                    <TrailerContextProvider>
+                      <GlobalStyles />
+                      <App />
+                    </TrailerContextProvider>
                   </GalleryContextProvider>
                 </ItemContextProvider>
               </FilterContextProvider>

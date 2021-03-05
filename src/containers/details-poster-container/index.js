@@ -6,10 +6,18 @@ import { DetailsPoster } from "../../components";
 import DetailsPosterRows from "./items/details-poster-rows";
 import DetailsPosterCredits from "./items/details-poster-credits";
 import { GalleryContainer, TrailerContainer } from "..";
+import { useItemContext } from "../../context";
 
 export default function DetailsPosterContainer() {
   const { direction, slug } = useParams();
+  const [, setItem] = useItemContext();
   const [data, loading] = useFetch(direction, slug);
+
+  useEffect(() => {
+    if (!loading) {
+      setItem(data);
+    }
+  }, [data, loading]);
 
   return (
     !loading && (

@@ -3,9 +3,14 @@ import React, { createContext, useState } from "react";
 export const ItemContext = createContext(null);
 
 export default function ItemContextProvider({ children }) {
-  const [item, setItem] = useState({ item: null, loading: true });
+  const [data, setData] = useState({ item: null, loading: true });
+
+  function setItem(payload) {
+    setData({ item: payload, loading: false });
+  }
+
   return (
-    <ItemContext.Provider value={[item, setItem]}>
+    <ItemContext.Provider value={[data, setItem]}>
       {children}
     </ItemContext.Provider>
   );

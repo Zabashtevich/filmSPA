@@ -35,14 +35,13 @@ export default function WidgetFavorite() {
   //   setMovieInFavorite(checkMovieInList(favoritedMovies, item));
   // }, [item, favoritedMovies]);
 
-  return (
-    <Widget.Item onClick={handleOnFavorite}>
-      <Widget.Name>Favorite</Widget.Name>
-      <Widget.Added
-        location={"middle"}
-        visible={movieInFavorite && !favoriteProcess}
-      />
-      <Widget.Spinner location={"middle"} visible={favoriteProcess} />
-    </Widget.Item>
-  );
+  return null;
+  // <Widget.Item onClick={handleOnFavorite}>
+  //   <Widget.Name>Favorite</Widget.Name>
+  //   <Widget.Added
+  //     location={"middle"}
+  //     visible={movieInFavorite && !favoriteProcess}
+  //   />
+  //   <Widget.Spinner location={"middle"} visible={favoriteProcess} />
+  // </Widget.Item>
 }

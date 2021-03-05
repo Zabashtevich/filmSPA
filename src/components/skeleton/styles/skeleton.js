@@ -17,3 +17,15 @@ export const ActiveWrapper = styled.div`
   left: 0;
   border-radius: 0.5rem;
 `;
+
+export const PosterRowsWrapper = styled.div`
+  ${({ theme }) => theme.animations.fade(500, 500, 500)};
+`;
+
+export const PosterImageSkeleton = styled.div`
+  ${({ theme }) => theme.animations.fade(500, 500, 500)};
+`;
+
+export const CreditsWrapper = styled.div`
+  ${({ theme }) => theme.animations.fade(500, 500, 500)};
+`;

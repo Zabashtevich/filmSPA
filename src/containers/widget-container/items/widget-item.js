@@ -34,11 +34,10 @@ export default function WidgetItem({ list }) {
   //   setMovieInList(checkMovieInList(list.content, item));
   // }, [list, item]);
 
-  return (
-    <Widget.Element onClick={handleOnUserlist} disabled={userlistProcess}>
-      <Widget.Name>{list.name.toUpperCase()}</Widget.Name>
-      <Widget.Added visible={movieInList && !userlistProcess} />
-      <Widget.Spinner visible={userlistProcess} />
-    </Widget.Element>
-  );
+  return null;
+  // <Widget.Element onClick={handleOnUserlist} disabled={userlistProcess}>
+  //   <Widget.Name>{list.name.toUpperCase()}</Widget.Name>
+  //   <Widget.Added visible={movieInList && !userlistProcess} />
+  //   <Widget.Spinner visible={userlistProcess} />
+  // </Widget.Element>
 }

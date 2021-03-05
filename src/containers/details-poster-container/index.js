@@ -26,7 +26,7 @@ export default function DetailsPosterContainer() {
 
   useEffect(() => {
     if (!loading) {
-      setItem(data?.images || []);
+      setItem(data);
     }
     return () => unsetItem();
   }, [data, loading]);
@@ -60,7 +60,7 @@ export default function DetailsPosterContainer() {
       </DetailsPoster.Column>
 
       <DetailsPoster.Column type={"content"} visible={!loading && !rowsDelay}>
-        {!loading && <DetailsPosterRows data={data} />}
+        <DetailsPosterRows data={data} />
       </DetailsPoster.Column>
 
       <DetailsPoster.Column
@@ -74,7 +74,7 @@ export default function DetailsPosterContainer() {
 
       <DetailsPoster.Column type={"cast"} visible={!loading && !creditsDelay}>
         <DetailsPoster.Subtitle>Cast:</DetailsPoster.Subtitle>
-        {!loading && <DetailsPosterCredits data={data} />}
+        <DetailsPosterCredits data={data} />
       </DetailsPoster.Column>
     </DetailsPoster>
   );

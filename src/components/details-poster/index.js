@@ -1,6 +1,7 @@
 import React from "react";
-import { orinalImageSize, posterSize } from "../../constants/constants";
+import { CSSTransition } from "react-transition-group";
 
+import { orinalImageSize, posterSize } from "../../constants/constants";
 import {
   Container,
   Wallpaper,
@@ -20,16 +21,48 @@ export default function DetailsPoster({ children, ...rest }) {
   return <Container {...rest}>{children}</Container>;
 }
 
-DetailsPoster.Inner = function DetailsPosterInner({ children, ...rest }) {
-  return <Inner {...rest}>{children}</Inner>;
+DetailsPoster.Inner = function DetailsPosterInner({
+  visible,
+  children,
+  ...rest
+}) {
+  return (
+    <CSSTransition
+      in={visible}
+      timeout={500}
+      classNames="fade"
+      mountOnEnter
+      unmountOnExit
+      appear={true}
+    >
+      <Inner {...rest}>{children}</Inner>
+    </CSSTransition>
+  );
 };
 
 DetailsPoster.Wallpaper = function PosterSecrionWallpaper({ src, ...rest }) {
   return <Wallpaper {...rest} src={`${orinalImageSize + src}`} />;
 };
 
-DetailsPoster.Column = function DetailsPosterColumn({ children, ...rest }) {
-  return <Column {...rest}>{children}</Column>;
+DetailsPoster.Column = function DetailsPosterColumn({
+  visible,
+  type,
+  children,
+  ...rest
+}) {
+  return (
+    <CSSTransition
+      in={visible}
+      timeout={500}
+      classNames="fade"
+      mountOnEnter
+      unmountOnExit
+      appear={true}
+      {...rest}
+    >
+      <Column type={type}>{children}</Column>
+    </CSSTransition>
+  );
 };
 
 DetailsPoster.Poster = function DetailsPosterPoster({ src, ...rest }) {

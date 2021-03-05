@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { useFetch } from "../../hooks";
 
@@ -14,6 +14,12 @@ import {
 } from "../../components/skeleton";
 
 export default function DetailsPosterContainer() {
+  const [{ posterDelay, rowsDelay, creditsDelay }, setDelay] = useState({
+    posterDelay: true,
+    rowsDelay: true,
+    creditsDelay: true,
+  });
+
   const { direction, slug } = useParams();
   const [, setItem] = useItemContext();
   const [data, loading] = useFetch(direction, slug);
@@ -24,32 +30,56 @@ export default function DetailsPosterContainer() {
     }
   }, [data, loading]);
 
-  console.log(data);
+  console.log(loading);
   return (
-    !loading && (
-      <DetailsPoster>
-        <DetailsPoster.Inner>
-          <DetailsPoster.Wallpaper src={data.backdrop_path} />
-        </DetailsPoster.Inner>
-        <DetailsPoster.Column type={"poster"}>
-          <PosterSkeleton visible={!loading} />
-          <GalleryContainer />
-          <TrailerContainer />
-        </DetailsPoster.Column>
-        <DetailsPoster.Column type={"content"}>
-          <DetailsPosterRows data={data} />
-          {/* <PosterDetailsRowsSkeleton visible={!loading} /> */}
-        </DetailsPoster.Column>
-        <DetailsPoster.Column type={"cast"}>
-          <DetailsPoster.Subtitle>Cast:</DetailsPoster.Subtitle>
-          <CreditsSkeleton visible={!loading} />
-          {/* <DetailsPosterCredits data={data} /> */}
-        </DetailsPoster.Column>
-      </DetailsPoster>
-    )
-  );
-}
+    <DetailsPoster>
+      <DetailsPoster.Inner visible={!loading && !posterDelay}>
+        <DetailsPoster.Wallpaper src={data?.backdrop_path} />
+      </DetailsPoster.Inner>
 
-{
-  /* <DetailsPoster.Poster src={data.poster_path} /> */
+      <DetailsPoster.Column
+        type={"poster"}
+        visible={loading}
+        onExited={() => setDelay((prev) => ({ ...prev, posterDelay: false }))}
+      >
+        <PosterSkeleton />
+      </DetailsPoster.Column>
+
+      <DetailsPoster.Column type={"poster"} visible={!loading && !posterDelay}>
+        {!loading && (
+          <>
+            <DetailsPoster.Poster src={data.poster_path} />
+            <GalleryContainer />
+            <TrailerContainer />
+          </>
+        )}
+      </DetailsPoster.Column>
+
+      <DetailsPoster.Column
+        type={"content"}
+        visible={loading}
+        onExited={() => setDelay((prev) => ({ ...prev, rowsDelay: false }))}
+      >
+        <PosterDetailsRowsSkeleton visible={loading} />
+      </DetailsPoster.Column>
+
+      <DetailsPoster.Column type={"content"} visible={!loading && !rowsDelay}>
+        {!loading && <DetailsPosterRows data={data} />}
+      </DetailsPoster.Column>
+
+      <DetailsPoster.Column
+        type={"cast"}
+        visible={loading}
+        onExited={() => setDelay((prev) => ({ ...prev, creditsDelay: false }))}
+      >
+        <DetailsPoster.Subtitle>Cast:</DetailsPoster.Subtitle>
+        <CreditsSkeleton visible={loading} />
+      </DetailsPoster.Column>
+
+      <DetailsPoster.Column type={"cast"} visible={!loading && !creditsDelay}>
+        <DetailsPoster.Subtitle>Cast:</DetailsPoster.Subtitle>
+        {!loading && <DetailsPosterCredits data={data} />}
+      </DetailsPoster.Column>
+    </DetailsPoster>
+  );
 }

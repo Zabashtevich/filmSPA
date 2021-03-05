@@ -14,6 +14,7 @@ export const Container = styled.div`
 `;
 
 export const Inner = styled.div`
+  ${({ theme }) => theme.animations.fade(500, 500, 500)};
   transform: translateX(-50%);
   position: absolute;
   display: flex;
@@ -38,6 +39,7 @@ export const Wallpaper = styled.img`
 `;
 
 export const Column = styled.div`
+  ${({ theme }) => theme.animations.fade(500, 500, 500)};
   display: flex;
   flex-direction: column;
   margin: 0 auto;

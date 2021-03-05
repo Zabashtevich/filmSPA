@@ -59,13 +59,16 @@ export default function DetailsPosterRows({ data }) {
       <DetailsPoster.Row>
         <DetailsPoster.Fieldname>Designer:</DetailsPoster.Fieldname>
         <DetailsPoster.Fieldvalue>
-          {getCharacterByRole(data?.credits?.crew || [], "Designer")}
+          {getCharacterByRole(data?.credits?.crew || [], "Production Design")}
         </DetailsPoster.Fieldvalue>
       </DetailsPoster.Row>
       <DetailsPoster.Row>
         <DetailsPoster.Fieldname>Composer:</DetailsPoster.Fieldname>
         <DetailsPoster.Fieldvalue>
-          {getCharacterByRole(data?.credits?.crew || [], "Composer")}
+          {getCharacterByRole(
+            data?.credits?.crew || [],
+            "Original Music Composer",
+          )}
         </DetailsPoster.Fieldvalue>
       </DetailsPoster.Row>
       <DetailsPoster.Row>

@@ -9,7 +9,7 @@ export const Icon = styled(BsFillImageFill)`
   fill: gray;
 `;
 
-export const Face = styled.div`
+export const Thumbnail = styled.div`
   background-color: white;
   justify-content: center;
   border-radius: 0.4rem;
@@ -18,6 +18,7 @@ export const Face = styled.div`
   height: 100px;
   display: flex;
   cursor: pointer;
+  margin-top: 2rem;
   &:hover {
     ${Icon} {
       fill: black;

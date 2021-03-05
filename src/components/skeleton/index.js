@@ -127,16 +127,16 @@ export function CreditsSkeleton() {
       backgroundColor="#dadada"
       foregroundColor="#fafafa"
     >
-      <rect x="0" y="8" rx="4" ry="4" width="100" height="5" />
-      <rect x="0" y="30" rx="4" ry="4" width="100" height="5" />
-      <rect x="0" y="52" rx="4" ry="4" width="100" height="5" />
-      <rect x="0" y="74" rx="4" ry="4" width="100" height="5" />
-      <rect x="0" y="96" rx="4" ry="4" width="100" height="5" />
-      <rect x="0" y="118" rx="4" ry="4" width="100" height="5" />
-      <rect x="0" y="140" rx="4" ry="4" width="100" height="5" />
-      <rect x="0" y="162" rx="4" ry="4" width="100" height="5" />
-      <rect x="0" y="184" rx="4" ry="4" width="100" height="5" />
-      <rect x="0" y="210" rx="4" ry="4" width="100" height="5" />
+      <rect x="0" y="8" rx="4" ry="4" width="200" height="5" />
+      <rect x="0" y="30" rx="4" ry="4" width="200" height="5" />
+      <rect x="0" y="52" rx="4" ry="4" width="200" height="5" />
+      <rect x="0" y="74" rx="4" ry="4" width="200" height="5" />
+      <rect x="0" y="96" rx="4" ry="4" width="200" height="5" />
+      <rect x="0" y="118" rx="4" ry="4" width="200" height="5" />
+      <rect x="0" y="140" rx="4" ry="4" width="200" height="5" />
+      <rect x="0" y="162" rx="4" ry="4" width="200" height="5" />
+      <rect x="0" y="184" rx="4" ry="4" width="200" height="5" />
+      <rect x="0" y="210" rx="4" ry="4" width="200" height="5" />
     </ContentLoader>
   );
 }

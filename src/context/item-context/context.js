@@ -9,8 +9,12 @@ export default function ItemContextProvider({ children }) {
     setData({ item: payload, loading: false });
   }
 
+  function unsetItem() {
+    setData({ item: null, loading: true });
+  }
+
   return (
-    <ItemContext.Provider value={[data, setItem]}>
+    <ItemContext.Provider value={[data, { setItem, unsetItem }]}>
       {children}
     </ItemContext.Provider>
   );

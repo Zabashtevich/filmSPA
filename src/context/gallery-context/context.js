@@ -3,7 +3,7 @@ import React, { createContext, useReducer } from "react";
 import galleryReducer, { initialState } from "./reducer";
 import {
   CLOSE_MODAL,
-  FINISH_PROCESS,
+  SET_IMAGES,
   SET_OFFSET,
   SET_URL,
   SHOW_MODAL,
@@ -27,19 +27,18 @@ export default function GalleryContextProvider({ children }) {
   }
 
   function closeModal() {
+    document.body.style.overflow = "auto";
     dispatch({ type: CLOSE_MODAL });
   }
 
-  function finishProcess() {
-    dispatch({ type: FINISH_PROCESS });
+  function setImages(payload) {
+    document.body.style.overflow = "hidden";
+    dispatch({ type: SET_IMAGES, payload });
   }
 
   return (
     <GalleryContext.Provider
-      value={[
-        state,
-        { setOffset, setUrl, showModal, closeModal, finishProcess },
-      ]}
+      value={[state, { setOffset, setUrl, showModal, closeModal, setImages }]}
     >
       {children}
     </GalleryContext.Provider>

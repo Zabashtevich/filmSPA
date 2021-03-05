@@ -5,7 +5,7 @@ import { w200miniature, orinalImageSize } from "../../constants/constants";
 import { GalleryActiveSkeleton, GalleryMiniatureSkeleton } from "../skeleton";
 
 import {
-  Face,
+  Thumbnail,
   Icon,
   Backdrop,
   Container,
@@ -19,7 +19,7 @@ import {
 } from "./styles/gallery";
 
 export default function Gallery({ children, ...rest }) {
-  return <Face {...rest}>{children}</Face>;
+  return <Thumbnail {...rest}>{children}</Thumbnail>;
 }
 
 Gallery.Icon = function GalleryIcon({ ...rest }) {

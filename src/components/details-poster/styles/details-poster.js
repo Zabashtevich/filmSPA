@@ -49,6 +49,7 @@ export const Column = styled.div`
   ${({ type }) =>
     type === "poster" &&
     css`
+      align-items: center;
       width: 300px;
     `};
   ${({ type }) =>

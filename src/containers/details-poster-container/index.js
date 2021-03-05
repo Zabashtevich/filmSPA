@@ -21,16 +21,16 @@ export default function DetailsPosterContainer() {
   });
 
   const { direction, slug } = useParams();
-  const [, setItem] = useItemContext();
+  const [, { setItem, unsetItem }] = useItemContext();
   const [data, loading] = useFetch(direction, slug);
 
   useEffect(() => {
     if (!loading) {
-      setItem(data);
+      setItem(data?.images || []);
     }
+    return () => unsetItem();
   }, [data, loading]);
 
-  console.log(loading);
   return (
     <DetailsPoster>
       <DetailsPoster.Inner visible={!loading && !posterDelay}>
@@ -46,13 +46,9 @@ export default function DetailsPosterContainer() {
       </DetailsPoster.Column>
 
       <DetailsPoster.Column type={"poster"} visible={!loading && !posterDelay}>
-        {!loading && (
-          <>
-            <DetailsPoster.Poster src={data.poster_path} />
-            <GalleryContainer />
-            <TrailerContainer />
-          </>
-        )}
+        <DetailsPoster.Poster src={data?.poster_path} />
+        <GalleryContainer />
+        <TrailerContainer />
       </DetailsPoster.Column>
 
       <DetailsPoster.Column

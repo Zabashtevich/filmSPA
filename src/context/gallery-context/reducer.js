@@ -1,13 +1,14 @@
 import {
   CLOSE_MODAL,
-  FINISH_PROCESS,
   SET_OFFSET,
   SET_URL,
   SHOW_MODAL,
+  SET_IMAGES,
 } from "./types";
 
 export const initialState = {
   loading: true,
+  images: null,
   visible: false,
   offset: { start: 0, end: 5 },
   process: true,
@@ -27,9 +28,8 @@ export default function galleryReducer(
       return { ...state, visible: true };
     case CLOSE_MODAL:
       return { ...state, visible: false };
-    case FINISH_PROCESS:
-      return { ...state, process: false };
-
+    case SET_IMAGES:
+      return { ...state, images: payload, loading: false };
     default:
       return state;
   }

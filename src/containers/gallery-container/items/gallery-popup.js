@@ -23,7 +23,7 @@ export default function GalleryPopup() {
         closeGallery();
       }}
     >
-      <Gallery.Close
+      {/* <Gallery.Close
         onClick={(e) => {
           e.stopPropagation();
           closeGallery();
@@ -52,7 +52,7 @@ export default function GalleryPopup() {
             disabled={end === images.length && 1}
           />
         </Gallery.Footer>
-      </Gallery.Container>
+      </Gallery.Container> */}
     </Gallery.Backdrop>
   );
 }

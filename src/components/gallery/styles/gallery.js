@@ -33,6 +33,7 @@ export const Backdrop = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 `;
 
 export const Close = styled(GrClose)`
@@ -73,7 +74,8 @@ export const Button = styled.button`
   padding: 0.2rem 0.3rem;
   outline: none;
   display: flex;
-  &:active {
+  cursor: pointer;
+  &:enabled:active {
     transform: scale(0.95);
   }
 `;

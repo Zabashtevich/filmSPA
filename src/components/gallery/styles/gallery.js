@@ -1,23 +1,100 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 
-export const Thumbnail = styled.div``;
+import { FcGallery } from "react-icons/fc";
+import { GrClose } from "react-icons/gr";
+import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 
-export const Placeholder = styled.div``;
+export const Thumbnail = styled.div`
+  font-family: ${({ theme }) => theme.font.aux.family};
+  background-color: rgba(255, 255, 255, 1);
+  align-self: flex-start;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+    transition: 300ms;
+  }
+`;
 
-export const Backdrop = styled.div``;
+export const Placeholder = styled(FcGallery)`
+  font-size: ${({ theme }) => theme.font.aux.size.huge};
+`;
 
-export const Close = styled.div``;
+export const Backdrop = styled.div`
+  background: ${({ theme }) => theme.colors.backdrop};
+  ${({ theme }) => theme.animations.fade(500, 500, 500)};
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
-export const Container = styled.div``;
+export const Close = styled(GrClose)`
+  font-size: ${({ theme }) => theme.font.aux.size.big};
+  position: absolute;
+  top: 5%;
+  right: 3%;
+  & > * {
+    stroke: gray;
+  }
+`;
 
-export const Active = styled.div``;
+export const Container = styled.div`
+  background-color: white;
+  position: relative;
+  display: flex;
+`;
 
-export const Wrapper = styled.div``;
+export const Active = styled.img`
+  width: 1000px;
+`;
 
-export const Button = styled.div``;
+export const Wrapper = styled.div`
+  background-color: rgba(255, 255, 255, 0.7);
+  position: absolute;
+  width: 100%;
+  top: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
-export const Left = styled.div``;
+export const Button = styled.button`
+  font-size: ${({ theme }) => theme.font.aux.size.big};
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  background-color: white;
+  border-radius: 20%;
+  padding: 0.2rem 0.3rem;
+  outline: none;
+  display: flex;
+  &:active {
+    transform: scale(0.95);
+  }
+`;
 
-export const Right = styled.div``;
+export const Left = styled(BsChevronLeft)``;
 
-export const Miniature = styled.img``;
+export const Right = styled(BsChevronRight)``;
+
+export const Miniature = styled.img`
+  border: 2px solid transparent;
+  margin: 0.4rem 0.2rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  width: 100px;
+  &:hover {
+    transform: translateY(-5%);
+    transition: 50ms;
+  }
+  ${({ selected }) =>
+    selected &&
+    css`
+      border: 2px solid white;
+    `};
+`;

@@ -7,7 +7,7 @@ import {
 } from "./types";
 
 export const initialState = {
-  loading: true,
+  imagesLoading: true,
   images: null,
   visible: false,
   offset: { start: 0, end: 5 },
@@ -29,7 +29,12 @@ export default function galleryReducer(
     case CLOSE_MODAL:
       return { ...state, visible: false };
     case SET_IMAGES:
-      return { ...state, images: payload, loading: false };
+      return {
+        ...state,
+        images: payload,
+        imagesLoading: false,
+        url: payload.length !== 0 ? payload[0].file_path : null,
+      };
     default:
       return state;
   }

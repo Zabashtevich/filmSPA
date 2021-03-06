@@ -34,7 +34,7 @@ Gallery.Placeholder = function GalleryPlaceholder({ ...rest }) {
   return <Placeholder {...rest} />;
 };
 
-Gallery.Backdrop = function GalleryBackdrop({ children, ...rest }) {
+Gallery.Backdrop = function GalleryBackdrop({ visible, children, ...rest }) {
   return (
     <CSSTransition
       in={visible}

@@ -7,6 +7,7 @@ import {
   SET_OFFSET,
   SET_URL,
   SHOW_MODAL,
+  FINISH_PROCESS,
 } from "./types";
 
 export const GalleryContext = createContext(null);
@@ -23,6 +24,7 @@ export default function GalleryContextProvider({ children }) {
   }
 
   function showModal() {
+    document.body.style.overflow = "hidden";
     dispatch({ type: SHOW_MODAL });
   }
 
@@ -32,13 +34,19 @@ export default function GalleryContextProvider({ children }) {
   }
 
   function setImages(payload) {
-    document.body.style.overflow = "hidden";
     dispatch({ type: SET_IMAGES, payload });
+  }
+
+  function finishProcess() {
+    dispatch({ type: FINISH_PROCESS });
   }
 
   return (
     <GalleryContext.Provider
-      value={[state, { setOffset, setUrl, showModal, closeModal, setImages }]}
+      value={[
+        state,
+        { setOffset, setUrl, showModal, closeModal, setImages, finishProcess },
+      ]}
     >
       {children}
     </GalleryContext.Provider>

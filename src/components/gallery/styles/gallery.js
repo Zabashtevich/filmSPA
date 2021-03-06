@@ -84,10 +84,19 @@ export const Left = styled(BsChevronLeft)``;
 
 export const Right = styled(BsChevronRight)``;
 
+export const Inner = styled.div`
+  margin: 0.4rem 0.2rem;
+  align-items: center;
+  position: relative;
+  width: 100px;
+  height: 56px;
+  display: flex;
+`;
+
 export const Miniature = styled.img`
   border: 2px solid transparent;
-  margin: 0.4rem 0.2rem;
   border-radius: 0.4rem;
+  position: absolute;
   cursor: pointer;
   width: 100px;
   &:hover {

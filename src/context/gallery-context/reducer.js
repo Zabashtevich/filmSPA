@@ -4,6 +4,7 @@ import {
   SET_URL,
   SHOW_MODAL,
   SET_IMAGES,
+  FINISH_PROCESS,
 } from "./types";
 
 export const initialState = {
@@ -35,6 +36,8 @@ export default function galleryReducer(
         imagesLoading: false,
         url: payload.length !== 0 ? payload[0].file_path : null,
       };
+    case FINISH_PROCESS:
+      return { ...state, process: false };
     default:
       return state;
   }

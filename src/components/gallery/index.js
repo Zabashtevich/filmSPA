@@ -1,5 +1,6 @@
 import React from "react";
 import { CSSTransition } from "react-transition-group";
+import { orinalImageSize, w200miniature } from "../../constants/constants";
 
 import {
   Thumbnail,
@@ -13,6 +14,7 @@ import {
   Left,
   Right,
   Miniature,
+  Inner,
 } from "./styles/gallery";
 
 export default function Gallery({ visible, children, ...rest }) {
@@ -57,8 +59,8 @@ Gallery.Container = function GalleryContainer({ children, ...rest }) {
   return <Container {...rest}>{children}</Container>;
 };
 
-Gallery.Active = function GalleryActive({ ...rest }) {
-  return <Active {...rest} />;
+Gallery.Active = function GalleryActive({ src, ...rest }) {
+  return <Active {...rest} src={`${orinalImageSize + src}`} />;
 };
 
 Gallery.Wrapper = function GalleryWrapper({ children, ...rest }) {
@@ -77,6 +79,10 @@ Gallery.Right = function GalleryRight({ ...rest }) {
   return <Right {...rest} />;
 };
 
-Gallery.Miniature = function GalleryMiniature({ ...rest }) {
-  return <Miniature {...rest} />;
+Gallery.Inner = function GalleryInner({ children, ...rest }) {
+  return <Inner {...rest}>{children}</Inner>;
+};
+
+Gallery.Miniature = function GalleryMiniature({ src, ...rest }) {
+  return <Miniature {...rest} src={`${w200miniature + src}`} />;
 };

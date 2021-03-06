@@ -32,13 +32,13 @@ export function GalleryMiniatureSkeleton({ visible }) {
       <MiniatureWrapper>
         <ContentLoader
           speed={2}
-          width={151}
-          height={86}
-          viewBox="0 0 150 85"
+          width={100}
+          height={56}
+          viewBox="0 0 100 56"
           backgroundColor="#dadada"
           foregroundColor="#fafafa"
         >
-          <rect x="0" y="0" rx="8" ry="8" width="150" height="85" />
+          <rect x="0" y="0" rx="8" ry="8" width="100" height="56" />
         </ContentLoader>
       </MiniatureWrapper>
     </CSSTransition>
@@ -58,13 +58,13 @@ export function GalleryActiveSkeleton({ visible }) {
       <ActiveWrapper>
         <ContentLoader
           speed={2}
-          width={1200}
-          height={675}
-          viewBox="0 0 1200 675"
+          width={1000}
+          height={562}
+          viewBox="0 0 1000 562"
           backgroundColor="#dadada"
           foregroundColor="#fafafa"
         >
-          <rect x="0" y="0" rx="0" ry="0" width="1200" height="675" />
+          <rect x="0" y="0" rx="0" ry="0" width="1000" height="562" />
         </ContentLoader>
       </ActiveWrapper>
     </CSSTransition>

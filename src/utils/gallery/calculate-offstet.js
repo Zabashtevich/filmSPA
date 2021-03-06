@@ -1,9 +1,4 @@
-export default function calculateOffset(
-  images,
-  { start, end },
-  type,
-  setOffset,
-) {
+export default function calculateOffset(images, { start, end }, type) {
   let newStart = null;
   let newEnd = null;
   const length = images.length;
@@ -15,7 +10,7 @@ export default function calculateOffset(
       break;
     case "next":
       newEnd =
-        length - (end + 5) > 0
+        length - (end + 5) >= 0
           ? end + 5
           : length - (end + 5) < 0
           ? length

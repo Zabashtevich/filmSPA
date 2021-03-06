@@ -5,7 +5,7 @@ import { useFetch } from "../../hooks";
 import { DetailsPoster } from "../../components";
 import DetailsPosterRows from "./items/details-poster-rows";
 import DetailsPosterCredits from "./items/details-poster-credits";
-import { GalleryContainer, TrailerContainer } from "..";
+import { GalleryContainer, TrailerContainer, WidgetContainer } from "..";
 import { useItemContext } from "../../context";
 import {
   CreditsSkeleton,
@@ -75,6 +75,7 @@ export default function DetailsPosterContainer() {
       <DetailsPoster.Column type={"cast"} visible={!loading && !creditsDelay}>
         <DetailsPoster.Subtitle>Cast:</DetailsPoster.Subtitle>
         <DetailsPosterCredits data={data} />
+        <WidgetContainer />
       </DetailsPoster.Column>
     </DetailsPoster>
   );

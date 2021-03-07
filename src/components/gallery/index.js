@@ -56,7 +56,11 @@ Gallery.Close = function GalleryClose({ ...rest }) {
 };
 
 Gallery.Container = function GalleryContainer({ children, ...rest }) {
-  return <Container {...rest}>{children}</Container>;
+  return (
+    <Container {...rest} onClick={(e) => e.stopPropagation()}>
+      {children}
+    </Container>
+  );
 };
 
 Gallery.Active = function GalleryActive({ src, ...rest }) {

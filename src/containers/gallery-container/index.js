@@ -20,7 +20,13 @@ export default function GalleryContainer() {
   }, [loading]);
 
   return (
-    <Gallery visible={!imagesLoading} onClick={showModal}>
+    <Gallery
+      visible={!imagesLoading}
+      onClick={(e) => {
+        e.stopPropagation();
+        showModal();
+      }}
+    >
       <Gallery.Placeholder />
       {createPortal(<GalleryPopup />, document.getElementById("root"))}
     </Gallery>
@@ -34,7 +40,7 @@ function GalleryPopup() {
   ] = useGalleryContext();
 
   const { start, end } = offset;
-  console.log(start, end);
+
   function handleOffset(type) {
     setOffset(calculateOffset(images, offset, type));
   }
@@ -42,8 +48,8 @@ function GalleryPopup() {
   return (
     <Gallery.Backdrop
       visible={visible}
-      onClick={(e) => {
-        e.stopPropagation();
+      onClick={(event) => {
+        event.stopPropagation();
         closeModal();
       }}
     >
@@ -51,7 +57,7 @@ function GalleryPopup() {
       <Gallery.Container>
         <GalleryActiveSkeleton visible={process} />
         <Gallery.Active src={url} onLoad={finishProcess} />
-        <Gallery.Wrapper onClick={(e) => e.stopPropagation()}>
+        <Gallery.Wrapper>
           <Gallery.Button
             onClick={() => handleOffset("previous")}
             disabled={start === 0}

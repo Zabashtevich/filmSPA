@@ -5,6 +5,7 @@ import { FaYoutube } from "react-icons/fa";
 
 export const Container = styled.div`
   font-size: ${({ theme }) => theme.font.aux.size.huge};
+  ${({ theme }) => theme.animations.fade()};
   background-color: rgba(255, 255, 255, 1);
   align-self: flex-start;
   border-radius: 10px;

@@ -6,32 +6,10 @@ import {
   GalleryActiveSkeleton,
   GalleryMiniatureSkeleton,
 } from "./../../components/skeleton";
-import { useGalleryContext, useItemContext } from "../../context";
+import { useGalleryContext } from "../../context";
 import { calculateOffset } from "../../utils";
 
-export default function GalleryContainer() {
-  const [{ loading, item }] = useItemContext();
-  const [{ imagesLoading }, { setImages, showModal }] = useGalleryContext();
-
-  useEffect(() => {
-    if (!loading) {
-      setImages(item?.images?.backdrops || []);
-    }
-  }, [loading]);
-
-  return (
-    <Gallery
-      visible={!imagesLoading}
-      onClick={(e) => {
-        e.stopPropagation();
-        showModal();
-      }}
-    >
-      <Gallery.Placeholder />
-      {createPortal(<GalleryPopup />, document.getElementById("root"))}
-    </Gallery>
-  );
-}
+export default function GalleryContainer() {}
 
 function GalleryPopup() {
   const [

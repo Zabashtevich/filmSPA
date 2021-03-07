@@ -4,15 +4,18 @@ import { useFetch } from "../../hooks";
 
 import { DetailsPoster } from "../../components";
 import DetailsPosterRows from "./items/details-poster-rows";
-import { GalleryContainer, TrailerContainer } from "..";
-import { useItemContext } from "../../context";
+import { GalleryContainer } from "..";
 import {
   CreditsSkeleton,
   PosterDetailsRowsSkeleton,
   PosterSkeleton,
 } from "../../components/skeleton";
+import { useGalleryContext, useTrailerContext } from "../../context";
 
 export default function DetailsPosterContainer() {
+  const [, { setVideos }] = useTrailerContext();
+  const [, { setImages }] = useGalleryContext();
+
   const [{ posterDelay, rowsDelay, creditsDelay }, setDelay] = useState({
     posterDelay: true,
     rowsDelay: true,
@@ -20,15 +23,14 @@ export default function DetailsPosterContainer() {
   });
 
   const { direction, slug } = useParams();
-  const [, { setItem, unsetItem }] = useItemContext();
   const [data, loading] = useFetch(direction, slug);
-
+  console.log(data);
   useEffect(() => {
     if (!loading) {
-      setItem(data);
+      setVideos(data?.videos?.results || []);
+      setImages(data?.images?.backdrops || []);
     }
-    return () => unsetItem();
-  }, [data, loading]);
+  }, [loading]);
 
   return (
     <DetailsPoster>
@@ -47,7 +49,6 @@ export default function DetailsPosterContainer() {
       <DetailsPoster.Column type={"poster"} visible={!loading && !posterDelay}>
         <DetailsPoster.Poster src={data?.poster_path} />
         <GalleryContainer />
-        <TrailerContainer />
       </DetailsPoster.Column>
 
       <DetailsPoster.Column

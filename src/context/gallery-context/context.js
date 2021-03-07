@@ -8,6 +8,7 @@ import {
   SET_URL,
   SHOW_MODAL,
   FINISH_PROCESS,
+  SET_MOUNTED,
 } from "./types";
 
 export const GalleryContext = createContext(null);
@@ -34,7 +35,11 @@ export default function GalleryContextProvider({ children }) {
   }
 
   function setImages(payload) {
-    dispatch({ type: SET_IMAGES, payload });
+    if (payload.length > 0) {
+      dispatch({ type: SET_IMAGES, payload });
+      dispatch({ type: SET_MOUNTED });
+      dispatch({ type: SET_URL, payload: payload[0].file_path });
+    }
   }
 
   function finishProcess() {

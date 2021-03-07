@@ -5,10 +5,11 @@ import {
   SHOW_MODAL,
   SET_IMAGES,
   FINISH_PROCESS,
+  SET_MOUNTED,
 } from "./types";
 
 export const initialState = {
-  imagesLoading: true,
+  mounted: false,
   images: null,
   visible: false,
   offset: { start: 0, end: 5 },
@@ -33,11 +34,11 @@ export default function galleryReducer(
       return {
         ...state,
         images: payload,
-        imagesLoading: false,
-        url: payload.length !== 0 ? payload[0].file_path : null,
       };
     case FINISH_PROCESS:
       return { ...state, process: false };
+    case SET_MOUNTED:
+      return { ...state, mounted: true };
     default:
       return state;
   }

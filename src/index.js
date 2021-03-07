@@ -10,12 +10,10 @@ import App from "./App";
 import { GlobalStyles } from "./theme/global-style";
 import Theme from "./theme/theme";
 import { rootReducer } from "./reducers";
-import FilterContextProvider from "./context/filter-context/context";
 import UserDataLogic from "./helpers/user-data-logic";
 import ModalContextProvider from "./context/modal-context/context";
 import ProcessContextProvider from "./context/process-context/context";
 import FirelogicContextProvider from "./context/firelogic-context/context";
-import ItemContextProvider from "./context/item-context/context";
 import GalleryContextProvider from "./context/gallery-context/context";
 import TrailerContextProvider from "./context/trailer-context.js/context";
 
@@ -31,16 +29,12 @@ ReactDOM.render(
         <ProcessContextProvider>
           <ModalContextProvider>
             <FirelogicContextProvider>
-              <FilterContextProvider>
-                <ItemContextProvider>
-                  <GalleryContextProvider>
-                    <TrailerContextProvider>
-                      <GlobalStyles />
-                      <App />
-                    </TrailerContextProvider>
-                  </GalleryContextProvider>
-                </ItemContextProvider>
-              </FilterContextProvider>
+              <GalleryContextProvider>
+                <TrailerContextProvider>
+                  <GlobalStyles />
+                  <App />
+                </TrailerContextProvider>
+              </GalleryContextProvider>
             </FirelogicContextProvider>
           </ModalContextProvider>
         </ProcessContextProvider>

@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { Thumbnail } from "../../components";
-import { useGalleryContext, useItemContext } from "../../context";
+import { useGalleryContext, useTrailerContext } from "../../context";
 
 export default function ThumbnailContainer({ type }) {
   return (
@@ -13,27 +13,20 @@ export default function ThumbnailContainer({ type }) {
 }
 
 function GalleryThumbnail() {
-  const [{ loading, item }] = useItemContext();
-  const [{ imagesLoading }, { setImages, showModal }] = useGalleryContext();
-
-  useEffect(() => {
-    if (!loading) {
-      setImages(item?.images?.backdrops || []);
-    }
-  }, [loading]);
+  const [{ mounted }, { showModal }] = useGalleryContext();
 
   return (
-    <Thumbnail visible={!imagesLoading} onClick={showModal}>
+    <Thumbnail visible={mounted} onClick={showModal}>
       <Thumbnail.Gallery />
     </Thumbnail>
   );
 }
 
 function TrailerThumbnail() {
-  const [{ loading, item }] = useItemContext();
+  const [{ mounted }, { showModal }] = useTrailerContext();
 
   return (
-    <Thumbnail>
+    <Thumbnail visible={mounted} onClick={showModal}>
       <Thumbnail.Trailer />
     </Thumbnail>
   );

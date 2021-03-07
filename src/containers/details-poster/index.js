@@ -10,7 +10,7 @@ import {
   PosterSkeleton,
 } from "../../components/skeleton";
 import { useGalleryContext, useTrailerContext } from "../../context";
-import { ThumbnailContainer } from "..";
+import { ThumbnailContainer, TrailerContainer, GalleryContainer } from "..";
 
 export default function DetailsPosterContainer() {
   const [, { setVideos }] = useTrailerContext();
@@ -24,7 +24,7 @@ export default function DetailsPosterContainer() {
 
   const { direction, slug } = useParams();
   const [data, loading] = useFetch(direction, slug);
-  console.log(data);
+
   useEffect(() => {
     if (!loading) {
       setVideos(data?.videos?.results || []);
@@ -34,6 +34,8 @@ export default function DetailsPosterContainer() {
 
   return (
     <DetailsPoster>
+      <GalleryContainer />
+      <TrailerContainer data={data} />
       <DetailsPoster.Inner visible={!loading && !posterDelay}>
         <DetailsPoster.Wallpaper src={data?.backdrop_path} />
       </DetailsPoster.Inner>

@@ -15,7 +15,10 @@ export const initialState = {
   visible: false,
 };
 
-export default function trailerReducer(state = intialState, { type, payload }) {
+export default function trailerReducer(
+  state = initialState,
+  { type, payload },
+) {
   switch (type) {
     case SET_VIDEOS:
       return {

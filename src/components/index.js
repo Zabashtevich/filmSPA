@@ -21,3 +21,4 @@ export { default as Modal } from "./modal";
 export { default as Gallery } from "./gallery";
 export { default as DetailsPoster } from "./details-poster";
 export { default as Thumbnail } from "./thumbnail";
+export { default as Trailer } from "./trailer";

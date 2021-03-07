@@ -67,6 +67,9 @@ export const Button = styled.button`
   &:enabled:active {
     transform: scale(0.95);
   }
+  &:disabled {
+    visibility: hidden;
+  }
 `;
 
 export const Left = styled(BsChevronLeft)``;

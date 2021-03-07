@@ -5,8 +5,6 @@ import {
   DetailsPosterContainer,
   DetailsPanelContainer,
   HeaderContainer,
-  GalleryContainer,
-  TrailerContainer,
 } from "../containers";
 
 export default function DetailsPage() {
@@ -15,8 +13,7 @@ export default function DetailsPage() {
       <HeaderContainer />
       <DetailsPosterContainer />
       <DetailsPanelContainer />
-      <GalleryContainer />
-      <TrailerContainer />
+
       <FooterContainer />
     </>
   );

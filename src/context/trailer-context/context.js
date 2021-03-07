@@ -18,6 +18,7 @@ export default function TrailerContextProvider({ children }) {
     if (payload.length > 0) {
       dispatch({ type: SET_MOUNTED });
       dispatch({ type: SET_VIDEOS, payload });
+      dispatch({ type: SET_URL, payload: payload[0] });
     }
   }
 

@@ -13,3 +13,4 @@ export { default as ModalContainer } from "./modal";
 export { default as GalleryContainer } from "./gallery";
 export { default as DetailsPosterContainer } from "./details-poster";
 export { default as ThumbnailContainer } from "./thumbnail";
+export { default as TrailerContainer } from "./trailer";

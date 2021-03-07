@@ -1,6 +1,7 @@
 import styled from "styled-components/macro";
 
 import { FcGallery } from "react-icons/fc";
+import { FaYoutube } from "react-icons/fa";
 
 export const Container = styled.div`
   font-size: ${({ theme }) => theme.font.aux.size.huge};
@@ -17,4 +18,6 @@ export const Container = styled.div`
 
 export const Gallery = styled(FcGallery)``;
 
-export const Trailer = styled()``;
+export const Trailer = styled(FaYoutube)`
+  color: #ff0000;
+`;

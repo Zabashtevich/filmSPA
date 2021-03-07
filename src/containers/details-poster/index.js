@@ -4,13 +4,13 @@ import { useFetch } from "../../hooks";
 
 import { DetailsPoster } from "../../components";
 import DetailsPosterRows from "./items/details-poster-rows";
-import { GalleryContainer } from "..";
 import {
   CreditsSkeleton,
   PosterDetailsRowsSkeleton,
   PosterSkeleton,
 } from "../../components/skeleton";
 import { useGalleryContext, useTrailerContext } from "../../context";
+import { ThumbnailContainer } from "..";
 
 export default function DetailsPosterContainer() {
   const [, { setVideos }] = useTrailerContext();
@@ -48,7 +48,8 @@ export default function DetailsPosterContainer() {
 
       <DetailsPoster.Column type={"poster"} visible={!loading && !posterDelay}>
         <DetailsPoster.Poster src={data?.poster_path} />
-        <GalleryContainer />
+        <ThumbnailContainer type="gallery" />
+        <ThumbnailContainer type="youtube" />
       </DetailsPoster.Column>
 
       <DetailsPoster.Column

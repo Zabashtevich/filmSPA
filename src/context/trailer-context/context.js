@@ -1,6 +1,13 @@
 import React, { useReducer, createContext } from "react";
 import trailerReducer, { initialState } from "./reducer";
-import { CLOSE_MODAL, FINISH_PROCESS, SET_URL, SHOW_MODAL } from "./types";
+import {
+  CLOSE_MODAL,
+  FINISH_PROCESS,
+  SET_URL,
+  SHOW_MODAL,
+  SET_MOUNTED,
+  SET_VIDEOS,
+} from "./types";
 
 export const TrailerContext = createContext(null);
 

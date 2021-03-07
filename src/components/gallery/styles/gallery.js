@@ -6,20 +6,9 @@ import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 
 export const Thumbnail = styled.div`
   font-family: ${({ theme }) => theme.font.aux.family};
-  background-color: rgba(255, 255, 255, 1);
-  align-self: flex-start;
-  border-radius: 10px;
-  padding: 10px;
-  cursor: pointer;
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.7);
-    transition: 300ms;
-  }
 `;
 
-export const Placeholder = styled(FcGallery)`
-  font-size: ${({ theme }) => theme.font.aux.size.huge};
-`;
+export const Placeholder = styled(FcGallery)``;
 
 export const Backdrop = styled.div`
   background: ${({ theme }) => theme.colors.backdrop};

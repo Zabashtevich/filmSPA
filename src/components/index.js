@@ -19,5 +19,5 @@ export { default as ProcessWindow } from "./process-window";
 export { default as Recommendation } from "./recommendation";
 export { default as Modal } from "./modal";
 export { default as Gallery } from "./gallery";
-export { default as Trailer } from "./trailer";
 export { default as DetailsPoster } from "./details-poster";
+export { default as Thumbnail } from "./thumbnail";

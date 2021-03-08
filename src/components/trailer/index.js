@@ -1,4 +1,6 @@
 import React from "react";
+import { CSSTransition } from "react-transition-group";
+
 import { w200miniature } from "../../constants/constants";
 
 import {
@@ -21,8 +23,19 @@ import {
   Meta,
 } from "./styles/trailer";
 
-export default function Trailer({ children, ...rest }) {
-  return <Backdrop {...rest}>{children}</Backdrop>;
+export default function Trailer({ visible, children, ...rest }) {
+  return (
+    <CSSTransition
+      classNames="fade"
+      appear={true}
+      mountOnEnter
+      unmountOnExit
+      timeout={500}
+      in={true}
+    >
+      <Backdrop {...rest}>{children}</Backdrop>
+    </CSSTransition>
+  );
 }
 
 Trailer.Close = function TrailerClose({ ...rest }) {
@@ -33,8 +46,20 @@ Trailer.Container = function TrailerContainer({ children, ...rest }) {
   return <Container {...rest}>{children}</Container>;
 };
 
-Trailer.Videoplayer = function TrailerVideoplayer({ ...rest }) {
-  return <Videoplayer {...rest} />;
+Trailer.Videoplayer = function TrailerVideoplayer({ src, ...rest }) {
+  return (
+    <Videoplayer
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      src={`https://www.youtube.com/embed/${src}`}
+      width="1140"
+      height="850"
+      webkitallowfullscreen
+      mozallowfullscreen
+      allowfullscreen
+      {...rest}
+    />
+  );
 };
 
 Trailer.Wrapper = function TrailerWrapper({ children, ...rest }) {

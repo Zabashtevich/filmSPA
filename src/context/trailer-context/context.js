@@ -18,11 +18,12 @@ export default function TrailerContextProvider({ children }) {
     if (payload.length > 0) {
       dispatch({ type: SET_MOUNTED });
       dispatch({ type: SET_VIDEOS, payload });
-      dispatch({ type: SET_URL, payload: payload[0] });
+      dispatch({ type: SET_URL, payload: payload[0].key });
     }
   }
 
   function showModal() {
+    document.body.style.overflow = "hidden";
     dispatch({ type: SHOW_MODAL });
   }
 
@@ -31,6 +32,7 @@ export default function TrailerContextProvider({ children }) {
   }
 
   function closeModal() {
+    document.body.style.overflow = "auto";
     dispatch({ type: CLOSE_MODAL });
   }
 

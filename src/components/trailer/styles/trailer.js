@@ -3,6 +3,7 @@ import styled, { css } from "styled-components/macro";
 import { GrClose } from "react-icons/gr";
 
 export const Backdrop = styled.div`
+  ${({ theme }) => theme.animations.fade(500, 500, 500)};
   font-family: ${({ theme }) => theme.font.aux.family};
   background: ${({ theme }) => theme.colors.backdrop};
   position: fixed;
@@ -14,6 +15,7 @@ export const Backdrop = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 `;
 
 export const Close = styled(GrClose)`
@@ -32,9 +34,14 @@ export const Container = styled.div`
   height: 850px;
   display: flex;
   align-items: center;
+  position: relative;
 `;
 
-export const Videoplayer = styled.iframe``;
+export const Videoplayer = styled.iframe`
+  position: absolute;
+  top: 0;
+  left: 0;
+`;
 
 export const Wrapper = styled.div`
   background-color: #333;
@@ -108,7 +115,12 @@ export const Amount = styled.span`
 `;
 
 export const List = styled.div`
+  height: 80%;
   width: 100%;
+  overflow-y: scroll;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const Item = styled.div`
@@ -116,6 +128,7 @@ export const Item = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
+  position: relative;
   &:hover {
     background-color: rgba(255, 255, 255, 0.4);
     transition: 300ms;

@@ -1,7 +1,12 @@
 import ContentLoader from "react-content-loader";
 import { CSSTransition } from "react-transition-group";
 
-import { ActiveWrapper, MiniatureWrapper } from "./styles/skeleton";
+import {
+  ActiveWrapper,
+  MiniatureWrapper,
+  VideoplayerWrapper,
+  ItemTrailerWrapper,
+} from "./styles/skeleton";
 
 export function CardListSkeleton() {
   return (
@@ -88,7 +93,7 @@ export function PosterDetailsRowsSkeleton() {
       <rect x="0" y="180" rx="5" ry="5" width="300" height="15" />
       <rect x="0" y="215" rx="5" ry="5" width="300" height="15" />
       <rect x="0" y="250" rx="5" ry="5" width="300" height="15" />
-      <rect x="-1" y="285" rx="5" ry="5" width="300" height="15" />
+      <rect x="0" y="285" rx="5" ry="5" width="300" height="15" />
       <rect x="0" y="320" rx="5" ry="5" width="300" height="15" />
       <rect x="0" y="355" rx="5" ry="5" width="300" height="15" />
       <rect x="0" y="390" rx="5" ry="5" width="300" height="15" />
@@ -138,5 +143,57 @@ export function CreditsSkeleton() {
       <rect x="0" y="184" rx="4" ry="4" width="200" height="5" />
       <rect x="0" y="210" rx="4" ry="4" width="200" height="5" />
     </ContentLoader>
+  );
+}
+
+export function VideoplayerSkeleton({ visible }) {
+  return (
+    <CSSTransition
+      appear={true}
+      in={visible}
+      classNames="fade"
+      mountOnEnter
+      unmountOnExit
+      timeout={500}
+    >
+      <VideoplayerWrapper>
+        <ContentLoader
+          speed={2}
+          width={1140}
+          height={850}
+          viewBox="0 0 1140 850"
+          backgroundColor="#dadada"
+          foregroundColor="#fafafa"
+        >
+          <rect x="0" y="0" rx="0" ry="0" width="1140" height="850" />
+        </ContentLoader>
+      </VideoplayerWrapper>
+    </CSSTransition>
+  );
+}
+
+export function ItemTrailerSkeleton({ visible }) {
+  return (
+    <CSSTransition
+      appear={true}
+      in={visible}
+      classNames="fade"
+      mountOnEnter
+      unmountOnExit
+      timeout={500}
+    >
+      <ItemTrailerWrapper>
+        <ContentLoader
+          speed={2}
+          width={140}
+          height={80}
+          viewBox="0 0 140 80"
+          backgroundColor="#dadada"
+          foregroundColor="#fafafa"
+        >
+          <rect x="0" y="0" rx="0" ry="0" width="140" height="80" />
+        </ContentLoader>
+      </ItemTrailerWrapper>
+    </CSSTransition>
   );
 }

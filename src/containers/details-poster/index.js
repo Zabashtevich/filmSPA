@@ -51,7 +51,7 @@ export default function DetailsPosterContainer() {
       <DetailsPoster.Column type={"poster"} visible={!loading && !posterDelay}>
         <DetailsPoster.Poster src={data?.poster_path} />
         <ThumbnailContainer type="gallery" />
-        <ThumbnailContainer type="youtube" />
+        <ThumbnailContainer type="trailer" />
       </DetailsPoster.Column>
 
       <DetailsPoster.Column

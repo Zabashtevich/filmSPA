@@ -34,7 +34,7 @@ export default function trailerReducer(
     case SET_URL:
       return { ...state, url: payload, process: true };
     case CLOSE_MODAL:
-      return { ...state, url: null, visible: false };
+      return { ...state, visible: false };
     default:
       return state;
   }

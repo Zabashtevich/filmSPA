@@ -5,16 +5,18 @@ import { Widget } from "../../components";
 export default function WidgetContainer() {
   return (
     <Widget>
-      SAVE
+      <Widget.Title>ADD TO LIST</Widget.Title>
       <Widget.Placeholder />
       <Widget.Container>
         <Widget.Close />
-        <Widget.Title>Add to list:</Widget.Title>
+        <Widget.Subtitle>Category:</Widget.Subtitle>
         <Widget.Userlist>
           <Widget.Arrow />
+          Your list
         </Widget.Userlist>
         <Widget.Favorite>
           <Widget.Arrow />
+          Favorite
         </Widget.Favorite>
         <Widget.List>
           <Widget.Item></Widget.Item>

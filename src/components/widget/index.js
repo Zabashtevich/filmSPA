@@ -9,6 +9,7 @@ import {
   Title,
   Userlist,
   Favorite,
+  Subtitle,
   List,
   Item,
 } from "./styles/widget";
@@ -16,6 +17,10 @@ import {
 export default function Widget({ children, ...rest }) {
   return <Thumbnail {...rest}>{children}</Thumbnail>;
 }
+
+Widget.Title = function WidgetTitle({ children, ...rest }) {
+  return <Title {...rest}>{children}</Title>;
+};
 
 Widget.Placeholder = function WidgetPlaceholder({ ...rest }) {
   return <Placeholder {...rest} />;
@@ -33,8 +38,8 @@ Widget.Close = function WidgetClose({ ...rest }) {
   return <Close {...rest} />;
 };
 
-Widget.Title = function WidgetTitle({ children, ...rest }) {
-  return <Title {...rest}>{children}</Title>;
+Widget.Subtitle = function WidgetSubtitle({ children, ...rest }) {
+  return <Subtitle {...rest}>{children}</Subtitle>;
 };
 
 Widget.Userlist = function UserlistUserlist({ children, ...rest }) {

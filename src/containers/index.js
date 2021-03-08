@@ -15,3 +15,4 @@ export { default as DetailsPosterContainer } from "./details-poster";
 export { default as ThumbnailContainer } from "./thumbnail";
 export { default as TrailerContainer } from "./trailer";
 export { default as WidgetContainer } from "./widget";
+export { default as ActorPosterContainer } from "./actor-poster";

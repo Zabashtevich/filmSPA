@@ -23,3 +23,4 @@ export { default as DetailsPoster } from "./details-poster";
 export { default as Thumbnail } from "./thumbnail";
 export { default as Trailer } from "./trailer";
 export { default as Widget } from "./widget";
+export { default as ActorPoster } from "./actor-poster";

@@ -37,12 +37,15 @@ export default function WidgetContainer({ data }) {
     }
   }
 
+  function handleClose() {
+    setPopupVisible({ main: false, aux: false });
+  }
+
   useEffect(() => {
     if (main || aux) {
-      document.body.addEventListener("click", () =>
-        setPopupVisible({ main: false, aux: false }),
-      );
+      document.body.addEventListener("click", handleClose);
     }
+    return () => document.body.removeEventListener("click", handleClose);
   }, [main, aux]);
 
   return (

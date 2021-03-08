@@ -8,6 +8,7 @@ import {
   ReviewPage,
   AccountPage,
   AccountEditPage,
+  ActorPage,
 } from "./pages";
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           component={AccountPage}
           exact
         />
+        <Route path="/actor/:slug" exact component={ActorPage} />
         <Route path="/account/:slug/edit" component={AccountEditPage} exact />
       </Switch>
     </Router>

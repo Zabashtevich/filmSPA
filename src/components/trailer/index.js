@@ -81,8 +81,13 @@ Trailer.Item = function TrailerItem({ children, ...rest }) {
   return <Item {...rest}>{children}</Item>;
 };
 
-Trailer.Preview = function TrailerPreview({ ...rest }) {
-  return <Preview {...rest} />;
+Trailer.Preview = function TrailerPreview({ src, ...rest }) {
+  return (
+    <Preview
+      {...rest}
+      src={`https://img.youtube.com/vi/${src}/mqdefault.jpg`}
+    />
+  );
 };
 
 Trailer.Subtitle = function TrailerSubtitle({ children, ...rest }) {

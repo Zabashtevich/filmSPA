@@ -27,20 +27,22 @@ export default function TrailerContainer({ data }) {
               <Trailer.Meta>
                 <Trailer.Title>{data.title}</Trailer.Title>
                 <Trailer.Description>
-                  {data.genres.map((item) => item.name).join(", ")}
+                  {data.genres.map((item) => item.name).join(" , ")}
                 </Trailer.Description>
                 <Trailer.Row>
-                  <Trailer.Average>{data.vote_average}</Trailer.Average>
-                  <Trailer.Amount>{data.vote_amount}</Trailer.Amount>
+                  <Trailer.Average average={data.vote_average}>
+                    {data.vote_average}
+                  </Trailer.Average>
+                  <Trailer.Amount>{data.vote_count}</Trailer.Amount>
                 </Trailer.Row>
               </Trailer.Meta>
             </Trailer.Info>
             <Trailer.List>
-              {visible &&
-                videos.map(({}) => (
-                  <Trailer.Item>
-                    <Trailer.Preview />
-                    <Trailer.Subtitle></Trailer.Subtitle>
+              {!!videos &&
+                videos.map(({ id, key, name }) => (
+                  <Trailer.Item key={id}>
+                    <Trailer.Preview src={key} />
+                    <Trailer.Subtitle>{name}</Trailer.Subtitle>
                   </Trailer.Item>
                 ))}
             </Trailer.List>

@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 
 import { GrClose } from "react-icons/gr";
 
@@ -41,28 +41,94 @@ export const Wrapper = styled.div`
   margin-left: auto;
   height: 100%;
   width: 360px;
+  display: flex;
+  flex-direction: column;
 `;
 
-export const Info = styled.div``;
+export const Info = styled.div`
+  width: 100%;
+  height: 20%;
+  display: flex;
+  border-bottom: 1px solid rgb(255 255 255 / 10%);
+`;
 
-export const Poster = styled.img``;
+export const Poster = styled.img`
+  border-radius: 4px;
+  height: 120px;
+  width: 80px;
+  margin: 1.5rem 1.5rem 0;
+`;
 
-export const Meta = styled.div``;
+export const Meta = styled.div`
+  color: white;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+`;
 
-export const Title = styled.span``;
+export const Title = styled.span`
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
+`;
 
-export const Description = styled.span``;
+export const Description = styled.span`
+  font-size: ${({ theme }) => theme.font.aux.size.small};
+  font-weight: ${({ theme }) => theme.font.aux.weight.light};
+  margin-top: 0.5rem;
+`;
 
-export const Row = styled.div``;
+export const Row = styled.div`
+  margin-top: 1rem;
+`;
 
-export const Average = styled.span``;
+export const Average = styled.span`
+  font-size: ${({ theme }) => theme.font.aux.size.big};
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
+  ${({ average }) =>
+    average > 5 &&
+    css`
+      color: #3bb33b;
+    `};
+  ${({ average }) =>
+    average < 5 &&
+    css`
+      color: red;
+    `};
+  ${({ average }) =>
+    average === 5 &&
+    css`
+      color: hsla(0, 0%, 100%, 0.4);
+    `};
+`;
+export const Amount = styled.span`
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
+  font-weight: ${({ theme }) => theme.font.aux.weight.light};
+  color: hsla(0, 0%, 100%, 0.4);
+  margin-left: 0.4rem;
+`;
 
-export const Amount = styled.span``;
+export const List = styled.div`
+  width: 100%;
+`;
 
-export const List = styled.div``;
+export const Item = styled.div`
+  padding: 0.5rem 1.5rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+    transition: 300ms;
+  }
+`;
 
-export const Item = styled.div``;
+export const Preview = styled.img`
+  width: 140px;
+`;
 
-export const Preview = styled.img``;
-
-export const Subtitle = styled.span``;
+export const Subtitle = styled.span`
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
+  font-weight: ${({ theme }) => theme.font.aux.weight.light};
+  margin-left: 0.4rem;
+  color: white;
+`;

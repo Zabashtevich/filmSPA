@@ -1,6 +1,8 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
+import { Link as ReactRouterLink } from "react-router-dom";
 
-import { GrClose, GrFormAdd, GrPrevious } from "react-icons/gr";
+import { GrFormAdd, GrPrevious } from "react-icons/gr";
+import { AiFillHeart } from "react-icons/ai";
 
 export const Thumbnail = styled.div`
   font-family: ${({ theme }) => theme.font.aux.family};
@@ -33,21 +35,16 @@ export const Placeholder = styled(GrFormAdd)`
 `;
 
 export const Container = styled.div`
+  ${({ theme }) => theme.animations.fade(500, 500, 500)};
   background-color: white;
   position: absolute;
   top: calc(100% + 8px);
+  right: 0;
   border-radius: 0.2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  width: 120px;
-`;
-
-export const Close = styled(GrClose)`
-  position: absolute;
-  display: none;
-  top: 0;
 `;
 
 export const Subtitle = styled.div`
@@ -60,14 +57,19 @@ export const Subtitle = styled.div`
 
 export const Arrow = styled(GrPrevious)`
   font-size: ${({ theme }) => theme.font.aux.size.small};
-  margin-left: 0.5rem;
+  transition: 300ms;
+  ${({ rotate }) =>
+    rotate &&
+    css`
+      transform: rotate(180deg);
+    `};
 `;
 
 export const Userlist = styled.div`
   padding: 0.3rem 0.4rem;
   align-self: flex-end;
   position: relative;
-  width: 100%;
+  width: 150px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -79,19 +81,55 @@ export const Userlist = styled.div`
 
 export const Favorite = styled.div`
   padding: 0.3rem 0.4rem;
-  align-self: flex-end;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   margin-bottom: 0.4rem;
-  width: 100%;
+  text-align: end;
+  width: 150px;
   &:hover {
     background-color: rgba(0, 0, 0, 0.1);
     transition: 300ms;
   }
 `;
 
-export const List = styled.div``;
+export const List = styled.div`
+  ${({ theme }) => theme.animations.fade(500, 500, 500)};
+  background-color: white;
+  right: calc(100% + 8px);
+  border-radius: 0.2rem;
+  position: absolute;
+  width: 200px;
+  min-height: 100px;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+`;
 
-export const Item = styled.div``;
+export const Item = styled.div`
+  text-align: center;
+  padding: 0.2rem 0.4rem;
+  margin-top: 0.2rem;
+  text-align: end;
+  width: auto;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    transition: 300ms;
+  }
+`;
+
+export const Link = styled(ReactRouterLink)`
+  padding: 0.2rem 0.4rem;
+  text-decoration: none;
+  align-self: flex-end;
+  margin-top: auto;
+  color: gray;
+  &:hover {
+    color: black;
+    transition: 300ms;
+  }
+`;
+
+export const Heart = styled(AiFillHeart)`
+  position: absolute;
+  color: red;
+  left: 5%;
+`;

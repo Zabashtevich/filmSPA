@@ -1,17 +1,19 @@
 import React from "react";
+import { CSSTransition } from "react-transition-group";
 
 import {
   Thumbnail,
   Placeholder,
   Arrow,
   Container,
-  Close,
+  Heart,
   Title,
   Userlist,
   Favorite,
   Subtitle,
   List,
   Item,
+  Link,
 } from "./styles/widget";
 
 export default function Widget({ children, ...rest }) {
@@ -30,12 +32,34 @@ Widget.Arrow = function WidgetArrow({ ...rest }) {
   return <Arrow {...rest} />;
 };
 
-Widget.Container = function WidgetContainer({ children, ...rest }) {
-  return <Container {...rest}>{children}</Container>;
+Widget.Container = function WidgetContainer({ visible, children, ...rest }) {
+  return (
+    <CSSTransition
+      in={visible}
+      classNames="fade"
+      appear={true}
+      mountOnEnter
+      unmountOnExit
+      timeout={500}
+    >
+      <Container {...rest}>{children}</Container>
+    </CSSTransition>
+  );
 };
 
-Widget.Close = function WidgetClose({ ...rest }) {
-  return <Close {...rest} />;
+Widget.Heart = function WidgetHeart({ visible, ...rest }) {
+  return (
+    <CSSTransition
+      in={visible}
+      classNames="fade"
+      appear={true}
+      mountOnEnter
+      unmountOnExit
+      timeout={500}
+    >
+      <Heart {...rest} />
+    </CSSTransition>
+  );
 };
 
 Widget.Subtitle = function WidgetSubtitle({ children, ...rest }) {
@@ -50,10 +74,25 @@ Widget.Favorite = function WidgetFavorite({ children, ...rest }) {
   return <Favorite {...rest}>{children}</Favorite>;
 };
 
-Widget.List = function WidgetList({ children, ...rest }) {
-  return <List {...rest}>{children}</List>;
+Widget.List = function WidgetList({ visible, children, ...rest }) {
+  return (
+    <CSSTransition
+      in={visible}
+      classNames="fade"
+      appear={true}
+      mountOnEnter
+      unmountOnExit
+      timeout={500}
+    >
+      <List {...rest}>{children}</List>
+    </CSSTransition>
+  );
 };
 
 Widget.Item = function WidgetItem({ children, ...rest }) {
   return <Item {...rest}>{children}</Item>;
+};
+
+Widget.Link = function WidgetLink({ children, ...rest }) {
+  return <Link {...rest}>{children}</Link>;
 };

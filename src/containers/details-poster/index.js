@@ -88,7 +88,7 @@ export default function DetailsPosterContainer() {
               {name}
             </DetailsPoster.Link>
           ))}
-        <WidgetContainer />
+        <WidgetContainer data={data} />
       </DetailsPoster.Column>
     </DetailsPoster>
   );

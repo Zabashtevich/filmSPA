@@ -16,7 +16,6 @@ export { default as VotePopup } from "./vote-popup";
 export { default as Filter } from "./filter";
 export { default as Review } from "./review";
 export { default as ProcessWindow } from "./process-window";
-export { default as Recommendation } from "./recommendation";
 export { default as Modal } from "./modal";
 export { default as Gallery } from "./gallery";
 export { default as DetailsPoster } from "./details-poster";

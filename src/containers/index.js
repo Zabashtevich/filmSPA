@@ -8,7 +8,6 @@ export { default as TabContainer } from "./tab";
 export { default as LoadMoreContainer } from "./load-more";
 export { default as StatePaginationContainer } from "./state-pagination";
 export { default as ProcessWindowContainer } from "./process-window";
-export { default as RecommendationContainer } from "./recommendation";
 export { default as ModalContainer } from "./modal";
 export { default as GalleryContainer } from "./gallery";
 export { default as DetailsPosterContainer } from "./details-poster";

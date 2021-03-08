@@ -1,21 +1,66 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  font-family: ${({ theme }) => theme.font.aux.family};
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+`;
 
-export const Column = styled.div``;
+export const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  ${({ type }) =>
+    type === "poster" &&
+    css`
+      width: 300px;
+      align-items: center;
+    `};
+  ${({ type }) =>
+    type === "content" &&
+    css`
+      margin-left: 2rem;
+      max-width: 800px;
+    `};
+`;
 
-export const Poster = styled.div``;
+export const Poster = styled.img`
+  border-radius: 5px;
+`;
 
-export const Info = styled.div``;
+export const Row = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin-top: 0.5rem;
+`;
 
-export const Row = styled.div``;
+export const Fieldname = styled.div`
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
+`;
 
-export const Fieldname = styled.div``;
+export const Fieldvalue = styled.div`
+  font-weight: ${({ theme }) => theme.font.aux.weight.light};
+`;
 
-export const Fieldvalue = styled.div``;
+export const Biography = styled.div`
+  max-width: 800px;
+`;
 
-export const Biography = styled.div``;
+export const Title = styled.div`
+  font-size: ${({ theme }) => theme.font.aux.size.large};
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
+`;
 
-export const Title = styled.div``;
-
-export const Subtitle = styled.div``;
+export const Subtitle = styled.div`
+  font-size: ${({ theme }) => theme.font.aux.size.big};
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
+  margin: 5rem 0 2rem;
+  ${({ type }) =>
+    type === "info" &&
+    css`
+      margin: 2rem auto;
+    `};
+`;

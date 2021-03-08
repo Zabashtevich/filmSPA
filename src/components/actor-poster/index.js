@@ -1,10 +1,10 @@
 import React from "react";
+import { w300miniature } from "../../constants/constants";
 
 import {
   Container,
   Column,
   Poster,
-  Info,
   Row,
   Fieldname,
   Fieldvalue,
@@ -21,12 +21,8 @@ ActorPoster.Column = function ActorPosterColumn({ children, ...rest }) {
   return <Column {...rest}>{children}</Column>;
 };
 
-ActorPoster.Poster = function ActorPosterPoster({ ...rest }) {
-  return <Poster {...rest} />;
-};
-
-ActorPoster.Info = function ActorPosterInfo({ children, ...rest }) {
-  return <Info {...rest}>{children}</Info>;
+ActorPoster.Poster = function ActorPosterPoster({ src, ...rest }) {
+  return <Poster {...rest} src={`${w300miniature}${src}`} />;
 };
 
 ActorPoster.Row = function ActorPosterRow({ children, ...rest }) {
@@ -42,7 +38,15 @@ ActorPoster.Fieldvalue = function ActorPosterFieldvalue({ children, ...rest }) {
 };
 
 ActorPoster.Biography = function ActorPosterBiography({ children, ...rest }) {
-  return <Biography {...rest}>{children}</Biography>;
+  const [...text] = children.split("\n");
+
+  return (
+    <Biography {...rest}>
+      {text.map((item, index) => (
+        <p key={index}>{item}</p>
+      ))}
+    </Biography>
+  );
 };
 
 ActorPoster.Title = function ActorPosterTitle({ children, ...rest }) {

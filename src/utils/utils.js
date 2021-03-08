@@ -72,14 +72,6 @@ export const getCorrectSrc = (data) => {
   return correctSrc;
 };
 
-export const getKnownFor = (data) => {
-  const sortedData = data.sort(
-    (prev, item) => item.popularity - prev.popularity,
-  );
-  const resultArray = sortedData.splice(0, 10);
-  return resultArray;
-};
-
 export const getRightReleasedDate = (date) => {
   if (!date) return "Unknown";
   const correctDate = date.substring(0, date.indexOf("-"));

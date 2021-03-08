@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 import { DetailsPanel } from "../../components";
 import {
   ProcessWindowContainer,
-  RecommendationContainer,
   StatePaginationContainer,
   ModalContainer,
 } from "../";
@@ -50,10 +49,6 @@ export default function CardDetailsPanelContainer() {
         <ProcessWindowContainer />
         <ModalContainer />
         <DetailsPanel>
-          <RecommendationContainer
-            list={list?.recommendations?.results || []}
-            type={direction}
-          />
           <DetailsPanel.Wrapper>
             <DetailsPanel.Title>Overview</DetailsPanel.Title>
             <DetailsPanel.Overview>{list.overview}</DetailsPanel.Overview>

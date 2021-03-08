@@ -88,6 +88,9 @@ export const Favorite = styled.div`
     background-color: rgba(0, 0, 0, 0.1);
     transition: 300ms;
   }
+  &:disabled {
+    pointer-events: none;
+  }
 `;
 
 export const List = styled.div`
@@ -114,6 +117,9 @@ export const Item = styled.div`
     background-color: rgba(0, 0, 0, 0.1);
     transition: 300ms;
   }
+  &:disabled {
+    pointer-events: none;
+  }
 `;
 
 export const Link = styled(ReactRouterLink)`
@@ -129,6 +135,7 @@ export const Link = styled(ReactRouterLink)`
 `;
 
 export const Heart = styled(AiFillHeart)`
+  ${({ theme }) => theme.animations.fade(500, 500, 500)};
   position: absolute;
   color: red;
   left: 5%;

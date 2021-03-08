@@ -6,6 +6,7 @@ import {
   MiniatureWrapper,
   VideoplayerWrapper,
   ItemTrailerWrapper,
+  WidgetWrapper,
 } from "./styles/skeleton";
 
 export function CardListSkeleton() {
@@ -195,5 +196,31 @@ export function ItemTrailerSkeleton({ visible }) {
         </ContentLoader>
       </ItemTrailerWrapper>
     </CSSTransition>
+  );
+}
+
+export function WidgetSkeleton({ visible }) {
+  return (
+    <WidgetWrapper>
+      <CSSTransition
+        appear={true}
+        in={visible}
+        classNames="fade"
+        mountOnEnter
+        unmountOnExit
+        timeout={500}
+      >
+        <ContentLoader
+          speed={2}
+          width={120}
+          height={25}
+          viewBox="0 0 120 25"
+          backgroundColor="#dadada"
+          foregroundColor="#fafafa"
+        >
+          <rect x="0" y="0" rx="4" ry="4" width="120" height="25" />
+        </ContentLoader>
+      </CSSTransition>
+    </WidgetWrapper>
   );
 }

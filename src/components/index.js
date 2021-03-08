@@ -22,3 +22,4 @@ export { default as Gallery } from "./gallery";
 export { default as DetailsPoster } from "./details-poster";
 export { default as Thumbnail } from "./thumbnail";
 export { default as Trailer } from "./trailer";
+export { default as Widget } from "./widget";

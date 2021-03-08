@@ -10,7 +10,12 @@ import {
   PosterSkeleton,
 } from "../../components/skeleton";
 import { useGalleryContext, useTrailerContext } from "../../context";
-import { ThumbnailContainer, TrailerContainer, GalleryContainer } from "..";
+import {
+  ThumbnailContainer,
+  TrailerContainer,
+  GalleryContainer,
+  WidgetContainer,
+} from "..";
 
 export default function DetailsPosterContainer() {
   const [, { setVideos }] = useTrailerContext();
@@ -83,6 +88,7 @@ export default function DetailsPosterContainer() {
               {name}
             </DetailsPoster.Link>
           ))}
+        <WidgetContainer />
       </DetailsPoster.Column>
     </DetailsPoster>
   );

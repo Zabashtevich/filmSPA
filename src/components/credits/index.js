@@ -21,7 +21,6 @@ import {
   Average,
   Amount,
   Button,
-  Star,
 } from "./styles/credits";
 
 export default function Credits({ children, ...rest }) {
@@ -111,8 +110,4 @@ Credits.Rating = function CreditsRating({ children, ...rest }) {
 
 Credits.Button = function CreditsButton({ children, ...rest }) {
   return <Button {...rest}>{children}</Button>;
-};
-
-Credits.Star = function CreditsStar({ ...rest }) {
-  return <Star {...rest} />;
 };

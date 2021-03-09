@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams } from "react-router";
+import { useSelector } from "react-redux";
 
 import { ActorPoster } from "../../components";
 import { useFetch } from "./../../hooks";
@@ -8,9 +9,11 @@ import { CreditsContainer, MovieListContainer } from "./..";
 
 export default function ActorPosterContainer() {
   const { slug } = useParams();
-  const [data, loading] = useFetch("person", slug);
-  console.log(data);
+  const [data, dataLoading] = useFetch("person", slug);
+
+  const { loading } = useSelector((state) => state.userData);
   return (
+    !dataLoading &&
     !loading && (
       <ActorPoster>
         <ActorPoster.Column type="poster">

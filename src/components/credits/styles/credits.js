@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components/macro";
 
 import { GoTriangleDown } from "react-icons/go";
+import { BiRadioCircle } from "react-icons/bi";
 
 export const Container = styled.div`
   font-family: ${({ theme }) => theme.font.aux.family};
@@ -61,7 +62,6 @@ export const Value = styled.span`
 `;
 
 export const Arrow = styled(GoTriangleDown)`
-  margin-left: 0.2rem;
   transition: 300ms;
   ${({ rotate }) =>
     rotate &&
@@ -79,28 +79,91 @@ export const List = styled.div`
 `;
 
 export const Item = styled.div`
-  justify-content: space-between;
+  align-items: center;
+  min-height: 50px;
+  display: flex;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    transition: 300ms;
+  }
+`;
+
+export const Year = styled.div`
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
+  text-align: center;
+  margin-left: 1rem;
+  width: 50px;
+`;
+
+export const Icon = styled(BiRadioCircle)`
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
+  margin-left: 2rem;
+`;
+
+export const Wrapper = styled.div`
+  flex-direction: column;
+  margin-left: 3rem;
+  display: flex;
+  width: 250px;
+`;
+
+export const Subtitle = styled.div`
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
+`;
+
+export const Role = styled.div`
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
+  font-weight: ${({ theme }) => theme.font.aux.weight.light};
+`;
+
+export const Meta = styled.div`
+  align-items: flex-end;
+  margin-left: 6rem;
   display: flex;
 `;
 
-export const Year = styled.div``;
+export const Average = styled.div`
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
+  ${({ value }) =>
+    value > 5 &&
+    css`
+      color: green;
+    `};
+  ${({ value }) =>
+    value < 5 &&
+    css`
+      color: red;
+    `};
+  ${({ value }) =>
+    value === 5 &&
+    css`
+      color: #333;
+    `};
+`;
 
-export const Icon = styled.div``;
+export const Amount = styled.div`
+  font-size: ${({ theme }) => theme.font.aux.size.small};
+  margin-left: 0.2rem;
+  color: gray;
+`;
 
-export const Wrapper = styled.div``;
+export const Rating = styled.div`
+  margin-left: auto;
+`;
 
-export const Subtitle = styled.div``;
-
-export const Role = styled.div``;
-
-export const Meta = styled.div``;
-
-export const Average = styled.div``;
-
-export const Amount = styled.div``;
-
-export const Rating = styled.div``;
-
-export const Button = styled.div``;
-
-export const Star = styled.div``;
+export const Button = styled.button`
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  justify-content: center;
+  border-radius: 0.2rem;
+  align-items: center;
+  margin-right: 1rem;
+  margin-left: auto;
+  cursor: pointer;
+  padding: 0.3rem;
+  display: flex;
+  outline: none;
+  &:active {
+    transform: scale(0.93);
+  }
+`;

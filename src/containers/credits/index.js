@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Credits } from "../../components";
 import { CreditsSelect } from "../../constants/constants";
-import { getSortedByType } from "../../utils";
+import { sortMoviesByDate, splitByType, splitDate } from "../../utils";
 
 export default function CreditsContainer({ list }) {
   const [{ value, visible }, setPopup] = useState({
@@ -18,7 +18,7 @@ export default function CreditsContainer({ list }) {
           onClick={() => setPopup((prev) => ({ ...prev, visible: !visible }))}
         >
           {value}
-          <Credits.Arrow rotate={visible && 1} />
+          <Credits.Arrow rotate={visible ? 1 : 0} />
           <Credits.Popup visible={visible}>
             {CreditsSelect.filter((item) => item.value !== value).map(
               ({ id, value }) => (
@@ -34,17 +34,21 @@ export default function CreditsContainer({ list }) {
         </Credits.Select>
       </Credits.Header>
       <Credits.List>
-        {array.map(() => (
-          <Credits.Item>
-            <Credits.Year></Credits.Year>
+        {sortMoviesByDate(array).map((item) => (
+          <Credits.Item key={item.id}>
+            <Credits.Year>
+              {splitDate(item.first_air_date || item.release_date) || "-"}
+            </Credits.Year>
             <Credits.Icon />
             <Credits.Wrapper>
-              <Credits.Title></Credits.Title>
-              <Credits.Role></Credits.Role>
+              <Credits.Title>
+                {item.title || item.name || item.orinal_title || "unknown"}
+              </Credits.Title>
+              <Credits.Role>{item.character}</Credits.Role>
             </Credits.Wrapper>
             <Credits.Meta>
-              <Credits.Average></Credits.Average>
-              <Credits.Amount></Credits.Amount>
+              <Credits.Average>{item.vote_average}</Credits.Average>
+              <Credits.Amount>{item.vote_count}</Credits.Amount>
             </Credits.Meta>
             <Credits.Rating></Credits.Rating>
             <Credits.Button>

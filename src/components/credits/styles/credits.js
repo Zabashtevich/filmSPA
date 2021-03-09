@@ -73,10 +73,15 @@ export const Arrow = styled(GoTriangleDown)`
 export const List = styled.div`
   box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
   border: 1px solid rgba(0, 0, 0, 0.3);
+  flex-direction: column;
   margin-top: 0.5rem;
+  display: flex;
 `;
 
-export const Item = styled.div``;
+export const Item = styled.div`
+  justify-content: space-between;
+  display: flex;
+`;
 
 export const Year = styled.div``;
 

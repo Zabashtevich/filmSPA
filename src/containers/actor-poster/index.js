@@ -9,7 +9,7 @@ import { CreditsContainer, MovieListContainer } from "./..";
 export default function ActorPosterContainer() {
   const { slug } = useParams();
   const [data, loading] = useFetch("person", slug);
-
+  console.log(data);
   return (
     !loading && (
       <ActorPoster>

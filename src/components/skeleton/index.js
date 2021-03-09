@@ -7,6 +7,7 @@ import {
   VideoplayerWrapper,
   ItemTrailerWrapper,
   WidgetWrapper,
+  ListPosterWrapper,
 } from "./styles/skeleton";
 
 export function CardListSkeleton() {
@@ -201,15 +202,15 @@ export function ItemTrailerSkeleton({ visible }) {
 
 export function WidgetSkeleton({ visible }) {
   return (
-    <WidgetWrapper>
-      <CSSTransition
-        appear={true}
-        in={visible}
-        classNames="fade"
-        mountOnEnter
-        unmountOnExit
-        timeout={500}
-      >
+    <CSSTransition
+      appear={true}
+      in={visible}
+      classNames="fade"
+      mountOnEnter
+      unmountOnExit
+      timeout={500}
+    >
+      <WidgetWrapper>
         <ContentLoader
           speed={2}
           width={120}
@@ -220,7 +221,33 @@ export function WidgetSkeleton({ visible }) {
         >
           <rect x="0" y="0" rx="4" ry="4" width="120" height="25" />
         </ContentLoader>
-      </CSSTransition>
-    </WidgetWrapper>
+      </WidgetWrapper>
+    </CSSTransition>
+  );
+}
+
+export function ListPosterSkeleton({ visible }) {
+  return (
+    <CSSTransition
+      appear={true}
+      in={visible}
+      classNames="fade"
+      mountOnEnter
+      unmountOnExit
+      timeout={500}
+    >
+      <ListPosterWrapper>
+        <ContentLoader
+          speed={2}
+          width={200}
+          height={112}
+          viewBox="0 0 200 112"
+          backgroundColor="#dadada"
+          foregroundColor="#fafafa"
+        >
+          <rect x="0" y="0" rx="4" ry="4" width="200" height="112" />
+        </ContentLoader>
+      </ListPosterWrapper>
+    </CSSTransition>
   );
 }

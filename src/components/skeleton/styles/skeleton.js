@@ -39,3 +39,10 @@ export const WidgetWrapper = styled.div`
   top: 0;
   left: 0;
 `;
+
+export const ListPosterWrapper = styled.div`
+  ${({ theme }) => theme.animations.fade(500, 500, 500)};
+  position: absolute;
+  top: 0;
+  left: 0;
+`;

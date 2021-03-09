@@ -1,4 +1,5 @@
 import React from "react";
+import { w200miniature } from "../../constants/constants";
 
 import {
   Container,
@@ -8,6 +9,7 @@ import {
   Title,
   Placeholder,
   Error,
+  Inner,
 } from "./styles/movie-list";
 
 export default function MovieList({ children, ...rest }) {
@@ -22,8 +24,16 @@ MovieList.Item = function MovieListItem({ children, ...rest }) {
   return <Item {...rest}>{children}</Item>;
 };
 
-MovieList.Poster = function MovieListPoster({ children, ...rest }) {
-  return <Poster {...rest}>{children}</Poster>;
+MovieList.Inner = function MovieListInner({ children, ...rest }) {
+  return <Inner {...rest}>{children}</Inner>;
+};
+
+MovieList.Poster = function MovieListPoster({ src, children, ...rest }) {
+  return (
+    <Poster {...rest} src={`${w200miniature + src}`}>
+      {children}
+    </Poster>
+  );
 };
 
 MovieList.Title = function MovieListTitle({ children, ...rest }) {
@@ -31,7 +41,13 @@ MovieList.Title = function MovieListTitle({ children, ...rest }) {
 };
 
 MovieList.Placeholder = function MovieListPlaceholder({ ...rest }) {
-  return <Placeholder {...rest} />;
+  return (
+    <Placeholder
+      {...rest}
+      src={`https://dummyimage.com/200x110/aaa/aaa
+  `}
+    />
+  );
 };
 
 MovieList.Error = function MovieListError({ children, ...rest }) {

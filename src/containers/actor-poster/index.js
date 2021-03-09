@@ -65,7 +65,6 @@ export default function ActorPosterContainer() {
           <MovieListContainer
             list={getKnownFor(data?.combined_credits?.cast) || []}
           />
-          <ActorPoster.Subtitle>Filmography:</ActorPoster.Subtitle>
           <CreditsContainer list={data.combined_credits.cast || []} />
         </ActorPoster.Column>
       </ActorPoster>

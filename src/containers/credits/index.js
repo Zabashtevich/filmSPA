@@ -1,13 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Credits } from "../../components";
-import { Item } from "../../components/credits/styles/credits";
+import { CreditsSelect } from "../../constants/constants";
+import { getSortedByType } from "../../utils";
 
 export default function CreditsContainer({ list }) {
+  const [{ value, visible }, setPopup] = useState({
+    value: "All",
+    visible: false,
+  });
+  const [array, setArray] = useState(list);
+
   return (
     <Credits>
-      {list.map((item) => {
-        console.log(item);
-        return (
+      <Credits.Header>
+        <Credits.Title>Filmography</Credits.Title>
+        <Credits.Select
+          onClick={() => setPopup((prev) => ({ ...prev, visible: !visible }))}
+        >
+          {value}
+          <Credits.Arrow rotate={visible && 1} />
+          <Credits.Popup visible={visible}>
+            {CreditsSelect.filter((item) => item.value !== value).map(
+              ({ id, value }) => (
+                <Credits.Value
+                  key={id}
+                  onClick={() => setPopup({ value, visible: false })}
+                >
+                  {value}
+                </Credits.Value>
+              ),
+            )}
+          </Credits.Popup>
+        </Credits.Select>
+      </Credits.Header>
+      <Credits.List>
+        {array.map(() => (
           <Credits.Item>
             <Credits.Year></Credits.Year>
             <Credits.Icon />
@@ -19,13 +46,14 @@ export default function CreditsContainer({ list }) {
               <Credits.Average></Credits.Average>
               <Credits.Amount></Credits.Amount>
             </Credits.Meta>
-            <Credits.Rating>
-              <Credits.Value></Credits.Value>
+            <Credits.Rating></Credits.Rating>
+            <Credits.Button>
               <Credits.Star />
-            </Credits.Rating>
+              <Credits.Arrow />
+            </Credits.Button>
           </Credits.Item>
-        );
-      })}
+        ))}
+      </Credits.List>
     </Credits>
   );
 }

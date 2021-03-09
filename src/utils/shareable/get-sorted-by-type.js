@@ -1,6 +1,11 @@
 export default function getSortedByType(array) {
-  const result = { tv: [], movie: [] };
-  array.map({item} => {
-      if
-  })
+  return array.reduce((acc, item) => {
+    console.log(acc);
+    if (item.media_type in acc) {
+      acc[`${item.media_type}`].push(item);
+    } else {
+      acc[item.media_type] = [];
+    }
+    return acc;
+  }, {});
 }

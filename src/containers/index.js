@@ -16,3 +16,4 @@ export { default as TrailerContainer } from "./trailer";
 export { default as WidgetContainer } from "./widget";
 export { default as ActorPosterContainer } from "./actor-poster";
 export { default as MovieListContainer } from "./movie-list";
+export { default as CreditsContainer } from "./credits";

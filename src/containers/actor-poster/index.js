@@ -4,7 +4,7 @@ import { useParams } from "react-router";
 import { ActorPoster } from "../../components";
 import { useFetch } from "./../../hooks";
 import { getKnownFor, splitDate } from "../../utils";
-import { MovieListContainer } from "./..";
+import { CreditsContainer, MovieListContainer } from "./..";
 
 export default function ActorPosterContainer() {
   const { slug } = useParams();
@@ -65,6 +65,8 @@ export default function ActorPosterContainer() {
           <MovieListContainer
             list={getKnownFor(data?.combined_credits?.cast) || []}
           />
+          <ActorPoster.Subtitle>Filmography:</ActorPoster.Subtitle>
+          <CreditsContainer list={data.combined_credits.cast || []} />
         </ActorPoster.Column>
       </ActorPoster>
     )

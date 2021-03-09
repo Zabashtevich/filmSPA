@@ -4,74 +4,73 @@ import { useForm } from "react-hook-form";
 import { CSSTransition } from "react-transition-group";
 
 import AuthForm from "../../components/auth-form";
-import { getErrorsList, getPreviewSrc, validateImg } from "../../utils/utils";
 import { authLogic } from "../../utils/firebase";
 import { RegistrationFormContainer, LoginFormContainer } from "./auxillary";
 import { SpinnerSmall } from "../../components/loading-spinner";
 import { firebase } from "./../../libs/firebase";
 
 export default function AuthContainer() {
-  const location = useParams();
-  const history = useHistory();
+  // const location = useParams();
+  // const history = useHistory();
 
-  const { register, handleSubmit, errors } = useForm();
-  const [errorsList, setErrorsList] = useState(null);
-  const [userLoading, setUserLoading] = useState(false);
-  const [userRedirect, setUserRedirect] = useState(false);
-  const [avatarLoading, setAvatarLoading] = useState(false);
-  const [avatarSrc, setAvatarSrc] = useState("./../assets/images/poster.png");
-  const [file, setFile] = useState(null);
-  const [isAvatarChanged, setIsAvatarChanged] = useState(false);
-  const [imgIsValid, setImgIsValid] = useState(false);
-  //TODO FIREBASE
+  // const { register, handleSubmit, errors } = useForm();
+  // const [errorsList, setErrorsList] = useState(null);
+  // const [userLoading, setUserLoading] = useState(false);
+  // const [userRedirect, setUserRedirect] = useState(false);
+  // const [avatarLoading, setAvatarLoading] = useState(false);
+  // const [avatarSrc, setAvatarSrc] = useState("./../assets/images/poster.png");
+  // const [file, setFile] = useState(null);
+  // const [isAvatarChanged, setIsAvatarChanged] = useState(false);
+  // const [imgIsValid, setImgIsValid] = useState(false);
+  // //TODO FIREBASE
 
-  useEffect(() => {
-    if (imgIsValid) {
-      getPreviewSrc(file, setAvatarSrc);
-      setIsAvatarChanged(true);
-      setAvatarLoading(false);
-    } else {
-      setAvatarSrc("./../assets/images/poster.png");
-    }
-  }, [imgIsValid, file]);
+  // useEffect(() => {
+  //   if (imgIsValid) {
+  //     getPreviewSrc(file, setAvatarSrc);
+  //     setIsAvatarChanged(true);
+  //     setAvatarLoading(false);
+  //   } else {
+  //     setAvatarSrc("./../assets/images/poster.png");
+  //   }
+  // }, [imgIsValid, file]);
 
-  useEffect(() => {
-    if (Object.keys(errors).length > 0) {
-      setErrorsList(getErrorsList(errors));
-    }
-  }, [errors, setErrorsList]);
+  // useEffect(() => {
+  //   if (Object.keys(errors).length > 0) {
+  //     setErrorsList(getErrorsList(errors));
+  //   }
+  // }, [errors, setErrorsList]);
 
-  const onSubmit = ({ nickname, email, password, repeatPassword }) => {
-    authLogic(
-      setUserLoading,
-      location.slug,
-      firebase,
-      nickname,
-      email,
-      password,
-      repeatPassword,
-      setErrorsList,
-      setUserRedirect,
-      history,
-      file,
-      isAvatarChanged,
-    );
-  };
+  // const onSubmit = ({ nickname, email, password, repeatPassword }) => {
+  //   authLogic(
+  //     setUserLoading,
+  //     location.slug,
+  //     firebase,
+  //     nickname,
+  //     email,
+  //     password,
+  //     repeatPassword,
+  //     setErrorsList,
+  //     setUserRedirect,
+  //     history,
+  //     file,
+  //     isAvatarChanged,
+  //   );
+  // };
 
-  const fileValidation = (e) => {
-    setAvatarLoading(true);
-    validateImg(
-      setErrorsList,
-      setAvatarLoading,
-      e.target.files[0],
-      setImgIsValid,
-      setFile,
-    );
-  };
+  // const fileValidation = (e) => {
+  //   setAvatarLoading(true);
+  //   validateImg(
+  //     setErrorsList,
+  //     setAvatarLoading,
+  //     e.target.files[0],
+  //     setImgIsValid,
+  //     setFile,
+  //   );
+  // };
 
-  return (
-    <>
-      {userRedirect ? (
+  return null;
+
+  /* {userRedirect ? (
         <Redirect to={"/"} />
       ) : (
         <AuthForm>
@@ -115,6 +114,5 @@ export default function AuthContainer() {
           </AuthForm.Form>
         </AuthForm>
       )}
-    </>
-  );
+    </> */
 }

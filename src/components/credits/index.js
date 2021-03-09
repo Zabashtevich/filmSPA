@@ -7,6 +7,7 @@ import {
   Year,
   Icon,
   Wrapper,
+  Role,
   Meta,
   Average,
   Amount,

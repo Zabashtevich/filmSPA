@@ -3,12 +3,12 @@ import { useParams } from "react-router";
 
 import { ActorPoster } from "../../components";
 import { useFetch } from "./../../hooks";
-import { getKnownFor } from "../../utils";
+import { splitDate } from "../../utils";
 
 export default function ActorPosterContainer() {
   const { slug } = useParams();
   const [data, loading] = useFetch("person", slug);
-  console.log(data);
+
   return (
     !loading && (
       <ActorPoster>
@@ -30,7 +30,7 @@ export default function ActorPosterContainer() {
           <ActorPoster.Row>
             <ActorPoster.Fieldname>Birthdate:</ActorPoster.Fieldname>
             <ActorPoster.Fieldvalue>
-              {data.birthday || "unknown"}
+              {splitDate(data.birthday) || "unknown"}
             </ActorPoster.Fieldvalue>
           </ActorPoster.Row>
           {!!data.deathday && (

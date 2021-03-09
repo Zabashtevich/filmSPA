@@ -2,6 +2,8 @@ import styled, { css } from "styled-components/macro";
 
 export const Container = styled.div`
   font-family: ${({ theme }) => theme.font.aux.family};
+  border-left: 1px solid rgba(0, 0, 0, 0.3);
+  border-right: 1px solid rgba(0, 0, 0, 0.3);
   max-width: 1300px;
   margin: 0 auto;
   display: flex;
@@ -10,7 +12,7 @@ export const Container = styled.div`
 export const Column = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 2rem;
+  margin: 2rem 1rem;
   ${({ type }) =>
     type === "poster" &&
     css`

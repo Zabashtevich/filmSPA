@@ -1,8 +1,6 @@
 export { default as AuthContainer } from "./auth";
 export { default as FooterContainer } from "./footer";
-export { default as HeaderContainer } from "./header";
 export { default as MainPageContainer } from "./main-page";
-export { default as ReviewPostContainer } from "./review-post";
 export { default as TabContainer } from "./tab";
 export { default as LoadMoreContainer } from "./load-more";
 export { default as StatePaginationContainer } from "./state-pagination";

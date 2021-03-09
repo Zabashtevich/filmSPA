@@ -5,7 +5,6 @@ import {
   DetailsPage,
   MainPage,
   AuthPage,
-  ReviewPage,
   AccountPage,
   AccountEditPage,
   ActorPage,
@@ -19,11 +18,7 @@ function App() {
         <Route path="/" component={MainPage} exact />
         <Route path="/details/:direction/:slug" component={DetailsPage} exact />
         <Route path="/authentication/:slug" component={AuthPage} />
-        <Route
-          path="/details/:direction/:slug/review"
-          component={ReviewPage}
-          exact
-        />
+
         <Route
           path={["/account/:slug", "/account/:slug/:filter"]}
           component={AccountPage}

@@ -1,18 +1,11 @@
 import React from "react";
 
-import {
-  FooterContainer,
-  DetailsPosterContainer,
-  DetailsPanelContainer,
-  HeaderContainer,
-} from "../containers";
+import { FooterContainer, DetailsPosterContainer } from "../containers";
 
 export default function DetailsPage() {
   return (
     <>
-      <HeaderContainer />
       <DetailsPosterContainer />
-      <DetailsPanelContainer />
       <FooterContainer />
     </>
   );

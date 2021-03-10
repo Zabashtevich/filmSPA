@@ -1,4 +1,4 @@
-export default function createEstimateItem(item) {
+export default function createEstimateItem(item, value) {
   return {
     time: new Date(),
     id: item.id,
@@ -8,5 +8,6 @@ export default function createEstimateItem(item) {
     average: item.vote_average,
     count: item.vote_count,
     popularity: item.popularity,
+    value,
   };
 }

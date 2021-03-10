@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router";
 
 import { Credits } from "../../components";
 import {
@@ -66,9 +65,7 @@ function CreditItem({ item, ratedMovies }) {
   const [ratingVisible, setRatingVisible] = useState(false);
   const [hoverIndex, setHoverIndex] = useState(0);
 
-  const { slug } = useParams();
-  console.log(ratedMovies);
-  const isRated = ratedMovies.find((item) => +item.id === +slug);
+  const isRated = ratedMovies.find((movie) => +movie.id === +item.id);
   const released = !!item.release_date || !!item.first_air_date;
 
   return (
@@ -94,28 +91,28 @@ function CreditItem({ item, ratedMovies }) {
         )}
       </Credits.Meta>
       {isRated && <Credits.Vote>{isRated.value}</Credits.Vote>}
-      <Credits.Widget
-        onClick={(e) => {
-          e.preventDefault();
-          setRatingVisible((prev) => !prev);
-        }}
-      >
-        <Credits.Rating visible={ratingVisible}>
-          <Credits.Close onClick={() => setRatingVisible(false)} />
-          {range(1, 10).map((index) => (
-            <Credits.Star
-              key={index}
-              active={hoverIndex >= index ? 1 : 0}
-              onMouseEnter={() => setHoverIndex(index)}
-              onMouseLeave={() => setHoverIndex(0)}
-              onClick={() =>
-                setProps({ type: "rate", value: createEstimateItem(item) })
-              }
-            />
-          ))}
-        </Credits.Rating>
-        <Credits.Star />
-      </Credits.Widget>
+      {!!released && (
+        <Credits.Widget onClick={() => setRatingVisible((prev) => !prev)}>
+          <Credits.Rating visible={ratingVisible}>
+            <Credits.Close />
+            {range(1, 10).map((index) => (
+              <Credits.Star
+                key={index}
+                active={hoverIndex >= index ? 1 : 0}
+                onMouseEnter={() => setHoverIndex(index)}
+                onMouseLeave={() => setHoverIndex(0)}
+                onClick={() =>
+                  setProps({
+                    type: "rate",
+                    value: createEstimateItem(item, index),
+                  })
+                }
+              />
+            ))}
+          </Credits.Rating>
+          <Credits.Star />
+        </Credits.Widget>
+      )}
     </Credits.Item>
   );
 }

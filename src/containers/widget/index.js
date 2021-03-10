@@ -3,8 +3,9 @@ import { useSelector } from "react-redux";
 
 import { Widget } from "../../components";
 import { WidgetSkeleton } from "../../components/skeleton";
+import { useFavorite, useUserlist } from "../../hooks";
 import { checkMovieInList, createListItem } from "../../utils";
-import { useFirelogicContext, useProcessContext } from "./../../context";
+import { useProcessContext } from "./../../context";
 
 export default function WidgetContainer({ data }) {
   const { userlists, favoritedMovies, loading } = useSelector(
@@ -18,22 +19,23 @@ export default function WidgetContainer({ data }) {
     aux: false,
   });
 
-  const [{ setFavoriteProps, setUserlistProps }] = useFirelogicContext();
+  const [setUserlist] = useUserlist();
+  const [setFavorite] = useFavorite();
   const [{ favoriteProcess, userlistProcess }] = useProcessContext();
 
   function handleList(array, id) {
     if (checkMovieInList(array, data.id)) {
-      setUserlistProps({ type: "delete from list", id, item: data });
+      setUserlist({ type: "delete from list", id, item: data });
     } else {
-      setUserlistProps({ type: "add to list", id, item: createListItem(data) });
+      setUserlist({ type: "add to list", id, item: createListItem(data) });
     }
   }
 
   function handleFavorite() {
     if (checkMovieInList(favoritedMovies, data.id)) {
-      setFavoriteProps({ type: "unfavorite", value: data.id });
+      setFavorite({ type: "unfavorite", value: data.id });
     } else {
-      setFavoriteProps({ type: "favorite", value: createListItem(data) });
+      setFavorite({ type: "favorite", value: createListItem(data) });
     }
   }
 

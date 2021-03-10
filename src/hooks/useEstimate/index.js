@@ -22,7 +22,6 @@ export default function useEstimate() {
 
   useEffect(() => {
     if (type === "rate") {
-      console.log(value);
       showProcessWindow({
         message: "Processing your vote :3",
         type: "estimateProcess",

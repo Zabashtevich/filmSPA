@@ -121,8 +121,9 @@ export const Role = styled.div`
 
 export const Meta = styled.div`
   align-items: flex-end;
-  margin-left: 6rem;
+  margin-left: 3rem;
   display: flex;
+  width: 60px;
 `;
 
 export const Average = styled.div`
@@ -150,8 +151,17 @@ export const Amount = styled.div`
   color: gray;
 `;
 
-export const Vote = styled.div`
+export const Vote = styled.span`
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
+  background-color: ${({ theme }) => theme.colors.main};
+  justify-content: center;
+  border-radius: 0.2rem;
+  align-items: center;
   margin-left: auto;
+  display: flex;
+  color: white;
+  width: 35px;
+  height: 35px;
 `;
 
 export const Widget = styled.span`

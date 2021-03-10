@@ -13,7 +13,6 @@ import { rootReducer } from "./reducers";
 import UserDataLogic from "./helpers/user-data-logic";
 import ModalContextProvider from "./context/modal-context/context";
 import ProcessContextProvider from "./context/process-context/context";
-import FirelogicContextProvider from "./context/firelogic-context/context";
 import GalleryContextProvider from "./context/gallery-context/context";
 import TrailerContextProvider from "./context/trailer-context/context";
 
@@ -28,14 +27,12 @@ ReactDOM.render(
       <UserDataLogic>
         <ProcessContextProvider>
           <ModalContextProvider>
-            <FirelogicContextProvider>
-              <GalleryContextProvider>
-                <TrailerContextProvider>
-                  <GlobalStyles />
-                  <App />
-                </TrailerContextProvider>
-              </GalleryContextProvider>
-            </FirelogicContextProvider>
+            <GalleryContextProvider>
+              <TrailerContextProvider>
+                <GlobalStyles />
+                <App />
+              </TrailerContextProvider>
+            </GalleryContextProvider>
           </ModalContextProvider>
         </ProcessContextProvider>
       </UserDataLogic>

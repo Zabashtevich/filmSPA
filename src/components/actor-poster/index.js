@@ -1,4 +1,5 @@
 import React from "react";
+import { CSSTransition } from "react-transition-group";
 import { w300miniature } from "../../constants/constants";
 
 import {
@@ -18,8 +19,25 @@ export default function ActorPoster({ children, ...rest }) {
   return <Container {...rest}>{children}</Container>;
 }
 
-ActorPoster.Column = function ActorPosterColumn({ children, ...rest }) {
-  return <Column {...rest}>{children}</Column>;
+ActorPoster.Column = function ActorPosterColumn({
+  type,
+  visible,
+  children,
+  ...rest
+}) {
+  return (
+    <CSSTransition
+      in={visible}
+      classNames="fade"
+      appear={true}
+      mountOnEnter
+      unmountOnExit
+      timeout={500}
+      {...rest}
+    >
+      <Column>{children}</Column>
+    </CSSTransition>
+  );
 };
 
 ActorPoster.Poster = function ActorPosterPoster({ src, ...rest }) {

@@ -1,6 +1,5 @@
 import ContentLoader from "react-content-loader";
 import { CSSTransition } from "react-transition-group";
-import { range } from "../../utils";
 
 import {
   ActiveWrapper,
@@ -9,8 +8,6 @@ import {
   ItemTrailerWrapper,
   WidgetWrapper,
   ListPosterWrapper,
-  CreditsCompWrapper,
-  ActorPosterContentWrapper,
 } from "./styles/skeleton";
 
 export function CardListSkeleton() {
@@ -252,5 +249,31 @@ export function ListPosterSkeleton({ visible }) {
         </ContentLoader>
       </ListPosterWrapper>
     </CSSTransition>
+  );
+}
+
+export function ActorPosterSkeleton() {
+  return (
+    <ContentLoader
+      speed={2}
+      width={300}
+      height={800}
+      viewBox="0 0 300 800"
+      backgroundColor="#dadada"
+      foregroundColor="#fafafa"
+    >
+      <rect x="0" y="0" rx="4" ry="4" width="300" height="450" />
+      <rect x="75" y="480" rx="2" ry="2" width="150" height="25" />
+      <rect x="0" y="530" rx="2" ry="2" width="100" height="20" />
+      <rect x="0" y="560" rx="2" ry="2" width="50" height="10" />
+      <rect x="0" y="580" rx="2" ry="2" width="100" height="20" />
+      <rect x="0" y="610" rx="2" ry="2" width="50" height="10" />
+      <rect x="0" y="630" rx="2" ry="2" width="100" height="20" />
+      <rect x="0" y="660" rx="2" ry="2" width="50" height="10" />
+      <rect x="0" y="680" rx="2" ry="2" width="100" height="20" />
+      <rect x="0" y="710" rx="2" ry="2" width="50" height="10" />
+      <rect x="0" y="730" rx="2" ry="2" width="100" height="20" />
+      <rect x="0" y="760" rx="2" ry="2" width="50" height="10" />{" "}
+    </ContentLoader>
   );
 }

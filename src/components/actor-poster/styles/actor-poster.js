@@ -10,6 +10,7 @@ export const Container = styled.div`
 `;
 
 export const Column = styled.div`
+  ${({ theme }) => theme.animations.fade(500, 500, 500)};
   display: flex;
   flex-direction: column;
   margin: 2rem 1rem;

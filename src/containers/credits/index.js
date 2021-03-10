@@ -2,25 +2,36 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 import { Credits } from "../../components";
-import { getYearFromString, range } from "../../utils";
+import { getYearFromString, range, sortMoviesByDate } from "../../utils";
 
 export default function CreditsContainer({ list, dataLoading }) {
   const { loading, ratedMovies } = useSelector((state) => state.userData);
 
-  const [selectValue, setSelectValue] = useState("All");
+  const [{ value, visible }, setSelect] = useState({
+    value: "All",
+    visible: false,
+  });
 
   return (
     <Credits>
       <Credits.Header>
         <Credits.Title>Filmography</Credits.Title>
-        <Credits.Select>
-          <Credits.Value>{selectValue}</Credits.Value>
-          <Credits.Arrow />
-          <Credits.Wrapper>
+        <Credits.Select
+          onClick={() => setSelect((prev) => ({ ...prev, visible: !visible }))}
+        >
+          <Credits.Value>{value}</Credits.Value>
+          <Credits.Arrow rotate={visible ? 1 : 0} />
+          <Credits.Wrapper visible={visible}>
             {["All", "TV shows", "Movies"]
-              .filter((item) => item !== selectValue)
+              .filter((item) => item !== value)
               .map((item) => (
-                <Credits.Option key={item} onClick={() => setSelectValue(item)}>
+                <Credits.Option
+                  key={item}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setSelect((prev) => ({ ...prev, value: item }));
+                  }}
+                >
                   {item}
                 </Credits.Option>
               ))}
@@ -30,7 +41,7 @@ export default function CreditsContainer({ list, dataLoading }) {
       <Credits.List>
         {!loading &&
           !dataLoading &&
-          list.map((item) => (
+          sortMoviesByDate(list).map((item) => (
             <CreditsItem key={item.id} item={item} ratedMovies={ratedMovies} />
           ))}
       </Credits.List>
@@ -40,8 +51,11 @@ export default function CreditsContainer({ list, dataLoading }) {
 
 function CreditsItem({ item, ratedMovies }) {
   const [popupVisible, setPopupVisible] = useState(false);
+  const [hoverIndex, setHoverIndex] = useState(0);
   const metaVisible = !!item.vote_average && !!item.vote_count;
   const movieIsRated = ratedMovies.find((movie) => +movie.id === item.id);
+  const yeardisabled = item.release_date === "" || item.first_air_date === "";
+  console.log(yeardisabled);
 
   useEffect(() => {
     if (movieIsRated) {
@@ -62,22 +76,31 @@ function CreditsItem({ item, ratedMovies }) {
       </Credits.Description>
       {metaVisible && (
         <Credits.Meta>
-          <Credits.Average>{item.vote_average}</Credits.Average>
+          <Credits.Average value={+item.vote_average}>
+            {item.vote_average}
+          </Credits.Average>
           <Credits.Count>{item.vote_count}</Credits.Count>
         </Credits.Meta>
       )}
       {movieIsRated && (
         <Credits.Highscore>{movieIsRated.value}</Credits.Highscore>
       )}
-      <Credits.Rating onClick={() => setPopupVisible((prev) => !prev)}>
-        <Credits.Star />
-        <Credits.Popup>
-          <Credits.Close />
-          {range(1, 10).map((item) => (
-            <Credits.Star key={item} />
-          ))}
-        </Credits.Popup>
-      </Credits.Rating>
+      {!yeardisabled && (
+        <Credits.Rating onClick={() => setPopupVisible((prev) => !prev)}>
+          <Credits.Star />
+          <Credits.Popup visible={popupVisible}>
+            <Credits.Close />
+            {range(1, 10).map((item) => (
+              <Credits.Star
+                key={item}
+                onMouseEnter={() => setHoverIndex(item)}
+                onMouseLeave={() => setHoverIndex(0)}
+                active={hoverIndex >= item ? 1 : 0}
+              />
+            ))}
+          </Credits.Popup>
+        </Credits.Rating>
+      )}
     </Credits.Item>
   );
 }

@@ -6,7 +6,10 @@ import { ActorPoster } from "../../components";
 import { useFetch } from "./../../hooks";
 import { getKnownFor, splitDate } from "../../utils";
 import { CreditsContainer, MovieListContainer } from "./..";
-import { CreditsCompSkeleton } from "../../components/skeleton";
+import {
+  ActorPosterContentSkeleton,
+  CreditsCompSkeleton,
+} from "../../components/skeleton";
 
 export default function ActorPosterContainer() {
   const { slug } = useParams();
@@ -58,7 +61,7 @@ export default function ActorPosterContainer() {
               <ActorPoster.Fieldvalue>
                 {data.known_for_department || "unknown"}
               </ActorPoster.Fieldvalue>
-            </ActorPoster.Row>{" "}
+            </ActorPoster.Row>
           </>
         )}
       </ActorPoster.Column>
@@ -74,10 +77,9 @@ export default function ActorPosterContainer() {
             />
           </>
         )}
-        <CreditsContainer
-          list={data?.combined_credits.cast || []}
-          listLoading={dataLoading}
-        />
+        {!dataLoading && (
+          <CreditsContainer list={data?.combined_credits.cast || []} />
+        )}
       </ActorPoster.Column>
     </ActorPoster>
   );

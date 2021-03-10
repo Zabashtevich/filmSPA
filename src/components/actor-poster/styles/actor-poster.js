@@ -13,6 +13,7 @@ export const Column = styled.div`
   display: flex;
   flex-direction: column;
   margin: 2rem 1rem;
+  position: relative;
   ${({ type }) =>
     type === "poster" &&
     css`

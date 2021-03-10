@@ -46,3 +46,10 @@ export const ListPosterWrapper = styled.div`
   top: 0;
   left: 0;
 `;
+
+export const CreditsCompWrapper = styled.div`
+  ${({ theme }) => theme.animations.fade(500, 500, 500)};
+  position: absolute;
+  top: 0;
+  left: 0;
+`;

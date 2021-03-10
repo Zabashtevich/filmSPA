@@ -6,6 +6,7 @@ import { AiFillStar } from "react-icons/ai";
 import { GrClose } from "react-icons/gr";
 
 export const Container = styled.div`
+  ${({ theme }) => theme.animations.fade(500, 500, 500)};
   font-family: ${({ theme }) => theme.font.aux.family};
   display: flex;
   flex-direction: column;
@@ -76,8 +77,11 @@ export const List = styled.div`
   box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
   border: 1px solid rgba(0, 0, 0, 0.3);
   flex-direction: column;
+  position: relative;
   margin-top: 0.5rem;
   display: flex;
+  min-height: 500px;
+  width: 800px;
 `;
 
 export const Item = styled.div`

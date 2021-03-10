@@ -1,5 +1,6 @@
 import ContentLoader from "react-content-loader";
 import { CSSTransition } from "react-transition-group";
+import { range } from "../../utils";
 
 import {
   ActiveWrapper,
@@ -8,6 +9,7 @@ import {
   ItemTrailerWrapper,
   WidgetWrapper,
   ListPosterWrapper,
+  CreditsCompWrapper,
 } from "./styles/skeleton";
 
 export function CardListSkeleton() {
@@ -248,6 +250,84 @@ export function ListPosterSkeleton({ visible }) {
           <rect x="0" y="0" rx="4" ry="4" width="200" height="112" />
         </ContentLoader>
       </ListPosterWrapper>
+    </CSSTransition>
+  );
+}
+
+export function CreditsCompSkeleton({ visible }) {
+  return (
+    <CSSTransition
+      appear={true}
+      in={visible}
+      classNames="fade"
+      mountOnEnter
+      unmountOnExit
+      timeout={500}
+    >
+      <CreditsCompWrapper>
+        <ContentLoader
+          speed={2}
+          width={800}
+          height={500}
+          viewBox="0 0 800 500"
+          backgroundColor="#dadada"
+          foregroundColor="#fafafa"
+        >
+          <>
+            <rect x="20" y="15" rx="4" ry="4" width="50" height="20" />
+            <circle cx="110" cy="25" r="10" />
+            <rect x="160" y="15" rx="2" ry="2" width="250" height="20" />
+            <rect x="450" y="15" rx="2" ry="2" width="60" height="20" />
+            <rect x="550" y="15" rx="2" ry="2" width="35" height="20" />
+            <rect x="750" y="15" rx="2" ry="2" width="30" height="20" />
+            {range(1, 9).map((item) => (
+              <>
+                <rect
+                  x="20"
+                  y={`${item * 60 + 15}`}
+                  rx="4"
+                  ry="4"
+                  width="50"
+                  height="20"
+                />
+                <circle cx="110" cy={`${item * 60 + 15 + 10}`} r="10" />
+                <rect
+                  x="160"
+                  y={`${item * 60 + 15}`}
+                  rx="2"
+                  ry="2"
+                  width="250"
+                  height="20"
+                />
+                <rect
+                  x="450"
+                  y={`${item * 60 + 15}`}
+                  rx="2"
+                  ry="2"
+                  width="60"
+                  height="20"
+                />
+                <rect
+                  x="550"
+                  y={`${item * 60 + 15}`}
+                  rx="2"
+                  ry="2"
+                  width="35"
+                  height="20"
+                />
+                <rect
+                  x="750"
+                  y={`${item * 60 + 15}`}
+                  rx="2"
+                  ry="2"
+                  width="30"
+                  height="20"
+                />
+              </>
+            ))}
+          </>
+        </ContentLoader>
+      </CreditsCompWrapper>
     </CSSTransition>
   );
 }

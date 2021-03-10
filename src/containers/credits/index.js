@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 import { Credits } from "../../components";
+import { CreditsCompSkeleton } from "../../components/skeleton";
 import {
   range,
   sortMoviesByDate,
@@ -11,12 +12,12 @@ import {
 } from "../../utils";
 import { useEstimate } from "./../../hooks";
 
-export default function CreditsContainer({ list }) {
+export default function CreditsContainer({ list, listLoading }) {
   const [{ value, visible }, setPopup] = useState({
     value: "All",
     visible: false,
   });
-  const [array, setArray] = useState(list);
+  const [array, setArray] = useState(null);
   const { loading, ratedMovies } = useSelector((state) => state.userData);
 
   function popupToggler(value) {
@@ -29,6 +30,12 @@ export default function CreditsContainer({ list }) {
     }
     setPopup({ value, visible: false });
   }
+
+  useEffect(() => {
+    if (!listLoading) {
+      setArray(list);
+    }
+  }, [list]);
 
   return (
     <Credits>
@@ -51,10 +58,14 @@ export default function CreditsContainer({ list }) {
         </Credits.Select>
       </Credits.Header>
       <Credits.List>
+        <CreditsCompSkeleton visible={listLoading} />
         {!loading &&
-          sortMoviesByDate(array).map((item) => (
-            <CreditItem key={item.id} item={item} ratedMovies={ratedMovies} />
-          ))}
+          !listLoading &&
+          sortMoviesByDate(array)
+            .slice(0, 10)
+            .map((item) => (
+              <CreditItem key={item.id} item={item} ratedMovies={ratedMovies} />
+            ))}
       </Credits.List>
     </Credits>
   );

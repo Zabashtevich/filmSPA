@@ -5,6 +5,7 @@ import {
   Header,
   Title,
   Select,
+  Value,
   Arrow,
   Wrapper,
   Option,
@@ -39,6 +40,10 @@ Credits.Title = function CreditsTitle({ children, ...rest }) {
 
 Credits.Select = function CreditsSelect({ children, ...rest }) {
   return <Select {...rest}>{children}</Select>;
+};
+
+Credits.Value = function CreditsValue({ children, ...rest }) {
+  return <Value {...rest}>{children}</Value>;
 };
 
 Credits.Arrow = function CreditsArrow({ ...rest }) {

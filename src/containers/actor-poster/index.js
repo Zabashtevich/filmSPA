@@ -4,7 +4,7 @@ import { useParams } from "react-router";
 import { ActorPoster } from "../../components";
 import { useFetch } from "./../../hooks";
 import { getKnownFor } from "../../utils";
-import { MovieListContainer } from "./..";
+import { CreditsContainer, MovieListContainer } from "./..";
 import {
   ActorPosterContentSkeleton,
   ActorPosterSkeleton,
@@ -16,9 +16,10 @@ export default function ActorPosterContainer() {
     poster: true,
     content: true,
   });
+
   const { slug } = useParams();
   const [data, dataLoading] = useFetch("person", slug);
-  console.log(data);
+
   return (
     <ActorPoster>
       <ActorPoster.Column
@@ -53,6 +54,10 @@ export default function ActorPosterContainer() {
         <MovieListContainer
           list={(!content && getKnownFor(data?.combined_credits?.cast)) || []}
           loading={dataLoading}
+        />
+        <CreditsContainer
+          list={!content && data?.combined_credits?.cast}
+          dataLoading={dataLoading}
         />
       </ActorPoster.Column>
     </ActorPoster>

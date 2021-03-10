@@ -1,3 +1,3 @@
 export default function getYearFromString(string) {
-  return string.split("-")[0] || "Unknown";
+  return string ? string.split("-")[0] : null;
 }

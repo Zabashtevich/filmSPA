@@ -1,7 +1,7 @@
 import React from "react";
 
 import { ActorPoster } from "../../../components";
-import { splitDate } from "../../../utils";
+import { getYearFromString } from "../../../utils";
 
 export default function ActorPosterRows({ data }) {
   return (
@@ -23,7 +23,7 @@ export default function ActorPosterRows({ data }) {
       <ActorPoster.Row>
         <ActorPoster.Fieldname>Birthdate:</ActorPoster.Fieldname>
         <ActorPoster.Fieldvalue>
-          {splitDate(data.birthday) || "unknown"}
+          {getYearFromString(data.birthday) || "unknown"}
         </ActorPoster.Fieldvalue>
       </ActorPoster.Row>
       {!!data.deathday && (

@@ -4,7 +4,6 @@ export { default as checkMovieInList } from "./shareable/check-movie-in-list";
 export { default as createListItem } from "./shareable/create-list-item";
 export { default as getYearFromString } from "./shareable/get-year-from-string";
 export { default as getKnownFor } from "./shareable/get-known-for";
-export { default as splitDate } from "./shareable/split-date";
 export { default as splitByType } from "./shareable/split-by-type";
 export { default as sortMoviesByDate } from "./shareable/sort-movies-by-date";
 

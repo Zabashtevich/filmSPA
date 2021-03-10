@@ -1,10 +1,10 @@
-import { splitDate } from "..";
+import { getYearFromString } from "..";
 
 export default function sortMoviesByDate(array) {
   const result = array.sort(
     (a, b) =>
-      splitDate(b.release_date || b.first_air_date) -
-      splitDate(a.release_date || a.first_air_date),
+      getYearFromString(b.release_date || b.first_air_date) -
+      getYearFromString(a.release_date || a.first_air_date),
   );
 
   return [

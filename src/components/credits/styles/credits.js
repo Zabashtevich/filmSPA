@@ -1,12 +1,20 @@
 import styled from "styled-components/macro";
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  flex-direction: column;
+  display: flex;
+`;
 
-export const Header = styled.div``;
+export const Header = styled.div`
+  justify-content: space-between;
+  display: flex;
+`;
 
 export const Title = styled.div``;
 
 export const Select = styled.div``;
+
+export const Value = styled.span``;
 
 export const Arrow = styled.div``;
 

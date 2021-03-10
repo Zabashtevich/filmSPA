@@ -2,6 +2,7 @@ import React from "react";
 
 import {
   Container,
+  Header,
   Title,
   Select,
   Arrow,
@@ -27,6 +28,10 @@ import {
 export default function Credits({ children, ...rest }) {
   return <Container {...rest}>{children}</Container>;
 }
+
+Credits.Header = function CreditsHeader({ children, ...rest }) {
+  return <Header {...rest}>{children}</Header>;
+};
 
 Credits.Title = function CreditsTitle({ children, ...rest }) {
   return <Title {...rest}>{children}</Title>;

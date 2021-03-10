@@ -35,7 +35,7 @@ ActorPoster.Column = function ActorPosterColumn({
       timeout={500}
       {...rest}
     >
-      <Column>{children}</Column>
+      <Column type={type}>{children}</Column>
     </CSSTransition>
   );
 };

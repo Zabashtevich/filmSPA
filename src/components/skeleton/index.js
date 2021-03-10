@@ -277,3 +277,25 @@ export function ActorPosterSkeleton() {
     </ContentLoader>
   );
 }
+
+export function ActorPosterContentSkeleton() {
+  return (
+    <ContentLoader
+      speed={2}
+      width={800}
+      height={400}
+      viewBox="0 0 800 400"
+      backgroundColor="#dadada"
+      foregroundColor="#fafafa"
+    >
+      <rect x="0" y="-1" rx="4" ry="4" width="150" height="35" />
+      <rect x="0" y="125" rx="4" ry="4" width="100" height="25" />
+      <rect x="0" y="200" rx="4" ry="4" width="800" height="20" />
+      <rect x="0" y="230" rx="4" ry="4" width="750" height="20" />
+      <rect x="0" y="260" rx="4" ry="4" width="800" height="20" />
+      <rect x="0" y="290" rx="4" ry="4" width="750" height="20" />
+      <rect x="0" y="325" rx="4" ry="4" width="600" height="20" />
+      <rect x="0" y="358" rx="4" ry="4" width="550" height="20" />
+    </ContentLoader>
+  );
+}

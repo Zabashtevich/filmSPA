@@ -1,11 +1,19 @@
-import React, { useState } from "react";
-import { ListPosterSkeleton } from "../../components/skeleton";
+import React, { useEffect, useState } from "react";
 
+import { ListPosterSkeleton } from "../../components/skeleton";
 import { MovieList } from "./../../components";
 
-export default function MovieListContainer({ list }) {
+export default function MovieListContainer({ list, loading }) {
   const [scrollvalue, setScrollvalue] = useState(0);
-  const isListExist = !!list && list.length > 0;
+  const [isListExist, setIsListExist] = useState(false);
+  const [movies, setMovies] = useState(null);
+
+  useEffect(() => {
+    if (!loading) {
+      setIsListExist(!!list && list.length > 0);
+      setMovies(list);
+    }
+  }, [loading, list]);
 
   return (
     <MovieList
@@ -13,9 +21,10 @@ export default function MovieListContainer({ list }) {
       scroll={isListExist && 1}
     >
       <MovieList.Wrapper disabled={scrollvalue !== 0 && 1}>
-        {isListExist &&
+        {!loading &&
+          isListExist &&
           list.map((item) => <MovieListItem item={item} key={item.id} />)}
-        {!isListExist && (
+        {!loading && !isListExist && (
           <MovieList.Error>We can not create movie list.</MovieList.Error>
         )}
       </MovieList.Wrapper>

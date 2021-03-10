@@ -2,6 +2,8 @@ import styled, { css } from "styled-components/macro";
 
 import { GoTriangleDown } from "react-icons/go";
 import { BiRadioCircle } from "react-icons/bi";
+import { AiFillStar } from "react-icons/ai";
+import { GrClose } from "react-icons/gr";
 
 export const Container = styled.div`
   font-family: ${({ theme }) => theme.font.aux.family};
@@ -148,22 +150,49 @@ export const Amount = styled.div`
   color: gray;
 `;
 
-export const Rating = styled.div`
+export const Vote = styled.div`
   margin-left: auto;
 `;
 
-export const Button = styled.button`
+export const Widget = styled.span`
   border: 1px solid rgba(0, 0, 0, 0.1);
   justify-content: center;
   border-radius: 0.2rem;
   align-items: center;
   margin-right: 1rem;
   margin-left: auto;
+  position: relative;
   cursor: pointer;
   padding: 0.3rem;
   display: flex;
   outline: none;
-  &:active {
-    transform: scale(0.93);
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    transition: 300ms;
   }
 `;
+
+export const Star = styled(AiFillStar)`
+  ${({ active }) =>
+    active &&
+    css`
+      & > * {
+        color: ${({ theme }) => theme.colors.aux};
+      }
+    `};
+`;
+
+export const Rating = styled.div`
+  ${({ theme }) => theme.animations.slide({ x: 100, y: 0 }, { x: 100, y: 0 })}
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  background-color: white;
+  padding: 0.1rem 0.4rem;
+  left: calc(100% + 8px);
+  border-radius: 0.2rem;
+  align-items: center;
+  position: absolute;
+  display: flex;
+  height: 100%;
+`;
+
+export const Close = styled(GrClose)``;

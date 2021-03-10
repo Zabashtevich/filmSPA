@@ -9,6 +9,7 @@ export { default as splitByType } from "./shareable/split-by-type";
 export { default as sortMoviesByDate } from "./shareable/sort-movies-by-date";
 
 export { default as getQuerries } from "./hooks/get-querries";
+export { default as createEstimateItem } from "./hooks/create-estimate-item";
 
 export { default as calculateOffset } from "./gallery/calculate-offstet";
 

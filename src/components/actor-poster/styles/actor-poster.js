@@ -31,6 +31,10 @@ export const Poster = styled.img`
   border-radius: 5px;
 `;
 
+export const Placeholder = styled.img`
+  border-radius: 5px;
+`;
+
 export const Row = styled.div`
   display: flex;
   flex-direction: column;

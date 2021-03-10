@@ -4,7 +4,6 @@ export { default as Tab } from "./tabs";
 export { default as CardList } from "./card-list";
 export { default as Pagination } from "./pagination";
 export { default as Footer } from "./footer";
-export { default as DetailsPanel } from "./details-panel";
 export { default as LoadMore } from "./load-more";
 export { default as AuthenticationForm } from "./auth-form";
 export { default as StatePagination } from "./state-pagination";

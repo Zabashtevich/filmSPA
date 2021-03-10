@@ -10,7 +10,7 @@ const initialState = {
 };
 
 export default function useEstimate() {
-  const { ratedMovies, loading } = useSelector((state) => state.userData);
+  const { ratedMovies } = useSelector((state) => state.userData);
   const { profile } = useSelector((state) => state.userProfile);
 
   const [props, setProps] = useState(initialState);
@@ -21,7 +21,8 @@ export default function useEstimate() {
   const { type, value } = props;
 
   useEffect(() => {
-    if (!loading && type === "rate") {
+    if (type === "rate") {
+      console.log(value);
       showProcessWindow({
         message: "Processing your vote :3",
         type: "estimateProcess",
@@ -47,7 +48,7 @@ export default function useEstimate() {
           });
           setProps(initialState);
         });
-    } else if (!loading && type === "unrate") {
+    } else if (type === "unrate") {
       showProcessWindow({
         message: "Deleting your vote",
         type: "estimateProcess",
@@ -70,7 +71,7 @@ export default function useEstimate() {
           setProps(initialState);
         });
     }
-  }, [loading, props]);
+  }, [props]);
 
   return [setProps];
 }

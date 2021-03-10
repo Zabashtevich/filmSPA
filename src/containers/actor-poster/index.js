@@ -11,10 +11,8 @@ export default function ActorPosterContainer() {
   const { slug } = useParams();
   const [data, dataLoading] = useFetch("person", slug);
 
-  const { loading } = useSelector((state) => state.userData);
   return (
-    !dataLoading &&
-    !loading && (
+    !dataLoading && (
       <ActorPoster>
         <ActorPoster.Column type="poster">
           <ActorPoster.Poster src={data?.profile_path} />
@@ -22,7 +20,7 @@ export default function ActorPosterContainer() {
           <ActorPoster.Row>
             <ActorPoster.Fieldname>Filmography:</ActorPoster.Fieldname>
             <ActorPoster.Fieldvalue>
-              {data.combined_credits.cast.length || 0}
+              {data?.combined_credits.cast.length || 0}
             </ActorPoster.Fieldvalue>
           </ActorPoster.Row>
           <ActorPoster.Row>
@@ -68,7 +66,9 @@ export default function ActorPosterContainer() {
           <MovieListContainer
             list={getKnownFor(data?.combined_credits?.cast) || []}
           />
-          <CreditsContainer list={data.combined_credits.cast || []} />
+          {!!data && (
+            <CreditsContainer list={data?.combined_credits.cast || []} />
+          )}
         </ActorPoster.Column>
       </ActorPoster>
     )

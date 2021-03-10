@@ -17,10 +17,13 @@ import {
   Subtitle,
   Role,
   Meta,
-  Rating,
+  Vote,
   Average,
   Amount,
-  Button,
+  Widget,
+  Star,
+  Rating,
+  Close,
 } from "./styles/credits";
 
 export default function Credits({ children, ...rest }) {
@@ -104,10 +107,33 @@ Credits.Amount = function CreditsAmount({ children, ...rest }) {
   return <Amount {...rest}>{children}</Amount>;
 };
 
-Credits.Rating = function CreditsRating({ children, ...rest }) {
-  return <Rating {...rest}>{children}</Rating>;
+Credits.Vote = function CreditsVote({ children, ...rest }) {
+  return <Vote {...rest}>{children}</Vote>;
 };
 
-Credits.Button = function CreditsButton({ children, ...rest }) {
-  return <Button {...rest}>{children}</Button>;
+Credits.Widget = function CreditsWidget({ children, ...rest }) {
+  return <Widget {...rest}>{children}</Widget>;
+};
+
+Credits.Star = function CreditsStar({ index, ...rest }) {
+  return <Star {...rest} />;
+};
+
+Credits.Rating = function CreditsRating({ visible, children, ...rest }) {
+  return (
+    <CSSTransition
+      in={visible}
+      classNames="slide"
+      appear={true}
+      mountOnEnter
+      unmountOnExit
+      timeout={500}
+    >
+      <Rating {...rest}>{children}</Rating>
+    </CSSTransition>
+  );
+};
+
+Credits.Close = function CreditsClose({ ...rest }) {
+  return <Close {...rest} />;
 };

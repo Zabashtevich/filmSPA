@@ -8,6 +8,7 @@ import {
   Row,
   Fieldname,
   Fieldvalue,
+  Placeholder,
   Biography,
   Title,
   Subtitle,
@@ -22,7 +23,11 @@ ActorPoster.Column = function ActorPosterColumn({ children, ...rest }) {
 };
 
 ActorPoster.Poster = function ActorPosterPoster({ src, ...rest }) {
-  return <Poster {...rest} src={`${w300miniature}${src}`} />;
+  return !!src ? (
+    <Poster {...rest} src={`${w300miniature}${src}`} />
+  ) : (
+    <Placeholder src={"https://dummyimage.com/640x360/aaa/aaa"} />
+  );
 };
 
 ActorPoster.Row = function ActorPosterRow({ children, ...rest }) {

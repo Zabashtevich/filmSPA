@@ -1,16 +1,9 @@
 export { default as BodyMain } from "./body-main";
 export { default as Slider } from "./slider";
-export { default as Tab } from "./tabs";
 export { default as CardList } from "./card-list";
-export { default as Pagination } from "./pagination";
 export { default as Footer } from "./footer";
 export { default as LoadMore } from "./load-more";
 export { default as AuthenticationForm } from "./auth-form";
-export { default as StatePagination } from "./state-pagination";
-export { default as RowListItem } from "./row-list-item";
-export { default as VotePopup } from "./vote-popup";
-export { default as Filter } from "./filter";
-export { default as Review } from "./review";
 export { default as ProcessWindow } from "./process-window";
 export { default as Modal } from "./modal";
 export { default as Gallery } from "./gallery";

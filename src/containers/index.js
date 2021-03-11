@@ -13,3 +13,4 @@ export { default as ActorPosterContainer } from "./actor-poster";
 export { default as MovieListContainer } from "./movie-list";
 export { default as CreditsContainer } from "./credits";
 export { default as PaginationContainer } from "./pagination";
+export { default as DetailsPanelContainer } from "./details-panel";

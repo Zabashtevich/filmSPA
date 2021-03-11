@@ -32,8 +32,10 @@ export default function PaginationContainer() {
           <Pagination.Dummy>...</Pagination.Dummy>
         </>
       )}
+
       {loading &&
         range(1, amount).map((item) => <PaginationSkeleton key={item} />)}
+
       {!loading &&
         range(1, length)
           .slice(start, end)

@@ -4,15 +4,16 @@ import {
   Container,
   Title,
   Section,
+  Rating,
   Star,
   Meta,
   Average,
   Count,
-  Rating,
+  Uservote,
+  Row,
+  Subtitle,
   Value,
   Delete,
-  Subtitle,
-  Wrapper,
   Date,
 } from "./styles/details-panel";
 
@@ -26,6 +27,10 @@ DetailsPanel.Title = function DetailsPanelTitle({ children, ...rest }) {
 
 DetailsPanel.Section = function DetailsPanelSection({ children, ...rest }) {
   return <Section {...rest}>{children}</Section>;
+};
+
+DetailsPanel.Rating = function DetailsPanelRating({ children, ...rest }) {
+  return <Rating {...rest}>{children}</Rating>;
 };
 
 DetailsPanel.Star = function DetailsPanelStar({ ...rest }) {
@@ -44,16 +49,20 @@ DetailsPanel.Count = function DetailsPanelCount({ children, ...rest }) {
   return <Count {...rest}>{children}</Count>;
 };
 
-DetailsPanel.Rating = function DetailsPanelRating({ children, ...rest }) {
-  return <Rating {...rest}>{children}</Rating>;
+DetailsPanel.Uservote = function DetailsPanelUservote({ children, ...rest }) {
+  return <Uservote {...rest}>{children}</Uservote>;
 };
 
-DetailsPanel.Value = function DetailsPanelValue({ children, ...rest }) {
-  return <Value {...rest}>{children}</Value>;
+DetailsPanel.Row = function DetailsPanelRow({ children, ...rest }) {
+  return <Row {...rest}>{children}</Row>;
 };
 
 DetailsPanel.Subtitle = function DetailsPanelSubtitle({ children, ...rest }) {
   return <Subtitle {...rest}>{children}</Subtitle>;
+};
+
+DetailsPanel.Value = function DetailsPanelValue({ children, ...rest }) {
+  return <Value {...rest}>{children}</Value>;
 };
 
 DetailsPanel.Delete = function DetailsPanelDelete({ children, ...rest }) {
@@ -62,8 +71,4 @@ DetailsPanel.Delete = function DetailsPanelDelete({ children, ...rest }) {
 
 DetailsPanel.Date = function DetailsPanelDate({ children, ...rest }) {
   return <Date {...rest}>{children}</Date>;
-};
-
-DetailsPanel.Wrapper = function DetailsPanelWrapper({ children, ...rest }) {
-  return <Wrapper {...rest}>{children}</Wrapper>;
 };

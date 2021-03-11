@@ -4,53 +4,38 @@ import { AiFillStar } from "react-icons/ai";
 
 export const Container = styled.div`
   font-family: ${({ theme }) => theme.font.aux.family};
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
   max-width: 1300px;
   margin: 0 auto;
 `;
 
 export const Title = styled.div`
-  font-size: ${({ theme }) => theme.font.aux.size.big};
+  font-size: ${({ theme }) => theme.font.aux.size.large};
   margin-top: 4rem;
 `;
 
 export const Section = styled.div`
-  justify-content: center;
-  align-items: center;
   margin-top: 2rem;
+`;
+
+export const Rating = styled.div`
+  align-items: center;
+  margin-left: 150px;
   display: flex;
 `;
 
 export const Star = styled(AiFillStar)`
   font-size: ${({ theme }) => theme.font.aux.size.huge};
-  ${({ active }) =>
-    active &&
-    css`
-      color: ${({ theme }) => theme.colors.aux};
-      transition: 300ms;
-    `};
-`;
-
-export const Rating = styled.div`
-  font-size: ${({ theme }) => theme.font.aux.size.normal};
-  background-color: rgba(0, 0, 0, 0.05);
-  padding: 0.5rem 0.8rem;
-  border-radius: 0.4rem;
-  align-items: center;
-  display: flex;
 `;
 
 export const Meta = styled.div`
-  align-items: center;
-  margin-left: 1rem;
+  align-items: flex-end;
+  margin-left: 2rem;
   display: flex;
 `;
 
 export const Average = styled.div`
-  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   font-size: ${({ theme }) => theme.font.aux.size.huge};
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   ${({ value }) =>
     value > 5 &&
     css`
@@ -64,21 +49,47 @@ export const Average = styled.div`
   ${({ value }) =>
     Math.floor(value) === 5 &&
     css`
-      color: #333;
+      color: #;
     `};
 `;
 
 export const Count = styled.div`
-  margin-left: 0.2rem;
+  font-size: ${({ theme }) => theme.font.aux.size.big};
   color: gray;
 `;
 
-export const Wrapper = styled.div``;
+export const Uservote = styled.div`
+  flex-direction: column;
+  border-radius: 0.2rem;
+  padding: 0.3rem 0.4rem;
+  margin-left: 1rem;
+  display: flex;
+`;
 
-export const Value = styled.div``;
+export const Row = styled.div`
+  align-items: center;
+  display: flex;
+`;
 
-export const Delete = styled.div``;
+export const Subtitle = styled.div`
+  font-size: 1.2rem;
+`;
 
-export const Subtitle = styled.div``;
+export const Value = styled.div`
+  background-color: ${({ theme }) => theme.colors.main};
+  border-radius: 0.3rem;
+  padding: 0.3rem 0.6rem;
+  margin-left: 1rem;
+  color: white;
+`;
 
-export const Date = styled.div``;
+export const Delete = styled.div`
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
+  font-weight: ${({ theme }) => theme.font.aux.weight.light};
+  margin-left: 0.5rem;
+`;
+
+export const Date = styled.div`
+  font-size: ${({ theme }) => theme.font.aux.size.small};
+  font-weight: ${({ theme }) => theme.font.aux.weight.light};
+`;

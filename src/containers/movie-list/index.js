@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router";
 
 import { ListPosterSkeleton } from "../../components/skeleton";
 import { MovieList } from "./../../components";
@@ -6,12 +7,10 @@ import { MovieList } from "./../../components";
 export default function MovieListContainer({ list, loading }) {
   const [scrollvalue, setScrollvalue] = useState(0);
   const [isListExist, setIsListExist] = useState(false);
-  const [movies, setMovies] = useState(null);
 
   useEffect(() => {
     if (!loading) {
       setIsListExist(!!list && list.length > 0);
-      setMovies(list);
     }
   }, [loading, list]);
 
@@ -23,7 +22,9 @@ export default function MovieListContainer({ list, loading }) {
       <MovieList.Wrapper disabled={scrollvalue !== 0 && 1}>
         {!loading &&
           isListExist &&
-          list.map((item) => <MovieListItem item={item} key={item.id} />)}
+          list.map((item) => (
+            <MovieListItem item={item} key={item.id} to={`/`} />
+          ))}
         {!loading && !isListExist && (
           <MovieList.Error>We can not create movie list.</MovieList.Error>
         )}
@@ -34,9 +35,12 @@ export default function MovieListContainer({ list, loading }) {
 
 function MovieListItem({ item }) {
   const [loading, setLoading] = useState(true);
+  const { direction } = useParams();
 
   return (
-    <MovieList.Item to={`/details/${item.media_type}/${item.id}`}>
+    <MovieList.Item
+      to={`/details/${item.media_type || direction || "movie"}/${item.id}`}
+    >
       <MovieList.Inner>
         <ListPosterSkeleton visible={loading} />
         {item.backdrop_path && (

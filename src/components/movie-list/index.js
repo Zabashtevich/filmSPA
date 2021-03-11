@@ -42,11 +42,7 @@ MovieList.Title = function MovieListTitle({ children, ...rest }) {
 
 MovieList.Placeholder = function MovieListPlaceholder({ ...rest }) {
   return (
-    <Placeholder
-      {...rest}
-      src={`https://dummyimage.com/200x110/aaa/aaa
-  `}
-    />
+    <Placeholder {...rest} src={`https://dummyimage.com/200x110/aaa/aaa`} />
   );
 };
 

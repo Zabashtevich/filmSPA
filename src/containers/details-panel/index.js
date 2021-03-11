@@ -26,31 +26,28 @@ export default function DetailsPanelContainer() {
         />
         <DetailsPanel.Title>Rating</DetailsPanel.Title>
         <DetailsPanel.Section>
-          {range(1, 10).map((item) => (
-            <DetailsPanel.Star
-              key={item}
-              onMouseEnter={() => setHoverIndex(item)}
-              onMouseLeave={() => setHoverIndex(0)}
-              active={hoverIndex >= item ? 1 : 0}
-            />
-          ))}
-          {metavisible && (
-            <DetailsPanel.Meta>
-              <DetailsPanel.Average value={data.vote_average}>
-                {data.vote_average}
-              </DetailsPanel.Average>
-              <DetailsPanel.Count>{data.vote_count}</DetailsPanel.Count>
-            </DetailsPanel.Meta>
-          )}
           <DetailsPanel.Rating>
-            <DetailsPanel.Wrapper>
-              <DetailsPanel.Subtitle>Your vote:</DetailsPanel.Subtitle>
-              <DetailsPanel.Delete>Delete vote</DetailsPanel.Delete>
-            </DetailsPanel.Wrapper>
-            <DetailsPanel.Wrapper>
-              <DetailsPanel.Value>5</DetailsPanel.Value>
-              <DetailsPanel.Date>2 10 2020</DetailsPanel.Date>
-            </DetailsPanel.Wrapper>
+            {range(1, 10).map((item) => (
+              <DetailsPanel.Star key={item} />
+            ))}
+            {metavisible && (
+              <DetailsPanel.Meta>
+                <DetailsPanel.Average value={data.vote_average}>
+                  {data.vote_average}
+                </DetailsPanel.Average>
+                <DetailsPanel.Count>{data.vote_count}</DetailsPanel.Count>
+              </DetailsPanel.Meta>
+            )}
+            <DetailsPanel.Uservote>
+              <DetailsPanel.Row>
+                <DetailsPanel.Subtitle>Your vote:</DetailsPanel.Subtitle>
+                <DetailsPanel.Value>5</DetailsPanel.Value>
+                <DetailsPanel.Delete>Delete</DetailsPanel.Delete>
+              </DetailsPanel.Row>
+              <DetailsPanel.Row>
+                <DetailsPanel.Date>2021 20 2020</DetailsPanel.Date>
+              </DetailsPanel.Row>
+            </DetailsPanel.Uservote>
           </DetailsPanel.Rating>
         </DetailsPanel.Section>
       </DetailsPanel>

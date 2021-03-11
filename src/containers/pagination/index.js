@@ -1,48 +1,48 @@
-import React, { useState } from "react";
+import React from "react";
 
+import { usePaginationContext } from "./../../context";
 import { Pagination } from "../../components";
 import { range } from "./../../utils";
 
-export default function PaginationContainer({ length, amount }) {
-  const [{ start, end }, setOffset] = useState({
-    start: 1,
-    end: amount,
-  });
+export default function PaginationContainer() {
+  const [
+    { amount, length, loading, active },
+    setPaginProps,
+  ] = usePaginationContext();
 
   function handleClick(value) {
-    if (value === start) return;
-    setOffset({ start: value, end: value + amount });
+    if (value === active) return;
+    setPaginProps((prev) => ({ ...prev, active: value }));
   }
-
   return (
     <Pagination>
-      {start !== 1 && (
+      {active !== 1 && (
         <>
-          <Pagination.Left onClick={() => handleClick(start - 1)} />
+          <Pagination.Left onClick={() => handleClick(active - 1)} />
           <Pagination.Item onClick={() => handleClick(1)}>1</Pagination.Item>
           <Pagination.Dummy>...</Pagination.Dummy>
         </>
       )}
       {range(1, length)
-        .slice(start, end)
+        .slice(active - 1, active + amount)
         .map((item) => {
           return (
             <Pagination.Item
               key={item}
-              active={start === item && 1}
+              active={active === item && 1}
               onClick={() => handleClick(item)}
             >
               {item}
             </Pagination.Item>
           );
         })}
-      {start !== length && (
+      {active !== length && (
         <>
           <Pagination.Dummy>...</Pagination.Dummy>
           <Pagination.Item onClick={() => handleClick(length)}>
             {length}
           </Pagination.Item>
-          <Pagination.Right onClick={() => handleClick(start + 1)} />
+          <Pagination.Right onClick={() => handleClick(active + 1)} />
         </>
       )}
     </Pagination>

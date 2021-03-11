@@ -15,6 +15,7 @@ import ModalContextProvider from "./context/modal-context/context";
 import ProcessContextProvider from "./context/process-context/context";
 import GalleryContextProvider from "./context/gallery-context/context";
 import TrailerContextProvider from "./context/trailer-context/context";
+import PaginationContextProvider from "./context/pagination-context/context";
 
 const store = createStore(
   rootReducer,
@@ -29,8 +30,10 @@ ReactDOM.render(
           <ModalContextProvider>
             <GalleryContextProvider>
               <TrailerContextProvider>
-                <GlobalStyles />
-                <App />
+                <PaginationContextProvider>
+                  <GlobalStyles />
+                  <App />
+                </PaginationContextProvider>
               </TrailerContextProvider>
             </GalleryContextProvider>
           </ModalContextProvider>

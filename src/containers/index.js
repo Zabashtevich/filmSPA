@@ -1,9 +1,7 @@
 export { default as AuthContainer } from "./auth";
 export { default as FooterContainer } from "./footer";
 export { default as MainPageContainer } from "./main-page";
-export { default as TabContainer } from "./tab";
 export { default as LoadMoreContainer } from "./load-more";
-export { default as StatePaginationContainer } from "./state-pagination";
 export { default as ProcessWindowContainer } from "./process-window";
 export { default as ModalContainer } from "./modal";
 export { default as GalleryContainer } from "./gallery";

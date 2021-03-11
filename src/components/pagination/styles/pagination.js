@@ -13,6 +13,7 @@ export const Container = styled.div`
 
 export const Item = styled.div`
   font-size: ${({ theme }) => theme.font.aux.size.normal};
+  ${({ theme }) => theme.animations.fade(500, 500, 500)};
   border: 1px solid rgba(0, 0, 0, 0.1);
   justify-content: center;
   border-radius: 0.3rem;

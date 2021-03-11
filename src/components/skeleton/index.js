@@ -301,7 +301,7 @@ export function ActorPosterContentSkeleton() {
   );
 }
 
-export function CreditsItemSkeleton({ visible }) {
+export function CreditsItemSkeleton({ visible, ...rest }) {
   return (
     <CSSTransition
       appear={true}
@@ -310,6 +310,7 @@ export function CreditsItemSkeleton({ visible }) {
       mountOnEnter
       unmountOnExit
       timeout={500}
+      {...rest}
     >
       <CreditsItemWrapper>
         <ContentLoader
@@ -329,5 +330,20 @@ export function CreditsItemSkeleton({ visible }) {
         </ContentLoader>
       </CreditsItemWrapper>
     </CSSTransition>
+  );
+}
+
+export function PaginationSkeleton() {
+  return (
+    <ContentLoader
+      speed={2}
+      width={25}
+      height={30}
+      viewBox="0 0 25 30"
+      backgroundColor="#dadada"
+      foregroundColor="#fafafa"
+    >
+      <rect x="0" y="0" rx="4" ry="4" width="25" height="30" />
+    </ContentLoader>
   );
 }

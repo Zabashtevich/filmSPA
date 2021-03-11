@@ -76,8 +76,19 @@ Credits.List = function CreditsList({ children, ...rest }) {
 
 //ITEM
 
-Credits.Item = function CreditsItem({ children, ...rest }) {
-  return <Item {...rest}>{children}</Item>;
+Credits.Item = function CreditsItem({ visible, children, ...rest }) {
+  return (
+    <CSSTransition
+      in={visible}
+      classNames="fade"
+      appear={true}
+      mountOnEnter
+      unmountOnExit
+      timeout={{ enter: 500, exit: 500, appear: 500 }}
+    >
+      <Item {...rest}>{children}</Item>
+    </CSSTransition>
+  );
 };
 
 Credits.Year = function CreditsYear({ children, ...rest }) {

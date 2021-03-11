@@ -7,6 +7,7 @@ import { range, sortMoviesByDate, splitByType } from "../../utils";
 import { PaginationContainer } from "../";
 import CreditsItem from "./items/credits-item";
 import { usePaginationContext } from "../../context";
+import { TransitionGroup } from "react-transition-group";
 
 export default function CreditsContainer({ list, dataLoading }) {
   const { loading, ratedMovies } = useSelector((state) => state.userData);
@@ -17,6 +18,7 @@ export default function CreditsContainer({ list, dataLoading }) {
     visible: false,
   });
   const [array, setArray] = useState(list);
+  const [delay, setDelay] = useState(true);
 
   function handleSelect(value) {
     if (value === "All") {
@@ -43,6 +45,9 @@ export default function CreditsContainer({ list, dataLoading }) {
       setPaginProps({ loading: true, active: 1, amount: null, length: null });
   }, [dataLoading, array]);
 
+  const skeletonvisible = dataLoading || loading;
+  const itemsvisible = !dataLoading && !loading && !delay;
+
   return (
     <Credits>
       <Credits.Header>
@@ -65,10 +70,14 @@ export default function CreditsContainer({ list, dataLoading }) {
       </Credits.Header>
       <Credits.List>
         {range(1, 10).map((item) => (
-          <CreditsItemSkeleton key={item} visible={loading || dataLoading} />
+          <CreditsItemSkeleton
+            key={item}
+            visible={skeletonvisible}
+            onExited={() => setDelay(false)}
+          />
         ))}
-        {!loading &&
-          !dataLoading &&
+
+        {itemsvisible &&
           sortMoviesByDate(array)
             .slice(active * 10 - 10, active * 10)
             .map((item) => (
@@ -76,6 +85,7 @@ export default function CreditsContainer({ list, dataLoading }) {
                 key={item.id}
                 item={item}
                 ratedMovies={ratedMovies}
+                visible={itemsvisible}
               />
             ))}
       </Credits.List>

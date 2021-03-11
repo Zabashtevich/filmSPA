@@ -70,6 +70,7 @@ export const List = styled.div`
   flex-direction: column;
   border-radius: 0.2rem;
   margin-top: 0.5rem;
+  min-height: 465px;
   display: flex;
 `;
 

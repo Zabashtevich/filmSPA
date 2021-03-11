@@ -5,17 +5,21 @@ import { useProcessContext } from "../../../context";
 import { useEstimate } from "../../../hooks";
 import { createEstimateItem, getYearFromString, range } from "../../../utils";
 
-export default function CreditsItem({ item, ratedMovies }) {
+export default function CreditsItem({ item, ratedMovies, visible }) {
+  const [setEstimate] = useEstimate();
+  const [{ estimateProcess }] = useProcessContext();
   const [popupVisible, setPopupVisible] = useState(false);
   const [hoverIndex, setHoverIndex] = useState(0);
+
   const metaVisible = !!item.vote_average && !!item.vote_count;
   const movieIsRated = ratedMovies.find((movie) => +movie.id === item.id);
   const yeardisabled = item.release_date === "" || item.first_air_date === "";
-  const [setEstimate] = useEstimate();
-  const [{ estimateProcess }] = useProcessContext();
 
   return (
-    <Credits.Item to={`/details/${item.media_type}/${item.id}`}>
+    <Credits.Item
+      to={`/details/${item.media_type}/${item.id}`}
+      visible={visible}
+    >
       <Credits.Year>
         {getYearFromString(item.release_date || item.first_air_date) || "-"}
       </Credits.Year>

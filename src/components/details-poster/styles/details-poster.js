@@ -5,12 +5,13 @@ import { Link as ReactRouterLink } from "react-router-dom";
 export const Container = styled.div`
   font-family: ${({ theme }) => theme.font.aux.family};
   background: linear-gradient(180deg, #000 724px, #232323 99%);
+  padding-bottom: 5rem;
   position: relative;
   max-width: 1300px;
-  margin: 0 310px;
+  margin: 0 auto;
   display: flex;
   z-index: 50;
-  padding-bottom: 5rem;
+  width: 100%;
 `;
 
 export const Inner = styled.div`

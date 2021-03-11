@@ -1,13 +1,16 @@
 import React from "react";
-import { DetailsPanel } from "../components";
 
-import { FooterContainer, DetailsPosterContainer } from "../containers";
+import {
+  FooterContainer,
+  DetailsPosterContainer,
+  DetailsPanelContainer,
+} from "../containers";
 
 export default function DetailsPage() {
   return (
     <>
       <DetailsPosterContainer />
-      <DetailsPanel />
+      <DetailsPanelContainer />
       <FooterContainer />
     </>
   );

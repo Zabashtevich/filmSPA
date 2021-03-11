@@ -37,6 +37,8 @@ export default function DetailsPosterContainer() {
     }
   }, [loading]);
 
+  console.log(data);
+
   return (
     <DetailsPoster>
       <GalleryContainer />

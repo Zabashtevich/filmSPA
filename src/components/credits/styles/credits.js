@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components/macro";
+import { Link as ReactRouterLink } from "react-router-dom";
 
 import { GoTriangleUp } from "react-icons/go";
 import { BiRadioCircle } from "react-icons/bi";
@@ -74,11 +75,15 @@ export const List = styled.div`
 
 //ITEM
 
-export const Item = styled.div`
+export const Item = styled(ReactRouterLink)`
+  text-decoration: none;
   align-items: center;
   padding: 0.2rem 0;
+  cursor: pointer;
   display: flex;
   height: 40px;
+  color: #000;
+
   &:hover {
     background-color: rgba(0, 0, 0, 0.05);
     transition: 300ms;
@@ -172,6 +177,11 @@ export const Rating = styled.div`
       color: white;
     }
   }
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      pointer-events: none;
+    `};
 `;
 
 export const Star = styled(BsFillStarFill)`

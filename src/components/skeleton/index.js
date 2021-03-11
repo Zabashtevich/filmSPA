@@ -8,6 +8,7 @@ import {
   ItemTrailerWrapper,
   WidgetWrapper,
   ListPosterWrapper,
+  CreditsItemWrapper,
 } from "./styles/skeleton";
 
 export function CardListSkeleton() {
@@ -297,5 +298,36 @@ export function ActorPosterContentSkeleton() {
       <rect x="0" y="325" rx="4" ry="4" width="600" height="20" />
       <rect x="0" y="358" rx="4" ry="4" width="550" height="20" />
     </ContentLoader>
+  );
+}
+
+export function CreditsItemSkeleton({ visible }) {
+  return (
+    <CSSTransition
+      appear={true}
+      in={visible}
+      classNames="fade"
+      mountOnEnter
+      unmountOnExit
+      timeout={500}
+    >
+      <CreditsItemWrapper>
+        <ContentLoader
+          speed={2}
+          width={800}
+          height={40}
+          viewBox="0 0 800 40"
+          backgroundColor="#dadada"
+          foregroundColor="#fafafa"
+        >
+          <rect x="15" y="12" rx="4" ry="4" width="20" height="15" />
+          <circle cx="90" cy="20" r="8" />
+          <rect x="140" y="12" rx="4" ry="4" width="150" height="15" />
+          <rect x="420" y="12" rx="4" ry="4" width="60" height="15" />
+          <rect x="575" y="8" rx="4" ry="4" width="25" height="25" />
+          <rect x="700" y="12" rx="4" ry="4" width="50" height="15" />
+        </ContentLoader>
+      </CreditsItemWrapper>
+    </CSSTransition>
   );
 }

@@ -44,7 +44,7 @@ ActorPoster.Poster = function ActorPosterPoster({ src, ...rest }) {
   return !!src ? (
     <Poster {...rest} src={`${w300miniature}${src}`} />
   ) : (
-    <Placeholder src={"https://dummyimage.com/640x360/aaa/aaa"} />
+    <Placeholder src={"https://dummyimage.com/300x450/aaa/aaa"} />
   );
 };
 

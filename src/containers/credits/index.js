@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
 import { Credits } from "../../components";
-import { getYearFromString, range, sortMoviesByDate } from "../../utils";
+import { CreditsItemSkeleton } from "../../components/skeleton";
+import { range, sortMoviesByDate, splitByType } from "../../utils";
+import CreditsItem from "./items/credits-item";
 
 export default function CreditsContainer({ list, dataLoading }) {
   const { loading, ratedMovies } = useSelector((state) => state.userData);
@@ -11,6 +13,18 @@ export default function CreditsContainer({ list, dataLoading }) {
     value: "All",
     visible: false,
   });
+  const [array, setArray] = useState(list);
+
+  function handleSelect(value) {
+    if (value === "All") {
+      setArray(list);
+    } else if (value === "TV shows") {
+      setArray(splitByType(list).tv);
+    } else if (value === "Movies") {
+      setArray(splitByType(list).movie);
+    }
+    setSelect((prev) => ({ ...prev, value }));
+  }
 
   return (
     <Credits>
@@ -25,13 +39,7 @@ export default function CreditsContainer({ list, dataLoading }) {
             {["All", "TV shows", "Movies"]
               .filter((item) => item !== value)
               .map((item) => (
-                <Credits.Option
-                  key={item}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setSelect((prev) => ({ ...prev, value: item }));
-                  }}
-                >
+                <Credits.Option key={item} onClick={() => handleSelect(item)}>
                   {item}
                 </Credits.Option>
               ))}
@@ -39,68 +47,15 @@ export default function CreditsContainer({ list, dataLoading }) {
         </Credits.Select>
       </Credits.Header>
       <Credits.List>
+        {range(1, 10).map((item) => (
+          <CreditsItemSkeleton key={item} visible={loading || dataLoading} />
+        ))}
         {!loading &&
           !dataLoading &&
-          sortMoviesByDate(list).map((item) => (
+          sortMoviesByDate(array).map((item) => (
             <CreditsItem key={item.id} item={item} ratedMovies={ratedMovies} />
           ))}
       </Credits.List>
     </Credits>
-  );
-}
-
-function CreditsItem({ item, ratedMovies }) {
-  const [popupVisible, setPopupVisible] = useState(false);
-  const [hoverIndex, setHoverIndex] = useState(0);
-  const metaVisible = !!item.vote_average && !!item.vote_count;
-  const movieIsRated = ratedMovies.find((movie) => +movie.id === item.id);
-  const yeardisabled = item.release_date === "" || item.first_air_date === "";
-  console.log(yeardisabled);
-
-  useEffect(() => {
-    if (movieIsRated) {
-    }
-  }, []);
-
-  return (
-    <Credits.Item>
-      <Credits.Year>
-        {getYearFromString(item.release_date || item.first_air_date) || "-"}
-      </Credits.Year>
-      <Credits.Icon />
-      <Credits.Description>
-        <Credits.Name>
-          {item.orinal_title || item.title || item.name}
-        </Credits.Name>
-        <Credits.Role>{item.character || "unknown"}</Credits.Role>
-      </Credits.Description>
-      {metaVisible && (
-        <Credits.Meta>
-          <Credits.Average value={+item.vote_average}>
-            {item.vote_average}
-          </Credits.Average>
-          <Credits.Count>{item.vote_count}</Credits.Count>
-        </Credits.Meta>
-      )}
-      {movieIsRated && (
-        <Credits.Highscore>{movieIsRated.value}</Credits.Highscore>
-      )}
-      {!yeardisabled && (
-        <Credits.Rating onClick={() => setPopupVisible((prev) => !prev)}>
-          <Credits.Star />
-          <Credits.Popup visible={popupVisible}>
-            <Credits.Close />
-            {range(1, 10).map((item) => (
-              <Credits.Star
-                key={item}
-                onMouseEnter={() => setHoverIndex(item)}
-                onMouseLeave={() => setHoverIndex(0)}
-                active={hoverIndex >= item ? 1 : 0}
-              />
-            ))}
-          </Credits.Popup>
-        </Credits.Rating>
-      )}
-    </Credits.Item>
   );
 }

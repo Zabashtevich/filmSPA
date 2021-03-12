@@ -50,3 +50,7 @@ export const ListPosterWrapper = styled.div`
 export const CreditsItemWrapper = styled.div`
   ${({ theme }) => theme.animations.fade(500, 500, 500)};
 `;
+
+export const DetailsCollectionWrapper = styled.div`
+  ${({ theme }) => theme.animations.fade(500, 0, 500)};
+`;

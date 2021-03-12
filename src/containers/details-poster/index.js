@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { useFetch } from "../../hooks";
 
-import { DetailsPoster } from "../../components";
+import { DetailsPoster, Thumbnail } from "../../components";
 import DetailsPosterRows from "./items/details-poster-rows";
 import {
   CreditsSkeleton,
@@ -55,8 +55,10 @@ export default function DetailsPosterContainer() {
 
       <DetailsPoster.Column type={"poster"} visible={!loading && !posterDelay}>
         <DetailsPoster.Poster src={data?.poster_path} />
-        <ThumbnailContainer type="gallery" />
-        <ThumbnailContainer type="trailer" />
+        <Thumbnail>
+          <ThumbnailContainer type="gallery" />
+          <ThumbnailContainer type="trailer" />
+        </Thumbnail>
       </DetailsPoster.Column>
 
       <DetailsPoster.Column

@@ -16,9 +16,9 @@ function GalleryThumbnail() {
   const [{ mounted }, { showModal }] = useGalleryContext();
 
   return (
-    <Thumbnail visible={mounted} onClick={showModal}>
+    <Thumbnail.Wrapper visible={mounted} onClick={showModal}>
       <Thumbnail.Gallery />
-    </Thumbnail>
+    </Thumbnail.Wrapper>
   );
 }
 
@@ -26,8 +26,8 @@ function TrailerThumbnail() {
   const [{ mounted }, { showModal }] = useTrailerContext();
 
   return (
-    <Thumbnail visible={mounted} onClick={showModal}>
+    <Thumbnail.Wrapper visible={mounted} onClick={showModal}>
       <Thumbnail.Trailer />
-    </Thumbnail>
+    </Thumbnail.Wrapper>
   );
 }

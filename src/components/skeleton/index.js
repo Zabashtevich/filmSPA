@@ -9,6 +9,7 @@ import {
   WidgetWrapper,
   ListPosterWrapper,
   CreditsItemWrapper,
+  DetailsCollectionWrapper,
 } from "./styles/skeleton";
 
 export function CardListSkeleton() {
@@ -43,8 +44,8 @@ export function GalleryMiniatureSkeleton({ visible }) {
           width={100}
           height={56}
           viewBox="0 0 100 56"
-          backgroundColor="#dadada"
-          foregroundColor="#fafafa"
+          backgroundColor="#f3f3f3"
+          foregroundColor="#ecebeb"
         >
           <rect x="0" y="0" rx="8" ry="8" width="100" height="56" />
         </ContentLoader>
@@ -69,8 +70,8 @@ export function GalleryActiveSkeleton({ visible }) {
           width={1000}
           height={562}
           viewBox="0 0 1000 562"
-          backgroundColor="#dadada"
-          foregroundColor="#fafafa"
+          backgroundColor="#f3f3f3"
+          foregroundColor="#ecebeb"
         >
           <rect x="0" y="0" rx="0" ry="0" width="1000" height="562" />
         </ContentLoader>
@@ -86,8 +87,8 @@ export function PosterDetailsRowsSkeleton() {
       width={600}
       height={600}
       viewBox="0 0 600 600"
-      backgroundColor="#dadada"
-      foregroundColor="#fafafa"
+      backgroundColor="#f3f3f3"
+      foregroundColor="#ecebeb"
     >
       <rect x="0" y="0" rx="4" ry="4" width="270" height="35" />
       <rect x="0" y="45" rx="5" ry="5" width="580" height="15" />
@@ -117,8 +118,8 @@ export function PosterSkeleton() {
       width={300}
       height={450}
       viewBox="0 0 300 450"
-      backgroundColor="#dadada"
-      foregroundColor="#fafafa"
+      backgroundColor="#f3f3f3"
+      foregroundColor="#ecebeb"
     >
       <rect x="0" y="0" rx="10" ry="10" width="300" height="450" />
     </ContentLoader>
@@ -132,8 +133,8 @@ export function CreditsSkeleton() {
       width={100}
       height={220}
       viewBox="0 0 100 220"
-      backgroundColor="#dadada"
-      foregroundColor="#fafafa"
+      backgroundColor="#f3f3f3"
+      foregroundColor="#ecebeb"
     >
       <rect x="0" y="8" rx="4" ry="4" width="200" height="5" />
       <rect x="0" y="30" rx="4" ry="4" width="200" height="5" />
@@ -165,8 +166,8 @@ export function VideoplayerSkeleton({ visible }) {
           width={1140}
           height={850}
           viewBox="0 0 1140 850"
-          backgroundColor="#dadada"
-          foregroundColor="#fafafa"
+          backgroundColor="#f3f3f3"
+          foregroundColor="#ecebeb"
         >
           <rect x="0" y="0" rx="0" ry="0" width="1140" height="850" />
         </ContentLoader>
@@ -191,8 +192,8 @@ export function ItemTrailerSkeleton({ visible }) {
           width={140}
           height={80}
           viewBox="0 0 140 80"
-          backgroundColor="#dadada"
-          foregroundColor="#fafafa"
+          backgroundColor="#f3f3f3"
+          foregroundColor="#ecebeb"
         >
           <rect x="0" y="0" rx="0" ry="0" width="140" height="80" />
         </ContentLoader>
@@ -217,8 +218,8 @@ export function WidgetSkeleton({ visible }) {
           width={120}
           height={25}
           viewBox="0 0 120 25"
-          backgroundColor="#dadada"
-          foregroundColor="#fafafa"
+          backgroundColor="#f3f3f3"
+          foregroundColor="#ecebeb"
         >
           <rect x="0" y="0" rx="4" ry="4" width="120" height="25" />
         </ContentLoader>
@@ -243,8 +244,8 @@ export function ListPosterSkeleton({ visible }) {
           width={200}
           height={112}
           viewBox="0 0 200 112"
-          backgroundColor="#dadada"
-          foregroundColor="#fafafa"
+          backgroundColor="#f3f3f3"
+          foregroundColor="#ecebeb"
         >
           <rect x="0" y="0" rx="4" ry="4" width="200" height="112" />
         </ContentLoader>
@@ -260,8 +261,8 @@ export function ActorPosterSkeleton() {
       width={300}
       height={800}
       viewBox="0 0 300 800"
-      backgroundColor="#dadada"
-      foregroundColor="#fafafa"
+      backgroundColor="#f3f3f3"
+      foregroundColor="#ecebeb"
     >
       <rect x="0" y="0" rx="4" ry="4" width="300" height="450" />
       <rect x="75" y="480" rx="2" ry="2" width="150" height="25" />
@@ -286,8 +287,8 @@ export function ActorPosterContentSkeleton() {
       width={800}
       height={400}
       viewBox="0 0 800 400"
-      backgroundColor="#dadada"
-      foregroundColor="#fafafa"
+      backgroundColor="#f3f3f3"
+      foregroundColor="#ecebeb"
     >
       <rect x="0" y="-1" rx="4" ry="4" width="150" height="35" />
       <rect x="0" y="125" rx="4" ry="4" width="100" height="25" />
@@ -318,8 +319,8 @@ export function CreditsItemSkeleton({ visible, ...rest }) {
           width={800}
           height={40}
           viewBox="0 0 800 40"
-          backgroundColor="#dadada"
-          foregroundColor="#fafafa"
+          backgroundColor="#f3f3f3"
+          foregroundColor="#ecebeb"
         >
           <rect x="15" y="12" rx="4" ry="4" width="20" height="15" />
           <circle cx="90" cy="20" r="8" />
@@ -340,10 +341,37 @@ export function PaginationSkeleton() {
       width={25}
       height={30}
       viewBox="0 0 25 30"
-      backgroundColor="#dadada"
-      foregroundColor="#fafafa"
+      backgroundColor="#f3f3f3"
+      foregroundColor="#ecebeb"
     >
       <rect x="0" y="0" rx="4" ry="4" width="25" height="30" />
     </ContentLoader>
+  );
+}
+
+export function DetailsCollectionSkeleton({ visible }) {
+  return (
+    <CSSTransition
+      appear={true}
+      in={visible}
+      classNames="fade"
+      mountOnEnter
+      unmountOnExit
+      timeout={{ enter: 500, exit: 0, appear: 500 }}
+    >
+      <DetailsCollectionWrapper>
+        <ContentLoader
+          speed={2}
+          width={1300}
+          height={565}
+          viewBox="0 0 1300 565"
+          backgroundColor="#f3f3f3"
+          foregroundColor="#ecebeb"
+        >
+          <rect x="0" y="100" rx="4" ry="4" width="150" height="35" />
+          <rect x="0" y="165" rx="4" ry="4" width="1300" height="400" />
+        </ContentLoader>
+      </DetailsCollectionWrapper>
+    </CSSTransition>
   );
 }

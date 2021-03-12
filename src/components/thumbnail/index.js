@@ -1,9 +1,13 @@
 import React from "react";
 import { CSSTransition } from "react-transition-group";
 
-import { Container, Gallery, Trailer } from "./styles/thumbnail";
+import { Container, Gallery, Trailer, Wrapper } from "./styles/thumbnail";
 
-export default function Thumbnail({ visible, children, ...rest }) {
+export default function Thumbnail({ children, ...rest }) {
+  return <Container {...rest}>{children}</Container>;
+}
+
+Thumbnail.Wrapper = function ThumbnailWrapper({ visible, children, ...rest }) {
   return (
     <CSSTransition
       in={visible}
@@ -12,10 +16,10 @@ export default function Thumbnail({ visible, children, ...rest }) {
       timeout={500}
       mountOnEnter
     >
-      <Container {...rest}>{children}</Container>
+      <Wrapper {...rest}>{children}</Wrapper>
     </CSSTransition>
   );
-}
+};
 
 Thumbnail.Gallery = function ThumbnailGallery({ ...rest }) {
   return <Gallery {...rest} />;

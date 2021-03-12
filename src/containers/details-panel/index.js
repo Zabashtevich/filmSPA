@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
-import { createEstimateItem, getCorrectDate, range } from "./../../utils";
+import { createEstimateItem, range } from "./../../utils";
 import { DetailsPanel } from "../../components";
 import { useSelector } from "react-redux";
 import { useEstimate, useFetch } from "../../hooks";
 import { MovieListContainer } from "..";
 import { DetailsCollectionSkeleton } from "../../components/skeleton";
+import DetailsPanelUservote from "./items/uservote";
+import DetailsPanelCollection from "./items/collection";
 
 export default function DetailsPanelContainer() {
   const [setEstimate] = useEstimate();
@@ -26,29 +28,12 @@ export default function DetailsPanelContainer() {
     }
   }, [loading, dataLoading, ratedMovies]);
 
+  console.log(data);
+
   return (
     <DetailsPanel>
       <DetailsCollectionSkeleton visible={dataLoading} />
-      {collection && (
-        <>
-          <DetailsPanel.Title>Collection</DetailsPanel.Title>
-          <DetailsPanel.Section>
-            <DetailsPanel.Inner>
-              <DetailsPanel.Poster
-                src={data?.belongs_to_collection?.backdrop_path}
-              />
-              <DetailsPanel.Description>
-                <DetailsPanel.Collectionname>{`Part of the  ${data.belongs_to_collection.name}`}</DetailsPanel.Collectionname>
-                <DetailsPanel.Link
-                  to={`/collection/${data.belongs_to_collection.name}`}
-                >
-                  WATCH COLLECTION
-                </DetailsPanel.Link>
-              </DetailsPanel.Description>
-            </DetailsPanel.Inner>
-          </DetailsPanel.Section>
-        </>
-      )}
+      {collection && <DetailsPanelCollection collection={collection} />}
       <DetailsPanel.Title>Recommendation</DetailsPanel.Title>
       <MovieListContainer
         list={data?.recommendations.results || []}
@@ -79,24 +64,7 @@ export default function DetailsPanelContainer() {
               <DetailsPanel.Count>{data.vote_count}</DetailsPanel.Count>
             </DetailsPanel.Meta>
           )}
-          {uservote && (
-            <DetailsPanel.Uservote>
-              <DetailsPanel.Row>
-                <DetailsPanel.Subtitle>Your vote:</DetailsPanel.Subtitle>
-                <DetailsPanel.Value>{uservote.value}</DetailsPanel.Value>
-                <DetailsPanel.Delete
-                  onClick={() => setEstimate({ type: "unrate", value: slug })}
-                >
-                  Delete
-                </DetailsPanel.Delete>
-              </DetailsPanel.Row>
-              <DetailsPanel.Row>
-                <DetailsPanel.Date>
-                  {getCorrectDate(uservote.date)}
-                </DetailsPanel.Date>
-              </DetailsPanel.Row>
-            </DetailsPanel.Uservote>
-          )}
+          {uservote && <DetailsPanelUservote uservote={uservote} />}
         </DetailsPanel.Rating>
       </DetailsPanel.Section>
     </DetailsPanel>

@@ -6,14 +6,10 @@ import {
   Header,
   Nickname,
   Avatar,
+  Placeholder,
   Value,
   Date,
   Text,
-  Createreview,
-  Input,
-  Textarea,
-  Cancel,
-  Submit,
 } from "./styles/reviews";
 
 export default function Reviews({ children, ...rest }) {
@@ -32,8 +28,12 @@ Reviews.Nickname = function ReviewsNickname({ children, ...rest }) {
   return <Nickname {...rest}>{children}</Nickname>;
 };
 
-Reviews.Avatar = function ReviewsAvatar({ children, ...rest }) {
-  return <Avatar {...rest}>{children}</Avatar>;
+Reviews.Avatar = function ReviewsAvatar({ ...rest }) {
+  return <Avatar {...rest} />;
+};
+
+Reviews.Placeholder = function ReviewsPlaceholder({ ...rest }) {
+  return <Placeholder {...rest} />;
 };
 
 Reviews.Value = function ReviewsValue({ children, ...rest }) {
@@ -46,24 +46,4 @@ Reviews.Date = function ReviewsDate({ children, ...rest }) {
 
 Reviews.Text = function ReviewsText({ children, ...rest }) {
   return <Text {...rest}>{children}</Text>;
-};
-
-Reviews.Createreview = function ReviewsCreatereview({ children, ...rest }) {
-  return <Createreview {...rest}>{children}</Createreview>;
-};
-
-Reviews.Input = function ReviewsInput({ children, ...rest }) {
-  return <Input {...rest}>{children}</Input>;
-};
-
-Reviews.Textarea = function ReviewsTextarea({ children, ...rest }) {
-  return <Textarea {...rest}>{children}</Textarea>;
-};
-
-Reviews.Cancel = function ReviewsCancel({ children, ...rest }) {
-  return <Cancel {...rest}>{children}</Cancel>;
-};
-
-Reviews.Submit = function ReviewsSubmit({ children, ...rest }) {
-  return <Submit {...rest}>{children}</Submit>;
 };

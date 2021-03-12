@@ -10,18 +10,10 @@ export const Nickname = styled.div``;
 
 export const Avatar = styled.div``;
 
+export const Placeholder = styled.div``;
+
 export const Value = styled.div``;
 
 export const Date = styled.div``;
 
 export const Text = styled.div``;
-
-export const Createreview = styled.div``;
-
-export const Input = styled.div``;
-
-export const Textarea = styled.div``;
-
-export const Cancel = styled.div``;
-
-export const Submit = styled.div``;

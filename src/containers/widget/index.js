@@ -11,7 +11,7 @@ export default function WidgetContainer({ data }) {
   const { userlists, favoritedMovies, loading } = useSelector(
     (state) => state.userData,
   );
-  const { profileLoading, profile } = useSelector((state) => state.userProfile);
+  const { profile, profileLoading } = useSelector((state) => state.userProfile);
 
   const [rotate, setRotate] = useState(false);
   const [{ main, aux }, setPopupVisible] = useState({
@@ -49,7 +49,6 @@ export default function WidgetContainer({ data }) {
     }
     return () => document.body.removeEventListener("click", handleClose);
   }, [main, aux]);
-
   return (
     <Widget
       onClick={(e) => {

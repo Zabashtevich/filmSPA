@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
-import { range } from "./../../utils";
+import { createEstimateItem, getCorrectDate, range } from "./../../utils";
 import { DetailsPanel } from "../../components";
 import { useSelector } from "react-redux";
-import { useFetch } from "../../hooks";
+import { useEstimate, useFetch } from "../../hooks";
 import { MovieListContainer } from "..";
 
 export default function DetailsPanelContainer() {
+  const [setEstimate] = useEstimate();
   const [hoverIndex, setHoverIndex] = useState(0);
+  const [uservote, setUservote] = useState(null);
+
   const { slug, direction } = useParams();
   const { loading, ratedMovies } = useSelector((state) => state.userData);
   const [data, dataLoading] = useFetch(direction, slug);
@@ -16,9 +19,31 @@ export default function DetailsPanelContainer() {
   const metavisible =
     !dataLoading && (!!data.vote_average || !!data.vote_count);
 
+  useEffect(() => {
+    if (!loading && !dataLoading) {
+      setUservote(ratedMovies.find((item) => +item.id === +slug));
+    }
+  }, [loading, dataLoading, ratedMovies]);
+  console.log(data);
   return (
     !dataLoading && (
       <DetailsPanel>
+        <DetailsPanel.Title>Collection</DetailsPanel.Title>
+        <DetailsPanel.Section>
+          <DetailsPanel.Inner>
+            <DetailsPanel.Poster
+              src={data?.belongs_to_collection?.backdrop_path}
+            />
+            <DetailsPanel.Description>
+              <DetailsPanel.Collectionname>{`Part of the  ${data.belongs_to_collection.name}`}</DetailsPanel.Collectionname>
+              <DetailsPanel.Link
+                to={`/collection/${data.belongs_to_collection.name}`}
+              >
+                WATCH COLLECTION
+              </DetailsPanel.Link>
+            </DetailsPanel.Description>
+          </DetailsPanel.Inner>
+        </DetailsPanel.Section>
         <DetailsPanel.Title>Recommendation</DetailsPanel.Title>
         <MovieListContainer
           list={data?.recommendations.results || []}
@@ -28,7 +53,18 @@ export default function DetailsPanelContainer() {
         <DetailsPanel.Section>
           <DetailsPanel.Rating>
             {range(1, 10).map((item) => (
-              <DetailsPanel.Star key={item} />
+              <DetailsPanel.Star
+                key={item}
+                active={hoverIndex >= item ? 1 : 0}
+                onMouseEnter={() => setHoverIndex(item)}
+                onMouseLeave={() => setHoverIndex(0)}
+                onClick={() =>
+                  setEstimate({
+                    type: "rate",
+                    value: createEstimateItem(data, item, direction),
+                  })
+                }
+              />
             ))}
             {metavisible && (
               <DetailsPanel.Meta>
@@ -38,16 +74,24 @@ export default function DetailsPanelContainer() {
                 <DetailsPanel.Count>{data.vote_count}</DetailsPanel.Count>
               </DetailsPanel.Meta>
             )}
-            <DetailsPanel.Uservote>
-              <DetailsPanel.Row>
-                <DetailsPanel.Subtitle>Your vote:</DetailsPanel.Subtitle>
-                <DetailsPanel.Value>5</DetailsPanel.Value>
-                <DetailsPanel.Delete>Delete</DetailsPanel.Delete>
-              </DetailsPanel.Row>
-              <DetailsPanel.Row>
-                <DetailsPanel.Date>2021 20 2020</DetailsPanel.Date>
-              </DetailsPanel.Row>
-            </DetailsPanel.Uservote>
+            {uservote && (
+              <DetailsPanel.Uservote>
+                <DetailsPanel.Row>
+                  <DetailsPanel.Subtitle>Your vote:</DetailsPanel.Subtitle>
+                  <DetailsPanel.Value>{uservote.value}</DetailsPanel.Value>
+                  <DetailsPanel.Delete
+                    onClick={() => setEstimate({ type: "unrate", value: slug })}
+                  >
+                    Delete
+                  </DetailsPanel.Delete>
+                </DetailsPanel.Row>
+                <DetailsPanel.Row>
+                  <DetailsPanel.Date>
+                    {getCorrectDate(uservote.date)}
+                  </DetailsPanel.Date>
+                </DetailsPanel.Row>
+              </DetailsPanel.Uservote>
+            )}
           </DetailsPanel.Rating>
         </DetailsPanel.Section>
       </DetailsPanel>

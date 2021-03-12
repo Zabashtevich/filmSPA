@@ -1,4 +1,5 @@
 import React from "react";
+import { orinalImageSize } from "../../constants/constants";
 
 import {
   Container,
@@ -12,9 +13,14 @@ import {
   Uservote,
   Row,
   Subtitle,
+  Inner,
   Value,
   Delete,
   Date,
+  Link,
+  Poster,
+  Description,
+  Collectionname,
 } from "./styles/details-panel";
 
 export default function DetailsPanel({ children, ...rest }) {
@@ -27,6 +33,40 @@ DetailsPanel.Title = function DetailsPanelTitle({ children, ...rest }) {
 
 DetailsPanel.Section = function DetailsPanelSection({ children, ...rest }) {
   return <Section {...rest}>{children}</Section>;
+};
+
+DetailsPanel.Inner = function DetailsPanelInner({ children, ...rest }) {
+  return <Inner {...rest}>{children}</Inner>;
+};
+
+DetailsPanel.Poster = function DetailsPanelPoster({ src, children, ...rest }) {
+  return (
+    <Poster {...rest} src={`${orinalImageSize + src}`}>
+      {children}
+    </Poster>
+  );
+};
+
+DetailsPanel.Description = function DetailsPanelDescription({
+  children,
+  ...rest
+}) {
+  return <Description {...rest}>{children}</Description>;
+};
+
+DetailsPanel.Collectionname = function DetailsPanelCollectionname({
+  children,
+  ...rest
+}) {
+  return <Collectionname {...rest}>{children}</Collectionname>;
+};
+
+DetailsPanel.Link = function DetailsPanelLink({ children, ...rest }) {
+  return <Link {...rest}>{children}</Link>;
+};
+
+DetailsPanel.Rating = function DetailsPanelRating({ children, ...rest }) {
+  return <Rating {...rest}>{children}</Rating>;
 };
 
 DetailsPanel.Rating = function DetailsPanelRating({ children, ...rest }) {

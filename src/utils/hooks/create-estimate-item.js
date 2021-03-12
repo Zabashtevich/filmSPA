@@ -1,9 +1,9 @@
-export default function createEstimateItem(item, value) {
+export default function createEstimateItem(item, value, type = "Movie") {
   return {
-    time: new Date(),
+    date: new Date(),
     id: item.id,
-    type: item.media_type,
-    genres: item.genre_ids,
+    type,
+    genres: item.genres,
     title: item.orinal_name || item.title || item.name,
     average: item.vote_average,
     count: item.vote_count,

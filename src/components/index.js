@@ -14,3 +14,4 @@ export { default as MovieList } from "./movie-list";
 export { default as Credits } from "./credits";
 export { default as Pagination } from "./pagination";
 export { default as DetailsPanel } from "./details-panel";
+export { default as Reviews } from "./reviews";

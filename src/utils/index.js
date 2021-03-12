@@ -6,6 +6,7 @@ export { default as getYearFromString } from "./shareable/get-year-from-string";
 export { default as getKnownFor } from "./shareable/get-known-for";
 export { default as splitByType } from "./shareable/split-by-type";
 export { default as sortMoviesByDate } from "./shareable/sort-movies-by-date";
+export { default as getCorrectSrc } from "./shareable/get-correct-src";
 
 export { default as getQuerries } from "./hooks/get-querries";
 export { default as createEstimateItem } from "./hooks/create-estimate-item";

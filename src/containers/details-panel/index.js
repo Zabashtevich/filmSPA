@@ -5,7 +5,7 @@ import { createEstimateItem, range } from "./../../utils";
 import { DetailsPanel } from "../../components";
 import { useSelector } from "react-redux";
 import { useEstimate, useFetch } from "../../hooks";
-import { MovieListContainer, ReviewsContainer } from "..";
+import { MovieListContainer, ReviewContainer } from "..";
 import { DetailsCollectionSkeleton } from "../../components/skeleton";
 import DetailsPanelUservote from "./items/uservote";
 import DetailsPanelCollection from "./items/collection";
@@ -14,10 +14,7 @@ export default function DetailsPanelContainer() {
   const [setEstimate] = useEstimate();
   const [hoverIndex, setHoverIndex] = useState(0);
   const [uservote, setUservote] = useState(null);
-  const [combineReviews, setCombineReviews] = useState({
-    list: null,
-    loading: true,
-  });
+  const [combineReviews, setCombineReviews] = useState(null);
 
   const { slug, direction } = useParams();
   const { loading, ratedMovies } = useSelector((state) => state.userData);
@@ -36,10 +33,7 @@ export default function DetailsPanelContainer() {
 
   useEffect(() => {
     if (!loading && !reviewsLoading) {
-      setCombineReviews({
-        loading: false,
-        list: reviews.concat(...(data?.reviews?.results || [])),
-      });
+      setCombineReviews(reviews.concat(...(data?.reviews?.results || [])));
     }
   }, [loading, reviewsLoading, data]);
 
@@ -81,7 +75,8 @@ export default function DetailsPanelContainer() {
         </DetailsPanel.Rating>
       </DetailsPanel.Section>
       <DetailsPanel.Title>Reviews</DetailsPanel.Title>
-      <ReviewsContainer combineReviews={combineReviews} />
+      {combineReviews &&
+        combineReviews.map((item) => <ReviewContainer key={item.id} />)}
     </DetailsPanel>
   );
 }

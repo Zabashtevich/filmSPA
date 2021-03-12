@@ -4,16 +4,16 @@ import {
   SET_REVIEWS,
 } from "./constants";
 
-const initialState = { loading: true, reviews: null };
+const initialState = { reviewsLoading: true, reviews: null };
 
 const userReviewsReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case FETCH_REVIEWS_START:
-      return { ...state, loading: true };
+      return { ...state, reviewsLoading: true };
     case FETCH_REVIEWS_SUCCESS:
-      return { ...state, loading: false };
+      return { ...state, reviewsLoading: false };
     case SET_REVIEWS:
-      return { ...state, reviews: payload, loading: false };
+      return { ...state, reviews: payload, reviewsLoading: false };
     default:
       return state;
   }

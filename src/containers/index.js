@@ -12,3 +12,4 @@ export { default as MovieListContainer } from "./movie-list";
 export { default as CreditsContainer } from "./credits";
 export { default as PaginationContainer } from "./pagination";
 export { default as DetailsPanelContainer } from "./details-panel";
+export { default as ReviewsContainer } from "./reviews";

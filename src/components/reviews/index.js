@@ -28,7 +28,8 @@ Reviews.Nickname = function ReviewsNickname({ children, ...rest }) {
   return <Nickname {...rest}>{children}</Nickname>;
 };
 
-Reviews.Avatar = function ReviewsAvatar({ ...rest }) {
+Reviews.Avatar = function ReviewsAvatar({ src, ...rest }) {
+  console.log(src);
   return <Avatar {...rest} />;
 };
 

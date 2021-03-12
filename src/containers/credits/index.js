@@ -39,7 +39,6 @@ export default function CreditsContainer({ list, dataLoading }) {
         amount: 10,
         length: Math.ceil(array.length / 10),
       }));
-      console.log(array.length);
     }
     return () =>
       setPaginProps({ loading: true, active: 1, amount: null, length: null });

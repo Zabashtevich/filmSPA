@@ -75,8 +75,9 @@ export default function DetailsPanelContainer() {
         </DetailsPanel.Rating>
       </DetailsPanel.Section>
       <DetailsPanel.Title>Reviews</DetailsPanel.Title>
-      {combineReviews &&
-        combineReviews.map((item) => <ReviewContainer key={item.id} />)}
+      <DetailsPanel.Section>
+        {combineReviews && <ReviewContainer combineReviews={combineReviews} />}
+      </DetailsPanel.Section>
     </DetailsPanel>
   );
 }

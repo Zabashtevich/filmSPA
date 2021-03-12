@@ -31,7 +31,8 @@ export const Avatar = styled.img`
 `;
 
 export const Placeholder = styled.img`
-  width: 50px;
+  border-radius: 50%;
+  width: 75px;
 `;
 
 export const Value = styled.div`
@@ -65,7 +66,7 @@ export const Date = styled.div`
   margin-left: auto;
 `;
 
-export const Text = styled.div`
+export const Body = styled.div`
   padding: 1rem 2rem;
 `;
 
@@ -74,4 +75,8 @@ export const Textblock = styled.p``;
 export const Link = styled.a`
   text-decoration: none;
   color: gray;
+`;
+
+export const Button = styled.button`
+  ${({ theme }) => theme.animations.fade()};
 `;

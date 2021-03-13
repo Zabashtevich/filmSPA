@@ -7,6 +7,7 @@ export const Container = styled.div`
   ${({ theme }) => theme.animations.slide({ x: 0, y: -100 }, { x: 0, y: -100 })}
   background-color: ${({ theme }) => theme.colors.main};
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 50%);
   justify-content: space-between;
   align-items: center;
   user-select: none;

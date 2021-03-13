@@ -9,24 +9,22 @@ export default function HeaderContainer() {
   const [active, setActive] = useState(false);
   const [popupVisible, setPopupVisible] = useState(false);
   const { profileLoading, profile } = useSelector((state) => state.userProfile);
+  let prevScrollPosition = 0;
 
   function inputToggler() {
     setActive((prev) => !prev);
   }
-  let prev;
 
-  const headerToggler = useCallback(() => {
+  function headerToggler() {
     const current = window.pageYOffset;
 
-    if (prev > current) {
+    if (prevScrollPosition > current) {
       setHeaderVisible(true);
     } else {
       setHeaderVisible(false);
     }
-    console.log(prev, current);
-
-    prev = current;
-  }, [prevScrollPos]);
+    prevScrollPosition = current;
+  }
 
   useEffect(() => {
     window.addEventListener("scroll", headerToggler);

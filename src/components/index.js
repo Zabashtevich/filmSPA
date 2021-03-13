@@ -1,4 +1,3 @@
-export { default as Slider } from "./slider";
 export { default as CardList } from "./card-list";
 export { default as Footer } from "./footer";
 export { default as AuthenticationForm } from "./auth-form";

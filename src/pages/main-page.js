@@ -1,10 +1,12 @@
 import React from "react";
 
-import { FooterContainer } from "../containers";
+import { FooterContainer, HeaderContainer, MainContainer } from "../containers";
 
 export default function MainPage() {
   return (
     <>
+      <HeaderContainer />
+      <MainContainer />
       <FooterContainer />
     </>
   );

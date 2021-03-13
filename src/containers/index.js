@@ -15,3 +15,4 @@ export { default as DetailsPanelContainer } from "./details-panel";
 export { default as ReviewContainer } from "./review";
 export { default as HeaderContainer } from "./header";
 export { default as PopularContainer } from "./popular";
+export { default as MainContainer } from "./main";

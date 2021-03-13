@@ -9,12 +9,12 @@ export default function MainContainer() {
       <Main.Section>
         <PopularContainer type="tv" />
       </Main.Section>
-      <Main.Section>
+      {/* <Main.Section>
         <PopularContainer type="movie" />
       </Main.Section>
       <Main.Section>
         <PopularContainer type="person" />
-      </Main.Section>
+      </Main.Section> */}
     </Main>
   );
 }

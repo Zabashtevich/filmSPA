@@ -1,4 +1,6 @@
 import React from "react";
+import { TransitionGroup } from "react-transition-group";
+import { w200miniature } from "../../constants/constants";
 
 import {
   Container,
@@ -28,15 +30,19 @@ Popular.Title = function PopularTitle({ children, ...rest }) {
 };
 
 Popular.List = function PopularList({ children, ...rest }) {
-  return <List {...rest}>{children}</List>;
+  return <TransitionGroup component={List}>{children}</TransitionGroup>;
 };
 
 Popular.Item = function PopularItem({ children, ...rest }) {
   return <Item {...rest}>{children}</Item>;
 };
 
-Popular.Poster = function PopularPoster({ children, ...rest }) {
-  return <Poster {...rest}>{children}</Poster>;
+Popular.Poster = function PopularPoster({ src, children, ...rest }) {
+  return (
+    <Poster {...rest} src={`${w200miniature + src}`}>
+      {children}
+    </Poster>
+  );
 };
 
 Popular.Info = function PopularInfo({ children, ...rest }) {

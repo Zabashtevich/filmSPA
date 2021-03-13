@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "./../../assets/logo.svg";
 
 import {
   Container,
@@ -24,7 +23,7 @@ export default function Header({ children, ...rest }) {
 }
 
 Header.Logo = function HeaderLogo({ ...rest }) {
-  return <Logo {...rest} src={logo} />;
+  return <Logo {...rest} />;
 };
 
 Header.Wrapper = function HeaderWrapper({ children, ...rest }) {
@@ -39,8 +38,8 @@ Header.Inner = function HeaderInner({ children, ...rest }) {
   return <Inner {...rest}>{children}</Inner>;
 };
 
-Header.Input = function HeaderInput({ ...rest }) {
-  return <Input {...rest} />;
+Header.Input = function HeaderInput({ inputref, ...rest }) {
+  return <Input {...rest} ref={inputref} />;
 };
 
 Header.Icon = function HeaderIcon({ ...rest }) {

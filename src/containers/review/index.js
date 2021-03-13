@@ -28,8 +28,8 @@ export default function ReviewContainer({ combineReviews }) {
     <>
       {process &&
         range(1, 5).map((item) => (
-          <Review>
-            <ReviewSkeleton key={item} />
+          <Review key={item}>
+            <ReviewSkeleton />
           </Review>
         ))}
       {!process &&

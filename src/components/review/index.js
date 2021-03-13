@@ -67,23 +67,23 @@ Review.Body = function ReviewBody({ children, ...rest }) {
         children
           .slice(0, 300)
           .split("\n")
-          .map((item) =>
+          .map((item, i) =>
             item.includes("http") ? (
-              <Link href={`${item}`} target="_blanc">
+              <Link href={`${item}`} target="_blanc" key={i}>
                 {item}
               </Link>
             ) : (
-              <Textblock>{item}</Textblock>
+              <Textblock key={i}>{item}</Textblock>
             ),
           )}
       {!previewVisible &&
-        children.split("\n").map((item) =>
+        children.split("\n").map((item, i) =>
           item.includes("http") ? (
-            <Link href={`${item}`} target="_blanc">
+            <Link href={`${item}`} target="_blanc" key={i}>
               {item}
             </Link>
           ) : (
-            <Textblock>{item}</Textblock>
+            <Textblock key={i}>{item}</Textblock>
           ),
         )}
     </Body>

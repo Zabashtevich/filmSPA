@@ -15,3 +15,4 @@ export { default as Pagination } from "./pagination";
 export { default as DetailsPanel } from "./details-panel";
 export { default as Review } from "./review";
 export { default as Header } from "./header";
+export { default as Popular } from "./popular";

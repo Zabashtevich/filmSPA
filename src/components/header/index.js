@@ -1,4 +1,5 @@
 import React from "react";
+import { CSSTransition } from "react-transition-group";
 
 import {
   Container,
@@ -14,12 +15,23 @@ import {
   Info,
   Name,
   Mail,
-  Edit,
+  Account,
   Signout,
 } from "./styles/header";
 
-export default function Header({ children, ...rest }) {
-  return <Container {...rest}>{children}</Container>;
+export default function Header({ visible, children, ...rest }) {
+  return (
+    <CSSTransition
+      in={visible}
+      classNames="slide"
+      appear={true}
+      mountOnEnter
+      unmountOnExit
+      timeout={500}
+    >
+      <Container {...rest}>{children}</Container>
+    </CSSTransition>
+  );
 }
 
 Header.Logo = function HeaderLogo({ ...rest }) {
@@ -38,8 +50,8 @@ Header.Inner = function HeaderInner({ children, ...rest }) {
   return <Inner {...rest}>{children}</Inner>;
 };
 
-Header.Input = function HeaderInput({ inputref, ...rest }) {
-  return <Input {...rest} ref={inputref} />;
+Header.Input = function HeaderInput({ ...rest }) {
+  return <Input {...rest} />;
 };
 
 Header.Icon = function HeaderIcon({ ...rest }) {
@@ -54,8 +66,19 @@ Header.Avatar = function HeaderAvatar({ ...rest }) {
   return <Avatar {...rest} />;
 };
 
-Header.Popup = function HeaderPopup({ children, ...rest }) {
-  return <Popup {...rest}>{children}</Popup>;
+Header.Popup = function HeaderPopup({ visible, children, ...rest }) {
+  return (
+    <CSSTransition
+      in={visible}
+      classNames="slide"
+      appear={true}
+      mountOnEnter
+      unmountOnExit
+      timeout={500}
+    >
+      <Popup {...rest}>{children}</Popup>
+    </CSSTransition>
+  );
 };
 
 Header.Info = function HeaderInfo({ children, ...rest }) {
@@ -70,8 +93,8 @@ Header.Mail = function HeaderMail({ children, ...rest }) {
   return <Mail {...rest}>{children}</Mail>;
 };
 
-Header.Edit = function HeaderEdit({ children, ...rest }) {
-  return <Edit {...rest}>{children}</Edit>;
+Header.Account = function HeaderAccount({ children, ...rest }) {
+  return <Account {...rest}>{children}</Account>;
 };
 
 Header.Signout = function HeaderSignout({ children, ...rest }) {

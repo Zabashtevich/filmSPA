@@ -1,19 +1,49 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
+import { useSelector } from "react-redux";
 
 import { Header } from "../../components";
 
 export default function HeaderContainer() {
+  const [prevScrollPos, setPrevScrollPos] = useState(null);
+  const [headerVisible, setHeaderVisible] = useState(true);
   const [active, setActive] = useState(false);
-
-  const inputref = useRef();
-  useEffect(() => {}, []);
+  const [popupVisible, setPopupVisible] = useState(false);
+  const { profileLoading, profile } = useSelector((state) => state.userProfile);
 
   function inputToggler() {
     setActive((prev) => !prev);
   }
-  console.log(active);
+  let prev;
+
+  const headerToggler = useCallback(() => {
+    const current = window.pageYOffset;
+
+    if (prev > current) {
+      setHeaderVisible(true);
+    } else {
+      setHeaderVisible(false);
+    }
+    console.log(prev, current);
+
+    prev = current;
+  }, [prevScrollPos]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", headerToggler);
+    return () => window.removeEventListener("scroll", this);
+  }, []);
+
+  useEffect(() => {
+    if (popupVisible) {
+      window.addEventListener("click", () => setPopupVisible(false));
+    }
+    return () => window.removeEventListener("click", this);
+  }, [popupVisible]);
+
+  const profilevisible = !profileLoading && profile !== null;
+
   return (
-    <Header>
+    <Header visible={headerVisible}>
       <Header.Wrapper>
         <Header.Logo>TMDB</Header.Logo>
         <Header.Link to="/">MAIN</Header.Link>
@@ -23,14 +53,29 @@ export default function HeaderContainer() {
       <Header.Wrapper>
         <Header.Inner onClick={inputToggler}>
           <Header.Input
-            inputref={inputref}
             onBlur={() => setActive(false)}
             active={active ? 1 : 0}
           />
           <Header.Icon />
         </Header.Inner>
         <Header.Profile>
-          <Header.Avatar />
+          {profilevisible && (
+            <Header.Avatar
+              src={profile?.photoURL || "https://dummyimage.com/50x50/aaa/aaa"}
+              onClick={(e) => {
+                e.stopPropagation();
+                setPopupVisible((prev) => !prev);
+              }}
+            />
+          )}
+          <Header.Popup visible={popupVisible}>
+            <Header.Info>
+              <Header.Name>{profile?.displayName}</Header.Name>
+              <Header.Mail>{profile?.email}</Header.Mail>
+            </Header.Info>
+            <Header.Account to="/account">To profile</Header.Account>
+            <Header.Signout>Sign Out</Header.Signout>
+          </Header.Popup>
         </Header.Profile>
       </Header.Wrapper>
     </Header>

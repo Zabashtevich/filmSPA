@@ -1,9 +1,10 @@
 import styled, { css } from "styled-components/macro";
 
-import { NavLink } from "react-router-dom";
+import { NavLink, Link as ReactRouterLink } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
 
 export const Container = styled.div`
+  ${({ theme }) => theme.animations.slide({ x: 0, y: -100 }, { x: 0, y: -100 })}
   background-color: ${({ theme }) => theme.colors.main};
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
   justify-content: space-between;
@@ -27,6 +28,7 @@ export const Wrapper = styled.div`
   align-items: center;
   margin-right: 2rem;
   display: flex;
+  height: 100%;
 `;
 
 export const Link = styled(NavLink)`
@@ -64,19 +66,60 @@ export const Icon = styled(BsSearch)`
 `;
 
 export const Profile = styled.div`
-  min-width: 200px;
+  align-items: center;
+  position: relative;
+  min-width: 300px;
+  display: flex;
+  height: 100%;
 `;
 
-export const Avatar = styled.div``;
+export const Avatar = styled.img`
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  margin-left: 2rem;
+  cursor: pointer;
+  height: 50px;
+  width: 50px;
+`;
 
-export const Popup = styled.div``;
+export const Popup = styled.div`
+  ${({ theme }) => theme.animations.slide({ x: -200, y: 0 }, { x: 200, y: 0 })}
+  box-shadow: 0 2px 8px rgb(0 0 0 / 50%);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: white;
+  flex-direction: column;
+  border-radius: 0.2rem;
+  top: calc(100% + 8px);
+  position: absolute;
+  font-size: 1.1rem;
+  display: flex;
+  color: black;
+`;
 
-export const Info = styled.div``;
+export const Info = styled.div`
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  justify-content: center;
+  flex-direction: column;
+  padding: 0.5rem 1rem;
+  display: flex;
+`;
 
-export const Name = styled.div``;
+export const Name = styled.span`
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
+`;
 
-export const Mail = styled.div``;
+export const Mail = styled.span`
+  font-weight: ${({ theme }) => theme.font.aux.weight.light};
+`;
 
-export const Edit = styled.div``;
+export const Account = styled(ReactRouterLink)`
+  margin: 0.6rem 1rem 0;
+  text-decoration: none;
+  cursor: pointer;
+  color: black;
+`;
 
-export const Signout = styled.div``;
+export const Signout = styled.span`
+  margin: 0.5rem 1rem;
+  cursor: pointer;
+`;

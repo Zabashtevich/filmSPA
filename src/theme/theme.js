@@ -34,7 +34,7 @@ export default {
     backdrop: "linear-gradient(to bottom,rgba(0,0,0,0.8),rgba(0,0,0,0.95))",
   },
   animations: {
-    fade: (enter, exit, appear) => `
+    fade: (enter = 500, exit = 500, appear = 500) => `
     &.fade-enter {
       opacity: 0;
     }

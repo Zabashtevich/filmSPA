@@ -14,37 +14,41 @@ export default function DetailsPanelContainer() {
   const [setEstimate] = useEstimate();
   const [hoverIndex, setHoverIndex] = useState(0);
   const [uservote, setUservote] = useState(null);
-  const [combineReviews, setCombineReviews] = useState(null);
+  const [combineReviews, setCombineReviews] = useState({
+    process: true,
+    list: null,
+  });
 
   const { slug, direction } = useParams();
+
   const { loading, ratedMovies } = useSelector((state) => state.userData);
   const { reviewsLoading, reviews } = useSelector((state) => state.reviewsData);
 
-  const [data, dataLoading] = useFetch(direction, slug);
-
-  const meta = !dataLoading && (!!data.vote_average || !!data.vote_count);
-  const collection = !dataLoading && data?.belongs_to_collection;
-
+  const [details, detailsLoading] = useFetch(direction, slug);
   useEffect(() => {
-    if (!loading && !dataLoading) {
+    if (!loading && !detailsLoading) {
       setUservote(ratedMovies.find((item) => +item.id === +slug));
     }
-  }, [loading, dataLoading, ratedMovies]);
-
-  useEffect(() => {
     if (!loading && !reviewsLoading) {
-      setCombineReviews(reviews.concat(...(data?.reviews?.results || [])));
+      setCombineReviews({
+        process: false,
+        list: reviews.concat(...(details?.reviews?.results || [])),
+      });
     }
-  }, [loading, reviewsLoading, data]);
+  }, [loading, detailsLoading, ratedMovies, reviewsLoading, details]);
+
+  const meta =
+    !detailsLoading && (!!details.vote_average || !!details.vote_count);
+  const collection = !detailsLoading && details?.belongs_to_collection;
 
   return (
     <DetailsPanel>
-      <DetailsCollectionSkeleton visible={dataLoading} />
+      <DetailsCollectionSkeleton visible={detailsLoading} />
       {collection && <DetailsPanelCollection collection={collection} />}
       <DetailsPanel.Title>Recommendation</DetailsPanel.Title>
       <MovieListContainer
-        list={data?.recommendations.results || []}
-        loading={dataLoading}
+        list={details?.recommendations.results || []}
+        loading={detailsLoading}
       />
       <DetailsPanel.Title>Rating</DetailsPanel.Title>
       <DetailsPanel.Section>
@@ -58,17 +62,17 @@ export default function DetailsPanelContainer() {
               onClick={() =>
                 setEstimate({
                   type: "rate",
-                  value: createEstimateItem(data, item, direction),
+                  value: createEstimateItem(details, item, direction),
                 })
               }
             />
           ))}
           {meta && (
             <DetailsPanel.Meta>
-              <DetailsPanel.Average value={data.vote_average}>
-                {data.vote_average}
+              <DetailsPanel.Average value={details.vote_average}>
+                {details.vote_average}
               </DetailsPanel.Average>
-              <DetailsPanel.Count>{data.vote_count}</DetailsPanel.Count>
+              <DetailsPanel.Count>{details.vote_count}</DetailsPanel.Count>
             </DetailsPanel.Meta>
           )}
           {uservote && <DetailsPanelUservote uservote={uservote} />}
@@ -76,7 +80,7 @@ export default function DetailsPanelContainer() {
       </DetailsPanel.Section>
       <DetailsPanel.Title>Reviews</DetailsPanel.Title>
       <DetailsPanel.Section>
-        {combineReviews && <ReviewContainer combineReviews={combineReviews} />}
+        <ReviewContainer combineReviews={combineReviews} />
       </DetailsPanel.Section>
     </DetailsPanel>
   );

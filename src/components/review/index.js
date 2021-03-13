@@ -54,7 +54,6 @@ Review.Date = function ReviewDate({ children, ...rest }) {
 
 Review.Body = function ReviewBody({ children, ...rest }) {
   const [previewVisible, setPreviewVisible] = useContext(ReviewContext);
-  const [...text] = children.split("\n");
 
   useEffect(() => {
     if (children.length > 300) {
@@ -70,21 +69,23 @@ Review.Body = function ReviewBody({ children, ...rest }) {
           .split("\n")
           .map((item) =>
             item.includes("http") ? (
-              <Link>{item}</Link>
+              <Link href={`${item}`} target="_blanc">
+                {item}
+              </Link>
             ) : (
               <Textblock>{item}</Textblock>
             ),
           )}
       {!previewVisible &&
-        children
-          .split("\n")
-          .map((item) =>
-            item.includes("http") ? (
-              <Link>{item}</Link>
-            ) : (
-              <Textblock>{item}</Textblock>
-            ),
-          )}
+        children.split("\n").map((item) =>
+          item.includes("http") ? (
+            <Link href={`${item}`} target="_blanc">
+              {item}
+            </Link>
+          ) : (
+            <Textblock>{item}</Textblock>
+          ),
+        )}
     </Body>
   );
 };

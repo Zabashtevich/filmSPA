@@ -3,9 +3,11 @@ import styled, { css } from "styled-components/macro";
 export const Container = styled.div`
   box-shadow: 0 2px 8px rgb(0 0 0 / 50%);
   border: 1px solid rgba(0, 0, 0, 0.1);
+  flex-direction: column;
   border-radius: 0.4rem;
-  max-width: 800px;
   margin: 2rem auto;
+  max-width: 700px;
+  display: flex;
 `;
 
 export const Header = styled.div`
@@ -58,6 +60,7 @@ export const Value = styled.div`
     value === 5 &&
     css`
       background-color: #f3f3f3;
+      color: black;
     `};
 `;
 
@@ -78,5 +81,21 @@ export const Link = styled.a`
 `;
 
 export const Button = styled.button`
+  font-weight: ${({ theme }) => theme.font.aux.weight.light};
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
+  background-color: ${({ theme }) => theme.colors.main};
   ${({ theme }) => theme.animations.fade()};
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.4rem;
+  margin: 1rem auto;
+  outline: none;
+  width: 100px;
+  color: white;
+  &:hover {
+    background-color: white;
+    transition: 300ms;
+    cursor: pointer;
+    color: black;
+  }
 `;

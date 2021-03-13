@@ -13,3 +13,4 @@ export { default as CreditsContainer } from "./credits";
 export { default as PaginationContainer } from "./pagination";
 export { default as DetailsPanelContainer } from "./details-panel";
 export { default as ReviewContainer } from "./review";
+export { default as HeaderContainer } from "./header";

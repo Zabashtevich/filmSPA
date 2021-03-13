@@ -43,10 +43,6 @@ Popular.Info = function PopularInfo({ children, ...rest }) {
   return <Info {...rest}>{children}</Info>;
 };
 
-Popular.Desc = function PopularDesc({ children, ...rest }) {
-  return <Desc {...rest}>{children}</Desc>;
-};
-
 Popular.Subtitle = function PopularSubtitle({ children, ...rest }) {
   return <Subtitle {...rest}>{children}</Subtitle>;
 };

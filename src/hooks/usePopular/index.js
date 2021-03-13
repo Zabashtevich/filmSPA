@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useModalContext } from "../../context";
+import { getPopularQuerry } from "../../utils";
 
-export default function useFetch(type, link) {
+export default function useFetch(type, value) {
   const [, { showModal }] = useModalContext();
 
   const [data, setData] = useState({
@@ -13,7 +14,10 @@ export default function useFetch(type, link) {
     let mounted = true;
     if (mounted) {
       fetch(
-        `https://api.themoviedb.org/3/${type}/${link}?api_key=${process.env.REACT_APP_API_KEY}`,
+        `https://api.themoviedb.org/3/${type}/${getPopularQuerry(
+          type,
+          value,
+        )}?api_key=${process.env.REACT_APP_API_KEY}`,
       )
         .then((response) => response.json())
         .then((data) => {
@@ -30,7 +34,7 @@ export default function useFetch(type, link) {
     return () => {
       mounted = false;
     };
-  }, [type, id, querries]);
+  }, [type, value]);
 
   const { list, loading } = data;
   return [list, loading];

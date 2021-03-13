@@ -10,6 +10,7 @@ export { default as getCorrectSrc } from "./shareable/get-correct-src";
 
 export { default as getQuerries } from "./hooks/get-querries";
 export { default as createEstimateItem } from "./hooks/create-estimate-item";
+export { default as getPopularQuerry } from "./hooks/get-popular-querry";
 
 export { default as calculateOffset } from "./gallery/calculate-offstet";
 

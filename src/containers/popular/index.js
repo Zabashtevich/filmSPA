@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Popular } from "../../components";
+import { usePopular } from "./../../hooks";
 
-export default function PopularContainer() {
+export default function PopularContainer({ type }) {
+  const [data, dataLoading] = usePopular(type);
+
   return (
     <Popular>
       <Popular.Wrapper>
@@ -11,15 +14,13 @@ export default function PopularContainer() {
       <Popular.List>
         <Popular.Item>
           <Popular.Poster />
+          <Popular.Meta>
+            <Popular.Average></Popular.Average>
+            <Popular.Count></Popular.Count>
+          </Popular.Meta>
           <Popular.Info>
-            <Popular.Desc>
-              <Popular.Subtitle></Popular.Subtitle>
-              <Popular.Date></Popular.Date>
-            </Popular.Desc>
-            <Popular.Meta>
-              <Popular.Average></Popular.Average>
-              <Popular.Count></Popular.Count>
-            </Popular.Meta>
+            <Popular.Subtitle></Popular.Subtitle>
+            <Popular.Date></Popular.Date>
           </Popular.Info>
         </Popular.Item>
       </Popular.List>

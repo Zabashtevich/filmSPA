@@ -11,17 +11,13 @@ export default function PopularContainer({ type }) {
   const [scrollvalue, setScrollvalue] = useState(0);
   const [activeTab, setActiveTab] = useState(0);
   const [data, dataLoading] = usePopular(type, activeTab);
-
+  console.log(data, dataLoading);
   return (
     <Popular>
       <Popular.Wrapper>
         <Popular.Title>{type.toUpperCase()}</Popular.Title>
         <TabsContainer
-          tabs={[
-            { value: 0, name: "latest" },
-            { value: 1, name: "popular" },
-            { value: 2, name: "top rated" },
-          ]}
+          tabs={["popular", "top rated", "airing"]}
           setActiveTab={setActiveTab}
         />
       </Popular.Wrapper>

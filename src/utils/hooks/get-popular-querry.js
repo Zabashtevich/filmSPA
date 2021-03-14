@@ -1,5 +1,5 @@
 export default function getPopularQuerry(type, value) {
-  const tv = ["popular", "airing_today", "latest"];
+  const tv = ["popular", "top_rated", "airing_today"];
   const person = ["popular", "latest"];
   const movie = ["popular", "latest", "upcomming"];
 

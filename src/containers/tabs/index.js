@@ -1,18 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Tabs } from "../../components";
 
 export default function TabsContainer({ tabs, setActiveTab }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+
   return (
     <Tabs>
-      {tabs.map(({ name, value }) => {
-        console.log(name, value);
-        return (
-          <Tabs.Anchor key={value} onClick={() => setActiveTab(value)}>
-            <Tabs.Title>{name}</Tabs.Title>
-          </Tabs.Anchor>
-        );
-      })}
+      {tabs.map((item, index) => (
+        <Tabs.Anchor
+          key={item}
+          onClick={() => {
+            setActiveTab(index);
+            setActiveIndex(index);
+          }}
+          direction={
+            index === 0 ? "left" : index === tabs.length - 1 ? "right" : 0
+          }
+          active={index === activeIndex && 1}
+        >
+          <Tabs.Title>{item.toUpperCase()}</Tabs.Title>
+        </Tabs.Anchor>
+      ))}
     </Tabs>
   );
 }

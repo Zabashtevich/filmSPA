@@ -18,3 +18,4 @@ export { default as PopularContainer } from "./popular";
 export { default as MainContainer } from "./main";
 export { default as TabsContainer } from "./tabs";
 export { default as TrendingContainer } from "./trending";
+export { default as SliderContainer } from "./slider";

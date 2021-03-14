@@ -17,3 +17,4 @@ export { default as Review } from "./review";
 export { default as Header } from "./header";
 export { default as Popular } from "./popular";
 export { default as Main } from "./main";
+export { default as Tabs } from "./tabs";

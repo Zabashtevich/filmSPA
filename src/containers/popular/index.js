@@ -5,15 +5,25 @@ import { Popular } from "../../components";
 import { getYearFromString, range } from "../../utils";
 import { usePopular } from "./../../hooks";
 import { PopularSkeleton } from "./../../components/skeleton";
+import { TabsContainer } from "..";
 
 export default function PopularContainer({ type }) {
   const [scrollvalue, setScrollvalue] = useState(0);
-  const [data, dataLoading] = usePopular(type, 1);
+  const [activeTab, setActiveTab] = useState(0);
+  const [data, dataLoading] = usePopular(type, activeTab);
 
   return (
     <Popular>
       <Popular.Wrapper>
         <Popular.Title>{type.toUpperCase()}</Popular.Title>
+        <TabsContainer
+          tabs={[
+            { value: 0, name: "latest" },
+            { value: 1, name: "popular" },
+            { value: 2, name: "top rated" },
+          ]}
+          setActiveTab={setActiveTab}
+        />
       </Popular.Wrapper>
       <Popular.List
         onScroll={(e) => setScrollvalue(e.target.scrollLeft)}
@@ -27,11 +37,12 @@ export default function PopularContainer({ type }) {
               </CSSTransition>
             );
           })}
-        {range(1, 20).map((item) => (
-          <CSSTransition key={item} timeout={500} classNames="fade">
-            <PopularSkeleton />
-          </CSSTransition>
-        ))}
+        {dataLoading &&
+          range(1, 20).map((item) => (
+            <CSSTransition key={item} timeout={500} classNames="fade">
+              <PopularSkeleton />
+            </CSSTransition>
+          ))}
       </Popular.List>
     </Popular>
   );

@@ -20,6 +20,8 @@ export const Description = styled.div``;
 
 export const Overview = styled.div``;
 
+export const Row = styled.div``;
+
 export const Subtitle = styled.div``;
 
 export const Average = styled.div``;

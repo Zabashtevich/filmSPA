@@ -1,4 +1,5 @@
 import React from "react";
+import { TransitionGroup } from "react-transition-group";
 
 import {
   Container,
@@ -11,6 +12,7 @@ import {
   Name,
   Info,
   Overview,
+  Row,
   Subtitle,
   Average,
   Count,
@@ -29,7 +31,11 @@ Trending.Title = function TrendingTitle({ children, ...rest }) {
 };
 
 Trending.List = function TrendingList({ children, ...rest }) {
-  return <List {...rest}>{children}</List>;
+  return (
+    <TransitionGroup {...rest} component={List}>
+      {children}
+    </TransitionGroup>
+  );
 };
 
 Trending.Item = function TrendingItem({ children, ...rest }) {
@@ -54,6 +60,10 @@ Trending.Description = function TrendingDescription({ children, ...rest }) {
 
 Trending.Overview = function TrendingOverview({ children, ...rest }) {
   return <Overview {...rest}>{children}</Overview>;
+};
+
+Trending.Row = function TrendingRow({ children, ...rest }) {
+  return <Row {...rest}>{children}</Row>;
 };
 
 Trending.Subtitle = function TrendingSubtitle({ children, ...rest }) {

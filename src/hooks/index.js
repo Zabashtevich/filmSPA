@@ -5,4 +5,3 @@ export { default as useUserlist } from "./useUserlist";
 export { default as useEstimate } from "./useEstimate";
 export { default as useFavorite } from "./useFavorite";
 export { default as useTrending } from "./useTrending";
-export { default as usePopular } from "./usePopular";

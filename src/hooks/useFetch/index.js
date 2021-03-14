@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useModalContext } from "../../context";
-import { getQuerries } from "../../utils";
+import { getFetchUrl } from "../../utils";
 
-export default function useFetch(type, id) {
+export default function useFetch(type, value, page = null) {
   const [, { showModal }] = useModalContext();
 
   const [data, setData] = useState({
@@ -10,14 +10,10 @@ export default function useFetch(type, id) {
     list: null,
   });
 
-  const querries = getQuerries(type);
-
   useEffect(() => {
     let mounted = true;
     if (mounted) {
-      fetch(
-        `https://api.themoviedb.org/3/${type}/${id}?api_key=${process.env.REACT_APP_API_KEY}&&append_to_response=${querries}`,
-      )
+      fetch(getFetchUrl(type, ivalued, page))
         .then((response) => response.json())
         .then((data) => {
           if (data.success === false) {
@@ -33,7 +29,7 @@ export default function useFetch(type, id) {
     return () => {
       mounted = false;
     };
-  }, [type, id, querries]);
+  }, [type, value, page]);
 
   const { list, loading } = data;
   return [list, loading];

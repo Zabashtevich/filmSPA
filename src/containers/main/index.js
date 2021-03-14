@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Main } from "../../components";
-import { PopularContainer } from "..";
+import { PopularContainer, TrendingContainer } from "..";
 
 export default function MainContainer() {
   return (
@@ -17,6 +17,9 @@ export default function MainContainer() {
       </Main.Section>
       <Main.Section>
         <PopularContainer type="person" />
+      </Main.Section>
+      <Main.Section>
+        <TrendingContainer />
       </Main.Section>
     </Main>
   );

@@ -7,26 +7,23 @@ import { usePopular } from "./../../hooks";
 import { PopularSkeleton } from "./../../components/skeleton";
 import { TabsContainer } from "..";
 
-export default function PopularContainer({ type }) {
+export default function PopularContainer({ type, tabs }) {
   const [scrollvalue, setScrollvalue] = useState(0);
   const [activeTab, setActiveTab] = useState(0);
   const [data, dataLoading] = usePopular(type, activeTab);
-  console.log(data, dataLoading);
+  console.log(data, dataLoading, type);
   return (
     <Popular>
       <Popular.Wrapper>
         <Popular.Title>{type.toUpperCase()}</Popular.Title>
-        <TabsContainer
-          tabs={["popular", "top rated", "airing"]}
-          setActiveTab={setActiveTab}
-        />
+        <TabsContainer tabs={tabs} setActiveTab={setActiveTab} />
       </Popular.Wrapper>
       <Popular.List
         onScroll={(e) => setScrollvalue(e.target.scrollLeft)}
         disabled={scrollvalue !== 0 && 1}
       >
         {!dataLoading &&
-          data?.results.map((item) => {
+          (data.results || data).map((item) => {
             return (
               <CSSTransition key={item.id} timeout={500} classNames="fade">
                 <PopularItem item={item} />
@@ -49,11 +46,11 @@ function PopularItem({ item }) {
 
   return (
     <Popular.Item>
-      <Popular.Poster src={item.poster_path || null} />
+      <Popular.Poster src={item.poster_path || item.profile_path || null} />
       <Popular.Info>
         <Popular.Row>
           <Popular.Subtitle>
-            {item.title || item.orinal_title || item.name}
+            {(item.title || item.orinal_title || item.name).slice(0, 40)}
           </Popular.Subtitle>
           <Popular.Date>
             {getYearFromString(item.release_date || item.first_air_date)}

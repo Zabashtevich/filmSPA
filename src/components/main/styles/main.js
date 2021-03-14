@@ -5,4 +5,6 @@ export const Container = styled.div`
   margin: 0 auto;
 `;
 
-export const Section = styled.div``;
+export const Section = styled.div`
+  padding: 2rem 0;
+`;

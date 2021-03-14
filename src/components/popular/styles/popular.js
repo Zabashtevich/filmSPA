@@ -4,7 +4,7 @@ export const Container = styled.div`
   font-family: ${({ theme }) => theme.font.aux.family};
   flex-direction: column;
   display: flex;
-  padding-top: 10rem;
+  padding-top: 2rem;
 `;
 
 export const Wrapper = styled.div`

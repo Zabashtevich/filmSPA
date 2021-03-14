@@ -2,9 +2,8 @@ import React, { useState } from "react";
 
 import { Tabs } from "../../components";
 
-export default function TabsContainer({ tabs, setActiveTab }) {
+export default function TabsContainer({ tabs = [], setActiveTab }) {
   const [activeIndex, setActiveIndex] = useState(0);
-
   return (
     <Tabs>
       {tabs.map((item, index) => (

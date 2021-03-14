@@ -1,6 +1,7 @@
 import React from "react";
 import { TransitionGroup } from "react-transition-group";
 
+import { w200miniature } from "./../../constants/constants";
 import {
   Container,
   Wrapper,
@@ -8,14 +9,10 @@ import {
   List,
   Item,
   Poster,
-  Description,
+  Date,
   Name,
   Info,
-  Overview,
-  Row,
-  Subtitle,
-  Average,
-  Count,
+  Rating,
 } from "./styles/trending";
 
 export default function Trending({ children, ...rest }) {
@@ -42,8 +39,8 @@ Trending.Item = function TrendingItem({ children, ...rest }) {
   return <Item {...rest}>{children}</Item>;
 };
 
-Trending.Poster = function TrendingPoster({ children, ...rest }) {
-  return <Poster {...rest} />;
+Trending.Poster = function TrendingPoster({ src, children, ...rest }) {
+  return <Poster {...rest} src={`${w200miniature + src}`} />;
 };
 
 Trending.Info = function TrendingInfo({ children, ...rest }) {
@@ -54,26 +51,10 @@ Trending.Name = function TrendingName({ children, ...rest }) {
   return <Name {...rest}>{children}</Name>;
 };
 
-Trending.Description = function TrendingDescription({ children, ...rest }) {
-  return <Description {...rest}>{children}</Description>;
+Trending.Date = function TrendingDate({ children, ...rest }) {
+  return <Date {...rest}>{children}</Date>;
 };
 
-Trending.Overview = function TrendingOverview({ children, ...rest }) {
-  return <Overview {...rest}>{children}</Overview>;
-};
-
-Trending.Row = function TrendingRow({ children, ...rest }) {
-  return <Row {...rest}>{children}</Row>;
-};
-
-Trending.Subtitle = function TrendingSubtitle({ children, ...rest }) {
-  return <Subtitle {...rest}>{children}</Subtitle>;
-};
-
-Trending.Average = function TrendingAverage({ children, ...rest }) {
-  return <Average {...rest}>{children}</Average>;
-};
-
-Trending.Count = function TrendingCount({ children, ...rest }) {
-  return <Count {...rest}>{children}</Count>;
+Trending.Rating = function TrendingRating({ children, ...rest }) {
+  return <Rating {...rest}>{children}</Rating>;
 };

@@ -1,6 +1,6 @@
 export default function getFetchUrl(type, value, page) {
   const key = `${process.env.REACT_APP_API_KEY}`;
-  const basicUrl = `https://api.themoviedb.org/3/${type}`;
+  const basicUrl = `https://api.themoviedb.org/3/`;
 
   const detailsQuerry =
     "credits,recommendations,images,videos,reviews,account_states";
@@ -15,28 +15,28 @@ export default function getFetchUrl(type, value, page) {
   switch (type) {
     case "tv":
       if (value > 5 && page === null) {
-        return `${basicUrl}/${value}?api_key=${key}&&append_to_response=${detailsQuerry}`;
+        return `${basicUrl}${type}/${value}?api_key=${key}&&append_to_response=${detailsQuerry}`;
       } else if (value < 5 && page !== null) {
-        return `${basicUrl}/${trending[value]}?api_key=${key}&&page=${page}`;
+        return `${basicUrl}trending/${type}/${trending[value]}?api_key=${key}&&page=${page}`;
       } else {
-        return `${basicUrl}/${tv[value]}?api_key=${key}`;
+        return `${basicUrl}${type}/${tv[value]}?api_key=${key}`;
       }
     case "movie":
       if (value > 5 && page === null) {
-        return `${basicUrl}/${value}?api_key=${key}&&append_to_response=${detailsQuerry}`;
+        return `${basicUrl}${type}/${value}?api_key=${key}&&append_to_response=${detailsQuerry}`;
       } else if (value < 5 && page !== null) {
-        return `${basicUrl}/${trending[value]}?api_key=${key}&&page=${page}`;
+        return `${basicUrl}trending/${type}/${trending[value]}?api_key=${key}&&page=${page}`;
       } else {
-        return `${basicUrl}/${movie[value]}?api_key=${key}`;
+        return `${basicUrl}${type}/${movie[value]}?api_key=${key}`;
       }
     case "person":
       if (value > 5) {
-        return `${basicUrl}/${value}?api_key=${key}&&append_to_response=${personQuerry}`;
+        return `${basicUrl}${type}/${value}?api_key=${key}&&append_to_response=${personQuerry}`;
       } else {
-        return `${basicUrl}/${person[value]}?api_key=${key}`;
+        return `${basicUrl}${type}/${person[value]}?api_key=${key}`;
       }
     case "all":
-      return `${basicUrl}/${trending[value]}?api_key=${key}&&page=${page}`;
+      return `${basicUrl}trending/${type}/${trending[value]}?api_key=${key}&&page=${page}`;
     default:
       return null;
   }

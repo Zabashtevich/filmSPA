@@ -1,6 +1,6 @@
 import React from "react";
 import { TransitionGroup } from "react-transition-group";
-import { w200miniature } from "../../constants/constants";
+import { w300miniature } from "../../constants/constants";
 
 import {
   Container,
@@ -12,7 +12,7 @@ import {
   Info,
   Subtitle,
   Date,
-  Meta,
+  Row,
   Average,
   Count,
 } from "./styles/popular";
@@ -30,7 +30,11 @@ Popular.Title = function PopularTitle({ children, ...rest }) {
 };
 
 Popular.List = function PopularList({ children, ...rest }) {
-  return <TransitionGroup component={List}>{children}</TransitionGroup>;
+  return (
+    <TransitionGroup component={List} {...rest}>
+      {children}
+    </TransitionGroup>
+  );
 };
 
 Popular.Item = function PopularItem({ children, ...rest }) {
@@ -39,7 +43,7 @@ Popular.Item = function PopularItem({ children, ...rest }) {
 
 Popular.Poster = function PopularPoster({ src, children, ...rest }) {
   return (
-    <Poster {...rest} src={`${w200miniature + src}`}>
+    <Poster {...rest} src={`${w300miniature + src}`}>
       {children}
     </Poster>
   );
@@ -49,16 +53,16 @@ Popular.Info = function PopularInfo({ children, ...rest }) {
   return <Info {...rest}>{children}</Info>;
 };
 
+Popular.Row = function PopularRow({ children, ...rest }) {
+  return <Row {...rest}>{children}</Row>;
+};
+
 Popular.Subtitle = function PopularSubtitle({ children, ...rest }) {
   return <Subtitle {...rest}>{children}</Subtitle>;
 };
 
 Popular.Date = function PopularDate({ children, ...rest }) {
   return <Date {...rest}>{children}</Date>;
-};
-
-Popular.Meta = function PopularMeta({ children, ...rest }) {
-  return <Meta {...rest}>{children}</Meta>;
 };
 
 Popular.Average = function PopularAverage({ children, ...rest }) {

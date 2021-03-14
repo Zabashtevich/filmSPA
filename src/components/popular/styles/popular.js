@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 
 export const Container = styled.div`
   font-family: ${({ theme }) => theme.font.aux.family};
@@ -15,73 +15,97 @@ export const Wrapper = styled.div`
 
 export const Title = styled.span`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
-  font-size: ${({ theme }) => theme.font.aux.size.big};
+  font-size: ${({ theme }) => theme.font.aux.size.large};
 `;
 
 export const List = styled.div`
+  position: relative;
   flex-direction: row;
   overflow-x: scroll;
   margin-top: 1rem;
   display: flex;
-`;
-
-export const Info = styled.div`
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 0 0 0.2rem 0.2rem;
-  text-align: center;
-  position: absolute;
-  padding: 1rem 0;
-  color: white;
-  width: 100%;
-  bottom: 0;
-  left: 0;
+  &::-webkit-scrollbar {
+    width: 1em;
+  }
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.colors.main};
+    border-radius: 10px;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    width: 120px;
+    height: 100%;
+    right: 0;
+    background-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0) 0%,
+      #fff 80%
+    );
+    visibility: visible;
+    opacity: 1;
+    transition: 300ms;
+  }
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      &::after {
+        visibility: hidden;
+        opacity: 0;
+      }
+    `};
 `;
 
 export const Item = styled.div`
-  ${({ theme }) => theme.animations.fade()};
-  position: relative;
-  margin: 0 0.2rem;
-  cursor: pointer;
+  ${({ theme }) => theme.animations.fade(500, 500, 500)};
+  box-shadow: 1px 2px 10px rgb(0 0 0 / 50%);
+  border-radius: 0 0 0.4rem 0.4rem;
+  margin: 0.6rem 0.4rem;
+  flex-direction: column;
   display: flex;
-  &:hover {
-    ${Info} {
-      opacity: 0;
-      visibility: hidden;
-      transition: 300ms;
-    }
-  }
 `;
 
 export const Poster = styled.img`
-  border-radius: 0.4rem;
-  width: 150px;
+  border-radius: 0.2rem 0.2rem 0 0;
+  width: 250px;
+`;
+
+export const Info = styled.div`
+  border-radius: 0 0 0.4rem 0.4rem;
+  justify-content: space-between;
+  background-color: white;
+  align-items: center;
+  padding: 0 0.2rem;
+  display: flex;
+  height: 75px;
+`;
+
+export const Row = styled.div`
+  flex-direction: column;
+  padding: 0 0.2rem;
+  display: flex;
 `;
 
 export const Subtitle = styled.span`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
-  display: block;
+  font-size: 1.1rem;
 `;
 
 export const Date = styled.span`
-  font-weight: ${({ theme }) => theme.font.aux.weight.light};
+  margin: 0.4rem 0;
 `;
 
-export const Meta = styled.div`
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  position: absolute;
-  display: flex;
-  right: -1%;
-  top: 2%;
+export const Average = styled.span`
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
+  align-self: flex-end;
+  font-size: 0.8rem;
 `;
 
-export const Average = styled.div`
-  border-radius: 0.4rem 0 0 0.4rem;
-  background-color: green;
-  padding: 0.2rem 0.4rem;
-  color: white;
-`;
-
-export const Count = styled.div`
-  background-color: #f3f3f3;
-  padding: 0.2rem 0.4rem;
+export const Count = styled.span`
+  margin: 0.4rem 0;
+  font-size: 0.8rem;
 `;

@@ -54,3 +54,8 @@ export const CreditsItemWrapper = styled.div`
 export const DetailsCollectionWrapper = styled.div`
   ${({ theme }) => theme.animations.fade(500, 0, 500)};
 `;
+
+export const PopularSkeletonWrapper = styled.div`
+  ${({ theme }) => theme.animations.fade(500, 500, 500)};
+  margin: 0.6rem 0.4rem;
+`;

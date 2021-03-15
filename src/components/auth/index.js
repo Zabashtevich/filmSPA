@@ -2,8 +2,7 @@ import React from "react";
 
 import {
   Container,
-  Toggler,
-  Item,
+  Title,
   Form,
   Row,
   Subtitle,
@@ -13,42 +12,38 @@ import {
   Link,
 } from "./styles/auth";
 
-export default function Auth({ chilren, ...rest }) {
-  return <Container {...rest}>{chilren}</Container>;
+export default function Auth({ children, ...rest }) {
+  return <Container {...rest}>{children}</Container>;
 }
 
-Auth.Toggler = function AuthToggler({ chilren, ...rest }) {
-  return <Toggler {...rest}>{chilren}</Toggler>;
+Auth.Title = function AuthTitle({ children, ...rest }) {
+  return <Title {...rest}>{children}</Title>;
 };
 
-Auth.Item = function AuthItem({ chilren, ...rest }) {
-  return <Item {...rest}>{chilren}</Item>;
+Auth.Form = function AuthForm({ children, ...rest }) {
+  return <Form {...rest}>{children}</Form>;
 };
 
-Auth.Form = function AuthForm({ chilren, ...rest }) {
-  return <Form {...rest}>{chilren}</Form>;
+Auth.Row = function AuthRow({ children, ...rest }) {
+  return <Row {...rest}>{children}</Row>;
 };
 
-Auth.Row = function AuthRow({ chilren, ...rest }) {
-  return <Row {...rest}>{chilren}</Row>;
-};
-
-Auth.Subtitle = function AuthSubtitle({ chilren, ...rest }) {
-  return <Subtitle {...rest}>{chilren}</Subtitle>;
+Auth.Subtitle = function AuthSubtitle({ children, ...rest }) {
+  return <Subtitle {...rest}>{children}</Subtitle>;
 };
 
 Auth.Input = function AuthInput({ ...rest }) {
   return <Input {...rest} />;
 };
 
-Auth.Button = function AuthButton({ chilren, ...rest }) {
-  return <Button {...rest}>{chilren}</Button>;
+Auth.Button = function AuthButton({ children, ...rest }) {
+  return <Button {...rest}>{children}</Button>;
 };
 
-Auth.Redirect = function AuthRedirect({ chilren, ...rest }) {
-  return <Redirect {...rest}>{chilren}</Redirect>;
+Auth.Redirect = function AuthRedirect({ children, ...rest }) {
+  return <Redirect {...rest}>{children}</Redirect>;
 };
 
-Auth.Link = function AuthLink({ chilren, ...rest }) {
-  return <Link {...rest}>{chilren}</Link>;
+Auth.Link = function AuthLink({ children, ...rest }) {
+  return <Link {...rest}>{children}</Link>;
 };

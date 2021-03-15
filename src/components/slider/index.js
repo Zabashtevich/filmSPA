@@ -14,6 +14,8 @@ import {
   Dot,
   Left,
   Right,
+  ArrowRight,
+  ArrowLeft,
 } from "./styles/slider";
 
 export default function Slider({ children, ...rest }) {
@@ -66,4 +68,12 @@ Slider.Left = function SliderLeft({ children, ...rest }) {
 
 Slider.Right = function SliderRight({ children, ...rest }) {
   return <Right {...rest}>{children}</Right>;
+};
+
+Slider.ArrowRight = function SliderArrowRight({ children, ...rest }) {
+  return <ArrowRight {...rest}>{children}</ArrowRight>;
+};
+
+Slider.ArrowLeft = function SliderArrowLeft({ children, ...rest }) {
+  return <ArrowLeft {...rest}>{children}</ArrowLeft>;
 };

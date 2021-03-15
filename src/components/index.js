@@ -20,3 +20,4 @@ export { default as Main } from "./main";
 export { default as Tabs } from "./tabs";
 export { default as Trending } from "./trending";
 export { default as Slider } from "./slider";
+export { default as Authentication } from "./authentication";

@@ -2,6 +2,7 @@ import React from "react";
 
 import {
   Container,
+  Slide,
   Item,
   Poster,
   Gradient,
@@ -19,12 +20,16 @@ export default function Slider({ children, ...rest }) {
   return <Container {...rest}>{children}</Container>;
 }
 
+Slider.Slide = function SliderSlide({ children, ...rest }) {
+  return <Slide {...rest}>{children}</Slide>;
+};
+
 Slider.Item = function SliderItem({ children, ...rest }) {
   return <Item {...rest}>{children}</Item>;
 };
 
-Slider.Poster = function SliderPoster({ ...rest }) {
-  return <Poster {...rest} />;
+Slider.Poster = function SliderPoster({ src, ...rest }) {
+  return <Poster {...rest} src={`./assets/images/slider/${src}.jpg`} />;
 };
 
 Slider.Gradient = function SliderGradient({ children, ...rest }) {

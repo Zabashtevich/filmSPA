@@ -19,4 +19,4 @@ export { default as MainContainer } from "./main";
 export { default as TabsContainer } from "./tabs";
 export { default as TrendingContainer } from "./trending";
 export { default as SliderContainer } from "./slider";
-export { default as AuthenticationContainer } from "./authentication";
+export { default as AuthContainer } from "./auth";

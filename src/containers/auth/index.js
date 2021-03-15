@@ -1,116 +1,70 @@
-import React, { useEffect, useState } from "react";
-import { Redirect, useHistory, useParams } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { CSSTransition } from "react-transition-group";
+import React from "react";
+import { useParams } from "react-router";
 
-import AuthForm from "../../components/auth-form";
-import { RegistrationFormContainer, LoginFormContainer } from "./auxillary";
-import { SpinnerSmall } from "../../components/loading-spinner";
+import { Auth } from "../../components";
 
 export default function AuthContainer() {
-  // const location = useParams();
-  // const history = useHistory();
+  const { direction } = useParams();
 
-  // const { register, handleSubmit, errors } = useForm();
-  // const [errorsList, setErrorsList] = useState(null);
-  // const [userLoading, setUserLoading] = useState(false);
-  // const [userRedirect, setUserRedirect] = useState(false);
-  // const [avatarLoading, setAvatarLoading] = useState(false);
-  // const [avatarSrc, setAvatarSrc] = useState("./../assets/images/poster.png");
-  // const [file, setFile] = useState(null);
-  // const [isAvatarChanged, setIsAvatarChanged] = useState(false);
-  // const [imgIsValid, setImgIsValid] = useState(false);
-  // //TODO FIREBASE
+  return (
+    <Auth>
+      <Auth.Toggler>
+        <Auth.Item></Auth.Item>
+        <Auth.Item></Auth.Item>
+      </Auth.Toggler>
+      <Auth.Form>
+        {direction === "login" && <LoginRows />}
+        {direction === "signup" && <SignupRows />}
+      </Auth.Form>
+    </Auth>
+  );
+}
 
-  // useEffect(() => {
-  //   if (imgIsValid) {
-  //     getPreviewSrc(file, setAvatarSrc);
-  //     setIsAvatarChanged(true);
-  //     setAvatarLoading(false);
-  //   } else {
-  //     setAvatarSrc("./../assets/images/poster.png");
-  //   }
-  // }, [imgIsValid, file]);
+function LoginRows() {
+  return (
+    <>
+      <Auth.Row>
+        <Auth.Subtitle>Email</Auth.Subtitle>
+        <Auth.Input />
+      </Auth.Row>
+      <Auth.Row>
+        <Auth.Subtitle>Password</Auth.Subtitle>
+        <Auth.Input />
+      </Auth.Row>
+      <Auth.Button>LOGIN</Auth.Button>
+      <Auth.Redirect>
+        Do not have an account? <Auth.Link>Sign Up</Auth.Link>
+      </Auth.Redirect>
+    </>
+  );
+}
 
-  // useEffect(() => {
-  //   if (Object.keys(errors).length > 0) {
-  //     setErrorsList(getErrorsList(errors));
-  //   }
-  // }, [errors, setErrorsList]);
-
-  // const onSubmit = ({ nickname, email, password, repeatPassword }) => {
-  //   authLogic(
-  //     setUserLoading,
-  //     location.slug,
-  //     firebase,
-  //     nickname,
-  //     email,
-  //     password,
-  //     repeatPassword,
-  //     setErrorsList,
-  //     setUserRedirect,
-  //     history,
-  //     file,
-  //     isAvatarChanged,
-  //   );
-  // };
-
-  // const fileValidation = (e) => {
-  //   setAvatarLoading(true);
-  //   validateImg(
-  //     setErrorsList,
-  //     setAvatarLoading,
-  //     e.target.files[0],
-  //     setImgIsValid,
-  //     setFile,
-  //   );
-  // };
-
-  return null;
-
-  /* {userRedirect ? (
-        <Redirect to={"/"} />
-      ) : (
-        <AuthForm>
-          <AuthForm.Form onSubmit={handleSubmit(onSubmit)}>
-            {errorsList && (
-              <CSSTransition timeout={100} appear={true} in={!!errorsList}>
-                {(state) => {
-                  return (
-                    <AuthForm.ErrorContainer state={state}>
-                      {errorsList.map((item, i) => {
-                        return (
-                          <AuthForm.ErrorMessage key={item + i}>
-                            {item}
-                          </AuthForm.ErrorMessage>
-                        );
-                      })}
-                    </AuthForm.ErrorContainer>
-                  );
-                }}
-              </CSSTransition>
-            )}
-            <AuthForm.Title>{location.slug.toUpperCase()}</AuthForm.Title>
-            {location.slug === "login" && !userLoading && (
-              <LoginFormContainer register={register} />
-            )}
-            {location.slug === "registration" && !userLoading && (
-              <RegistrationFormContainer
-                register={register}
-                avatarSrc={avatarSrc}
-                fileValidation={fileValidation}
-                isAvatarChanged={isAvatarChanged}
-              />
-            )}
-            {userLoading && <SpinnerSmall />}
-            <AuthForm.Button
-              type="submit"
-              disabled={userLoading || avatarLoading}
-            >
-              {(!userLoading && location.slug.toUpperCase()) || "LOADING"}
-            </AuthForm.Button>
-          </AuthForm.Form>
-        </AuthForm>
-      )}
-    </> */
+function SignupRows() {
+  return (
+    <>
+      <Auth.Row>
+        <Auth.Subtitle>Avatar</Auth.Subtitle>
+        <Auth.Input />
+      </Auth.Row>
+      <Auth.Row>
+        <Auth.Subtitle>Email</Auth.Subtitle>
+        <Auth.Input />
+      </Auth.Row>
+      <Auth.Row>
+        <Auth.Subtitle>Nickname</Auth.Subtitle>
+        <Auth.Input />
+      </Auth.Row>
+      <Auth.Row>
+        <Auth.Subtitle>Password</Auth.Subtitle>
+        <Auth.Input />
+      </Auth.Row>
+      <Auth.Row>
+        <Auth.Subtitle>Repeat password</Auth.Subtitle>
+        <Auth.Input />
+      </Auth.Row>
+      <Auth.Redirect>
+        Already have an account? <Auth.Link>Login</Auth.Link>
+      </Auth.Redirect>
+    </>
+  );
 }

@@ -2,7 +2,9 @@ import styled from "styled-components/macro";
 
 export const Container = styled.div``;
 
-export const Title = styled.div``;
+export const Toggler = styled.div``;
+
+export const Item = styled.span``;
 
 export const Form = styled.div``;
 

@@ -36,6 +36,7 @@ export default function getFetchUrl(type, value, page) {
         return `${basicUrl}${type}/${person[value]}?api_key=${key}`;
       }
     case "all":
+      console.log(page);
       return `${basicUrl}trending/${type}/${trending[value]}?api_key=${key}&&page=${page}`;
     default:
       return null;

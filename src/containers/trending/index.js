@@ -1,25 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { CSSTransition } from "react-transition-group";
-import { TabsContainer } from "..";
+import { PaginationContainer, TabsContainer } from "..";
 
 import { Trending } from "../../components";
+import { TrendingSkeleton } from "../../components/skeleton";
 import { periodType, typeTab } from "../../constants/fixtures";
-import { getYearFromString } from "../../utils";
+import { usePaginationContext } from "../../context";
+import { getYearFromString, range } from "../../utils";
 import { useFetch } from "./../../hooks";
 
 export default function TrendingContainer() {
   const [activeType, setActiveType] = useState("all");
   const [activePeriod, setActivePeriod] = useState(0);
-  const [{ list, process }, setArray] = useState({ process: true, list: [] });
-  const [data, dataLoading] = useFetch(activeType, activePeriod, 1);
-
+  const [array, setArray] = useState([]);
+  const [{ active }, setPaginProps] = usePaginationContext();
+  const [data, dataLoading] = useFetch(activeType, activePeriod, active);
   useEffect(() => {
     if (!dataLoading) {
-      setArray({ process: false, list: data.results });
+      setArray(data.results);
+      setPaginProps((prev) => ({
+        ...prev,
+        loading: false,
+        amount: 10,
+        length: data.total_pages,
+      }));
     }
   }, [data, dataLoading]);
 
-  console.log(list);
   return (
     <Trending>
       <Trending.Wrapper>
@@ -36,11 +43,24 @@ export default function TrendingContainer() {
         />
       </Trending.Wrapper>
       <Trending.List>
-        {!process &&
-          !dataLoading &&
-          list.map((item) => {
+        {dataLoading &&
+          range(1, 20).map((item) => (
+            <CSSTransition
+              key={item}
+              classNames="fade"
+              timeout={{ enter: 500, exit: 0, appear: 500 }}
+            >
+              <TrendingSkeleton />
+            </CSSTransition>
+          ))}
+        {!dataLoading &&
+          array.map((item) => {
             return (
-              <CSSTransition key={item.id} classNames="fade" timeout={500}>
+              <CSSTransition
+                key={item.id}
+                classNames="fade"
+                timeout={{ enter: 500, exit: 0, appear: 500 }}
+              >
                 <Trending.Item>
                   <Trending.Inner>
                     <Trending.Poster src={item.poster_path} />
@@ -61,6 +81,7 @@ export default function TrendingContainer() {
             );
           })}
       </Trending.List>
+      <PaginationContainer />
     </Trending>
   );
 }

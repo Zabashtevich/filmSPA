@@ -40,7 +40,7 @@ export const Info = styled.div`
 `;
 
 export const Item = styled.div`
-  ${({ theme }) => theme.animations.fade(500, 500, 500)};
+  ${({ theme }) => theme.animations.fade(500, 0, 500)};
   box-shadow: 1px 2px 10px rgb(0 0 0 / 50%);
   flex-direction: column;
   margin: 0.6rem;
@@ -63,7 +63,10 @@ export const Inner = styled.div`
   display: flex;
 `;
 
-export const Poster = styled.img``;
+export const Poster = styled.img`
+  height: 450px;
+  width: 300px;
+`;
 
 export const Name = styled.span`
   margin: 0 0.2rem;

@@ -13,6 +13,7 @@ export default function useFetch(type, value, page = null) {
   useEffect(() => {
     let mounted = true;
     if (mounted) {
+      setData((prev) => ({ ...prev, loading: true }));
       fetch(getFetchUrl(type, value, page))
         .then((response) => response.json())
         .then((data) => {

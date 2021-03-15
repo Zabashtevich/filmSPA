@@ -11,6 +11,7 @@ import {
   CreditsItemWrapper,
   DetailsCollectionWrapper,
   PopularSkeletonWrapper,
+  TrendingSkeletonWrapper,
 } from "./styles/skeleton";
 
 export function CardListSkeleton() {
@@ -415,5 +416,22 @@ export function PopularSkeleton() {
         <rect x="20" y="420" rx="4" ry="4" width="50" height="15" />
       </ContentLoader>
     </PopularSkeletonWrapper>
+  );
+}
+
+export function TrendingSkeleton() {
+  return (
+    <TrendingSkeletonWrapper>
+      <ContentLoader
+        speed={2}
+        width={300}
+        height={450}
+        viewBox="0 0 300 450"
+        backgroundColor="#f3f3f3"
+        foregroundColor="#ecebeb"
+      >
+        <rect x="0" y="0" rx="4" ry="4" width="300" height="450" />
+      </ContentLoader>
+    </TrendingSkeletonWrapper>
   );
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import { TransitionGroup } from "react-transition-group";
 
-import { w200miniature } from "./../../constants/constants";
+import { w300miniature } from "./../../constants/constants";
 import {
   Container,
   Wrapper,
@@ -40,7 +40,7 @@ Trending.Item = function TrendingItem({ children, ...rest }) {
 };
 
 Trending.Poster = function TrendingPoster({ src, children, ...rest }) {
-  return <Poster {...rest} src={`${w200miniature + src}`} />;
+  return <Poster {...rest} src={`${w300miniature + src}`} />;
 };
 
 Trending.Info = function TrendingInfo({ children, ...rest }) {

@@ -6,19 +6,33 @@ import { getYearFromString } from "../../utils";
 import { useFetch } from "./../../hooks";
 
 export default function TrendingContainer() {
-  const [data, dataLoading] = useFetch("tv", 0, 1);
-  console.log(data);
+  const [type, setType] = useState("all");
+  const [activeTab, setActiveTab] = useState(0);
+  const [data, dataLoading] = useFetch(type, activeTab, 1);
+  console.log(activeTab, type);
   return (
     <Trending>
       <Trending.Wrapper>
-        <TabsContainer tabs={["all", "movie", "tv"]} />
+        <TabsContainer
+          tabs={[
+            { name: "all", value: "all" },
+            { name: "movie", value: "movie" },
+            { name: "tv", value: "tv" },
+          ]}
+          setActiveTab={setType}
+        />
         <Trending.Title>TRENDING</Trending.Title>
-        <TabsContainer tabs={["day", "week"]} />
+        <TabsContainer
+          tabs={[
+            { name: "day", value: "day" },
+            { name: "week", value: "week" },
+          ]}
+          setActiveTab={setActiveTab}
+        />
       </Trending.Wrapper>
       <Trending.List>
         {!dataLoading &&
           data.results.map((item) => {
-            console.log(item);
             return (
               <Trending.Item>
                 <Trending.Poster src={item.poster_path} />
@@ -31,8 +45,8 @@ export default function TrendingContainer() {
                       item.release_date || item.first_air_date,
                     )}
                   </Trending.Date>
-                  <Trending.Rating>{item.vote_average}</Trending.Rating>
                 </Trending.Info>
+                <Trending.Rating>{item.vote_average}</Trending.Rating>
               </Trending.Item>
             );
           })}

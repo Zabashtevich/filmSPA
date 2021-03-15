@@ -1,53 +1,63 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { CSSTransition } from "react-transition-group";
 import { TabsContainer } from "..";
 
 import { Trending } from "../../components";
+import { periodType, typeTab } from "../../constants/fixtures";
 import { getYearFromString } from "../../utils";
 import { useFetch } from "./../../hooks";
 
 export default function TrendingContainer() {
-  const [type, setType] = useState("all");
-  const [activeTab, setActiveTab] = useState(0);
-  const [data, dataLoading] = useFetch(type, activeTab, 1);
-  console.log(activeTab, type);
+  const [activeType, setActiveType] = useState("all");
+  const [activePeriod, setActivePeriod] = useState(0);
+  const [{ list, process }, setArray] = useState({ process: true, list: [] });
+  const [data, dataLoading] = useFetch(activeType, activePeriod, 1);
+
+  useEffect(() => {
+    if (!dataLoading) {
+      setArray({ process: false, list: data.results });
+    }
+  }, [data, dataLoading]);
+
+  console.log(list);
   return (
     <Trending>
       <Trending.Wrapper>
         <TabsContainer
-          tabs={[
-            { name: "all", value: "all" },
-            { name: "movie", value: "movie" },
-            { name: "tv", value: "tv" },
-          ]}
-          setActiveTab={setType}
+          tabs={typeTab}
+          setActive={setActiveType}
+          active={activeType}
         />
         <Trending.Title>TRENDING</Trending.Title>
         <TabsContainer
-          tabs={[
-            { name: "day", value: "day" },
-            { name: "week", value: "week" },
-          ]}
-          setActiveTab={setActiveTab}
+          tabs={periodType}
+          setActive={setActivePeriod}
+          active={activePeriod}
         />
       </Trending.Wrapper>
       <Trending.List>
-        {!dataLoading &&
-          data.results.map((item) => {
+        {!process &&
+          !dataLoading &&
+          list.map((item) => {
             return (
-              <Trending.Item>
-                <Trending.Poster src={item.poster_path} />
-                <Trending.Info>
-                  <Trending.Name>
-                    {item.title || item.name || item.orinal_title}
-                  </Trending.Name>
-                  <Trending.Date>
-                    {getYearFromString(
-                      item.release_date || item.first_air_date,
-                    )}
-                  </Trending.Date>
-                </Trending.Info>
-                <Trending.Rating>{item.vote_average}</Trending.Rating>
-              </Trending.Item>
+              <CSSTransition key={item.id} classNames="fade" timeout={500}>
+                <Trending.Item>
+                  <Trending.Inner>
+                    <Trending.Poster src={item.poster_path} />
+                    <Trending.Info>
+                      <Trending.Name>
+                        {item.title || item.name || item.orinal_title}
+                      </Trending.Name>
+                      <Trending.Date>
+                        {getYearFromString(
+                          item.release_date || item.first_air_date,
+                        )}
+                      </Trending.Date>
+                    </Trending.Info>
+                  </Trending.Inner>
+                  <Trending.Rating>{item.vote_average}</Trending.Rating>
+                </Trending.Item>
+              </CSSTransition>
             );
           })}
       </Trending.List>

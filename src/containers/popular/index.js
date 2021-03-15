@@ -16,7 +16,11 @@ export default function PopularContainer({ type, tabs }) {
     <Popular>
       <Popular.Wrapper>
         <Popular.Title>{type.toUpperCase()}</Popular.Title>
-        <TabsContainer tabs={tabs} setActiveTab={setActiveTab} />
+        <TabsContainer
+          tabs={tabs}
+          setActive={setActiveTab}
+          active={activeTab}
+        />
       </Popular.Wrapper>
       <Popular.List
         onScroll={(e) => setScrollvalue(e.target.scrollLeft)}

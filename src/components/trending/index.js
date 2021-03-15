@@ -8,6 +8,7 @@ import {
   Title,
   List,
   Item,
+  Inner,
   Poster,
   Date,
   Name,
@@ -37,6 +38,10 @@ Trending.List = function TrendingList({ children, ...rest }) {
 
 Trending.Item = function TrendingItem({ children, ...rest }) {
   return <Item {...rest}>{children}</Item>;
+};
+
+Trending.Inner = function TrendingInner({ children, ...rest }) {
+  return <Inner {...rest}>{children}</Inner>;
 };
 
 Trending.Poster = function TrendingPoster({ src, children, ...rest }) {

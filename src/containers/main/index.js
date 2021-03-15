@@ -7,12 +7,23 @@ export default function MainContainer() {
   return (
     <Main>
       <Main.Section>
-        <PopularContainer type="tv" tabs={["popular", "top rated", "airing"]} />
+        <PopularContainer
+          type="tv"
+          tabs={[
+            { title: "popular", value: 0 },
+            { title: "top rated", value: 1 },
+            { title: "airing", value: 2 },
+          ]}
+        />
       </Main.Section>
       <Main.Section>
         <PopularContainer
           type="movie"
-          tabs={["popular", "top rated", "upcoming"]}
+          tabs={[
+            { title: "popular", value: 0 },
+            { title: "top rated", value: 1 },
+            { title: "upcoming", value: 2 },
+          ]}
         />
       </Main.Section>
       <Main.Section>

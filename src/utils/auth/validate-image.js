@@ -1,25 +1,23 @@
 export default async function validateImage(file, setProps) {
-  setProps((prev) => ({ ...prev, loading: true }));
+  setProps((prev) => ({ ...prev, process: true }));
   if (parseFloat(file.size / (1024 * 1024)) >= 3) {
     setProps((prev) => ({
       ...prev,
-      loading: false,
-      errorList: [...prev.errorList, "File size must be smaller than 3 MB"],
+      precoess: false,
+      errorList: ["File size must be smaller than 3 MB"],
     }));
     return;
   }
 
   await getImageUrl(file)
     .then(() => {
-      setProps((prev) => ({ ...prev, file }));
+      setProps((prev) => ({ ...prev, process: false, file }));
     })
     .catch(() => {
       setProps((prev) => ({
         ...prev,
-        errorList: [
-          ...prev.errorList,
-          "File width or height must be smaller than 200px",
-        ],
+        process: false,
+        errorList: ["File width or height must be smaller than 200px"],
       }));
     });
 }

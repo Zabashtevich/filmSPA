@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import { useModalContext } from "../../context";
-import { firebaseRequest } from "../../utils";
 
 import { firebase } from "./../../libs/firebase";
 
@@ -28,47 +27,79 @@ export default function useAuth() {
         });
     } else if (type === "signup") {
       setState((prev) => ({ ...prev, loading: true }));
-      firebase
-        .auth()
-        .createUserWithEmailAndPassword(value.email, value.password)
-        .then((result) => {
-          result.user.updateProfile({
-            displayName: value.nickname,
-            photoURL: value.url,
-          });
-        })
-        .catch(() => {
-          setState((prev) => ({ ...prev, loading: false }));
-          showModal({ type: "error", message: "Something went wrong." });
-        })
-        .then(() => {
-          firebaseRequest(value.nickname, "moviesrated")
-            .set({ list: [] })
-            .catch(() => {
-              setState((prev) => ({ ...prev, loading: false }));
-              showModal({ type: "error", message: "Something went wrong." });
+      if (value.file) {
+        const ref = firebase.storage().ref();
+        const fileRef = ref.child(value.file.name);
+        fileRef.put(value.file);
+        fileRef
+          .getDownloadURL()
+          .then(function (url) {
+            firebase
+              .auth()
+              .createUserWithEmailAndPassword(value.email, value.password)
+              .then((result) => {
+                result.user.updateProfile({
+                  displayName: value.nickname,
+                  photoURL: url,
+                });
+              });
+          })
+          .then(() => createUserDataRows());
+      } else {
+        firebase
+          .auth()
+          .createUserWithEmailAndPassword(value.email, value.password)
+          .then((result) => {
+            result.user.updateProfile({
+              displayName: value.nickname,
+              photoURL: null,
             });
-          firebaseRequest(value.nickname, "collection")
-            .set({ list: [], favorite: [] })
-            .catch(() => {
-              setState((prev) => ({ ...prev, loading: false }));
-              showModal({ type: "error", message: "Something went wrong." });
-            });
-          firebaseRequest(value.nickname, "reviews")
-            .set({ list: [] })
-            .catch(() => {
-              setState((prev) => ({ ...prev, loading: false }));
-              showModal({ type: "error", message: "Something went wrong." });
-            })
-            .then(() => {
-              history.push("/");
-            })
-            .catch(() => {
-              setState((prev) => ({ ...prev, loading: false }));
-              showModal({ type: "error", message: "Something went wrong." });
-            });
-        });
+          })
+          .catch(() => {
+            setState((prev) => ({ ...prev, loading: false }));
+            showModal({ type: "error", message: "Something went wrong." });
+          })
+          .then(() => createUserDataRows());
+      }
     }
   }, [type, value]);
-  return [loading, setAuthProps];
+
+  return [loading, error, setAuthProps];
+
+  function createUserDataRows() {
+    firebase
+      .firestore()
+      .collection(`${value.nickname}`)
+      .doc(`moviesrated`)
+      .set({ list: [] })
+      .catch(() => {
+        setState((prev) => ({ ...prev, loading: false }));
+        showModal({ type: "error", message: "Something went wrong." });
+      });
+    firebase
+      .firestore()
+      .collection(`${value.nickname}`)
+      .doc(`collection`)
+      .set({ list: [], favorite: [] })
+      .catch(() => {
+        setState((prev) => ({ ...prev, loading: false }));
+        showModal({ type: "error", message: "Something went wrong." });
+      });
+    firebase
+      .firestore()
+      .collection(`${value.nickname}`)
+      .doc(`reviews`)
+      .set({ list: [] })
+      .catch(() => {
+        setState((prev) => ({ ...prev, loading: false }));
+        showModal({ type: "error", message: "Something went wrong." });
+      })
+      .then(() => {
+        history.push("/");
+      })
+      .catch(() => {
+        setState((prev) => ({ ...prev, loading: false }));
+        showModal({ type: "error", message: "Something went wrong." });
+      });
+  }
 }

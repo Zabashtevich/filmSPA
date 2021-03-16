@@ -12,7 +12,7 @@ export default function AuthContainer() {
   return (
     <Auth>
       {slug === "login" && <LoginRows />}
-      {/* {slug === "signup" && <SignupRows />} */}
+      {slug === "signup" && <SignupRows />}
     </Auth>
   );
 }
@@ -91,100 +91,132 @@ function LoginRows() {
   );
 }
 
-// function SignupRows({ process }) {
-//   const { register, handleSubmit, errors } = useForm();
-//   const [url, setUrl] = useState(null);
-//   const { errorList, file } = props;
+function SignupRows() {
+  const { register, handleSubmit, errors } = useForm();
+  const [loading, authError, setAuthProps] = useAuth();
+  const [url, setUrl] = useState(null);
+  const [{ errorList, process, file }, setState] = useState({
+    errorList: [],
+    process: false,
+    file: null,
+  });
 
-//   useEffect(() => {
-//     if (file !== null) {
-//       getPreviewSrc(file, setUrl);
-//     }
-//   }, [file]);
+  function signup({ email, password, repeatPassword, nickname }) {
+    if (password === repeatPassword)
+      setState((prev) => ({ ...prev, errorList: ["Passwords do not match"] }));
+    setState((prev) => ({ ...prev, errorList: [] }));
+    setAuthProps({
+      type: "signup",
+      value: { password, email, file, nickname },
+    });
+  }
 
-//   function onFileChange(e) {
-//     validateImage(e.target.file[0], setProps);
-//   }
+  useEffect(() => {
+    if (Object.keys(errors).length > 0) {
+      setState((prev) => ({
+        ...prev,
+        errorList: [...Object.keys(errors).map((item) => errors[item].message)],
+      }));
+    }
+  }, [errors]);
 
-//   return (
-//     <>
-//       <Auth.Title>Sign Up</Auth.Title>
-//       <Auth.Redirect>
-//         Already have an account?
-//         <Auth.Link to="/authentication/login">SIGN UP</Auth.Link>
-//       </Auth.Redirect>
-//       <Auth.Wrapper visible={errorList.length > 0 ? 1 : 0}>
-//         {errorList.map((item, index) => (
-//           <Auth.Error key={index}>{item}</Auth.Error>
-//         ))}
-//       </Auth.Wrapper>
+  useEffect(() => {
+    if (authError) {
+      setState((prev) => ({ ...prev, errorList: errorList.concat(authError) }));
+    }
+  }, [authError]);
 
-//       <Auth.Placeholder visible={!!url} src={url} />
+  useEffect(() => {
+    if (file !== null) {
+      getPreviewSrc(file, setUrl);
+    }
+  }, [file]);
 
-//       <Auth.Input
-//         type="file"
-//         onChange={(e) => onFileChange(e)}
-//         accept="image/x-png,image/gif,image/jpeg"
-//       />
+  function onFileChange(e) {
+    setUrl(null);
+    setState((prev) => ({ ...prev, errorList: [] }));
+    validateImage(e.target.files[0], setState);
+  }
 
-//       <Auth.Input
-//         type="email"
-//         name="email"
-//         placeholder="Email adress"
-//         inputRef={register({
-//           required: {
-//             value: true,
-//             message: "email field can not be empty",
-//           },
-//           pattern: {
-//             value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-//             message: "invalid email address",
-//           },
-//         })}
-//       />
+  return (
+    <Auth.Form onSubmit={handleSubmit(signup)}>
+      <Auth.Title>Sign Up</Auth.Title>
+      <Auth.Redirect>
+        Already have an account?
+        <Auth.Link to="/authentication/login">SIGN UP</Auth.Link>
+      </Auth.Redirect>
+      <Auth.Wrapper visible={errorList.length > 0 ? 1 : 0}>
+        {errorList.map((item, index) => (
+          <Auth.Error key={index}>{item}</Auth.Error>
+        ))}
+      </Auth.Wrapper>
 
-//       <Auth.Input
-//         type="nickname"
-//         name="nickname"
-//         placeholder="Nickname"
-//         inputRef={register({
-//           required: {
-//             value: true,
-//             message: "nickname field can not be empty",
-//           },
-//           maxLength: 20,
-//         })}
-//       />
+      <Auth.Placeholder src={url && url} />
 
-//       <Auth.Input
-//         type="password"
-//         name="password"
-//         placeholder="Password"
-//         inputRef={register({
-//           required: {
-//             value: true,
-//             message: "password field can not be empty",
-//           },
-//           maxLength: 30,
-//         })}
-//       />
+      <Auth.Input
+        type="file"
+        onChange={(e) => onFileChange(e)}
+        accept="image/x-png,image/gif,image/jpeg"
+      />
 
-//       <Auth.Input
-//         type="password"
-//         name="repeatPassword"
-//         placeholder="Repeat password"
-//         inputRef={register({
-//           required: {
-//             value: true,
-//             message: "repeat password field can not be empty",
-//           },
-//           maxLength: 30,
-//         })}
-//       />
-//       <Auth.Spinner visible={process} />
-//       <Auth.Button type="submit" disabled={process ? 1 : 0}>
-//         LOGIN
-//       </Auth.Button>
-//     </>
-//   );
-// }
+      <Auth.Input
+        type="email"
+        name="email"
+        placeholder="Email adress"
+        inputRef={register({
+          required: {
+            value: true,
+            message: "email field can not be empty",
+          },
+          pattern: {
+            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+            message: "invalid email address",
+          },
+        })}
+      />
+
+      <Auth.Input
+        type="nickname"
+        name="nickname"
+        placeholder="Nickname"
+        inputRef={register({
+          required: {
+            value: true,
+            message: "nickname field can not be empty",
+          },
+          maxLength: 20,
+        })}
+      />
+
+      <Auth.Input
+        type="password"
+        name="password"
+        placeholder="Password"
+        inputRef={register({
+          required: {
+            value: true,
+            message: "password field can not be empty",
+          },
+          maxLength: 30,
+        })}
+      />
+
+      <Auth.Input
+        type="password"
+        name="repeatPassword"
+        placeholder="Repeat password"
+        inputRef={register({
+          required: {
+            value: true,
+            message: "repeat password field can not be empty",
+          },
+          maxLength: 30,
+        })}
+      />
+      <Auth.Spinner visible={process || loading} />
+      <Auth.Button type="submit" disabled={process || loading ? 1 : 0}>
+        SIGN UP
+      </Auth.Button>
+    </Auth.Form>
+  );
+}

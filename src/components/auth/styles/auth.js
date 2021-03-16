@@ -17,7 +17,11 @@ export const Title = styled.span`
   margin-top: 1rem;
 `;
 
-export const Placeholder = styled.img``;
+export const Placeholder = styled.img`
+  min-height: 100px;
+  border: none;
+  width: 100px;
+`;
 
 export const Form = styled.form`
   box-shadow: 0 2px 8px rgb(0 0 0 / 50%);

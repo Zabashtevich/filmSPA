@@ -7,7 +7,10 @@ import {
   Nickname,
   Title,
   Section,
+  Wrapper,
   Subtitle,
+  Link,
+  Linkicon,
   List,
   Item,
   Thumbnail,
@@ -15,6 +18,7 @@ import {
   Name,
   Amount,
   Settings,
+  Placeholder,
 } from "./styles/account";
 
 export default function Account({ children, ...rest }) {
@@ -41,8 +45,20 @@ Account.Section = function AccountSection({ children, ...rest }) {
   return <Section {...rest}>{children}</Section>;
 };
 
+Account.Wrapper = function AccountWrapper({ children, ...rest }) {
+  return <Wrapper {...rest}>{children}</Wrapper>;
+};
+
 Account.Subtitle = function AccountSubtitle({ children, ...rest }) {
   return <Subtitle {...rest}>{children}</Subtitle>;
+};
+
+Account.Link = function AccountLink({ children, ...rest }) {
+  return <Link {...rest}>{children}</Link>;
+};
+
+Account.Linkicon = function AccountLinkicon({ ...rest }) {
+  return <Linkicon {...rest} />;
 };
 
 Account.List = function AccountList({ children, ...rest }) {
@@ -71,4 +87,8 @@ Account.Amount = function AccountAmount({ children, ...rest }) {
 
 Account.Settings = function AccountSettings({ ...rest }) {
   return <Settings {...rest} />;
+};
+
+Account.Placeholder = function AccountPlaceholder({ ...rest }) {
+  return <Placeholder {...rest}>You have not any lists :c</Placeholder>;
 };

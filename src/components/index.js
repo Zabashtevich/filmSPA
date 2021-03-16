@@ -22,3 +22,4 @@ export { default as Trending } from "./trending";
 export { default as Slider } from "./slider";
 export { default as Auth } from "./auth";
 export { default as Account } from "./account";
+export { default as Filter } from "./filter";

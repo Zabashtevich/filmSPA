@@ -24,19 +24,30 @@ export default function AccountContainer() {
       <Account.Column type="content">
         <Account.Title>Your profile activity</Account.Title>
         <Account.Section>
-          <Account.Subtitle>Your lists</Account.Subtitle>
+          <Account.Wrapper>
+            <Account.Subtitle>Your lists</Account.Subtitle>
+            <Account.Link>
+              Settings
+              <Account.Linkicon />
+            </Account.Link>
+          </Account.Wrapper>
           <Account.List>
             {!loading &&
-              userlists.map((item) => (
-                <Account.Item>
-                  <Account.Thumbnail />
-                  <Account.Info>
-                    <Account.Name></Account.Name>
-                    <Account.Amount></Account.Amount>
-                  </Account.Info>
-                  <Account.Settings />
-                </Account.Item>
-              ))}
+              userlists.length > 1 &&
+              userlists.map((item) => {
+                console.log(item);
+                return (
+                  <Account.Item key={item.id}>
+                    <Account.Thumbnail src="./assets/images/list-placeholder.png" />
+                    <Account.Info>
+                      <Account.Name>{item.name}</Account.Name>
+                      <Account.Amount>{item.content.length}</Account.Amount>
+                    </Account.Info>
+                    <Account.Settings />
+                  </Account.Item>
+                );
+              })}
+            {!loading && userlists.length === 1 && <Account.Placeholder />}
           </Account.List>
         </Account.Section>
       </Account.Column>

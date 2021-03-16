@@ -2,15 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router";
 
+import { useAuth } from "./../../hooks";
 import { Auth } from "../../components";
 
 export default function AuthContainer() {
   const { register, handleSubmit, errors } = useForm();
   const [errorsArray, setErrorsArray] = useState([]);
+  const [process, error, setAuthProps] = useAuth();
   const { slug } = useParams();
 
   function submit(value) {
-    console.log(value);
+    setAuthProps({ type: "login", value });
   }
 
   useEffect(() => {
@@ -19,6 +21,12 @@ export default function AuthContainer() {
       setErrorsArray([...values.map((item) => errors[item].message)]);
     }
   }, [errors]);
+
+  useEffect(() => {
+    if (error) {
+      setErrorsArray((prev) => [...prev, error]);
+    }
+  }, [error]);
 
   return (
     <Auth>
@@ -32,7 +40,7 @@ export default function AuthContainer() {
   );
 }
 
-function LoginRows({ register, errors }) {
+function LoginRows({ register, errors, process }) {
   return (
     <>
       <Auth.Title>Log in</Auth.Title>
@@ -75,7 +83,9 @@ function LoginRows({ register, errors }) {
           },
         })}
       />
-      <Auth.Button type="submit">LOGIN</Auth.Button>
+      <Auth.Button type="submit" disabled={process ? 1 : 0}>
+        {process ? <SmallS}
+      </Auth.Button>
     </>
   );
 }

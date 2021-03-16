@@ -56,6 +56,11 @@ export const Button = styled.button`
   &:active {
     transform: scale(0.98);
   }
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      pointer-events: none;
+    `};
 `;
 
 export const Redirect = styled.span`

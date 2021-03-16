@@ -37,7 +37,8 @@ Auth.Input = function AuthInput({ inputRef, ...rest }) {
   return <Input {...rest} ref={inputRef} />;
 };
 
-Auth.Spinner = function AuthSpinner({ visible, children, ...rest }) {
+Auth.Spinner = function AuthSpinner({ visible, ...rest }) {
+  console.log(visible);
   return (
     <Spinner {...rest}>
       <CSSTransition

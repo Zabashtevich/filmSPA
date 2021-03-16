@@ -1,30 +1,33 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
+import { useModalContext } from "../../context";
 import { firebaseRequest } from "../../utils";
 
 import { firebase } from "./../../libs/firebase";
 
 export default function useAuth() {
   const [{ value, type }, setAuthProps] = useState({ value: null, type: null });
-  const [{ process, error }, setData] = useState({
-    process: false,
+  const [{ error, loading }, setState] = useState({
+    loading: false,
     error: null,
   });
+
+  const [, { showModal }] = useModalContext();
 
   const history = useHistory();
 
   useEffect(() => {
     if (type === "login") {
-      setData((prev) => ({ ...prev, process: true }));
+      setState((prev) => ({ ...prev, loading: true }));
       firebase
         .auth()
         .signInWithEmailAndPassword(value.email, value.password)
         .then(() => history.push("/"))
         .catch(() => {
-          setData({ process: false, error: "user not found" });
+          setState({ loading: false, error: "user not found" });
         });
     } else if (type === "signup") {
-      setData((prev) => ({ ...prev, process: true }));
+      setState((prev) => ({ ...prev, loading: true }));
       firebase
         .auth()
         .createUserWithEmailAndPassword(value.email, value.password)
@@ -34,31 +37,38 @@ export default function useAuth() {
             photoURL: value.url,
           });
         })
-        .catch(() => setData({ process: false, error: "something gone wrong" }))
+        .catch(() => {
+          setState((prev) => ({ ...prev, loading: false }));
+          showModal({ type: "error", message: "Something went wrong." });
+        })
         .then(() => {
           firebaseRequest(value.nickname, "moviesrated")
             .set({ list: [] })
             .catch(() => {
-              setData({ process: false, error: "something gone wrong" });
+              setState((prev) => ({ ...prev, loading: false }));
+              showModal({ type: "error", message: "Something went wrong." });
             });
           firebaseRequest(value.nickname, "collection")
             .set({ list: [], favorite: [] })
             .catch(() => {
-              setData({ process: false, error: "something gone wrong" });
+              setState((prev) => ({ ...prev, loading: false }));
+              showModal({ type: "error", message: "Something went wrong." });
             });
           firebaseRequest(value.nickname, "reviews")
             .set({ list: [] })
             .catch(() => {
-              setData({ process: false, error: "something gone wrong" });
+              setState((prev) => ({ ...prev, loading: false }));
+              showModal({ type: "error", message: "Something went wrong." });
             })
             .then(() => {
               history.push("/");
             })
-            .catch(() =>
-              setData({ process: false, error: "something gone wrong" }),
-            );
+            .catch(() => {
+              setState((prev) => ({ ...prev, loading: false }));
+              showModal({ type: "error", message: "Something went wrong." });
+            });
         });
     }
   }, [type, value]);
-  return [process, error, setAuthProps];
+  return [loading, setAuthProps];
 }

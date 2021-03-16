@@ -5,7 +5,6 @@ import {
   Column,
   Poster,
   Nickname,
-  Edit,
   Title,
   Section,
   Subtitle,
@@ -32,10 +31,6 @@ Account.Poster = function AccountPoster({ ...rest }) {
 
 Account.Nickname = function AccountNickname({ children, ...rest }) {
   return <Nickname {...rest}>{children}</Nickname>;
-};
-
-Account.Edit = function AccountEdit({ children, ...rest }) {
-  return <Edit {...rest}>{children}</Edit>;
 };
 
 Account.Title = function AccountTitle({ children, ...rest }) {

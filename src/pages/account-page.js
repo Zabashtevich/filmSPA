@@ -1,10 +1,11 @@
 import React from "react";
 
-import { FooterContainer } from "../containers";
+import { AccountContainer, FooterContainer } from "../containers";
 
 export default function AccountPage() {
   return (
     <>
+      <AccountContainer />
       <FooterContainer />
     </>
   );

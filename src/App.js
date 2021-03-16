@@ -19,11 +19,7 @@ function App() {
         <Route path="/details/:direction/:slug" component={DetailsPage} exact />
         <Route path="/authentication/:slug" component={AuthPage} />
 
-        <Route
-          path={["/account/:slug", "/account/:slug/:filter"]}
-          component={AccountPage}
-          exact
-        />
+        <Route path={"/account"} component={AccountPage} exact />
         <Route path="/actor/:slug" exact component={ActorPage} />
         <Route path="/account/:slug/edit" component={AccountEditPage} exact />
       </Switch>

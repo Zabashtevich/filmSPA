@@ -1,38 +1,81 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { useParams } from "react-router";
 
 import { Auth } from "../../components";
 
 export default function AuthContainer() {
+  const { register, handleSubmit, errors } = useForm();
+  const [errorsArray, setErrorsArray] = useState([]);
   const { slug } = useParams();
+
+  function submit(value) {
+    console.log(value);
+  }
+
+  useEffect(() => {
+    let values = Object.keys(errors);
+    if (values.length > 0) {
+      setErrorsArray([...values.map((item) => errors[item].message)]);
+    }
+  }, [errors]);
 
   return (
     <Auth>
-      <Auth.Form>
-        {slug === "login" && <LoginRows />}
-        {slug === "signup" && <SignupRows />}
+      <Auth.Form onSubmit={handleSubmit(submit)}>
+        {slug === "login" && (
+          <LoginRows register={register} errors={errorsArray} />
+        )}
+        {slug === "signup" && <SignupRows register={register} />}
       </Auth.Form>
     </Auth>
   );
 }
 
-function LoginRows() {
+function LoginRows({ register, errors }) {
   return (
     <>
-      <Auth.Title>Log In</Auth.Title>
-      <Auth.Row>
-        <Auth.Subtitle>Email</Auth.Subtitle>
-        <Auth.Input type="email" placeholder="Email adress" />
-      </Auth.Row>
-      <Auth.Row>
-        <Auth.Subtitle>Password</Auth.Subtitle>
-        <Auth.Input type="password" placeholder="Password" />
-      </Auth.Row>
-      <Auth.Button>LOGIN</Auth.Button>
+      <Auth.Title>Log in</Auth.Title>
       <Auth.Redirect>
-        Do not have an account?
-        <Auth.Link to="/authentication/signup">Sign Up</Auth.Link>
+        DO NOT HAVE AN ACCOUNT?
+        <Auth.Link to="/authentication/signup">SIGN UP</Auth.Link>
       </Auth.Redirect>
+      <Auth.Wrapper visible={errors.length > 0 ? 1 : 0}>
+        {errors.map((item, index) => (
+          <Auth.Error key={index}>{item}</Auth.Error>
+        ))}
+      </Auth.Wrapper>
+      <Auth.Input
+        type="email"
+        name="email"
+        placeholder="Email adress"
+        inputRef={register({
+          required: {
+            value: true,
+            message: "email field can not be empty",
+          },
+          pattern: {
+            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+            message: "invalid email address",
+          },
+        })}
+      />
+      <Auth.Input
+        type="password"
+        name="password"
+        placeholder="Password"
+        inputRef={register({
+          required: {
+            value: true,
+            message: "password field can not be empty",
+          },
+          minLength: {
+            value: 8,
+            message: "password min length is 8",
+          },
+        })}
+      />
+      <Auth.Button type="submit">LOGIN</Auth.Button>
     </>
   );
 }

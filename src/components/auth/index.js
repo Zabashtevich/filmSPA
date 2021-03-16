@@ -4,12 +4,12 @@ import {
   Container,
   Title,
   Form,
-  Row,
-  Subtitle,
   Input,
   Button,
   Redirect,
   Link,
+  Wrapper,
+  Error,
 } from "./styles/auth";
 
 export default function Auth({ children, ...rest }) {
@@ -24,16 +24,8 @@ Auth.Form = function AuthForm({ children, ...rest }) {
   return <Form {...rest}>{children}</Form>;
 };
 
-Auth.Row = function AuthRow({ children, ...rest }) {
-  return <Row {...rest}>{children}</Row>;
-};
-
-Auth.Subtitle = function AuthSubtitle({ children, ...rest }) {
-  return <Subtitle {...rest}>{children}</Subtitle>;
-};
-
-Auth.Input = function AuthInput({ ...rest }) {
-  return <Input {...rest} />;
+Auth.Input = function AuthInput({ inputRef, ...rest }) {
+  return <Input {...rest} ref={inputRef} />;
 };
 
 Auth.Button = function AuthButton({ children, ...rest }) {
@@ -46,4 +38,12 @@ Auth.Redirect = function AuthRedirect({ children, ...rest }) {
 
 Auth.Link = function AuthLink({ children, ...rest }) {
   return <Link {...rest}>{children}</Link>;
+};
+
+Auth.Wrapper = function AuthWrapper({ children, ...rest }) {
+  return <Wrapper {...rest}>{children}</Wrapper>;
+};
+
+Auth.Error = function AuthError({ children, ...rest }) {
+  return <Error {...rest}>{children}</Error>;
 };

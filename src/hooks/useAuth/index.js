@@ -7,15 +7,15 @@ import { firebase } from "./../../libs/firebase";
 export default function useAuth() {
   const [{ value, type }, setAuthProps] = useState({ value: null, type: null });
   const [{ process, error }, setData] = useState({
-    process: true,
+    process: false,
     error: null,
   });
 
   const history = useHistory();
 
   useEffect(() => {
-    setData((prev) => ({ ...prev, process: true }));
     if (type === "login") {
+      setData((prev) => ({ ...prev, process: true }));
       firebase
         .auth()
         .signInWithEmailAndPassword(value.email, value.password)
@@ -24,6 +24,7 @@ export default function useAuth() {
           setData({ process: false, error: "user not found" });
         });
     } else if (type === "signup") {
+      setData((prev) => ({ ...prev, process: true }));
       firebase
         .auth()
         .createUserWithEmailAndPassword(value.email, value.password)

@@ -17,6 +17,8 @@ export const Title = styled.span`
   margin-top: 1rem;
 `;
 
+export const Placeholder = styled.img``;
+
 export const Form = styled.form`
   box-shadow: 0 2px 8px rgb(0 0 0 / 50%);
   justify-content: center;
@@ -41,6 +43,18 @@ export const Input = styled.input`
   }
 `;
 
+export const Spinner = styled.div`
+  justify-content: center;
+  align-items: center;
+  min-height: 50px;
+  display: flex;
+  width: 100%;
+`;
+
+export const Inner = styled.div`
+  ${({ theme }) => theme.animations.fade(2000, 2000, 2000)};
+`;
+
 export const Button = styled.button`
   font-weight: ${({ theme }) => theme.font.aux.weight.light};
   background-color: ${({ theme }) => theme.colors.aux};
@@ -48,7 +62,7 @@ export const Button = styled.button`
   border-radius: 0.4rem;
   margin-bottom: 2rem;
   padding: 0.6rem 0;
-  margin-top: 6rem;
+  margin-top: 1rem;
   cursor: pointer;
   outline: none;
   color: white;

@@ -16,3 +16,6 @@ export { default as calculateOffset } from "./gallery/calculate-offstet";
 
 export { default as getCharacterByRole } from "./details/get-character-by-role";
 export { default as getMoneyFormat } from "./details/get-money-format";
+
+export { default as validateImage } from "./auth/validate-image";
+export { default as getPreviewSrc } from "./auth/get-preview-src";

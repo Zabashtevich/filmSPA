@@ -435,3 +435,20 @@ export function TrendingSkeleton() {
     </TrendingSkeletonWrapper>
   );
 }
+
+export function AccountPosterSkeleton() {
+  return (
+    <ContentLoader
+      speed={2}
+      width={300}
+      height={200}
+      viewBox="0 0 300 200"
+      backgroundColor="#f3f3f3"
+      foregroundColor="#ecebeb"
+    >
+      <rect x="75" y="0" rx="4" ry="4" width="150" height="150" />
+      <rect x="100" y="155" rx="4" ry="4" width="100" height="20" />
+      <rect x="125" y="180" rx="4" ry="4" width="50" height="12" />
+    </ContentLoader>
+  );
+}

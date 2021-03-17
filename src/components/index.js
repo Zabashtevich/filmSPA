@@ -10,7 +10,6 @@ export { default as Trailer } from "./trailer";
 export { default as Widget } from "./widget";
 export { default as ActorPoster } from "./actor-poster";
 export { default as MovieList } from "./movie-list";
-export { default as Credits } from "./credits";
 export { default as Pagination } from "./pagination";
 export { default as DetailsPanel } from "./details-panel";
 export { default as Review } from "./review";

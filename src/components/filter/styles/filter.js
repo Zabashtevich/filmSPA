@@ -39,6 +39,9 @@ export const Subtitle = styled.span`
   margin: 0 0.4rem;
 `;
 
-export const Select = styled.select``;
+export const Select = styled.select`
+  border-radius: 0.4rem;
+  outline: none;
+`;
 
 export const Option = styled.option``;

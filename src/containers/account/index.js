@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
 import { Account } from "../../components";
+import { FilterContainer } from "../";
 import { AccountPosterSkeleton } from "./../../components/skeleton";
 
 export default function AccountContainer() {
@@ -29,6 +30,7 @@ export default function AccountContainer() {
       )}
       <Account.Column type="content" visible={true}>
         <Account.Title>Your profile activity</Account.Title>
+        <FilterContainer />
       </Account.Column>
     </Account>
   );

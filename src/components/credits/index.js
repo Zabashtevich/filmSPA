@@ -1,4 +1,5 @@
 import React from "react";
+import { CSSTransition } from "react-transition-group";
 
 import {
   Container,
@@ -95,8 +96,19 @@ Credits.Star = function CreditsStar({ ...rest }) {
   return <Star {...rest} />;
 };
 
-Credits.Popup = function CreditsPopup({ children, ...rest }) {
-  return <Popup {...rest}>{children}</Popup>;
+Credits.Popup = function CreditsPopup({ visible, children, ...rest }) {
+  return (
+    <CSSTransition
+      in={visible}
+      classNames="slide"
+      appear={true}
+      mountOnEnter
+      unmountOnExit
+      timeout={500}
+    >
+      <Popup {...rest}>{children}</Popup>
+    </CSSTransition>
+  );
 };
 
 Credits.Close = function CreditsClose({ ...rest }) {

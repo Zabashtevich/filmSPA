@@ -1,6 +1,8 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 
 import { BsCircle } from "react-icons/bs";
+import { AiFillStar } from "react-icons/ai";
+import { GrClose } from "react-icons/gr";
 
 export const Container = styled.div`
   flex-direction: column;
@@ -54,6 +56,7 @@ export const Info = styled.div`
   flex-direction: column;
   margin-left: 3rem;
   display: flex;
+  width: 170px;
 `;
 
 export const Subtitle = styled.span`
@@ -68,18 +71,71 @@ export const Role = styled.span`
   color: rgba(0, 0, 0, 0.5);
 `;
 
-export const Meta = styled.div``;
+export const Meta = styled.div`
+  margin-left: 2rem;
+  width: 70px;
+`;
 
-export const Average = styled.div``;
+export const Average = styled.span`
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
+  ${({ value }) =>
+    value > 5 &&
+    css`
+      color: green;
+    `};
+  ${({ value }) =>
+    value < 5 &&
+    css`
+      color: red;
+    `};
+  ${({ value }) =>
+    Math.floor(value) === 5 &&
+    css`
+      color: #333;
+    `};
+`;
 
-export const Amount = styled.div``;
+export const Amount = styled.span`
+  font-size: ${({ theme }) => theme.font.aux.size.small};
+  color: rgba(0, 0, 0, 0.5);
+  margin-left: 0.5rem;
+`;
 
-export const Uservalue = styled.div``;
+export const Uservalue = styled.span`
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
+  background-color: ${({ theme }) => theme.colors.main};
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  margin-left: 5rem;
+  color: white;
+  width: 20px;
+`;
 
-export const Wrapper = styled.div``;
+export const Wrapper = styled.div`
+  font-size: ${({ theme }) => theme.font.aux.size.large};
+  align-items: center;
+  position: relative;
+  margin-right: 1rem;
+  margin-left: auto;
+  display: flex;
+`;
 
-export const Star = styled.div``;
+export const Star = styled(AiFillStar)``;
 
-export const Popup = styled.div``;
+export const Popup = styled.div`
+  ${({ theme }) => theme.animations.slide({ x: 100, y: 0 }, { x: 100, y: 0 })};
+  font-size: ${({ theme }) => theme.font.aux.size.big};
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.5rem;
+  left: calc(100% + 8px);
+  align-items: center;
+  position: absolute;
+  display: flex;
+`;
 
-export const Close = styled.div``;
+export const Close = styled(GrClose)`
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
+`;

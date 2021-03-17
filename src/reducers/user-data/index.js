@@ -5,7 +5,7 @@ import {
 } from "./constants";
 
 const initialState = {
-  loading: true,
+  userDataLoading: true,
   userlists: null,
   favoritedMovies: null,
   ratedMovies: null,
@@ -14,11 +14,11 @@ const initialState = {
 const userDataReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case FETCH_USERDATA_START:
-      return { ...state, loading: true };
+      return { ...state, userDataLoading: true };
     case FETCH_USERDATA_SUCCESS:
-      return { ...state, loading: false };
+      return { ...state, userDataLoading: false };
     case SET_USERDATA:
-      return { ...state, ...payload, loading: false };
+      return { ...state, ...payload, userDataLoading: false };
     default:
       return state;
   }

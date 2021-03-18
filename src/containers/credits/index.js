@@ -11,7 +11,6 @@ import CreditsListItem from "./items/list-item";
 export default function CreditsContainer({ list, loading }) {
   const { userDataLoading } = useSelector((state) => state.userData);
   const [{ active }, setPaginProps] = usePaginationContext();
-  const [{ value }, setSelected] = useState({ value: "haha" });
   const [unMountDelay, setUnMountDelay] = useState(true);
 
   useEffect(() => {
@@ -27,27 +26,10 @@ export default function CreditsContainer({ list, loading }) {
 
   const skeletonIsVisible = loading || userDataLoading;
 
-  console.log(value);
-
   return (
     <Credits>
       <Credits.Header>
         <Credits.Title>Credits</Credits.Title>
-        <Credits.Select
-          value={value}
-          onChange={(e) => {
-            console.log(e.target.value);
-            setSelected({ value: e.target.value });
-          }}
-        >
-          {["all", "tv", "movie"]
-            .filter((item) => item !== value)
-            .map((item) => (
-              <Credits.Option key={item} value={item}>
-                {item}
-              </Credits.Option>
-            ))}
-        </Credits.Select>
       </Credits.Header>
       <Credits.List>
         {range(1, 10).map((item) => (

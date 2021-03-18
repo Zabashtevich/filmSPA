@@ -20,13 +20,6 @@ export const Title = styled.span`
   font-size: ${({ theme }) => theme.font.aux.size.big};
 `;
 
-export const Select = styled.select`
-  border-radius: 0.5rem;
-  outline: none;
-`;
-
-export const Option = styled.option``;
-
 export const List = styled.div`
   flex-direction: column;
   min-height: 500px;

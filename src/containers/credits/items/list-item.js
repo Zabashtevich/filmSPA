@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
 import { Credits } from "../../../components";
+import { useProcessContext } from "../../../context";
+import { useEstimate } from "../../../hooks";
 import {
   checkMovieInList,
   checkReleaseStatus,
+  createEstimateItem,
   getYearFromString,
   range,
 } from "../../../utils";
@@ -13,6 +16,8 @@ export default function CreditsListItem({ item }) {
   const [popupVisible, setPopupVisible] = useState(false);
   const [hoverIndex, setHoverIndex] = useState(0);
   const { ratedMovies } = useSelector((state) => state.userData);
+  const [setEstimateProps] = useEstimate();
+  const [{ estimateProcess }] = useProcessContext();
 
   const title = item.name || item.title;
   const meta = !!item.vote_average || !!item.vote_count;
@@ -45,16 +50,27 @@ export default function CreditsListItem({ item }) {
         <Credits.Uservalue>{movieIsRated.value}</Credits.Uservalue>
       )}
       {checkReleaseStatus(item.release_date || item.first_air_date) && (
-        <Credits.Wrapper onClick={() => setPopupVisible((prev) => !prev)}>
+        <Credits.Wrapper
+          onClick={() => {
+            if (estimateProcess) return;
+            setPopupVisible((prev) => !prev);
+          }}
+        >
           <Credits.Star />
           <Credits.Popup visible={popupVisible}>
             <Credits.Close />
-            {range(1, 10).map((item) => (
+            {range(1, 10).map((index) => (
               <Credits.Star
-                key={item}
-                hovered={hoverIndex >= item ? 1 : 0}
-                onMouseEnter={() => setHoverIndex(item)}
+                key={index}
+                hovered={hoverIndex >= index ? 1 : 0}
+                onMouseEnter={() => setHoverIndex(index)}
                 onMouseLeave={() => setHoverIndex(0)}
+                onClick={() =>
+                  setEstimateProps({
+                    type: "rate",
+                    value: createEstimateItem(item, index),
+                  })
+                }
               />
             ))}
           </Credits.Popup>

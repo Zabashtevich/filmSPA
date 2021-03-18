@@ -36,14 +36,6 @@ Credits.Title = function CreditsTitle({ children, ...rest }) {
   return <Title {...rest}>{children}</Title>;
 };
 
-Credits.Select = function CreditsSelect({ children, ...rest }) {
-  return <Select {...rest}>{children}</Select>;
-};
-
-Credits.Option = function CreditsOption({ children, ...rest }) {
-  return <Option {...rest}>{children}</Option>;
-};
-
 Credits.List = function CreditsList({ children, ...rest }) {
   return <List {...rest}>{children}</List>;
 };

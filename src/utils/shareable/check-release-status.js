@@ -7,9 +7,9 @@ export default function checkReleaseStatus(date) {
 
   const splittedDate = date.split("-");
 
-  return splittedDate[0] > actualYear
-    ? false
-    : splittedDate[1] > actualMonth
-    ? false
-    : true;
+  return actualYear > +splittedDate[0]
+    ? true
+    : actualMonth > +splittedDate[1]
+    ? true
+    : false;
 }

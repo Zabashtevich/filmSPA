@@ -64,3 +64,7 @@ export const TrendingSkeletonWrapper = styled.div`
 export const CreditsWrapper = styled.div`
   ${({ theme }) => theme.animations.fade(500, 500, 500)};
 `;
+
+export const FilterWrapper = styled.div`
+  ${({ theme }) => theme.animations.fade(500, 500, 500)};
+`;

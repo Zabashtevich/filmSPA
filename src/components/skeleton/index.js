@@ -8,7 +8,7 @@ import {
   ItemTrailerWrapper,
   WidgetWrapper,
   ListPosterWrapper,
-  CreditsItemWrapper,
+  CreditsWrapper,
   DetailsCollectionWrapper,
   PopularSkeletonWrapper,
   TrendingSkeletonWrapper,
@@ -128,7 +128,7 @@ export function PosterSkeleton() {
   );
 }
 
-export function CreditsSkeleton() {
+export function CastListSkeleton() {
   return (
     <ContentLoader
       speed={2}
@@ -304,38 +304,6 @@ export function ActorPosterContentSkeleton() {
   );
 }
 
-export function CreditsItemSkeleton({ visible, ...rest }) {
-  return (
-    <CSSTransition
-      appear={true}
-      in={visible}
-      classNames="fade"
-      mountOnEnter
-      unmountOnExit
-      timeout={500}
-      {...rest}
-    >
-      <CreditsItemWrapper>
-        <ContentLoader
-          speed={2}
-          width={800}
-          height={40}
-          viewBox="0 0 800 40"
-          backgroundColor="#f3f3f3"
-          foregroundColor="#ecebeb"
-        >
-          <rect x="15" y="12" rx="4" ry="4" width="20" height="15" />
-          <circle cx="90" cy="20" r="8" />
-          <rect x="140" y="12" rx="4" ry="4" width="150" height="15" />
-          <rect x="420" y="12" rx="4" ry="4" width="60" height="15" />
-          <rect x="575" y="8" rx="4" ry="4" width="25" height="25" />
-          <rect x="700" y="12" rx="4" ry="4" width="50" height="15" />
-        </ContentLoader>
-      </CreditsItemWrapper>
-    </CSSTransition>
-  );
-}
-
 export function PaginationSkeleton() {
   return (
     <ContentLoader
@@ -450,5 +418,40 @@ export function AccountPosterSkeleton() {
       <rect x="100" y="155" rx="4" ry="4" width="100" height="20" />
       <rect x="125" y="180" rx="4" ry="4" width="50" height="12" />
     </ContentLoader>
+  );
+}
+
+export function CreditsSkeleton({ visible, ...rest }) {
+  return (
+    <CSSTransition
+      in={visible}
+      appear={true}
+      mountOnEnter
+      unmountOnExit
+      timeout={500}
+      classNames="fade"
+      {...rest}
+    >
+      <CreditsWrapper>
+        <ContentLoader
+          speed={2}
+          width={800}
+          height={50}
+          viewBox="0 0 800 50"
+          backgroundColor="#f3f3f3"
+          foregroundColor="#ecebeb"
+        >
+          <rect x="8" y="17" rx="4" ry="4" width="40" height="16" />
+          <circle cx="87" cy="24" r="7" />
+          <rect x="136" y="10" rx="4" ry="4" width="170" height="30" />
+          <rect x="338" y="15" rx="4" ry="4" width="70" height="20" />
+          <rect x="488" y="9" rx="4" ry="4" width="38" height="32" />
+          <rect x="760" y="9" rx="4" ry="4" width="32" height="32" />
+          <rect x="760" y="59" rx="4" ry="4" width="32" height="32" />
+          <rect x="761" y="109" rx="4" ry="4" width="32" height="32" />
+          <rect x="760" y="159" rx="4" ry="4" width="32" height="32" />
+        </ContentLoader>
+      </CreditsWrapper>
+    </CSSTransition>
   );
 }

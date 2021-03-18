@@ -47,10 +47,6 @@ export const ListPosterWrapper = styled.div`
   left: 0;
 `;
 
-export const CreditsItemWrapper = styled.div`
-  ${({ theme }) => theme.animations.fade(500, 500, 500)};
-`;
-
 export const DetailsCollectionWrapper = styled.div`
   ${({ theme }) => theme.animations.fade(500, 0, 500)};
 `;
@@ -63,4 +59,8 @@ export const PopularSkeletonWrapper = styled.div`
 export const TrendingSkeletonWrapper = styled.div`
   ${({ theme }) => theme.animations.fade(500, 0, 500)};
   margin: 0.6rem;
+`;
+
+export const CreditsWrapper = styled.div`
+  ${({ theme }) => theme.animations.fade(500, 500, 500)};
 `;

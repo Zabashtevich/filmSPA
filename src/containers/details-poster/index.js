@@ -5,7 +5,7 @@ import { useFetch } from "../../hooks";
 import { DetailsPoster, Thumbnail } from "../../components";
 import DetailsPosterRows from "./items/details-poster-rows";
 import {
-  CreditsSkeleton,
+  CastListSkeleton,
   PosterDetailsRowsSkeleton,
   PosterSkeleton,
 } from "../../components/skeleton";
@@ -79,7 +79,7 @@ export default function DetailsPosterContainer() {
         onExited={() => setDelay((prev) => ({ ...prev, creditsDelay: false }))}
       >
         <DetailsPoster.Subtitle>Cast:</DetailsPoster.Subtitle>
-        <CreditsSkeleton visible={loading} />
+        <CastListSkeleton visible={loading} />
       </DetailsPoster.Column>
 
       <DetailsPoster.Column type={"cast"} visible={!loading && !creditsDelay}>

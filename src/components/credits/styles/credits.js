@@ -29,10 +29,12 @@ export const Option = styled.option``;
 
 export const List = styled.div`
   flex-direction: column;
+  min-height: 500px;
   display: flex;
 `;
 
 export const Item = styled.div`
+  box-shadow: 1px 2px 3px rgb(0 0 0 / 10%);
   align-items: center;
   display: flex;
   height: 50px;
@@ -73,6 +75,7 @@ export const Role = styled.span`
 
 export const Meta = styled.div`
   margin-left: 2rem;
+  height: 18px;
   width: 70px;
 `;
 
@@ -122,18 +125,27 @@ export const Wrapper = styled.div`
   display: flex;
 `;
 
-export const Star = styled(AiFillStar)``;
+export const Star = styled(AiFillStar)`
+  ${({ hovered }) =>
+    hovered &&
+    css`
+      color: ${({ theme }) => theme.colors.aux};
+      transition: 300ms;
+    `};
+`;
 
 export const Popup = styled.div`
   ${({ theme }) => theme.animations.slide({ x: 100, y: 0 }, { x: 100, y: 0 })};
   font-size: ${({ theme }) => theme.font.aux.size.big};
   border: 1px solid rgba(0, 0, 0, 0.5);
+  background-color: white;
   padding: 0.2rem 0.4rem;
   border-radius: 0.5rem;
   left: calc(100% + 8px);
   align-items: center;
   position: absolute;
   display: flex;
+  z-index: 500;
 `;
 
 export const Close = styled(GrClose)`

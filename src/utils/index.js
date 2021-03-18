@@ -7,6 +7,7 @@ export { default as getKnownFor } from "./shareable/get-known-for";
 export { default as splitByType } from "./shareable/split-by-type";
 export { default as sortMoviesByDate } from "./shareable/sort-movies-by-date";
 export { default as getCorrectSrc } from "./shareable/get-correct-src";
+export { default as checkReleaseStatus } from "./shareable/check-release-status";
 
 export { default as createEstimateItem } from "./hooks/create-estimate-item";
 export { default as getFetchUrl } from "./hooks/get-fetch-url";

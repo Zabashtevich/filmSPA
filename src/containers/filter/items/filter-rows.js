@@ -7,15 +7,18 @@ export default function FilterRows({ setState, state, userlists }) {
   const { sortBy, type, list, rating, rangeStart, rangeEnd } = state;
 
   function handleChange(type, value) {
-    setState((prev) => ({ ...prev, [type]: value }));
+    if (type === "type" && value === "list") {
+      setState((prev) => ({ ...prev, [type]: value, list: userlists[0].name }));
+    } else {
+      setState((prev) => ({ ...prev, [type]: value }));
+    }
   }
-  console.log(userlists);
 
   return (
     <>
       <Filter.Wrapper>
         <Filter.Title>sort by:</Filter.Title>
-        {["date", "popularity", "rating", "score", "votes"].map((item) => (
+        {["date", "popular", "rating", "score", "votes"].map((item) => (
           <Filter.Value
             key={item}
             selected={item === sortBy ? 1 : 0}
@@ -32,6 +35,7 @@ export default function FilterRows({ setState, state, userlists }) {
             key={item}
             selected={item === type ? 1 : 0}
             onClick={() => handleChange("type", item)}
+            disabled={item === "list" && userlists.length === 0}
           >
             {item}
           </Filter.Value>
@@ -43,7 +47,12 @@ export default function FilterRows({ setState, state, userlists }) {
           <Filter.Value
             key={item.id}
             selected={item === list ? 1 : 0}
-            onClick={() => handleChange("list", item)}
+            onClick={() => {
+              if (type === "list") {
+                handleChange("list", item);
+              }
+            }}
+            disabled={type !== "list" ? 1 : 0}
           >
             {item.name}
           </Filter.Value>

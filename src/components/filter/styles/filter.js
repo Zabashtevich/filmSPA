@@ -34,6 +34,11 @@ export const Value = styled.span`
       transition: 300ms;
       color: white;
     `};
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      cursor: not-allowed;
+    `};
 `;
 
 export const Subtitle = styled.span`

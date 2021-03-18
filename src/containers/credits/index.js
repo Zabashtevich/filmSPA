@@ -14,7 +14,7 @@ export default function CreditsContainer({ list, loading }) {
   const [unMountDelay, setUnMountDelay] = useState(true);
 
   useEffect(() => {
-    if (!loading) {
+    if (!loading && list.length > 0) {
       setPaginProps((prev) => ({
         ...prev,
         loading: false,

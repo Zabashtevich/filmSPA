@@ -20,4 +20,4 @@ export { default as getMoneyFormat } from "./details/get-money-format";
 export { default as validateImage } from "./auth/validate-image";
 export { default as getPreviewSrc } from "./auth/get-preview-src";
 
-export { default as sortByType } from "./filter/sort-by-type";
+export { default as getFiltredArray } from "./filter/get-filtered-array";

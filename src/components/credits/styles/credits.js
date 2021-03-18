@@ -23,11 +23,12 @@ export const Title = styled.span`
 export const List = styled.div`
   flex-direction: column;
   min-height: 500px;
+  margin-top: 1rem;
   display: flex;
 `;
 
 export const Item = styled.div`
-  box-shadow: 1px 2px 3px rgb(0 0 0 / 10%);
+  box-shadow: 0px 0px 5px 2px rgba(34, 60, 80, 0.2);
   align-items: center;
   display: flex;
   height: 50px;

@@ -1,11 +1,14 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { CreditsContainer } from "..";
 
 import { Filter } from "../../components";
 import { range } from "../../utils";
 
 export default function FilterContainer() {
-  const { loading, userlists } = useSelector((state) => state.userData);
+  const { userDataLoading, userlists, ratedMovies } = useSelector(
+    (state) => state.userData,
+  );
   return (
     <Filter>
       <Filter.Wrapper>
@@ -22,7 +25,7 @@ export default function FilterContainer() {
       </Filter.Wrapper>
       <Filter.Wrapper>
         <Filter.Title>list:</Filter.Title>
-        {!loading &&
+        {!userDataLoading &&
           userlists.map((item) => (
             <Filter.Value key={item.id}>{item.name}</Filter.Value>
           ))}
@@ -48,6 +51,7 @@ export default function FilterContainer() {
           ))}
         </Filter.Select>
       </Filter.Wrapper>
+      <CreditsContainer list={ratedMovies} loading={userDataLoading} />
     </Filter>
   );
 }

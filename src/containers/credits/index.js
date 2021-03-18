@@ -12,17 +12,19 @@ export default function CreditsContainer({ list, loading }) {
   const { userDataLoading } = useSelector((state) => state.userData);
   const [{ active }, setPaginProps] = usePaginationContext();
   const [unMountDelay, setUnMountDelay] = useState(true);
-
+  console.log(list);
   useEffect(() => {
-    setPaginProps((prev) => ({
-      ...prev,
-      loading: false,
-      amount: 10,
-      length: Math.ceil(list.length / 10),
-    }));
+    if (!loading) {
+      setPaginProps((prev) => ({
+        ...prev,
+        loading: false,
+        amount: 10,
+        length: Math.ceil(list.length / 10),
+      }));
+    }
     return () =>
       setPaginProps({ loading: true, active: 1, amount: null, length: null });
-  }, []);
+  }, [loading]);
 
   const skeletonIsVisible = loading || userDataLoading;
 

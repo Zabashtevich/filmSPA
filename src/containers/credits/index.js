@@ -12,7 +12,7 @@ export default function CreditsContainer({ list, loading }) {
   const { userDataLoading } = useSelector((state) => state.userData);
   const [{ active }, setPaginProps] = usePaginationContext();
   const [unMountDelay, setUnMountDelay] = useState(true);
-  console.log(list);
+
   useEffect(() => {
     if (!loading) {
       setPaginProps((prev) => ({

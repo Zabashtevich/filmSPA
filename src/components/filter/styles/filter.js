@@ -5,7 +5,6 @@ export const Container = styled.div`
   margin-top: 1rem;
   display: flex;
   width: 800px;
-  margin: 0 auto;
 `;
 
 export const Wrapper = styled.div`
@@ -25,7 +24,9 @@ export const Value = styled.span`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   background-color: #f2f2f2;
   padding: 0.2rem 0.4rem;
+  user-select: none;
   margin: 0 0.1rem;
+  cursor: pointer;
   ${({ selected }) =>
     selected &&
     css`

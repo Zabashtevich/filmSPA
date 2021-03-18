@@ -22,7 +22,6 @@ export default function CreditsListItem({ item }) {
   const title = item.name || item.title;
   const meta = !!item.vote_average || !!item.vote_count;
   const movieIsRated = checkMovieInList(ratedMovies, item.id);
-  console.log(item);
   return (
     <Credits.Item>
       <Credits.Year>

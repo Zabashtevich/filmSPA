@@ -43,10 +43,13 @@ export default function getFiltredArray(array, state) {
   }
 
   if (rangeStart !== null || rangeEnd !== null) {
+    console.log(rangeStart, rangeEnd);
     result = result.filter((item) => {
       return (
-        getYearFromString(item.release_date) >= (rangeStart ?? 1940) &&
-        getYearFromString(item.release_date) <= (rangeEnd ?? 2021)
+        getYearFromString(item.release_date) >=
+          (rangeStart === "all" ? 1940 : rangeStart) &&
+        getYearFromString(item.release_date) <=
+          (rangeEnd === "all" ? 2021 : rangeEnd)
       );
     });
   }

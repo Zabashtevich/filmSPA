@@ -7,7 +7,6 @@ export default function FilterRows({ setState, state, userlists }) {
   const { sortBy, type, list, rating, rangeStart, rangeEnd } = state;
 
   function handleChange(type, value) {
-    console.log(value);
     if (type === "type" && value === "list") {
       setState((prev) => ({ ...prev, [type]: value, list: userlists[0].name }));
     } else {
@@ -17,7 +16,7 @@ export default function FilterRows({ setState, state, userlists }) {
 
   const firstRange = rangeStart === "all" ? 1940 : rangeStart;
   const secondRange = rangeStart === "all" ? 82 : 2022 - rangeStart;
-  console.log(firstRange, secondRange);
+
   return (
     <>
       <Filter.Wrapper>

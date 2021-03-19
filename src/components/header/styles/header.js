@@ -22,7 +22,19 @@ export const Container = styled.div`
 export const Logo = styled.span`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   font-size: ${({ theme }) => theme.font.aux.size.huge};
-  margin: 0 4rem;
+  position: relative;
+  margin: 0 5rem;
+  &::after {
+    transform: translateY(-50%);
+    background-color: white;
+    border-radius: 0.6rem;
+    position: absolute;
+    height: 20px;
+    content: "";
+    width: 60px;
+    left: 110%;
+    top: 50%;
+  }
 `;
 
 export const Wrapper = styled.div`

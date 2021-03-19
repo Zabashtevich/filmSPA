@@ -34,8 +34,8 @@ export default function Header({ visible, children, ...rest }) {
   );
 }
 
-Header.Logo = function HeaderLogo({ ...rest }) {
-  return <Logo {...rest} />;
+Header.Logo = function HeaderLogo({ children, ...rest }) {
+  return <Logo {...rest}>{children}</Logo>;
 };
 
 Header.Wrapper = function HeaderWrapper({ children, ...rest }) {

@@ -5,6 +5,7 @@ import { Link as ReactRouterLink } from "react-router-dom";
 export const Container = styled.div`
   justify-content: center;
   max-width: 1300px;
+  padding: 4rem 0;
   margin: 0 auto;
   display: flex;
 `;

@@ -22,7 +22,7 @@ export default function AccountContainer() {
         <Account.Column type="poster" visible={!profileLoading && !delay}>
           <Account.Poster src={profile.photoURL} />
           <Account.Nickname>{profile.displayName}</Account.Nickname>
-          <Account.List to="/">
+          <Account.List to="/account/list">
             Your lists
             <Account.Settings />
           </Account.List>

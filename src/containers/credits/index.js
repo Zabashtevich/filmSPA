@@ -14,7 +14,7 @@ export default function CreditsContainer({ list, loading }) {
   const [unMountDelay, setUnMountDelay] = useState(true);
 
   useEffect(() => {
-    if (!loading && list.length > 0) {
+    if (!loading && !!list) {
       setPaginProps((prev) => ({
         ...prev,
         loading: false,
@@ -43,7 +43,7 @@ export default function CreditsContainer({ list, loading }) {
         ))}
         {!skeletonIsVisible &&
           !unMountDelay &&
-          sortMoviesByDate(list)
+          list
             .slice(active * 10 - 10, active * 10)
             .map((item) => <CreditsListItem key={item.id} item={item} />)}
       </Credits.List>

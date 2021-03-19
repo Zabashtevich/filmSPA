@@ -28,7 +28,7 @@ export default function CreditsListItem({ item }) {
         {getYearFromString(item.release_date || item.first_air_date) || "-"}
       </Credits.Year>
       <Credits.Icon />
-      <Credits.Info>
+      <Credits.Info to={`/details/${item.media_type}/${item.id}`}>
         <Credits.Subtitle title={title}>
           {title.length > 25 ? title.slice(0, 25) + "..." : title}
         </Credits.Subtitle>

@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components/macro";
 
+import { Link as ReactRouterLink } from "react-router-dom";
 import { BsCircle } from "react-icons/bs";
 import { AiFillStar } from "react-icons/ai";
 import { GrClose } from "react-icons/gr";
@@ -21,6 +22,7 @@ export const Title = styled.span`
 `;
 
 export const List = styled.div`
+  box-shadow: 1px 1px 3px 2px rgba(0, 0, 0, 0.1);
   flex-direction: column;
   min-height: 500px;
   margin-top: 1rem;
@@ -28,10 +30,14 @@ export const List = styled.div`
 `;
 
 export const Item = styled.div`
-  box-shadow: 0px 0px 5px 2px rgba(34, 60, 80, 0.2);
   align-items: center;
   display: flex;
   height: 50px;
+  color: black;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    transition: 300ms;
+  }
 `;
 
 export const Year = styled.span`
@@ -47,18 +53,24 @@ export const Icon = styled(BsCircle)`
   margin-left: 2rem;
 `;
 
-export const Info = styled.div`
+export const Info = styled(ReactRouterLink)`
   justify-content: center;
   flex-direction: column;
+  text-decoration: none;
   margin-left: 3rem;
   display: flex;
   width: 170px;
+  color: #000;
 `;
 
 export const Subtitle = styled.span`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   font-size: ${({ theme }) => theme.font.aux.size.small};
   user-select: none;
+  &:hover {
+    text-decoration: underline;
+    transition: 300ms;
+  }
 `;
 
 export const Role = styled.span`

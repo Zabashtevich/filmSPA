@@ -2,38 +2,36 @@ import { getYearFromString } from "..";
 
 export default function getFiltredArray(array, state) {
   const { sortBy, rating, rangeStart, rangeEnd } = state;
-  const result = [];
+  let result = [];
 
   switch (sortBy) {
     case "date":
       result = [
         ...array.sort(
-          (first, second) => +first.release_date - +second.release_date,
+          (first, second) => second.release_date - first.release_date,
         ),
       ];
       break;
     case "popular":
       result = [
-        ...array.sort(
-          (first, second) => +first.popularity - +second.popularity,
-        ),
+        ...array.sort((first, second) => second.popularity - first.popularity),
       ];
       break;
     case "rating":
       result = [
         ...array.sort(
-          (first, second) => +first.vote_average - +second.vote_average,
+          (first, second) => second.vote_average - first.vote_average,
         ),
       ];
       break;
     case "score":
-      result = [...array.sort((first, second) => first.value - second.value)];
+      result = [...array.sort((first, second) => second.value - first.value)];
+      console.log(result);
+
       break;
     case "votes":
       result = [
-        ...array.sort(
-          (first, second) => first.vote_amount - second.vote_amount,
-        ),
+        ...array.sort((first, second) => second.vote_count - first.vote_count),
       ];
       break;
     default:

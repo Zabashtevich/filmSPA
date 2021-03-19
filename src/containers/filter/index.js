@@ -26,18 +26,20 @@ export default function FilterContainer() {
     favoritedMovies,
   } = useSelector((state) => state.userData);
 
-  const { list } = state;
+  const { list, type } = state;
 
   useEffect(() => {
     if (!userDataLoading) {
       if (type === "favorited") {
-        getFiltredArray(favoritedMovies, state);
+        setArray(getFiltredArray(favoritedMovies, state));
       } else if (type === "voted") {
-        getFiltredArray(ratedMovies, state);
+        setArray(getFiltredArray(ratedMovies, state));
       } else if (type === "list") {
-        getFiltredArray(
-          userlists.find((item) => item.name === list).content,
-          state,
+        setArray(
+          getFiltredArray(
+            userlists.find((item) => item.name === list).content,
+            state,
+          ),
         );
       }
     }

@@ -3,6 +3,7 @@ import React from "react";
 import {
   Container,
   Title,
+  List,
   Item,
   Thumbnail,
   Info,
@@ -23,6 +24,10 @@ export default function Userlist({ children, ...rest }) {
 
 Userlist.Title = function UserlistTitle({ children, ...rest }) {
   return <Title {...rest}>{children}</Title>;
+};
+
+Userlist.List = function UserlistList({ children, ...rest }) {
+  return <List {...rest}>{children}</List>;
 };
 
 Userlist.Item = function UserlistItem({ children, ...rest }) {

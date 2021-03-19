@@ -10,7 +10,8 @@ export default function UserlistPage() {
   return (
     <>
       <HeaderContainer />
-      <UserlistContainer /> <FooterContainer />
+      <UserlistContainer />
+      <FooterContainer />
     </>
   );
 }

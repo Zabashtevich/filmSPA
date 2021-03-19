@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
 import { ActorPoster } from "../../components";
@@ -10,15 +10,27 @@ import {
   ActorPosterSkeleton,
 } from "../../components/skeleton";
 import ActorPosterRows from "./items/rows";
+import { useCreditsContext } from "../../context";
 
 export default function ActorPosterContainer() {
-  const [{ poster, content }, setDelay] = useState({
+  const [, setCreditsProps] = useCreditsContext();
+  const [{ poster, contentDelay }, setDelay] = useState({
     poster: true,
-    content: true,
+    contentDelay: true,
   });
 
   const { slug } = useParams();
   const [data, dataLoading] = useFetch("person", slug);
+
+  useEffect(() => {
+    if (!dataLoading && !contentDelay) {
+      setCreditsProps({
+        loading: false,
+        array: data?.combined_credits?.cast || [],
+      });
+    }
+    return () => setCreditsProps({ loading: true, array: null });
+  }, [dataLoading, contentDelay]);
 
   return (
     <ActorPoster>
@@ -37,13 +49,16 @@ export default function ActorPosterContainer() {
       <ActorPoster.Column
         type="content"
         visible={dataLoading}
-        onExited={() => setDelay((prev) => ({ ...prev, content: false }))}
+        onExited={() => setDelay((prev) => ({ ...prev, contentDelay: false }))}
       >
         <ActorPosterContentSkeleton />
       </ActorPoster.Column>
 
-      <ActorPoster.Column type="content" visible={!dataLoading && !content}>
-        {!dataLoading && !content && (
+      <ActorPoster.Column
+        type="content"
+        visible={!dataLoading && !contentDelay}
+      >
+        {!dataLoading && !contentDelay && (
           <>
             <ActorPoster.Title>{data.name}</ActorPoster.Title>
             <ActorPoster.Subtitle>Biography</ActorPoster.Subtitle>
@@ -52,13 +67,12 @@ export default function ActorPosterContainer() {
           </>
         )}
         <MovieListContainer
-          list={(!content && getKnownFor(data?.combined_credits?.cast)) || []}
+          list={
+            (!contentDelay && getKnownFor(data?.combined_credits?.cast)) || []
+          }
           loading={dataLoading}
         />
-        <CreditsContainer
-          list={!content && data?.combined_credits?.cast}
-          dataLoading={dataLoading}
-        />
+        <CreditsContainer />
       </ActorPoster.Column>
     </ActorPoster>
   );

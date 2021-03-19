@@ -1,32 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import { Credits } from "../../components";
 import { CreditsSkeleton } from "../../components/skeleton";
-import { usePaginationContext } from "../../context";
-import { range, sortMoviesByDate } from "../../utils";
+import { useCreditsContext, usePaginationContext } from "../../context";
+import { range } from "../../utils";
 import { PaginationContainer } from "./../";
 import CreditsListItem from "./items/list-item";
 
-export default function CreditsContainer({ list, loading }) {
+export default function CreditsContainer() {
   const { userDataLoading } = useSelector((state) => state.userData);
   const [{ active }, setPaginProps] = usePaginationContext();
+  const [{ loading, array }] = useCreditsContext();
   const [unMountDelay, setUnMountDelay] = useState(true);
 
+  const skeletonIsVisible = loading || userDataLoading;
+
   useEffect(() => {
-    if (!loading && !!list) {
+    if (!loading) {
       setPaginProps((prev) => ({
         ...prev,
         loading: false,
         amount: 10,
-        length: Math.ceil(list.length / 10),
+        length: Math.ceil(array.length / 10),
       }));
     }
     return () =>
       setPaginProps({ loading: true, active: 1, amount: null, length: null });
   }, [loading]);
-
-  const skeletonIsVisible = loading || userDataLoading;
 
   return (
     <Credits>
@@ -43,7 +44,7 @@ export default function CreditsContainer({ list, loading }) {
         ))}
         {!skeletonIsVisible &&
           !unMountDelay &&
-          list
+          array
             .slice(active * 10 - 10, active * 10)
             .map((item) => <CreditsListItem key={item.id} item={item} />)}
       </Credits.List>

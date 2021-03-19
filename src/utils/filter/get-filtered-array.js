@@ -39,17 +39,16 @@ export default function getFiltredArray(array, state) {
       break;
   }
   if (rating !== "all") {
-    result = result.filter((item) => item.value !== rating);
+    result = result.filter((item) => item.value === rating);
   }
-  if (rangeStart !== null || rangeStart !== null) {
-    rangeStart = rangeStart ?? 1940;
-    rangeEnd = rangeEnd ?? 2021;
 
-    result = result.filter(
-      (item) =>
-        getYearFromString(item.release_date) >= rangeStart &&
-        getYearFromString(item.release_date) <= rangeEnd,
-    );
+  if (rangeStart !== null || rangeEnd !== null) {
+    result = result.filter((item) => {
+      return (
+        getYearFromString(item.release_date) >= (rangeStart ?? 1940) &&
+        getYearFromString(item.release_date) <= (rangeEnd ?? 2021)
+      );
+    });
   }
   return result;
 }

@@ -7,6 +7,7 @@ export default function FilterRows({ setState, state, userlists }) {
   const { sortBy, type, list, rating, rangeStart, rangeEnd } = state;
 
   function handleChange(type, value) {
+    console.log(value);
     if (type === "type" && value === "list") {
       setState((prev) => ({ ...prev, [type]: value, list: userlists[0].name }));
     } else {
@@ -14,6 +15,9 @@ export default function FilterRows({ setState, state, userlists }) {
     }
   }
 
+  const firstRange = rangeStart === "all" ? 1940 : rangeStart;
+  const secondRange = rangeStart === "all" ? 82 : 2022 - rangeStart;
+  console.log(firstRange, secondRange);
   return (
     <>
       <Filter.Wrapper>
@@ -74,31 +78,25 @@ export default function FilterRows({ setState, state, userlists }) {
         <Filter.Title>date:</Filter.Title>
         <Filter.Subtitle>from</Filter.Subtitle>
         <Filter.Select
-          onChange={(e) =>
-            setState((prev) => ({ ...prev, rangeStart: e.target.value }))
-          }
-          value={rangeStart || "all"}
+          onChange={({ target }) => handleChange("rangeStart", target.value)}
+          value={rangeStart}
         >
-          {[null].concat(...range(1940, 82)).map((item) => (
+          {["all"].concat(...range(1940, 82)).map((item) => (
             <Filter.Option key={item} value={item}>
-              {item || "all"}
+              {item}
             </Filter.Option>
           ))}
         </Filter.Select>
         <Filter.Subtitle>to</Filter.Subtitle>
         <Filter.Select
-          value={rangeEnd || "all"}
-          onChange={(e) =>
-            setState((prev) => ({ ...prev, rangeEnd: e.target.value }))
-          }
+          value={rangeEnd}
+          onChange={({ target }) => handleChange("rangeEnd", target.value)}
         >
-          {[null]
-            .concat(...range(rangeStart || 1940, 2022 - rangeStart || 82))
-            .map((item) => (
-              <Filter.Option key={item} value={item}>
-                {item || "all"}
-              </Filter.Option>
-            ))}
+          {["all"].concat(...range(firstRange, secondRange)).map((item) => (
+            <Filter.Option key={item} value={item}>
+              {item}
+            </Filter.Option>
+          ))}
         </Filter.Select>
       </Filter.Wrapper>
     </>

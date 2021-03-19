@@ -6,17 +6,18 @@ import { Filter } from "../../components";
 import FilterRows from "./items/filter-rows";
 import { FilterSkeleton } from "../../components/skeleton";
 import { getFiltredArray } from "../../utils";
+import { useCreditsContext } from "../../context";
 
 export default function FilterContainer() {
+  const [, setCreditsProps] = useCreditsContext();
   const [skeletonDelay, setSkeletonDelay] = useState(true);
-  const [array, setArray] = useState([]);
   const [state, setState] = useState({
     sortBy: "date",
     type: "voted",
     list: null,
     rating: "all",
-    rangeStart: null,
-    rangeEnd: null,
+    rangeStart: "all",
+    rangeEnd: "all",
   });
 
   const {
@@ -30,19 +31,27 @@ export default function FilterContainer() {
 
   useEffect(() => {
     if (!userDataLoading) {
-      if (type === "favorited") {
-        setArray(getFiltredArray(favoritedMovies, state));
+      if (type === "favorite") {
+        setCreditsProps({
+          loading: false,
+          array: getFiltredArray(favoritedMovies, state),
+        });
       } else if (type === "voted") {
-        setArray(getFiltredArray(ratedMovies, state));
+        setCreditsProps({
+          loading: false,
+          array: getFiltredArray(ratedMovies, state),
+        });
       } else if (type === "list") {
-        setArray(
-          getFiltredArray(
+        setCreditsProps({
+          loading: false,
+          array: getFiltredArray(
             userlists.find((item) => item.name === list).content,
             state,
           ),
-        );
+        });
       }
     }
+    return () => setCreditsProps({ loading: true, array: null });
   }, [userDataLoading, state]);
 
   return (
@@ -54,7 +63,7 @@ export default function FilterContainer() {
       {!userDataLoading && !skeletonDelay && (
         <FilterRows setState={setState} state={state} userlists={userlists} />
       )}
-      <CreditsContainer list={array} loading={userDataLoading} />
+      <CreditsContainer />
     </Filter>
   );
 }

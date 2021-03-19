@@ -1,6 +1,14 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 
-import { BsListUl, BsCheck, BsX, BsGear, BsTrash } from "react-icons/bs";
+import {
+  BsListUl,
+  BsCheck,
+  BsX,
+  BsGear,
+  BsTrash,
+  BsPlus,
+  BsDash,
+} from "react-icons/bs";
 
 export const Container = styled.div`
   max-width: 1300px;
@@ -50,22 +58,46 @@ export const Name = styled.input`
   font-family: ${({ theme }) => theme.font.aux.family};
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.5);
   pointer-events: none;
-  padding: 0.2rem;
+  transition: 1000ms;
   margin: 0.4rem 0;
+  padding: 0.2rem;
   outline: none;
+  width: 100px;
+  ${({ editable }) =>
+    editable &&
+    css`
+      color: rgba(0, 0, 0, 1);
+      pointer-events: auto;
+      width: 210px;
+    `};
 `;
 
 export const Confirm = styled(BsCheck)`
   font-size: ${({ theme }) => theme.font.aux.size.big};
+  transition: 1000ms;
   visibility: hidden;
   opacity: 0;
+  ${({ visible }) =>
+    visible &&
+    css`
+      visibility: visible;
+      opacity: 1;
+    `};
 `;
 
 export const Decline = styled(BsX)`
   font-size: ${({ theme }) => theme.font.aux.size.big};
+  transition: 1000ms;
   visibility: hidden;
   opacity: 0;
+  ${({ visible }) =>
+    visible &&
+    css`
+      visibility: visible;
+      opacity: 1;
+    `};
 `;
 
 export const Row = styled.div`
@@ -84,12 +116,36 @@ export const Amount = styled.span`
   margin-left: 0.5rem;
 `;
 
+export const Wrapper = styled.div`
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  align-items: center;
+  margin-left: auto;
+  padding: 0 2rem;
+  display: flex;
+  height: 100%;
+`;
+
 export const Edit = styled(BsGear)`
   font-size: ${({ theme }) => theme.font.aux.size.big};
-  margin-left: auto;
 `;
 
 export const Delete = styled(BsTrash)`
   font-size: ${({ theme }) => theme.font.aux.size.big};
   margin-left: 2rem;
 `;
+
+export const Create = styled.div`
+  align-items: center;
+  display: flex;
+  height: 75px;
+`;
+
+export const Placeholder = styled.div``;
+
+export const TurnOn = styled(BsPlus)``;
+
+export const TurnOff = styled(BsDash)``;
+
+export const Input = styled.input``;
+
+export const Accept = styled(BsCheck)``;

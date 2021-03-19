@@ -14,8 +14,15 @@ import {
   Row,
   Subtitle,
   Amount,
+  Wrapper,
   Edit,
   Delete,
+  Placeholder,
+  Create,
+  Input,
+  Accept,
+  TurnOn,
+  TurnOff,
 } from "./styles/userlist";
 
 export default function Userlist({ children, ...rest }) {
@@ -46,8 +53,8 @@ Userlist.Inner = function UserlistInner({ children, ...rest }) {
   return <Inner {...rest}>{children}</Inner>;
 };
 
-Userlist.Name = function UserlistName({ children, ...rest }) {
-  return <Name {...rest} />;
+Userlist.Name = function UserlistName({ inputRef, children, ...rest }) {
+  return <Name {...rest} ref={inputRef} />;
 };
 
 Userlist.Confirm = function UserlistConfirm({ ...rest }) {
@@ -70,10 +77,34 @@ Userlist.Amount = function UserlistAmount({ children, ...rest }) {
   return <Amount {...rest}>{children}</Amount>;
 };
 
+Userlist.Wrapper = function UserlistWrapper({ children, ...rest }) {
+  return <Wrapper {...rest}>{children}</Wrapper>;
+};
+
 Userlist.Edit = function UserlistEdit({ ...rest }) {
   return <Edit {...rest} />;
 };
 
 Userlist.Delete = function UserlistDelete({ ...rest }) {
   return <Delete {...rest} />;
+};
+
+Userlist.Create = function UserlistCreate({ children, ...rest }) {
+  return <Create {...rest}>{children}</Create>;
+};
+
+Userlist.Icon = function UserlistIcon({ ...rest }) {
+  return <TurnOn {...rest} />;
+};
+
+Userlist.Placeholder = function UserlistPlaceholder({ children, ...rest }) {
+  return <Placeholder {...rest}>{children}</Placeholder>;
+};
+
+Userlist.Input = function UserlistInput({ children, ...rest }) {
+  return <Input {...rest} />;
+};
+
+Userlist.Accept = function UserlistAccept({ children, ...rest }) {
+  return <Accept {...rest} />;
 };

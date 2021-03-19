@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 import { Userlist } from "../../components";
+import UserlistItem from "./items/userlist-item";
 
 export default function UserlistContainer() {
   const { userDataLoading, userlists } = useSelector((store) => store.userData);
@@ -13,25 +14,15 @@ export default function UserlistContainer() {
         {!userDataLoading &&
           userlists.map((item) => {
             console.log(item);
-            return (
-              <Userlist.Item>
-                <Userlist.Thumbnail />
-                <Userlist.Info>
-                  <Userlist.Inner>
-                    <Userlist.Name value={item.name} />
-                    <Userlist.Confirm />
-                    <Userlist.Decline />
-                  </Userlist.Inner>
-                  <Userlist.Row>
-                    <Userlist.Subtitle>amount of movies:</Userlist.Subtitle>
-                    <Userlist.Amount>{item.content.length}</Userlist.Amount>
-                  </Userlist.Row>
-                </Userlist.Info>
-                <Userlist.Edit />
-                <Userlist.Delete />
-              </Userlist.Item>
-            );
+            return <UserlistItem key={item.id} item={item} />;
           })}
+
+        <Userlist.Create>
+          <Userlist.Icon />
+          <Userlist.Placeholder />
+          <Userlist.Input />
+          <Userlist.Accept />
+        </Userlist.Create>
       </Userlist.List>
     </Userlist>
   );

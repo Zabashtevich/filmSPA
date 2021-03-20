@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
-import { useModalContext } from "../../context";
 
 import { firebase } from "./../../libs/firebase";
 
@@ -10,8 +9,6 @@ export default function useAuth() {
     loading: false,
     error: null,
   });
-
-  const [, { showModal }] = useModalContext();
 
   const history = useHistory();
 
@@ -57,7 +54,6 @@ export default function useAuth() {
           })
           .catch(() => {
             setState((prev) => ({ ...prev, loading: false }));
-            showModal({ type: "error", message: "Something went wrong." });
           })
           .then(() => createUserDataRows());
       }
@@ -74,7 +70,6 @@ export default function useAuth() {
       .set({ list: [] })
       .catch(() => {
         setState((prev) => ({ ...prev, loading: false }));
-        showModal({ type: "error", message: "Something went wrong." });
       });
     firebase
       .firestore()
@@ -83,7 +78,6 @@ export default function useAuth() {
       .set({ list: [], favorite: [] })
       .catch(() => {
         setState((prev) => ({ ...prev, loading: false }));
-        showModal({ type: "error", message: "Something went wrong." });
       });
     firebase
       .firestore()
@@ -92,14 +86,12 @@ export default function useAuth() {
       .set({ list: [] })
       .catch(() => {
         setState((prev) => ({ ...prev, loading: false }));
-        showModal({ type: "error", message: "Something went wrong." });
       })
       .then(() => {
         history.push("/");
       })
       .catch(() => {
         setState((prev) => ({ ...prev, loading: false }));
-        showModal({ type: "error", message: "Something went wrong." });
       });
   }
 }

@@ -11,10 +11,6 @@ import { GlobalStyles } from "./theme/global-style";
 import Theme from "./theme/theme";
 import { rootReducer } from "./reducers";
 import UserDataLogic from "./helpers/user-data-logic";
-import ModalContextProvider from "./context/modal-context/context";
-import ProcessContextProvider from "./context/process-context/context";
-import GalleryContextProvider from "./context/gallery-context/context";
-import TrailerContextProvider from "./context/trailer-context/context";
 import PaginationContextProvider from "./context/pagination-context/context";
 import CreditsContextProvider from "./context/credits-context/context";
 
@@ -27,20 +23,12 @@ ReactDOM.render(
   <Provider store={store}>
     <ThemeProvider theme={Theme}>
       <UserDataLogic>
-        <ProcessContextProvider>
-          <ModalContextProvider>
-            <GalleryContextProvider>
-              <TrailerContextProvider>
-                <PaginationContextProvider>
-                  <CreditsContextProvider>
-                    <GlobalStyles />
-                    <App />
-                  </CreditsContextProvider>
-                </PaginationContextProvider>
-              </TrailerContextProvider>
-            </GalleryContextProvider>
-          </ModalContextProvider>
-        </ProcessContextProvider>
+        <PaginationContextProvider>
+          <CreditsContextProvider>
+            <GlobalStyles />
+            <App />
+          </CreditsContextProvider>
+        </PaginationContextProvider>
       </UserDataLogic>
     </ThemeProvider>
   </Provider>,

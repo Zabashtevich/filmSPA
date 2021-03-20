@@ -8,11 +8,10 @@ import {
   Title,
   Error,
   Confirm,
-  Header,
   Message,
   Wrapper,
   Decline,
-  Confirm,
+  Accept,
 } from "./styles/modal";
 
 export default function Modal({ children, ...rest }) {
@@ -59,6 +58,6 @@ Modal.Decline = function ModalDecline({ children, ...rest }) {
   return <Decline {...rest}>{children}</Decline>;
 };
 
-Modal.Confirm = function ModalConfirm({ children, ...rest }) {
-  return <Confirm {...rest}>{children}</Confirm>;
+Modal.Accept = function ModalAccept({ children, ...rest }) {
+  return <Accept {...rest}>{children}</Accept>;
 };

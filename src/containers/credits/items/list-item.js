@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
 import { Credits } from "../../../components";
-import { useProcessContext } from "../../../context";
 import { useEstimate } from "../../../hooks";
 import {
   checkMovieInList,
@@ -17,7 +16,7 @@ export default function CreditsListItem({ item }) {
   const [hoverIndex, setHoverIndex] = useState(0);
   const { ratedMovies } = useSelector((state) => state.userData);
   const [setEstimateProps] = useEstimate();
-  const [{ estimateProcess }] = useProcessContext();
+  // const [{ estimateProcess }] = useProcessContext();
 
   const title = item.name || item.title;
   const meta = !!item.vote_average || !!item.vote_count;
@@ -51,7 +50,7 @@ export default function CreditsListItem({ item }) {
       {checkReleaseStatus(item.release_date || item.first_air_date) && (
         <Credits.Wrapper
           onClick={() => {
-            if (estimateProcess) return;
+            // if (estimateProcess) return;
             setPopupVisible((prev) => !prev);
           }}
         >

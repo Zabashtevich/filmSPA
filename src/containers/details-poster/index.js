@@ -2,25 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { useFetch } from "../../hooks";
 
-import { DetailsPoster, Thumbnail } from "../../components";
+import { DetailsPoster } from "../../components";
 import DetailsPosterRows from "./items/details-poster-rows";
 import {
   CastListSkeleton,
   PosterDetailsRowsSkeleton,
   PosterSkeleton,
 } from "../../components/skeleton";
-import { useGalleryContext, useTrailerContext } from "../../context";
-import {
-  ThumbnailContainer,
-  TrailerContainer,
-  GalleryContainer,
-  WidgetContainer,
-} from "..";
 
 export default function DetailsPosterContainer() {
-  const [, { setVideos }] = useTrailerContext();
-  const [, { setImages }] = useGalleryContext();
-
   const [{ posterDelay, rowsDelay, creditsDelay }, setDelay] = useState({
     posterDelay: true,
     rowsDelay: true,
@@ -30,17 +20,8 @@ export default function DetailsPosterContainer() {
   const { direction, slug } = useParams();
   const [data, loading] = useFetch(direction, slug);
 
-  useEffect(() => {
-    if (!loading) {
-      setVideos(data?.videos?.results || []);
-      setImages(data?.images?.backdrops || []);
-    }
-  }, [loading]);
-
   return (
     <DetailsPoster>
-      <GalleryContainer />
-      <TrailerContainer data={data} />
       <DetailsPoster.Inner visible={!loading && !posterDelay}>
         <DetailsPoster.Wallpaper src={data?.backdrop_path} />
       </DetailsPoster.Inner>
@@ -55,10 +36,6 @@ export default function DetailsPosterContainer() {
 
       <DetailsPoster.Column type={"poster"} visible={!loading && !posterDelay}>
         <DetailsPoster.Poster src={data?.poster_path} />
-        <Thumbnail>
-          <ThumbnailContainer type="gallery" />
-          <ThumbnailContainer type="trailer" />
-        </Thumbnail>
       </DetailsPoster.Column>
 
       <DetailsPoster.Column

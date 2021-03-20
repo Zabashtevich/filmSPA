@@ -1,7 +1,6 @@
 export { default as CardList } from "./card-list";
 export { default as Footer } from "./footer";
 export { default as AuthenticationForm } from "./auth-form";
-export { default as ProcessWindow } from "./process-window";
 export { default as Modal } from "./modal";
 export { default as DetailsPoster } from "./details-poster";
 export { default as ActorPoster } from "./actor-poster";
@@ -19,4 +18,3 @@ export { default as Auth } from "./auth";
 export { default as Account } from "./account";
 export { default as Filter } from "./filter";
 export { default as Credits } from "./credits";
-export { default as Modal } from "./modal";

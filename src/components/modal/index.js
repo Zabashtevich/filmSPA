@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { CSSTransition } from "react-transition-group";
 
 import {
   Backdrop,
@@ -14,8 +15,23 @@ import {
   Accept,
 } from "./styles/modal";
 
-export default function Modal({ children, ...rest }) {
-  return <Backdrop {...rest}>{children}</Backdrop>;
+export default function Modal({ visible, children, ...rest }) {
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => (document.body.style.overflow = "auto");
+  }, []);
+  return (
+    <CSSTransition
+      in={visible}
+      appear={true}
+      classNames="fade"
+      timeout={500}
+      unmountOnExit
+      mountOnEnter
+    >
+      <Backdrop {...rest}>{children}</Backdrop>
+    </CSSTransition>
+  );
 }
 
 Modal.Close = function ModalClose({ ...rest }) {

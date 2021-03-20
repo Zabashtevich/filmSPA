@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 
 import { BsX, BsInfoCircleFill, BsExclamationCircleFill } from "react-icons/bs";
 
@@ -39,7 +39,16 @@ export const Header = styled.div`
   display: flex;
   height: 45%;
   width: 100%;
-  background-color: rgba(248, 148, 6, 1);
+  ${({ type }) =>
+    type === "error" &&
+    css`
+      background-color: ${({ theme }) => theme.colors.error};
+    `};
+  ${({ type }) =>
+    type === "confirm" &&
+    css`
+      background-color: rgba(248, 148, 6, 1);
+    `};
 `;
 
 export const Title = styled.span`
@@ -110,7 +119,6 @@ export const Decline = styled.button`
 export const Accept = styled.button`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   font-size: ${({ theme }) => theme.font.aux.size.big};
-  background-color: rgba(248, 148, 6, 1);
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
@@ -121,4 +129,14 @@ export const Accept = styled.button`
   &:active {
     transform: scale(0.96);
   }
+  ${({ type }) =>
+    type === "error" &&
+    css`
+      background-color: ${({ theme }) => theme.colors.error};
+    `};
+  ${({ type }) =>
+    type === "confirm" &&
+    css`
+      background-color: rgba(248, 148, 6, 1);
+    `};
 `;

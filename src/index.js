@@ -13,6 +13,7 @@ import { rootReducer } from "./reducers";
 import UserDataLogic from "./helpers/user-data-logic";
 import PaginationContextProvider from "./context/pagination-context/context";
 import CreditsContextProvider from "./context/credits-context/context";
+import ModalContextProvider from "./context/modal-context/context";
 
 const store = createStore(
   rootReducer,
@@ -24,10 +25,12 @@ ReactDOM.render(
     <ThemeProvider theme={Theme}>
       <UserDataLogic>
         <PaginationContextProvider>
-          <CreditsContextProvider>
-            <GlobalStyles />
-            <App />
-          </CreditsContextProvider>
+          <ModalContextProvider>
+            <CreditsContextProvider>
+              <GlobalStyles />
+              <App />
+            </CreditsContextProvider>
+          </ModalContextProvider>
         </PaginationContextProvider>
       </UserDataLogic>
     </ThemeProvider>

@@ -1,39 +1,35 @@
-import { createContext, useState } from "react";
+import { createContext, useReducer } from "react";
+
+import { CLOSE_MODAL, SHOW_CONFIRM_MODAL, SHOW_ERROR_MODAL } from "./constants";
+import modalReducer, { initialState } from "./reducer";
 
 export const ModalContext = createContext(null);
 
-const initialState = {
-  visible: false,
-  type: null,
-  message: null,
-  callback: null,
-};
-
 export default function ModalContextProvider({ children }) {
-  const [state, setState] = useState(initialState);
+  const [state, dispatch] = useReducer(modalReducer, initialState);
 
   function showErrorModal(message) {
-    setState((prev) => ({ ...prev, type: "error", message, visible: true }));
+    dispatch({ type: SHOW_ERROR_MODAL, payload: message });
   }
 
-  function showConfirmModal(message, func) {
-    setState({ type: "confirm", message, visible: true, callback: func });
+  function showConfirmModal(payload) {
+    dispatch({ type: SHOW_CONFIRM_MODAL, payload });
+  }
+
+  function closeModal() {
+    dispatch({ type: CLOSE_MODAL });
   }
 
   function confirmModal() {
     state.callback();
-    setState(initialState);
-  }
-
-  function closeModal() {
-    setState(initialState);
+    closeModal();
   }
 
   return (
     <ModalContext.Provider
       value={[
         state,
-        { showErrorModal, showConfirmModal, confirmModal, closeModal },
+        { showErrorModal, showConfirmModal, closeModal, confirmModal },
       ]}
     >
       {children}

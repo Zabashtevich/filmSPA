@@ -1,7 +1,7 @@
 import {
-  CLOSE_UTILITY,
-  SHOW_DEFAULT_UTILITY,
-  SHOW_ERROR_UTILITY,
+  CLOSE_NOTICE,
+  SHOW_DEFAULT_NOTICE,
+  SHOW_ERROR_NOTICE,
 } from "./constants";
 
 export const initialState = {
@@ -11,21 +11,18 @@ export const initialState = {
   errors: null,
 };
 
-export default function utilityReducer(
-  state = initialState,
-  { type, payload },
-) {
+export default function noticeReducer(state = initialState, { type, payload }) {
   switch (type) {
-    case SHOW_ERROR_UTILITY:
+    case SHOW_ERROR_NOTICE:
       return {
         ...state,
         visible: true,
         type: "error",
         errors: payload,
       };
-    case SHOW_DEFAULT_UTILITY:
+    case SHOW_DEFAULT_NOTICE:
       return { ...state, visible: true, message: payload, type: "default" };
-    case CLOSE_UTILITY:
+    case CLOSE_NOTICE:
       return { ...initialState };
     default:
       return state;

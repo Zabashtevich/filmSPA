@@ -14,7 +14,7 @@ import UserDataLogic from "./helpers/user-data-logic";
 import PaginationContextProvider from "./context/pagination-context/context";
 import CreditsContextProvider from "./context/credits-context/context";
 import ModalContextProvider from "./context/modal-context/context";
-import UtilityContextProvider from "./context/utility-context/context";
+import NoticeContextProvider from "./context/notice-context/context";
 
 const store = createStore(
   rootReducer,
@@ -27,12 +27,12 @@ ReactDOM.render(
       <UserDataLogic>
         <PaginationContextProvider>
           <ModalContextProvider>
-            <UtilityContextProvider>
+            <NoticeContextProvider>
               <CreditsContextProvider>
                 <GlobalStyles />
                 <App />
               </CreditsContextProvider>
-            </UtilityContextProvider>
+            </NoticeContextProvider>
           </ModalContextProvider>
         </PaginationContextProvider>
       </UserDataLogic>

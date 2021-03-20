@@ -8,14 +8,14 @@ export default function ModalContainer() {
       <Modal.Close />
       <Modal.Container>
         <Modal.Header>
-          <Modal.Title></Modal.Title>
+          <Modal.Title>ERROR</Modal.Title>
           <Modal.Error />
           <Modal.Confirm />
         </Modal.Header>
-        <Modal.Message></Modal.Message>
+        <Modal.Message>Something gone wrong</Modal.Message>
         <Modal.Wrapper>
-          <Modal.Decline></Modal.Decline>
-          <Modal.Confirm></Modal.Confirm>
+          <Modal.Decline>Cancel</Modal.Decline>
+          <Modal.Accept>Accept</Modal.Accept>
         </Modal.Wrapper>
       </Modal.Container>
     </Modal>

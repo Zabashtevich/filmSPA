@@ -13,7 +13,7 @@ export const Container = styled.div`
   user-select: none;
   position: fixed;
   display: flex;
-  z-index: 2000;
+  z-index: 500;
   height: 75px;
   width: 100%;
   color: white;

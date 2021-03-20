@@ -82,7 +82,7 @@ export const Confirm = styled(BsInfoCircleFill)`
 export const Message = styled.span`
   font-weight: ${({ theme }) => theme.font.aux.weight.light};
   font-size: ${({ theme }) => theme.font.aux.size.large};
-  margin: 7rem 6rem;
+  margin: 7rem 6rem 5rem;
   display: block;
 `;
 

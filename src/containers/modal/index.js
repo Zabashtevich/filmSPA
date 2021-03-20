@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { Modal } from "../../components";
 
 export default function ModalContainer() {
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => (document.body.style.overflow = "auto");
+  }, []);
+
   return (
     <Modal>
       <Modal.Close />

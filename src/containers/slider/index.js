@@ -23,7 +23,6 @@ export default function SliderContainer() {
           visible={activeSlide + 1 === index ? 1 : 0}
         >
           {movies.map((item) => {
-            console.log(item);
             return (
               <Slider.Item key={item.id}>
                 <Slider.Poster src={item.image} />

@@ -1,10 +1,33 @@
 import React from "react";
+import { CSSTransition } from "react-transition-group";
 
-import { Container, Message, Loading, Wrapper, Error } from "./styles/utility";
+import {
+  Container,
+  Message,
+  Loading,
+  Wrapper,
+  Error,
+  Icon,
+} from "./styles/utility";
 
-export default function Utility({ children, ...rest }) {
-  return <Container {...rest}>{children}</Container>;
+export default function Utility({ visible, children, ...rest }) {
+  return (
+    <CSSTransition
+      in={visible}
+      appear={true}
+      mountOnEnter
+      unmountOnExit
+      classNames="slide"
+      timeout={500}
+    >
+      <Container {...rest}>{children}</Container>
+    </CSSTransition>
+  );
 }
+
+Utility.Icon = function UtilityIcon({ ...rest }) {
+  return <Icon {...rest} />;
+};
 
 Utility.Message = function UtilityMessage({ children, ...rest }) {
   return <Message {...rest}>{children}</Message>;

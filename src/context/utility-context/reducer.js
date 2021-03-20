@@ -20,9 +20,8 @@ export default function utilityReducer(
       return {
         ...state,
         visible: true,
-        message: payload.message,
         type: "error",
-        errors: payload.errors,
+        errors: payload,
       };
     case SHOW_DEFAULT_UTILITY:
       return { ...state, visible: true, message: payload, type: "default" };

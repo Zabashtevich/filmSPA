@@ -3,6 +3,7 @@ import styled, { css } from "styled-components/macro";
 import { BsX, BsInfoCircleFill, BsExclamationCircleFill } from "react-icons/bs";
 
 export const Backdrop = styled.div`
+  ${({ theme }) => theme.animations.fade()};
   background-color: rgba(0, 0, 0, 0.6);
   justify-content: center;
   align-items: center;

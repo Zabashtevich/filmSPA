@@ -1,11 +1,12 @@
 import React from "react";
+import { CSSTransition } from "react-transition-group";
+import { orinalImageSize } from "../../constants/constants";
 
 import {
   Container,
   Section,
   Title,
   Collection,
-  Thumbnail,
   Info,
   Subtitle,
   Button,
@@ -25,8 +26,25 @@ export default function DetailsPanel({ children, ...rest }) {
   return <Container {...rest}>{children}</Container>;
 }
 
-DetailsPanel.Section = function DetailsPanelSection({ children, ...rest }) {
-  return <Section {...rest}>{children}</Section>;
+DetailsPanel.Section = function DetailsPanelSection({
+  visible,
+  onexited,
+  children,
+  ...rest
+}) {
+  return (
+    <CSSTransition
+      in={visible}
+      classNames="fade"
+      mountOnEnter
+      unmountOnExit
+      appear={true}
+      timeout={500}
+      onExited={onexited}
+    >
+      <Section {...rest}>{children}</Section>
+    </CSSTransition>
+  );
 };
 
 DetailsPanel.Title = function DetailsPanelTitle({ children, ...rest }) {
@@ -34,14 +52,15 @@ DetailsPanel.Title = function DetailsPanelTitle({ children, ...rest }) {
 };
 
 DetailsPanel.Collection = function DetailsPanelCollection({
+  src,
   children,
   ...rest
 }) {
-  return <Collection {...rest}>{children}</Collection>;
-};
-
-DetailsPanel.Thumbnail = function DetailsPanelThumbnail({ ...rest }) {
-  return <Thumbnail {...rest} />;
+  return (
+    <Collection {...rest} src={`${orinalImageSize + src}`}>
+      {children}
+    </Collection>
+  );
 };
 
 DetailsPanel.Info = function DetailsPanelInfo({ children, ...rest }) {

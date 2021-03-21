@@ -9,7 +9,6 @@ import {
   WidgetWrapper,
   ListPosterWrapper,
   CreditsWrapper,
-  DetailsCollectionWrapper,
   PopularSkeletonWrapper,
   TrendingSkeletonWrapper,
   FilterWrapper,
@@ -320,30 +319,18 @@ export function PaginationSkeleton() {
   );
 }
 
-export function DetailsCollectionSkeleton({ visible }) {
+export function DetailsCollectionSkeleton() {
   return (
-    <CSSTransition
-      appear={true}
-      in={visible}
-      classNames="fade"
-      mountOnEnter
-      unmountOnExit
-      timeout={{ enter: 500, exit: 0, appear: 500 }}
+    <ContentLoader
+      speed={2}
+      width={1300}
+      height={300}
+      viewBox="0 0 1300 300"
+      backgroundColor="#f3f3f3"
+      foregroundColor="#ecebeb"
     >
-      <DetailsCollectionWrapper>
-        <ContentLoader
-          speed={2}
-          width={1300}
-          height={565}
-          viewBox="0 0 1300 565"
-          backgroundColor="#f3f3f3"
-          foregroundColor="#ecebeb"
-        >
-          <rect x="0" y="100" rx="4" ry="4" width="150" height="35" />
-          <rect x="0" y="165" rx="4" ry="4" width="1300" height="400" />
-        </ContentLoader>
-      </DetailsCollectionWrapper>
-    </CSSTransition>
+      <rect x="0" y="0" rx="10" ry="10" width="1300" height="300" />
+    </ContentLoader>
   );
 }
 

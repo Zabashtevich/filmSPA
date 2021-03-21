@@ -11,6 +11,8 @@ export const Container = styled.div`
 
 export const Section = styled.div`
   ${({ theme }) => theme.animations.fade(500, 500, 500)};
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 2rem 0;
 `;
 
 export const Title = styled.div``;

@@ -4,10 +4,10 @@ import { Link as ReactRouterLink } from "react-router-dom";
 
 export const Container = styled.div`
   overflow-x: auto;
-  ${({ scroll }) =>
-    scroll &&
+  ${({ scrollhide }) =>
+    scrollhide &&
     css`
-      overflow-x: scroll;
+      overflow-x: hidden;
     `};
   &::-webkit-scrollbar {
     width: 1em;
@@ -41,8 +41,8 @@ export const Wrapper = styled.div`
     opacity: 1;
     transition: 300ms;
   }
-  ${({ disabled }) =>
-    disabled &&
+  ${({ blured }) =>
+    blured &&
     css`
       &::after {
         visibility: hidden;

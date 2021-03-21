@@ -2,11 +2,6 @@ import ContentLoader from "react-content-loader";
 import { CSSTransition } from "react-transition-group";
 
 import {
-  ActiveWrapper,
-  MiniatureWrapper,
-  VideoplayerWrapper,
-  ItemTrailerWrapper,
-  WidgetWrapper,
   ListPosterWrapper,
   CreditsWrapper,
   PopularSkeletonWrapper,
@@ -27,58 +22,6 @@ export function CardListSkeleton() {
     >
       <rect x="0" y="0" width="300" height="450" />
     </ContentLoader>
-  );
-}
-
-export function GalleryMiniatureSkeleton({ visible }) {
-  return (
-    <CSSTransition
-      appear={true}
-      in={visible}
-      classNames="fade"
-      mountOnEnter
-      unmountOnExit
-      timeout={500}
-    >
-      <MiniatureWrapper>
-        <ContentLoader
-          speed={2}
-          width={100}
-          height={56}
-          viewBox="0 0 100 56"
-          backgroundColor="#f3f3f3"
-          foregroundColor="#ecebeb"
-        >
-          <rect x="0" y="0" rx="8" ry="8" width="100" height="56" />
-        </ContentLoader>
-      </MiniatureWrapper>
-    </CSSTransition>
-  );
-}
-
-export function GalleryActiveSkeleton({ visible }) {
-  return (
-    <CSSTransition
-      appear={true}
-      in={visible}
-      classNames="fade"
-      mountOnEnter
-      unmountOnExit
-      timeout={500}
-    >
-      <ActiveWrapper>
-        <ContentLoader
-          speed={2}
-          width={1000}
-          height={562}
-          viewBox="0 0 1000 562"
-          backgroundColor="#f3f3f3"
-          foregroundColor="#ecebeb"
-        >
-          <rect x="0" y="0" rx="0" ry="0" width="1000" height="562" />
-        </ContentLoader>
-      </ActiveWrapper>
-    </CSSTransition>
   );
 }
 
@@ -149,84 +92,6 @@ export function CastListSkeleton() {
       <rect x="0" y="184" rx="4" ry="4" width="200" height="5" />
       <rect x="0" y="210" rx="4" ry="4" width="200" height="5" />
     </ContentLoader>
-  );
-}
-
-export function VideoplayerSkeleton({ visible }) {
-  return (
-    <CSSTransition
-      appear={true}
-      in={visible}
-      classNames="fade"
-      mountOnEnter
-      unmountOnExit
-      timeout={500}
-    >
-      <VideoplayerWrapper>
-        <ContentLoader
-          speed={2}
-          width={1140}
-          height={850}
-          viewBox="0 0 1140 850"
-          backgroundColor="#f3f3f3"
-          foregroundColor="#ecebeb"
-        >
-          <rect x="0" y="0" rx="0" ry="0" width="1140" height="850" />
-        </ContentLoader>
-      </VideoplayerWrapper>
-    </CSSTransition>
-  );
-}
-
-export function ItemTrailerSkeleton({ visible }) {
-  return (
-    <CSSTransition
-      appear={true}
-      in={visible}
-      classNames="fade"
-      mountOnEnter
-      unmountOnExit
-      timeout={500}
-    >
-      <ItemTrailerWrapper>
-        <ContentLoader
-          speed={2}
-          width={140}
-          height={80}
-          viewBox="0 0 140 80"
-          backgroundColor="#f3f3f3"
-          foregroundColor="#ecebeb"
-        >
-          <rect x="0" y="0" rx="0" ry="0" width="140" height="80" />
-        </ContentLoader>
-      </ItemTrailerWrapper>
-    </CSSTransition>
-  );
-}
-
-export function WidgetSkeleton({ visible }) {
-  return (
-    <CSSTransition
-      appear={true}
-      in={visible}
-      classNames="fade"
-      mountOnEnter
-      unmountOnExit
-      timeout={500}
-    >
-      <WidgetWrapper>
-        <ContentLoader
-          speed={2}
-          width={120}
-          height={25}
-          viewBox="0 0 120 25"
-          backgroundColor="#f3f3f3"
-          foregroundColor="#ecebeb"
-        >
-          <rect x="0" y="0" rx="4" ry="4" width="120" height="25" />
-        </ContentLoader>
-      </WidgetWrapper>
-    </CSSTransition>
   );
 }
 
@@ -476,5 +341,25 @@ export function FilterSkeleton({ visible, ...rest }) {
         </ContentLoader>
       </FilterWrapper>
     </CSSTransition>
+  );
+}
+
+export default function MediaSkeleton() {
+  return (
+    <ContentLoader
+      speed={2}
+      width={1300}
+      height={392}
+      viewBox="0 0 1300 392"
+      backgroundColor="#f3f3f3"
+      foregroundColor="#ecebeb"
+    >
+      <rect x="0" y="24" rx="4" ry="4" width="62" height="27" />
+      <rect x="372" y="28" rx="4" ry="4" width="45" height="18" />
+      <rect x="447" y="28" rx="4" ry="4" width="50" height="18" />
+      <rect x="527" y="28" rx="4" ry="4" width="72" height="18" />
+      <rect x="1210" y="28" rx="4" ry="4" width="90" height="18" />
+      <rect x="0" y="75" rx="6" ry="6" width="1300" height="300" />
+    </ContentLoader>
   );
 }

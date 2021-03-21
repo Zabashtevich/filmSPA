@@ -66,15 +66,35 @@ export const Scroller = styled.div`
       rgba(255, 255, 255, 0) 0%,
       #fff 80%
     );
+    visibility: visible;
     position: absolute;
     height: 100%;
     content: "";
-    width: 50px;
+    width: 100px;
+    opacity: 1;
     right: 0;
   }
   & > *:first-child {
     border-radius: 0.5rem 0 0;
   }
+  &::-webkit-scrollbar {
+    width: 1rem;
+  }
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  ${({ blured }) =>
+    blured &&
+    css`
+      &::after {
+        visibility: hidden;
+        transition: 150ms;
+        opacity: 0;
+      }
+    `};
 `;
 
 export const Backdrop = styled.img`

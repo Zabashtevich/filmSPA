@@ -17,9 +17,9 @@ export default function MovieListContainer({ list, loading }) {
   return (
     <MovieList
       onScroll={(e) => setScrollvalue(e.target.scrollLeft)}
-      scroll={isListExist && 1}
+      scrollhide={!isListExist && 1}
     >
-      <MovieList.Wrapper disabled={scrollvalue !== 0 && 1}>
+      <MovieList.Wrapper blured={scrollvalue !== 0 && 1}>
         {!loading &&
           isListExist &&
           list.map((item) => (

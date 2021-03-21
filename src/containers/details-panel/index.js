@@ -6,10 +6,15 @@ import { MediaContainer } from "./../";
 import { useFetch } from "../../hooks";
 import DetailsPanelRating from "./items/details-panel-rating";
 import DetailsPanelCollection from "./items/details-panel-collection";
-import { DetailsCollectionSkeleton } from "../../components/skeleton";
+import MediaSkeleton, {
+  DetailsCollectionSkeleton,
+} from "../../components/skeleton";
 
 export default function DetailsPanelContainer() {
-  const [{ collectionDelay }, setDelay] = useState({ collectionDelay: true });
+  const [{ collectionDelay, mediaDelay }, setDelay] = useState({
+    collectionDelay: true,
+    mediaDelay: true,
+  });
   const { direction, slug } = useParams();
 
   const [data, loading] = useFetch(direction, slug);
@@ -17,7 +22,13 @@ export default function DetailsPanelContainer() {
   const collection = data?.belongs_to_collection;
   return (
     <DetailsPanel>
-      <DetailsPanel.Section visible={!loading}>
+      <DetailsPanel.Section
+        visible={loading}
+        onexited={() => setDelay((prev) => ({ ...prev, mediaDelay: false }))}
+      >
+        <MediaSkeleton />
+      </DetailsPanel.Section>
+      <DetailsPanel.Section visible={!loading && !mediaDelay}>
         <MediaContainer data={data} loading={loading} />
       </DetailsPanel.Section>
       <DetailsPanel.Section

@@ -2,7 +2,6 @@ import React from "react";
 import { DetailsPanel } from "../../../components";
 
 export default function DetailsPanelCollection({ collection }) {
-  console.log(collection);
   return (
     <DetailsPanel.Collection src={collection.backdrop_path}>
       <DetailsPanel.Info>

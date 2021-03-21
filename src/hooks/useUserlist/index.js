@@ -77,10 +77,6 @@ export default function useUserlist() {
           setProps(initialState);
         });
     } else if (!loading && type === "delete from list") {
-      showProcessWindow({
-        type: "userlistProcess",
-        message: "Deleting item from list",
-      });
       firebase
         .firestore()
         .collection(`${profile.displayName}`)

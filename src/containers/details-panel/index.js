@@ -17,8 +17,8 @@ export default function DetailsPanelContainer() {
   const collection = data?.belongs_to_collection;
   return (
     <DetailsPanel>
-      <DetailsPanel.Section>
-        <MediaContainer />
+      <DetailsPanel.Section visible={!loading}>
+        <MediaContainer data={data} loading={loading} />
       </DetailsPanel.Section>
       <DetailsPanel.Section
         visible={loading}

@@ -1,4 +1,5 @@
 import React from "react";
+import { CSSTransition } from "react-transition-group";
 import { orinalImageSize, w200miniature } from "../../constants/constants";
 
 import {
@@ -44,18 +45,49 @@ Media.Scroller = function MediaScroller({ children, ...rest }) {
 };
 
 Media.Backdrop = function MediaBackdrop({ file, ...rest }) {
-  return <Backdrop {...rest} src={`${orinalImageSize + file}`} />;
+  return (
+    <CSSTransition
+      in={true}
+      appear={true}
+      mountOnEnter
+      unmountOnExit
+      timeout={{ enter: 500, exit: 0, appear: 500 }}
+      classNames="fade"
+    >
+      <Backdrop {...rest} src={`${orinalImageSize + file}`} />
+    </CSSTransition>
+  );
 };
 
 Media.Poster = function MediaPoster({ file, ...rest }) {
-  return <Poster {...rest} src={`${w200miniature + file}`} />;
+  return (
+    <CSSTransition
+      in={true}
+      appear={true}
+      mountOnEnter
+      unmountOnExit
+      timeout={{ enter: 500, exit: 0, appear: 500 }}
+      classNames="fade"
+    >
+      <Poster {...rest} src={`${w200miniature + file}`} />
+    </CSSTransition>
+  );
 };
 
 Media.Video = function MediaVideo({ url, children, ...rest }) {
   return (
-    <Video {...rest} url={`https://i.ytimg.com/vi/${url}/hqdefault.jpg`}>
-      {children}
-    </Video>
+    <CSSTransition
+      in={true}
+      appear={true}
+      mountOnEnter
+      unmountOnExit
+      timeout={{ enter: 500, exit: 0, appear: 500 }}
+      classNames="fade"
+    >
+      <Video {...rest} url={`https://i.ytimg.com/vi/${url}/hqdefault.jpg`}>
+        {children}
+      </Video>
+    </CSSTransition>
   );
 };
 

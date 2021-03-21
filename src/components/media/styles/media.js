@@ -57,6 +57,8 @@ export const All = styled.span`
 export const Scroller = styled.div`
   position: relative;
   overflow-x: scroll;
+  transition: 300ms;
+  min-height: 300px;
   display: flex;
   &::after {
     background-image: linear-gradient(
@@ -76,12 +78,16 @@ export const Scroller = styled.div`
 `;
 
 export const Backdrop = styled.img`
+  ${({ theme }) => theme.animations.fade(500, 0, 500)};
   height: 300px;
 `;
 
-export const Poster = styled.img``;
+export const Poster = styled.img`
+  ${({ theme }) => theme.animations.fade(500, 0, 500)};
+`;
 
 export const Video = styled.div`
+  ${({ theme }) => theme.animations.fade(500, 0, 500)};
   position: relative;
   min-width: 533px;
   height: 300px;

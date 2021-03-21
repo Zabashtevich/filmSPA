@@ -6,7 +6,6 @@ export { default as ActorPosterContainer } from "./actor-poster";
 export { default as MovieListContainer } from "./movie-list";
 export { default as PaginationContainer } from "./pagination";
 export { default as DetailsPanelContainer } from "./details-panel";
-export { default as ReviewContainer } from "./review";
 export { default as HeaderContainer } from "./header";
 export { default as PopularContainer } from "./popular";
 export { default as MainContainer } from "./main";

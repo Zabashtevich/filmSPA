@@ -334,28 +334,6 @@ export function DetailsCollectionSkeleton() {
   );
 }
 
-export function ReviewSkeleton() {
-  return (
-    <ContentLoader
-      speed={2}
-      width={700}
-      height={300}
-      viewBox="0 0 700 300"
-      backgroundColor="#f3f3f3"
-      foregroundColor="#ecebeb"
-    >
-      <rect x="10" y="10" rx="50" ry="50" width="75" height="75" />
-      <rect x="105" y="35" rx="4" ry="4" width="100" height="30" />
-      <rect x="235" y="35" rx="4" ry="4" width="30" height="30" />
-      <rect x="550" y="35" rx="0" ry="0" width="125" height="30" />
-      <rect x="30" y="135" rx="4" ry="4" width="510" height="20" />
-      <rect x="30" y="165" rx="4" ry="4" width="475" height="20" />
-      <rect x="30" y="195" rx="4" ry="4" width="525" height="20" />
-      <rect x="250" y="250" rx="4" ry="4" width="100" height="30" />
-    </ContentLoader>
-  );
-}
-
 export function PopularSkeleton() {
   return (
     <PopularSkeletonWrapper>

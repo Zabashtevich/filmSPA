@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router";
 import { useFetch } from "../../hooks";
 
@@ -67,7 +67,6 @@ export default function DetailsPosterContainer() {
               {name}
             </DetailsPoster.Link>
           ))}
-        <WidgetContainer data={data} />
       </DetailsPoster.Column>
     </DetailsPoster>
   );

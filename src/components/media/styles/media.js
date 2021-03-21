@@ -1,5 +1,7 @@
 import styled, { css } from "styled-components/macro";
 
+import { BsFillPlayFill } from "react-icons/bs";
+
 export const Container = styled.div`
   flex-direction: column;
   display: flex;
@@ -68,7 +70,7 @@ export const Scroller = styled.div`
     width: 50px;
     right: 0;
   }
-  & > img:first-child {
+  & > *:first-child {
     border-radius: 0.5rem 0 0;
   }
 `;
@@ -81,21 +83,27 @@ export const Poster = styled.img``;
 
 export const Video = styled.div`
   position: relative;
-  width: 533px;
+  min-width: 533px;
   height: 300px;
   ${({ url }) =>
     url &&
     css`
-      background-color: white;
       background-image: url(${url});
       background-position: center;
       background-repeat: no-repeat;
-      background-size: contain;
+      background-size: cover;
     `};
 `;
 
-export const Inner = styled.div`
+export const Play = styled(BsFillPlayFill)`
+  font-size: ${({ theme }) => theme.font.aux.size.huge};
+  background-color: rgba(0, 0, 0, 0.6);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
   position: absolute;
+  display: block;
+  padding: 1rem;
+  color: white;
+  left: 50%;
+  top: 50%;
 `;
-
-export const Play = styled.div``;

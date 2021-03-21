@@ -12,7 +12,6 @@ import {
   Backdrop,
   Poster,
   Video,
-  Inner,
   Play,
 } from "./styles/media";
 
@@ -54,12 +53,10 @@ Media.Poster = function MediaPoster({ file, ...rest }) {
 
 Media.Video = function MediaVideo({ url, children, ...rest }) {
   return (
-    <Video {...rest} url={`https://i.ytimg.com/vi/${url}/hqdefault.jpg`} />
+    <Video {...rest} url={`https://i.ytimg.com/vi/${url}/hqdefault.jpg`}>
+      {children}
+    </Video>
   );
-};
-
-Media.Inner = function MediaInner({ children, ...rest }) {
-  return <Inner {...rest}>{children}</Inner>;
 };
 
 Media.Play = function MediaPlay({ ...rest }) {

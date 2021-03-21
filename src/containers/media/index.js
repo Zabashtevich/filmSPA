@@ -1,25 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { getMediaState } from "../../utils";
+import { checkFieldNotEmpty, getMediaState, getMediaTabs } from "../../utils";
 
 import { Media } from "./../../components";
 
 export default function MediaContainer({ data, loading }) {
-  const [state, setState] = useState({
-    visible: false,
-    videos: null,
-    backdrops: null,
-    posters: null,
-    tabs: null,
-    active: null,
-  });
+  const [visible, setVisible] = useState(false);
+  const [{ tabs, active }, setTab] = useState({ tabs: null, active: null });
+
+  const arrays = {
+    videos: data?.videos?.results || null,
+    posters: data?.images?.posters || null,
+    backdrops: data?.images?.backdrops || null,
+  };
 
   useEffect(() => {
-    if (!loading) {
-      setState(getMediaState(data));
+    if (!loading && checkFieldNotEmpty(arrays)) {
+      setVisible(true);
+      setTab(getMediaTabs(arrays));
     }
   }, [loading]);
-
-  function name(params) {}
 
   return (
     state.visible && (
@@ -49,7 +48,11 @@ export default function MediaContainer({ data, loading }) {
 
           {state.videos.map((item) => {
             console.log(item);
-            return <Media.Video key={item.key} url={item.key} />;
+            return (
+              <Media.Video key={item.key} url={item.key}>
+                <Media.Play />
+              </Media.Video>
+            );
           })}
         </Media.Scroller>
       </Media>

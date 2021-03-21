@@ -39,7 +39,7 @@ export default function MediaContainer({ data, loading }) {
               );
             })}
           </Media.Wrapper>
-          <Media.All>{`See All ${active}`}</Media.All>
+          {active !== "Videos" && <Media.All>{`See All ${active}`}</Media.All>}
         </Media.Header>
         <Media.Scroller
           onScroll={(e) => setScrollvalue(e.target.scrollLeft)}

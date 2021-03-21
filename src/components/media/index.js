@@ -1,4 +1,5 @@
 import React from "react";
+import { orinalImageSize, w200miniature } from "../../constants/constants";
 
 import {
   Container,
@@ -11,7 +12,6 @@ import {
   Backdrop,
   Poster,
   Video,
-  Thumbnail,
   Inner,
   Play,
 } from "./styles/media";
@@ -44,20 +44,18 @@ Media.Scroller = function MediaScroller({ children, ...rest }) {
   return <Scroller {...rest}>{children}</Scroller>;
 };
 
-Media.Backdrop = function MediaBackdrop({ ...rest }) {
-  return <Backdrop {...rest} />;
+Media.Backdrop = function MediaBackdrop({ file, ...rest }) {
+  return <Backdrop {...rest} src={`${orinalImageSize + file}`} />;
 };
 
-Media.Poster = function MediaPoster({ ...rest }) {
-  return <Poster {...rest} />;
+Media.Poster = function MediaPoster({ file, ...rest }) {
+  return <Poster {...rest} src={`${w200miniature + file}`} />;
 };
 
-Media.Video = function MediaVideo({ children, ...rest }) {
-  return <Video {...rest}>{children}</Video>;
-};
-
-Media.Thumbnail = function MediaThumbnail({ ...rest }) {
-  return <Thumbnail {...rest} />;
+Media.Video = function MediaVideo({ url, children, ...rest }) {
+  return (
+    <Video {...rest} url={`https://i.ytimg.com/vi/${url}/hqdefault.jpg`} />
+  );
 };
 
 Media.Inner = function MediaInner({ children, ...rest }) {

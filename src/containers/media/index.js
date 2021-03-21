@@ -4,12 +4,13 @@ import { getMediaState } from "../../utils";
 import { Media } from "./../../components";
 
 export default function MediaContainer({ data, loading }) {
-  const [{ visible, tabs, videos, posters, backdrops }, setState] = useState({
+  const [state, setState] = useState({
     visible: false,
     videos: null,
     backdrops: null,
     posters: null,
     tabs: null,
+    active: null,
   });
 
   useEffect(() => {
@@ -18,27 +19,38 @@ export default function MediaContainer({ data, loading }) {
     }
   }, [loading]);
 
+  function name(params) {}
+
   return (
-    visible && (
+    state.visible && (
       <Media>
         <Media.Header>
           <Media.Title>Media</Media.Title>
           <Media.Wrapper>
-            {tabs.map((item) => (
-              <Media.Tab key={item}>{item}</Media.Tab>
-            ))}
+            {state.tabs.map((item) => {
+              return (
+                <Media.Tab key={item} selected={item === state.active && 1}>
+                  {item}
+                </Media.Tab>
+              );
+            })}
           </Media.Wrapper>
-          <Media.All>{`See All `}</Media.All>
+          <Media.All>{`See All ${state.active}`}</Media.All>
         </Media.Header>
         <Media.Scroller>
-          <Media.Backdrop />
-          <Media.Poster />
-          <Media.Video>
-            <Media.Thumbnail />
-            <Media.Inner>
-              <Media.Play />
-            </Media.Inner>
-          </Media.Video>
+          {/* {state.backdrops.slice(0, 10).map((item) => {
+            console.log(item);
+            return <Media.Backdrop file={item.file_path} key={item.file_path} />;
+          })} */}
+          {/* {state.posters.slice(0, 10).map((item) => {
+            console.log(item);
+            return <Media.Poster file={item.file_path} />;
+          })} */}
+
+          {state.videos.map((item) => {
+            console.log(item);
+            return <Media.Video key={item.key} url={item.key} />;
+          })}
         </Media.Scroller>
       </Media>
     )

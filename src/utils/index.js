@@ -13,8 +13,6 @@ export { default as checkFieldNotEmpty } from "./shareable/check-field-not-empty
 export { default as createEstimateItem } from "./hooks/create-estimate-item";
 export { default as getFetchUrl } from "./hooks/get-fetch-url";
 
-export { default as calculateOffset } from "./gallery/calculate-offstet";
-
 export { default as getCharacterByRole } from "./details/get-character-by-role";
 export { default as getMoneyFormat } from "./details/get-money-format";
 export { default as getMediaTabs } from "./details/get-media-tabs";

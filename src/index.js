@@ -15,6 +15,7 @@ import PaginationContextProvider from "./context/pagination-context/context";
 import CreditsContextProvider from "./context/credits-context/context";
 import ModalContextProvider from "./context/modal-context/context";
 import NoticeContextProvider from "./context/notice-context/context";
+import GalleryContextProvider from "./context/gallery-context/context";
 
 const store = createStore(
   rootReducer,
@@ -29,8 +30,10 @@ ReactDOM.render(
           <ModalContextProvider>
             <NoticeContextProvider>
               <CreditsContextProvider>
-                <GlobalStyles />
-                <App />
+                <GalleryContextProvider>
+                  <GlobalStyles />
+                  <App />
+                </GalleryContextProvider>
               </CreditsContextProvider>
             </NoticeContextProvider>
           </ModalContextProvider>

@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components/macro";
 
+import { Link as ReactRouterLink } from "react-router-dom";
 import { BsFillPlayFill } from "react-icons/bs";
 
 export const Container = styled.div`
@@ -46,9 +47,10 @@ export const Tab = styled.span`
     `};
 `;
 
-export const All = styled.span`
+export const All = styled(ReactRouterLink)`
   font-weight: ${({ theme }) => theme.font.aux.weight.light};
   color: ${({ theme }) => theme.colors.aux};
+  text-decoration: none;
   user-select: none;
   margin-left: auto;
   cursor: pointer;

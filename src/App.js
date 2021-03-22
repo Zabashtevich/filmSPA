@@ -6,9 +6,9 @@ import {
   MainPage,
   AuthPage,
   AccountPage,
-  AccountEditPage,
   ActorPage,
   UserlistPage,
+  GalleryPage,
 } from "./pages";
 
 function App() {
@@ -19,11 +19,10 @@ function App() {
         <Route path="/" component={MainPage} exact />
         <Route path="/details/:direction/:slug" component={DetailsPage} exact />
         <Route path="/authentication/:slug" component={AuthPage} />
-
-        <Route path={"/account"} component={AccountPage} exact />
+        <Route path="/account" component={AccountPage} exact />
         <Route path="/actor/:slug" exact component={ActorPage} />
-        <Route path="/account/:slug/edit" component={AccountEditPage} exact />
         <Route path="/account/list" component={UserlistPage} exact />
+        <Route path="/gallery" component={GalleryPage} exact />
       </Switch>
     </Router>
   );

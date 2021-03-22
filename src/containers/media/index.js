@@ -39,7 +39,11 @@ export default function MediaContainer({ data, loading }) {
               );
             })}
           </Media.Wrapper>
-          {active !== "Videos" && <Media.All>{`See All ${active}`}</Media.All>}
+          {active !== "Videos" && (
+            <Media.All
+              to={{ pathname: "/gallery", state: { prevPath: data } }}
+            >{`See All ${active}`}</Media.All>
+          )}
         </Media.Header>
         <Media.Scroller
           onScroll={(e) => setScrollvalue(e.target.scrollLeft)}
@@ -62,10 +66,11 @@ function MediaItems({ active, arrays }) {
             <Media.Backdrop key={item.file_path} file={item.file_path} />
           ))}
       {active === "Posters" &&
-        arrays.posters.slice(0, 10).map((item) => {
-          console.log(item);
-          return <Media.Poster key={item.file_path} file={item.file_path} />;
-        })}
+        arrays.posters
+          .slice(0, 10)
+          .map((item) => (
+            <Media.Poster key={item.file_path} file={item.file_path} />
+          ))}
       {active === "Videos" &&
         arrays.videos.map((item) => (
           <Media.Video key={item.key} url={item.key}>

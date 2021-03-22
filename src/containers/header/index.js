@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { Header } from "../../components";
 
 export default function HeaderContainer() {
-  const [prevScrollPos, setPrevScrollPos] = useState(null);
   const [headerVisible, setHeaderVisible] = useState(true);
   const [active, setActive] = useState(false);
   const [popupVisible, setPopupVisible] = useState(false);
@@ -28,7 +27,7 @@ export default function HeaderContainer() {
 
   useEffect(() => {
     window.addEventListener("scroll", headerToggler);
-    return () => window.removeEventListener("scroll", this);
+    return () => window.removeEventListener("scroll", headerToggler);
   }, []);
 
   useEffect(() => {

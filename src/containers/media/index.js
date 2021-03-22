@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router";
 import { checkFieldNotEmpty, getMediaTabs } from "../../utils";
 
 import { Media } from "./../../components";
@@ -7,6 +8,7 @@ export default function MediaContainer({ data, loading }) {
   const [visible, setVisible] = useState(false);
   const [{ tabs, active }, setTab] = useState({ tabs: null, active: null });
   const [scrollvalue, setScrollvalue] = useState(0);
+  const { direction, slug } = useParams();
 
   const arrays = {
     videos: data?.videos?.results || null,
@@ -41,7 +43,14 @@ export default function MediaContainer({ data, loading }) {
           </Media.Wrapper>
           {active !== "Videos" && (
             <Media.All
-              to={{ pathname: "/gallery", state: { prevPath: data } }}
+              to={{
+                pathname: "/gallery",
+                state: {
+                  data: arrays,
+                  prev: `/details/${direction}/${slug}`,
+                  poster: data.poster_path,
+                },
+              }}
             >{`See All ${active}`}</Media.All>
           )}
         </Media.Header>

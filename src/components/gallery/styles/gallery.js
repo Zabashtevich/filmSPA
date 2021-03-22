@@ -16,6 +16,10 @@ export const Column = styled.div``;
 
 export const Menu = styled.div``;
 
+export const Subtitle = styled.div``;
+
+export const Amount = styled.div``;
+
 export const Value = styled.div``;
 
 export const Backdrop = styled.div``;

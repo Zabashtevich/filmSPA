@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components/macro";
 
 import { Link as ReactRouterLink } from "react-router-dom";
-import { BsArrowLeftShort } from "react-icons/bs";
+import { BsArrowLeftShort, BsFillPlayFill } from "react-icons/bs";
 
 export const Container = styled.div`
   padding: 5rem 0;
@@ -61,17 +61,20 @@ export const Wrapper = styled.div`
 `;
 
 export const Column = styled.div`
-  flex-direction: column;
   align-items: center;
   display: flex;
   ${({ type }) =>
     type === "menu" &&
     css`
+      flex-direction: column;
       width: 250px;
     `};
   ${({ type }) =>
     type === "content" &&
     css`
+      justify-content: center;
+      padding: 1.5rem 1rem;
+      flex-wrap: wrap;
       width: 1050px;
     `};
 `;
@@ -139,6 +142,57 @@ export const Value = styled.div`
   width: 75px;
 `;
 
-export const Backdrop = styled.div``;
+export const Backdrop = styled.img`
+  border-radius: 0.3rem;
+  margin: 0.5rem;
+  height: 169px;
+  width: 300px;
+  &:hover {
+    box-shadow: 0 2px 8px rgb(0 0 0 / 40%);
+    transform: scale(1.02);
+    transition: 200ms;
+    cursor: pointer;
+  }
+`;
 
-export const Poster = styled.div``;
+export const Poster = styled.img`
+  border-radius: 0.3rem;
+  margin: 0.5rem;
+  height: 300px;
+  width: 200px;
+  &:hover {
+    box-shadow: 0 2px 8px rgb(0 0 0 / 40%);
+    transform: scale(1.02);
+    transition: 200ms;
+    cursor: pointer;
+  }
+`;
+
+export const Video = styled.div`
+  border-radius: 0.3rem;
+  position: relative;
+  cursor: pointer;
+  margin: 0.5rem;
+  ${({ url }) =>
+    url &&
+    css`
+      background-image: url(${url});
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 150px;
+      width: 300px;
+    `};
+`;
+
+export const Play = styled(BsFillPlayFill)`
+  font-size: ${({ theme }) => theme.font.aux.size.huge};
+  background-color: rgba(0, 0, 0, 0.7);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  position: absolute;
+  padding: 0.8rem;
+  color: white;
+  left: 50%;
+  top: 50%;
+`;

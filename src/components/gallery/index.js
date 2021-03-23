@@ -1,5 +1,5 @@
 import React from "react";
-import { w200miniature } from "../../constants/constants";
+import { w200miniature, w300miniature } from "../../constants/constants";
 
 import {
   Container,
@@ -19,6 +19,8 @@ import {
   Value,
   Backdrop,
   Poster,
+  Video,
+  Play,
 } from "./styles/gallery";
 
 export default function Gallery({ children, ...rest }) {
@@ -81,10 +83,22 @@ Gallery.Amount = function GalleryAmount({ children, ...rest }) {
   return <Amount {...rest}>{children}</Amount>;
 };
 
-Gallery.Backdrop = function GalleryBackdrop({ ...rest }) {
-  return <Backdrop {...rest} />;
+Gallery.Backdrop = function GalleryBackdrop({ slug, ...rest }) {
+  return <Backdrop {...rest} src={`${w300miniature + slug}`} />;
 };
 
-Gallery.Poster = function GalleryPoster({ ...rest }) {
-  return <Poster {...rest} />;
+Gallery.Poster = function GalleryPoster({ slug, ...rest }) {
+  return <Poster {...rest} src={`${w200miniature + slug}`} />;
+};
+
+Gallery.Video = function GalleryVideo({ slug, children, ...rest }) {
+  return (
+    <Video {...rest} url={`https://i.ytimg.com/vi/${slug}/hqdefault.jpg`}>
+      {children}
+    </Video>
+  );
+};
+
+Gallery.Play = function GalleryPlay({ slug, ...rest }) {
+  return <Play {...rest} />;
 };

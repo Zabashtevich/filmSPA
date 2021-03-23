@@ -23,8 +23,6 @@ export default function GalleryContainer() {
     }
   }, [loading, data]);
 
-  console.log(data);
-
   return (
     visible && (
       <Gallery>
@@ -50,7 +48,13 @@ export default function GalleryContainer() {
                 const amount = content[item.toLowerCase()].length;
 
                 return (
-                  <Gallery.Item key={item} selected={item === active && 1}>
+                  <Gallery.Item
+                    key={item}
+                    selected={item === active && 1}
+                    onClick={() =>
+                      setCategories((prev) => ({ ...prev, active: item }))
+                    }
+                  >
                     <Gallery.Value>{item}</Gallery.Value>
                     <Gallery.Amount>{amount}</Gallery.Amount>
                   </Gallery.Item>
@@ -59,11 +63,38 @@ export default function GalleryContainer() {
             </Gallery.Menu>
           </Gallery.Column>
           <Gallery.Column type="content">
-            <Gallery.Backdrop />
-            <Gallery.Poster />
+            <GalleryItem content={content} active={active} />
           </Gallery.Column>
         </Gallery.Wrapper>
       </Gallery>
     )
+  );
+}
+
+function GalleryItem({ content, active }) {
+  console.log(active, content);
+  return (
+    <>
+      {active === "Videos" &&
+        content.videos.map((item) => {
+          return (
+            <Gallery.Video key={item.key} slug={item.key}>
+              <Gallery.Play />
+            </Gallery.Video>
+          );
+        })}
+      {active === "Backdrops" &&
+        content.backdrops.map((item) => {
+          console.log(item);
+          return (
+            <Gallery.Backdrop key={item.file_path} slug={item.file_path} />
+          );
+        })}
+      {active === "Posters" &&
+        content.posters.map((item) => {
+          console.log(item);
+          return <Gallery.Poster key={item.file_path} slug={item.file_path} />;
+        })}
+    </>
   );
 }

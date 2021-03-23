@@ -23,7 +23,7 @@ function App() {
         <Route path="/actor/:slug" exact component={ActorPage} />
         <Route path="/account/list" component={UserlistPage} exact />
         <Route
-          path="/details/:direaction/:slug/gallery"
+          path="/details/:direction/:slug/gallery"
           component={GalleryPage}
           exact
         />

@@ -1,16 +1,58 @@
 import styled from "styled-components/macro";
 
-export const Container = styled.div``;
+import { Link as ReactRouterLink } from "react-router-dom";
+import { BsArrowLeftShort } from "react-icons/bs";
 
-export const Header = styled.div``;
+export const Container = styled.div`
+  padding: 5rem 0;
+  margin: 0 auto;
+`;
 
-export const Folder = styled.div``;
+export const Header = styled.div`
+  background-color: ${({ theme }) => theme.colors.main};
+`;
 
-export const Information = styled.div``;
+export const Wrapper = styled.div`
+  align-items: center;
+  max-width: 1300px;
+  padding: 1rem 0;
+  margin: 0 auto;
+  display: flex;
+  color: white;
+`;
 
-export const Title = styled.div``;
+export const Folder = styled.img`
+  border-radius: 0.3rem;
+  height: 100px;
+`;
 
-export const Back = styled.div``;
+export const Information = styled.div`
+  flex-direction: column;
+  margin-left: 1rem;
+  display: flex;
+`;
+
+export const Title = styled.span`
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
+  font-size: ${({ theme }) => theme.font.aux.size.large};
+`;
+
+export const Back = styled(ReactRouterLink)`
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
+  text-decoration: none;
+  align-items: center;
+  user-select: none;
+  display: flex;
+  color: white;
+  &:hover {
+    color: rgba(255, 255, 255, 0.6);
+    transition: 300ms;
+  }
+`;
+
+export const Icon = styled(BsArrowLeftShort)`
+  font-size: ${({ theme }) => theme.font.aux.size.big};
+`;
 
 export const Column = styled.div``;
 

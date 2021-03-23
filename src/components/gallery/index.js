@@ -1,12 +1,15 @@
 import React from "react";
+import { w200miniature } from "../../constants/constants";
 
 import {
   Container,
   Header,
+  Wrapper,
   Folder,
   Information,
   Title,
   Back,
+  Icon,
   Column,
   Menu,
   Subtitle,
@@ -24,8 +27,12 @@ Gallery.Header = function GalleryHeader({ children, ...rest }) {
   return <Header {...rest}>{children}</Header>;
 };
 
-Gallery.Folder = function GalleryFolder({ ...rest }) {
-  return <Folder {...rest} />;
+Gallery.Wrapper = function GalleryWrapper({ children, ...rest }) {
+  return <Wrapper {...rest}>{children}</Wrapper>;
+};
+
+Gallery.Folder = function GalleryFolder({ slug, ...rest }) {
+  return <Folder {...rest} src={`${w200miniature + slug}`} />;
 };
 
 Gallery.Information = function GalleryInformation({ children, ...rest }) {
@@ -38,6 +45,10 @@ Gallery.Title = function GalleryTitle({ children, ...rest }) {
 
 Gallery.Back = function GalleryBack({ children, ...rest }) {
   return <Back {...rest}>{children}</Back>;
+};
+
+Gallery.Icon = function GalleryIcon({ ...rest }) {
+  return <Icon {...rest} />;
 };
 
 Gallery.Column = function GalleryColumn({ children, ...rest }) {

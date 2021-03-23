@@ -7,7 +7,7 @@ import DetailsPosterRows from "./items/details-poster-rows";
 import {
   CastListSkeleton,
   PosterDetailsRowsSkeleton,
-  PosterSkeleton,
+  PosterDetailsSkeleton,
 } from "../../components/skeleton";
 
 export default function DetailsPosterContainer() {
@@ -31,7 +31,7 @@ export default function DetailsPosterContainer() {
         visible={loading}
         onExited={() => setDelay((prev) => ({ ...prev, posterDelay: false }))}
       >
-        <PosterSkeleton />
+        <PosterDetailsSkeleton />
       </DetailsPoster.Column>
 
       <DetailsPoster.Column type={"poster"} visible={!loading && !posterDelay}>

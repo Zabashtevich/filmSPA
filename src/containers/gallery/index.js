@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
 import { Gallery } from "../../components";
+import {
+  GalleryBackdropSkeleton,
+  GalleryVideoSkeleton,
+} from "../../components/skeleton";
 import { checkCategories, getCategories } from "../../utils";
 import { useFetch } from "./../../hooks";
 
@@ -22,7 +26,7 @@ export default function GalleryContainer() {
       setVisible(true);
     }
   }, [loading, data]);
-
+  console.log(content);
   return (
     visible && (
       <Gallery>
@@ -63,7 +67,18 @@ export default function GalleryContainer() {
             </Gallery.Menu>
           </Gallery.Column>
           <Gallery.Column type="content">
-            <GalleryItem content={content} active={active} />
+            {active === "Videos" &&
+              content.videos.map((item) => (
+                <GalleryVideo key={item.key} item={item} />
+              ))}
+            {active === "Backdrops" &&
+              content.backdrops.map((item) => (
+                <GalleryBackdrop key={item.file_path} item={item} />
+              ))}
+            {active === "Posters" &&
+              content.posters.map((item) => (
+                <GalleryPoster key={item.file_path} item={item} />
+              ))}
           </Gallery.Column>
         </Gallery.Wrapper>
       </Gallery>
@@ -71,30 +86,32 @@ export default function GalleryContainer() {
   );
 }
 
-function GalleryItem({ content, active }) {
-  console.log(active, content);
+function GalleryVideo({ item }) {
+  const [loading, setLoading] = useState(true);
+
   return (
     <>
-      {active === "Videos" &&
-        content.videos.map((item) => {
-          return (
-            <Gallery.Video key={item.key} slug={item.key}>
-              <Gallery.Play />
-            </Gallery.Video>
-          );
-        })}
-      {active === "Backdrops" &&
-        content.backdrops.map((item) => {
-          console.log(item);
-          return (
-            <Gallery.Backdrop key={item.file_path} slug={item.file_path} />
-          );
-        })}
-      {active === "Posters" &&
-        content.posters.map((item) => {
-          console.log(item);
-          return <Gallery.Poster key={item.file_path} slug={item.file_path} />;
-        })}
+      {loading && <GalleryVideoSkeleton />}
+      <Gallery.Video slug={item.key} onLoad={() => setLoading(false)}>
+        <Gallery.Play />
+      </Gallery.Video>
     </>
   );
+}
+
+function GalleryBackdrop({ item }) {
+  const [loading, setLoading] = useState(true);
+  return (
+    <>
+      {loading && <GalleryBackdropSkeleton />}
+      <Gallery.Backdrop
+        slug={item.file_path}
+        onLoad={() => setLoading(false)}
+      />
+    </>
+  );
+}
+
+function GalleryPoster({ item }) {
+  return <Gallery.Poster key={item.file_path} slug={item.file_path} />;
 }

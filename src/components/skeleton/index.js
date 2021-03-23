@@ -56,7 +56,7 @@ export function PosterDetailsRowsSkeleton() {
   );
 }
 
-export function PosterSkeleton() {
+export function PosterDetailsSkeleton() {
   return (
     <ContentLoader
       speed={2}
@@ -360,6 +360,51 @@ export default function MediaSkeleton() {
       <rect x="527" y="28" rx="4" ry="4" width="72" height="18" />
       <rect x="1210" y="28" rx="4" ry="4" width="90" height="18" />
       <rect x="0" y="75" rx="6" ry="6" width="1300" height="300" />
+    </ContentLoader>
+  );
+}
+
+export function GalleryPosterSkeleton() {
+  return (
+    <ContentLoader
+      speed={2}
+      width={200}
+      height={300}
+      viewBox="0 0 200 300"
+      backgroundColor="#f3f3f3"
+      foregroundColor="#ecebeb"
+    >
+      <rect x="0" y="0" rx="4" ry="4" width="200" height="300" />
+    </ContentLoader>
+  );
+}
+
+export function GalleryBackdropSkeleton() {
+  return (
+    <ContentLoader
+      speed={2}
+      width={300}
+      height={169}
+      viewBox="0 0 300 169"
+      backgroundColor="#f3f3f3"
+      foregroundColor="#ecebeb"
+    >
+      <rect x="0" y="0" rx="4" ry="4" width="300" height="169" />
+    </ContentLoader>
+  );
+}
+
+export function GalleryVideoSkeleton() {
+  return (
+    <ContentLoader
+      speed={2}
+      width={300}
+      height={150}
+      viewBox="0 0 300 150"
+      backgroundColor="#f3f3f3"
+      foregroundColor="#ecebeb"
+    >
+      <rect x="0" y="0" rx="4" ry="4" width="300" height="150" />
     </ContentLoader>
   );
 }

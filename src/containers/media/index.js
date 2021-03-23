@@ -1,25 +1,23 @@
 import React, { useEffect, useState } from "react";
 
-import { checkFieldNotEmpty, getMediaTabs } from "../../utils";
+import { checkCategories, getCategories } from "../../utils";
 import { Media } from "./../../components";
 import { useLocation } from "react-router";
 
 export default function MediaContainer({ data, loading }) {
   const [visible, setVisible] = useState(false);
-  const [{ tabs, active }, setTab] = useState({ tabs: null, active: null });
+  const [{ tabs, active, content }, setCategories] = useState({
+    tabs: null,
+    active: null,
+    content: null,
+  });
   const [scrollvalue, setScrollvalue] = useState(0);
   const { pathname } = useLocation();
 
-  const arrays = {
-    videos: data?.videos?.results || null,
-    posters: data?.images?.posters || null,
-    backdrops: data?.images?.backdrops || null,
-  };
-
   useEffect(() => {
-    if (!loading && checkFieldNotEmpty(arrays)) {
+    if (!loading && checkCategories(data)) {
       setVisible(true);
-      setTab(getMediaTabs(arrays));
+      setCategories(getCategories(data));
     }
   }, [loading]);
 
@@ -34,7 +32,9 @@ export default function MediaContainer({ data, loading }) {
                 <Media.Tab
                   key={item}
                   selected={item === active && 1}
-                  onClick={() => setTab((prev) => ({ ...prev, active: item }))}
+                  onClick={() =>
+                    setCategories((prev) => ({ ...prev, active: item }))
+                  }
                 >
                   {item}
                 </Media.Tab>
@@ -49,30 +49,30 @@ export default function MediaContainer({ data, loading }) {
           onScroll={(e) => setScrollvalue(e.target.scrollLeft)}
           blured={scrollvalue !== 0 && 1}
         >
-          <MediaItems active={active} arrays={arrays} />
+          <MediaItems active={active} content={content} />
         </Media.Scroller>
       </Media>
     )
   );
 }
 
-function MediaItems({ active, arrays }) {
+function MediaItems({ active, content }) {
   return (
     <>
       {active === "Backdrops" &&
-        arrays.backdrops
+        content.backdrops
           .slice(0, 10)
           .map((item) => (
             <Media.Backdrop key={item.file_path} file={item.file_path} />
           ))}
       {active === "Posters" &&
-        arrays.posters
+        content.posters
           .slice(0, 10)
           .map((item) => (
             <Media.Poster key={item.file_path} file={item.file_path} />
           ))}
       {active === "Videos" &&
-        arrays.videos.map((item) => (
+        content.videos.map((item) => (
           <Media.Video key={item.key} url={item.key}>
             <Media.Play />
           </Media.Video>

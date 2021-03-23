@@ -22,7 +22,11 @@ function App() {
         <Route path="/account" component={AccountPage} exact />
         <Route path="/actor/:slug" exact component={ActorPage} />
         <Route path="/account/list" component={UserlistPage} exact />
-        <Route path="/gallery" component={GalleryPage} exact />
+        <Route
+          path="/details/:direaction/:slug/gallery"
+          component={GalleryPage}
+          exact
+        />
       </Switch>
     </Router>
   );

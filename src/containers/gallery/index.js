@@ -1,19 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router";
+import React, { useEffect } from "react";
 
 import { Gallery } from "../../components";
-import { getGalleryMenuItems } from "../../utils";
 
-export default function GalleryContainer({ children, ...rest }) {
-  const [{ values, active }, setMenu] = useState({
-    values: null,
-    active: null,
-  });
-  const { location } = useHistory();
-
-  useEffect(() => {
-    setMenu();
-  }, []);
+export default function GalleryContainer() {
+  useEffect(() => {}, []);
 
   return (
     <Gallery>

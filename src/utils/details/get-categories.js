@@ -5,10 +5,10 @@ export default function getCategories(data) {
     backdrops: data?.images?.backdrops || null,
   };
 
-  const tabs = Object.entries(arrays).reduce((acc, [key, val]) => {
+  const categories = Object.entries(arrays).reduce((acc, [key, val]) => {
     if (val) acc.push(key[0].toUpperCase() + key.slice(1));
     return acc;
   }, []);
 
-  return { tabs, active: tabs[0], content: arrays };
+  return { categories, active: categories[0], content: arrays };
 }

@@ -6,8 +6,8 @@ import { useLocation } from "react-router";
 
 export default function MediaContainer({ data, loading }) {
   const [visible, setVisible] = useState(false);
-  const [{ tabs, active, content }, setCategories] = useState({
-    tabs: null,
+  const [{ categories, active, content }, setCategories] = useState({
+    categories: null,
     active: null,
     content: null,
   });
@@ -27,7 +27,7 @@ export default function MediaContainer({ data, loading }) {
         <Media.Header>
           <Media.Title>Media</Media.Title>
           <Media.Wrapper>
-            {tabs.map((item) => {
+            {categories.map((item) => {
               return (
                 <Media.Tab
                   key={item}

@@ -14,6 +14,7 @@ import {
   Column,
   Menu,
   Subtitle,
+  Item,
   Amount,
   Value,
   Backdrop,
@@ -64,12 +65,16 @@ Gallery.Menu = function GalleryMenu({ children, ...rest }) {
   return <Menu {...rest}>{children}</Menu>;
 };
 
+Gallery.Subtitle = function GallerySubtitle({ children, ...rest }) {
+  return <Subtitle {...rest}>{children}</Subtitle>;
+};
+
 Gallery.Value = function GalleryValue({ children, ...rest }) {
   return <Value {...rest}>{children}</Value>;
 };
 
-Gallery.Subtitle = function GallerySubtitle({ children, ...rest }) {
-  return <Subtitle {...rest}>{children}</Subtitle>;
+Gallery.Item = function GalleryItem({ children, ...rest }) {
+  return <Item {...rest}>{children}</Item>;
 };
 
 Gallery.Amount = function GalleryAmount({ children, ...rest }) {

@@ -76,13 +76,68 @@ export const Column = styled.div`
     `};
 `;
 
-export const Menu = styled.div``;
+export const Menu = styled.div`
+  box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+  border-radius: 0 0 0.3rem 0.3rem;
+  flex-direction: column;
+  padding-bottom: 1rem;
+  align-items: center;
+  margin-top: 2rem;
+  display: flex;
+  width: 250px;
+`;
 
-export const Subtitle = styled.div``;
+export const Subtitle = styled.div`
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
+  background-color: ${({ theme }) => theme.colors.main};
+  font-size: ${({ theme }) => theme.font.aux.size.big};
+  border-radius: 0.3rem 0.3rem 0 0;
+  margin-bottom: 1rem;
+  text-align: center;
+  padding: 1rem 0;
+  color: white;
+  width: 100%;
+`;
 
-export const Amount = styled.div``;
+export const Amount = styled.div`
+  background-color: rgba(0, 0, 0, 0.05);
+  margin-right: 0.5rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  padding: 0.5rem;
+  width: 25px;
+`;
 
-export const Value = styled.div``;
+export const Item = styled.div`
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
+  justify-content: space-between;
+  align-items: center;
+  transition: 300ms;
+  cursor: pointer;
+  display: flex;
+  width: 100%;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    ${Amount} {
+      background-color: white;
+      transition: 300ms;
+    }
+  }
+  ${({ selected }) =>
+    selected &&
+    css`
+      background-color: rgba(0, 0, 0, 0.05);
+      ${Amount} {
+        background-color: white;
+        transition: 300ms;
+      }
+    `};
+`;
+
+export const Value = styled.div`
+  padding: 1rem;
+  width: 75px;
+`;
 
 export const Backdrop = styled.div``;
 

@@ -1,7 +1,7 @@
 export default function getCategories(data) {
   const arrays = {
-    videos: data?.videos?.results || null,
     posters: data?.images?.posters || null,
+    videos: data?.videos?.results || null,
     backdrops: data?.images?.backdrops || null,
   };
 

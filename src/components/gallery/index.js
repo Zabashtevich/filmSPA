@@ -1,4 +1,5 @@
 import React from "react";
+import { CSSTransition } from "react-transition-group";
 import { w200miniature, w300miniature } from "../../constants/constants";
 
 import {
@@ -75,8 +76,20 @@ Gallery.Value = function GalleryValue({ children, ...rest }) {
   return <Value {...rest}>{children}</Value>;
 };
 
-Gallery.Item = function GalleryItem({ children, ...rest }) {
-  return <Item {...rest}>{children}</Item>;
+Gallery.Item = function GalleryItem({ visible, onexited, children, ...rest }) {
+  return (
+    <CSSTransition
+      classNames="fade"
+      in={visible}
+      timeout={500}
+      mountOnEnter
+      unmountOnExit
+      appear={true}
+      onExited={onexited}
+    >
+      <Item {...rest}>{children}</Item>
+    </CSSTransition>
+  );
 };
 
 Gallery.Amount = function GalleryAmount({ children, ...rest }) {

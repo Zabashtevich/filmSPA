@@ -379,32 +379,18 @@ export function GalleryPosterSkeleton() {
   );
 }
 
-export function GalleryBackdropSkeleton() {
+export function GalleryMenuSkeleton() {
   return (
     <ContentLoader
       speed={2}
-      width={300}
-      height={169}
-      viewBox="0 0 300 169"
+      width={225}
+      height={50}
+      viewBox="0 0 225 50"
       backgroundColor="#f3f3f3"
       foregroundColor="#ecebeb"
     >
-      <rect x="0" y="0" rx="4" ry="4" width="300" height="169" />
-    </ContentLoader>
-  );
-}
-
-export function GalleryVideoSkeleton() {
-  return (
-    <ContentLoader
-      speed={2}
-      width={300}
-      height={150}
-      viewBox="0 0 300 150"
-      backgroundColor="#f3f3f3"
-      foregroundColor="#ecebeb"
-    >
-      <rect x="0" y="0" rx="4" ry="4" width="300" height="150" />
+      <rect x="16" y="16" rx="4" ry="4" width="75" height="18" />
+      <rect x="177" y="8" rx="4" ry="4" width="40" height="34" />
     </ContentLoader>
   );
 }

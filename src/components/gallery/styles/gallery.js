@@ -85,9 +85,10 @@ export const Menu = styled.div`
   flex-direction: column;
   padding-bottom: 1rem;
   align-items: center;
+  min-height: 225px;
   margin-top: 2rem;
+  min-width: 225px;
   display: flex;
-  width: 250px;
 `;
 
 export const Subtitle = styled.div`
@@ -113,6 +114,7 @@ export const Amount = styled.div`
 
 export const Item = styled.div`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
+  ${({ theme }) => theme.animations.fade()};
   justify-content: space-between;
   align-items: center;
   transition: 300ms;

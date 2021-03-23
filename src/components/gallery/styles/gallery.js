@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 
 import { Link as ReactRouterLink } from "react-router-dom";
 import { BsArrowLeftShort } from "react-icons/bs";
@@ -12,7 +12,7 @@ export const Header = styled.div`
   background-color: ${({ theme }) => theme.colors.main};
 `;
 
-export const Wrapper = styled.div`
+export const Inner = styled.div`
   align-items: center;
   max-width: 1300px;
   padding: 1rem 0;
@@ -54,7 +54,27 @@ export const Icon = styled(BsArrowLeftShort)`
   font-size: ${({ theme }) => theme.font.aux.size.big};
 `;
 
-export const Column = styled.div``;
+export const Wrapper = styled.div`
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+`;
+
+export const Column = styled.div`
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+  ${({ type }) =>
+    type === "menu" &&
+    css`
+      width: 250px;
+    `};
+  ${({ type }) =>
+    type === "content" &&
+    css`
+      width: 1050px;
+    `};
+`;
 
 export const Menu = styled.div``;
 

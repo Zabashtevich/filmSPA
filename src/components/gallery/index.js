@@ -4,12 +4,13 @@ import { w200miniature } from "../../constants/constants";
 import {
   Container,
   Header,
-  Wrapper,
+  Inner,
   Folder,
   Information,
   Title,
   Back,
   Icon,
+  Wrapper,
   Column,
   Menu,
   Subtitle,
@@ -27,8 +28,8 @@ Gallery.Header = function GalleryHeader({ children, ...rest }) {
   return <Header {...rest}>{children}</Header>;
 };
 
-Gallery.Wrapper = function GalleryWrapper({ children, ...rest }) {
-  return <Wrapper {...rest}>{children}</Wrapper>;
+Gallery.Inner = function GalleryInner({ children, ...rest }) {
+  return <Inner {...rest}>{children}</Inner>;
 };
 
 Gallery.Folder = function GalleryFolder({ slug, ...rest }) {
@@ -49,6 +50,10 @@ Gallery.Back = function GalleryBack({ children, ...rest }) {
 
 Gallery.Icon = function GalleryIcon({ ...rest }) {
   return <Icon {...rest} />;
+};
+
+Gallery.Wrapper = function GalleryWrapper({ children, ...rest }) {
+  return <Wrapper {...rest}>{children}</Wrapper>;
 };
 
 Gallery.Column = function GalleryColumn({ children, ...rest }) {

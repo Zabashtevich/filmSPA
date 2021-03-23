@@ -8,12 +8,12 @@ export default function GalleryContainer() {
   const { slug, direction } = useParams();
 
   const [data, dataLoading] = useFetch(direction, slug);
-  console.log(data);
+
   return (
     !dataLoading && (
       <Gallery>
         <Gallery.Header>
-          <Gallery.Wrapper>
+          <Gallery.Inner>
             <Gallery.Folder slug={data.poster_path ?? null} />
             <Gallery.Information>
               <Gallery.Title>
@@ -24,20 +24,22 @@ export default function GalleryContainer() {
                 Back to main
               </Gallery.Back>
             </Gallery.Information>
-          </Gallery.Wrapper>
+          </Gallery.Inner>
         </Gallery.Header>
-        <Gallery.Column>
-          <Gallery.Menu>
-            <Gallery.Value>
-              <Gallery.Subtitle></Gallery.Subtitle>
-              <Gallery.Amount></Gallery.Amount>
-            </Gallery.Value>
-          </Gallery.Menu>
-        </Gallery.Column>
-        <Gallery.Column>
-          <Gallery.Backdrop />
-          <Gallery.Poster />
-        </Gallery.Column>
+        <Gallery.Wrapper>
+          <Gallery.Column type="menu">
+            <Gallery.Menu>
+              <Gallery.Value>
+                <Gallery.Subtitle></Gallery.Subtitle>
+                <Gallery.Amount></Gallery.Amount>
+              </Gallery.Value>
+            </Gallery.Menu>
+          </Gallery.Column>
+          <Gallery.Column type="content">
+            <Gallery.Backdrop />
+            <Gallery.Poster />
+          </Gallery.Column>
+        </Gallery.Wrapper>
       </Gallery>
     )
   );

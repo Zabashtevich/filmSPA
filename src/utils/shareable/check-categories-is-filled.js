@@ -1,3 +1,3 @@
-export default function checkFieldNotEmpty(obj) {
+export default function checkCategoriesisFilled(obj) {
   return Object.values(obj).some((field) => field !== null);
 }

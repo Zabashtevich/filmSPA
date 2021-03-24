@@ -5,10 +5,11 @@ import { BsChevronDoubleLeft, BsChevronDoubleRight } from "react-icons/bs";
 export const Container = styled.div`
   font-family: ${({ theme }) => theme.font.aux.family};
   justify-content: center;
-  user-select: none;
   align-items: center;
+  user-select: none;
   margin-top: 1rem;
   display: flex;
+  width: 100%;
 `;
 
 export const Item = styled.div`

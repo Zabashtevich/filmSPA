@@ -365,7 +365,7 @@ export default function MediaSkeleton() {
   );
 }
 
-export function GalleryPosterSkeleton({ visible, onexited }) {
+export function GalleryPosterSkeleton() {
   return (
     <GalleryPosterWrapper>
       <ContentLoader

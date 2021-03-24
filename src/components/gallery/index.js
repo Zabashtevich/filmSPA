@@ -1,5 +1,5 @@
 import React from "react";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { TransitionGroup } from "react-transition-group";
 import { w200miniature, w300miniature } from "../../constants/constants";
 
 import {
@@ -89,7 +89,7 @@ Gallery.Value = function GalleryValue({ children, ...rest }) {
   return <Value {...rest}>{children}</Value>;
 };
 
-Gallery.Item = function GalleryItem({ visible, onexited, children, ...rest }) {
+Gallery.Item = function GalleryItem({ children, ...rest }) {
   return <Item {...rest}>{children}</Item>;
 };
 
@@ -101,7 +101,7 @@ Gallery.Backdrop = function GalleryBackdrop({ slug, ...rest }) {
   return <Backdrop {...rest} src={`${w300miniature + slug}`} />;
 };
 
-Gallery.Poster = function GalleryPoster({ slug, visible, ...rest }) {
+Gallery.Poster = function GalleryPoster({ slug, ...rest }) {
   return <Poster {...rest} src={`${w200miniature + slug}`} />;
 };
 

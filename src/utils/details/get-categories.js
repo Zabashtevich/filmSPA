@@ -10,5 +10,5 @@ export default function getCategories(data) {
     return acc;
   }, []);
 
-  return { categories, active: categories[0], content: arrays };
+  return { categories, selected: categories[0], content: arrays };
 }

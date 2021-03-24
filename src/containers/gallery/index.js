@@ -9,16 +9,15 @@ import {
 } from "../../components/skeleton";
 import { checkCategories, getCategories, range } from "../../utils";
 import { useFetch } from "./../../hooks";
+import { PaginationContainer } from "./../";
+import { usePaginationContext } from "../../context";
 
 export default function GalleryContainer() {
-  const [{ contentDelay, menuDelay }, setDelay] = useState({
-    contentDelay: true,
-    menuDelay: true,
-  });
-  const [{ categories, content, active }, setCategories] = useState({
+  const [{ active }, setPaginProps] = usePaginationContext();
+  const [{ categories, content, selected }, setCategories] = useState({
     content: null,
     categories: null,
-    active: null,
+    selected: null,
   });
   const { slug, direction } = useParams();
 
@@ -29,6 +28,17 @@ export default function GalleryContainer() {
       setCategories(getCategories(data));
     }
   }, [loading, data]);
+
+  useEffect(() => {
+    if (categories) {
+      setPaginProps({
+        active: 1,
+        amount: 10,
+        length: Math.ceil(content[selected.toLowerCase()].length / 20),
+        loading: false,
+      });
+    }
+  }, [categories, selected]);
 
   return (
     <Gallery>
@@ -76,9 +86,9 @@ export default function GalleryContainer() {
                   key={item}
                 >
                   <Gallery.Item
-                    selected={item === active && 1}
+                    selected={item === selected && 1}
                     onClick={() =>
-                      setCategories((prev) => ({ ...prev, active: item }))
+                      setCategories((prev) => ({ ...prev, selected: item }))
                     }
                   >
                     <Gallery.Value>{item}</Gallery.Value>
@@ -105,8 +115,8 @@ export default function GalleryContainer() {
               </CSSTransition>
             ))}
           {!loading &&
-            active === "Posters" &&
-            content.posters.map((item) => (
+            selected === "Posters" &&
+            content.posters.slice(active * 10 - 10, active * 10).map((item) => (
               <CSSTransition
                 classNames="fade"
                 timeout={{ enter: 500, exit: 0, appear: 500 }}
@@ -115,12 +125,12 @@ export default function GalleryContainer() {
                 appear={true}
                 key={item.file_path}
               >
-                <GalleryPoster item={item} />
+                <Gallery.Poster slug={item.file_path} />
               </CSSTransition>
             ))}
           {!loading &&
-            active === "Videos" &&
-            content.videos.map((item) => (
+            selected === "Videos" &&
+            content.videos.slice(active * 10 - 10, active * 10).map((item) => (
               <CSSTransition
                 classNames="fade"
                 timeout={{ enter: 500, exit: 0, appear: 500 }}
@@ -129,60 +139,30 @@ export default function GalleryContainer() {
                 appear={true}
                 key={item.file_path}
               >
-                <GalleryVideo item={item} />
+                <Gallery.Video slug={item.key}>
+                  <Gallery.Play />
+                </Gallery.Video>
               </CSSTransition>
             ))}
           {!loading &&
-            active === "Backdrops" &&
-            content.backdrops.map((item) => (
-              <CSSTransition
-                classNames="fade"
-                timeout={{ enter: 500, exit: 0, appear: 500 }}
-                mountOnEnter
-                unmountOnExit
-                appear={true}
-                key={item.file_path}
-              >
-                <GalleryBackdrop item={item} />
-              </CSSTransition>
-            ))}
+            selected === "Backdrops" &&
+            content.backdrops
+              .slice(active * 10 - 10, active * 10)
+              .map((item) => (
+                <CSSTransition
+                  classNames="fade"
+                  timeout={{ enter: 500, exit: 0, appear: 500 }}
+                  mountOnEnter
+                  unmountOnExit
+                  appear={true}
+                  key={item.file_path}
+                >
+                  <Gallery.Backdrop slug={item.file_path} />
+                </CSSTransition>
+              ))}
+          <PaginationContainer />
         </Gallery.Column>
       </Gallery.Body>
     </Gallery>
-  );
-}
-
-function GalleryVideo({ item }) {
-  const [loading, setLoading] = useState(true);
-
-  return (
-    <>
-      <Gallery.Video slug={item.key} onLoad={() => setLoading(false)}>
-        <Gallery.Play />
-      </Gallery.Video>
-    </>
-  );
-}
-
-function GalleryBackdrop({ item }) {
-  const [loading, setLoading] = useState(true);
-
-  return (
-    <>
-      <Gallery.Backdrop
-        slug={item.file_path}
-        onLoad={() => setLoading(false)}
-      />
-    </>
-  );
-}
-
-function GalleryPoster({ item, visible }) {
-  return (
-    <Gallery.Poster
-      key={item.file_path}
-      slug={item.file_path}
-      visible={visible}
-    />
   );
 }

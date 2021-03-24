@@ -4,6 +4,7 @@ import { CSSTransition } from "react-transition-group";
 
 import { Gallery } from "../../components";
 import {
+  GalleryHeaderSkeleton,
   GalleryMenuSkeleton,
   GalleryPosterSkeleton,
 } from "../../components/skeleton";
@@ -48,22 +49,23 @@ export default function GalleryContainer() {
 
   return (
     <Gallery>
-      {!loading && (
-        <Gallery.Header>
-          <Gallery.Wrapper>
-            <Gallery.Folder slug={data.poster_path ?? null} />
-            <Gallery.Information>
-              <Gallery.Title>
-                {data.title || data.original_title || data.name}
-              </Gallery.Title>
-              <Gallery.Back to={`/details/${direction}/${slug}`}>
-                <Gallery.Icon />
-                Back to main
-              </Gallery.Back>
-            </Gallery.Information>
-          </Gallery.Wrapper>
-        </Gallery.Header>
-      )}
+      <Gallery.Header>
+        <Gallery.Wrapper visible={loading}>
+          <GalleryHeaderSkeleton />
+        </Gallery.Wrapper>
+        <Gallery.Wrapper visible={!loading}>
+          <Gallery.Folder slug={data?.poster_path ?? null} />
+          <Gallery.Information>
+            <Gallery.Title>
+              {data?.title || data?.original_title || data?.name}
+            </Gallery.Title>
+            <Gallery.Back to={`/details/${direction}/${slug}`}>
+              <Gallery.Icon />
+              Back to main
+            </Gallery.Back>
+          </Gallery.Information>
+        </Gallery.Wrapper>
+      </Gallery.Header>
       <Gallery.Body>
         <Gallery.Widget>
           <Gallery.Menu>

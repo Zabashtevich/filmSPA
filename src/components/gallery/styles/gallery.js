@@ -14,6 +14,7 @@ export const Header = styled.div`
 `;
 
 export const Wrapper = styled.div`
+  ${({ theme }) => theme.animations.fade(500, 0, 500)};
   display: inline-flex;
   align-items: center;
   max-width: 1300px;
@@ -114,7 +115,6 @@ export const Amount = styled.div`
 
 export const Item = styled.div`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
-  ${({ theme }) => theme.animations.fade(500, 0, 500)};
   justify-content: space-between;
   align-items: center;
   transition: 300ms;

@@ -1,5 +1,5 @@
 import React from "react";
-import { TransitionGroup } from "react-transition-group";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { w200miniature, w300miniature } from "../../constants/constants";
 
 import {
@@ -34,8 +34,19 @@ Gallery.Header = function GalleryHeader({ children, ...rest }) {
   return <Header {...rest}>{children}</Header>;
 };
 
-Gallery.Wrapper = function GalleryWrapper({ children, ...rest }) {
-  return <Wrapper {...rest}>{children}</Wrapper>;
+Gallery.Wrapper = function GalleryWrapper({ visible, children, ...rest }) {
+  return (
+    <CSSTransition
+      in={visible}
+      mountOnEnter
+      unmountOnExit
+      appear={true}
+      timeout={{ enter: 500, exit: 0, appear: 500 }}
+      classNames="fade"
+    >
+      <Wrapper {...rest}>{children}</Wrapper>
+    </CSSTransition>
+  );
 };
 
 Gallery.Folder = function GalleryFolder({ slug, ...rest }) {

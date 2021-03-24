@@ -397,3 +397,20 @@ export function GalleryMenuSkeleton() {
     </ContentLoader>
   );
 }
+
+export function GalleryHeaderSkeleton() {
+  return (
+    <ContentLoader
+      speed={2}
+      width={373}
+      height={100}
+      viewBox="0 0 373 100"
+      backgroundColor="#f3f3f3"
+      foregroundColor="#ecebeb"
+    >
+      <rect x="0" y="0" rx="4" ry="4" width="66" height="100" />
+      <rect x="78" y="16" rx="4" ry="4" width="290" height="34" />
+      <rect x="78" y="60" rx="4" ry="4" width="90" height="18" />
+    </ContentLoader>
+  );
+}

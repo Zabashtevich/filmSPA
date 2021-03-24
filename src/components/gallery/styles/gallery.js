@@ -115,6 +115,7 @@ export const Amount = styled.div`
 
 export const Item = styled.div`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
+  ${({ theme }) => theme.animations.fade(500, 0, 500)};
   justify-content: space-between;
   align-items: center;
   transition: 300ms;

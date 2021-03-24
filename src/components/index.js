@@ -20,3 +20,4 @@ export { default as Credits } from "./credits";
 export { default as Notice } from "./notice";
 export { default as Media } from "./media";
 export { default as Gallery } from "./gallery";
+export { default as Popup } from "./popup";

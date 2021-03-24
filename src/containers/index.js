@@ -18,3 +18,4 @@ export { default as CreditsContainer } from "./credits";
 export { default as NoticeContainer } from "./notice";
 export { default as MediaContainer } from "./media";
 export { default as GalleryContainer } from "./gallery";
+export { default as PopupContainer } from "./popup";

@@ -7,6 +7,8 @@ export const Container = styled.div`
   width: 100%;
 `;
 
+export const Wrapper = styled.div``;
+
 export const Item = styled.div``;
 
 export const Dummy = styled.div``;

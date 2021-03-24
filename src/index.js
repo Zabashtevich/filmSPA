@@ -15,6 +15,7 @@ import CreditsContextProvider from "./context/credits-context/context";
 import ModalContextProvider from "./context/modal-context/context";
 import NoticeContextProvider from "./context/notice-context/context";
 import PopupContextProvider from "./context/popup-context/context";
+import PaginContextProvider from "./context/pagin-context/context";
 
 const store = createStore(
   rootReducer,
@@ -29,8 +30,10 @@ ReactDOM.render(
           <NoticeContextProvider>
             <CreditsContextProvider>
               <PopupContextProvider>
-                <GlobalStyles />
-                <App />
+                <PaginContextProvider>
+                  <GlobalStyles />
+                  <App />
+                </PaginContextProvider>
               </PopupContextProvider>
             </CreditsContextProvider>
           </NoticeContextProvider>

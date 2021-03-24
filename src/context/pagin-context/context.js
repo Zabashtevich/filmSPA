@@ -6,7 +6,7 @@ export default function PaginContextProvider({ children }) {
   const [state, setState] = useState({
     active: 1,
     amount: null,
-    visible: false,
+    loading: true,
   });
 
   return (

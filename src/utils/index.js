@@ -23,3 +23,6 @@ export { default as getFiltredArray } from "./filter/get-filtered-array";
 
 export { default as getGalleryMenuItems } from "./gallery/get-gallery-menu-items";
 export { default as getSelectedArray } from "./gallery/get-selected-array";
+
+export { default as getOffsetEnd } from "./pagin/get-offset-end";
+export { default as getOffsetStart } from "./pagin/get-offset-start";

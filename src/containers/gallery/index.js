@@ -140,7 +140,7 @@ export default function GalleryContainer() {
                   mountOnEnter
                   unmountOnExit
                   appear={true}
-                  key={item.file_path}
+                  key={item.file_path || item.key}
                 >
                   <GalleryItems item={item} selected={selected} />
                 </CSSTransition>

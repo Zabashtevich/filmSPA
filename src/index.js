@@ -11,7 +11,6 @@ import { GlobalStyles } from "./theme/global-style";
 import Theme from "./theme/theme";
 import { rootReducer } from "./reducers";
 import UserDataLogic from "./helpers/user-data-logic";
-import PaginationContextProvider from "./context/pagination-context/context";
 import CreditsContextProvider from "./context/credits-context/context";
 import ModalContextProvider from "./context/modal-context/context";
 import NoticeContextProvider from "./context/notice-context/context";

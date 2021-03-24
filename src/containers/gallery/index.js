@@ -16,11 +16,9 @@ import {
 } from "../../utils";
 import { useFetch } from "./../../hooks";
 import { PaginationContainer } from "./../";
-import { usePaginationContext } from "../../context";
 import GalleryItems from "./items/gallery-items";
 
 export default function GalleryContainer() {
-  const [{ active }, setPaginProps] = usePaginationContext();
   const [{ categories, content, selected }, setCategories] = useState({
     content: null,
     categories: null,
@@ -35,17 +33,6 @@ export default function GalleryContainer() {
       setCategories(getCategories(data));
     }
   }, [loading, data]);
-
-  useEffect(() => {
-    if (categories) {
-      setPaginProps({
-        active: 1,
-        amount: 10,
-        length: Math.ceil(content[selected.toLowerCase()].length / 20),
-        loading: false,
-      });
-    }
-  }, [categories, selected]);
 
   return (
     <Gallery>
@@ -131,7 +118,7 @@ export default function GalleryContainer() {
             ))}
           {categories &&
             getSelectedArray(selected, content)
-              .slice(active * 10 - 10, active * 10)
+              // .slice(active * 10 - 10, active * 10)TODO PAGIN
               .map((item) => (
                 <CSSTransition
                   in={true}
@@ -145,7 +132,6 @@ export default function GalleryContainer() {
                   <GalleryItems item={item} selected={selected} />
                 </CSSTransition>
               ))}
-          <PaginationContainer />
         </Gallery.Column>
       </Gallery.Body>
     </Gallery>

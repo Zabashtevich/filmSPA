@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { getFetchUrl } from "../../utils";
 
-export default function useFetch(type, value, page = null) {
+export default function useFetch(direction, type, value, page) {
   const [data, setData] = useState({
     loading: true,
     list: null,
@@ -11,7 +11,7 @@ export default function useFetch(type, value, page = null) {
     let mounted = true;
     if (mounted) {
       setData((prev) => ({ ...prev, loading: true }));
-      fetch(getFetchUrl(type, value, page))
+      fetch(getFetchUrl(direction, type, value, page))
         .then((response) => response.json())
         .then((data) => {
           if (data.success === false) {
@@ -23,7 +23,7 @@ export default function useFetch(type, value, page = null) {
     return () => {
       mounted = false;
     };
-  }, [type, value, page]);
+  }, [direction, type, value, page]);
 
   const { list, loading } = data;
   return [list, loading];

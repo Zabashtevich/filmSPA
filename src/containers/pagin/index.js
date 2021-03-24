@@ -16,19 +16,36 @@ export default function PaginContainer() {
       <Pagin.Wrapper>
         {start !== 1 && (
           <>
-            <Pagin.Item>{amount}</Pagin.Item>
+            <Pagin.Item
+              onClick={() => setPaginState((prev) => ({ ...prev, active: 1 }))}
+            >
+              1
+            </Pagin.Item>
             <Pagin.Dummy>...</Pagin.Dummy>
           </>
         )}
         {range(1, amount)
           .slice(start, end)
           .map((item) => (
-            <Pagin.Item key={item}>{item}</Pagin.Item>
+            <Pagin.Item
+              key={item}
+              onClick={() =>
+                setPaginState((prev) => ({ ...prev, active: item }))
+              }
+            >
+              {item}
+            </Pagin.Item>
           ))}
         {end !== amount && (
           <>
             <Pagin.Dummy>...</Pagin.Dummy>
-            <Pagin.Item>{amount}</Pagin.Item>
+            <Pagin.Item
+              onClick={() =>
+                setPaginState((prev) => ({ ...prev, active: amount }))
+              }
+            >
+              {amount}
+            </Pagin.Item>
           </>
         )}
       </Pagin.Wrapper>

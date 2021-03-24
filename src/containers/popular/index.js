@@ -9,8 +9,9 @@ import { TabsContainer } from "..";
 
 export default function PopularContainer({ type, tabs }) {
   const [scrollvalue, setScrollvalue] = useState(0);
-  const [activeTab, setActiveTab] = useState(0);
-  const [data, dataLoading] = useFetch(type, activeTab);
+  const [activeTab, setActiveTab] = useState("popular");
+  console.log(activeTab);
+  const [data, dataLoading] = useFetch("popular", type, activeTab);
 
   return (
     <Popular>

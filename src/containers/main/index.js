@@ -11,9 +11,9 @@ export default function MainContainer() {
         <PopularContainer
           type="tv"
           tabs={[
-            { title: "popular", value: 0 },
-            { title: "top rated", value: 1 },
-            { title: "airing", value: 2 },
+            { title: "popular", value: "popular" },
+            { title: "top rated", value: "top_rated" },
+            { title: "airing", value: "airing" },
           ]}
         />
       </Main.Section>
@@ -21,14 +21,17 @@ export default function MainContainer() {
         <PopularContainer
           type="movie"
           tabs={[
-            { title: "popular", value: 0 },
-            { title: "top rated", value: 1 },
-            { title: "upcoming", value: 2 },
+            { title: "popular", value: "popular" },
+            { title: "top rated", value: "top_rated" },
+            { title: "upcoming", value: "upcoming" },
           ]}
         />
       </Main.Section>
       <Main.Section>
-        <PopularContainer type="person" />
+        <PopularContainer
+          type="person"
+          tabs={[{ title: "popular", value: "popular" }]}
+        />
       </Main.Section>
       <Main.Section>
         <TrendingContainer />

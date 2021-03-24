@@ -33,7 +33,6 @@ export default function CreditsContainer() {
             // .slice(active * 10 - 10, active * 10) TODO PAGIN
             .map((item) => <CreditsListItem key={item.id} item={item} />)}
       </Credits.List>
-      <PaginationContainer />
     </Credits>
   );
 }

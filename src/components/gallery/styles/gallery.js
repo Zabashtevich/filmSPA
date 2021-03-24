@@ -10,14 +10,15 @@ export const Container = styled.div`
 
 export const Header = styled.div`
   background-color: ${({ theme }) => theme.colors.main};
+  padding: 0 20rem;
 `;
 
 export const Wrapper = styled.div`
+  display: inline-flex;
   align-items: center;
   max-width: 1300px;
   padding: 1rem 0;
   margin: 0 auto;
-  display: flex;
   color: white;
 `;
 
@@ -95,6 +96,10 @@ export const Subtitle = styled.div`
   text-align: center;
   padding: 1rem 0;
   color: white;
+  width: 100%;
+`;
+
+export const List = styled.div`
   width: 100%;
 `;
 

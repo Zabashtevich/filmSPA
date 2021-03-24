@@ -42,68 +42,75 @@ export default function GalleryContainer() {
 
   return (
     <Gallery>
-      {/* <Gallery.Header>
-        <Gallery.Wrapper>
-          <Gallery.Folder slug={data.poster_path ?? null} />
-          <Gallery.Information>
-            <Gallery.Title>
-              {data.title || data.original_title || data.name}
-            </Gallery.Title>
-            <Gallery.Back to={`/details/${direction}/${slug}`}>
-              <Gallery.Icon />
-              Back to main
-            </Gallery.Back>
-          </Gallery.Information>
-        </Gallery.Wrapper>
-      </Gallery.Header> */}
+      {!loading && (
+        <Gallery.Header>
+          <Gallery.Wrapper>
+            <Gallery.Folder slug={data.poster_path ?? null} />
+            <Gallery.Information>
+              <Gallery.Title>
+                {data.title || data.original_title || data.name}
+              </Gallery.Title>
+              <Gallery.Back to={`/details/${direction}/${slug}`}>
+                <Gallery.Icon />
+                Back to main
+              </Gallery.Back>
+            </Gallery.Information>
+          </Gallery.Wrapper>
+        </Gallery.Header>
+      )}
       <Gallery.Body>
         <Gallery.Widget>
           <Gallery.Menu>
             <Gallery.Subtitle>MENU</Gallery.Subtitle>
-            {loading &&
-              range(0, 3).map((item) => (
-                <CSSTransition
-                  classNames="fade"
-                  timeout={{ enter: 500, exit: 0, appear: 500 }}
-                  mountOnEnter
-                  unmountOnExit
-                  appear={true}
-                  key={item}
-                >
-                  <Gallery.Item>
-                    <GalleryMenuSkeleton />
-                  </Gallery.Item>
-                </CSSTransition>
-              ))}
-            {!loading &&
-              categories?.map((item) => (
-                <CSSTransition
-                  classNames="fade"
-                  timeout={{ enter: 500, exit: 0, appear: 500 }}
-                  mountOnEnter
-                  unmountOnExit
-                  appear={true}
-                  key={item}
-                >
-                  <Gallery.Item
-                    selected={item === selected && 1}
-                    onClick={() =>
-                      setCategories((prev) => ({ ...prev, selected: item }))
-                    }
+            <Gallery.List>
+              {loading &&
+                range(0, 3).map((item) => (
+                  <CSSTransition
+                    in={true}
+                    classNames="fade"
+                    timeout={{ enter: 500, exit: 0, appear: 500 }}
+                    mountOnEnter
+                    unmountOnExit
+                    appear={true}
+                    key={item}
                   >
-                    <Gallery.Value>{item}</Gallery.Value>
-                    <Gallery.Amount>
-                      {content[item.toLowerCase()].length}
-                    </Gallery.Amount>
-                  </Gallery.Item>
-                </CSSTransition>
-              ))}
+                    <Gallery.Item>
+                      <GalleryMenuSkeleton />
+                    </Gallery.Item>
+                  </CSSTransition>
+                ))}
+              {!loading &&
+                categories?.map((item) => (
+                  <CSSTransition
+                    classNames="fade"
+                    in={true}
+                    timeout={{ enter: 500, exit: 0, appear: 500 }}
+                    mountOnEnter
+                    unmountOnExit
+                    appear={true}
+                    key={item}
+                  >
+                    <Gallery.Item
+                      selected={item === selected ? 1 : 0}
+                      onClick={() =>
+                        setCategories((prev) => ({ ...prev, selected: item }))
+                      }
+                    >
+                      <Gallery.Value>{item}</Gallery.Value>
+                      <Gallery.Amount>
+                        {content[item.toLowerCase()].length}
+                      </Gallery.Amount>
+                    </Gallery.Item>
+                  </CSSTransition>
+                ))}
+            </Gallery.List>
           </Gallery.Menu>
         </Gallery.Widget>
         <Gallery.Column>
           {loading &&
             range(1, 20).map((item) => (
               <CSSTransition
+                in={true}
                 classNames="fade"
                 timeout={{ enter: 500, exit: 0, appear: 500 }}
                 mountOnEnter
@@ -118,6 +125,7 @@ export default function GalleryContainer() {
             selected === "Posters" &&
             content.posters.slice(active * 10 - 10, active * 10).map((item) => (
               <CSSTransition
+                in={true}
                 classNames="fade"
                 timeout={{ enter: 500, exit: 0, appear: 500 }}
                 mountOnEnter
@@ -132,6 +140,7 @@ export default function GalleryContainer() {
             selected === "Videos" &&
             content.videos.slice(active * 10 - 10, active * 10).map((item) => (
               <CSSTransition
+                in={true}
                 classNames="fade"
                 timeout={{ enter: 500, exit: 0, appear: 500 }}
                 mountOnEnter
@@ -150,6 +159,7 @@ export default function GalleryContainer() {
               .slice(active * 10 - 10, active * 10)
               .map((item) => (
                 <CSSTransition
+                  in={true}
                   classNames="fade"
                   timeout={{ enter: 500, exit: 0, appear: 500 }}
                   mountOnEnter

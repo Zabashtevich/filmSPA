@@ -16,6 +16,7 @@ import {
   Column,
   Menu,
   Subtitle,
+  List,
   Item,
   Amount,
   Value,
@@ -74,15 +75,19 @@ Gallery.Column = function GalleryColumn({ children, ...rest }) {
 };
 
 Gallery.Menu = function GalleryMenu({ children, ...rest }) {
-  return (
-    <TransitionGroup component={Menu} {...rest}>
-      {children}
-    </TransitionGroup>
-  );
+  return <Menu {...rest}>{children}</Menu>;
 };
 
 Gallery.Subtitle = function GallerySubtitle({ children, ...rest }) {
   return <Subtitle {...rest}>{children}</Subtitle>;
+};
+
+Gallery.List = function GalleryList({ children, ...rest }) {
+  return (
+    <TransitionGroup component={List} {...rest}>
+      {children}
+    </TransitionGroup>
+  );
 };
 
 Gallery.Value = function GalleryValue({ children, ...rest }) {

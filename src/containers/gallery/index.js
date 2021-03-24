@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { CSSTransition } from "react-transition-group";
 
 import { Gallery } from "../../components";
-import { GalleryMenuSkeleton } from "../../components/skeleton";
+import {
+  GalleryMenuSkeleton,
+  GalleryPosterSkeleton,
+} from "../../components/skeleton";
 import { checkCategories, getCategories, range } from "../../utils";
 import { useFetch } from "./../../hooks";
 
@@ -46,35 +50,64 @@ export default function GalleryContainer() {
         <Gallery.Column type="menu">
           <Gallery.Menu>
             <Gallery.Subtitle>MENU</Gallery.Subtitle>
-            {range(0, 3).map((item) => (
-              <Gallery.Item
-                key={item}
-                onexited={() =>
-                  setDelay((prev) => ({ ...prev, menuDelay: false }))
-                }
-                visible={loading}
-              >
-                <GalleryMenuSkeleton />
-              </Gallery.Item>
-            ))}
-            {categories?.map((item) => (
-              <Gallery.Item
-                key={item}
-                visible={!loading && !menuDelay}
-                selected={item === active && 1}
-                onClick={() =>
-                  setCategories((prev) => ({ ...prev, active: item }))
-                }
-              >
-                <Gallery.Value>{item}</Gallery.Value>
-                <Gallery.Amount>
-                  {content[item.toLowerCase()].length}
-                </Gallery.Amount>
-              </Gallery.Item>
-            ))}
+            {loading &&
+              range(0, 3).map((item) => (
+                <CSSTransition
+                  classNames="fade"
+                  timeout={{ enter: 500, exit: 0, appear: 500 }}
+                  mountOnEnter
+                  unmountOnExit
+                  appear={true}
+                  key={item}
+                >
+                  <Gallery.Item>
+                    <GalleryMenuSkeleton />
+                  </Gallery.Item>
+                </CSSTransition>
+              ))}
+            {!loading &&
+              categories?.map((item) => (
+                <CSSTransition
+                  classNames="fade"
+                  timeout={{ enter: 500, exit: 0, appear: 500 }}
+                  mountOnEnter
+                  unmountOnExit
+                  appear={true}
+                  key={item}
+                >
+                  <Gallery.Item
+                    selected={item === active && 1}
+                    onClick={() =>
+                      setCategories((prev) => ({ ...prev, active: item }))
+                    }
+                  >
+                    <Gallery.Value>{item}</Gallery.Value>
+                    <Gallery.Amount>
+                      {content[item.toLowerCase()].length}
+                    </Gallery.Amount>
+                  </Gallery.Item>
+                </CSSTransition>
+              ))}
           </Gallery.Menu>
         </Gallery.Column>
-        {/* <Gallery.Column type="content" visible={!loading && !contentDelay}>
+        <Gallery.Column type="content">
+          {range(1, 20).map((item) => (
+            <GalleryPosterSkeleton
+              key={item}
+              visible={loading}
+              onexited={() =>
+                setDelay((prev) => ({ ...prev, contentDelay: false }))
+              }
+            />
+          ))}
+          {active === "Posters" &&
+            content.posters.map((item) => (
+              <GalleryPoster
+                key={item.file_path}
+                item={item}
+                visible={!loading && !contentDelay}
+              />
+            ))}
           {active === "Videos" &&
             content.videos.map((item) => (
               <GalleryVideo key={item.key} item={item} />
@@ -83,11 +116,7 @@ export default function GalleryContainer() {
             content.backdrops.map((item) => (
               <GalleryBackdrop key={item.file_path} item={item} />
             ))}
-          {active === "Posters" &&
-            content.posters.map((item) => (
-              <GalleryPoster key={item.file_path} item={item} />
-            ))}
-        </Gallery.Column> */}
+        </Gallery.Column>
       </Gallery.Wrapper>
     </Gallery>
   );
@@ -118,6 +147,12 @@ function GalleryBackdrop({ item }) {
   );
 }
 
-function GalleryPoster({ item }) {
-  return <Gallery.Poster key={item.file_path} slug={item.file_path} />;
+function GalleryPoster({ item, visible }) {
+  return (
+    <Gallery.Poster
+      key={item.file_path}
+      slug={item.file_path}
+      visible={visible}
+    />
+  );
 }

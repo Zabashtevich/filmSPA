@@ -1,5 +1,5 @@
 import React from "react";
-import { CSSTransition } from "react-transition-group";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { w200miniature, w300miniature } from "../../constants/constants";
 
 import {
@@ -65,7 +65,11 @@ Gallery.Column = function GalleryColumn({ children, ...rest }) {
 };
 
 Gallery.Menu = function GalleryMenu({ children, ...rest }) {
-  return <Menu {...rest}>{children}</Menu>;
+  return (
+    <TransitionGroup component={Menu} {...rest}>
+      {children}
+    </TransitionGroup>
+  );
 };
 
 Gallery.Subtitle = function GallerySubtitle({ children, ...rest }) {
@@ -77,19 +81,7 @@ Gallery.Value = function GalleryValue({ children, ...rest }) {
 };
 
 Gallery.Item = function GalleryItem({ visible, onexited, children, ...rest }) {
-  return (
-    <CSSTransition
-      classNames="fade"
-      in={visible}
-      timeout={500}
-      mountOnEnter
-      unmountOnExit
-      appear={true}
-      onExited={onexited}
-    >
-      <Item {...rest}>{children}</Item>
-    </CSSTransition>
-  );
+  return <Item {...rest}>{children}</Item>;
 };
 
 Gallery.Amount = function GalleryAmount({ children, ...rest }) {
@@ -100,8 +92,19 @@ Gallery.Backdrop = function GalleryBackdrop({ slug, ...rest }) {
   return <Backdrop {...rest} src={`${w300miniature + slug}`} />;
 };
 
-Gallery.Poster = function GalleryPoster({ slug, ...rest }) {
-  return <Poster {...rest} src={`${w200miniature + slug}`} />;
+Gallery.Poster = function GalleryPoster({ slug, visible, ...rest }) {
+  return (
+    <CSSTransition
+      classNames="fade"
+      in={visible}
+      timeout={500}
+      mountOnEnter
+      unmountOnExit
+      appear={true}
+    >
+      <Poster {...rest} src={`${w200miniature + slug}`} />
+    </CSSTransition>
+  );
 };
 
 Gallery.Video = function GalleryVideo({ slug, children, ...rest }) {

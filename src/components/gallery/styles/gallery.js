@@ -85,10 +85,10 @@ export const Menu = styled.div`
   flex-direction: column;
   padding-bottom: 1rem;
   align-items: center;
-  min-height: 225px;
   margin-top: 2rem;
-  min-width: 225px;
+  height: 225px;
   display: flex;
+  width: 225px;
 `;
 
 export const Subtitle = styled.div`
@@ -114,7 +114,7 @@ export const Amount = styled.div`
 
 export const Item = styled.div`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
-  ${({ theme }) => theme.animations.fade()};
+  ${({ theme }) => theme.animations.fade(500, 0, 500)};
   justify-content: space-between;
   align-items: center;
   transition: 300ms;
@@ -146,6 +146,7 @@ export const Value = styled.div`
 
 export const Backdrop = styled.img`
   border-radius: 0.3rem;
+  position: relative;
   margin: 0.5rem;
   height: 169px;
   width: 300px;
@@ -155,9 +156,19 @@ export const Backdrop = styled.img`
     transition: 200ms;
     cursor: pointer;
   }
+  &::after {
+    background-color: #f3f3f3;
+    position: absolute;
+    height: 169px;
+    content: "";
+    width: 300px;
+    left: 0;
+    top: 0;
+  }
 `;
 
 export const Poster = styled.img`
+  ${({ theme }) => theme.animations.fade()};
   border-radius: 0.3rem;
   margin: 0.5rem;
   height: 300px;

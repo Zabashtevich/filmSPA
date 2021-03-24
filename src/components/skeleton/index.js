@@ -7,6 +7,7 @@ import {
   PopularSkeletonWrapper,
   TrendingSkeletonWrapper,
   FilterWrapper,
+  GalleryPosterWrapper,
 } from "./styles/skeleton";
 
 export function CardListSkeleton() {
@@ -364,18 +365,30 @@ export default function MediaSkeleton() {
   );
 }
 
-export function GalleryPosterSkeleton() {
+export function GalleryPosterSkeleton({ visible, onexited }) {
   return (
-    <ContentLoader
-      speed={2}
-      width={200}
-      height={300}
-      viewBox="0 0 200 300"
-      backgroundColor="#f3f3f3"
-      foregroundColor="#ecebeb"
+    <CSSTransition
+      appear={true}
+      classNames="fade"
+      mountOnEnter
+      unmountOnExit
+      in={visible}
+      timeout={500}
+      onExited={onexited}
     >
-      <rect x="0" y="0" rx="4" ry="4" width="200" height="300" />
-    </ContentLoader>
+      <GalleryPosterWrapper>
+        <ContentLoader
+          speed={2}
+          width={200}
+          height={300}
+          viewBox="0 0 200 300"
+          backgroundColor="#f3f3f3"
+          foregroundColor="#ecebeb"
+        >
+          <rect x="0" y="0" rx="4" ry="4" width="200" height="300" />
+        </ContentLoader>
+      </GalleryPosterWrapper>
+    </CSSTransition>
   );
 }
 

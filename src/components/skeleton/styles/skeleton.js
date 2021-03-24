@@ -24,3 +24,8 @@ export const CreditsWrapper = styled.div`
 export const FilterWrapper = styled.div`
   ${({ theme }) => theme.animations.fade(500, 500, 500)};
 `;
+
+export const GalleryPosterWrapper = styled.div`
+  ${({ theme }) => theme.animations.fade(500, 500, 500)};
+  margin: 0.5rem;
+`;

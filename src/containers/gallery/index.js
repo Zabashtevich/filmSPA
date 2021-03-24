@@ -33,7 +33,7 @@ export default function GalleryContainer() {
   return (
     <Gallery>
       {/* <Gallery.Header>
-        <Gallery.Inner>
+        <Gallery.Wrapper>
           <Gallery.Folder slug={data.poster_path ?? null} />
           <Gallery.Information>
             <Gallery.Title>
@@ -44,10 +44,10 @@ export default function GalleryContainer() {
               Back to main
             </Gallery.Back>
           </Gallery.Information>
-        </Gallery.Inner>
+        </Gallery.Wrapper>
       </Gallery.Header> */}
-      <Gallery.Wrapper>
-        <Gallery.Column type="menu">
+      <Gallery.Body>
+        <Gallery.Widget>
           <Gallery.Menu>
             <Gallery.Subtitle>MENU</Gallery.Subtitle>
             {loading &&
@@ -89,35 +89,65 @@ export default function GalleryContainer() {
                 </CSSTransition>
               ))}
           </Gallery.Menu>
-        </Gallery.Column>
-        <Gallery.Column type="content">
-          {range(1, 20).map((item) => (
-            <GalleryPosterSkeleton
-              key={item}
-              visible={loading}
-              onexited={() =>
-                setDelay((prev) => ({ ...prev, contentDelay: false }))
-              }
-            />
-          ))}
-          {active === "Posters" &&
+        </Gallery.Widget>
+        <Gallery.Column>
+          {loading &&
+            range(1, 20).map((item) => (
+              <CSSTransition
+                classNames="fade"
+                timeout={{ enter: 500, exit: 0, appear: 500 }}
+                mountOnEnter
+                unmountOnExit
+                appear={true}
+                key={item}
+              >
+                <GalleryPosterSkeleton />
+              </CSSTransition>
+            ))}
+          {!loading &&
+            active === "Posters" &&
             content.posters.map((item) => (
-              <GalleryPoster
+              <CSSTransition
+                classNames="fade"
+                timeout={{ enter: 500, exit: 0, appear: 500 }}
+                mountOnEnter
+                unmountOnExit
+                appear={true}
                 key={item.file_path}
-                item={item}
-                visible={!loading && !contentDelay}
-              />
+              >
+                <GalleryPoster item={item} />
+              </CSSTransition>
             ))}
-          {active === "Videos" &&
+          {!loading &&
+            active === "Videos" &&
             content.videos.map((item) => (
-              <GalleryVideo key={item.key} item={item} />
+              <CSSTransition
+                classNames="fade"
+                timeout={{ enter: 500, exit: 0, appear: 500 }}
+                mountOnEnter
+                unmountOnExit
+                appear={true}
+                key={item.file_path}
+              >
+                <GalleryVideo item={item} />
+              </CSSTransition>
             ))}
-          {active === "Backdrops" &&
+          {!loading &&
+            active === "Backdrops" &&
             content.backdrops.map((item) => (
-              <GalleryBackdrop key={item.file_path} item={item} />
+              <CSSTransition
+                classNames="fade"
+                timeout={{ enter: 500, exit: 0, appear: 500 }}
+                mountOnEnter
+                unmountOnExit
+                appear={true}
+                key={item.file_path}
+              >
+                <GalleryBackdrop item={item} />
+              </CSSTransition>
             ))}
         </Gallery.Column>
-      </Gallery.Wrapper>
+      </Gallery.Body>
     </Gallery>
   );
 }

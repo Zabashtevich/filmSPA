@@ -26,6 +26,7 @@ export const FilterWrapper = styled.div`
 `;
 
 export const GalleryPosterWrapper = styled.div`
-  ${({ theme }) => theme.animations.fade(500, 500, 500)};
+  ${({ theme }) => theme.animations.fade(500, 0, 500)};
+  display: inline-flex;
   margin: 0.5rem;
 `;

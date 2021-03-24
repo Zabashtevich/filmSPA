@@ -12,7 +12,7 @@ export const Header = styled.div`
   background-color: ${({ theme }) => theme.colors.main};
 `;
 
-export const Inner = styled.div`
+export const Wrapper = styled.div`
   align-items: center;
   max-width: 1300px;
   padding: 1rem 0;
@@ -54,29 +54,24 @@ export const Icon = styled(BsArrowLeftShort)`
   font-size: ${({ theme }) => theme.font.aux.size.big};
 `;
 
-export const Wrapper = styled.div`
+export const Body = styled.div`
   max-width: 1300px;
   margin: 0 auto;
   display: flex;
 `;
 
-export const Column = styled.div`
+export const Widget = styled.div`
+  flex-direction: column;
   align-items: center;
   display: flex;
-  ${({ type }) =>
-    type === "menu" &&
-    css`
-      flex-direction: column;
-      width: 250px;
-    `};
-  ${({ type }) =>
-    type === "content" &&
-    css`
-      justify-content: center;
-      padding: 1.5rem 1rem;
-      flex-wrap: wrap;
-      width: 1050px;
-    `};
+  width: 250px;
+`;
+
+export const Column = styled.div`
+  padding: 2rem 1rem;
+  flex-wrap: wrap;
+  width: 1050px;
+  display: flex;
 `;
 
 export const Menu = styled.div`
@@ -145,6 +140,7 @@ export const Value = styled.div`
 `;
 
 export const Backdrop = styled.img`
+  ${({ theme }) => theme.animations.fade(500, 0, 500)};
   border-radius: 0.3rem;
   position: relative;
   margin: 0.5rem;
@@ -168,7 +164,7 @@ export const Backdrop = styled.img`
 `;
 
 export const Poster = styled.img`
-  ${({ theme }) => theme.animations.fade()};
+  ${({ theme }) => theme.animations.fade(500, 0, 500)};
   border-radius: 0.3rem;
   margin: 0.5rem;
   height: 300px;
@@ -182,6 +178,7 @@ export const Poster = styled.img`
 `;
 
 export const Video = styled.div`
+  ${({ theme }) => theme.animations.fade(500, 0, 500)};
   border-radius: 0.3rem;
   position: relative;
   cursor: pointer;

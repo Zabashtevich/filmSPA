@@ -5,13 +5,14 @@ import { w200miniature, w300miniature } from "../../constants/constants";
 import {
   Container,
   Header,
-  Inner,
+  Wrapper,
   Folder,
   Information,
   Title,
   Back,
   Icon,
-  Wrapper,
+  Body,
+  Widget,
   Column,
   Menu,
   Subtitle,
@@ -32,8 +33,8 @@ Gallery.Header = function GalleryHeader({ children, ...rest }) {
   return <Header {...rest}>{children}</Header>;
 };
 
-Gallery.Inner = function GalleryInner({ children, ...rest }) {
-  return <Inner {...rest}>{children}</Inner>;
+Gallery.Wrapper = function GalleryWrapper({ children, ...rest }) {
+  return <Wrapper {...rest}>{children}</Wrapper>;
 };
 
 Gallery.Folder = function GalleryFolder({ slug, ...rest }) {
@@ -56,12 +57,20 @@ Gallery.Icon = function GalleryIcon({ ...rest }) {
   return <Icon {...rest} />;
 };
 
-Gallery.Wrapper = function GalleryWrapper({ children, ...rest }) {
-  return <Wrapper {...rest}>{children}</Wrapper>;
+Gallery.Body = function GalleryBody({ children, ...rest }) {
+  return <Body {...rest}>{children}</Body>;
+};
+
+Gallery.Widget = function GalleryWidget({ children, ...rest }) {
+  return <Widget {...rest}>{children}</Widget>;
 };
 
 Gallery.Column = function GalleryColumn({ children, ...rest }) {
-  return <Column {...rest}>{children}</Column>;
+  return (
+    <TransitionGroup component={Column} {...rest}>
+      {children}
+    </TransitionGroup>
+  );
 };
 
 Gallery.Menu = function GalleryMenu({ children, ...rest }) {
@@ -93,18 +102,7 @@ Gallery.Backdrop = function GalleryBackdrop({ slug, ...rest }) {
 };
 
 Gallery.Poster = function GalleryPoster({ slug, visible, ...rest }) {
-  return (
-    <CSSTransition
-      classNames="fade"
-      in={visible}
-      timeout={500}
-      mountOnEnter
-      unmountOnExit
-      appear={true}
-    >
-      <Poster {...rest} src={`${w200miniature + slug}`} />
-    </CSSTransition>
-  );
+  return <Poster {...rest} src={`${w200miniature + slug}`} />;
 };
 
 Gallery.Video = function GalleryVideo({ slug, children, ...rest }) {

@@ -7,10 +7,16 @@ import {
   GalleryMenuSkeleton,
   GalleryPosterSkeleton,
 } from "../../components/skeleton";
-import { checkCategories, getCategories, range } from "../../utils";
+import {
+  checkCategories,
+  getCategories,
+  getSelectedArray,
+  range,
+} from "../../utils";
 import { useFetch } from "./../../hooks";
 import { PaginationContainer } from "./../";
 import { usePaginationContext } from "../../context";
+import GalleryItems from "./items/gallery-items";
 
 export default function GalleryContainer() {
   const [{ active }, setPaginProps] = usePaginationContext();
@@ -121,41 +127,8 @@ export default function GalleryContainer() {
                 <GalleryPosterSkeleton />
               </CSSTransition>
             ))}
-          {!loading &&
-            selected === "Posters" &&
-            content.posters.slice(active * 10 - 10, active * 10).map((item) => (
-              <CSSTransition
-                in={true}
-                classNames="fade"
-                timeout={{ enter: 500, exit: 0, appear: 500 }}
-                mountOnEnter
-                unmountOnExit
-                appear={true}
-                key={item.file_path}
-              >
-                <Gallery.Poster slug={item.file_path} />
-              </CSSTransition>
-            ))}
-          {!loading &&
-            selected === "Videos" &&
-            content.videos.slice(active * 10 - 10, active * 10).map((item) => (
-              <CSSTransition
-                in={true}
-                classNames="fade"
-                timeout={{ enter: 500, exit: 0, appear: 500 }}
-                mountOnEnter
-                unmountOnExit
-                appear={true}
-                key={item.file_path}
-              >
-                <Gallery.Video slug={item.key}>
-                  <Gallery.Play />
-                </Gallery.Video>
-              </CSSTransition>
-            ))}
-          {!loading &&
-            selected === "Backdrops" &&
-            content.backdrops
+          {categories &&
+            getSelectedArray(selected, content)
               .slice(active * 10 - 10, active * 10)
               .map((item) => (
                 <CSSTransition
@@ -167,7 +140,7 @@ export default function GalleryContainer() {
                   appear={true}
                   key={item.file_path}
                 >
-                  <Gallery.Backdrop slug={item.file_path} />
+                  <GalleryItems item={item} selected={selected} />
                 </CSSTransition>
               ))}
           <PaginationContainer />

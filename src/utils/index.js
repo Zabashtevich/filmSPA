@@ -22,3 +22,4 @@ export { default as getPreviewSrc } from "./auth/get-preview-src";
 export { default as getFiltredArray } from "./filter/get-filtered-array";
 
 export { default as getGalleryMenuItems } from "./gallery/get-gallery-menu-items";
+export { default as getSelectedArray } from "./gallery/get-selected-array";

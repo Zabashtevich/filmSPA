@@ -19,3 +19,4 @@ export { default as MediaContainer } from "./media";
 export { default as GalleryContainer } from "./gallery";
 export { default as PopupContainer } from "./popup";
 export { default as PaginContainer } from "./pagin";
+export { default as ReviewContainer } from "./review";

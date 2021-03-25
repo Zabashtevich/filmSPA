@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router";
 
 import { DetailsPanel } from "./../../components";
-import { MediaContainer } from "./../";
+import { MediaContainer, ReviewContainer } from "./../";
 import { useFetch } from "../../hooks";
 import MediaSkeleton, {
   DetailsCollectionSkeleton,
@@ -48,6 +48,9 @@ export default function DetailsPanelContainer() {
       <DetailsPanel.Section visible={true}>
         <DetailsPanel.Title>Rating</DetailsPanel.Title>
         <DetailsPanelRating data={data} loading={loading} />
+      </DetailsPanel.Section>
+      <DetailsPanel.Section>
+        <ReviewContainer data={data} loading={loading} />
       </DetailsPanel.Section>
     </DetailsPanel>
   );

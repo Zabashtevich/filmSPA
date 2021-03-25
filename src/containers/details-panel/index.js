@@ -17,7 +17,7 @@ export default function DetailsPanelContainer() {
   });
   const { direction, slug } = useParams();
 
-  const [data, loading] = useFetch(direction, slug);
+  const [data, loading] = useFetch("details", direction, slug);
 
   const collection = data?.belongs_to_collection;
   return (

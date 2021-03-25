@@ -26,7 +26,7 @@ export default function GalleryContainer() {
   });
   const { slug, direction } = useParams();
 
-  const [data, loading] = useFetch(direction, slug);
+  const [data, loading] = useFetch("details", direction, slug);
 
   useEffect(() => {
     if (!loading && checkCategories(data)) {

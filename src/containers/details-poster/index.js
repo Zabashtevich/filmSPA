@@ -18,7 +18,7 @@ export default function DetailsPosterContainer() {
   });
 
   const { direction, slug } = useParams();
-  const [data, loading] = useFetch(direction, slug);
+  const [data, loading] = useFetch("details", direction, slug);
 
   return (
     <DetailsPoster>

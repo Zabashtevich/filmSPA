@@ -20,7 +20,7 @@ export default function ActorPosterContainer() {
   });
 
   const { slug } = useParams();
-  const [data, dataLoading] = useFetch("person", slug);
+  const [data, dataLoading] = useFetch("actor", "person", slug);
 
   useEffect(() => {
     if (!dataLoading && !contentDelay) {

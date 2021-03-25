@@ -1,18 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { CSSTransition } from "react-transition-group";
-import { PaginationContainer, TabsContainer } from "..";
+import { PaginContainer, TabsContainer } from "..";
 
 import { Trending } from "../../components";
 import { TrendingSkeleton } from "../../components/skeleton";
 import { periodType, typeTab } from "../../constants/fixtures";
+import { usePaginContext } from "../../context";
 import { getYearFromString, range } from "../../utils";
 import { useFetch } from "./../../hooks";
 
 export default function TrendingContainer() {
+  const [{ active }, setPaginState] = usePaginContext();
   const [activeType, setActiveType] = useState("all");
-  const [activePeriod, setActivePeriod] = useState(0);
-  const [array, setArray] = useState([]);
-  const [data, dataLoading] = useFetch(activeType, activePeriod, null);
+  const [activePeriod, setActivePeriod] = useState("day");
+  const [data, dataLoading] = useFetch(
+    "trending",
+    activeType,
+    activePeriod,
+    active,
+  );
+
+  useEffect(() => {
+    if (!dataLoading) {
+      setPaginState((prev) => ({ ...prev, loading: false, amount: 1000 }));
+    }
+  }, [dataLoading]);
 
   return (
     <Trending>
@@ -41,7 +53,7 @@ export default function TrendingContainer() {
             </CSSTransition>
           ))}
         {!dataLoading &&
-          array.map((item) => {
+          data.results.map((item) => {
             return (
               <CSSTransition
                 key={item.id}
@@ -68,6 +80,7 @@ export default function TrendingContainer() {
             );
           })}
       </Trending.List>
+      <PaginContainer />
     </Trending>
   );
 }

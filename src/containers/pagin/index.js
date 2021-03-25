@@ -3,6 +3,7 @@ import React from "react";
 import { usePaginContext } from "./../../context";
 import { getOffsetEnd, getOffsetStart, range } from "./../../utils";
 import { Pagin } from "../../components";
+import { PaginationSkeleton } from "../../components/skeleton";
 
 export default function PaginContainer() {
   const [{ active, loading, amount }, setPaginState] = usePaginContext();
@@ -12,7 +13,11 @@ export default function PaginContainer() {
 
   return (
     <Pagin>
-      <Pagin.Wrapper>{range(1, 10)}</Pagin.Wrapper>
+      <Pagin.Wrapper>
+        {range(1, 10).map((item) => (
+          <PaginationSkeleton key={item} />
+        ))}
+      </Pagin.Wrapper>
       <Pagin.Wrapper>
         {start !== 1 && (
           <>

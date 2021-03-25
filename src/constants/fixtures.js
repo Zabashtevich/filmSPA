@@ -31,6 +31,6 @@ export const typeTab = [
 ];
 
 export const periodType = [
-  { title: "day", value: 0 },
-  { title: "week", value: 1 },
+  { title: "day", value: "day" },
+  { title: "week", value: "week" },
 ];

@@ -52,7 +52,11 @@ Review.Text = function ReviewText({ children, ...rest }) {
 };
 
 Review.Link = function ReviewLink({ children, ...rest }) {
-  return <Link {...rest}>{children}</Link>;
+  return (
+    <Link {...rest} target="_blanc">
+      {children}
+    </Link>
+  );
 };
 
 Review.Paragraph = function ReviewParagraph({ children, ...rest }) {

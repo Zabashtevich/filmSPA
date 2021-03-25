@@ -21,7 +21,9 @@ export default function ReviewContainer({ data }) {
   return (
     <Review>
       {reviews &&
-        reviews.map((item) => <ReviewItem key={item.id} item={item} />)}
+        reviews
+          .slice(active * 5 - 5, active * 5)
+          .map((item) => <ReviewItem key={item.id} item={item} />)}
       <PaginContainer />
     </Review>
   );

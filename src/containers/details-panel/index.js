@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router";
 
 import { DetailsPanel } from "./../../components";
 import { MediaContainer } from "./../";
 import { useFetch } from "../../hooks";
-import DetailsPanelRating from "./items/details-panel-rating";
 import DetailsPanelCollection from "./items/details-panel-collection";
 import MediaSkeleton, {
   DetailsCollectionSkeleton,
 } from "../../components/skeleton";
+import DetailsPanelRating from "./items/details-panel-rating";
 
 export default function DetailsPanelContainer() {
   const [{ collectionDelay, mediaDelay }, setDelay] = useState({
@@ -20,6 +20,7 @@ export default function DetailsPanelContainer() {
   const [data, loading] = useFetch("details", direction, slug);
 
   const collection = data?.belongs_to_collection;
+
   return (
     <DetailsPanel>
       <DetailsPanel.Section
@@ -44,8 +45,8 @@ export default function DetailsPanelContainer() {
       >
         <DetailsPanelCollection collection={collection} />
       </DetailsPanel.Section>
-      <DetailsPanel.Section>
-        <DetailsPanelRating />
+      <DetailsPanel.Section visible={true}>
+        <DetailsPanelRating loading={loading} data={data} slug={slug} />
       </DetailsPanel.Section>
     </DetailsPanel>
   );

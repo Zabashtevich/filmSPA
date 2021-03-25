@@ -20,11 +20,9 @@ export default function ReviewContainer({ data }) {
 
   return (
     <Review>
-      <Review.List>
-        {reviews &&
-          reviews.map((item) => <ReviewItem key={item.id} item={item} />)}
-        <PaginContainer />
-      </Review.List>
+      {reviews &&
+        reviews.map((item) => <ReviewItem key={item.id} item={item} />)}
+      <PaginContainer />
     </Review>
   );
 }

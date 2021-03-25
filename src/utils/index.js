@@ -26,3 +26,5 @@ export { default as getSelectedArray } from "./gallery/get-selected-array";
 
 export { default as getOffsetEnd } from "./pagin/get-offset-end";
 export { default as getOffsetStart } from "./pagin/get-offset-start";
+
+export { default as validateAvatarUrl } from "./review/validate-avatar-url";

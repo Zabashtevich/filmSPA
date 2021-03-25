@@ -12,7 +12,7 @@ import {
   range,
 } from "../../../utils";
 
-export default function DetailsPanelRating({ data, loading }) {
+export default function DetailsPanelRating({ data }) {
   const [{ estimating }] = useNoticeContext();
   const [, setEstimateProps] = useEstimate();
   const { userDataLoading, ratedMovies } = useSelector(
@@ -22,7 +22,7 @@ export default function DetailsPanelRating({ data, loading }) {
   const { direction, slug } = useParams();
 
   const movieIsRated = !userDataLoading && checkMovieInList(ratedMovies, slug);
-  const metaExist = !loading && !!data.vote_count;
+  const metaExist = !!data.vote_count;
 
   function handleEstimate(value) {
     if (!estimating) {

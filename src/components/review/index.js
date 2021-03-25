@@ -1,4 +1,5 @@
 import React from "react";
+import { w200miniature } from "../../constants/constants";
 
 import {
   Container,
@@ -11,6 +12,7 @@ import {
   Date,
   Content,
   Text,
+  Link,
   Paragraph,
   All,
 } from "./styles/review";
@@ -31,8 +33,12 @@ Review.Header = function ReviewHeader({ children, ...rest }) {
   return <Header {...rest}>{children}</Header>;
 };
 
-Review.Avatar = function ReviewAvatar({ ...rest }) {
-  return <Avatar {...rest} />;
+Review.Avatar = function ReviewAvatar({ url, ...rest }) {
+  const correctUrl = url.startsWidth("/https")
+    ? url.substr(1)
+    : `${w200miniature + url}`;
+
+  return <Avatar {...rest} src={correctUrl} />;
 };
 
 Review.Nickname = function ReviewNickname({ children, ...rest }) {
@@ -53,6 +59,10 @@ Review.Content = function ReviewContent({ children, ...rest }) {
 
 Review.Text = function ReviewText({ children, ...rest }) {
   return <Text {...rest}>{children}</Text>;
+};
+
+Review.Link = function ReviewLink({ children, ...rest }) {
+  return <Link {...rest}>{children}</Link>;
 };
 
 Review.Paragraph = function ReviewParagraph({ children, ...rest }) {

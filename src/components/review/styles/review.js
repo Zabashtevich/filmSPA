@@ -20,6 +20,8 @@ export const Content = styled.div``;
 
 export const Text = styled.div``;
 
+export const Link = styled.a``;
+
 export const Paragraph = styled.div``;
 
 export const All = styled.div``;

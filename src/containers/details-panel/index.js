@@ -45,12 +45,12 @@ export default function DetailsPanelContainer() {
       >
         <DetailsPanelCollection collection={collection} />
       </DetailsPanel.Section>
-      <DetailsPanel.Section visible={true}>
+      <DetailsPanel.Section visible={!loading}>
         <DetailsPanel.Title>Rating</DetailsPanel.Title>
-        <DetailsPanelRating data={data} loading={loading} />
+        <DetailsPanelRating data={data} />
       </DetailsPanel.Section>
-      <DetailsPanel.Section>
-        <ReviewContainer data={data} loading={loading} />
+      <DetailsPanel.Section visible={!loading}>
+        <ReviewContainer data={data} />
       </DetailsPanel.Section>
     </DetailsPanel>
   );

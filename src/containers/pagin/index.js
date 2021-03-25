@@ -13,13 +13,8 @@ export default function PaginContainer() {
 
   return (
     <Pagin>
-      <Pagin.Wrapper>
-        {range(1, 10).map((item) => (
-          <PaginationSkeleton key={item} />
-        ))}
-      </Pagin.Wrapper>
-      <Pagin.Wrapper>
-        {start !== 1 && (
+      <Pagin.Wrapper visible={!loading}>
+        {start !== 0 && (
           <>
             <Pagin.Item
               onClick={() => setPaginState((prev) => ({ ...prev, active: 1 }))}
@@ -37,6 +32,7 @@ export default function PaginContainer() {
               onClick={() =>
                 setPaginState((prev) => ({ ...prev, active: item }))
               }
+              selected={active === item && 1}
             >
               {item}
             </Pagin.Item>

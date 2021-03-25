@@ -9,12 +9,12 @@ export const Container = styled.div`
 `;
 
 export const Wrapper = styled.div`
+  ${({ theme }) => theme.animations.fade(500, 0, 500)};
   display: flex;
 `;
 
 export const Item = styled.div`
   font-size: ${({ theme }) => theme.font.aux.size.normal};
-  ${({ theme }) => theme.animations.fade(500, 500, 500)};
   border: 1px solid rgba(0, 0, 0, 0.1);
   justify-content: center;
   border-radius: 0.3rem;
@@ -29,8 +29,8 @@ export const Item = styled.div`
     transition: 300ms;
     color: white;
   }
-  ${({ active }) =>
-    active &&
+  ${({ selected }) =>
+    selected &&
     css`
       background-color: ${({ theme }) => theme.colors.main};
       transition: 300ms;

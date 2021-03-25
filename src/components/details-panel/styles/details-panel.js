@@ -15,7 +15,10 @@ export const Section = styled.div`
   padding: 2rem 0;
 `;
 
-export const Title = styled.div``;
+export const Title = styled.div`
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
+  font-size: ${({ theme }) => theme.font.aux.size.large};
+`;
 
 export const Collection = styled.div`
   border-radius: 0.5rem;

@@ -1,17 +1,34 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { useParams } from "react-router";
 
 import { DetailsPanel } from "../../../components";
-import { checkMovieInList, getCorrectDate, range } from "../../../utils";
+import { useNoticeContext } from "../../../context";
+import { useEstimate } from "../../../hooks";
+import {
+  checkMovieInList,
+  createEstimateItem,
+  getCorrectDate,
+  range,
+} from "../../../utils";
 
-export default function DetailsPanelRating({ loading, data, slug }) {
-  const [starHoverValue, setStarHoverValue] = useState(0);
+export default function DetailsPanelRating({ data, loading }) {
+  const [{ estimating }] = useNoticeContext();
+  const [, setEstimateProps] = useEstimate();
   const { userDataLoading, ratedMovies } = useSelector(
     (state) => state.userData,
   );
+  const [starHoverValue, setStarHoverValue] = useState(0);
+  const { direction, slug } = useParams();
 
   const movieIsRated = !userDataLoading && checkMovieInList(ratedMovies, slug);
   const metaExist = !loading && !!data.vote_count;
+
+  function handleEstimate(value) {
+    if (!estimating) {
+      setEstimateProps(createEstimateItem(data, value, direction));
+    }
+  }
 
   return (
     <DetailsPanel.Subsection>
@@ -22,6 +39,7 @@ export default function DetailsPanelRating({ loading, data, slug }) {
             onMouseEnter={() => setStarHoverValue(item)}
             onMouseLeave={() => setStarHoverValue(0)}
             selected={starHoverValue >= item && 1}
+            onClick={() => handleEstimate(item)}
           />
         ))}
       </DetailsPanel.Rating>

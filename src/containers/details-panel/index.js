@@ -4,11 +4,11 @@ import { useParams } from "react-router";
 import { DetailsPanel } from "./../../components";
 import { MediaContainer } from "./../";
 import { useFetch } from "../../hooks";
-import DetailsPanelCollection from "./items/details-panel-collection";
 import MediaSkeleton, {
   DetailsCollectionSkeleton,
 } from "../../components/skeleton";
 import DetailsPanelRating from "./items/details-panel-rating";
+import DetailsPanelCollection from "./items/details-panel-collection";
 
 export default function DetailsPanelContainer() {
   const [{ collectionDelay, mediaDelay }, setDelay] = useState({
@@ -46,7 +46,8 @@ export default function DetailsPanelContainer() {
         <DetailsPanelCollection collection={collection} />
       </DetailsPanel.Section>
       <DetailsPanel.Section visible={true}>
-        <DetailsPanelRating loading={loading} data={data} slug={slug} />
+        <DetailsPanel.Title>Rating</DetailsPanel.Title>
+        <DetailsPanelRating data={data} loading={loading} />
       </DetailsPanel.Section>
     </DetailsPanel>
   );

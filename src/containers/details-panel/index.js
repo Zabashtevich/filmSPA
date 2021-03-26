@@ -49,8 +49,8 @@ export default function DetailsPanelContainer() {
         <DetailsPanel.Title>Rating</DetailsPanel.Title>
         <DetailsPanelRating data={data} />
       </DetailsPanel.Section>
-      <DetailsPanel.Section visible={!loading}>
-        <ReviewContainer data={data} />
+      <DetailsPanel.Section visible={true}>
+        <ReviewContainer data={data} loading={loading} />
       </DetailsPanel.Section>
     </DetailsPanel>
   );

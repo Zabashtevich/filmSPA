@@ -1,23 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 
+import { PaginContainer } from "./../";
+import { usePaginContext } from "./../../context";
 import { Review } from "../../components";
+import ReviewItem from "./items/review-item";
 
-export default function ReviewContainer() {
+export default function ReviewContainer({ data, loading }) {
+  const [{ active }, setPaginProps] = usePaginContext();
+  const reviews = data?.reviews?.results || null;
+
+  useEffect(() => {
+    if (reviews) {
+      setPaginProps((prev) => ({
+        ...prev,
+        amount: Math.ceil(reviews.length) / 5,
+        loading: false,
+      }));
+    }
+  }, []);
+
   return (
     <Review>
-      <Review.Item>
-        <Review.Header>
-          <Review.Avatar />
-          <Review.Nickname></Review.Nickname>
-          <Review.Value></Review.Value>
-          <Review.Date></Review.Date>
-          <Review.Star />
-        </Review.Header>
-        <Review.Body>
-          <Review.Content></Review.Content>
-          <Review.Load></Review.Load>
-        </Review.Body>
-      </Review.Item>
+      {reviews &&
+        reviews
+          .slice(active * 5 - 5, active * 5)
+          .map((item) => <ReviewItem key={item.id} item={item} />)}
+      <PaginContainer />
     </Review>
   );
 }

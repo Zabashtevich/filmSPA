@@ -17,7 +17,7 @@ export default function ReviewContainer({ data, loading }) {
         loading: false,
       }));
     }
-  }, []);
+  }, [reviews]);
 
   return (
     <Review>

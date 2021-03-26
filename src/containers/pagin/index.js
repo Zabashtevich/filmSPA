@@ -3,7 +3,6 @@ import React from "react";
 import { usePaginContext } from "./../../context";
 import { getOffsetEnd, getOffsetStart, range } from "./../../utils";
 import { Pagin } from "../../components";
-import { PaginationSkeleton } from "../../components/skeleton";
 
 export default function PaginContainer() {
   const [{ active, loading, amount }, setPaginState] = usePaginContext();

@@ -4,16 +4,16 @@ import { Review } from "../../../components";
 import { getCorrectDate, validateAvatarUrl } from "../../../utils";
 
 export default function ReviewItem({ item }) {
-  const [textIsShortened, setTextIsShortened] = useState(
+  const [textIsLimited, setTextIsLimited] = useState(
     item.content.length > 1000,
   );
 
   const avatar = item?.author_details?.avatar_path;
-  const value = item?.author_details?.rating;
+  const value = item?.author_details?.rating || 5;
   const nickname = item.author_details.name || item.author_details.username;
 
   return (
-    <Review.Item key={item.id}>
+    <Review.Item key={item.id} value={value}>
       <Review.Header>
         <Review.Avatar src={validateAvatarUrl(avatar)} />
         <Review.Nickname>{nickname}</Review.Nickname>
@@ -22,8 +22,14 @@ export default function ReviewItem({ item }) {
         <Review.Star />
       </Review.Header>
       <Review.Body>
-        <Review.Content>{item.content}</Review.Content>
-        <Review.Load>Load full review</Review.Load>
+        <Review.Content textlengthdefault={!textIsLimited && 1}>
+          {item.content}
+        </Review.Content>
+        {textIsLimited && (
+          <Review.Load onClick={() => setTextIsLimited(false)}>
+            Load full review
+          </Review.Load>
+        )}
       </Review.Body>
     </Review.Item>
   );

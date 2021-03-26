@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 
 import { Review } from "../../../components";
 import { getCorrectDate, validateAvatarUrl } from "../../../utils";
@@ -11,10 +11,10 @@ export default function ReviewItem({ item }) {
   const avatar = item?.author_details?.avatar_path;
   const value = item?.author_details?.rating;
   const nickname = item.author_details.name || item.author_details.username;
-  const charactersAmount = textIsShortened ? 1000 : item.content.length;
+  const charactersAmount = textIsShortened ? 1000 : +item.content.length;
 
   return (
-    <Review.Item key={item.id} value={value || 5}>
+    <Review.Item value={value || 5}>
       <Review.Header>
         <Review.Avatar src={validateAvatarUrl(avatar)} />
         <Review.Nickname>{nickname}</Review.Nickname>
@@ -30,21 +30,18 @@ export default function ReviewItem({ item }) {
               const lastParagraph = array.length - 1 === index;
               const link = item.includes("http");
               return (
-                <>
-                  {link && (
-                    <Review.Link href={`${item}`} key={index}>
-                      {item}
-                    </Review.Link>
+                <Fragment key={index}>
+                  {link && <Review.Link href={`${item}`}>{item}</Review.Link>}
+                  {!link && !textIsShortened && (
+                    <Review.Paragraph>{item}</Review.Paragraph>
                   )}
-                  {!link && !lastParagraph && (
-                    <Review.Paragraph key={index}>{item}</Review.Paragraph>
+                  {!link && textIsShortened && !lastParagraph && (
+                    <Review.Paragraph>{item}</Review.Paragraph>
                   )}
                   {!link && textIsShortened && lastParagraph && (
-                    <Review.Paragraph
-                      key={index}
-                    >{`${item}...`}</Review.Paragraph>
+                    <Review.Paragraph>{`${item}...`}</Review.Paragraph>
                   )}
-                </>
+                </Fragment>
               );
             })}
         </Review.Text>

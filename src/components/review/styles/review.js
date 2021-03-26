@@ -7,6 +7,7 @@ export const Container = styled.div`
   flex-direction: column;
   border-radius: 0.2rem;
   align-items: center;
+  min-height: 2000px;
   max-width: 900px;
   padding: 2rem 0;
   margin: 0 auto;
@@ -40,6 +41,7 @@ export const Item = styled.div`
 `;
 
 export const Header = styled.div`
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
   justify-content: flex-start;
   flex-direction: row;
   align-items: center;
@@ -79,6 +81,7 @@ export const Content = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  margin-top: 2rem;
   display: flex;
   width: 550px;
 `;

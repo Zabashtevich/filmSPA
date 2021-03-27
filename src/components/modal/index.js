@@ -1,4 +1,5 @@
 import React from "react";
+import { CSSTransition } from "react-transition-group";
 
 import {
   Container,
@@ -15,8 +16,12 @@ import {
   Decline,
 } from "./styles/modal";
 
-export default function Modal({ children, ...rest }) {
-  return <Container {...rest}>{children}</Container>;
+export default function Modal({ visible, children, ...rest }) {
+  return (
+    <CSSTransition classNames="fade" in={visible} appear={true} timeout={500}>
+      <Container {...rest}>{children}</Container>
+    </CSSTransition>
+  );
 }
 
 Modal.Backdrop = function ModalBackdrop({ ...rest }) {

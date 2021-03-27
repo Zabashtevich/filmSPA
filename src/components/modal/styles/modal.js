@@ -49,6 +49,11 @@ export const Header = styled.div`
     css`
       background-color: ${({ theme }) => theme.colors.error};
     `};
+  ${({ type }) =>
+    type === "confirm" &&
+    css`
+      background-color: rgba(248, 148, 6, 1);
+    `};
   position: relative;
   height: 40%;
 `;
@@ -70,6 +75,25 @@ export const Title = styled.span`
           rgba(212, 86, 89, 0.4) 10%,
           rgba(255, 255, 255, 1) 50%,
           rgba(212, 86, 89, 0.4) 90%
+        );
+        position: absolute;
+        height: 200px;
+        content: "";
+        width: 2px;
+        left: 130%;
+        top: 50%;
+      }
+    `};
+  ${({ type }) =>
+    type === "confirm" &&
+    css`
+      &::after {
+        transform: translateY(-50%);
+        background: linear-gradient(
+          0deg,
+          rgba(248, 148, 6, 0.3) 10%,
+          rgba(255, 255, 255, 1) 50%,
+          rgba(248, 148, 6, 0.3) 90%
         );
         position: absolute;
         height: 200px;
@@ -117,11 +141,46 @@ export const Wrapper = styled.div`
 `;
 
 export const Confirm = styled.button`
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  padding: 0.3rem 1rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  outline: none;
+  color: white;
   ${({ type }) =>
     type === "error" &&
     css`
-      color: white;
+      background-color: ${({ theme }) => theme.colors.error};
     `};
+  ${({ type }) =>
+    type === "confirm" &&
+    css`
+      background-color: rgba(248, 148, 6, 1);
+    `};
+  &:active {
+    transform: scale(0.98);
+  }
+  &:hover {
+    background-color: white;
+    transition: 300ms;
+    color: black;
+  }
 `;
 
-export const Decline = styled.button``;
+export const Decline = styled.button`
+  background-color: ${({ theme }) => theme.colors.main};
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 0.3rem;
+  padding: 0.3rem 1rem;
+  margin-right: 1rem;
+  cursor: pointer;
+  outline: none;
+  color: white;
+  &:active {
+    transform: scale(0.98);
+  }
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+    transition: 300ms;
+  }
+`;

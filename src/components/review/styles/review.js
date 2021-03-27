@@ -17,6 +17,7 @@ export const Container = styled.div`
 
 export const Item = styled.div`
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  ${({ theme }) => theme.animations.fade()};
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 0.5rem;
   margin: 2rem 0;

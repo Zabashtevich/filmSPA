@@ -399,3 +399,35 @@ export function GalleryHeaderSkeleton() {
     </ContentLoader>
   );
 }
+
+export function ReviewSkeleton() {
+  return (
+    <ContentLoader
+      speed={2}
+      width={700}
+      height={550}
+      viewBox="0 0 700 550"
+      backgroundColor="#f3f3f3"
+      foregroundColor="#ecebeb"
+    >
+      <rect x="48" y="24" rx="12" ry="12" width="75" height="75" />
+      <rect x="149" y="50" rx="4" ry="4" width="100" height="27" />
+      <rect x="265" y="42" rx="8" ry="8" width="44" height="44" />
+      <rect x="328" y="55" rx="5" ry="5" width="65" height="18" />
+      <rect x="36" y="140" rx="0" ry="0" width="600" height="12" />
+      <rect x="36" y="156" rx="0" ry="0" width="600" height="12" />
+      <rect x="36" y="172" rx="0" ry="0" width="600" height="12" />
+      <rect x="36" y="188" rx="0" ry="0" width="600" height="12" />
+      <rect x="36" y="230" rx="0" ry="0" width="600" height="12" />
+      <rect x="36" y="246" rx="0" ry="0" width="600" height="12" />
+      <rect x="36" y="262" rx="0" ry="0" width="600" height="12" />
+      <rect x="36" y="320" rx="0" ry="0" width="600" height="12" />
+      <rect x="36" y="336" rx="0" ry="0" width="600" height="12" />
+      <rect x="36" y="352" rx="0" ry="0" width="600" height="12" />
+      <rect x="36" y="368" rx="0" ry="0" width="600" height="12" />
+      <rect x="36" y="384" rx="0" ry="0" width="600" height="12" />
+      <rect x="36" y="520" rx="0" ry="0" width="600" height="12" />
+      <rect x="36" y="536" rx="0" ry="0" width="600" height="12" />
+    </ContentLoader>
+  );
+}

@@ -1,4 +1,5 @@
 import React from "react";
+import { CSSTransition } from "react-transition-group";
 
 import {
   Container,
@@ -18,8 +19,19 @@ export default function Review({ children, ...rest }) {
   return <Container {...rest}>{children}</Container>;
 }
 
-Review.Item = function ReviewItem({ children, ...rest }) {
-  return <Item {...rest}>{children}</Item>;
+Review.Item = function ReviewItem({ visible, children, ...rest }) {
+  return (
+    <CSSTransition
+      in={visible}
+      mountOnEnter
+      unmountOnExit
+      timeout={500}
+      classNames="fade"
+      appear={true}
+    >
+      <Item {...rest}>{children}</Item>
+    </CSSTransition>
+  );
 };
 
 Review.Header = function ReviewHeader({ children, ...rest }) {

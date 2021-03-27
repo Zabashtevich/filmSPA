@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Review } from "../../../components";
 import { getCorrectDate, validateAvatarUrl } from "../../../utils";
 
-export default function ReviewItem({ item }) {
+export default function ReviewItem({ item, visible }) {
   const [textIsLimited, setTextIsLimited] = useState(
     item.content.length > 1000,
   );
@@ -13,7 +13,7 @@ export default function ReviewItem({ item }) {
   const nickname = item.author_details.name || item.author_details.username;
 
   return (
-    <Review.Item key={item.id} value={value}>
+    <Review.Item key={item.id} value={value} visible={visible}>
       <Review.Header>
         <Review.Avatar src={validateAvatarUrl(avatar)} />
         <Review.Nickname>{nickname}</Review.Nickname>

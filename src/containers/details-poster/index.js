@@ -37,7 +37,7 @@ export default function DetailsPosterContainer() {
 
       <DetailsPoster.Column type={"poster"} visible={!loading && !posterDelay}>
         <DetailsPoster.Poster src={data?.poster_path} />
-        <WidgetContainer />
+        <WidgetContainer slug={slug} />
       </DetailsPoster.Column>
 
       <DetailsPoster.Column

@@ -24,8 +24,8 @@ export default function ReviewContainer({ data, loading }) {
   return (
     <Review>
       {range(1, 5).map((item) => (
-        <Review.Item visible={loading}>
-          <ReviewSkeleton key={item} />
+        <Review.Item visible={loading} key={item}>
+          <ReviewSkeleton />
         </Review.Item>
       ))}
       {reviews &&

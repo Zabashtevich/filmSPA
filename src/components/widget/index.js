@@ -28,7 +28,7 @@ Widget.Title = function WidgetTitle({ children, ...rest }) {
 };
 
 Widget.Arrow = function WidgetArrow({ ...rest }) {
-  return <Arrow />;
+  return <Arrow {...rest} />;
 };
 
 Widget.List = function WidgetList({ visible, children, ...rest }) {

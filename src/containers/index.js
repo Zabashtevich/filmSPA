@@ -12,8 +12,6 @@ export { default as TabsContainer } from "./tabs";
 export { default as TrendingContainer } from "./trending";
 export { default as SliderContainer } from "./slider";
 export { default as AccountContainer } from "./account";
-export { default as FilterContainer } from "./filter";
-export { default as CreditsContainer } from "./credits";
 export { default as NoticeContainer } from "./notice";
 export { default as MediaContainer } from "./media";
 export { default as GalleryContainer } from "./gallery";

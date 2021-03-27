@@ -72,7 +72,6 @@ export default function ActorPosterContainer() {
           }
           loading={dataLoading}
         />
-        <CreditsContainer />
       </ActorPoster.Column>
     </ActorPoster>
   );

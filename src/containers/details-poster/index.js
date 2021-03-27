@@ -9,6 +9,7 @@ import {
   PosterDetailsRowsSkeleton,
   PosterDetailsSkeleton,
 } from "../../components/skeleton";
+import { WidgetContainer } from "../";
 
 export default function DetailsPosterContainer() {
   const [{ posterDelay, rowsDelay, creditsDelay }, setDelay] = useState({
@@ -36,6 +37,7 @@ export default function DetailsPosterContainer() {
 
       <DetailsPoster.Column type={"poster"} visible={!loading && !posterDelay}>
         <DetailsPoster.Poster src={data?.poster_path} />
+        <WidgetContainer />
       </DetailsPoster.Column>
 
       <DetailsPoster.Column

@@ -8,9 +8,9 @@ export default function WidgetContainer() {
       <Widget.Title>Add to list</Widget.Title>
       <Widget.Arrow />
       <Widget.List>
-        <Widget.Favorite></Widget.Favorite>
-        <Widget.Subtitle>Your lists</Widget.Subtitle>
-        <Widget.Item></Widget.Item>
+        <Widget.Favorite>FAVORITE</Widget.Favorite>
+        <Widget.Subtitle>YOUR LISTS:</Widget.Subtitle>
+        <Widget.Item>HAHAHA</Widget.Item>
         <Widget.Link></Widget.Link>
       </Widget.List>
     </Widget>

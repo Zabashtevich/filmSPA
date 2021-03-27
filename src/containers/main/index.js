@@ -1,11 +1,17 @@
 import React from "react";
 
 import { Main } from "../../components";
-import { PopularContainer, SliderContainer, TrendingContainer } from "..";
+import {
+  ModalContainer,
+  PopularContainer,
+  SliderContainer,
+  TrendingContainer,
+} from "..";
 
 export default function MainContainer() {
   return (
     <Main>
+      <ModalContainer />
       <SliderContainer />
       <Main.Section>
         <PopularContainer

@@ -3,6 +3,7 @@ import React from "react";
 import {
   Container,
   Backdrop,
+  Close,
   Window,
   Header,
   Title,
@@ -22,6 +23,10 @@ Modal.Backdrop = function ModalBackdrop({ ...rest }) {
   return <Backdrop {...rest} />;
 };
 
+Modal.Close = function ModalClose({ children, ...rest }) {
+  return <Close {...rest} />;
+};
+
 Modal.Window = function ModalWindow({ children, ...rest }) {
   return <Window {...rest}>{children}</Window>;
 };
@@ -34,12 +39,12 @@ Modal.Title = function ModalTitle({ children, ...rest }) {
   return <Title {...rest}>{children}</Title>;
 };
 
-Modal.Error = function ModalError({ children, ...rest }) {
-  return <Error {...rest}>{children}</Error>;
+Modal.Error = function ModalError({ ...rest }) {
+  return <Error {...rest} />;
 };
 
 Modal.Warning = function ModalWarning({ children, ...rest }) {
-  return <Warning {...rest}>{children}</Warning>;
+  return <Warning {...rest} />;
 };
 
 Modal.Message = function ModalMessage({ children, ...rest }) {

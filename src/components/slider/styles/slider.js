@@ -11,6 +11,7 @@ export const Container = styled.div`
   margin: 0 auto;
   display: flex;
   width: 1800px;
+  z-index: 500;
 `;
 
 export const Slide = styled.div`

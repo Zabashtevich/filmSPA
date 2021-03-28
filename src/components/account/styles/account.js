@@ -8,7 +8,6 @@ export const Container = styled.div`
 `;
 
 export const Column = styled.div`
-  justify-content: center;
   flex-direction: column;
   align-items: center;
   display: flex;
@@ -17,6 +16,7 @@ export const Column = styled.div`
 
 export const Poster = styled.img`
   border-radius: 0.5rem;
+  max-width: 200px;
 `;
 
 export const Nickname = styled.span`

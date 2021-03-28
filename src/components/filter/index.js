@@ -8,7 +8,8 @@ import {
   Name,
   Value,
   Subtitle,
-  Input,
+  Select,
+  Option,
 } from "./styles/filter";
 
 export default function Filter({ children, ...rest }) {
@@ -39,6 +40,10 @@ Filter.Subtitle = function FilterSubtitle({ children, ...rest }) {
   return <Subtitle {...rest}>{children}</Subtitle>;
 };
 
-Filter.Input = function FilterInput({ ...rest }) {
-  return <Input {...rest} />;
+Filter.Select = function FilterSelect({ children, ...rest }) {
+  return <Select {...rest}>{children}</Select>;
+};
+
+Filter.Option = function FilterOption({ children, ...rest }) {
+  return <Option {...rest}>{children}</Option>;
 };

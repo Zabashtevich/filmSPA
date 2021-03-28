@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
-import userDataReducer from "./user-data";
-import userReviewsReducer from "./reviews-data";
-import userProfileReducer from "./user-profile";
+import userData from "./user-data";
+import reviewsData from "./reviews-data";
+import userProfile from "./user-profile";
 
 export const rootReducer = combineReducers({
-  userData: userDataReducer,
-  reviewsData: userReviewsReducer,
-  userProfile: userProfileReducer,
+  userData,
+  reviewsData,
+  userProfile,
 });

@@ -6,7 +6,7 @@ import {
 
 const initialState = { reviewsLoading: true, reviews: null };
 
-const userReviewsReducer = (state = initialState, { type, payload }) => {
+export default function reviewsData(state = initialState, { type, payload }) {
   switch (type) {
     case FETCH_REVIEWS_START:
       return { ...state, reviewsLoading: true };
@@ -17,6 +17,4 @@ const userReviewsReducer = (state = initialState, { type, payload }) => {
     default:
       return state;
   }
-};
-
-export default userReviewsReducer;
+}

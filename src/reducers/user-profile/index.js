@@ -2,10 +2,7 @@ import { SET_USER_PROFILE, USER_LOGOUT } from "./constants";
 
 const initialState = { profileLoading: true, profile: null };
 
-export default function userProfileReducer(
-  state = initialState,
-  { type, payload },
-) {
+export default function userProfile(state = initialState, { type, payload }) {
   switch (type) {
     case SET_USER_PROFILE:
       return { profileLoading: false, profile: payload };

@@ -11,7 +11,7 @@ const initialState = {
   ratedMovies: null,
 };
 
-const userDataReducer = (state = initialState, { type, payload }) => {
+export default function userData(state = initialState, { type, payload }) {
   switch (type) {
     case FETCH_USERDATA_START:
       return { ...state, userDataLoading: true };
@@ -22,6 +22,4 @@ const userDataReducer = (state = initialState, { type, payload }) => {
     default:
       return state;
   }
-};
-
-export default userDataReducer;
+}

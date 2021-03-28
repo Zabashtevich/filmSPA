@@ -6,7 +6,6 @@ import {
   CreditsWrapper,
   PopularSkeletonWrapper,
   TrendingSkeletonWrapper,
-  FilterWrapper,
   GalleryPosterWrapper,
 } from "./styles/skeleton";
 
@@ -269,63 +268,6 @@ export function CreditsSkeleton({ visible, ...rest }) {
           <rect x="760" y="159" rx="4" ry="4" width="32" height="32" />
         </ContentLoader>
       </CreditsWrapper>
-    </CSSTransition>
-  );
-}
-
-export function FilterSkeleton({ visible, ...rest }) {
-  return (
-    <CSSTransition
-      in={visible}
-      classNames="fade"
-      mountOnEnter
-      unmountOnExit
-      appear={true}
-      timeout={500}
-      {...rest}
-    >
-      <FilterWrapper>
-        <ContentLoader
-          speed={2}
-          width={800}
-          height={150}
-          viewBox="0 0 800 150"
-          backgroundColor="#f3f3f3"
-          foregroundColor="#ecebeb"
-        >
-          <rect x="0" y="6" rx="4" ry="4" width="55" height="18" />
-          <rect x="71" y="3" rx="4" ry="4" width="45" height="25" />
-          <rect x="119" y="3" rx="4" ry="4" width="85" height="25" />
-          <rect x="207" y="3" rx="4" ry="4" width="54" height="25" />
-          <rect x="264" y="3" rx="4" ry="4" width="50" height="25" />
-          <rect x="318" y="3" rx="4" ry="4" width="50" height="25" />
-          <rect x="0" y="36" rx="4" ry="4" width="55" height="18" />
-          <rect x="71" y="33" rx="4" ry="4" width="50" height="25" />
-          <rect x="124" y="33" rx="4" ry="4" width="34" height="25" />
-          <rect x="161" y="33" rx="4" ry="4" width="66" height="25" />
-          <rect x="0" y="69" rx="4" ry="4" width="55" height="18" />
-          <rect x="71" y="66" rx="4" ry="4" width="50" height="25" />
-          <rect x="124" y="66" rx="4" ry="4" width="34" height="25" />
-          <rect x="161" y="66" rx="4" ry="4" width="66" height="25" />
-          <rect x="0" y="99" rx="4" ry="4" width="55" height="18" />
-          <rect x="71" y="96" rx="4" ry="4" width="25" height="25" />
-          <rect x="99" y="96" rx="4" ry="4" width="25" height="25" />
-          <rect x="127" y="96" rx="4" ry="4" width="25" height="25" />
-          <rect x="155" y="95" rx="4" ry="4" width="25" height="25" />
-          <rect x="183" y="96" rx="4" ry="4" width="25" height="25" />
-          <rect x="211" y="96" rx="4" ry="4" width="25" height="25" />
-          <rect x="239" y="96" rx="4" ry="4" width="25" height="25" />
-          <rect x="267" y="96" rx="4" ry="4" width="25" height="25" />
-          <rect x="295" y="96" rx="4" ry="4" width="25" height="25" />
-          <rect x="323" y="96" rx="4" ry="4" width="25" height="25" />
-          <rect x="351" y="96" rx="4" ry="4" width="25" height="25" />
-          <rect x="0" y="129" rx="4" ry="4" width="55" height="18" />
-          <rect x="71" y="129" rx="4" ry="4" width="33" height="18" />
-          <rect x="108" y="126" rx="4" ry="4" width="50" height="24" />
-          <rect x="162" y="129" rx="4" ry="4" width="20" height="18" />
-          <rect x="185" y="126" rx="4" ry="4" width="50" height="24" />
-        </ContentLoader>
-      </FilterWrapper>
     </CSSTransition>
   );
 }

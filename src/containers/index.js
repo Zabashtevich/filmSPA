@@ -19,3 +19,4 @@ export { default as PopupContainer } from "./popup";
 export { default as PaginContainer } from "./pagin";
 export { default as ReviewContainer } from "./review";
 export { default as WidgetContainer } from "./widget";
+export { deafult as FilterContainer } from "./filter";

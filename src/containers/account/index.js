@@ -6,8 +6,7 @@ import { FilterContainer } from "../";
 
 export default function AccountContainer() {
   const { profile, profileLoading } = useSelector((state) => state.userProfile);
-  const data = useSelector((state) => state);
-  console.log(data);
+
   return (
     <Account data-testid="account-container">
       {!profileLoading && (

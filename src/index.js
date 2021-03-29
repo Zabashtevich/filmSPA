@@ -8,7 +8,7 @@ import "normalize.css";
 
 import App from "./App";
 import { GlobalStyles } from "./theme/global-style";
-import Theme from "./theme/theme";
+import theme from "./theme/theme";
 import { rootReducer } from "./reducers";
 import UserDataLogic from "./helpers/user-data-logic";
 import CreditsContextProvider from "./context/credits-context/context";
@@ -23,8 +23,8 @@ const store = createStore(
 );
 
 ReactDOM.render(
-  <Provider store={store}>
-    <ThemeProvider theme={Theme}>
+  <ThemeProvider theme={theme}>
+    <Provider store={store}>
       <UserDataLogic>
         <ModalContextProvider>
           <NoticeContextProvider>
@@ -39,7 +39,8 @@ ReactDOM.render(
           </NoticeContextProvider>
         </ModalContextProvider>
       </UserDataLogic>
-    </ThemeProvider>
-  </Provider>,
+    </Provider>
+  </ThemeProvider>,
+
   document.getElementById("root"),
 );

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
-export default function useFetch(direction, type, value, page) {
-  const [data, setData] = useState({
+export default function useFetch(type, id) {
+  const [{ loading, list }, setData] = useState({
     loading: true,
     list: null,
   });
@@ -10,7 +10,9 @@ export default function useFetch(direction, type, value, page) {
     let mounted = true;
     if (mounted) {
       setData((prev) => ({ ...prev, loading: true }));
-      fetch()
+      fetch(
+        `https://api.themoviedb.org/3/${type}/${id}?api_key=${process.env.REACT_APP_API_KEY}`,
+      )
         .then((response) => response.json())
         .then((data) => {
           if (data.success === false) {
@@ -22,8 +24,7 @@ export default function useFetch(direction, type, value, page) {
     return () => {
       mounted = false;
     };
-  }, [direction, type, value, page]);
+  }, []);
 
-  const { list, loading } = data;
   return [list, loading];
 }

@@ -1,12 +1,20 @@
 import styled from "styled-components/macro";
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  flex-direction: column;
+  max-width: 900px;
+  display: flex;
+`;
 
-export const Number = styled.div``;
+export const Item = styled.div`
+  display: flex;
+`;
 
-export const Item = styled.div``;
+export const Number = styled.span`
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
+`;
 
-export const Year = styled.div``;
+export const Year = styled.span``;
 
 export const Devider = styled.div``;
 

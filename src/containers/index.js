@@ -20,3 +20,4 @@ export { default as PaginContainer } from "./pagin";
 export { default as ReviewContainer } from "./review";
 export { default as WidgetContainer } from "./widget";
 export { default as FilterContainer } from "./filter";
+export { default as CreditsContainer } from "./credits";

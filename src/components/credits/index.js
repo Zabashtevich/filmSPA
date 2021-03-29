@@ -2,6 +2,7 @@ import React from "react";
 
 import {
   Container,
+  Number,
   Item,
   Year,
   Devider,
@@ -11,6 +12,7 @@ import {
   Average,
   Amount,
   Value,
+  Wrapper,
   Rating,
   Star,
   Popup,
@@ -26,6 +28,10 @@ import {
 export default function Credits({ children, ...rest }) {
   return <Container {...rest}>{children}</Container>;
 }
+
+Credits.Number = function CreditsNumber({ children, ...rest }) {
+  return <Number {...rest}>{children}</Number>;
+};
 
 Credits.Item = function CreditsItem({ children, ...rest }) {
   return <Item {...rest}>{children}</Item>;
@@ -61,6 +67,10 @@ Credits.Amount = function CreditsAmount({ children, ...rest }) {
 
 Credits.Value = function CreditsValue({ children, ...rest }) {
   return <Value {...rest}>{children}</Value>;
+};
+
+Credits.Wrapper = function CreditsWrapper({ children, ...rest }) {
+  return <Wrapper {...rest}>{children}</Wrapper>;
 };
 
 Credits.Rating = function CreditsRating({ children, ...rest }) {

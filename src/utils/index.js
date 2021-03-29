@@ -11,7 +11,6 @@ export { default as checkReleaseStatus } from "./shareable/check-release-status"
 export { default as createEstimateItem } from "./hooks/create-estimate-item";
 export { default as getFetchUrl } from "./hooks/get-fetch-url";
 
-export { default as getCharacterByRole } from "./details/get-character-by-role";
 export { default as getMoneyFormat } from "./details/get-money-format";
 export { default as getCategories } from "./details/get-categories";
 export { default as checkCategories } from "./details/check-categories";

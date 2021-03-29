@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 import { DetailsPoster } from "../../../components";
 import {
-  getCharacterByRole,
+  getPersonRole,
   getMoneyFormat,
   getYearFromString,
 } from "../../../utils";
@@ -41,40 +41,37 @@ export default function DetailsPosterRows({ data }) {
       <DetailsPoster.Row>
         <DetailsPoster.Fieldname>Director:</DetailsPoster.Fieldname>
         <DetailsPoster.Fieldvalue>
-          {getCharacterByRole(data?.credits?.crew || [], "Director")}
+          {getPersonRole(data?.credits?.crew || [], "Director")}
         </DetailsPoster.Fieldvalue>
       </DetailsPoster.Row>
       <DetailsPoster.Row>
         <DetailsPoster.Fieldname>Story:</DetailsPoster.Fieldname>
         <DetailsPoster.Fieldvalue>
-          {getCharacterByRole(data?.credits?.crew || [], "Story")}
+          {getPersonRole(data?.credits?.crew || [], "Story")}
         </DetailsPoster.Fieldvalue>
       </DetailsPoster.Row>
       <DetailsPoster.Row>
         <DetailsPoster.Fieldname>Producer:</DetailsPoster.Fieldname>
         <DetailsPoster.Fieldvalue>
-          {getCharacterByRole(data?.credits?.crew || [], "Producer")}
+          {getPersonRole(data?.credits?.crew || [], "Producer")}
         </DetailsPoster.Fieldvalue>
       </DetailsPoster.Row>
       <DetailsPoster.Row>
         <DetailsPoster.Fieldname>Designer:</DetailsPoster.Fieldname>
         <DetailsPoster.Fieldvalue>
-          {getCharacterByRole(data?.credits?.crew || [], "Production Design")}
+          {getPersonRole(data?.credits?.crew || [], "Production Design")}
         </DetailsPoster.Fieldvalue>
       </DetailsPoster.Row>
       <DetailsPoster.Row>
         <DetailsPoster.Fieldname>Composer:</DetailsPoster.Fieldname>
         <DetailsPoster.Fieldvalue>
-          {getCharacterByRole(
-            data?.credits?.crew || [],
-            "Original Music Composer",
-          )}
+          {getPersonRole(data?.credits?.crew || [], "Original Music Composer")}
         </DetailsPoster.Fieldvalue>
       </DetailsPoster.Row>
       <DetailsPoster.Row>
         <DetailsPoster.Fieldname>Editor:</DetailsPoster.Fieldname>
         <DetailsPoster.Fieldvalue>
-          {getCharacterByRole(data?.credits?.crew || [], "Editor")}
+          {getPersonRole(data?.credits?.crew || [], "Editor")}
         </DetailsPoster.Fieldvalue>
       </DetailsPoster.Row>
       <DetailsPoster.Row>

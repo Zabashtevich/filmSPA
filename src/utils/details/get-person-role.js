@@ -1,4 +1,4 @@
-export default function getCharacterByRole(array, role) {
+export default function getPersonROle(array, role) {
   let result = [];
 
   if (array.length > 0) {

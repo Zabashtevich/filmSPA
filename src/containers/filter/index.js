@@ -40,6 +40,11 @@ export default function FilterContainer() {
           <Filter.Value>VOTE AVERAGE</Filter.Value>
         </Filter.Row>
         <Filter.Row>
+          <Filter.Name>Item type:</Filter.Name>
+          <Filter.Value>MOVIE</Filter.Value>
+          <Filter.Value>TV</Filter.Value>
+        </Filter.Row>
+        <Filter.Row>
           <Filter.Name>List type:</Filter.Name>
           <Filter.Value>VOTED</Filter.Value>
           <Filter.Value>USERLIST</Filter.Value>

@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { getFetchUrl } from "../../utils";
 
 export default function useFetch(direction, type, value, page) {
   const [data, setData] = useState({
@@ -11,7 +10,7 @@ export default function useFetch(direction, type, value, page) {
     let mounted = true;
     if (mounted) {
       setData((prev) => ({ ...prev, loading: true }));
-      fetch(getFetchUrl(direction, type, value, page))
+      fetch()
         .then((response) => response.json())
         .then((data) => {
           if (data.success === false) {

@@ -1,4 +1,3 @@
-export { default as AuthContainer } from "./auth";
 export { default as FooterContainer } from "./footer";
 export { default as ModalContainer } from "./modal";
 export { default as DetailsPosterContainer } from "./details-poster";

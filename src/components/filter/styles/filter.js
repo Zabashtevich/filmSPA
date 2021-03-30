@@ -54,6 +54,11 @@ export const Value = styled.span`
       transition: 300ms;
       color: white;
     `};
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.main};
+    transition: 300ms;
+    color: white;
+  }
 `;
 
 export const Subtitle = styled.span`

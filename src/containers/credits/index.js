@@ -1,48 +1,77 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-import { useCreditsContext } from "./../../context";
+import { PaginContainer } from "./../";
+import { useCreditsContext, usePaginContext } from "./../../context";
 import { Credits } from "./../../components";
-import { getYearFromString, range } from "../../utils";
+import {
+  checkMovieInList,
+  checkReleaseStatus,
+  getYearFromString,
+  range,
+} from "../../utils";
 
 export default function CreditsContainer() {
+  const [{ active }, setPaginProps] = usePaginContext();
   const [{ array, loading }] = useCreditsContext();
-  const { userDataLoding } = useSelector((state) => state.userData);
+  const { userDataLoading } = useSelector((state) => state.userData);
+
+  useEffect(() => {
+    if (!loading) {
+      setPaginProps((prev) => ({
+        ...prev,
+        amount: Math.ceil(array.length / 50),
+        loading: false,
+      }));
+    }
+  }, [loading, array]);
 
   return (
     <Credits>
       {!loading &&
-        array.map((item, index) => {
+        !userDataLoading &&
+        array.slice(active * 50 - 50, active * 50).map((item, index) => {
           return <CreditsItem key={item.id} item={item} index={index} />;
         })}
+      <PaginContainer />
     </Credits>
   );
 }
 
 function CreditsItem({ item, index }) {
-  const { userlists } = useSelector((state) => state.userData);
+  const { userlists, ratedMovies } = useSelector((state) => state.userData);
   const [ratingVisible, setRatingVisible] = useState(false);
   const [widgetVisible, setWidgetVisible] = useState(false);
+
+  const [value, setValue] = useState(null);
   const [hoverIndex, setHoverIndex] = useState(0);
+
   const metaVisible = !!item.vote_count && !!item.vote_average;
+  const buttonsVisible = checkReleaseStatus(
+    item.release_date || item.first_air_date,
+  );
+
+  useEffect(() => {
+    if (checkMovieInList(ratedMovies, item.id)) {
+      setValue(checkMovieInList(ratedMovies, item.id).value);
+    }
+  }, [ratedMovies, item]);
 
   return (
     <Credits.Item>
       <Credits.Number>{index + 1}</Credits.Number>
-      <Credits.Year>{getYearFromString(item.release_date)}</Credits.Year>
+      <Credits.Year>{getYearFromString(item.release_date) || "-"}</Credits.Year>
       <Credits.Title to={`/details/${item.type}/${item.id}`}>
-        {item.title}
+        {item.title || item.name}
       </Credits.Title>
-      {metaVisible && (
-        <Credits.Meta>
-          <Credits.Average value={item.vote_average}>
-            {item.vote_average}
-          </Credits.Average>
-          <Credits.Amount>{item.vote_count}</Credits.Amount>
-        </Credits.Meta>
-      )}
-      <Credits.Value value={item.value}>{item.value}</Credits.Value>
-      <Credits.Wrapper>
+      <Credits.Meta hidden={!metaVisible && 1}>
+        <Credits.Average value={item.vote_average}>
+          {item.vote_average}
+        </Credits.Average>
+        <Credits.Amount>{item.vote_count}</Credits.Amount>
+      </Credits.Meta>
+      {value && <Credits.Value value={value}>{value}</Credits.Value>}
+      <Credits.Wrapper visible={true}>
         <Credits.Rating onClick={() => setRatingVisible((prev) => !prev)}>
           <Credits.Star />
           <Credits.Popup visible={ratingVisible} type="rating">

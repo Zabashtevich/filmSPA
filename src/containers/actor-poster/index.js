@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 
 import { ActorPoster } from "../../components";
 import { useFetch } from "./../../hooks";
-import { getKnownFor } from "../../utils";
+import { getKnownFor, sortMoviesByDate } from "../../utils";
 import { CreditsContainer, MovieListContainer } from "./..";
 import {
   ActorPosterContentSkeleton,
@@ -20,13 +20,13 @@ export default function ActorPosterContainer() {
   });
 
   const { slug } = useParams();
-  const [data, dataLoading] = useFetch("actor", "person", slug);
+  const [data, dataLoading] = useFetch("person", slug);
 
   useEffect(() => {
     if (!dataLoading && !contentDelay) {
       setCreditsProps({
+        array: sortMoviesByDate(data?.combined_credits?.cast) || [],
         loading: false,
-        array: data?.combined_credits?.cast || [],
       });
     }
     return () => setCreditsProps({ loading: true, array: null });
@@ -72,6 +72,7 @@ export default function ActorPosterContainer() {
           }
           loading={dataLoading}
         />
+        <CreditsContainer />
       </ActorPoster.Column>
     </ActorPoster>
   );

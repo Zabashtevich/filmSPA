@@ -60,8 +60,19 @@ Credits.Value = function CreditsValue({ children, ...rest }) {
   return <Value {...rest}>{children}</Value>;
 };
 
-Credits.Wrapper = function CreditsWrapper({ children, ...rest }) {
-  return <Wrapper {...rest}>{children}</Wrapper>;
+Credits.Wrapper = function CreditsWrapper({ visible, children, ...rest }) {
+  return (
+    <CSSTransition
+      in={visible}
+      classNames="fade"
+      timeout={500}
+      appear={true}
+      mountOnEnter
+      unmountOnExit
+    >
+      <Wrapper {...rest}>{children}</Wrapper>
+    </CSSTransition>
+  );
 };
 
 Credits.Rating = function CreditsRating({ children, ...rest }) {

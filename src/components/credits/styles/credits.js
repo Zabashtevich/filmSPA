@@ -35,8 +35,10 @@ export const Item = styled.div`
 `;
 
 export const Year = styled.span`
+  text-align: center;
   margin-right: 3rem;
   user-select: none;
+  width: 40px;
 `;
 
 export const Title = styled(ReactRouterLink)`
@@ -59,6 +61,12 @@ export const Meta = styled.div`
   user-select: none;
   display: flex;
   width: 90px;
+
+  ${({ hidden }) =>
+    hidden &&
+    css`
+      visibility: hidden;
+    `};
 `;
 
 export const Average = styled.span`
@@ -101,6 +109,7 @@ export const Value = styled.span`
 `;
 
 export const Wrapper = styled.div`
+  ${({ theme }) => theme.animations.fade()};
   margin-right: 1rem;
   margin-left: auto;
   display: flex;

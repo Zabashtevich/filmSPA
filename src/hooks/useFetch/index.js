@@ -6,12 +6,17 @@ export default function useFetch(type, id) {
     list: null,
   });
 
+  const querryParams = {
+    details: "credits,recommendations,images,videos,reviews,account_states",
+    person: "combined_credits,images",
+  };
+
   useEffect(() => {
     let mounted = true;
     if (mounted) {
       setData((prev) => ({ ...prev, loading: true }));
       fetch(
-        `https://api.themoviedb.org/3/${type}/${id}?api_key=${process.env.REACT_APP_API_KEY}`,
+        `https://api.themoviedb.org/3/${type}/${id}?api_key=${process.env.REACT_APP_API_KEY}&&append_to_response=${querryParams[type]}`,
       )
         .then((response) => response.json())
         .then((data) => {

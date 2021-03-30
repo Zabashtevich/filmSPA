@@ -48,7 +48,7 @@ function CreditsItem({ item, index }) {
 
   const metaVisible = !!item.vote_count && !!item.vote_average;
   const buttonsVisible = checkReleaseStatus(
-    item.release_date || item.first_air_date,
+    item.release_date ?? item.first_air_date,
   );
 
   useEffect(() => {
@@ -60,7 +60,9 @@ function CreditsItem({ item, index }) {
   return (
     <Credits.Item>
       <Credits.Number>{index + 1}</Credits.Number>
-      <Credits.Year>{getYearFromString(item.release_date) || "-"}</Credits.Year>
+      <Credits.Year>
+        {getYearFromString(item.release_date || item.first_air_date) || "-"}
+      </Credits.Year>
       <Credits.Title to={`/details/${item.type}/${item.id}`}>
         {item.title || item.name}
       </Credits.Title>
@@ -71,7 +73,7 @@ function CreditsItem({ item, index }) {
         <Credits.Amount>{item.vote_count}</Credits.Amount>
       </Credits.Meta>
       {value && <Credits.Value value={value}>{value}</Credits.Value>}
-      <Credits.Wrapper visible={true}>
+      <Credits.Wrapper visible={buttonsVisible}>
         <Credits.Rating onClick={() => setRatingVisible((prev) => !prev)}>
           <Credits.Star />
           <Credits.Popup visible={ratingVisible} type="rating">

@@ -5,7 +5,6 @@ import {
   Item,
   Year,
   Number,
-  Info,
   Title,
   Meta,
   Average,
@@ -38,10 +37,6 @@ Credits.Number = function CreditsNumber({ children, ...rest }) {
 
 Credits.Year = function CreditsYear({ children, ...rest }) {
   return <Year {...rest}>{children}</Year>;
-};
-
-Credits.Info = function CreditsInfo({ children, ...rest }) {
-  return <Info {...rest}>{children}</Info>;
 };
 
 Credits.Title = function CreditsTitle({ children, ...rest }) {

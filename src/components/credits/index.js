@@ -76,7 +76,7 @@ Credits.Popup = function CreditsPopup({ visible, children, ...rest }) {
   return (
     <CSSTransition
       in={visible}
-      classNames="fade"
+      classNames="slide"
       appear={true}
       mountOnEnter
       unmountOnExit

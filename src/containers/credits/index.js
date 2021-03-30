@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 import { useCreditsContext } from "./../../context";
 import { Credits } from "./../../components";
@@ -6,6 +7,7 @@ import { getYearFromString, range } from "../../utils";
 
 export default function CreditsContainer() {
   const [{ array, loading }] = useCreditsContext();
+  const { userDataLoding } = useSelector((state) => state.userData);
 
   return (
     <Credits>
@@ -18,6 +20,7 @@ export default function CreditsContainer() {
 }
 
 function CreditsItem({ item, index }) {
+  const { userlists } = useSelector((state) => state.userData);
   const [ratingVisible, setRatingVisible] = useState(false);
   const [widgetVisible, setWidgetVisible] = useState(false);
   const [hoverIndex, setHoverIndex] = useState(0);
@@ -27,7 +30,9 @@ function CreditsItem({ item, index }) {
     <Credits.Item>
       <Credits.Number>{index + 1}</Credits.Number>
       <Credits.Year>{getYearFromString(item.release_date)}</Credits.Year>
-      <Credits.Title>{item.title}</Credits.Title>
+      <Credits.Title to={`/details/${item.type}/${item.id}`}>
+        {item.title}
+      </Credits.Title>
       {metaVisible && (
         <Credits.Meta>
           <Credits.Average value={item.vote_average}>
@@ -40,7 +45,7 @@ function CreditsItem({ item, index }) {
       <Credits.Wrapper>
         <Credits.Rating onClick={() => setRatingVisible((prev) => !prev)}>
           <Credits.Star />
-          <Credits.Popup visible={ratingVisible}>
+          <Credits.Popup visible={ratingVisible} type="rating">
             <Credits.Close />
             {range(1, 10).map((item) => (
               <Credits.Star
@@ -52,13 +57,15 @@ function CreditsItem({ item, index }) {
             ))}
           </Credits.Popup>
         </Credits.Rating>
-        <Credits.Widget>
+        <Credits.Widget onClick={() => setWidgetVisible((prev) => !prev)}>
           <Credits.Arrow />
-          <Credits.Popup>
-            <Credits.Name></Credits.Name>
-            <Credits.Favorite></Credits.Favorite>
-            <Credits.Subtitle></Credits.Subtitle>
-            <Credits.Userlist></Credits.Userlist>
+          <Credits.Popup visible={widgetVisible} type="widget">
+            <Credits.Name>add to list</Credits.Name>
+            <Credits.Favorite>Favorite</Credits.Favorite>
+            <Credits.Subtitle>your lists:</Credits.Subtitle>
+            {userlists.map((item) => (
+              <Credits.Userlist key={item.id}>{item.name}</Credits.Userlist>
+            ))}
           </Credits.Popup>
         </Credits.Widget>
       </Credits.Wrapper>

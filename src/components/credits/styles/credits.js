@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components/macro";
 
+import { Link as ReactRouterLink } from "react-router-dom";
 import { BsFillStarFill, BsX, BsTriangleFill } from "react-icons/bs";
 
 export const Container = styled.div`
@@ -14,6 +15,7 @@ export const Number = styled.span`
   color: rgba(0, 0, 0, 0.2);
   margin-right: 1rem;
   text-align: center;
+  user-select: none;
   width: 50px;
 `;
 
@@ -34,19 +36,27 @@ export const Item = styled.div`
 
 export const Year = styled.span`
   margin-right: 3rem;
+  user-select: none;
 `;
 
-export const Title = styled.span`
+export const Title = styled(ReactRouterLink)`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   color: rgba(0, 0, 0, 0.5);
   text-overflow: ellipsis;
+  text-decoration: none;
   white-space: nowrap;
   margin-right: 4rem;
   width: 300px;
+  &:hover {
+    text-decoration: underline;
+    transition: 300ms;
+    color: black;
+  }
 `;
 
 export const Meta = styled.div`
   align-items: center;
+  user-select: none;
   display: flex;
   width: 90px;
 `;
@@ -85,6 +95,7 @@ export const Value = styled.span`
   font-size: ${({ theme }) => theme.font.aux.size.big};
   padding: 0.2rem 0.7rem;
   border-radius: 0.5rem;
+  user-select: none;
   margin-left: 3rem;
   color: white;
 `;
@@ -120,18 +131,37 @@ export const Star = styled(BsFillStarFill)`
 `;
 
 export const Popup = styled.div`
-  font-size: ${({ theme }) => theme.font.aux.size.big};
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  ${({ theme }) => theme.animations.fade()};
   border: 1px solid rgba(0, 0, 0, 0.2);
   background-color: white;
-  padding: 0.5rem 0.3rem;
-  right: calc(100% + 8px);
-  border-radius: 0.5rem;
-  align-items: center;
   position: absolute;
-  display: flex;
   z-index: 500;
+
+  ${({ type }) =>
+    type === "rating" &&
+    css`
+      font-size: ${({ theme }) => theme.font.aux.size.big};
+      ${({ theme }) =>
+        theme.animations.slide({ x: -100, y: 0 }, { x: -100, y: 0 })};
+      padding: 0.5rem 0.3rem;
+      right: calc(100% + 8px);
+      border-radius: 0.5rem;
+      align-items: center;
+      display: flex;
+    `};
+  ${({ type }) =>
+    type === "widget" &&
+    css`
+      ${({ theme }) =>
+        theme.animations.slide({ x: 100, y: 0 }, { x: 100, y: 0 })};
+      flex-direction: column;
+      left: calc(100% + 8px);
+      border-radius: 0.5rem;
+      align-items: center;
+      user-select: none;
+      display: flex;
+      width: 100px;
+    `};
 `;
 
 export const Close = styled(BsX)``;
@@ -148,6 +178,7 @@ export const Widget = styled.div`
   cursor: pointer;
   padding: 0.3rem;
   display: flex;
+  width: 15px;
 `;
 
 export const Arrow = styled(BsTriangleFill)`
@@ -155,10 +186,47 @@ export const Arrow = styled(BsTriangleFill)`
   font-size: 0.7rem;
 `;
 
-export const Name = styled.div``;
+export const Name = styled.span`
+  font-size: ${({ theme }) => theme.font.aux.weight.light};
+  color: rgba(0, 0, 0, 0.4);
+  padding: 0.2rem 0.5rem;
+  align-self: flex-start;
+  box-sizing: border-box;
+  white-space: nowrap;
+  width: 100%;
+`;
 
-export const Favorite = styled.div``;
+export const Favorite = styled.span`
+  box-sizing: border-box;
+  align-self: flex-end;
+  padding: 0.1rem 0.5rem;
+  width: 100%;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.main};
+    transition: 300ms;
+    color: white;
+  }
+`;
 
-export const Subtitle = styled.div``;
+export const Subtitle = styled.span`
+  font-size: ${({ theme }) => theme.font.aux.weight.light};
+  color: rgba(0, 0, 0, 0.4);
+  margin: 0.2rem 0 0.2rem;
+  padding: 0 0.5rem;
+  align-self: flex-start;
+  box-sizing: border-box;
+  white-space: nowrap;
+  width: 100%;
+`;
 
-export const Userlist = styled.div``;
+export const Userlist = styled.span`
+  box-sizing: border-box;
+  margin-bottom: 0.3rem;
+  padding: 0.1rem 0.5rem;
+  width: 100%;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.main};
+    transition: 300ms;
+    color: white;
+  }
+`;

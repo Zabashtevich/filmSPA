@@ -120,54 +120,6 @@ export function ListPosterSkeleton({ visible }) {
   );
 }
 
-export function ActorPosterSkeleton() {
-  return (
-    <ContentLoader
-      speed={2}
-      width={300}
-      height={800}
-      viewBox="0 0 300 800"
-      backgroundColor="#f3f3f3"
-      foregroundColor="#ecebeb"
-    >
-      <rect x="0" y="0" rx="4" ry="4" width="300" height="450" />
-      <rect x="75" y="480" rx="2" ry="2" width="150" height="25" />
-      <rect x="0" y="530" rx="2" ry="2" width="100" height="20" />
-      <rect x="0" y="560" rx="2" ry="2" width="50" height="10" />
-      <rect x="0" y="580" rx="2" ry="2" width="100" height="20" />
-      <rect x="0" y="610" rx="2" ry="2" width="50" height="10" />
-      <rect x="0" y="630" rx="2" ry="2" width="100" height="20" />
-      <rect x="0" y="660" rx="2" ry="2" width="50" height="10" />
-      <rect x="0" y="680" rx="2" ry="2" width="100" height="20" />
-      <rect x="0" y="710" rx="2" ry="2" width="50" height="10" />
-      <rect x="0" y="730" rx="2" ry="2" width="100" height="20" />
-      <rect x="0" y="760" rx="2" ry="2" width="50" height="10" />{" "}
-    </ContentLoader>
-  );
-}
-
-export function ActorPosterContentSkeleton() {
-  return (
-    <ContentLoader
-      speed={2}
-      width={800}
-      height={400}
-      viewBox="0 0 800 400"
-      backgroundColor="#f3f3f3"
-      foregroundColor="#ecebeb"
-    >
-      <rect x="0" y="-1" rx="4" ry="4" width="150" height="35" />
-      <rect x="0" y="125" rx="4" ry="4" width="100" height="25" />
-      <rect x="0" y="200" rx="4" ry="4" width="800" height="20" />
-      <rect x="0" y="230" rx="4" ry="4" width="750" height="20" />
-      <rect x="0" y="260" rx="4" ry="4" width="800" height="20" />
-      <rect x="0" y="290" rx="4" ry="4" width="750" height="20" />
-      <rect x="0" y="325" rx="4" ry="4" width="600" height="20" />
-      <rect x="0" y="358" rx="4" ry="4" width="550" height="20" />
-    </ContentLoader>
-  );
-}
-
 export function DetailsCollectionSkeleton() {
   return (
     <ContentLoader

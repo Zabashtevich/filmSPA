@@ -1,7 +1,7 @@
 import React from "react";
 
 import {
-  ActorPosterContainer,
+  ActorContainer,
   FooterContainer,
   HeaderContainer,
 } from "../containers";
@@ -10,7 +10,7 @@ export default function ActorPage() {
   return (
     <>
       <HeaderContainer />
-      <ActorPosterContainer />
+      <ActorContainer />
       <FooterContainer />
     </>
   );

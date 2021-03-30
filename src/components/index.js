@@ -2,7 +2,7 @@ export { default as Footer } from "./footer";
 export { default as AuthenticationForm } from "./auth-form";
 export { default as Modal } from "./modal";
 export { default as DetailsPoster } from "./details-poster";
-export { default as ActorPoster } from "./actor-poster";
+export { default as Actor } from "./actor";
 export { default as MovieList } from "./movie-list";
 export { default as DetailsPanel } from "./details-panel";
 export { default as Header } from "./header";

@@ -26,10 +26,10 @@ export default function ActorPosterContainer() {
     if (!dataLoading && !contentDelay) {
       setCreditsProps({
         array: sortMoviesByDate(data?.combined_credits?.cast) || [],
-        loading: false,
+        creditsLoading: false,
       });
     }
-    return () => setCreditsProps({ loading: true, array: null });
+    return () => setCreditsProps({ creditsLoading: true, array: null });
   }, [dataLoading, contentDelay]);
 
   return (

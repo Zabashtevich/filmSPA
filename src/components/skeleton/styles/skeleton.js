@@ -17,10 +17,6 @@ export const TrendingSkeletonWrapper = styled.div`
   margin: 0.6rem;
 `;
 
-export const CreditsWrapper = styled.div`
-  ${({ theme }) => theme.animations.fade(500, 500, 500)};
-`;
-
 export const GalleryPosterWrapper = styled.div`
   ${({ theme }) => theme.animations.fade(500, 0, 500)};
   display: inline-flex;

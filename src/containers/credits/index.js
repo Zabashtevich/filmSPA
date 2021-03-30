@@ -10,10 +10,12 @@ import {
   getYearFromString,
   range,
 } from "../../utils";
+import { CSSTransition } from "react-transition-group";
+import { CreditsSkeleton } from "../../components/skeleton";
 
 export default function CreditsContainer() {
   const [{ active }, setPaginProps] = usePaginContext();
-  const [{ array, loading }] = useCreditsContext();
+  const [{ array, creditsLoading }] = useCreditsContext();
   const { userDataLoading } = useSelector((state) => state.userData);
 
   useEffect(() => {
@@ -24,14 +26,37 @@ export default function CreditsContainer() {
         loading: false,
       }));
     }
-  }, [loading, array]);
+  }, [creditsLoading, array]);
+
+  const loading = creditsLoading || userDataLoading;
 
   return (
     <Credits>
+      {loading &&
+        range(1, 25).map((item) => (
+          <CSSTransition
+            classNames={"fade"}
+            timeout={{ enter: 500, exit: 0, appear: 0 }}
+            mountOnEnter
+            unmountOnExit
+            key={item}
+          >
+            <CreditsSkeleton />
+          </CSSTransition>
+        ))}
       {!loading &&
-        !userDataLoading &&
         array.slice(active * 50 - 50, active * 50).map((item, index) => {
-          return <CreditsItem key={item.id} item={item} index={index} />;
+          return (
+            <CSSTransition
+              key={item.id}
+              classNames={"fade"}
+              timeout={{ enter: 500, exit: 0, appear: 0 }}
+              mountOnEnter
+              unmountOnExit
+            >
+              <CreditsItem item={item} index={index} />
+            </CSSTransition>
+          );
         })}
       <PaginContainer />
     </Credits>

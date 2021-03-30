@@ -3,7 +3,6 @@ import { CSSTransition } from "react-transition-group";
 
 import {
   ListPosterWrapper,
-  CreditsWrapper,
   PopularSkeletonWrapper,
   TrendingSkeletonWrapper,
   GalleryPosterWrapper,
@@ -237,41 +236,6 @@ export function AccountPosterSkeleton() {
   );
 }
 
-export function CreditsSkeleton({ visible, ...rest }) {
-  return (
-    <CSSTransition
-      in={visible}
-      appear={true}
-      mountOnEnter
-      unmountOnExit
-      timeout={500}
-      classNames="fade"
-      {...rest}
-    >
-      <CreditsWrapper>
-        <ContentLoader
-          speed={2}
-          width={800}
-          height={50}
-          viewBox="0 0 800 50"
-          backgroundColor="#f3f3f3"
-          foregroundColor="#ecebeb"
-        >
-          <rect x="8" y="17" rx="4" ry="4" width="40" height="16" />
-          <circle cx="87" cy="24" r="7" />
-          <rect x="136" y="10" rx="4" ry="4" width="170" height="30" />
-          <rect x="338" y="15" rx="4" ry="4" width="70" height="20" />
-          <rect x="488" y="9" rx="4" ry="4" width="38" height="32" />
-          <rect x="760" y="9" rx="4" ry="4" width="32" height="32" />
-          <rect x="760" y="59" rx="4" ry="4" width="32" height="32" />
-          <rect x="761" y="109" rx="4" ry="4" width="32" height="32" />
-          <rect x="760" y="159" rx="4" ry="4" width="32" height="32" />
-        </ContentLoader>
-      </CreditsWrapper>
-    </CSSTransition>
-  );
-}
-
 export default function MediaSkeleton() {
   return (
     <ContentLoader
@@ -370,6 +334,26 @@ export function ReviewSkeleton() {
       <rect x="36" y="384" rx="0" ry="0" width="600" height="12" />
       <rect x="36" y="520" rx="0" ry="0" width="600" height="12" />
       <rect x="36" y="536" rx="0" ry="0" width="600" height="12" />
+    </ContentLoader>
+  );
+}
+
+export function CreditsSkeleton() {
+  return (
+    <ContentLoader
+      speed={2}
+      width={900}
+      height={50}
+      viewBox="0 0 900 50"
+      backgroundColor="#f3f3f3"
+      foregroundColor="#ecebeb"
+    >
+      <rect x="15" y="15" rx="4" ry="4" width="20" height="20" />
+      <rect x="65" y="17" rx="4" ry="4" width="40" height="16" />
+      <rect x="153" y="16" rx="4" ry="4" width="300" height="18" />
+      <rect x="517" y="14" rx="4" ry="4" width="90" height="20" />
+      <rect x="655" y="7" rx="4" ry="4" width="36" height="36" />
+      <rect x="820" y="10" rx="4" ry="4" width="60" height="30" />
     </ContentLoader>
   );
 }

@@ -20,6 +20,7 @@ export const Number = styled.span`
 `;
 
 export const Item = styled.div`
+  ${({ theme }) => theme.animations.fade(500, 0, 500)};
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 0.3rem;
@@ -48,6 +49,7 @@ export const Title = styled(ReactRouterLink)`
   text-decoration: none;
   white-space: nowrap;
   margin-right: 4rem;
+  overflow: hidden;
   width: 300px;
   &:hover {
     text-decoration: underline;

@@ -1,5 +1,5 @@
 import React from "react";
-import { CSSTransition } from "react-transition-group";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import {
   Container,
@@ -25,7 +25,11 @@ import {
 } from "./styles/credits";
 
 export default function Credits({ children, ...rest }) {
-  return <Container {...rest}>{children}</Container>;
+  return (
+    <TransitionGroup component={Container} {...rest}>
+      {children}
+    </TransitionGroup>
+  );
 }
 
 Credits.Item = function CreditsItem({ children, ...rest }) {

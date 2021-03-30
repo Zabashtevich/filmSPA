@@ -2,10 +2,9 @@ import React from "react";
 
 import {
   Container,
-  Number,
   Item,
   Year,
-  Devider,
+  Number,
   Info,
   Title,
   Meta,
@@ -29,20 +28,16 @@ export default function Credits({ children, ...rest }) {
   return <Container {...rest}>{children}</Container>;
 }
 
-Credits.Number = function CreditsNumber({ children, ...rest }) {
-  return <Number {...rest}>{children}</Number>;
-};
-
 Credits.Item = function CreditsItem({ children, ...rest }) {
   return <Item {...rest}>{children}</Item>;
 };
 
-Credits.Year = function CreditsYear({ children, ...rest }) {
-  return <Year {...rest}>{children}</Year>;
+Credits.Number = function CreditsNumber({ children, ...rest }) {
+  return <Number {...rest}>{children}</Number>;
 };
 
-Credits.Devider = function CreditsDevider({ ...rest }) {
-  return <Devider {...rest} />;
+Credits.Year = function CreditsYear({ children, ...rest }) {
+  return <Year {...rest}>{children}</Year>;
 };
 
 Credits.Info = function CreditsInfo({ children, ...rest }) {

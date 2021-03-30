@@ -1,22 +1,29 @@
 import styled from "styled-components/macro";
 
+import { BsFillStarFill } from "react-icons/bs";
+
 export const Container = styled.div`
   flex-direction: column;
-  max-width: 900px;
+  margin-top: 2rem;
   display: flex;
-`;
-
-export const Item = styled.div`
-  display: flex;
+  width: 900px;
 `;
 
 export const Number = styled.span`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
+  color: rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 50px;
+`;
+
+export const Item = styled.div`
+  align-items: center;
+  display: flex;
+  height: 50px;
+  width: 100%;
 `;
 
 export const Year = styled.span``;
-
-export const Devider = styled.div``;
 
 export const Info = styled.div``;
 

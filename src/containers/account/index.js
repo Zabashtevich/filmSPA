@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 import { Account } from "../../components";
-import { FilterContainer } from "../";
+import { CreditsContainer, FilterContainer } from "../";
 
 export default function AccountContainer() {
   const { profile, profileLoading } = useSelector((state) => state.userProfile);
@@ -18,6 +18,7 @@ export default function AccountContainer() {
           <Account.Content>
             <Account.Title>YOUR PROFILE ACTIVITY</Account.Title>
             <FilterContainer />
+            <CreditsContainer />
           </Account.Content>
         </>
       )}

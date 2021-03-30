@@ -1,11 +1,15 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 
 import { range } from "./../../utils";
 import { Filter } from "../../components";
+import { useCreditsContext } from "../../context";
 
 export default function FilterContainer() {
-  const { userDataLoading, userlists } = useSelector((state) => state.userData);
+  const [, setCreditsProps] = useCreditsContext();
+  const { userDataLoading, userlists, ratedMovies } = useSelector(
+    (state) => state.userData,
+  );
 
   const [{ sortBy, listType, userlist, start, end }, setState] = useState({
     sortBy: "date",
@@ -26,6 +30,12 @@ export default function FilterContainer() {
     }),
     [start],
   );
+
+  useEffect(() => {
+    if (!userDataLoading) {
+      setCreditsProps({ loading: false, array: ratedMovies });
+    }
+  }, [userDataLoading]);
 
   return (
     <Filter>

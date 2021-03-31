@@ -309,3 +309,29 @@ export function CreditsSkeleton() {
     </ContentLoader>
   );
 }
+
+export function ActorColumnSkeleton() {
+  return (
+    <ContentLoader
+      speed={2}
+      width={300}
+      height={750}
+      viewBox="0 0 300 750"
+      backgroundColor="#f3f3f3"
+      foregroundColor="#ecebeb"
+    >
+      <rect x="0" y="0" rx="4" ry="4" width="300" height="450" />
+      <rect x="-1" y="472" rx="3" ry="3" width="230" height="22" />
+      <rect x="0" y="512" rx="4" ry="4" width="140" height="16" />
+      <rect x="0" y="534" rx="4" ry="4" width="120" height="12" />
+      <rect x="0" y="560" rx="4" ry="4" width="140" height="16" />
+      <rect x="0" y="582" rx="4" ry="4" width="120" height="12" />
+      <rect x="0" y="610" rx="4" ry="4" width="140" height="16" />
+      <rect x="0" y="632" rx="4" ry="4" width="120" height="12" />
+      <rect x="0" y="660" rx="4" ry="4" width="140" height="16" />
+      <rect x="0" y="682" rx="4" ry="4" width="120" height="12" />
+      <rect x="0" y="710" rx="4" ry="4" width="140" height="16" />
+      <rect x="0" y="732" rx="4" ry="4" width="120" height="12" />
+    </ContentLoader>
+  );
+}

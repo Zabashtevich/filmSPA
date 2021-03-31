@@ -1,9 +1,12 @@
 import React from "react";
+
+import { CSSTransition } from "react-transition-group";
 import { w300miniature } from "../../constants/constants";
 
 import {
   Container,
   Column,
+  Wrapper,
   Content,
   Poster,
   Subtitle,
@@ -20,6 +23,20 @@ export default function Actor({ children, ...rest }) {
 
 Actor.Column = function ActorColumn({ children, ...rest }) {
   return <Column {...rest}>{children}</Column>;
+};
+
+Actor.Wrapper = function ActorWrapper({ children, ...rest }) {
+  return (
+    <CSSTransition
+      in={true}
+      classNames="fade"
+      timeout={1000}
+      appear={true}
+      mountOnEnter
+    >
+      <Wrapper {...rest}>{children}</Wrapper>
+    </CSSTransition>
+  );
 };
 
 Actor.Content = function ActorContent({ children, ...rest }) {

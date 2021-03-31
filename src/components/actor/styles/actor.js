@@ -14,6 +14,10 @@ export const Column = styled.div`
   display: flex;
 `;
 
+export const Wrapper = styled.div`
+  ${({ theme }) => theme.animations.fade(1000, 1000, 1000)};
+`;
+
 export const Content = styled.div`
   flex-direction: column;
   max-width: 900px;

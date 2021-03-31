@@ -19,7 +19,7 @@ export default function CreditsContainer() {
   const { userDataLoading } = useSelector((state) => state.userData);
 
   useEffect(() => {
-    if (!loading) {
+    if (!creditsLoading) {
       setPaginProps((prev) => ({
         ...prev,
         amount: Math.ceil(array.length / 50),

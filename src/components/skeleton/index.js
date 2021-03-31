@@ -341,8 +341,8 @@ export function ActorContentSkeleton() {
     <ContentLoader
       speed={2}
       width={900}
-      height={350}
-      viewBox="0 0 900 350"
+      height={344}
+      viewBox="0 0 900 344"
       backgroundColor="#f3f3f3"
       foregroundColor="#ecebeb"
     >
@@ -356,7 +356,6 @@ export function ActorContentSkeleton() {
       <rect x="0" y="270" rx="4" ry="4" width="800" height="14" />
       <rect x="0" y="290" rx="4" ry="4" width="720" height="14" />
       <rect x="0" y="310" rx="4" ry="4" width="890" height="14" />
-      <rect x="0" y="330" rx="4" ry="4" width="350" height="14" />
     </ContentLoader>
   );
 }

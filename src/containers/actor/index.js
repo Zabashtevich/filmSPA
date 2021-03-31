@@ -3,14 +3,18 @@ import { useParams } from "react-router";
 
 import { useFetch } from "./../../hooks";
 import { Actor } from "../../components";
-import { ActorColumnSkeleton } from "./../../components/skeleton";
+import {
+  ActorColumnSkeleton,
+  ActorContentSkeleton,
+} from "./../../components/skeleton";
 import ActorPosterColumn from "./items/poster";
+import ActorContent from "./items/content";
 
 export default function ActorContainer() {
   const { slug } = useParams();
 
   const [data, dataLoading] = useFetch("person", slug);
-  console.log(data);
+
   return (
     <Actor>
       <Actor.Column>
@@ -18,9 +22,8 @@ export default function ActorContainer() {
         {!dataLoading && <ActorPosterColumn data={data} />}
       </Actor.Column>
       <Actor.Content>
-        {/* <Actor.Title>{data.name}</Actor.Title>
-        <Actor.Subtitle>Overview</Actor.Subtitle>
-        <Actor.Overview>{data.biography}</Actor.Overview> */}
+        {dataLoading && <ActorContentSkeleton />}
+        {!dataLoading && <ActorContent data={data} />}
       </Actor.Content>
     </Actor>
   );

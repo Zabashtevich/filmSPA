@@ -16,12 +16,12 @@ export const Column = styled.div`
 
 export const Wrapper = styled.div`
   ${({ theme }) => theme.animations.fade(1000, 1000, 1000)};
+  flex-direction: column;
+  display: flex;
 `;
 
 export const Content = styled.div`
-  flex-direction: column;
   max-width: 900px;
-  display: flex;
   width: 100%;
 `;
 

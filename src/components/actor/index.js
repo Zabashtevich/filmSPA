@@ -1,8 +1,10 @@
 import React from "react";
+import { w300miniature } from "../../constants/constants";
 
 import {
   Container,
   Column,
+  Content,
   Poster,
   Subtitle,
   Row,
@@ -20,8 +22,12 @@ Actor.Column = function ActorColumn({ children, ...rest }) {
   return <Column {...rest}>{children}</Column>;
 };
 
-Actor.Poster = function ActorPoster({ ...rest }) {
-  return <Poster {...rest} />;
+Actor.Content = function ActorContent({ children, ...rest }) {
+  return <Content {...rest}>{children}</Content>;
+};
+
+Actor.Poster = function ActorPoster({ slug, ...rest }) {
+  return <Poster {...rest} src={`${w300miniature + slug}`} />;
 };
 
 Actor.Subtitle = function ActorSubtitle({ children, ...rest }) {

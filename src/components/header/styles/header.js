@@ -15,8 +15,9 @@ export const Container = styled.div`
   display: flex;
   z-index: 500;
   height: 75px;
-  width: 100%;
   color: white;
+  width: 100%;
+  top: 0;
 `;
 
 export const Logo = styled.span`

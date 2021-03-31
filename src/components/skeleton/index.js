@@ -359,3 +359,19 @@ export function ActorContentSkeleton() {
     </ContentLoader>
   );
 }
+
+export function PaginSkeleton() {
+  return (
+    <ContentLoader
+      speed={2}
+      width={35}
+      height={35}
+      viewBox="0 0 35 35"
+      backgroundColor="#f3f3f3"
+      foregroundColor="#ecebeb"
+      style={{ margin: "0 0.3rem" }}
+    >
+      <rect x="0" y="0" rx="4" ry="4" width="35" height="35" />
+    </ContentLoader>
+  );
+}

@@ -61,13 +61,6 @@ export const Value = styled.span`
       color: white;
     `};
 
-  ${({ disabled }) =>
-    disabled &&
-    css`
-      background-color: gray;
-      pointer-events: none;
-    `};
-
   &:hover {
     background-color: ${({ theme }) => theme.colors.main};
     transition: 300ms;

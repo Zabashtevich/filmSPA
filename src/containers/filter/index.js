@@ -9,45 +9,23 @@ import { FilterSkeleton } from "../../components/skeleton";
 
 export default function FilterContainer() {
   const [, setCreditsProps] = useCreditsContext();
-  const {
-    userDataLoading,
-    userlists,
-    ratedMovies,
-    favoritedMovies,
-  } = useSelector((state) => state.userData);
+  const { userDataLoading, ratedMovies } = useSelector(
+    (state) => state.userData,
+  );
 
   const [state, setState] = useState({
     sortBy: "date",
     itemType: null,
-    listType: "voted",
     userlist: null,
     start: "all",
     end: "all",
     touched: false,
   });
 
-  const { sortBy, itemType, listType, userlist, start, end, touched } = state;
+  const { sortBy, itemType, userlist, start, end, touched } = state;
 
   function onFilterChange(category, value) {
     setState((prev) => ({ ...prev, [category]: value, touched: true }));
-  }
-
-  function onListTypeChange(category, value) {
-    if (value === "userlist") {
-      setState((prev) => ({
-        ...prev,
-        [category]: value,
-        userlist: userlists[0].id,
-        touched: true,
-      }));
-    } else {
-      setState((prev) => ({
-        ...prev,
-        [category]: value,
-        userlist: null,
-        touched: true,
-      }));
-    }
   }
 
   const offset = useMemo(
@@ -66,19 +44,12 @@ export default function FilterContainer() {
 
   useEffect(() => {
     if (touched) {
-      const array =
-        (listType === "userlist" &&
-          userlists.find((item) => item.id === userlist)) ||
-        (listType === "favorite" && favoritedMovies) ||
-        (listType === "voted" && ratedMovies);
       setCreditsProps({
         loading: false,
-        array: getFiltredArray(array, state),
+        array: getFiltredArray(ratedMovies, state),
       });
     }
-  }, [sortBy, itemType, listType, userlist, start, end, touched]);
-
-  const valueDisabled = listType !== "userlist" && 1;
+  }, [sortBy, itemType, userlist, start, end, touched]);
 
   return (
     <Filter>
@@ -125,40 +96,6 @@ export default function FilterContainer() {
                       className={`${itemType === item.value ? "selected" : ""}`}
                     >
                       {item.name}
-                    </Filter.Value>
-                  ))}
-                </Filter.Row>
-                <Filter.Row>
-                  <Filter.Name>List type:</Filter.Name>
-                  {[
-                    { name: "VOTED", value: "voted" },
-                    { name: "USERLIST", value: "userlist" },
-                    { name: "FAVORITE", value: "favorite" },
-                  ].map((item) => (
-                    <Filter.Value
-                      key={item.value}
-                      onClick={() => onListTypeChange("listType", item.value)}
-                      selected={listType === item.value && 1}
-                      className={`${listType === item.value ? "selected" : ""}`}
-                      disabled={
-                        item.value === "userlist" && userlists.length === 0 && 1
-                      }
-                    >
-                      {item.name}
-                    </Filter.Value>
-                  ))}
-                </Filter.Row>
-                <Filter.Row>
-                  <Filter.Name>Your list:</Filter.Name>
-                  {userlists.map((item) => (
-                    <Filter.Value
-                      key={item.id}
-                      onClick={() => onFilterChange("userlist", item.id)}
-                      selected={userlist === item.id && 1}
-                      className={`${userlist === item.value ? "selected" : ""}`}
-                      disabled={valueDisabled}
-                    >
-                      {item.name.toUpperCase()}
                     </Filter.Value>
                   ))}
                 </Filter.Row>

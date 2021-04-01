@@ -54,4 +54,18 @@ describe("Pagin container", () => {
     userEvent.click(getByText("4"));
     expect(setPaginState).toHaveBeenCalledTimes(3);
   });
+
+  it("show dummy shortcuts correctly rendering when amount of items > 10", () => {
+    const afterLoadingState = { loading: false, amount: 100, active: 50 };
+
+    const { getByText, getByTestId } = renderPaginContainer(afterLoadingState);
+
+    range(46, 10).map((item) => {
+      expect(getByText(`${item}`)).toBeTruthy();
+    });
+    expect(getByTestId("dummy-right")).toBeTruthy();
+    expect(getByTestId("dummy-right").textContent).toBe("100");
+    expect(getByTestId("dummy-left")).toBeTruthy();
+    expect(getByTestId("dummy-left").textContent).toBe("1");
+  });
 });

@@ -45,6 +45,7 @@ function DummyLeft({ setPaginState }) {
   return (
     <>
       <Pagin.Item
+        data-testid="dummy-left"
         onClick={() => setPaginState((prev) => ({ ...prev, active: 1 }))}
       >
         1
@@ -59,6 +60,7 @@ function DummyRight({ amount, setPaginState }) {
     <>
       <Pagin.Dummy>...</Pagin.Dummy>
       <Pagin.Item
+        data-testid="dummy-right"
         onClick={() => setPaginState((prev) => ({ ...prev, active: amount }))}
       >
         {amount}

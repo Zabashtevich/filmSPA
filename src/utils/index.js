@@ -18,10 +18,11 @@ export { default as getPersonRole } from "./details/get-person-role";
 export { default as validateImage } from "./auth/validate-image";
 export { default as getPreviewSrc } from "./auth/get-preview-src";
 
-export { default as getGalleryMenuItems } from "./gallery/get-gallery-menu-items";
 export { default as getSelectedArray } from "./gallery/get-selected-array";
 
 export { default as getOffsetEnd } from "./pagin/get-offset-end";
 export { default as getOffsetStart } from "./pagin/get-offset-start";
 
 export { default as validateAvatarUrl } from "./review/validate-avatar-url";
+
+export { default as getFiltredArray } from "./filter/getFiltredArray";

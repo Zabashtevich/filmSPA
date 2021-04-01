@@ -2,31 +2,34 @@ import React, { useEffect, useMemo, useState } from "react";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 import { useSelector } from "react-redux";
 
-import { range } from "./../../utils";
+import { getFiltredArray, range } from "./../../utils";
 import { Filter } from "../../components";
 import { useCreditsContext } from "../../context";
 import { FilterSkeleton } from "../../components/skeleton";
 
 export default function FilterContainer() {
   const [, setCreditsProps] = useCreditsContext();
-  const { userDataLoading, userlists, ratedMovies } = useSelector(
-    (state) => state.userData,
-  );
+  const {
+    userDataLoading,
+    userlists,
+    ratedMovies,
+    favoritedMovies,
+  } = useSelector((state) => state.userData);
 
-  const [
-    { sortBy, itemType, listType, userlist, start, end },
-    setState,
-  ] = useState({
+  const [state, setState] = useState({
     sortBy: "date",
-    itemType: "movie",
+    itemType: null,
     listType: "voted",
     userlist: null,
     start: "all",
     end: "all",
+    touched: false,
   });
 
+  const { sortBy, itemType, listType, userlist, start, end, touched } = state;
+
   function onFilterChange(category, value) {
-    setState((prev) => ({ ...prev, [category]: value }));
+    setState((prev) => ({ ...prev, [category]: value, touched: true }));
   }
 
   function onListTypeChange(category, value) {
@@ -35,9 +38,15 @@ export default function FilterContainer() {
         ...prev,
         [category]: value,
         userlist: userlists[0].id,
+        touched: true,
       }));
     } else {
-      setState((prev) => ({ ...prev, [category]: value, userlist: null }));
+      setState((prev) => ({
+        ...prev,
+        [category]: value,
+        userlist: null,
+        touched: true,
+      }));
     }
   }
 
@@ -50,10 +59,24 @@ export default function FilterContainer() {
   );
 
   useEffect(() => {
-    if (!userDataLoading) {
+    if (!userDataLoading && !touched) {
       setCreditsProps({ loading: false, array: ratedMovies });
     }
   }, [userDataLoading]);
+
+  useEffect(() => {
+    if (touched) {
+      const array =
+        (listType === "userlist" &&
+          userlists.find((item) => item.id === userlist)) ||
+        (listType === "favorite" && favoritedMovies) ||
+        (listType === "voted" && ratedMovies);
+      setCreditsProps({
+        loading: false,
+        array: getFiltredArray(array, state),
+      });
+    }
+  }, [sortBy, itemType, listType, userlist, start, end, touched]);
 
   const valueDisabled = listType !== "userlist" && 1;
 
@@ -83,6 +106,7 @@ export default function FilterContainer() {
                       key={item.value}
                       onClick={() => onFilterChange("sortBy", item.value)}
                       selected={sortBy === item.value && 1}
+                      className={`${sortBy === item.value ? "selected" : ""}`}
                     >
                       {item.name}
                     </Filter.Value>
@@ -97,7 +121,8 @@ export default function FilterContainer() {
                     <Filter.Value
                       key={item.value}
                       onClick={() => onFilterChange("itemType", item.value)}
-                      selected={itemType === item.value && 1}
+                      selected={itemType === item.value && "selected"}
+                      className={`${itemType === item.value ? "selected" : ""}`}
                     >
                       {item.name}
                     </Filter.Value>
@@ -114,6 +139,7 @@ export default function FilterContainer() {
                       key={item.value}
                       onClick={() => onListTypeChange("listType", item.value)}
                       selected={listType === item.value && 1}
+                      className={`${listType === item.value ? "selected" : ""}`}
                       disabled={
                         item.value === "userlist" && userlists.length === 0 && 1
                       }
@@ -129,6 +155,7 @@ export default function FilterContainer() {
                       key={item.id}
                       onClick={() => onFilterChange("userlist", item.id)}
                       selected={userlist === item.id && 1}
+                      className={`${userlist === item.value ? "selected" : ""}`}
                       disabled={valueDisabled}
                     >
                       {item.name.toUpperCase()}

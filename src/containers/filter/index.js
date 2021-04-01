@@ -16,13 +16,11 @@ export default function FilterContainer() {
   const [state, setState] = useState({
     sortBy: "date",
     itemType: null,
-    userlist: null,
     start: "all",
     end: "all",
-    touched: false,
   });
 
-  const { sortBy, itemType, userlist, start, end, touched } = state;
+  const { sortBy, itemType, start } = state;
 
   function onFilterChange(category, value) {
     setState((prev) => ({ ...prev, [category]: value, touched: true }));
@@ -37,19 +35,13 @@ export default function FilterContainer() {
   );
 
   useEffect(() => {
-    if (!userDataLoading && !touched) {
-      setCreditsProps({ loading: false, array: ratedMovies });
-    }
-  }, [userDataLoading]);
-
-  useEffect(() => {
-    if (touched) {
+    if (!userDataLoading) {
       setCreditsProps({
         loading: false,
         array: getFiltredArray(ratedMovies, state),
       });
     }
-  }, [sortBy, itemType, userlist, start, end, touched]);
+  }, [userDataLoading, state]);
 
   return (
     <Filter>
@@ -70,8 +62,8 @@ export default function FilterContainer() {
                     { name: "DATE", value: "date" },
                     { name: "POPULARITY", value: "popularity" },
                     { name: "YOUR VOTE VALUE", value: "yourVoteValue" },
-                    { name: "AMOUNT OF VOTES", value: "amountOfVotes" },
-                    { name: "VOTE AVERAGES", value: "voteAverages" },
+                    { name: "AMOUNT OF VOTES", value: "voteCount" },
+                    { name: "VOTE AVERAGE", value: "voteAverage" },
                   ].map((item) => (
                     <Filter.Value
                       key={item.value}
@@ -113,12 +105,10 @@ export default function FilterContainer() {
                     ))}
                   </Filter.Select>
                   <Filter.Subtitle>to</Filter.Subtitle>
-                  <Filter.Select>
-                    <Filter.Option
-                      onChange={(e) => onFilterChange("end", e.target.value)}
-                    >
-                      ALL
-                    </Filter.Option>
+                  <Filter.Select
+                    onChange={(e) => onFilterChange("end", e.target.value)}
+                  >
+                    <Filter.Option>ALL</Filter.Option>
                     {range(offset.date, offset.amount).map((item) => (
                       <Filter.Option key={item} value={item}>
                         {item}

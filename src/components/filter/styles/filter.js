@@ -48,9 +48,11 @@ export const Value = styled.span`
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   padding: 0.3rem 0.45rem;
+  transition: 300ms;
   margin: 0 0.3rem;
   cursor: pointer;
   color: black;
+
   ${({ selected }) =>
     selected &&
     css`
@@ -58,6 +60,14 @@ export const Value = styled.span`
       transition: 300ms;
       color: white;
     `};
+
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      background-color: gray;
+      pointer-events: none;
+    `};
+
   &:hover {
     background-color: ${({ theme }) => theme.colors.main};
     transition: 300ms;

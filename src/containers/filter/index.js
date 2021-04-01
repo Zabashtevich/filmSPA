@@ -13,8 +13,12 @@ export default function FilterContainer() {
     (state) => state.userData,
   );
 
-  const [{ sortBy, listType, userlist, start, end }, setState] = useState({
+  const [
+    { sortBy, itemType, listType, userlist, start, end },
+    setState,
+  ] = useState({
     sortBy: "date",
+    itemType: "movie",
     listType: "voted",
     userlist: null,
     start: "all",
@@ -23,6 +27,18 @@ export default function FilterContainer() {
 
   function onFilterChange(category, value) {
     setState((prev) => ({ ...prev, [category]: value }));
+  }
+
+  function onListTypeChange(category, value) {
+    if (value === "userlist") {
+      setState((prev) => ({
+        ...prev,
+        [category]: value,
+        userlist: userlists[0].id,
+      }));
+    } else {
+      setState((prev) => ({ ...prev, [category]: value, userlist: null }));
+    }
   }
 
   const offset = useMemo(
@@ -39,6 +55,8 @@ export default function FilterContainer() {
     }
   }, [userDataLoading]);
 
+  const valueDisabled = listType !== "userlist" && 1;
+
   return (
     <Filter>
       <Filter.Title>Customize your activity list</Filter.Title>
@@ -54,27 +72,65 @@ export default function FilterContainer() {
               <Filter.Wrapper>
                 <Filter.Row>
                   <Filter.Name>Sort by:</Filter.Name>
-                  <Filter.Value>DATE</Filter.Value>
-                  <Filter.Value>POPULARITY</Filter.Value>
-                  <Filter.Value>YOUR VOTE VALUE</Filter.Value>
-                  <Filter.Value>AMOUNT OF VOTES</Filter.Value>
-                  <Filter.Value>VOTE AVERAGE</Filter.Value>
+                  {[
+                    { name: "DATE", value: "date" },
+                    { name: "POPULARITY", value: "popularity" },
+                    { name: "YOUR VOTE VALUE", value: "yourVoteValue" },
+                    { name: "AMOUNT OF VOTES", value: "amountOfVotes" },
+                    { name: "VOTE AVERAGES", value: "voteAverages" },
+                  ].map((item) => (
+                    <Filter.Value
+                      key={item.value}
+                      onClick={() => onFilterChange("sortBy", item.value)}
+                      selected={sortBy === item.value && 1}
+                    >
+                      {item.name}
+                    </Filter.Value>
+                  ))}
                 </Filter.Row>
                 <Filter.Row>
                   <Filter.Name>Item type:</Filter.Name>
-                  <Filter.Value>MOVIE</Filter.Value>
-                  <Filter.Value>TV</Filter.Value>
+                  {[
+                    { name: "MOVIE", value: "movie" },
+                    { name: "TV", value: "tv" },
+                  ].map((item) => (
+                    <Filter.Value
+                      key={item.value}
+                      onClick={() => onFilterChange("itemType", item.value)}
+                      selected={itemType === item.value && 1}
+                    >
+                      {item.name}
+                    </Filter.Value>
+                  ))}
                 </Filter.Row>
                 <Filter.Row>
                   <Filter.Name>List type:</Filter.Name>
-                  <Filter.Value>VOTED</Filter.Value>
-                  <Filter.Value>USERLIST</Filter.Value>
-                  <Filter.Value>FAVORITE</Filter.Value>
+                  {[
+                    { name: "VOTED", value: "voted" },
+                    { name: "USERLIST", value: "userlist" },
+                    { name: "FAVORITE", value: "favorite" },
+                  ].map((item) => (
+                    <Filter.Value
+                      key={item.value}
+                      onClick={() => onListTypeChange("listType", item.value)}
+                      selected={listType === item.value && 1}
+                      disabled={
+                        item.value === "userlist" && userlists.length === 0 && 1
+                      }
+                    >
+                      {item.name}
+                    </Filter.Value>
+                  ))}
                 </Filter.Row>
                 <Filter.Row>
                   <Filter.Name>Your list:</Filter.Name>
                   {userlists.map((item) => (
-                    <Filter.Value key={item.id}>
+                    <Filter.Value
+                      key={item.id}
+                      onClick={() => onFilterChange("userlist", item.id)}
+                      selected={userlist === item.id && 1}
+                      disabled={valueDisabled}
+                    >
                       {item.name.toUpperCase()}
                     </Filter.Value>
                   ))}

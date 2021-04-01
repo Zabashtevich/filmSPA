@@ -35,10 +35,19 @@ export default function renderWithRedux(
 
 describe("Account container", () => {
   it("render correctly while loading", () => {
+    const loadingState = {
+      profile: null,
+      profileLoading: true,
+    };
+
     const { getByTestId, queryByTestId, queryByAltText } = renderWithRedux(
       <AccountContainer />,
       {
-        initialState: { profile: null, profileLoading: true },
+        initialState: {
+          userProfile: {
+            ...loadingState,
+          },
+        },
       },
     );
     expect(getByTestId("account-container")).toBeTruthy();

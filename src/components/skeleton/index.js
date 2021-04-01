@@ -370,6 +370,7 @@ export function PaginSkeleton() {
       backgroundColor="#f3f3f3"
       foregroundColor="#ecebeb"
       style={{ margin: "0 0.3rem" }}
+      data-testid="pagin-skeleton"
     >
       <rect x="0" y="0" rx="4" ry="4" width="35" height="35" />
     </ContentLoader>

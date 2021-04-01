@@ -1,11 +1,13 @@
-import { AccountContainer } from "../../../containers";
-import userProfile from "../../../reducers/user-profile";
-import userData from "../../../reducers/user-data";
-import { render, screen } from "@testing-library/react";
+import { AccountContainer } from "../../containers";
+import userProfile from "../../reducers/user-profile";
+import userData from "../../reducers/user-data";
+import { render } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { combineReducers, createStore } from "redux";
 import { ThemeProvider } from "styled-components";
-import theme from "../../../theme/theme";
+import theme from "../../theme/theme";
+import CreditsContextProvider from "../../context/credits-context/context";
+import PaginContextProvider from "../../context/pagin-context/context";
 
 export default function renderWithRedux(
   component,
@@ -20,7 +22,11 @@ export default function renderWithRedux(
   return {
     ...render(
       <ThemeProvider theme={theme}>
-        <Provider store={store}>{component}</Provider>
+        <CreditsContextProvider>
+          <PaginContextProvider>
+            <Provider store={store}>{component}</Provider>
+          </PaginContextProvider>
+        </CreditsContextProvider>
       </ThemeProvider>,
     ),
     store,
@@ -53,9 +59,8 @@ describe("Account container", () => {
     const {
       getByText,
       getByTestId,
-      getByRole,
+      getAllByRole,
       getByAltText,
-      container,
     } = renderWithRedux(<AccountContainer />, {
       initialState: {
         userProfile: {
@@ -65,11 +70,10 @@ describe("Account container", () => {
     });
     expect(getByTestId("account-container")).toBeTruthy();
     expect(getByText("Zabashtevich")).toBeTruthy();
-    expect(getByRole("img")).toBeTruthy();
+    expect(getAllByRole("img")).toBeTruthy();
     expect(getByAltText("profile image").src).toContain(
       "https://firebasestorage.googleapis.com/v0/b/tmdb-api-63318.appspot.com/o/unnamed.jpg?alt=media&token=b405c3ee-ba51-4ffd-bc4f-f1cf91e544ae",
     );
     expect(getByText(/your profile activity/i)).toBeTruthy();
-    expect(container.firstChild).toMatchSnapshot();
   });
 });

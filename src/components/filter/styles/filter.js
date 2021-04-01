@@ -22,6 +22,10 @@ export const Wrapper = styled.div`
   width: 100%;
 `;
 
+export const Inner = styled.div`
+  ${({ theme }) => theme.animations.fade()};
+`;
+
 export const Row = styled.div`
   font-size: 1.05rem;
   align-items: center;

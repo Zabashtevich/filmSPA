@@ -4,6 +4,7 @@ import {
   Container,
   Title,
   Wrapper,
+  Inner,
   Row,
   Name,
   Value,
@@ -22,6 +23,10 @@ Filter.Title = function FilterTitle({ children, ...rest }) {
 
 Filter.Wrapper = function FilterWrapper({ children, ...rest }) {
   return <Wrapper {...rest}>{children}</Wrapper>;
+};
+
+Filter.Inner = function FilterInner({ children, ...rest }) {
+  return <Inner {...rest}>{children}</Inner>;
 };
 
 Filter.Row = function FilterRow({ children, ...rest }) {

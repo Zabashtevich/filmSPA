@@ -376,3 +376,38 @@ export function PaginSkeleton() {
     </ContentLoader>
   );
 }
+
+export function FilterSkeleton() {
+  return (
+    <ContentLoader
+      speed={2}
+      width={702}
+      height={230}
+      viewBox="0 0 702 230"
+      backgroundColor="#f3f3f3"
+      foregroundColor="#ecebeb"
+    >
+      <rect x="0" y="8" rx="4" ry="4" width="85" height="30" />
+      <rect x="95" y="8" rx="4" ry="4" width="52" height="30" />
+      <rect x="157" y="8" rx="4" ry="4" width="102" height="30" />
+      <rect x="269" y="8" rx="4" ry="4" width="140" height="30" />
+      <rect x="419" y="8" rx="4" ry="4" width="148" height="30" />
+      <rect x="577" y="8" rx="4" ry="4" width="148" height="30" />
+      <rect x="0" y="54" rx="4" ry="4" width="85" height="30" />
+      <rect x="95" y="54" rx="4" ry="4" width="60" height="30" />
+      <rect x="165" y="54" rx="4" ry="4" width="33" height="30" />
+      <rect x="0" y="101" rx="4" ry="4" width="85" height="30" />
+      <rect x="95" y="100" rx="4" ry="4" width="62" height="30" />
+      <rect x="167" y="100" rx="4" ry="4" width="82" height="30" />
+      <rect x="259" y="100" rx="4" ry="4" width="82" height="30" />
+      <rect x="0" y="146" rx="4" ry="4" width="85" height="30" />
+      <rect x="95" y="146" rx="4" ry="4" width="88" height="30" />
+      <rect x="193" y="146" rx="4" ry="4" width="75" height="30" />
+      <rect x="0" y="192" rx="4" ry="4" width="85" height="30" />
+      <rect x="95" y="197" rx="4" ry="4" width="32" height="20" />
+      <rect x="137" y="194" rx="4" ry="4" width="80" height="26" />
+      <rect x="227" y="197" rx="4" ry="4" width="14" height="20" />
+      <rect x="251" y="194" rx="4" ry="4" width="80" height="26" />
+    </ContentLoader>
+  );
+}

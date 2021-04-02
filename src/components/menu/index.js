@@ -7,6 +7,7 @@ import {
   Row,
   Category,
   Item,
+  Subtitle,
   Default,
   Edit,
   Userlist,
@@ -37,6 +38,10 @@ Menu.Category = function MenuCategory({ children, ...rest }) {
 
 Menu.Item = function MenuItem({ children, ...rest }) {
   return <Item {...rest}>{children}</Item>;
+};
+
+Menu.Subtitle = function MenuSubtitle({ children, ...rest }) {
+  return <Subtitle {...rest}>{children}</Subtitle>;
 };
 
 Menu.Default = function MenuDefault({ ...rest }) {

@@ -11,17 +11,17 @@ export default function MenuContainer() {
           <Menu.Category>DEFAULT</Menu.Category>
           <Menu.Default />
         </Menu.Row>
-        <Menu.Row>
-          <Menu.Item>Favorite</Menu.Item>
-        </Menu.Row>
+        <Menu.Item>
+          <Menu.Subtitle>Favorite</Menu.Subtitle>
+        </Menu.Item>
         <Menu.Row>
           <Menu.Category>Userlists</Menu.Category>
           <Menu.Userlist />
         </Menu.Row>
-        <Menu.Row>
-          <Menu.Item>Hahah</Menu.Item>
+        <Menu.Item>
+          <Menu.Subtitle>Hahah</Menu.Subtitle>
           <Menu.Edit />
-        </Menu.Row>
+        </Menu.Item>
         <Menu.Row>
           <Menu.Category>Links</Menu.Category>
           <Menu.Links />
@@ -33,6 +33,7 @@ export default function MenuContainer() {
           <Menu.Link>go to main page</Menu.Link>
         </Menu.Row>
       </Menu.Wrapper>
+      <Menu.Arrow />
     </Menu>
   );
 }

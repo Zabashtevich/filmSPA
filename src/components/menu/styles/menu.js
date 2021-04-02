@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 import { Link as ReactRouterLink } from "react-router-dom";
 
 import {
@@ -8,14 +8,24 @@ import {
   BsChevronDoubleRight,
   BsLink45Deg,
   BsCircleFill,
+  BsPlusCircle,
 } from "react-icons/bs";
 
 export const Container = styled.div`
   background: ${({ theme }) => theme.colors.main};
   padding-left: 5rem;
+  transition: 300ms;
+  user-select: none;
   position: fixed;
   height: 100%;
   width: 300px;
+  left: -380px;
+
+  ${({ visible }) =>
+    visible &&
+    css`
+      left: 0;
+    `};
 `;
 
 export const Wrapper = styled.div`
@@ -55,9 +65,7 @@ export const Row = styled.div`
   width: 100%;
 `;
 
-export const Category = styled.span`
-  user-select: none;
-`;
+export const Category = styled.span``;
 
 export const Item = styled.div`
   border-radius: 0.1rem 0 0 0.1rem;
@@ -71,6 +79,26 @@ export const Item = styled.div`
       color: black;
     }
   }
+`;
+
+export const Create = styled.div`
+  border-radius: 0.2rem 0 0 0.2rem;
+  position: relative;
+  cursor: pointer;
+  color: white;
+  &:hover {
+    background-color: white;
+    color: black;
+  }
+`;
+
+export const Plus = styled(BsPlusCircle)`
+  transform: translateY(-50%);
+  position: absolute;
+  font-size: 1.5rem;
+  color: white;
+  right: 104%;
+  top: 50%;
 `;
 
 export const Subtitle = styled.span`

@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Menu } from "../../components";
 
 export default function MenuContainer() {
+  const [visible, setVisible] = useState(true);
+
   return (
-    <Menu>
+    <Menu visible={visible && 1}>
       <Menu.Title>MENU</Menu.Title>
       <Menu.Wrapper>
         <Menu.Section>
@@ -31,6 +33,12 @@ export default function MenuContainer() {
           </Menu.Item>
         </Menu.Section>
         <Menu.Section>
+          <Menu.Create>
+            <Menu.Subtitle>Create new list</Menu.Subtitle>
+            <Menu.Plus />
+          </Menu.Create>
+        </Menu.Section>
+        <Menu.Section>
           <Menu.Row>
             <Menu.Category>Links</Menu.Category>
             <Menu.Links />
@@ -45,7 +53,7 @@ export default function MenuContainer() {
           </Menu.Row>
         </Menu.Section>
       </Menu.Wrapper>
-      <Menu.Arrow />
+      <Menu.Arrow onClick={() => setVisible((prev) => !prev)} />
     </Menu>
   );
 }

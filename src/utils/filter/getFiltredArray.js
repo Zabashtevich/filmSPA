@@ -30,7 +30,7 @@ export default function getFiltredArray(array, state) {
       break;
   }
 
-  if (itemType) {
+  if (itemType !== "all") {
     result = result.filter((item) => item.type === itemType);
   }
 

@@ -395,7 +395,8 @@ export function FilterSkeleton() {
       <rect x="577" y="8" rx="4" ry="4" width="148" height="30" />
       <rect x="0" y="54" rx="4" ry="4" width="85" height="30" />
       <rect x="95" y="54" rx="4" ry="4" width="60" height="30" />
-      <rect x="165" y="54" rx="4" ry="4" width="33" height="30" />
+      <rect x="165" y="54" rx="4" ry="4" width="60" height="30" />
+      <rect x="235" y="54" rx="4" ry="4" width="33" height="30" />
       <rect x="0" y="100" rx="4" ry="4" width="85" height="30" />
       <rect x="95" y="100" rx="4" ry="4" width="62" height="30" />
       <rect x="167" y="100" rx="4" ry="4" width="82" height="30" />

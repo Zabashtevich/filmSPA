@@ -15,7 +15,7 @@ export default function FilterContainer() {
 
   const [state, setState] = useState({
     sortBy: "date",
-    itemType: null,
+    itemType: "all",
     start: "all",
     end: "all",
   });
@@ -78,6 +78,7 @@ export default function FilterContainer() {
                 <Filter.Row>
                   <Filter.Name>Item type:</Filter.Name>
                   {[
+                    { name: "ALL", value: "all" },
                     { name: "MOVIE", value: "movie" },
                     { name: "TV", value: "tv" },
                   ].map((item) => (
@@ -97,7 +98,7 @@ export default function FilterContainer() {
                   <Filter.Select
                     onChange={(e) => onFilterChange("start", e.target.value)}
                   >
-                    <Filter.Option value={"all"}>ALL</Filter.Option>
+                    <Filter.Option value={"all"}>all</Filter.Option>
                     {range(1950, 72).map((item) => (
                       <Filter.Option key={item} value={item}>
                         {item}
@@ -108,7 +109,7 @@ export default function FilterContainer() {
                   <Filter.Select
                     onChange={(e) => onFilterChange("end", e.target.value)}
                   >
-                    <Filter.Option>ALL</Filter.Option>
+                    <Filter.Option>all</Filter.Option>
                     {range(offset.date, offset.amount).map((item) => (
                       <Filter.Option key={item} value={item}>
                         {item}

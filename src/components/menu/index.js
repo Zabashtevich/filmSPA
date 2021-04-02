@@ -2,6 +2,7 @@ import React from "react";
 
 import {
   Container,
+  Wrapper,
   Title,
   Row,
   Category,
@@ -17,6 +18,10 @@ import {
 export default function Menu({ children, ...rest }) {
   return <Container {...rest}>{children}</Container>;
 }
+
+Menu.Wrapper = function MenuWrapper({ children, ...rest }) {
+  return <Wrapper {...rest}>{children}</Wrapper>;
+};
 
 Menu.Title = function MenuTitle({ children, ...rest }) {
   return <Title {...rest}>{children}</Title>;

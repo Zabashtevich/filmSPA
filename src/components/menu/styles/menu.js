@@ -6,11 +6,13 @@ import {
   BsGearFill,
   BsPeopleCircle,
   BsChevronDoubleRight,
+  BsLink45Deg,
+  BsCircleFill,
 } from "react-icons/bs";
 
 export const Container = styled.div`
   background: ${({ theme }) => theme.colors.main};
-  padding-left: 4rem;
+  padding-left: 5rem;
   position: fixed;
   height: 100%;
   width: 300px;
@@ -19,6 +21,7 @@ export const Container = styled.div`
 export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
+  margin-top: 14rem;
   display: flex;
 `;
 
@@ -26,13 +29,20 @@ export const Title = styled.span`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   font-size: ${({ theme }) => theme.font.aux.size.huge};
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-  margin-bottom: 4rem;
+  transform: translateX(-50%);
   text-align: center;
-  margin-top: 6rem;
+  position: absolute;
   padding: 1rem 0;
   display: block;
   color: #f3f3f3;
   width: 90%;
+  left: 50%;
+  top: 10%;
+`;
+
+export const Section = styled.div`
+  margin: 2rem 0;
+  width: 100%;
 `;
 
 export const Row = styled.div`
@@ -95,8 +105,12 @@ export const Userlist = styled(BsPeopleCircle)`
   top: 50%;
 `;
 
-export const Links = styled.div`
+export const Links = styled(BsLink45Deg)`
+  transform: translateY(-50%);
   position: absolute;
+  font-size: 1.5rem;
+  right: 104%;
+  top: 50%;
 `;
 
 export const Arrow = styled(BsChevronDoubleRight)`
@@ -116,4 +130,19 @@ export const Arrow = styled(BsChevronDoubleRight)`
   }
 `;
 
-export const Link = styled(ReactRouterLink)``;
+export const Link = styled(ReactRouterLink)`
+  font-weight: ${({ theme }) => theme.font.aux.weight.light};
+  text-decoration: none;
+  color: white;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+export const Circle = styled(BsCircleFill)`
+  transform: translateY(-50%);
+  position: absolute;
+  font-size: 0.8rem;
+  left: 85%;
+  top: 50%;
+`;

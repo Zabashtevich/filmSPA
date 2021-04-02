@@ -4,6 +4,7 @@ import {
   Container,
   Wrapper,
   Title,
+  Section,
   Row,
   Category,
   Item,
@@ -14,6 +15,7 @@ import {
   Links,
   Arrow,
   Link,
+  Circle,
 } from "./styles/menu";
 
 export default function Menu({ children, ...rest }) {
@@ -26,6 +28,10 @@ Menu.Wrapper = function MenuWrapper({ children, ...rest }) {
 
 Menu.Title = function MenuTitle({ children, ...rest }) {
   return <Title {...rest}>{children}</Title>;
+};
+
+Menu.Section = function MenuSection({ children, ...rest }) {
+  return <Section {...rest}>{children}</Section>;
 };
 
 Menu.Row = function MenuRow({ children, ...rest }) {
@@ -66,4 +72,8 @@ Menu.Arrow = function MenuArrow({ ...rest }) {
 
 Menu.Link = function MenuLink({ children, ...rest }) {
   return <Link {...rest}>{children}</Link>;
+};
+
+Menu.Circle = function MenuCircle({ ...rest }) {
+  return <Circle {...rest} />;
 };

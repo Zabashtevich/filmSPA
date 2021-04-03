@@ -1,5 +1,5 @@
 import userData from "../../reducers/user-data";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { combineReducers, createStore } from "redux";
 import { ThemeProvider } from "styled-components";

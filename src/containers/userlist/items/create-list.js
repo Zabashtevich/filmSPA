@@ -5,11 +5,12 @@ import { Userlist } from "../../../components";
 export default function CreateList() {
   return (
     <Userlist>
-      <Userlist.Title></Userlist.Title>
+      <Userlist.Title>Create a new list</Userlist.Title>
+      <Userlist.Subtitle>Enter a list name</Userlist.Subtitle>
       <Userlist.Input />
       <Userlist.Wrapper>
-        <Userlist.Cancel>Abort</Userlist.Cancel>
-        <Userlist.Confirm>Confirm</Userlist.Confirm>
+        <Userlist.Cancel>ABORT</Userlist.Cancel>
+        <Userlist.Confirm>CONFIRM</Userlist.Confirm>
       </Userlist.Wrapper>
     </Userlist>
   );

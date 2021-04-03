@@ -11,6 +11,12 @@ import {
   BsPlusCircle,
 } from "react-icons/bs";
 
+export const Inner = styled.div`
+  padding-left: 5rem;
+  height: 100vh;
+  width: 300px;
+`;
+
 export const Container = styled.div`
   background: ${({ theme }) => theme.colors.main};
   justify-content: center;

@@ -1,6 +1,7 @@
 import React from "react";
 
 import {
+  Inner,
   Container,
   Wrapper,
   Title,
@@ -22,7 +23,11 @@ import {
 } from "./styles/menu";
 
 export default function Menu({ children, ...rest }) {
-  return <Container {...rest}>{children}</Container>;
+  return (
+    <Inner>
+      <Container {...rest}>{children}</Container>
+    </Inner>
+  );
 }
 
 Menu.Wrapper = function MenuWrapper({ children, ...rest }) {

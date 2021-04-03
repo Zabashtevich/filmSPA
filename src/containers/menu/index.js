@@ -48,6 +48,7 @@ export default function MenuContainer() {
               userlists.map(({ id, name }) => (
                 <Menu.Item
                   onClick={() => onCategoryClick("userlist", id)}
+                  data-testid={`${name}`}
                   selected={userlist === id && 1}
                   key={id}
                 >
@@ -81,7 +82,10 @@ export default function MenuContainer() {
           </Menu.Row>
         </Menu.Section>
       </Menu.Wrapper>
-      <Menu.Arrow onClick={() => setVisible((prev) => !prev)} />
+      <Menu.Arrow
+        onClick={() => setVisible((prev) => !prev)}
+        data-testid="arrow"
+      />
     </Menu>
   );
 }

@@ -22,7 +22,7 @@ export default function MenuContainer() {
   }, [userDataLoading]);
 
   return (
-    <Menu visible={visible && 1}>
+    <Menu visible={visible && 1} data-testid="menu-container">
       <Menu.Wrapper>
         <Menu.Title>MENU</Menu.Title>
         <Menu.Section>
@@ -33,6 +33,7 @@ export default function MenuContainer() {
           <Menu.Item
             onClick={() => onCategoryClick("favorite")}
             selected={type === "favorite" && 1}
+            data-testid="favorite"
           >
             {!userDataLoading && <Menu.Subtitle>Favorite</Menu.Subtitle>}
           </Menu.Item>
@@ -42,17 +43,19 @@ export default function MenuContainer() {
             <Menu.Category>Userlists</Menu.Category>
             <Menu.Userlist />
           </Menu.Row>
-          {!userDataLoading &&
-            userlists.map(({ id, name }) => (
-              <Menu.Item
-                onClick={() => onCategoryClick("userlist", id)}
-                selected={userlist === id && 1}
-                key={id}
-              >
-                <Menu.Subtitle>{name}</Menu.Subtitle>
-                <Menu.Edit />
-              </Menu.Item>
-            ))}
+          <Menu.List data-testid="userlists">
+            {!userDataLoading &&
+              userlists.map(({ id, name }) => (
+                <Menu.Item
+                  onClick={() => onCategoryClick("userlist", id)}
+                  selected={userlist === id && 1}
+                  key={id}
+                >
+                  <Menu.Subtitle>{name}</Menu.Subtitle>
+                  <Menu.Edit />
+                </Menu.Item>
+              ))}
+          </Menu.List>
         </Menu.Section>
         <Menu.Section>
           <Menu.Create

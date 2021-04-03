@@ -8,6 +8,7 @@ import {
   Row,
   Category,
   Item,
+  List,
   Create,
   Plus,
   Subtitle,
@@ -46,6 +47,10 @@ Menu.Category = function MenuCategory({ children, ...rest }) {
 
 Menu.Item = function MenuItem({ children, ...rest }) {
   return <Item {...rest}>{children}</Item>;
+};
+
+Menu.List = function MenuList({ children, ...rest }) {
+  return <List {...rest}>{children}</List>;
 };
 
 Menu.Create = function MenuCreate({ children, ...rest }) {

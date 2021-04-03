@@ -9,7 +9,7 @@ import theme from "../../theme/theme";
 import CreditsContextProvider from "../../context/credits-context/context";
 import PaginContextProvider from "../../context/pagin-context/context";
 
-export default function renderWithRedux(
+function renderWithRedux(
   component,
   {
     initialState,

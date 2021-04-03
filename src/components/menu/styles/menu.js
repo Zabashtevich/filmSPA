@@ -65,7 +65,15 @@ export const Row = styled.div`
   width: 100%;
 `;
 
-export const Category = styled.span``;
+export const Category = styled.span`
+  ${({ type }) =>
+    type === "create list" &&
+    css`
+      border-radius: 0.2rem 0 0 0.2rem;
+      padding: 0.5rem 0;
+      display: block;
+    `};
+`;
 
 export const Item = styled.div`
   border-radius: 0.1rem 0 0 0.1rem;
@@ -160,10 +168,18 @@ export const Arrow = styled(BsChevronDoubleRight)`
 
 export const Link = styled(ReactRouterLink)`
   font-weight: ${({ theme }) => theme.font.aux.weight.light};
+  border-radius: 0.2rem 0 0 0.2rem;
+  padding: 0.5rem 1.5rem;
   text-decoration: none;
+  align-items: center;
+  display: flex;
   color: white;
+  width: 100%;
+
   &:hover {
     text-decoration: underline;
+    background-color: white;
+    color: black;
   }
 `;
 

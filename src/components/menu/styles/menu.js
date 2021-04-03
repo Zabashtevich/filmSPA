@@ -67,7 +67,7 @@ export const Row = styled.div`
 
 export const Category = styled.span`
   ${({ type }) =>
-    type === "create list" &&
+    type === "createList" &&
     css`
       border-radius: 0.2rem 0 0 0.2rem;
       padding: 0.5rem 0;
@@ -87,6 +87,16 @@ export const Item = styled.div`
       color: black;
     }
   }
+  ${({ selected }) =>
+    selected &&
+    css`
+      box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
+        rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+      background-color: white;
+      > * {
+        color: black;
+      }
+    `};
 `;
 
 export const Create = styled.div`
@@ -98,6 +108,16 @@ export const Create = styled.div`
     background-color: white;
     color: black;
   }
+  ${({ selected }) =>
+    selected &&
+    css`
+      box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
+        rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+      background-color: white;
+      > * {
+        color: black;
+      }
+    `};
 `;
 
 export const Plus = styled(BsPlusCircle)`

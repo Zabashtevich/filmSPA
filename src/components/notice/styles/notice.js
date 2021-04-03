@@ -77,3 +77,5 @@ export const List = styled.ul`
 export const Item = styled.li`
   margin: 0.5rem 0;
 `;
+
+export const Spinner = styled.img``;

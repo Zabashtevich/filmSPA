@@ -2,7 +2,6 @@ import React from "react";
 
 import { useNoticeContext } from "../../context";
 import { Notice } from "../../components";
-import { SpinnerSmall } from "../../components/loading-spinner";
 
 export default function NoticeContainer() {
   const [{ visible, errors, type, message }] = useNoticeContext();
@@ -12,7 +11,7 @@ export default function NoticeContainer() {
         <>
           <Notice.Info />
           <Notice.Message>{message}</Notice.Message>
-          <SpinnerSmall />
+          <Notice.Spinner />
         </>
       )}
       {type === "error" && (

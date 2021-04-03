@@ -1,7 +1,16 @@
 import React from "react";
 import { CSSTransition } from "react-transition-group";
+import loadingSpinnerSmall from "../../assets/spinner-small.svg";
 
-import { Container, Message, List, Item, Error, Info } from "./styles/notice";
+import {
+  Container,
+  Message,
+  List,
+  Item,
+  Error,
+  Info,
+  Spinner,
+} from "./styles/notice";
 
 export default function Notice({ visible, children, ...rest }) {
   return (
@@ -36,4 +45,8 @@ Notice.List = function NoticeList({ children, ...rest }) {
 
 Notice.Item = function NoticeItem({ children, ...rest }) {
   return <Item {...rest}>{children}</Item>;
+};
+
+Notice.Spinner = function NoticeSpinner() {
+  return <Spinner src={loadingSpinnerSmall} />;
 };

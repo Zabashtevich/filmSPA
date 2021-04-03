@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-import { SpinnerSmall } from "./../../components/loading-spinner";
 import { useUserlistContext } from "./../../context";
 import { Menu } from "../../components";
 import { useSelector } from "react-redux";
@@ -8,11 +7,10 @@ import { useSelector } from "react-redux";
 export default function MenuContainer() {
   const [visible, setVisible] = useState(false);
   const { userlists } = useSelector((state) => state.userData);
-  const [, setActive] = useUserlistContext();
+  const [{ type, userlist }, setActive] = useUserlistContext();
 
   function onCategoryClick(category, userlistID = null) {
     setActive({ type: category, userlist: userlistID });
-    setVisible(false);
   }
 
   const { userDataLoading } = useSelector((state) => state.userData);
@@ -32,7 +30,10 @@ export default function MenuContainer() {
             <Menu.Category>DEFAULT</Menu.Category>
             <Menu.Default />
           </Menu.Row>
-          <Menu.Item onClick={() => onCategoryClick("favorite")}>
+          <Menu.Item
+            onClick={() => onCategoryClick("favorite")}
+            selected={type === "favorite" && 1}
+          >
             {!userDataLoading && <Menu.Subtitle>Favorite</Menu.Subtitle>}
           </Menu.Item>
         </Menu.Section>
@@ -45,6 +46,7 @@ export default function MenuContainer() {
             userlists.map(({ id, name }) => (
               <Menu.Item
                 onClick={() => onCategoryClick("userlist", id)}
+                selected={userlist === id && 1}
                 key={id}
               >
                 <Menu.Subtitle>{name}</Menu.Subtitle>
@@ -53,8 +55,11 @@ export default function MenuContainer() {
             ))}
         </Menu.Section>
         <Menu.Section>
-          <Menu.Create onClick={() => onCategoryClick("create")}>
-            <Menu.Category type="create list">Create new list</Menu.Category>
+          <Menu.Create
+            onClick={() => onCategoryClick("createList")}
+            selected={type === "createList" && 1}
+          >
+            <Menu.Category type="createList">Create new list</Menu.Category>
             <Menu.Plus />
           </Menu.Create>
         </Menu.Section>

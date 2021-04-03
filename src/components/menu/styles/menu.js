@@ -13,10 +13,13 @@ import {
 
 export const Container = styled.div`
   background: ${({ theme }) => theme.colors.main};
+  justify-content: center;
+  flex-direction: column;
   padding-left: 5rem;
   transition: 300ms;
   user-select: none;
   position: fixed;
+  display: flex;
   height: 100%;
   width: 300px;
   left: -380px;
@@ -31,7 +34,6 @@ export const Container = styled.div`
 export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
-  margin-top: 14rem;
   display: flex;
 `;
 
@@ -39,15 +41,13 @@ export const Title = styled.span`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   font-size: ${({ theme }) => theme.font.aux.size.huge};
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-  transform: translateX(-50%);
+  margin-bottom: 1rem;
+  margin-left: -5rem;
   text-align: center;
-  position: absolute;
   padding: 1rem 0;
   display: block;
   color: #f3f3f3;
   width: 90%;
-  left: 50%;
-  top: 10%;
 `;
 
 export const Section = styled.div`

@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
+import { SpinnerSmall } from "./../../components/loading-spinner";
 import { useUserlistContext } from "./../../context";
 import { Menu } from "../../components";
 import { useSelector } from "react-redux";
 
 export default function MenuContainer() {
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
+  const { userlists } = useSelector((state) => state.userData);
   const [, setActive] = useUserlistContext();
 
   function onCategoryClick(category, userlistID = null) {
@@ -13,19 +15,25 @@ export default function MenuContainer() {
     setVisible(false);
   }
 
-  const { userDataLoading, userlists } = useSelector((state) => state.userData);
+  const { userDataLoading } = useSelector((state) => state.userData);
+
+  useEffect(() => {
+    if (!userDataLoading) {
+      setVisible(true);
+    }
+  }, [userDataLoading]);
 
   return (
     <Menu visible={visible && 1}>
-      <Menu.Title>MENU</Menu.Title>
       <Menu.Wrapper>
+        <Menu.Title>MENU</Menu.Title>
         <Menu.Section>
           <Menu.Row>
             <Menu.Category>DEFAULT</Menu.Category>
             <Menu.Default />
           </Menu.Row>
           <Menu.Item onClick={() => onCategoryClick("favorite")}>
-            <Menu.Subtitle>Favorite</Menu.Subtitle>
+            {!userDataLoading && <Menu.Subtitle>Favorite</Menu.Subtitle>}
           </Menu.Item>
         </Menu.Section>
         <Menu.Section>
@@ -33,14 +41,16 @@ export default function MenuContainer() {
             <Menu.Category>Userlists</Menu.Category>
             <Menu.Userlist />
           </Menu.Row>
-          <Menu.Item onClick={() => onCategoryClick("userlist", "id")}>
-            <Menu.Subtitle>Hahah</Menu.Subtitle>
-            <Menu.Edit />
-          </Menu.Item>
-          <Menu.Item>
-            <Menu.Subtitle>Hahah</Menu.Subtitle>
-            <Menu.Edit />
-          </Menu.Item>
+          {!userDataLoading &&
+            userlists.map(({ id, name }) => (
+              <Menu.Item
+                onClick={() => onCategoryClick("userlist", id)}
+                key={id}
+              >
+                <Menu.Subtitle>{name}</Menu.Subtitle>
+                <Menu.Edit />
+              </Menu.Item>
+            ))}
         </Menu.Section>
         <Menu.Section>
           <Menu.Create onClick={() => onCategoryClick("create")}>

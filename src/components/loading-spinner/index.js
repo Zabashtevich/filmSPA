@@ -6,6 +6,12 @@ export function SpinnerMedium() {
   return <img src={loadingSpinnerMedium} alt="loading spinner" />;
 }
 
-export function SpinnerSmall() {
-  return <img src={loadingSpinnerSmall} alt="loading spinner" />;
+export function SpinnerSmall({ width = null, color = null }) {
+  return (
+    <img
+      src={loadingSpinnerSmall}
+      alt="loading spinner"
+      style={{ width: `${width}`, fill: `white` }}
+    />
+  );
 }

@@ -11,7 +11,6 @@ export const Title = styled.span`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   font-size: ${({ theme }) => theme.font.aux.size.huge};
   color: rgba(0, 0, 0, 0.7);
-  margin-bottom: 20rem;
   margin-top: 3rem;
 `;
 
@@ -20,6 +19,7 @@ export const Subtitle = styled.span`
   font-size: ${({ theme }) => theme.font.aux.size.large};
   color: rgba(0, 0, 0, 0.3);
   margin-bottom: 1rem;
+  margin-top: 14rem;
 `;
 
 export const Input = styled.input`
@@ -30,7 +30,7 @@ export const Input = styled.input`
   position: relative;
   outline: none;
   height: 50px;
-  width: 400px;
+  width: 600px;
 `;
 
 export const Wrapper = styled.div`
@@ -42,6 +42,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Confirm = styled.button`
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   border: 1px solid rgba(0, 0, 0, 0.3);
   background-color: white;
   padding: 0.4rem 0.6rem;

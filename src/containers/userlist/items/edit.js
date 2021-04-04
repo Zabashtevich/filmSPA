@@ -5,10 +5,11 @@ export default function Edit() {
   return (
     <Userlist>
       <Userlist.Title>Settings</Userlist.Title>
+      <Userlist.Subtitle>Enter a new list name</Userlist.Subtitle>
       <Userlist.Input />
       <Userlist.Wrapper>
-        <Userlist.Cancel></Userlist.Cancel>
-        <Userlist.Confirm></Userlist.Confirm>
+        <Userlist.Cancel>DELETE</Userlist.Cancel>
+        <Userlist.Confirm>RENAME</Userlist.Confirm>
       </Userlist.Wrapper>
     </Userlist>
   );

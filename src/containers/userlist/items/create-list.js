@@ -4,7 +4,7 @@ import { Userlist } from "../../../components";
 
 export default function CreateList() {
   return (
-    <Userlist>
+    <>
       <Userlist.Title>Create a new list</Userlist.Title>
       <Userlist.Subtitle>Enter a list name</Userlist.Subtitle>
       <Userlist.Input />
@@ -12,6 +12,6 @@ export default function CreateList() {
         <Userlist.Cancel>ABORT</Userlist.Cancel>
         <Userlist.Confirm>CONFIRM</Userlist.Confirm>
       </Userlist.Wrapper>
-    </Userlist>
+    </>
   );
 }

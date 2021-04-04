@@ -5,8 +5,8 @@ import { Userlist } from "../../../components";
 
 export default function List() {
   return (
-    <Userlist>
-      <Userlist.title>Your list Hahha</Userlist.title>
+    <>
+      <Userlist.Title>Your list Hahha</Userlist.Title>
       <Userlist.Header>
         <Userlist.Wallpaper />
         <Userlist.Row>
@@ -19,7 +19,7 @@ export default function List() {
         </Userlist.Row>
         <Userlist.Edit />
       </Userlist.Header>
-      <CreditsContainer />
-    </Userlist>
+      {/* <CreditsContainer /> */}
+    </>
   );
 }

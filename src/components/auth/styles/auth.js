@@ -2,6 +2,7 @@ import styled from "styled-components/macro";
 import { Link as ReactRouterLink } from "react-router-dom";
 
 import { MdEmail, MdLockOutline } from "react-icons/md";
+import { AiOutlineUser } from "react-icons/ai";
 
 export const Container = styled.div`
   justify-content: center;
@@ -45,13 +46,8 @@ export const Title = styled.span`
 
 export const Row = styled.div`
   align-items: center;
-  margin: 1rem 0;
-  display: flex;
-  width: 100%;
-`;
-
-export const Inner = styled.div`
   position: relative;
+  margin: 1rem 0;
   display: flex;
   width: 100%;
 `;
@@ -78,7 +74,14 @@ export const Key = styled(MdLockOutline)`
   top: 50%;
 `;
 
-export const Nickname = styled.div``;
+export const Nickname = styled(AiOutlineUser)`
+  transform: translateY(-50%);
+  color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  font-size: 1.7rem;
+  right: 92%;
+  top: 50%;
+`;
 
 export const Mail = styled(MdEmail)`
   transform: translateY(-50%);

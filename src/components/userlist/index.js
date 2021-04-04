@@ -2,6 +2,7 @@ import React from "react";
 
 import {
   Container,
+  Inner,
   Title,
   Subtitle,
   Input,
@@ -20,6 +21,10 @@ import {
 export default function Userlist({ children, ...rest }) {
   return <Container {...rest}>{children}</Container>;
 }
+
+Userlist.Inner = function UserlistInner({ children, ...rest }) {
+  return <Inner {...rest}>{children}</Inner>;
+};
 
 Userlist.Title = function UserlistTitle({ children, ...rest }) {
   return <Title {...rest}>{children}</Title>;

@@ -3,7 +3,10 @@ import React, { createContext, useState } from "react";
 export const UserlistContext = createContext(null);
 
 export default function UserlistContextProvider({ children }) {
-  const [state, setState] = useState({ type: null, userlist: null });
+  const [state, setState] = useState({
+    value: null,
+    type: null,
+  });
 
   return (
     <UserlistContext.Provider value={[state, setState]}>

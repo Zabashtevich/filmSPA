@@ -1,10 +1,16 @@
 import styled from "styled-components/macro";
 
+import { BsCardList, BsGear } from "react-icons/bs";
+
 export const Container = styled.div`
+  width: 100%;
+`;
+
+export const Inner = styled.div`
+  ${({ theme }) => theme.animations.fade()};
   flex-direction: column;
   align-items: center;
   display: flex;
-  width: 100%;
 `;
 
 export const Title = styled.span`
@@ -72,16 +78,51 @@ export const Cancel = styled(Confirm)`
   }
 `;
 
-export const Header = styled.div``;
+export const Header = styled.div`
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 0.6rem;
+  align-items: center;
+  padding: 2rem 3rem;
+  margin-top: 5rem;
+  display: flex;
+  width: 600px;
+`;
 
-export const Wallpaper = styled.div``;
+export const Wallpaper = styled(BsCardList)`
+  font-size: 5rem;
+`;
 
-export const Info = styled.div``;
+export const Info = styled.div`
+  flex-direction: column;
+  margin-left: 6rem;
+  display: flex;
+`;
 
-export const Row = styled.div``;
+export const Row = styled.div`
+  font-size: ${({ theme }) => theme.font.aux.size.big};
+  margin: 0.1rem 0;
+  display: flex;
+`;
 
-export const Fieldname = styled.div``;
+export const Fieldname = styled.span`
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
+  color: rgba(0, 0, 0, 0.5);
+  margin-right: 1rem;
+  width: 115px;
+`;
 
-export const Fieldvalue = styled.div``;
+export const Fieldvalue = styled.span`
+  font-weight: ${({ theme }) => theme.font.aux.weight.light};
+`;
 
-export const Edit = styled.div``;
+export const Edit = styled(BsGear)`
+  font-size: ${({ theme }) => theme.font.aux.size.large};
+  color: rgba(0, 0, 0, 0.5);
+  position: relative;
+  margin-left: auto;
+  &:hover {
+    color: rgba(0, 0, 0, 1);
+    transition: 300ms;
+  }
+`;

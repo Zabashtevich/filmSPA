@@ -1,5 +1,4 @@
 export { default as Footer } from "./footer";
-export { default as AuthenticationForm } from "./auth-form";
 export { default as Modal } from "./modal";
 export { default as DetailsPoster } from "./details-poster";
 export { default as Actor } from "./actor";

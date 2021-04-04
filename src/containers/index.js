@@ -22,3 +22,4 @@ export { default as FilterContainer } from "./filter";
 export { default as CreditsContainer } from "./credits";
 export { default as MenuContainer } from "./menu";
 export { default as UserlistContainer } from "./userlist";
+export { default as AuthContainer } from "./auth";

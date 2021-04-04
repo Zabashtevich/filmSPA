@@ -2,16 +2,20 @@ import React from "react";
 
 import {
   Container,
+  Form,
+  Header,
   Title,
   Row,
-  Subtitle,
+  Name,
   Inner,
   Input,
   Key,
-  Name,
+  Nickname,
   Mail,
+  Wrapper,
   Back,
   Button,
+  Subtitle,
   Message,
   Link,
 } from "./styles/auth";
@@ -19,6 +23,14 @@ import {
 export default function Auth({ children, ...rest }) {
   return <Container {...rest}>{children}</Container>;
 }
+
+Auth.Header = function AuthHeader({ children, ...rest }) {
+  return <Header {...rest}>{children}</Header>;
+};
+
+Auth.Form = function AuthForm({ children, ...rest }) {
+  return <Form {...rest}>{children}</Form>;
+};
 
 Auth.Title = function AuthTitle({ children, ...rest }) {
   return <Title {...rest}>{children}</Title>;
@@ -28,8 +40,8 @@ Auth.Row = function AuthRow({ children, ...rest }) {
   return <Row {...rest}>{children}</Row>;
 };
 
-Auth.Subtitle = function AuthSubtitle({ children, ...rest }) {
-  return <Subtitle {...rest}>{children}</Subtitle>;
+Auth.Name = function AuthName({ children, ...rest }) {
+  return <Name {...rest}>{children}</Name>;
 };
 
 Auth.Inner = function AuthInner({ children, ...rest }) {
@@ -44,12 +56,16 @@ Auth.Key = function AuthKey({ ...rest }) {
   return <Key {...rest} />;
 };
 
-Auth.Name = function AuthName({ ...rest }) {
-  return <Name {...rest} />;
+Auth.Nickname = function AuthNickname({ ...rest }) {
+  return <Nickname {...rest} />;
 };
 
 Auth.Mail = function AuthMail({ ...rest }) {
   return <Mail {...rest} />;
+};
+
+Auth.Wrapper = function AuthWrapper({ children, ...rest }) {
+  return <Wrapper {...rest}>{children}</Wrapper>;
 };
 
 Auth.Back = function AuthBack({ children, ...rest }) {
@@ -58,6 +74,10 @@ Auth.Back = function AuthBack({ children, ...rest }) {
 
 Auth.Button = function AuthButton({ children, ...rest }) {
   return <Button {...rest}>{children}</Button>;
+};
+
+Auth.Subtitle = function AuthSubtitle({ children, ...rest }) {
+  return <Subtitle {...rest}>{children}</Subtitle>;
 };
 
 Auth.Message = function AuthMessage({ children, ...rest }) {

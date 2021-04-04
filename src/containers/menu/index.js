@@ -6,14 +6,14 @@ import { useSelector } from "react-redux";
 
 export default function MenuContainer() {
   const [visible, setVisible] = useState(false);
-  const { userlists } = useSelector((state) => state.userData);
-  const [{ type, userlist }, setActive] = useUserlistContext();
+  const { userlists, favoritedMovies, userDataLoading } = useSelector(
+    (state) => state.userData,
+  );
+  const [{ type, value }, setActive] = useUserlistContext();
 
-  function onCategoryClick(category, userlistID = null) {
-    setActive({ type: category, userlist: userlistID });
+  function onCategoryClick(type, userlist = null) {
+    setActive({ type, userlist });
   }
-
-  const { userDataLoading } = useSelector((state) => state.userData);
 
   useEffect(() => {
     if (!userDataLoading) {
@@ -31,7 +31,7 @@ export default function MenuContainer() {
             <Menu.Default />
           </Menu.Row>
           <Menu.Item
-            onClick={() => onCategoryClick("favorite")}
+            onClick={() => onCategoryClick("userlist", favoritedMovies)}
             selected={type === "favorite" && 1}
             data-testid="favorite"
           >
@@ -45,14 +45,14 @@ export default function MenuContainer() {
           </Menu.Row>
           <Menu.List data-testid="userlists">
             {!userDataLoading &&
-              userlists.map(({ id, name }) => (
+              userlists.map((item) => (
                 <Menu.Item
-                  onClick={() => onCategoryClick("userlist", id)}
-                  data-testid={`${name}`}
-                  selected={userlist === id && 1}
-                  key={id}
+                  onClick={() => onCategoryClick("userlist", item)}
+                  data-testid={`${item.name}`}
+                  selected={value?.id === item.id && 1}
+                  key={item.id}
                 >
-                  <Menu.Subtitle>{name}</Menu.Subtitle>
+                  <Menu.Subtitle>{item.name}</Menu.Subtitle>
                   <Menu.Edit />
                 </Menu.Item>
               ))}

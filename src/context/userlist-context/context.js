@@ -5,7 +5,7 @@ export const UserlistContext = createContext(null);
 export default function UserlistContextProvider({ children }) {
   const [state, setState] = useState({
     value: null,
-    type: null,
+    type: "createList",
   });
 
   return (

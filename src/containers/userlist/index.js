@@ -11,10 +11,12 @@ import { Userlist } from "../../components";
 export default function UserlistContainer() {
   const [{ value, type }] = useUserlistContext();
 
+  const transitionKey = type + value?.id || 1;
+
   return (
     <Userlist>
       <SwitchTransition mode="out-in">
-        <CSSTransition key={value} classNames="fade" timeout={500}>
+        <CSSTransition key={transitionKey} classNames="fade" timeout={500}>
           <Userlist.Inner>
             {type === "userlist" && <List userlist={value} />}
             {type === "createList" && <CreateList />}

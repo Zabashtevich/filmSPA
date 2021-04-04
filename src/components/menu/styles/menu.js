@@ -72,11 +72,12 @@ export const Row = styled.div`
 `;
 
 export const Category = styled.span`
+  padding: 0 0.2rem;
   ${({ type }) =>
     type === "createList" &&
     css`
       border-radius: 0.2rem 0 0 0.2rem;
-      padding: 0.5rem 0;
+      padding: 0.5rem 0.2rem;
       display: block;
     `};
 `;

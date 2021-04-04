@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 import { Link as ReactRouterLink } from "react-router-dom";
 
 import { MdEmail, MdLockOutline } from "react-icons/md";
@@ -15,18 +15,43 @@ export const Container = styled.div`
 
 export const Form = styled.form`
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  ${({ theme }) => theme.animations.fade()};
   border: 1px solid rgba(0, 0, 0, 0.1);
   flex-direction: column;
   align-items: center;
   padding: 4rem 2rem;
   display: flex;
   width: 350px;
+
+  ${({ type }) =>
+    type === "signup" &&
+    css`
+      padding: 1rem 2rem 4rem 2rem;
+    `};
 `;
 
 export const Header = styled.div`
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
+  flex-direction: column;
+  align-items: center;
   margin-bottom: 6rem;
   position: relative;
+  font-size: 4rem;
+  display: flex;
 
+  ${({ type }) =>
+    type === "signup" &&
+    css`
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      &::before {
+        width: 50%;
+      }
+    `};
+`;
+
+export const Title = styled.span`
+  position: relative;
   &::before {
     background-color: rgba(0, 0, 0, 0.5);
     transform: translateX(-50%);
@@ -37,11 +62,6 @@ export const Header = styled.div`
     left: 50%;
     top: 140%;
   }
-`;
-
-export const Title = styled.span`
-  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
-  font-size: 4rem;
 `;
 
 export const Row = styled.div`
@@ -148,4 +168,21 @@ export const Link = styled(ReactRouterLink)`
   &:hover {
     color: black;
   }
+`;
+
+export const Avatar = styled.img`
+  margin: 3rem 0;
+  height: 100px;
+  width: 100px;
+
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      opacity: 0;
+    `};
+`;
+
+export const File = styled.input`
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
+  font-family: ${({ theme }) => theme.font.aux.family};
 `;

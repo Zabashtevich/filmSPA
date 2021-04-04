@@ -13,7 +13,7 @@ export default function AuthContainer() {
     <Auth>
       <SwitchTransition mode="out-in">
         <CSSTransition key={slug} classNames="fade" timeout={500}>
-          <Auth.Form>
+          <Auth.Form type={slug}>
             {slug === "login" && <Login />}
             {slug === "signup" && <Signup />}
           </Auth.Form>

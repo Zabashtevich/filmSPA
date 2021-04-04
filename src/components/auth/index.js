@@ -16,6 +16,8 @@ import {
   Subtitle,
   Message,
   Link,
+  Avatar,
+  File,
 } from "./styles/auth";
 
 export default function Auth({ children, ...rest }) {
@@ -76,4 +78,14 @@ Auth.Message = function AuthMessage({ children, ...rest }) {
 
 Auth.Link = function AuthLink({ children, ...rest }) {
   return <Link {...rest}>{children}</Link>;
+};
+
+//profile image
+
+Auth.Avatar = function AuthAvatar({ ...rest }) {
+  return <Avatar {...rest} />;
+};
+
+Auth.File = function AuthFile({ ...rest }) {
+  return <File {...rest} />;
 };

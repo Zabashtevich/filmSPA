@@ -6,7 +6,6 @@ import {
   Header,
   Title,
   Row,
-  Name,
   Inner,
   Input,
   Key,
@@ -38,10 +37,6 @@ Auth.Title = function AuthTitle({ children, ...rest }) {
 
 Auth.Row = function AuthRow({ children, ...rest }) {
   return <Row {...rest}>{children}</Row>;
-};
-
-Auth.Name = function AuthName({ children, ...rest }) {
-  return <Name {...rest}>{children}</Name>;
 };
 
 Auth.Inner = function AuthInner({ children, ...rest }) {

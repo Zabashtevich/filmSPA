@@ -9,26 +9,24 @@ export default function Login() {
         <Auth.Title>Login</Auth.Title>
       </Auth.Header>
       <Auth.Row>
-        <Auth.Name>Mail</Auth.Name>
         <Auth.Inner>
-          <Auth.Input />
+          <Auth.Input placeholder="Email" />
           <Auth.Mail />
         </Auth.Inner>
       </Auth.Row>
       <Auth.Row>
-        <Auth.Name>Pass</Auth.Name>
         <Auth.Inner>
-          <Auth.Input />
+          <Auth.Input placeholder="Password" />
           <Auth.Key />
         </Auth.Inner>
       </Auth.Row>
       <Auth.Wrapper>
-        <Auth.Back></Auth.Back>
-        <Auth.Button></Auth.Button>
+        <Auth.Button>LOGIN</Auth.Button>
+        <Auth.Back>BACK</Auth.Back>
       </Auth.Wrapper>
       <Auth.Message>
         <Auth.Subtitle>Do not have an account?</Auth.Subtitle>
-        <Auth.Link>Create it here</Auth.Link>
+        <Auth.Link to="/">Create it here</Auth.Link>
       </Auth.Message>
     </>
   );

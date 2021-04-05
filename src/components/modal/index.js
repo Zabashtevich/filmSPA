@@ -20,7 +20,7 @@ import {
 
 export default function Modal({ children, ...rest }) {
   return (
-    <CSSTransition classNames="fade" appear={true} timeout={500}>
+    <CSSTransition classNames="fade" appear={true} timeout={500} in={true}>
       <Container {...rest}>{children}</Container>
     </CSSTransition>
   );

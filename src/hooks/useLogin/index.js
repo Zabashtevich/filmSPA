@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useHistory } from "react-router";
 import { useModalContext } from "../../context";
 
@@ -6,7 +6,7 @@ import { firebase } from "../../libs/firebase";
 
 export default function useAuth(type) {
   const [loading, setLoading] = useState(false);
-  const [] = useModalContext();
+  const [, { showErrorModal }] = useModalContext();
   const history = useHistory();
 
   function login({ email, password }) {
@@ -14,9 +14,15 @@ export default function useAuth(type) {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then(() => history.push("/"))
+      .then(() => {
+        setLoading(false);
+        history.push("/");
+      })
       .catch(() => {
         setLoading(false);
+        showErrorModal("User not found");
       });
   }
+
+  return [loading, login];
 }

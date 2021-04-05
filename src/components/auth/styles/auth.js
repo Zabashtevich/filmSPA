@@ -74,8 +74,9 @@ export const Row = styled.div`
 
 export const Input = styled.input`
   font-weight: ${({ theme }) => theme.font.aux.weight.light};
-  font-size: ${({ theme }) => theme.font.aux.size.big};
+  font-size: ${({ theme }) => theme.font.aux.size.normal};
   font-family: ${({ theme }) => theme.font.aux.family};
+  -webkit-box-shadow: 0 0 0 30px white inset;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
   padding: 0.3rem 0.4rem;
@@ -152,6 +153,11 @@ export const Button = styled(Back)`
 
   &:active {
     transform: scale(0.96);
+  }
+
+  &:disabled {
+    background-color: rgba(0, 0, 0, 0.4);
+    pointer-events: none;
   }
 `;
 

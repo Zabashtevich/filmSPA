@@ -7,6 +7,7 @@ export { default as getKnownFor } from "./shareable/get-known-for";
 export { default as splitByType } from "./shareable/split-by-type";
 export { default as sortMoviesByDate } from "./shareable/sort-movies-by-date";
 export { default as checkReleaseStatus } from "./shareable/check-release-status";
+export { default as checkObject } from "./shareable/check-object";
 
 export { default as createEstimateItem } from "./hooks/create-estimate-item";
 
@@ -26,3 +27,5 @@ export { default as getOffsetStart } from "./pagin/get-offset-start";
 export { default as validateAvatarUrl } from "./review/validate-avatar-url";
 
 export { default as getFiltredArray } from "./filter/getFiltredArray";
+
+export { default as getErrorList } from "./modal/get-error-list";

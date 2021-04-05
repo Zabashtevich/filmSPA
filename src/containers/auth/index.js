@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router";
@@ -6,12 +6,20 @@ import { useParams } from "react-router";
 import { Auth } from "./../../components";
 import Login from "./items/login";
 import Signup from "./items/signup";
+import { checkObject, getErrorList } from "../../utils";
+import { useModalContext } from "../../context";
 
 export default function AuthContainer() {
   const { register, handleSubmit, errors } = useForm();
+  const [, { showErrorList }] = useModalContext();
   const { slug } = useParams();
 
-  console.log(errors);
+  useEffect(() => {
+    if (checkObject.notEmty(errors)) {
+      console.log("hi");
+      showErrorList(getErrorList(errors));
+    }
+  }, [errors]);
 
   return (
     <SwitchTransition mode="out-in">

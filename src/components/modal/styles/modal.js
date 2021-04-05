@@ -6,6 +6,7 @@ export const Container = styled.div`
   ${({ theme }) => theme.animations.fade()};
   justify-content: center;
   align-items: center;
+  user-select: none;
   position: fixed;
   z-index: 1000;
   display: flex;
@@ -112,7 +113,8 @@ export const Message = styled.span`
   color: ${({ theme }) => theme.colors.aux};
   font-size: 1.3rem;
   text-align: center;
-  margin-top: 2rem;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
 `;
 
 export const Wrapper = styled.div`

@@ -1,11 +1,10 @@
 import React from "react";
 
 import { Auth } from "../../../components";
+import { useLogin } from "../../../hooks";
 
 export default function Login({ register, handleSubmit }) {
-  function login(value) {
-    console.log(value);
-  }
+  const [loading, login] = useLogin();
 
   return (
     <Auth.Form onSubmit={handleSubmit(login)}>
@@ -20,11 +19,11 @@ export default function Login({ register, handleSubmit }) {
           inputRef={register({
             required: {
               value: true,
-              message: "email field can not be empty",
+              message: "Email field can not be empty",
             },
             pattern: {
               value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-              message: "invalid email address",
+              message: "Invalid email address",
             },
           })}
         />
@@ -38,18 +37,20 @@ export default function Login({ register, handleSubmit }) {
           inputRef={register({
             required: {
               value: true,
-              message: "password field can not be empty",
+              message: "Password field can not be empty",
             },
             minLength: {
               value: 8,
-              message: "password min length is 8",
+              message: "Password min length is 8",
             },
           })}
         />
         <Auth.Key />
       </Auth.Row>
       <Auth.Wrapper>
-        <Auth.Button type="submit">LOGIN</Auth.Button>
+        <Auth.Button type="submit" disabled={loading && 1}>
+          LOGIN
+        </Auth.Button>
         <Auth.Back>BACK</Auth.Back>
       </Auth.Wrapper>
       <Auth.Message>

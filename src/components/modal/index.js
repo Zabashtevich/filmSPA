@@ -1,39 +1,30 @@
 import React from "react";
-import { CSSTransition } from "react-transition-group";
 
 import {
-  Container,
-  Backdrop,
+  Overlay,
   Close,
-  Window,
+  Container,
   Header,
   Title,
-  Error,
-  Warning,
+  Icon,
+  Body,
+  List,
   Message,
   Wrapper,
+  Cancel,
   Confirm,
-  Decline,
 } from "./styles/modal";
 
-export default function Modal({ visible, children, ...rest }) {
-  return (
-    <CSSTransition classNames="fade" in={visible} appear={true} timeout={500}>
-      <Container {...rest}>{children}</Container>
-    </CSSTransition>
-  );
+export default function Modal({ children, ...rest }) {
+  return <Overlay {...rest}>{children}</Overlay>;
 }
 
-Modal.Backdrop = function ModalBackdrop({ ...rest }) {
-  return <Backdrop {...rest} />;
-};
-
-Modal.Close = function ModalClose({ children, ...rest }) {
+Modal.Close = function ModalClose({ ...rest }) {
   return <Close {...rest} />;
 };
 
-Modal.Window = function ModalWindow({ children, ...rest }) {
-  return <Window {...rest}>{children}</Window>;
+Modal.Container = function ModalContainer({ children, ...rest }) {
+  return <Container {...rest}>{children}</Container>;
 };
 
 Modal.Header = function ModalHeader({ children, ...rest }) {
@@ -44,12 +35,16 @@ Modal.Title = function ModalTitle({ children, ...rest }) {
   return <Title {...rest}>{children}</Title>;
 };
 
-Modal.Error = function ModalError({ ...rest }) {
-  return <Error {...rest} />;
+Modal.Icon = function ModalIcon({ ...rest }) {
+  return <Icon {...rest} />;
 };
 
-Modal.Warning = function ModalWarning({ children, ...rest }) {
-  return <Warning {...rest} />;
+Modal.Body = function ModalBody({ children, ...rest }) {
+  return <Body {...rest}>{children}</Body>;
+};
+
+Modal.List = function ModalList({ children, ...rest }) {
+  return <List {...rest}>{children}</List>;
 };
 
 Modal.Message = function ModalMessage({ children, ...rest }) {
@@ -60,8 +55,8 @@ Modal.Wrapper = function ModalWrapper({ children, ...rest }) {
   return <Wrapper {...rest}>{children}</Wrapper>;
 };
 
-Modal.Decline = function ModalDecline({ children, ...rest }) {
-  return <Decline {...rest}>{children}</Decline>;
+Modal.Cancel = function ModalCancel({ children, ...rest }) {
+  return <Cancel {...rest}>{children}</Cancel>;
 };
 
 Modal.Confirm = function ModalConfirm({ children, ...rest }) {

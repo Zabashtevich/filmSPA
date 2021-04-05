@@ -30,7 +30,7 @@ export default {
     neutral: "#f2f2f2",
     negative: "#ffe8d9",
     positive: "#d9f0e1",
-    aux: "#add8e6",
+    aux: "#3e495f",
     backdrop: "linear-gradient(to bottom,rgba(0,0,0,0.8),rgba(0,0,0,0.95))",
   },
   animations: {

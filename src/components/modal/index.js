@@ -1,30 +1,36 @@
 import React from "react";
 
 import {
+  Container,
   Overlay,
   Close,
-  Container,
+  Window,
   Header,
   Title,
   Icon,
   Body,
   List,
   Message,
+  Item,
   Wrapper,
   Cancel,
   Confirm,
 } from "./styles/modal";
 
 export default function Modal({ children, ...rest }) {
-  return <Overlay {...rest}>{children}</Overlay>;
+  return <Container {...rest}>{children}</Container>;
 }
+
+Modal.Overlay = function ModalOverlay({ children, ...rest }) {
+  return <Overlay {...rest}>{children}</Overlay>;
+};
 
 Modal.Close = function ModalClose({ ...rest }) {
   return <Close {...rest} />;
 };
 
-Modal.Container = function ModalContainer({ children, ...rest }) {
-  return <Container {...rest}>{children}</Container>;
+Modal.Window = function ModalWindow({ children, ...rest }) {
+  return <Window {...rest}>{children}</Window>;
 };
 
 Modal.Header = function ModalHeader({ children, ...rest }) {
@@ -45,6 +51,10 @@ Modal.Body = function ModalBody({ children, ...rest }) {
 
 Modal.List = function ModalList({ children, ...rest }) {
   return <List {...rest}>{children}</List>;
+};
+
+Modal.Item = function ModalItem({ children, ...rest }) {
+  return <Item {...rest}>{children}</Item>;
 };
 
 Modal.Message = function ModalMessage({ children, ...rest }) {

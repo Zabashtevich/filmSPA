@@ -3,6 +3,7 @@ import styled, { css } from "styled-components/macro";
 import { BsX, BsFillQuestionCircleFill } from "react-icons/bs";
 
 export const Container = styled.div`
+  ${({ theme }) => theme.animations.fade()};
   justify-content: center;
   align-items: center;
   position: fixed;
@@ -36,19 +37,28 @@ export const Window = styled.div`
   background-color: #f3f3f3;
   flex-direction: column;
   z-index: 2000;
-  height: 500px;
-  width: 900px;
   display: flex;
+  width: 900px;
 `;
 
 export const Header = styled.div`
-  background-color: rgba(248, 148, 6, 1);
   border-radius: 0.2rem 0.2rem 0 0;
   align-items: center;
   position: relative;
+  min-height: 300px;
   display: flex;
-  height: 55%;
   width: 100%;
+
+  ${({ type }) =>
+    type === "confirm" &&
+    css`
+      background-color: rgba(248, 148, 6, 1);
+    `};
+  ${({ type }) =>
+    type === "error" &&
+    css`
+      background-color: ${({ theme }) => theme.colors.error};
+    `};
 `;
 
 export const Icon = styled(BsFillQuestionCircleFill)`
@@ -70,7 +80,7 @@ export const Body = styled.div`
 
 export const Title = styled.span`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
-  font-size: ${({ theme }) => theme.font.aux.size.large};
+  font-size: ${({ theme }) => theme.font.aux.size.huge};
   color: ${({ theme }) => theme.colors.aux};
   margin-top: 1rem;
 `;
@@ -79,6 +89,7 @@ export const List = styled.ul`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   font-size: ${({ theme }) => theme.font.aux.size.big};
   color: ${({ theme }) => theme.colors.aux};
+  flex-direction: column;
   box-sizing: border-box;
   padding-left: 10rem;
   margin-top: 1.5rem;
@@ -86,7 +97,15 @@ export const List = styled.ul`
   width: 100%;
 `;
 
-export const Item = styled.li``;
+export const Item = styled.li`
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
+  font-size: ${({ theme }) => theme.font.aux.size.big};
+  margin: 0.3rem 0;
+
+  &:last-child {
+    margin-bottom: 2rem;
+  }
+`;
 
 export const Message = styled.span`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
@@ -105,9 +124,10 @@ export const Wrapper = styled.div`
 export const Cancel = styled.button`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   background-color: ${({ theme }) => theme.colors.main};
+  font-size: ${({ theme }) => theme.font.aux.size.big};
   border: 1px solid rgba(0, 0, 0, 0.3);
   letter-spacing: 0.1rem;
-  padding: 0.6rem 1.2rem;
+  padding: 0.6rem 1.6rem;
   border-radius: 1rem;
   margin: 0 0.5rem;
   cursor: pointer;
@@ -123,6 +143,12 @@ export const Cancel = styled.button`
   &:active {
     transform: scale(0.98);
   }
+
+  ${({ type }) =>
+    type === "error" &&
+    css`
+      background-color: ${({ theme }) => theme.colors.error};
+    `};
 `;
 
 export const Confirm = styled(Cancel)`

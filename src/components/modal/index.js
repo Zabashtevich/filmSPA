@@ -1,4 +1,5 @@
 import React from "react";
+import { CSSTransition } from "react-transition-group";
 
 import {
   Container,
@@ -18,7 +19,11 @@ import {
 } from "./styles/modal";
 
 export default function Modal({ children, ...rest }) {
-  return <Container {...rest}>{children}</Container>;
+  return (
+    <CSSTransition classNames="fade" appear={true} timeout={500}>
+      <Container {...rest}>{children}</Container>
+    </CSSTransition>
+  );
 }
 
 Modal.Overlay = function ModalOverlay({ children, ...rest }) {

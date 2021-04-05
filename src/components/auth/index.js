@@ -40,8 +40,8 @@ Auth.Row = function AuthRow({ children, ...rest }) {
   return <Row {...rest}>{children}</Row>;
 };
 
-Auth.Input = function AuthInput({ children, ...rest }) {
-  return <Input {...rest} />;
+Auth.Input = function AuthInput({ inputRef, children, ...rest }) {
+  return <Input {...rest} ref={inputRef} />;
 };
 
 Auth.Key = function AuthKey({ ...rest }) {

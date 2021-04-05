@@ -5,6 +5,7 @@ import { MdEmail, MdLockOutline } from "react-icons/md";
 import { AiOutlineUser } from "react-icons/ai";
 
 export const Container = styled.div`
+  ${({ theme }) => theme.animations.fade()};
   justify-content: center;
   align-items: center;
   user-select: none;
@@ -15,7 +16,6 @@ export const Container = styled.div`
 
 export const Form = styled.form`
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  ${({ theme }) => theme.animations.fade()};
   border: 1px solid rgba(0, 0, 0, 0.1);
   flex-direction: column;
   align-items: center;

@@ -3,7 +3,9 @@ import React from "react";
 import { Auth } from "../../../components";
 
 export default function Login({ register, handleSubmit }) {
-  function login(value) {}
+  function login(value) {
+    console.log(value);
+  }
 
   return (
     <Auth.Form onSubmit={handleSubmit(login)}>

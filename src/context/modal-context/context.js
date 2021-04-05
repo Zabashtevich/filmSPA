@@ -1,6 +1,11 @@
 import { createContext, useReducer } from "react";
 
-import { CLOSE_MODAL, SHOW_CONFIRM_MODAL, SHOW_ERROR_MODAL } from "./types";
+import {
+  CLOSE_MODAL,
+  SHOW_CONFIRM_MODAL,
+  SHOW_ERROR_MODAL,
+  SHOW_ERROR_LIST,
+} from "./types";
 import modalReducer, { initialState } from "./reducer";
 
 export const ModalContext = createContext(null);
@@ -10,6 +15,10 @@ export default function ModalContextProvider({ children }) {
 
   function showErrorModal(message) {
     dispatch({ type: SHOW_ERROR_MODAL, payload: message });
+  }
+
+  function showErrorList(payload) {
+    dispatch({ type: SHOW_ERROR_LIST, payload });
   }
 
   function showConfirmModal(payload) {
@@ -29,7 +38,13 @@ export default function ModalContextProvider({ children }) {
     <ModalContext.Provider
       value={[
         state,
-        { showErrorModal, showConfirmModal, closeModal, confirmModal },
+        {
+          showErrorModal,
+          showConfirmModal,
+          closeModal,
+          confirmModal,
+          showErrorList,
+        },
       ]}
     >
       {children}

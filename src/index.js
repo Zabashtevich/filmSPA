@@ -22,8 +22,8 @@ ReactDOM.render(
     <Provider store={store}>
       <Wrapper>
         <GlobalStyles />
+        <App />
       </Wrapper>
-      <App />
     </Provider>
   </ThemeProvider>,
 

@@ -149,6 +149,10 @@ export const Button = styled(Back)`
     transition: 300ms;
     color: black;
   }
+
+  &:active {
+    transform: scale(0.96);
+  }
 `;
 
 export const Message = styled.span`
@@ -165,6 +169,7 @@ export const Link = styled(ReactRouterLink)`
   display: inline-block;
   text-decoration: none;
   margin-left: 0.2rem;
+
   &:hover {
     color: black;
   }

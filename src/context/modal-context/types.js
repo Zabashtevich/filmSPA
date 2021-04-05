@@ -1,3 +1,4 @@
 export const SHOW_ERROR_MODAL = "SHOW_ERROR_MODAL";
 export const SHOW_CONFIRM_MODAL = "SHOW_CONFIRM_MODAL";
 export const CLOSE_MODAL = "CLOSE_MODAL";
+export const SHOW_ERROR_LIST = "SHOW_ERROR_LIST";

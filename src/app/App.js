@@ -9,7 +9,7 @@ import {
   ActorPage,
   UserlistPage,
   GalleryPage,
-} from "./pages";
+} from "../pages";
 
 function App() {
   return (

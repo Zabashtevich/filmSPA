@@ -6,16 +6,11 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import "normalize.css";
 
-import App from "./App";
+import App from "./app/App";
 import { GlobalStyles } from "./theme/global-style";
 import theme from "./theme/theme";
 import { rootReducer } from "./reducers";
-import UserDataLogic from "./helpers/user-data-logic";
-import CreditsContextProvider from "./context/credits-context/context";
-import ModalContextProvider from "./context/modal-context/context";
-import NoticeContextProvider from "./context/notice-context/context";
-import PopupContextProvider from "./context/popup-context/context";
-import PaginContextProvider from "./context/pagin-context/context";
+import Wrapper from "./app/Wrapper";
 
 const store = createStore(
   rootReducer,
@@ -25,20 +20,10 @@ const store = createStore(
 ReactDOM.render(
   <ThemeProvider theme={theme}>
     <Provider store={store}>
-      <UserDataLogic>
-        <ModalContextProvider>
-          <NoticeContextProvider>
-            <CreditsContextProvider>
-              <PopupContextProvider>
-                <PaginContextProvider>
-                  <GlobalStyles />
-                  <App />
-                </PaginContextProvider>
-              </PopupContextProvider>
-            </CreditsContextProvider>
-          </NoticeContextProvider>
-        </ModalContextProvider>
-      </UserDataLogic>
+      <Wrapper>
+        <GlobalStyles />
+      </Wrapper>
+      <App />
     </Provider>
   </ThemeProvider>,
 

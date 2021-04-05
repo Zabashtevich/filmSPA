@@ -95,7 +95,7 @@ export default function Signup({ register, handleSubmit }) {
         <Auth.Key />
       </Auth.Row>
       <Auth.Wrapper>
-        <Auth.Button>REGISTER</Auth.Button>
+        <Auth.Button type="submit">REGISTER</Auth.Button>
         <Auth.Back>BACK</Auth.Back>
       </Auth.Wrapper>
       <Auth.Message>

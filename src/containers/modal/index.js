@@ -4,15 +4,22 @@ import { createPortal } from "react-dom";
 import { Modal } from "../../components";
 import { useModalContext } from "../../context";
 
+const modalRoot = document.createElement("div");
+modalRoot.setAttribute("id", "modal-root");
+document.body.appendChild(modalRoot);
+
 export default function ModalContainer() {
   const [
     { visible, type, message, list },
     { closeModal, confirmModal },
   ] = useModalContext();
 
+  const el = document.createElement("div");
+
   useEffect(() => {
     if (visible) {
       document.body.style.overflow = "hidden";
+      modalRoot.appendChild(el);
     } else {
       document.body.style.overflow = "auto";
     }
@@ -21,12 +28,12 @@ export default function ModalContainer() {
   return (
     visible &&
     createPortal(
-      <Modal>
+      <Modal data-testid="modal-container">
         <Modal.Overlay onClick={closeModal}>
           <Modal.Close />
         </Modal.Overlay>
         <Modal.Window>
-          <Modal.Header type={type}>
+          <Modal.Header type={type} data-testid="modal-header">
             <Modal.Icon />
           </Modal.Header>
           <Modal.Body>
@@ -56,7 +63,7 @@ export default function ModalContainer() {
           </Modal.Body>
         </Modal.Window>
       </Modal>,
-      document.getElementById("root"),
+      modalRoot,
     )
   );
 }

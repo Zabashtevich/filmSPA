@@ -31,7 +31,7 @@ export default function MenuContainer() {
             <Menu.Default />
           </Menu.Row>
           <Menu.Item
-            onClick={() => onCategoryClick("userlist", favoritedMovies)}
+            onClick={() => onCategoryClick("favorite", favoritedMovies)}
             selected={type === "favorite" && 1}
             data-testid="favorite"
           >

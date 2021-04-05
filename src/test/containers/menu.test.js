@@ -94,13 +94,10 @@ describe("Menu container", () => {
       setUserlistState,
     ];
 
-    const { getByTestId, getByText, findByTestId } = renderWithRedux(
-      <MenuContainer />,
-      {
-        contextState: defaultContextState,
-        initialState: { userData: { ...afterLoadingState } },
-      },
-    );
+    const { getByTestId, getByText } = renderWithRedux(<MenuContainer />, {
+      contextState: defaultContextState,
+      initialState: { userData: { ...afterLoadingState } },
+    });
 
     userEvent.click(getByTestId("favorite"));
     expect(setUserlistState).toHaveBeenCalledTimes(1);
@@ -111,12 +108,12 @@ describe("Menu container", () => {
     userEvent.click(getByText("first"));
     expect(setUserlistState).toHaveBeenCalledWith({
       type: "userlist",
-      userlist: 1,
+      userlist: afterLoadingState.userlists[0],
     });
     userEvent.click(getByText("second"));
     expect(setUserlistState).toHaveBeenCalledWith({
       type: "userlist",
-      userlist: 2,
+      userlist: afterLoadingState.userlists[1],
     });
     userEvent.click(getByText("Create new list"));
     expect(setUserlistState).toHaveBeenCalledWith({

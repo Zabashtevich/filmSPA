@@ -10,6 +10,7 @@ export { default as checkReleaseStatus } from "./shareable/check-release-status"
 export { default as checkObject } from "./shareable/check-object";
 
 export { default as createEstimateItem } from "./hooks/create-estimate-item";
+export { default as createUserDatafolder } from "./hooks/create-user-datafolder";
 
 export { default as getMoneyFormat } from "./details/get-money-format";
 export { default as getCategories } from "./details/get-categories";

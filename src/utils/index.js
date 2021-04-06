@@ -17,8 +17,7 @@ export { default as getCategories } from "./details/get-categories";
 export { default as checkCategories } from "./details/check-categories";
 export { default as getPersonRole } from "./details/get-person-role";
 
-export { default as validateImage } from "./auth/validate-image";
-export { default as getPreviewSrc } from "./auth/get-preview-src";
+export { default as validateUserAvatar } from "./auth/validate-user-avatar";
 
 export { default as getSelectedArray } from "./gallery/get-selected-array";
 

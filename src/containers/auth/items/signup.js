@@ -1,41 +1,48 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 import { useSignup } from "./../../../hooks";
 import { Auth } from "../../../components";
+import { useModalContext } from "../../../context";
+import { validateUserAvatar } from "../../../utils";
 
 export default function Signup({ register, handleSubmit }) {
+  const [, { showModalError }] = useModalContext();
   const [loading, signup] = useSignup();
+
   const [url, setUrl] = useState(null);
   const [file, setFile] = useState(null);
+  const previewRef = useRef();
 
-  function validateImage(e) {
-    const file = e.target.files[0];
-    if (parseFloat(file.size / (1024 * 1024)) >= 3) {
-      //todo error modal
-    }
-    let img = new Image();
-    img.src = window.URL.createObjectURL(file);
+  function onFileChange(event) {
+    setUrl(null);
+    setFile(null);
 
-    img.onload = () => {
-      if (img.width > 200 || img.height > 200) {
-        console.log("ne norm");
-      } else {
-        setUrl(img.src);
+    validateUserAvatar(event)
+      .then(({ src, file }) => {
+        setUrl(src);
         setFile(file);
-      }
-    };
+      })
+      .catch(() => {
+        //todo validation notification
+        setUrl(null);
+        setFile(null);
+      });
   }
 
-  function onSubmit({ email, name, password, repeatPassword }) {
-    signup({ email, name, password, repeatPassword, file });
+  function onSubmit(data) {
+    signup(data, file);
   }
 
   return (
     <Auth.Form type="signup" onSubmit={handleSubmit(onSubmit)}>
       <Auth.Header type="signup">
         <Auth.Title>SIGN UP</Auth.Title>
-        <Auth.Avatar src={url} disabled={url === null && 1} />
-        <Auth.File type="file" onChange={validateImage} />
+        <Auth.Avatar
+          src={url}
+          disabled={url === null && 1}
+          previewRef={previewRef}
+        />
+        <Auth.File type="file" onChange={onFileChange} />
       </Auth.Header>
       <Auth.Row>
         <Auth.Input
@@ -79,21 +86,6 @@ export default function Signup({ register, handleSubmit }) {
             required: {
               value: true,
               message: "password field can not be empty",
-            },
-            maxLength: 30,
-          })}
-        />
-        <Auth.Key />
-      </Auth.Row>
-      <Auth.Row>
-        <Auth.Input
-          placeholder="Repeat password"
-          type="password"
-          name="repeatPassword"
-          inputRef={register({
-            required: {
-              value: true,
-              message: "repeat password field can not be empty",
             },
             maxLength: 30,
           })}

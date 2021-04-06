@@ -182,13 +182,17 @@ export const Link = styled(ReactRouterLink)`
 `;
 
 export const Avatar = styled.img`
+  visibility: visible;
+  transition: 300ms;
   margin: 3rem 0;
   height: 100px;
   width: 100px;
+  opacity: 1;
 
   ${({ disabled }) =>
     disabled &&
     css`
+      visibility: hidden;
       opacity: 0;
     `};
 `;

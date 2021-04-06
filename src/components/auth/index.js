@@ -82,8 +82,8 @@ Auth.Link = function AuthLink({ children, ...rest }) {
 
 //profile image
 
-Auth.Avatar = function AuthAvatar({ ...rest }) {
-  return <Avatar {...rest} />;
+Auth.Avatar = function AuthAvatar({ previewRef, ...rest }) {
+  return <Avatar {...rest} ref={previewRef} />;
 };
 
 Auth.File = function AuthFile({ ...rest }) {

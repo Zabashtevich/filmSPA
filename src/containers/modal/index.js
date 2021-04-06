@@ -30,7 +30,7 @@ export default function ModalContainer() {
     createPortal(
       <Modal data-testid="modal-container">
         <Modal.Overlay onClick={closeModal} data-testid="modal-overlay">
-          <Modal.Close />
+          <Modal.Close data-testid="modal-close" />
         </Modal.Overlay>
         <Modal.Window>
           <Modal.Header type={type} data-testid="modal-header">

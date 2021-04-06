@@ -5,6 +5,7 @@ import modalReducer from "../../../context/modal-context/reducer";
 import "@testing-library/jest-dom/extend-expect";
 import { ThemeProvider } from "styled-components";
 import theme from "../../../theme/theme";
+import userEvent from "@testing-library/user-event";
 
 function renderComponent(value) {
   return {
@@ -143,7 +144,7 @@ describe("Modal container", () => {
       list: null,
       callback,
     };
-    const { findByTestId, findByText } = renderComponent([
+    const { findByTestId, findByText, container } = renderComponent([
       confirmState,
       modalInterface,
     ]);
@@ -153,5 +154,95 @@ describe("Modal container", () => {
     expect(await findByText("CONFIRM !")).toBeTruthy();
     expect(await findByText("CANCEL")).toBeTruthy();
     expect(await findByText("CONFIRM")).toBeTruthy();
+  });
+
+  it("reducer action CLOSE_MODAL correctly work", () => {
+    const callback = jest.fn();
+
+    const changedState = {
+      visible: true,
+      message: "Error happened",
+      type: "error",
+      list: null,
+      callback,
+    };
+
+    expect(
+      modalReducer(changedState, {
+        type: "CLOSE_MODAL",
+      }),
+    ).toEqual({
+      ...initialState,
+    });
+  });
+
+  it("with error type active includes working interface logic", async () => {
+    const callback = jest.fn();
+
+    const modalInterface = {
+      closeModal,
+      showErrorModal,
+      showErrorList,
+      confirmModal,
+      showConfirmModal,
+    };
+
+    const confirmState = {
+      visible: true,
+      message: "Confirm message",
+      type: "confirm",
+      list: null,
+      callback,
+    };
+    const { findByTestId, findByText } = renderComponent([
+      confirmState,
+      modalInterface,
+    ]);
+
+    expect(await findByText("CANCEL")).toBeTruthy();
+    expect(await findByText("CONFIRM")).toBeTruthy();
+    expect(await findByTestId("modal-overlay")).toBeTruthy();
+
+    userEvent.click(await findByTestId("modal-overlay"));
+    expect(closeModal).toHaveBeenCalledTimes(1);
+    userEvent.click(await findByTestId("modal-close"));
+    expect(closeModal).toHaveBeenCalledTimes(2);
+    userEvent.click(await findByText("CANCEL"));
+    expect(closeModal).toHaveBeenCalledTimes(3);
+    userEvent.click(await findByText("CONFIRM"));
+    expect(confirmModal).toHaveBeenCalledTimes(1);
+  });
+
+  it("with confirm type active includes working interface logic", async () => {
+    const callback = jest.fn();
+
+    const modalInterface = {
+      closeModal,
+      showErrorModal,
+      showErrorList,
+      confirmModal,
+      showConfirmModal,
+    };
+
+    const confirmState = {
+      visible: true,
+      message: "Error message",
+      type: "error",
+      list: null,
+      callback,
+    };
+    const { findByTestId, findByText } = renderComponent([
+      confirmState,
+      modalInterface,
+    ]);
+
+    expect(await findByText("CLOSE")).toBeTruthy();
+
+    userEvent.click(await findByTestId("modal-overlay"));
+    expect(closeModal).toHaveBeenCalledTimes(1);
+    userEvent.click(await findByTestId("modal-close"));
+    expect(closeModal).toHaveBeenCalledTimes(2);
+    userEvent.click(await findByText("CLOSE"));
+    expect(closeModal).toHaveBeenCalledTimes(3);
   });
 });

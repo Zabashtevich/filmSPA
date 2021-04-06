@@ -30,19 +30,22 @@ export default function useSignup() {
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
-        result.user.updateProfile({
-          displayName: name,
-          photoURL: url,
-        });
-      })
-      .catch(() => {
-        setLoading(false);
-        showErrorModal("Something gone wrong");
-      });
-    createUserDatafolder(name)
-      .then(() => {
-        setLoading(false);
-        history.push("/");
+        result.user
+          .updateProfile({
+            displayName: name,
+            photoURL: url,
+          })
+          .then(() => {
+            createUserDatafolder(name)
+              .then(() => {
+                setLoading(false);
+                history.push("/");
+              })
+              .catch(() => {
+                setLoading(false);
+                showErrorModal("Something gone wrong");
+              });
+          });
       })
       .catch(() => {
         setLoading(false);

@@ -138,7 +138,6 @@ export const Cancel = styled.button`
 
   &:hover {
     background-color: white;
-    transition: 100ms;
     color: black;
   }
 

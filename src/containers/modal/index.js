@@ -29,7 +29,7 @@ export default function ModalContainer() {
     visible &&
     createPortal(
       <Modal data-testid="modal-container">
-        <Modal.Overlay onClick={closeModal}>
+        <Modal.Overlay onClick={closeModal} data-testid="modal-overlay">
           <Modal.Close />
         </Modal.Overlay>
         <Modal.Window>

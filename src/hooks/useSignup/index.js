@@ -25,32 +25,20 @@ export default function useSignup() {
     });
   }
 
-  function createUserProfile({ password, email, name }, url) {
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then((result) => {
-        result.user
-          .updateProfile({
-            displayName: name,
-            photoURL: url,
-          })
-          .then(() => {
-            createUserDatafolder(name)
-              .then(() => {
-                setLoading(false);
-                history.push("/");
-              })
-              .catch(() => {
-                setLoading(false);
-                showErrorModal("Something gone wrong");
-              });
-          });
-      })
-      .catch(() => {
-        setLoading(false);
-        showErrorModal("Something gone wrong");
-      });
+  async function createUserProfile({ password, email, name }, url) {
+    try {
+      await firebase.auth().createUserWithEmailAndPassword(email, password);
+      await firebase
+        .auth()
+        .currentUser.updateProfile({ displayName: name, photoURL: url });
+      await createUserDatafolder(name);
+      setLoading(false);
+      history.push("/");
+    } catch (error) {
+      alert(error);
+      setLoading(false);
+      showErrorModal("Something gone wrong");
+    }
   }
 
   return [loading, signup];

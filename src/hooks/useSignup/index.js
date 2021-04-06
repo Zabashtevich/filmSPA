@@ -1,16 +1,31 @@
 import { useState } from "react";
 import { useHistory } from "react-router";
+
+import { useModalContext } from "./../../context";
 import { createUserDatafolder } from "../../utils";
+import { firebase } from "./../../libs/firebase";
 
 export default function useSignup() {
   const [, { showErrorModal }] = useModalContext();
   const [loading, setLoading] = useState(false);
-  const [url, setUrl] = useState(null);
   const history = useHistory();
 
-  async function signup({ name, email, password, file }) {
+  function signup(data) {
     setLoading(true);
-    if (file) await loadUserAvatar(file);
+    if (data.file) loadUserAvatar(data);
+    if (!data.file) createUserProfile(data, null);
+  }
+
+  function loadUserAvatar(data) {
+    const ref = firebase.storage().ref();
+    const fileRef = ref.child(data.file.name);
+    fileRef.put(data.file);
+    fileRef.getDownloadURL().then((url) => {
+      createUserProfile(data, url);
+    });
+  }
+
+  function createUserProfile({ password, email, name }, url) {
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
@@ -19,6 +34,10 @@ export default function useSignup() {
           displayName: name,
           photoURL: url,
         });
+      })
+      .catch(() => {
+        setLoading(false);
+        showErrorModal("Something gone wrong");
       });
     createUserDatafolder(name)
       .then(() => {
@@ -29,15 +48,6 @@ export default function useSignup() {
         setLoading(false);
         showErrorModal("Something gone wrong");
       });
-  }
-
-  async function loadUserAvatar(file) {
-    const ref = firebase.storage().ref();
-    const fileRef = ref.child(file.name);
-    fileRef.put(file);
-    fileRef.getDownloadURL().then((result) => {
-      setUrl(result);
-    });
   }
 
   return [loading, signup];

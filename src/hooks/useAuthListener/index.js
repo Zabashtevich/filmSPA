@@ -3,14 +3,14 @@ import { firebase } from "./../../libs/firebase";
 
 export default function useAuthListener() {
   const [data, setData] = useState({
-    data: JSON.parse(localStorage.getItem("loggedUser")),
+    user: JSON.parse(localStorage.getItem("loggedUser")),
     loading: true,
   });
 
   useEffect(() => {
     const listener = firebase.auth().onAuthStateChanged((authUser) => {
       if (authUser) {
-        if (data === null) {
+        if (data.user === null) {
           localStorage.setItem("loggedUser", JSON.stringify(authUser));
           setData({ user: authUser, loading: false });
         } else {
@@ -20,7 +20,7 @@ export default function useAuthListener() {
         }
       } else {
         localStorage.removeItem("loggedUser");
-        setData({ data: null, loading: false });
+        setData({ user: null, loading: false });
       }
     });
 

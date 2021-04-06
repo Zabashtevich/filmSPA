@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 
+import { useSignup } from "./../../../hooks";
 import { Auth } from "../../../components";
 
 export default function Signup({ register, handleSubmit }) {
+  const [loading, signup] = useSignup();
   const [url, setUrl] = useState(null);
+  const [file, setFile] = useState(null);
 
   function validateImage(e) {
     const file = e.target.files[0];
@@ -18,14 +21,17 @@ export default function Signup({ register, handleSubmit }) {
         console.log("ne norm");
       } else {
         setUrl(img.src);
+        setFile(file);
       }
     };
   }
 
-  function signup(value) {}
+  function onSubmit({ email, name, password, repeatPassword }) {
+    signup({ email, name, password, repeatPassword, file });
+  }
 
   return (
-    <Auth.Form type="signup" onSubmit={handleSubmit(signup)}>
+    <Auth.Form type="signup" onSubmit={handleSubmit(onSubmit)}>
       <Auth.Header type="signup">
         <Auth.Title>SIGN UP</Auth.Title>
         <Auth.Avatar src={url} disabled={url === null && 1} />

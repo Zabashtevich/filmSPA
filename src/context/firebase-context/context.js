@@ -5,7 +5,7 @@ export const FirebaseContext = createContext(null);
 
 export default function FirebaseContextProvider({ children }) {
   return (
-    <FirebaseContext.Provider value={firebase}>
+    <FirebaseContext.Provider value={{ firebase }}>
       {children}
     </FirebaseContext.Provider>
   );

@@ -2,15 +2,18 @@ import React, { useRef, useState } from "react";
 
 import { useSignup } from "./../../../hooks";
 import { Auth } from "../../../components";
-import { useModalContext } from "../../../context";
+import { useAuthContext, useModalContext } from "../../../context";
 import { validateUserAvatar } from "../../../utils";
+import { useHistory } from "react-router";
 
 export default function Signup({ register, handleSubmit }) {
-  const [, { showModalError }] = useModalContext();
-  const [loading, signup] = useSignup();
+  const { signup, loadUserAvatar } = useAuthContext();
+  const [, { showErrorModal }] = useModalContext();
 
   const [url, setUrl] = useState(null);
   const [file, setFile] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const history = useHistory();
   const previewRef = useRef();
 
   function onFileChange(event) {
@@ -23,14 +26,25 @@ export default function Signup({ register, handleSubmit }) {
         setFile(file);
       })
       .catch(() => {
-        //todo validation notification
+        showErrorModal("Image too big");
         setUrl(null);
         setFile(null);
       });
   }
 
   function onSubmit(data) {
-    signup(data, file);
+    loadUserAvatar(file)
+      .then((url) => {
+        return signup({ ...data, url });
+      })
+      .catch((error) => {
+        setLoading(false);
+        showErrorModal(error);
+      })
+      .finally(() => {
+        setLoading(false);
+        history.push("/");
+      });
   }
 
   return (

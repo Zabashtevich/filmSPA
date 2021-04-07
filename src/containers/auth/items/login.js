@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 
+import { useAuthContext, useModalContext } from "./../../../context";
 import { Auth } from "../../../components";
 
 export default function Login({ register, handleSubmit }) {
-  const [loading, login] = useLogin();
+  const [, { showErrorModal }] = useModalContext();
+  const { login } = useAuthContext();
+  const [loading, setLoading] = useState(false);
+
+  function signin(data) {
+    setLoading(true);
+    login(data)
+      .catch((error) => {
+        showErrorModal(error.message);
+      })
+      .finally(() => setLoading(false));
+  }
+
   return (
     <Auth.Form onSubmit={handleSubmit(signin)} aria-label="form">
       <Auth.Header>

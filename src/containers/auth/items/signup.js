@@ -34,7 +34,11 @@ export default function Signup({ register, handleSubmit }) {
   }
 
   return (
-    <Auth.Form type="signup" onSubmit={handleSubmit(onSubmit)}>
+    <Auth.Form
+      type="signup"
+      onSubmit={handleSubmit(onSubmit)}
+      aria-label="form"
+    >
       <Auth.Header type="signup">
         <Auth.Title>SIGN UP</Auth.Title>
         <Auth.Avatar

@@ -4,7 +4,7 @@ import { useModalContext } from "../../context";
 
 import { firebase } from "../../libs/firebase";
 
-export default function useAuth(type) {
+export default function useLogin() {
   const [loading, setLoading] = useState(false);
   const [, { showErrorModal }] = useModalContext();
   const history = useHistory();

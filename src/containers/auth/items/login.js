@@ -3,11 +3,11 @@ import React from "react";
 import { Auth } from "../../../components";
 import { useLogin } from "../../../hooks";
 
-export default function Login({ register, handleSubmit }) {
+export default function Login({ register, handleSubmit, signin = login }) {
   const [loading, login] = useLogin();
-
+  signin = signin ?? login;
   return (
-    <Auth.Form onSubmit={handleSubmit(login)}>
+    <Auth.Form onSubmit={handleSubmit(signin)} aria-label="form">
       <Auth.Header>
         <Auth.Title>Login</Auth.Title>
       </Auth.Header>

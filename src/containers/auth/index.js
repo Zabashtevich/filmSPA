@@ -16,7 +16,6 @@ export default function AuthContainer() {
 
   useEffect(() => {
     if (checkObject.notEmty(errors)) {
-      console.log("hi");
       showErrorList(getErrorList(errors));
     }
   }, [errors]);

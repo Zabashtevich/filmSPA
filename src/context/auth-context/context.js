@@ -5,7 +5,7 @@ export const AuthContext = createContext(null);
 
 export default function AuthContextProvider({ children }) {
   const { firebase } = useFirebaseContext();
-  console.log(firebase);
+
   function login({ email, password }) {
     return firebase.auth().signInWithEmailAndPassword(email, password);
   }

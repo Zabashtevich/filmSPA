@@ -1,7 +1,6 @@
 import React from "react";
 
 import { Auth } from "../../../components";
-import { useLogin } from "../../../hooks";
 
 export default function Login({ register, handleSubmit }) {
   const [loading, login] = useLogin();

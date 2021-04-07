@@ -6,19 +6,25 @@ import ModalContextProvider from "../context/modal-context/context";
 import NoticeContextProvider from "../context/notice-context/context";
 import PopupContextProvider from "../context/popup-context/context";
 import PaginContextProvider from "../context/pagin-context/context";
+import FirebaseContextProvider from "../context/firebase-context/context";
+import AuthContextProvider from "../context/auth-context/context";
 
 export default function Wrapper({ children }) {
   return (
-    <UserDataLogic>
-      <ModalContextProvider>
-        <NoticeContextProvider>
-          <CreditsContextProvider>
-            <PopupContextProvider>
-              <PaginContextProvider>{children}</PaginContextProvider>
-            </PopupContextProvider>
-          </CreditsContextProvider>
-        </NoticeContextProvider>
-      </ModalContextProvider>
-    </UserDataLogic>
+    <FirebaseContextProvider>
+      <AuthContextProvider>
+        <UserDataLogic>
+          <ModalContextProvider>
+            <NoticeContextProvider>
+              <CreditsContextProvider>
+                <PopupContextProvider>
+                  <PaginContextProvider>{children}</PaginContextProvider>
+                </PopupContextProvider>
+              </CreditsContextProvider>
+            </NoticeContextProvider>
+          </ModalContextProvider>
+        </UserDataLogic>
+      </AuthContextProvider>
+    </FirebaseContextProvider>
   );
 }

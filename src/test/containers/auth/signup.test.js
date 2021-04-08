@@ -109,4 +109,55 @@ describe("Auth container", () => {
       url: "https/mock.url",
     });
   });
+
+  it("correctly handles signup errors", async () => {
+    const authInterface = {
+      login: jest.fn(),
+      loadUserAvatar: jest
+        .fn()
+        .mockRejectedValue({ message: "Mock rejected data" }),
+      signup: jest.fn(),
+    };
+
+    const { getByText, getByPlaceholderText } = renderComponent(
+      authInterface,
+      modalInterface,
+    );
+
+    act(() => {
+      userEvent.type(getByPlaceholderText(/email/i), "vlados.zabashta@mail.ru");
+      userEvent.type(getByPlaceholderText(/name/i), "Zabashtevich");
+      userEvent.type(getByPlaceholderText(/password/i), "12381238");
+    });
+
+    expect(getByPlaceholderText(/Email/i).value).toContain(
+      "vlados.zabashta@mail.ru",
+    );
+    expect(getByPlaceholderText(/Password/i).value).toContain("12381238");
+
+    await act(async () => {
+      userEvent.click(getByText(/register/i));
+    });
+    expect(modalInterface.showErrorModal).toHaveBeenLastCalledWith(
+      "Mock rejected data",
+    );
+  });
+
+  it("handles invalid email adress", async () => {
+    const { getByRole, getByPlaceholderText, getByText } = renderComponent(
+      authInterface,
+      modalInterface,
+    );
+
+    await act(async () => {
+      userEvent.type(getByPlaceholderText(/email/i), "vlados.zabashtamail.ru");
+      userEvent.type(getByPlaceholderText(/name/i), "Zabashtevich");
+      userEvent.type(getByPlaceholderText(/password/i), "12381238");
+      userEvent.click(getByText(/register/i));
+    });
+
+    expect(modalInterface.showErrorList).toHaveBeenCalledWith([
+      "Invalid email address",
+    ]);
+  });
 });

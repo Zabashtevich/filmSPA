@@ -36,13 +36,12 @@ export default function Signup({ register, handleSubmit }) {
       .then((url) => {
         return signup({ ...data, url });
       })
+      .then(() => history.push("/"))
       .catch((error) => {
-        setLoading(false);
-        showErrorModal(error);
+        showErrorModal(error.message);
       })
       .finally(() => {
         setLoading(false);
-        history.push("/");
       });
   }
 
@@ -74,7 +73,7 @@ export default function Signup({ register, handleSubmit }) {
             },
             pattern: {
               value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-              message: "invalid email address",
+              message: "Invalid email address",
             },
           })}
         />

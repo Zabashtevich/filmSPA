@@ -133,4 +133,21 @@ describe("Auth container", () => {
       "Mock rejected data",
     );
   });
+
+  it("handles invalid email adress", async () => {
+    const { getByRole, getByPlaceholderText, getByText } = renderComponent(
+      authInterface,
+      modalInterface,
+    );
+
+    await act(async () => {
+      userEvent.type(getByPlaceholderText(/email/i), "vlados.zabashtamail.ru");
+      userEvent.type(getByPlaceholderText(/password/i), "12381238");
+      userEvent.click(getByText(/LOGIN/));
+    });
+
+    expect(modalInterface.showErrorList).toHaveBeenCalledWith([
+      "Invalid email address",
+    ]);
+  });
 });

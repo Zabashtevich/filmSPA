@@ -3,24 +3,19 @@ import { useDispatch } from "react-redux";
 
 import useFirestore from "./../hooks/useFirestore";
 import useAuthListener from "./../hooks/useAuthListener";
-import { setUserData } from "../reducers/user-data/actions";
+import {
+  setUserlists,
+  setFavorites,
+  setVotes,
+  finishLoading,
+} from "../reducers/user-data/actions";
+import { setUserProfile } from "../reducers/user-profile/actions";
 
 export default function UserDataLogic({ children }) {
   const dispatch = useDispatch();
   const [user, userLoading] = useAuthListener();
 
-  const [userlistsLoading, userlists] = useFirestore(
-    user && `${user.displayName}`,
-    `userlists`,
-  );
-  const [favoritesLoading, favorites] = useFirestore(
-    user && `${user.displayName}`,
-    `favorites`,
-  );
-  const [votesLoading, votes] = useFirestore(
-    user && `${user.displayName}`,
-    "votes",
-  );
+  const { firestoreListener } = useFirestore();
 
   useEffect(() => {
     if (!userLoading) {
@@ -29,17 +24,33 @@ export default function UserDataLogic({ children }) {
   }, [userLoading, dispatch, user]);
 
   useEffect(() => {
-    if (userlistsLoading || favoritesLoading || votesLoading) return;
+    if (!user) {
+      return;
+    }
+    const unsubscribe = firestoreListener(user.displayName, "userlists")
+      .onSnapshot((doc) => {
+        dispatch(setUserlists(doc.data()));
+      })
+      .then(() => {
+        return firestoreListener(user.displayName, "favorites").onSnapshot(
+          (doc) => {
+            dispatch(setFavorites(doc.data()));
+          },
+        );
+      })
+      .then(() => {
+        return firestoreListener(user.displayName, "votes").onSnapshot(
+          (doc) => {
+            dispatch(setVotes(doc.data()));
+          },
+        );
+      })
+      .then(() => dispatch(finishLoading));
 
-    dispatch(setUserData({ votes, favorites, userlists }));
-  }, [
-    userlistsLoading,
-    favoritesLoading,
-    votesLoading,
-    votes,
-    favorites,
-    userlists,
-  ]);
+    return () => {
+      unsubscribe();
+    };
+  }, [user]);
 
   return children;
 }

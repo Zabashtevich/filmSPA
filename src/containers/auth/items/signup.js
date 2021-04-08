@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
 
-import { useSignup } from "./../../../hooks";
 import { Auth } from "../../../components";
 import { useAuthContext, useModalContext } from "../../../context";
 import { validateUserAvatar } from "../../../utils";
@@ -59,8 +58,9 @@ export default function Signup({ register, handleSubmit }) {
           src={url}
           disabled={url === null && 1}
           previewRef={previewRef}
+          data-testid="auth-avatar"
         />
-        <Auth.File type="file" onChange={onFileChange} />
+        <Auth.File type="file" onChange={onFileChange} placeholder="file" />
       </Auth.Header>
       <Auth.Row>
         <Auth.Input
@@ -70,7 +70,7 @@ export default function Signup({ register, handleSubmit }) {
           inputRef={register({
             required: {
               value: true,
-              message: "email field can not be empty",
+              message: "Email field can not be empty",
             },
             pattern: {
               value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
@@ -88,7 +88,7 @@ export default function Signup({ register, handleSubmit }) {
           inputRef={register({
             required: {
               value: true,
-              message: "name field can not be empty",
+              message: "Name field can not be empty",
             },
             maxLength: 20,
           })}
@@ -103,7 +103,7 @@ export default function Signup({ register, handleSubmit }) {
           inputRef={register({
             required: {
               value: true,
-              message: "password field can not be empty",
+              message: "Password field can not be empty",
             },
             maxLength: 30,
           })}
@@ -115,7 +115,7 @@ export default function Signup({ register, handleSubmit }) {
         <Auth.Back>BACK</Auth.Back>
       </Auth.Wrapper>
       <Auth.Message>
-        <Auth.Subtitle>Already have an account?</Auth.Subtitle>
+        <Auth.Subtitle>Already have an account ?</Auth.Subtitle>
         <Auth.Link to="/authentication/login">Login here</Auth.Link>
       </Auth.Message>
     </Auth.Form>

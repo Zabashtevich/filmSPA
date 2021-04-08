@@ -9,8 +9,8 @@ import { transformArrayToObject } from "../utils";
 
 export default function UserDataLogic({ children }) {
   const dispatch = useDispatch();
-  const [user, userLoading] = useAuthListener();
 
+  const [user, userLoading] = useAuthListener();
   const [data] = useFirestore();
 
   useEffect(() => {

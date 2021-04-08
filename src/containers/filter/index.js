@@ -9,9 +9,7 @@ import { FilterSkeleton } from "../../components/skeleton";
 
 export default function FilterContainer() {
   const [, setCreditsProps] = useCreditsContext();
-  const { userDataLoading, ratedMovies } = useSelector(
-    (state) => state.userData,
-  );
+  const { userDataLoading, votes } = useSelector((state) => state.userData);
 
   const [state, setState] = useState({
     sortBy: "date",
@@ -38,7 +36,7 @@ export default function FilterContainer() {
     if (!userDataLoading) {
       setCreditsProps({
         loading: false,
-        array: getFiltredArray(ratedMovies, state),
+        array: getFiltredArray(votes, state),
       });
     }
   }, [userDataLoading, state]);

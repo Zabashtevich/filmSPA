@@ -4,30 +4,22 @@ import { useDispatch } from "react-redux";
 import useFirestore from "./../hooks/useFirestore";
 import useAuthListener from "./../hooks/useAuthListener";
 import { setUserData } from "../reducers/user-data/actions";
-import { setReviews } from "../reducers/reviews-data/actions";
-import { setUserProfile } from "../reducers/user-profile/actions";
 
 export default function UserDataLogic({ children }) {
   const dispatch = useDispatch();
   const [user, userLoading] = useAuthListener();
 
-  const [ratedMoviesLoading, ratedMovies] = useFirestore(
-    user && `${user.displayName}`,
-    `moviesrated`,
-  );
   const [userlistsLoading, userlists] = useFirestore(
     user && `${user.displayName}`,
-    `collection`,
+    `userlists`,
   );
-  const [favoritedLoading, favoritedMovies] = useFirestore(
+  const [favoritesLoading, favorites] = useFirestore(
     user && `${user.displayName}`,
-    "collection",
-    "favorite",
+    `favorites`,
   );
-
-  const [reviewsLoading, reviews] = useFirestore(
+  const [votesLoading, votes] = useFirestore(
     user && `${user.displayName}`,
-    "reviews",
+    "votes",
   );
 
   useEffect(() => {
@@ -37,22 +29,16 @@ export default function UserDataLogic({ children }) {
   }, [userLoading, dispatch, user]);
 
   useEffect(() => {
-    if (reviewsLoading) return;
-    dispatch(setReviews(reviews));
-  }, [reviewsLoading, reviews, dispatch]);
+    if (userlistsLoading || favoritesLoading || votesLoading) return;
 
-  useEffect(() => {
-    if (ratedMoviesLoading || userlistsLoading || favoritedLoading) return;
-
-    dispatch(setUserData({ userlists, favoritedMovies, ratedMovies }));
+    dispatch(setUserData({ votes, favorites, userlists }));
   }, [
-    ratedMovies,
-    userlists,
-    favoritedMovies,
-    dispatch,
-    favoritedLoading,
-    ratedMoviesLoading,
     userlistsLoading,
+    favoritesLoading,
+    votesLoading,
+    votes,
+    favorites,
+    userlists,
   ]);
 
   return children;

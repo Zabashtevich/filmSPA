@@ -23,9 +23,32 @@ export default function AuthContextProvider({ children }) {
 
   async function signup({ password, email, name, url = null }) {
     await firebase.auth().createUserWithEmailAndPassword(email, password);
-    return firebase
+    await firebase
       .auth()
       .currentUser.updateProfile({ displayName: name, photoURL: url });
+    return createProfileRows(name);
+  }
+
+  function createProfileRows(name) {
+    return firebase
+      .firestore()
+      .collection(`${name}`)
+      .doc(`votes`)
+      .set({ content: [] })
+      .then(() => {
+        return firebase
+          .firestore()
+          .collection(`${name}`)
+          .doc(`userlists`)
+          .set({ content: [] });
+      })
+      .then(() => {
+        return firebase
+          .firestore()
+          .collection(`${name}`)
+          .doc(`favorites`)
+          .set({ content: [] });
+      });
   }
 
   return (

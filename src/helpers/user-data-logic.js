@@ -15,7 +15,7 @@ export default function UserDataLogic({ children }) {
   const dispatch = useDispatch();
   const [user, userLoading] = useAuthListener();
 
-  const { firestoreListener } = useFirestore();
+  const [data] = useFirestore();
 
   useEffect(() => {
     if (!userLoading) {
@@ -24,33 +24,8 @@ export default function UserDataLogic({ children }) {
   }, [userLoading, dispatch, user]);
 
   useEffect(() => {
-    if (!user) {
-      return;
-    }
-    const unsubscribe = firestoreListener(user.displayName, "userlists")
-      .onSnapshot((doc) => {
-        dispatch(setUserlists(doc.data()));
-      })
-      .then(() => {
-        return firestoreListener(user.displayName, "favorites").onSnapshot(
-          (doc) => {
-            dispatch(setFavorites(doc.data()));
-          },
-        );
-      })
-      .then(() => {
-        return firestoreListener(user.displayName, "votes").onSnapshot(
-          (doc) => {
-            dispatch(setVotes(doc.data()));
-          },
-        );
-      })
-      .then(() => dispatch(finishLoading));
-
-    return () => {
-      unsubscribe();
-    };
-  }, [user]);
+    console.log(data);
+  }, [data]);
 
   return children;
 }

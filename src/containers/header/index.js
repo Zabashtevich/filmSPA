@@ -9,7 +9,6 @@ export default function HeaderContainer() {
   const [popupVisible, setPopupVisible] = useState(false);
   const { profileLoading, profile } = useSelector((state) => state.userProfile);
   let prevScrollPosition = 0;
-  console.log(profile?.photoURL, profile);
   function inputToggler() {
     setActive((prev) => !prev);
   }

@@ -3,13 +3,9 @@ import { useDispatch } from "react-redux";
 
 import useFirestore from "./../hooks/useFirestore";
 import useAuthListener from "./../hooks/useAuthListener";
-import {
-  setUserlists,
-  setFavorites,
-  setVotes,
-  finishLoading,
-} from "../reducers/user-data/actions";
+import { setData, startLoading } from "../reducers/user-data/actions";
 import { setUserProfile } from "../reducers/user-profile/actions";
+import { transformArrayToObject } from "../utils";
 
 export default function UserDataLogic({ children }) {
   const dispatch = useDispatch();
@@ -24,7 +20,10 @@ export default function UserDataLogic({ children }) {
   }, [userLoading, dispatch, user]);
 
   useEffect(() => {
-    console.log(data);
+    if (data) {
+      dispatch(startLoading());
+      dispatch(setData(transformArrayToObject(data)));
+    }
   }, [data]);
 
   return children;

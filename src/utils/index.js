@@ -8,6 +8,7 @@ export { default as splitByType } from "./shareable/split-by-type";
 export { default as sortMoviesByDate } from "./shareable/sort-movies-by-date";
 export { default as checkReleaseStatus } from "./shareable/check-release-status";
 export { default as checkObject } from "./shareable/check-object";
+export { default as transformArrayToObject } from "./shareable/transform-array-to-object";
 
 export { default as createEstimateItem } from "./hooks/create-estimate-item";
 export { default as createUserDatafolder } from "./hooks/create-user-datafolder";

@@ -34,20 +34,20 @@ export default function AuthContextProvider({ children }) {
       .firestore()
       .collection(`${name}`)
       .doc(`votes`)
-      .set({ content: [] })
+      .set({ votes: [] })
       .then(() => {
         return firebase
           .firestore()
           .collection(`${name}`)
           .doc(`userlists`)
-          .set({ content: [] });
+          .set({ userlists: [] });
       })
       .then(() => {
         return firebase
           .firestore()
           .collection(`${name}`)
           .doc(`favorites`)
-          .set({ content: [] });
+          .set({ favorites: [] });
       });
   }
 

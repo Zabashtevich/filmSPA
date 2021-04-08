@@ -1,4 +1,2 @@
-export const SET_USERLISTS = "SET_USERLISTS";
-export const SET_FAVORITES = "SET_FAVORITES";
-export const SET_VOTES = "SET_VOTES";
-export const FINISH_LOADING = "FINISH_LOADING";
+export const START_LOADING = "START_LOADING";
+export const SET_DATA = "SET_DATA";

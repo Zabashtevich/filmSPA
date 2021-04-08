@@ -36,12 +36,13 @@ export default function Signup({ register, handleSubmit }) {
       .then((url) => {
         return signup({ ...data, url });
       })
-      .then(() => history.push("/"))
-      .catch((error) => {
-        showErrorModal(error.message);
-      })
-      .finally(() => {
+      .then(() => {
         setLoading(false);
+        history.push("/");
+      })
+      .catch((error) => {
+        setLoading(false);
+        showErrorModal(error.message);
       });
   }
 
@@ -110,7 +111,9 @@ export default function Signup({ register, handleSubmit }) {
         <Auth.Key />
       </Auth.Row>
       <Auth.Wrapper>
-        <Auth.Button type="submit">REGISTER</Auth.Button>
+        <Auth.Button type="submit" disabled={loading && 1}>
+          REGISTER
+        </Auth.Button>
         <Auth.Back>BACK</Auth.Back>
       </Auth.Wrapper>
       <Auth.Message>

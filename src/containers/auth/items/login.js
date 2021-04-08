@@ -2,19 +2,26 @@ import React, { useState } from "react";
 
 import { useAuthContext, useModalContext } from "./../../../context";
 import { Auth } from "../../../components";
+import { useHistory } from "react-router";
 
 export default function Login({ register, handleSubmit }) {
   const [, { showErrorModal }] = useModalContext();
-  const { login } = useAuthContext();
   const [loading, setLoading] = useState(false);
+
+  const { login } = useAuthContext();
+  const history = useHistory();
 
   function signin(data) {
     setLoading(true);
     login(data)
-      .catch((error) => {
-        showErrorModal(error.message);
+      .then(() => {
+        setLoading(false);
+        history.push("/");
       })
-      .finally(() => setLoading(false));
+      .catch((error) => {
+        setLoading(false);
+        showErrorModal(error.message);
+      });
   }
 
   return (

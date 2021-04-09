@@ -10,7 +10,7 @@ import { FilterSkeleton } from "../../components/skeleton";
 export default function FilterContainer() {
   const [, setCreditsProps] = useCreditsContext();
   const { userDataLoading, votes } = useSelector((state) => state.userData);
-  console.log(getFiltredArray);
+
   const [state, setState] = useState({
     sortBy: "date",
     itemType: "all",

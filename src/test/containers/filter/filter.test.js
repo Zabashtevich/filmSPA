@@ -3,11 +3,11 @@ import { Provider } from "react-redux";
 import { combineReducers } from "redux";
 import { createStore } from "redux";
 import { ThemeProvider } from "styled-components";
-import { FilterContainer } from "../../containers";
-import { CreditsContext } from "../../context/credits-context/context";
-import theme from "../../theme/theme";
-import userData from "./../../reducers/user-data/index";
-import * as utils from "./../../utils";
+import { FilterContainer } from "../../../containers";
+import { CreditsContext } from "../../../context/credits-context/context";
+import theme from "../../../theme/theme";
+import userData from "../../../reducers/user-data/index";
+import "@testing-library/jest-dom";
 
 function renderWithRedux({
   creditsValue,
@@ -28,13 +28,15 @@ function renderWithRedux({
   };
 }
 
-jest.mock("./../../utils", () => ({
+jest.mock("./../../../utils", () => ({
   range: jest.fn().mockImplementation(() => [1950, 1951, 1952]),
-  getFiltredArray: jest.fn(),
+  getFiltredArray: jest.fn().mockImplementation(() => ["dummy data"]),
 }));
 
 describe("Filter container", () => {
-  // beforeEach()//
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
 
   it("correctly mounting and shows skeleton items while loading", () => {
     const loadingState = { userDataLoading: true, votes: null };
@@ -59,7 +61,7 @@ describe("Filter container", () => {
     const initialState = { userDataLoading: false, votes: ["mocked data"] };
     const setCreditsProps = jest.fn();
 
-    const { getByText, getAllByText } = renderWithRedux({
+    const { getByText, getAllByText, debug } = renderWithRedux({
       creditsValue: [null, setCreditsProps],
       initialState: {
         userData: {
@@ -79,15 +81,16 @@ describe("Filter container", () => {
 
     expect(getByText(/period/i)).toBeTruthy();
     expect(getByText(/from/i)).toBeTruthy();
-    expect(getAllByText(/1951/i)).toHaveLength(2);
-
     expect(getByText(/^to$/i)).toBeTruthy();
-    expect(getAllByText(/1960/i)).toHaveLength(2);
+
+    expect(getAllByText(/1950/i)).toHaveLength(2);
+    expect(getAllByText(/1951/i)).toHaveLength(2);
+    expect(getAllByText(/1952/i)).toHaveLength(2);
 
     expect(setCreditsProps).toHaveBeenCalled();
-    // expect(setCreditsProps).toHaveBeenLastCalledWith({
-    //   loading: false,
-    //   array: ["mocked data"],
-    // });
+    expect(setCreditsProps).toHaveBeenLastCalledWith({
+      loading: false,
+      array: ["dummy data"],
+    });
   });
 });

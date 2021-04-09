@@ -1,13 +1,14 @@
-import { render } from "@testing-library/react";
+import { act, render } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { combineReducers } from "redux";
 import { createStore } from "redux";
 import { ThemeProvider } from "styled-components";
-import { FilterContainer } from "../../../containers";
-import { CreditsContext } from "../../../context/credits-context/context";
-import theme from "../../../theme/theme";
-import userData from "../../../reducers/user-data/index";
+import { FilterContainer } from "../../containers";
+import { CreditsContext } from "../../context/credits-context/context";
+import theme from "../../theme/theme";
+import userData from "../../reducers/user-data/index";
 import "@testing-library/jest-dom";
+import userEvent from "@testing-library/user-event";
 
 function renderWithRedux({
   creditsValue,
@@ -28,7 +29,7 @@ function renderWithRedux({
   };
 }
 
-jest.mock("./../../../utils", () => ({
+jest.mock("./../../utils", () => ({
   range: jest.fn().mockImplementation(() => [1950, 1951, 1952]),
   getFiltredArray: jest.fn().mockImplementation(() => ["dummy data"]),
 }));
@@ -92,5 +93,52 @@ describe("Filter container", () => {
       loading: false,
       array: ["dummy data"],
     });
+  });
+
+  it("selected elements have styles", () => {
+    const initialState = { userDataLoading: false, votes: ["mocked data"] };
+    const setCreditsProps = jest.fn();
+
+    const { getByText, getAllByText, debug } = renderWithRedux({
+      creditsValue: [null, setCreditsProps],
+      initialState: {
+        userData: {
+          ...initialState,
+        },
+      },
+    });
+
+    expect(getByText(/date/i)).toHaveStyle("background-color: #1f1f1f");
+    expect(getAllByText(/all/i)[0]).toHaveStyle("background-color: #1f1f1f");
+  });
+
+  it("changes active elements flags", async () => {
+    const initialState = { userDataLoading: false, votes: ["mocked data"] };
+    const setCreditsProps = jest.fn();
+
+    const { getByText, getAllByText, debug } = renderWithRedux({
+      creditsValue: [null, setCreditsProps],
+      initialState: {
+        userData: {
+          ...initialState,
+        },
+      },
+    });
+
+    await act(async () => {
+      userEvent.click(getByText(/popularity/i));
+    });
+
+    expect(getByText(/date/i)).toHaveStyle("background-color: none");
+    expect(getByText(/popularity/i)).toHaveStyle("background-color: #1f1f1f");
+
+    await act(async () => {
+      userEvent.click(getByText(/your vote value/i));
+    });
+
+    expect(getByText(/popularity/i)).toHaveStyle("background-color: none");
+    expect(getByText(/your vote value/i)).toHaveStyle(
+      "background-color: #1f1f1f",
+    );
   });
 });

@@ -1,9 +1,7 @@
 import ReactDOM from "react-dom";
 import { act, screen } from "@testing-library/react";
 import { ModalContainer } from "../../../containers";
-import ModalContextProvider, {
-  ModalContext,
-} from "../../../context/modal-context/context";
+import { ModalContext } from "../../../context/modal-context/context";
 import "@testing-library/jest-dom/extend-expect";
 import { ThemeProvider } from "styled-components";
 import theme from "../../../theme/theme";

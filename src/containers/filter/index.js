@@ -67,7 +67,6 @@ export default function FilterContainer() {
                       key={item.value}
                       onClick={() => onFilterChange("sortBy", item.value)}
                       selected={sortBy === item.value && 1}
-                      className={`${sortBy === item.value ? "selected" : ""}`}
                     >
                       {item.name}
                     </Filter.Value>
@@ -84,7 +83,6 @@ export default function FilterContainer() {
                       key={item.value}
                       onClick={() => onFilterChange("itemType", item.value)}
                       selected={itemType === item.value && "selected"}
-                      className={`${itemType === item.value ? "selected" : ""}`}
                     >
                       {item.name}
                     </Filter.Value>

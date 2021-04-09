@@ -9,6 +9,7 @@ import theme from "../../theme/theme";
 import userData from "../../reducers/user-data/index";
 import "@testing-library/jest-dom";
 import userEvent from "@testing-library/user-event";
+import { getFiltredArray } from "../../utils";
 
 function renderWithRedux({
   creditsValue,
@@ -125,12 +126,26 @@ describe("Filter container", () => {
       },
     });
 
+    expect(getFiltredArray).toHaveBeenLastCalledWith(["mocked data"], {
+      sortBy: "date",
+      itemType: "all",
+      start: "all",
+      end: "all",
+    });
+
     await act(async () => {
       userEvent.click(getByText(/popularity/i));
     });
 
     expect(getByText(/date/i)).toHaveStyle("background-color: none");
     expect(getByText(/popularity/i)).toHaveStyle("background-color: #1f1f1f");
+
+    expect(getFiltredArray).toHaveBeenLastCalledWith(["mocked data"], {
+      sortBy: "popularity",
+      itemType: "all",
+      start: "all",
+      end: "all",
+    });
 
     await act(async () => {
       userEvent.click(getByText(/your vote value/i));
@@ -140,5 +155,91 @@ describe("Filter container", () => {
     expect(getByText(/your vote value/i)).toHaveStyle(
       "background-color: #1f1f1f",
     );
+
+    expect(getFiltredArray).toHaveBeenLastCalledWith(["mocked data"], {
+      sortBy: "yourVoteValue",
+      itemType: "all",
+      start: "all",
+      end: "all",
+    });
+
+    await act(async () => {
+      userEvent.click(getByText(/movie/i));
+    });
+
+    expect(getAllByText(/all/i)[0]).toHaveStyle("background-color: none");
+    expect(getByText(/movie/i)).toHaveStyle("background-color: #1f1f1f");
+
+    expect(getFiltredArray).toHaveBeenLastCalledWith(["mocked data"], {
+      sortBy: "yourVoteValue",
+      itemType: "movie",
+      start: "all",
+      end: "all",
+    });
+
+    act(() => {
+      userEvent.click(getByText(/tv/i));
+    });
+
+    expect(getByText(/movie/i)).toHaveStyle("background-color: none");
+    expect(getByText(/tv/i)).toHaveStyle("background-color: #1f1f1f");
+
+    expect(getFiltredArray).toHaveBeenLastCalledWith(["mocked data"], {
+      sortBy: "yourVoteValue",
+      itemType: "tv",
+      start: "all",
+      end: "all",
+    });
+  });
+
+  it("selects login working correct", async () => {
+    const initialState = { userDataLoading: false, votes: ["mocked data"] };
+    const setCreditsProps = jest.fn();
+
+    const { getByTestId } = renderWithRedux({
+      creditsValue: [null, setCreditsProps],
+      initialState: {
+        userData: {
+          ...initialState,
+        },
+      },
+    });
+
+    expect(getByTestId("select-from").value).toContain("all");
+    expect(getByTestId("select-to").value).toContain("all");
+
+    expect(getFiltredArray).toHaveBeenLastCalledWith(["mocked data"], {
+      sortBy: "date",
+      itemType: "all",
+      start: "all",
+      end: "all",
+    });
+
+    act(() => {
+      userEvent.selectOptions(getByTestId("select-from"), ["1950"]);
+      userEvent.selectOptions(getByTestId("select-to"), ["1951"]);
+    });
+
+    expect(getByTestId("select-from").value).toContain("1950");
+    expect(getByTestId("select-to").value).toContain("1951");
+
+    expect(getFiltredArray).toHaveBeenLastCalledWith(["mocked data"], {
+      sortBy: "date",
+      itemType: "all",
+      start: "1950",
+      end: "1951",
+    });
+
+    act(() => {
+      userEvent.selectOptions(getByTestId("select-from"), ["all"]);
+      userEvent.selectOptions(getByTestId("select-to"), ["all"]);
+    });
+
+    expect(getFiltredArray).toHaveBeenLastCalledWith(["mocked data"], {
+      sortBy: "date",
+      itemType: "all",
+      start: "all",
+      end: "all",
+    });
   });
 });

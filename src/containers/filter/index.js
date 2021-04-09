@@ -21,7 +21,7 @@ export default function FilterContainer() {
   const { sortBy, itemType, start } = state;
 
   function onFilterChange(category, value) {
-    setState((prev) => ({ ...prev, [category]: value, touched: true }));
+    setState((prev) => ({ ...prev, [category]: value }));
   }
 
   const offset = useMemo(
@@ -93,6 +93,7 @@ export default function FilterContainer() {
                   <Filter.Subtitle>from</Filter.Subtitle>
                   <Filter.Select
                     onChange={(e) => onFilterChange("start", e.target.value)}
+                    data-testid="select-from"
                   >
                     <Filter.Option value={"all"}>all</Filter.Option>
                     {range(1950, 72).map((item) => (
@@ -104,6 +105,7 @@ export default function FilterContainer() {
                   <Filter.Subtitle>to</Filter.Subtitle>
                   <Filter.Select
                     onChange={(e) => onFilterChange("end", e.target.value)}
+                    data-testid="select-to"
                   >
                     <Filter.Option>all</Filter.Option>
                     {range(offset.date, offset.amount).map((item) => (

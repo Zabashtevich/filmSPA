@@ -31,7 +31,7 @@ export default function CreditsContainer() {
   const loading = creditsLoading || userDataLoading;
 
   return (
-    <Credits>
+    <Credits data-testid="credits-container">
       {loading &&
         range(1, 25).map((item) => (
           <CSSTransition

@@ -20,6 +20,10 @@ function renderComponent(value) {
 }
 
 describe("Modal container", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   const closeModal = jest.fn();
   const showErrorModal = jest.fn();
   const showErrorList = jest.fn();
@@ -215,14 +219,6 @@ describe("Modal container", () => {
 
   it("with confirm type active includes working interface logic", async () => {
     const callback = jest.fn();
-
-    const modalInterface = {
-      closeModal,
-      showErrorModal,
-      showErrorList,
-      confirmModal,
-      showConfirmModal,
-    };
 
     const confirmState = {
       visible: true,

@@ -386,6 +386,7 @@ export function FilterSkeleton() {
       viewBox="0 0 711 138"
       backgroundColor="#f3f3f3"
       foregroundColor="#ecebeb"
+      data-testid="filter-skeleton"
     >
       <rect x="0" y="8" rx="4" ry="4" width="85" height="30" />
       <rect x="95" y="8" rx="4" ry="4" width="52" height="30" />

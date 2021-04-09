@@ -6,12 +6,12 @@ import { ThemeProvider } from "styled-components";
 import { AccountContainer } from "../../containers";
 import theme from "../../theme/theme";
 import { combineReducers } from "redux";
+import "@testing-library/jest-dom";
 
 function renderWithRedux({
   initialState,
   store = createStore(combineReducers({ userProfile }), initialState),
 } = {}) {
-  console.log(store);
   return {
     ...render(
       <ThemeProvider theme={theme}>
@@ -24,15 +24,30 @@ function renderWithRedux({
   };
 }
 
-jest.mock("../../containers/credits", () => () => <div>123</div>);
-jest.mock("../../containers/filter", () => () => <div>345</div>);
+jest.mock("../../containers/credits", () => () => <div />);
+jest.mock("../../containers/filter", () => () => <div />);
 
 describe("Account container", () => {
-  it("mounting while profile loading", () => {
-    const loadingState = { store: { profileLoading: false, profile: null } };
-    const { debug } = renderWithRedux({
+  it("correctly mounting while profile loading", () => {
+    const loadingState = { profileLoading: true, profile: null };
+    const { getByTestId } = renderWithRedux({
       initialState: { userProfile: { ...loadingState } },
     });
-    debug();
+
+    expect(getByTestId("account-container")).toBeTruthy();
+  });
+
+  it("render content after sucess loading", () => {
+    const loadingState = {
+      profileLoading: false,
+      profile: { photoURL: "./dummy/url.mock", displayName: "dummyName" },
+    };
+    const { getByText, getByRole } = renderWithRedux({
+      initialState: { userProfile: { ...loadingState } },
+    });
+
+    expect(getByText(/your profile activity/i)).toBeTruthy();
+    expect(getByRole("img")).toHaveAttribute("src", "./dummy/url.mock");
+    expect(getByText("dummyName")).toBeTruthy();
   });
 });

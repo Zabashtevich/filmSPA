@@ -5,9 +5,8 @@ import { Account } from "../../components";
 import { CreditsContainer, FilterContainer } from "../";
 
 export default function AccountContainer() {
-  const { profile, profileLoading } = useSelector((state) => state.userProfile);
+  const { profileLoading, profile } = useSelector((state) => state.userProfile);
 
-  console.log(profileLoading);
   return (
     <Account data-testid="account-container">
       {!profileLoading && (

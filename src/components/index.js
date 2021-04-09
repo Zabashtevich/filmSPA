@@ -20,6 +20,4 @@ export { default as Review } from "./review";
 export { default as Widget } from "./widget";
 export { default as Filter } from "./filter";
 export { default as Credits } from "./credits";
-export { default as Menu } from "./menu";
-export { default as Userlist } from "./userlist";
 export { default as Auth } from "./auth";

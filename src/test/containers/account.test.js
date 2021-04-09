@@ -24,7 +24,7 @@ function renderWithRedux({
   };
 }
 
-jest.mock("../../containers/credits", () => () => <div />);
+// jest.mock("../../containers/credits", () => () => <div />);
 jest.mock("../../containers/filter", () => () => <div />);
 
 describe("Account container", () => {

@@ -18,7 +18,6 @@ export default function AccountContainer() {
           <Account.Content>
             <Account.Title>YOUR PROFILE ACTIVITY</Account.Title>
             <FilterContainer />
-            <CreditsContainer />
           </Account.Content>
         </>
       )}

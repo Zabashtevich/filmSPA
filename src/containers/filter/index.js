@@ -8,7 +8,6 @@ import { useCreditsContext } from "../../context";
 import { FilterSkeleton } from "../../components/skeleton";
 
 export default function FilterContainer() {
-  const [, setCreditsProps] = useCreditsContext();
   const { userDataLoading, votes } = useSelector((state) => state.userData);
 
   const [state, setState] = useState({
@@ -31,15 +30,6 @@ export default function FilterContainer() {
     }),
     [start],
   );
-
-  useEffect(() => {
-    if (!userDataLoading) {
-      setCreditsProps({
-        loading: false,
-        array: getFiltredArray(votes, state),
-      });
-    }
-  }, [userDataLoading, state]);
 
   return (
     <Filter data-testid="filter-container">

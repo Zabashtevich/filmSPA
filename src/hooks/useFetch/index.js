@@ -29,7 +29,7 @@ export default function useFetch(type, id) {
     return () => {
       mounted = false;
     };
-  }, []);
+  }, [type, id]);
 
   return [list, loading];
 }

@@ -13,19 +13,9 @@ import { useCreditsContext } from "../../context";
 import { sortMoviesByDate } from "../../utils";
 
 export default function ActorContainer() {
-  const [, setCreditsProps] = useCreditsContext();
   const { slug } = useParams();
 
   const [data, dataLoading] = useFetch("person", slug);
-
-  useEffect(() => {
-    if (!dataLoading) {
-      setCreditsProps({
-        creditsLoading: false,
-        array: sortMoviesByDate(data?.combined_credits?.cast) || [],
-      });
-    }
-  }, [dataLoading]);
 
   return (
     <Actor>

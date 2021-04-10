@@ -1,7 +1,6 @@
 import React from "react";
 
 import UserDataLogic from "../helpers/user-data-logic";
-import CreditsContextProvider from "../context/credits-context/context";
 import ModalContextProvider from "../context/modal-context/context";
 import NoticeContextProvider from "../context/notice-context/context";
 import PopupContextProvider from "../context/popup-context/context";
@@ -16,11 +15,9 @@ export default function Wrapper({ children }) {
         <UserDataLogic>
           <ModalContextProvider>
             <NoticeContextProvider>
-              <CreditsContextProvider>
-                <PopupContextProvider>
-                  <PaginContextProvider>{children}</PaginContextProvider>
-                </PopupContextProvider>
-              </CreditsContextProvider>
+              <PopupContextProvider>
+                <PaginContextProvider>{children}</PaginContextProvider>
+              </PopupContextProvider>
             </NoticeContextProvider>
           </ModalContextProvider>
         </UserDataLogic>

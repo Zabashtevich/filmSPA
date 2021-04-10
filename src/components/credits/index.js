@@ -4,10 +4,7 @@ import {
   Section,
   Item,
   Year,
-  Devider,
-  Description,
   Title,
-  Subtitle,
   Meta,
   Average,
   Count,
@@ -30,20 +27,8 @@ Credits.Year = function CreditsYear({ children, ...rest }) {
   return <Year {...rest}>{children}</Year>;
 };
 
-Credits.Devider = function CreditsDevider({ children, ...rest }) {
-  return <Devider {...rest}>{children}</Devider>;
-};
-
-Credits.Description = function CreditsDescription({ children, ...rest }) {
-  return <Description {...rest}>{children}</Description>;
-};
-
 Credits.Title = function CreditsTitle({ children, ...rest }) {
   return <Title {...rest}>{children}</Title>;
-};
-
-Credits.Subtitle = function CreditsSubtitle({ children, ...rest }) {
-  return <Subtitle {...rest}>{children}</Subtitle>;
 };
 
 Credits.Meta = function CreditsMeta({ children, ...rest }) {

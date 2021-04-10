@@ -5,6 +5,5 @@ export function startLoading() {
 }
 
 export function setData(payload) {
-  console.log(payload);
   return { type: SET_DATA, payload };
 }

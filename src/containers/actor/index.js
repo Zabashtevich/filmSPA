@@ -22,7 +22,7 @@ export default function ActorContainer() {
   useEffect(() => {
     if (!dataLoading) {
       setCredits({
-        loading: false,
+        creditsLoading: false,
         array: sortMoviesByDate(data?.combined_credits?.cast) || [],
         type: "actor",
       });

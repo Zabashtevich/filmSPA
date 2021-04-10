@@ -6,7 +6,6 @@ export default function CreditsContextProvider({ children }) {
   const [state, setState] = useState({
     creditsLoading: true,
     array: null,
-    type: null,
   });
 
   return (

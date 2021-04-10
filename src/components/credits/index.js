@@ -1,4 +1,5 @@
 import React from "react";
+import { CSSTransition } from "react-transition-group";
 
 import {
   Section,
@@ -55,8 +56,19 @@ Credits.Star = function CreditsStar({ children, ...rest }) {
   return <Star {...rest} />;
 };
 
-Credits.Container = function CreditsContainer({ children, ...rest }) {
-  return <Container {...rest}>{children}</Container>;
+Credits.Container = function CreditsContainer({ visible, children, ...rest }) {
+  return (
+    <CSSTransition
+      in={visible}
+      classNames="slide"
+      timeout={500}
+      appear={true}
+      mountOnEnter
+      unmountOnExit
+    >
+      <Container {...rest}>{children}</Container>
+    </CSSTransition>
+  );
 };
 
 Credits.Close = function CreditsClose({ children, ...rest }) {

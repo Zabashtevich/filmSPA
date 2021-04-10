@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Credits } from "../../../components";
-import { checkMovieInList, getYearFromString } from "../../../utils";
+import { checkMovieInList, getYearFromString, range } from "../../../utils";
 
-export default function CreditsItem({ item, type, votes }) {
+export default function CreditsItem({ item, votes }) {
+  const [popupVisible, setPopupVisible] = useState(false);
+  const [hoverIndex, setHoverIndex] = useState(0);
   const [rated, setRated] = useState(null);
 
   useEffect(() => {
@@ -27,11 +29,18 @@ export default function CreditsItem({ item, type, votes }) {
         {metaVisible && <Credits.Count>{item.vote_count}</Credits.Count>}
       </Credits.Meta>
       {rated && <Credits.Highscore>{rated}</Credits.Highscore>}
-      <Credits.Rating>
+      <Credits.Rating onClick={() => setPopupVisible((prev) => !prev)}>
         <Credits.Star />
-        <Credits.Container>
+        <Credits.Container visible={popupVisible}>
           <Credits.Close />
-          <Credits.Star />
+          {range(1, 10).map((item) => (
+            <Credits.Star
+              key={item}
+              onMouseEnter={() => setHoverIndex(item)}
+              onMouseLeave={() => setHoverIndex(0)}
+              hovered={hoverIndex >= item && 1}
+            />
+          ))}
         </Credits.Container>
       </Credits.Rating>
     </Credits.Item>

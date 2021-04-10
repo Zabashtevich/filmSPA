@@ -24,7 +24,6 @@ export default function ActorContainer() {
       setCredits({
         creditsLoading: false,
         array: sortMoviesByDate(data?.combined_credits?.cast) || [],
-        type: "actor",
       });
     }
   }, [dataLoading]);

@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 
 export default function CreditsContainer() {
   const { userDataLoading, votes } = useSelector((state) => state.userData);
-  const [{ creditsLoading, array, type }] = useCreditsContext();
+  const [{ creditsLoading, array }] = useCreditsContext();
 
   const loading = userDataLoading || creditsLoading;
 
@@ -15,9 +15,7 @@ export default function CreditsContainer() {
     <Credits>
       {!loading &&
         array.map((item) => {
-          return (
-            <CreditsItem key={item.id} item={item} type={type} votes={votes} />
-          );
+          return <CreditsItem key={item.id} item={item} votes={votes} />;
         })}
     </Credits>
   );

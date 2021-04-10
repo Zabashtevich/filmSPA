@@ -11,11 +11,23 @@ import ActorPosterColumn from "./items/poster";
 import ActorContent from "./items/content";
 import { CreditsContainer } from "./../";
 import { sortMoviesByDate } from "../../utils";
+import { useCreditsContext } from "../../context";
 
 export default function ActorContainer() {
   const { slug } = useParams();
 
   const [data, dataLoading] = useFetch("person", slug);
+  const [, setCredits] = useCreditsContext();
+
+  useEffect(() => {
+    if (!dataLoading) {
+      setCredits({
+        loading: false,
+        array: sortMoviesByDate(data?.combined_credits?.cast) || [],
+        type: "actor",
+      });
+    }
+  }, [dataLoading]);
 
   return (
     <Actor>
@@ -26,10 +38,7 @@ export default function ActorContainer() {
       <Actor.Content>
         {dataLoading && <ActorContentSkeleton />}
         {!dataLoading && <ActorContent data={data} />}
-        <CreditsContainer
-          array={sortMoviesByDate(data?.combined_credits?.cast) || []}
-          loading={dataLoading}
-        />
+        <CreditsContainer />
       </Actor.Content>
     </Actor>
   );

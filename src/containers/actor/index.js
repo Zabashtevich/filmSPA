@@ -9,7 +9,7 @@ import {
 } from "./../../components/skeleton";
 import ActorPosterColumn from "./items/poster";
 import ActorContent from "./items/content";
-import { useCreditsContext } from "../../context";
+import { CreditsContainer } from "./../";
 import { sortMoviesByDate } from "../../utils";
 
 export default function ActorContainer() {
@@ -26,6 +26,10 @@ export default function ActorContainer() {
       <Actor.Content>
         {dataLoading && <ActorContentSkeleton />}
         {!dataLoading && <ActorContent data={data} />}
+        <CreditsContainer
+          array={sortMoviesByDate(data?.combined_credits?.cast) || []}
+          loading={dataLoading}
+        />
       </Actor.Content>
     </Actor>
   );

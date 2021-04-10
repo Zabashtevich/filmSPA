@@ -1,10 +1,11 @@
 import React from "react";
 import { Credits } from "../../../components";
 
-export default function CreditsItem() {
+export default function CreditsItem({ item }) {
+  console.log(item);
   return (
     <Credits.Item>
-      <Credits.Year></Credits.Year>
+      <Credits.Year>{item.release_date || "-"}</Credits.Year>
       <Credits.Devider />
       <Credits.Description>
         <Credits.Title></Credits.Title>

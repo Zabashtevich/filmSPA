@@ -1,6 +1,8 @@
 import styled from "styled-components/macro";
 
-export const Section = styled.div``;
+export const Section = styled.div`
+  max-width: 900px;
+`;
 
 export const Item = styled.div``;
 

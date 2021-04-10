@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 import { Account } from "../../components";
-import { CreditsContainer, FilterContainer } from "../";
+import { FilterContainer } from "../";
 
 export default function AccountContainer() {
   const { profileLoading, profile } = useSelector((state) => state.userProfile);

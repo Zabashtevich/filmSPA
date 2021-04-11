@@ -1,4 +1,4 @@
-export default function createEstimateItem(item, value, type = "Movie") {
+export default function createEstimateItem(item, value = null, type = "Movie") {
   return {
     date: new Date(),
     id: item.id,

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function useFetch(type, id) {
+export default function useFetch(direction, target) {
   const [{ loading, list }, setData] = useState({
     loading: true,
     list: null,
@@ -16,7 +16,7 @@ export default function useFetch(type, id) {
     if (mounted) {
       setData((prev) => ({ ...prev, loading: true }));
       fetch(
-        `https://api.themoviedb.org/3/${type}/${id}?api_key=${process.env.REACT_APP_API_KEY}&&append_to_response=${querryParams[type]}`,
+        `https://api.themoviedb.org/3/${direction}/${target}?api_key=${process.env.REACT_APP_API_KEY}&&append_to_response=${querryParams[direction]}`,
       )
         .then((response) => response.json())
         .then((data) => {
@@ -29,7 +29,7 @@ export default function useFetch(type, id) {
     return () => {
       mounted = false;
     };
-  }, [type, id]);
+  }, [direction, target]);
 
   return [list, loading];
 }

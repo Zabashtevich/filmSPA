@@ -3,7 +3,8 @@ import styled, { css } from "styled-components/macro";
 export const Container = styled.div`
   ${({ theme }) => theme.animations.fade()};
   justify-content: center;
-  margin-top: 2rem;
+  margin-bottom: 1rem;
+  margin-top: auto;
   display: flex;
   width: 100%;
 `;

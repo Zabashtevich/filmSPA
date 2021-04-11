@@ -15,7 +15,6 @@ export default function useEstimate(username, doc) {
 
   useEffect(() => {
     if (array) {
-      console.log("za");
       setProcess({ processing: true, message: "Adding your vote..." });
       firebase
         .firestore()
@@ -25,7 +24,6 @@ export default function useEstimate(username, doc) {
         .then(() => {
           setProcess((prev) => ({ ...prev, processing: false }));
           setArray(null);
-          console.log("hi");
         })
         .catch(() => {
           setProcess((prev) => ({ ...prev, processing: false }));

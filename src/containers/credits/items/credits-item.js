@@ -12,7 +12,7 @@ import {
   range,
 } from "../../../utils";
 
-export default function CreditsItem({ item, votes, profile }) {
+export default function CreditsItem({ item, votes, profile, index }) {
   const [, { showModal }] = useModalContext();
   const [setEstimate] = useEstimate(profile?.displayName, "votes");
   const [{ processing }] = useProcessContext();
@@ -26,6 +26,7 @@ export default function CreditsItem({ item, votes, profile }) {
 
   const metaVisible = !!item.vote_average && !!item.vote_count;
   const released = checkReleaseStatus(item.release_date || item.first_air_date);
+  const typeSecondary = index % 2 === 0;
 
   function handleEstimate(value) {
     if (!profile) {
@@ -37,11 +38,14 @@ export default function CreditsItem({ item, votes, profile }) {
   }
 
   return (
-    <Credits.Item>
+    <Credits.Item typeSecondary={typeSecondary}>
       <Credits.Year>
         {getYearFromString(item.release_date || item.first_air_date) || "-"}
       </Credits.Year>
-      <Credits.Title title={item.name || item.title}>
+      <Credits.Title
+        title={item.name || item.title}
+        to={`/details/${item.type}/${item.id}`}
+      >
         {item.name || item.title}
       </Credits.Title>
       <Credits.Meta>

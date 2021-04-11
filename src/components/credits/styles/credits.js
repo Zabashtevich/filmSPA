@@ -1,24 +1,34 @@
 import styled, { css } from "styled-components/macro";
 
+import { Link as ReactRouterLink } from "react-router-dom";
 import { BsFillStarFill, BsX } from "react-icons/bs";
 
 export const Section = styled.div`
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   font-family: ${({ theme }) => theme.font.aux.family};
   flex-direction: column;
+  min-height: 1350px;
   margin-top: 2rem;
   max-width: 900px;
   display: flex;
 `;
 
 export const Item = styled.div`
-  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
-    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   align-items: center;
-  margin: 0.2rem 0;
   display: flex;
   height: 50px;
   width: 100%;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  ${({ typeSecondary }) =>
+    typeSecondary &&
+    css`
+      background-color: ${({ theme }) => theme.colors.neutral};
+    `};
 `;
 
 export const Year = styled.span`
@@ -42,12 +52,15 @@ export const Year = styled.span`
   }
 `;
 
-export const Title = styled.span`
+export const Title = styled(ReactRouterLink)`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   font-size: ${({ theme }) => theme.font.aux.size.small};
   text-overflow: ellipsis;
+  text-decoration: none;
   white-space: nowrap;
   overflow: hidden;
+  cursor: pointer;
+  color: black;
   width: 300px;
 `;
 
@@ -87,7 +100,17 @@ export const Count = styled.span`
   margin-left: 0.5rem;
 `;
 
-export const Highscore = styled.span``;
+export const Highscore = styled.span`
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
+  font-size: ${({ theme }) => theme.font.aux.size.big};
+  background-color: ${({ theme }) => theme.colors.aux};
+  border-radius: 0.6rem;
+  text-align: center;
+  padding: 0.3rem 0;
+  margin-left: 10rem;
+  color: white;
+  width: 40px;
+`;
 
 export const Rating = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -120,7 +143,7 @@ export const Container = styled.div`
 `;
 
 export const Star = styled(BsFillStarFill)`
-  transition: 200ms;
+  transition: 100ms;
   padding: 0.1rem;
 
   ${({ hovered }) =>

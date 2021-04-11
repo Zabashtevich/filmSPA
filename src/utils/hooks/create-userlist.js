@@ -1,5 +1,5 @@
 export default function createUserlist(item, list) {
-  const result = list.filter(movie.id !== item.id);
-
-  return result.push(item);
+  const result = list.filter((movie) => movie.id !== item.id);
+  result.push(item);
+  return result;
 }

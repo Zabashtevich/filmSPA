@@ -1,8 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { Credits } from "../../../components";
-import { checkMovieInList, getYearFromString, range } from "../../../utils";
 
-export default function CreditsItem({ item, votes }) {
+import { useEstimate } from "./../../../hooks";
+import { Credits } from "../../../components";
+import { useModalContext, useProcessContext } from "./../../../context";
+import {
+  checkMovieInList,
+  checkReleaseStatus,
+  createEstimateItem,
+  createUserlist,
+  getYearFromString,
+  range,
+} from "../../../utils";
+
+export default function CreditsItem({ item, votes, profile }) {
+  const [, { showModal }] = useModalContext();
+  const [setEstimate] = useEstimate(profile?.displayName, "votes");
+  const [{ processing }] = useProcessContext();
   const [popupVisible, setPopupVisible] = useState(false);
   const [hoverIndex, setHoverIndex] = useState(0);
   const [rated, setRated] = useState(null);
@@ -12,6 +25,17 @@ export default function CreditsItem({ item, votes }) {
   }, [votes]);
 
   const metaVisible = !!item.vote_average && !!item.vote_count;
+  const released = checkReleaseStatus(item.release_date || item.first_air_date);
+
+  function handleEstimate(value) {
+    if (!profile) {
+      showModal("Sorry but you cant vote, plese, login!");
+    }
+    if (!processing) {
+      setEstimate(createUserlist(createEstimateItem(item, value), votes));
+    }
+  }
+
   return (
     <Credits.Item>
       <Credits.Year>
@@ -29,20 +53,23 @@ export default function CreditsItem({ item, votes }) {
         {metaVisible && <Credits.Count>{item.vote_count}</Credits.Count>}
       </Credits.Meta>
       {rated && <Credits.Highscore>{rated}</Credits.Highscore>}
-      <Credits.Rating onClick={() => setPopupVisible((prev) => !prev)}>
-        <Credits.Star />
-        <Credits.Container visible={popupVisible}>
-          <Credits.Close />
-          {range(1, 10).map((item) => (
-            <Credits.Star
-              key={item}
-              onMouseEnter={() => setHoverIndex(item)}
-              onMouseLeave={() => setHoverIndex(0)}
-              hovered={hoverIndex >= item && 1}
-            />
-          ))}
-        </Credits.Container>
-      </Credits.Rating>
+      {released && (
+        <Credits.Rating onClick={() => setPopupVisible((prev) => !prev)}>
+          <Credits.Star />
+          <Credits.Container visible={popupVisible}>
+            <Credits.Close />
+            {range(1, 10).map((item) => (
+              <Credits.Star
+                key={item}
+                onClick={() => handleEstimate(item)}
+                onMouseEnter={() => setHoverIndex(item)}
+                onMouseLeave={() => setHoverIndex(0)}
+                hovered={hoverIndex >= item ? 1 : 0}
+              />
+            ))}
+          </Credits.Container>
+        </Credits.Rating>
+      )}
     </Credits.Item>
   );
 }

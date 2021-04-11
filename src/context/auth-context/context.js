@@ -39,13 +39,6 @@ export default function AuthContextProvider({ children }) {
         return firebase
           .firestore()
           .collection(`${name}`)
-          .doc(`userlists`)
-          .set({ userlists: [] });
-      })
-      .then(() => {
-        return firebase
-          .firestore()
-          .collection(`${name}`)
           .doc(`favorites`)
           .set({ favorites: [] });
       });

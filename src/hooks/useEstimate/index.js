@@ -11,8 +11,11 @@ export default function useEstimate(username, doc) {
   const { firebase } = useFirebaseContext();
   const [array, setArray] = useState(null);
 
+  console.log(username, doc, array);
+
   useEffect(() => {
     if (array) {
+      console.log("za");
       setProcess({ processing: true, message: "Adding your vote..." });
       firebase
         .firestore()
@@ -22,6 +25,7 @@ export default function useEstimate(username, doc) {
         .then(() => {
           setProcess((prev) => ({ ...prev, processing: false }));
           setArray(null);
+          console.log("hi");
         })
         .catch(() => {
           setProcess((prev) => ({ ...prev, processing: false }));
@@ -29,7 +33,7 @@ export default function useEstimate(username, doc) {
           setArray(null);
         });
     }
-  }, [doc]);
+  }, [array]);
 
   return [setArray];
 }

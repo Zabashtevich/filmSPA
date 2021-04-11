@@ -2,7 +2,6 @@ import { SET_DATA, START_LOADING } from "./constants";
 
 const initialState = {
   userDataLoading: true,
-  userlists: null,
   favorites: null,
   votes: null,
 };

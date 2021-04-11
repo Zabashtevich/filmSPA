@@ -5,6 +5,7 @@ import {
   HeaderContainer,
   MainContainer,
   ModalContainer,
+  ProcessContainer,
 } from "../containers";
 
 export default function MainPage() {
@@ -12,6 +13,7 @@ export default function MainPage() {
     <>
       <HeaderContainer />
       <ModalContainer />
+      <ProcessContainer />
       <MainContainer />
       <FooterContainer />
     </>

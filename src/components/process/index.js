@@ -1,9 +1,10 @@
 import React from "react";
+import { CSSTransition } from "react-transition-group";
 import processSpinner from "../../assets/process-spinner.svg";
 
 import { Container, Message, Spinner } from "./styles/process";
 
-export default function Process({ children, ...rest }) {
+export default function Process({ visible, children, ...rest }) {
   return <Container {...rest}>{children}</Container>;
 }
 

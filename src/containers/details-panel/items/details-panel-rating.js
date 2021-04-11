@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 
 import { DetailsPanel } from "../../../components";
-import { useNoticeContext } from "../../../context";
 import { useEstimate } from "../../../hooks";
 import {
   checkMovieInList,
@@ -13,7 +12,6 @@ import {
 } from "../../../utils";
 
 export default function DetailsPanelRating({ data }) {
-  const [{ estimating }] = useNoticeContext();
   const [, setEstimateProps] = useEstimate();
   const { userDataLoading, ratedMovies } = useSelector(
     (state) => state.userData,
@@ -24,11 +22,11 @@ export default function DetailsPanelRating({ data }) {
   const movieIsRated = !userDataLoading && checkMovieInList(ratedMovies, slug);
   const metaExist = !!data.vote_count;
 
-  function handleEstimate(value) {
-    if (!estimating) {
-      setEstimateProps(createEstimateItem(data, value, direction));
-    }
-  }
+  // function handleEstimate(value) {
+  //   if (!estimating) {
+  //     setEstimateProps(createEstimateItem(data, value, direction));
+  //   }
+  // }
 
   return (
     <DetailsPanel.Subsection>

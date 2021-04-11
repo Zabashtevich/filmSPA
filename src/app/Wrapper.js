@@ -2,12 +2,12 @@ import React from "react";
 
 import UserDataLogic from "../helpers/user-data-logic";
 import ModalContextProvider from "../context/modal-context/context";
-import NoticeContextProvider from "../context/notice-context/context";
 import PopupContextProvider from "../context/popup-context/context";
 import PaginContextProvider from "../context/pagin-context/context";
 import FirebaseContextProvider from "../context/firebase-context/context";
 import AuthContextProvider from "../context/auth-context/context";
 import CreditsContextProvider from "../context/credits-context/context";
+import ProcessContextProvider from "../context/process-context/context";
 
 export default function Wrapper({ children }) {
   return (
@@ -16,11 +16,11 @@ export default function Wrapper({ children }) {
         <CreditsContextProvider>
           <UserDataLogic>
             <ModalContextProvider>
-              <NoticeContextProvider>
-                <PopupContextProvider>
+              <PopupContextProvider>
+                <ProcessContextProvider>
                   <PaginContextProvider>{children}</PaginContextProvider>
-                </PopupContextProvider>
-              </NoticeContextProvider>
+                </ProcessContextProvider>
+              </PopupContextProvider>
             </ModalContextProvider>
           </UserDataLogic>
         </CreditsContextProvider>

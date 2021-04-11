@@ -5,7 +5,18 @@ import processSpinner from "../../assets/process-spinner.svg";
 import { Container, Message, Spinner } from "./styles/process";
 
 export default function Process({ visible, children, ...rest }) {
-  return <Container {...rest}>{children}</Container>;
+  return (
+    <CSSTransition
+      in={visible}
+      appear={true}
+      mountOnEnter
+      unmountOnExit
+      timeout={500}
+      classNames="slide"
+    >
+      <Container {...rest}>{children}</Container>
+    </CSSTransition>
+  );
 }
 
 Process.Message = function ProcessMessage({ children, ...rest }) {

@@ -7,7 +7,6 @@ export default function AuthPage() {
     <>
       <ModalContainer />
       <AuthContainer />
-      <NoticeContainer />
     </>
   );
 }

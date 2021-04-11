@@ -7,9 +7,9 @@ export default function ProcessContainer() {
   const [{ visible, message }] = useProcessContext();
 
   return (
-    <Process visible={visible}>
+    <Process visible={visible} data-testid="process-container">
       <Process.Message>{message}</Process.Message>
-      <Process.Spinner />
+      <Process.Spinner data-testid="process-spinner" />
     </Process>
   );
 }

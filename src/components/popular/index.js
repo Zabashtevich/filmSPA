@@ -1,4 +1,5 @@
 import React from "react";
+import { w300miniature } from "../../constants/constants";
 
 import {
   Section,
@@ -25,8 +26,17 @@ Popular.Item = function PopularItem({ children, ...rest }) {
   return <Item {...rest}>{children}</Item>;
 };
 
-Popular.Poster = function PopularPoster({ children, ...rest }) {
-  return <Poster {...rest} />;
+Popular.Poster = function PopularPoster({ slug, children, ...rest }) {
+  return (
+    <Poster
+      {...rest}
+      src={
+        slug
+          ? `${w300miniature + slug}`
+          : "https://dummyimage.com/250x375/aaa/aaa"
+      }
+    />
+  );
 };
 
 Popular.Description = function PopularDescription({ children, ...rest }) {

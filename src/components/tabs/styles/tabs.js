@@ -5,12 +5,14 @@ export const Container = styled.div`
   align-items: center;
   user-select: none;
   display: flex;
+  height: 75px;
   width: 100%;
 `;
 
 export const Title = styled.span`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
-  font-size: ${({ theme }) => theme.font.aux.size.big};
+  font-size: ${({ theme }) => theme.font.aux.size.large};
+  text-transform: uppercase;
 `;
 
 export const Wrapper = styled.div``;
@@ -24,7 +26,7 @@ export const Item = styled.span`
   border-top: 2px solid rgba(0, 0, 0, 1);
 
   text-transform: uppercase;
-  padding: 0.6rem 0.8rem;
+  padding: 0.3rem 0.4rem;
   transition: 300ms;
   cursor: pointer;
   color: white;

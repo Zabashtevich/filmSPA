@@ -20,7 +20,7 @@ export default function MainContainer() {
             array: [
               { title: "popular", value: "popular" },
               { title: "top rated", value: "top_rated" },
-              { title: "airing", value: "airing" },
+              { title: "airing", value: "airing_today" },
             ],
           }}
         />

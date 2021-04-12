@@ -18,7 +18,7 @@ export default function PopularContainer({ type, tabs }) {
         <Popular.Title>{type.toUpperCase()}</Popular.Title>
         <TabsContainer
           tabs={tabs}
-          setActive={setActiveTab}
+          setActiveTab={setActiveTab}
           active={activeTab}
         />
       </Popular.Wrapper>

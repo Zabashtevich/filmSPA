@@ -6,10 +6,10 @@ export default function Tabs({ children, ...rest }) {
   return <Container {...rest}>{children}</Container>;
 }
 
-Tabs.Title = function Title({ children, ...rest }) {
+Tabs.Title = function TabsTitle({ children, ...rest }) {
   return <Title {...rest}>{children}</Title>;
 };
 
-Tabs.Item = function Item({ children, ...rest }) {
+Tabs.Item = function TabsItem({ children, ...rest }) {
   return <Item {...rest}>{children}</Item>;
 };

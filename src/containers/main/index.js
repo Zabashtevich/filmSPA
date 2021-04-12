@@ -15,28 +15,34 @@ export default function MainContainer() {
       <SliderContainer />
       <Main.Section>
         <PopularContainer
-          type="tv"
-          tabs={[
-            { title: "popular", value: "popular" },
-            { title: "top rated", value: "top_rated" },
-            { title: "airing", value: "airing" },
-          ]}
+          tabs={{
+            type: "tv",
+            array: [
+              { title: "popular", value: "popular" },
+              { title: "top rated", value: "top_rated" },
+              { title: "airing", value: "airing" },
+            ],
+          }}
         />
       </Main.Section>
       <Main.Section>
         <PopularContainer
-          type="movie"
-          tabs={[
-            { title: "popular", value: "popular" },
-            { title: "top rated", value: "top_rated" },
-            { title: "upcoming", value: "upcoming" },
-          ]}
+          tabs={{
+            type: "movie",
+            array: [
+              { title: "popular", value: "popular" },
+              { title: "top rated", value: "top_rated" },
+              { title: "upcoming", value: "upcoming" },
+            ],
+          }}
         />
       </Main.Section>
       <Main.Section>
         <PopularContainer
-          type="person"
-          tabs={[{ title: "popular", value: "popular" }]}
+          tabs={{
+            type: "person",
+            array: [{ title: "popular", value: "popular" }],
+          }}
         />
       </Main.Section>
       <Main.Section>

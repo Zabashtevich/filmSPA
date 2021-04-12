@@ -13,11 +13,14 @@ function renderComponent(component) {
 
 describe("Tabs container", () => {
   const setActiveTab = jest.fn();
-  const initialTabs = [
-    { title: "First title", value: "first_value" },
-    { title: "Second title", value: "second_value" },
-    { title: "Third title", value: "third_value" },
-  ];
+  const initialTabs = {
+    type: "actor",
+    array: [
+      { title: "First title", value: "first_value" },
+      { title: "Second title", value: "second_value" },
+      { title: "Third title", value: "third_value" },
+    ],
+  };
 
   it("rendering correctly", () => {
     const { getByText } = renderComponent(
@@ -28,6 +31,7 @@ describe("Tabs container", () => {
       />,
     );
 
+    expect(getByText("actor")).toBeTruthy();
     expect(getByText("First title")).toBeTruthy();
     expect(getByText("Second title")).toBeTruthy();
     expect(getByText("Third title")).toBeTruthy();

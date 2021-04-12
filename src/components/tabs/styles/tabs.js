@@ -5,6 +5,7 @@ export const Container = styled.div`
   align-items: center;
   user-select: none;
   display: flex;
+  width: 100%;
 `;
 
 export const Title = styled.span`

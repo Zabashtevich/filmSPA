@@ -29,7 +29,7 @@ export default function TrendingContainer() {
   return (
     <Trending>
       <Trending.Wrapper>
-        <TabsContainer
+        {/* <TabsContainer
           tabs={typeTab}
           setActive={setActiveType}
           active={activeType}
@@ -39,7 +39,7 @@ export default function TrendingContainer() {
           tabs={periodType}
           setActive={setActivePeriod}
           active={activePeriod}
-        />
+        /> */}
       </Trending.Wrapper>
       <Trending.List>
         {dataLoading &&

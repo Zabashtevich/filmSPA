@@ -13,7 +13,7 @@ import {
   Count,
 } from "./styles/popular";
 
-export default function Popular({ childrem, ...rest }) {
+export default function Popular({ children, ...rest }) {
   return <Section {...rest}>{children}</Section>;
 }
 

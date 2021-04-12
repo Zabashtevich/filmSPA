@@ -1,21 +1,37 @@
-import styled from "styled-components/macro";
+import React, { useState } from "react";
+import { TabsContainer } from "..";
+import { Popular } from "../../components";
+import { useFetch } from "../../hooks";
 
-export const Section = styled.div``;
-
-export const Container = styled.div``;
-
-export const Item = styled.div``;
-
-export const Poster = styled.div``;
-
-export const Description = styled.div``;
-
-export const Row = styled.div``;
-
-export const Title = styled.div``;
-
-export const Average = styled.div``;
-
-export const Year = styled.div``;
-
-export const Count = styled.div``;
+export default function PopularContainer({ tabs }) {
+  const [activeTab, setActiveTab] = useState("popular");
+  const [data, dataLoading] = useFetch(tabs.type, activeTab);
+  console.log(data, dataLoading);
+  return (
+    <Popular>
+      <TabsContainer
+        tabs={tabs}
+        setActiveTab={setActiveTab}
+        active={activeTab}
+      />
+      <Popular.Container>
+        {!dataLoading &&
+          data.results.map((item) => (
+            <Popular.Item>
+              <Popular.Poster />
+              <Popular.Description>
+                <Popular.Row>
+                  <Popular.Title></Popular.Title>
+                  <Popular.Average></Popular.Average>
+                </Popular.Row>
+                <Popular.Row>
+                  <Popular.Year></Popular.Year>
+                  <Popular.Count></Popular.Count>
+                </Popular.Row>
+              </Popular.Description>
+            </Popular.Item>
+          ))}
+      </Popular.Container>
+    </Popular>
+  );
+}

@@ -20,6 +20,7 @@ export const Item = styled.span`
 
   text-transform: uppercase;
   padding: 0.6rem 0.8rem;
+  transition: 300ms;
   cursor: pointer;
   color: white;
 
@@ -27,18 +28,19 @@ export const Item = styled.span`
     leftTab &&
     css`
       border-left: 2px solid rgba(0, 0, 0, 1);
-      border-radius: 0.4rem 0 0 0.4rem;
+      border-top-left-radius: 0.4rem;
+      border-bottom-left-radius: 0.4rem;
     `};
 
   ${({ rightTab }) =>
     rightTab &&
     css`
-      border-radius: 0 0.4rem 0.4rem 0;
+      border-top-right-radius: 0.4rem;
+      border-bottom-right-radius: 0.4rem;
     `};
 
   &:hover {
     background-color: rgba(0, 0, 0, 0.75);
-    transition: 300ms;
   }
 
   ${({ active }) =>

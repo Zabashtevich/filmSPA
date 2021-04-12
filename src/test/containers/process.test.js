@@ -27,7 +27,7 @@ describe("Process container", () => {
   });
 
   it("mounted on call", () => {
-    const initialState = { visible: true, message: "Mocked message" };
+    const initialState = { processing: true, message: "Mocked message" };
 
     const { getByTestId, getByText } = renderComponent([initialState, null]);
 

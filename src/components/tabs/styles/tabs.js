@@ -1,6 +1,8 @@
 import styled, { css } from "styled-components/macro";
 
 export const Container = styled.div`
+  justify-content: space-between;
+  align-items: center;
   user-select: none;
   display: flex;
 `;
@@ -9,6 +11,8 @@ export const Title = styled.span`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   font-size: ${({ theme }) => theme.font.aux.size.big};
 `;
+
+export const Wrapper = styled.div``;
 
 export const Item = styled.span`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};

@@ -3,7 +3,6 @@ import { CSSTransition } from "react-transition-group";
 
 import {
   ListPosterWrapper,
-  PopularSkeletonWrapper,
   TrendingSkeletonWrapper,
   GalleryPosterWrapper,
 } from "./styles/skeleton";
@@ -132,25 +131,6 @@ export function DetailsCollectionSkeleton() {
     >
       <rect x="0" y="0" rx="10" ry="10" width="1300" height="300" />
     </ContentLoader>
-  );
-}
-
-export function PopularSkeleton() {
-  return (
-    <PopularSkeletonWrapper>
-      <ContentLoader
-        speed={2}
-        width={250}
-        height={450}
-        viewBox="0 0 250 450"
-        backgroundColor="#f3f3f3"
-        foregroundColor="#ecebeb"
-      >
-        <rect x="0" y="0" rx="4" ry="4" width="250" height="375" />
-        <rect x="20" y="390" rx="4" ry="4" width="115" height="20" />
-        <rect x="20" y="420" rx="4" ry="4" width="50" height="15" />
-      </ContentLoader>
-    </PopularSkeletonWrapper>
   );
 }
 
@@ -286,27 +266,6 @@ export function ReviewSkeleton() {
       <rect x="36" y="384" rx="0" ry="0" width="600" height="12" />
       <rect x="36" y="520" rx="0" ry="0" width="600" height="12" />
       <rect x="36" y="536" rx="0" ry="0" width="600" height="12" />
-    </ContentLoader>
-  );
-}
-
-export function CreditsSkeleton() {
-  return (
-    <ContentLoader
-      speed={2}
-      width={900}
-      height={50}
-      viewBox="0 0 900 50"
-      backgroundColor="#f3f3f3"
-      foregroundColor="#ecebeb"
-      data-testid="credits-skeleton"
-    >
-      <rect x="15" y="15" rx="4" ry="4" width="20" height="20" />
-      <rect x="65" y="17" rx="4" ry="4" width="40" height="16" />
-      <rect x="153" y="16" rx="4" ry="4" width="300" height="18" />
-      <rect x="517" y="14" rx="4" ry="4" width="90" height="20" />
-      <rect x="655" y="7" rx="4" ry="4" width="36" height="36" />
-      <rect x="820" y="10" rx="4" ry="4" width="60" height="30" />
     </ContentLoader>
   );
 }

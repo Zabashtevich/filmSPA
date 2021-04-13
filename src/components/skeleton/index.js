@@ -368,7 +368,15 @@ export function FilterSkeleton() {
 
 export function PopularSkeleton() {
   return (
-    <div style={{ margin: "0 0.1rem" }} data-testid="popular-skeleton">
+    <div
+      style={{
+        margin: "0 0.1rem",
+        boxSizing: "border-box",
+        width: "250px",
+        height: "450px",
+      }}
+      data-testid="popular-skeleton"
+    >
       <ContentLoader
         speed={2}
         width={250}

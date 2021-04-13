@@ -13,10 +13,8 @@ export default function PopularContainer({ tabs }) {
   const [activeTab, setActiveTab] = useState("popular");
   const [data, dataLoading] = useFetch(tabs.type, activeTab);
 
-  console.log(data);
-
   return (
-    <Popular>
+    <Popular data-testid="popular-container">
       <TabsContainer
         tabs={tabs}
         setActiveTab={setActiveTab}

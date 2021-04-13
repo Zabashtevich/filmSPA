@@ -5,7 +5,7 @@ import { getYearFromString } from "../../../utils";
 
 export default function PopularItem({ item }) {
   return (
-    <Popular.Item>
+    <Popular.Item to={`/details/${item.id}`}>
       <Popular.Poster slug={item.poster_path} />
       <Popular.Description>
         <Popular.Row>

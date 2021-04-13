@@ -3,6 +3,7 @@ import { CSSTransition } from "react-transition-group";
 
 import {
   Section,
+  Inner,
   Item,
   Year,
   Title,
@@ -19,6 +20,10 @@ import {
 export default function Credits({ children, ...rest }) {
   return <Section {...rest}>{children}</Section>;
 }
+
+Credits.Inner = function CreditsInner({ children, ...rest }) {
+  return <Inner {...rest}>{children}</Inner>;
+};
 
 Credits.Item = function CreditsItem({ children, ...rest }) {
   return <Item {...rest}>{children}</Item>;

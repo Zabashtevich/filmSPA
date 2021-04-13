@@ -6,11 +6,17 @@ import { BsFillStarFill, BsX } from "react-icons/bs";
 export const Section = styled.div`
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   font-family: ${({ theme }) => theme.font.aux.family};
-  flex-direction: column;
-  min-height: 1350px;
+
   margin-top: 2rem;
   max-width: 900px;
+`;
+
+export const Inner = styled.div`
+  ${({ theme }) => theme.animations.fade()};
+  flex-direction: column;
+  min-height: 1350px;
   display: flex;
+  width: 100%;
 `;
 
 export const Item = styled.div`

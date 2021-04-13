@@ -16,7 +16,7 @@ import { useCreditsContext } from "../../context";
 export default function ActorContainer() {
   const { slug } = useParams();
 
-  const [data, dataLoading] = useFetch("person", slug);
+  const [data, dataLoading] = useFetch("person", slug, true);
   const [, setCredits] = useCreditsContext();
 
   useEffect(() => {

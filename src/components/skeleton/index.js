@@ -386,3 +386,22 @@ export function PopularSkeleton() {
     </div>
   );
 }
+
+export function CreditsSkeleton() {
+  return (
+    <ContentLoader
+      speed={2}
+      width={900}
+      height={50}
+      viewBox="0 0 900 50"
+      backgroundColor="#f3f3f3"
+      foregroundColor="#ecebeb"
+    >
+      <rect x="2" y="16" rx="4" ry="4" width="50" height="18" />
+      <rect x="100" y="18" rx="4" ry="4" width="300" height="14" />
+      <rect x="448" y="11" rx="4" ry="4" width="100" height="28" />
+      <rect x="708" y="11" rx="4" ry="4" width="40" height="28" />
+      <rect x="846" y="9" rx="4" ry="4" width="40" height="32" />
+    </ContentLoader>
+  );
+}

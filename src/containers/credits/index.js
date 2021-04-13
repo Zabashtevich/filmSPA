@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { CSSTransition, SwitchTransition } from "react-transition-group";
 
 import { PaginContainer } from "./../";
 import CreditsItem from "./items/credits-item";
@@ -7,7 +8,6 @@ import { Credits } from "../../components";
 import { useCreditsContext, usePaginContext } from "../../context";
 import { range } from "../../utils";
 import { CreditsSkeleton } from "../../components/skeleton";
-import { CSSTransition, SwitchTransition } from "react-transition-group";
 
 export default function CreditsContainer() {
   const { profileLoading, profile } = useSelector((state) => state.userProfile);
@@ -29,7 +29,7 @@ export default function CreditsContainer() {
   }, [creditsLoading]);
 
   return (
-    <Credits>
+    <Credits data-testid="credits-container">
       <SwitchTransition mode={"out-in"}>
         <CSSTransition key={loading} classNames="fade" timeout={500}>
           <Credits.Inner>

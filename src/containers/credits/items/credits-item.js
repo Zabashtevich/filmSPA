@@ -13,9 +13,8 @@ import {
 } from "../../../utils";
 
 export default function CreditsItem({ item, votes, profile, index }) {
-  const [, { showModal }] = useModalContext();
+  const [, { showErrorModal }] = useModalContext();
   const [setEstimate] = useEstimate(profile?.displayName, "votes");
-  const [{ processing }] = useProcessContext();
   const [popupVisible, setPopupVisible] = useState(false);
   const [hoverIndex, setHoverIndex] = useState(0);
   const [rated, setRated] = useState(null);
@@ -30,7 +29,7 @@ export default function CreditsItem({ item, votes, profile, index }) {
 
   function handleEstimate(value) {
     if (!profile) {
-      showModal("Sorry but you cant vote, plese, login!");
+      showErrorModal("Sorry but you cant vote, plese, login!");
     }
     if (!processing) {
       setEstimate(createUserlist(createEstimateItem(item, value), votes));

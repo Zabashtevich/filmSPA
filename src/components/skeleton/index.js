@@ -396,6 +396,7 @@ export function CreditsSkeleton() {
       viewBox="0 0 900 50"
       backgroundColor="#f3f3f3"
       foregroundColor="#ecebeb"
+      data-testid="credits-skeleton"
     >
       <rect x="2" y="16" rx="4" ry="4" width="50" height="18" />
       <rect x="100" y="18" rx="4" ry="4" width="300" height="14" />

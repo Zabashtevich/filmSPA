@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { useEstimate } from "./../../../hooks";
 import { Credits } from "../../../components";
-import { useModalContext, useProcessContext } from "./../../../context";
+import { useProcessContext } from "./../../../context";
 import {
   checkMovieInList,
   checkReleaseStatus,
@@ -13,8 +13,8 @@ import {
 } from "../../../utils";
 
 export default function CreditsItem({ item, votes, profile, index }) {
-  const [, { showErrorModal }] = useModalContext();
   const [setEstimate] = useEstimate(profile?.displayName, "votes");
+  const [{ processing }] = useProcessContext();
   const [popupVisible, setPopupVisible] = useState(false);
   const [hoverIndex, setHoverIndex] = useState(0);
   const [rated, setRated] = useState(null);
@@ -28,9 +28,6 @@ export default function CreditsItem({ item, votes, profile, index }) {
   const typeSecondary = index % 2 === 0;
 
   function handleEstimate(value) {
-    if (!profile) {
-      showErrorModal("Sorry but you cant vote, plese, login!");
-    }
     if (!processing) {
       setEstimate(createUserlist(createEstimateItem(item, value), votes));
     }
@@ -57,9 +54,15 @@ export default function CreditsItem({ item, votes, profile, index }) {
       </Credits.Meta>
       {rated && <Credits.Highscore>{rated}</Credits.Highscore>}
       {released && (
-        <Credits.Rating onClick={() => setPopupVisible((prev) => !prev)}>
+        <Credits.Rating
+          onClick={() => setPopupVisible((prev) => !prev)}
+          data-testid="rating"
+        >
           <Credits.Star />
-          <Credits.Container visible={popupVisible}>
+          <Credits.Container
+            visible={popupVisible}
+            data-testid="rating-container"
+          >
             <Credits.Close />
             {range(1, 10).map((item) => (
               <Credits.Star
@@ -68,6 +71,7 @@ export default function CreditsItem({ item, votes, profile, index }) {
                 onMouseEnter={() => setHoverIndex(item)}
                 onMouseLeave={() => setHoverIndex(0)}
                 hovered={hoverIndex >= item ? 1 : 0}
+                data-testid="rating-star"
               />
             ))}
           </Credits.Container>

@@ -8,6 +8,7 @@ export const Section = styled.div`
 `;
 
 export const Container = styled.div`
+  ${({ theme }) => theme.animations.fade()};
   border-radius: 0.4rem;
   align-items: center;
   padding: 0 0 1rem 0;

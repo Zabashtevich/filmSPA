@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function useTrending(type, period, page) {
+export default function useTrending(type, period, page = 1) {
   const [{ loading, list }, setData] = useState({
     loading: true,
     list: null,

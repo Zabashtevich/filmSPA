@@ -1,4 +1,5 @@
 import React from "react";
+import { w300miniature } from "../../constants/constants";
 
 import {
   Section,
@@ -27,8 +28,17 @@ Trending.Item = function TrendingItem({ children, ...rest }) {
   return <Item {...rest}>{children}</Item>;
 };
 
-Trending.Poster = function TrendingPoster({ ...rest }) {
-  return <Poster {...rest} />;
+Trending.Poster = function TrendingPoster({ slug, ...rest }) {
+  return (
+    <Poster
+      {...rest}
+      src={
+        slug
+          ? `${w300miniature + slug}`
+          : "https://dummyimage.com/300x450/aaa/aaa"
+      }
+    />
+  );
 };
 
 Trending.Average = function TrendingAverage({ children, ...rest }) {

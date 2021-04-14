@@ -2,10 +2,16 @@ import React, { useState } from "react";
 
 import { TabsContainer } from "../";
 import { Trending } from "../../components";
+import { Item } from "../../components/trending/styles/trending";
+import { useTrending } from "../../hooks";
 
 export default function TrendingContainer() {
   const [activeType, setActiveType] = useState("all");
   const [activePeriod, setActivePeriod] = useState("day");
+
+  const [data, dataLoading] = useTrending(activeType, activePeriod);
+
+  console.log(data);
   return (
     <Trending>
       <Trending.Header>
@@ -34,13 +40,16 @@ export default function TrendingContainer() {
         />
       </Trending.Header>
       <Trending.Container>
-        <Trending.Item>
-          <Trending.Poster />
-          <Trending.Average></Trending.Average>
-          <Trending.Wrapper>
-            <Trending.Title></Trending.Title>
-          </Trending.Wrapper>
-        </Trending.Item>
+        {!dataLoading &&
+          data.results.map((item) => (
+            <Trending.Item>
+              <Trending.Poster slug={item.poster_path} />
+              <Trending.Average>{item.vote_average}</Trending.Average>
+              <Trending.Wrapper>
+                <Trending.Title>{item.title}</Trending.Title>
+              </Trending.Wrapper>
+            </Trending.Item>
+          ))}
       </Trending.Container>
     </Trending>
   );

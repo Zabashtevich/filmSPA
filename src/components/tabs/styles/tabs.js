@@ -6,7 +6,6 @@ export const Container = styled.div`
   user-select: none;
   display: flex;
   height: 75px;
-  width: 100%;
 `;
 
 export const Title = styled.span`
@@ -15,9 +14,11 @@ export const Title = styled.span`
   text-transform: uppercase;
 `;
 
-export const Wrapper = styled.div``;
+export const Wrapper = styled.div`
+  display: flex;
+`;
 
-export const Item = styled.span`
+export const Item = styled.div`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   font-size: ${({ theme }) => theme.font.aux.size.big};
   background-color: ${({ theme }) => theme.colors.main};
@@ -27,8 +28,10 @@ export const Item = styled.span`
 
   text-transform: uppercase;
   padding: 0.3rem 0.4rem;
+  text-align: center;
   transition: 300ms;
   cursor: pointer;
+  min-width: 50px;
   color: white;
 
   ${({ leftTab }) =>

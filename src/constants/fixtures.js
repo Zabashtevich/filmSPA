@@ -23,14 +23,3 @@ export const filterRows = [
   ],
   [{ value: 10 }, { value: 25 }, { value: 50 }],
 ];
-
-export const typeTab = [
-  { title: "all", value: "all" },
-  { title: "movie", value: "movie" },
-  { title: "tv", value: "tv" },
-];
-
-export const periodType = [
-  { title: "day", value: "day" },
-  { title: "week", value: "week" },
-];

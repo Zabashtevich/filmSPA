@@ -20,3 +20,4 @@ export { default as FilterContainer } from "./filter";
 export { default as AuthContainer } from "./auth";
 export { default as CreditsContainer } from "./credits";
 export { default as ProcessContainer } from "./process";
+export { default as SliderContainer } from "./slider";

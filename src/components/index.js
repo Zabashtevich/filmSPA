@@ -20,3 +20,4 @@ export { default as Filter } from "./filter";
 export { default as Auth } from "./auth";
 export { default as Credits } from "./credits";
 export { default as Process } from "./process";
+export { default as Slider } from "./slider";

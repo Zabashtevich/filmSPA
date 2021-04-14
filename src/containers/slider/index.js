@@ -10,29 +10,41 @@ export default function SliderContainer() {
     <Slider>
       <Slider.Container>
         {slider.map((slide, index) => (
-          <Slider.Inner slide={activeSlide}>
+          <Slider.Inner slide={activeSlide} key={index}>
             {slide.map((item) => (
-              <Slider.Item>
+              <Slider.Item color={item.color} to={`/details/${item.id}`}>
                 <Slider.Poster
                   src={`./assets/images/slider/${item.image}.jpg`}
                 />
                 <Slider.Wrapper>
-                  <Slider.Title></Slider.Title>
+                  <Slider.Title>{item.film}</Slider.Title>
                   <Slider.Row>
-                    <Slider.Value></Slider.Value>
+                    {item.genres.map((item) => (
+                      <Slider.Value key={item}>{item}</Slider.Value>
+                    ))}
                   </Slider.Row>
-                  <Slider.Info></Slider.Info>
+                  <Slider.Info>{item.description}</Slider.Info>
                 </Slider.Wrapper>
               </Slider.Item>
             ))}
           </Slider.Inner>
         ))}
       </Slider.Container>
-      <Slider.ArrowLeft />
-      <Slider.ArrowRight />
+      <Slider.ArrowLeft
+        limited={activeSlide === 0 && 1}
+        onClick={() => setActiveSlide((prev) => prev - 1)}
+      />
+      <Slider.ArrowRight
+        onClick={() => setActiveSlide((prev) => prev + 1)}
+        limited={activeSlide === 2 && 1}
+      />
       <Slider.Footer>
         {slider.map((_, index) => (
-          <Slider.Dot key={index} />
+          <Slider.Dot
+            key={index}
+            selected={index === activeSlide && 1}
+            onClick={() => setActiveSlide(index)}
+          />
         ))}
       </Slider.Footer>
     </Slider>

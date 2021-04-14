@@ -7,11 +7,6 @@ export const ListPosterWrapper = styled.div`
   left: 0;
 `;
 
-export const TrendingSkeletonWrapper = styled.div`
-  ${({ theme }) => theme.animations.fade(500, 0, 500)};
-  margin: 0.6rem;
-`;
-
 export const GalleryPosterWrapper = styled.div`
   ${({ theme }) => theme.animations.fade(500, 0, 500)};
   display: inline-flex;

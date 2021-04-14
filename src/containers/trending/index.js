@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { CSSTransition, SwitchTransition } from "react-transition-group";
 
 import { PaginContainer, TabsContainer } from "../";
 import { Trending } from "../../components";
+import { TrendingSkeleton } from "../../components/skeleton";
 import { usePaginContext } from "../../context";
 import { useTrending } from "../../hooks";
+import { range } from "../../utils";
 
 export default function TrendingContainer() {
   const [{ active }, setPagin] = usePaginContext();
@@ -22,6 +25,8 @@ export default function TrendingContainer() {
       }));
     }
   }, [dataLoading]);
+
+  console.log(dataLoading);
 
   return (
     <Trending>
@@ -50,20 +55,30 @@ export default function TrendingContainer() {
           setActiveTab={setActivePeriod}
         />
       </Trending.Header>
-      <Trending.Container>
-        {!dataLoading &&
-          data.results.map((item) => (
-            <Trending.Item>
-              <Trending.Poster slug={item.poster_path} />
-              {!!item.vote_average && (
-                <Trending.Average>{item.vote_average}</Trending.Average>
-              )}
-              <Trending.Wrapper>
-                <Trending.Title>{item.title || item.name}</Trending.Title>
-              </Trending.Wrapper>
-            </Trending.Item>
-          ))}
-      </Trending.Container>
+      <SwitchTransition mode={"out-in"}>
+        <CSSTransition
+          key={`${dataLoading + active}`}
+          classNames="fade"
+          timeout={500}
+        >
+          <Trending.Container>
+            {dataLoading &&
+              range(1, 20).map((item) => <TrendingSkeleton key={item} />)}
+            {!dataLoading &&
+              data.results.map((item) => (
+                <Trending.Item key={item.id}>
+                  <Trending.Poster slug={item.poster_path} />
+                  {!!item.vote_average && (
+                    <Trending.Average>{item.vote_average}</Trending.Average>
+                  )}
+                  <Trending.Wrapper>
+                    <Trending.Title>{item.title || item.name}</Trending.Title>
+                  </Trending.Wrapper>
+                </Trending.Item>
+              ))}
+          </Trending.Container>
+        </CSSTransition>
+      </SwitchTransition>
       <PaginContainer />
     </Trending>
   );

@@ -1,11 +1,7 @@
 import ContentLoader from "react-content-loader";
 import { CSSTransition } from "react-transition-group";
 
-import {
-  ListPosterWrapper,
-  TrendingSkeletonWrapper,
-  GalleryPosterWrapper,
-} from "./styles/skeleton";
+import { ListPosterWrapper, GalleryPosterWrapper } from "./styles/skeleton";
 
 export function CardListSkeleton() {
   return (
@@ -136,18 +132,17 @@ export function DetailsCollectionSkeleton() {
 
 export function TrendingSkeleton() {
   return (
-    <TrendingSkeletonWrapper>
-      <ContentLoader
-        speed={2}
-        width={300}
-        height={450}
-        viewBox="0 0 300 450"
-        backgroundColor="#f3f3f3"
-        foregroundColor="#ecebeb"
-      >
-        <rect x="0" y="0" rx="4" ry="4" width="300" height="450" />
-      </ContentLoader>
-    </TrendingSkeletonWrapper>
+    <ContentLoader
+      speed={2}
+      width={300}
+      height={450}
+      viewBox="0 0 300 450"
+      backgroundColor="#f3f3f3"
+      foregroundColor="#ecebeb"
+      style={{ margin: "0.6rem 0" }}
+    >
+      <rect x="0" y="0" rx="4" ry="4" width="300" height="450" />
+    </ContentLoader>
   );
 }
 

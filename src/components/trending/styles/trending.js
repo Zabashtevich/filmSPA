@@ -13,6 +13,7 @@ export const Header = styled.div`
 `;
 
 export const Container = styled.div`
+  ${({ theme }) => theme.animations.fade()};
   justify-content: space-evenly;
   flex-wrap: wrap;
   margin: 1rem 0;

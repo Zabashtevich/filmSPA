@@ -8,7 +8,7 @@ export default function TrendingItem({ item, direction }) {
   return (
     <Trending.Item
       key={item.id}
-      to={`/details${item.media_type || direction}/${item.id}`}
+      to={`/details/${item.media_type || direction}/${item.id}`}
       loading={loading && 1}
     >
       <Trending.Poster

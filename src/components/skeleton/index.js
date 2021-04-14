@@ -140,6 +140,7 @@ export function TrendingSkeleton() {
       backgroundColor="#f3f3f3"
       foregroundColor="#ecebeb"
       style={{ margin: "0.6rem 0" }}
+      data-testid="trending-skeleton"
     >
       <rect x="0" y="0" rx="4" ry="4" width="300" height="450" />
     </ContentLoader>

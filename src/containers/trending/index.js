@@ -27,8 +27,6 @@ export default function TrendingContainer() {
     }
   }, [dataLoading]);
 
-  console.log(dataLoading);
-
   return (
     <Trending>
       <Trending.Header>

@@ -71,7 +71,7 @@
       "genres": ["Action, Comedy", "Movie (2020)"],
       "description": "Detectives Mike Lowrey and Marcus Burnett team up again for another adventure.",
       "color": "25",
-      "image": "12",
+      "image": "9",
       "id": 8961
     },
     {
@@ -89,7 +89,7 @@
       "genres": ["Action, Comedy", "Movie (2016)"],
       "description": "Ryan Reynolds stars as the wise-cracking, indestructible superhero in this thrilling origins story based on the comic-book character.",
       "color": "350",
-      "image": "9",
+      "image": "11",
       "id": 293660
     },
     {
@@ -97,7 +97,7 @@
       "genres": ["Action, Adventure", "Movie (2020)"],
       "description": "An unstoppable reanimated soldier embarks on a mission to recover his true memories.",
       "color": "210",
-      "image": "13",
+      "image": "12",
       "id": 338762
     },
     {
@@ -105,7 +105,7 @@
       "genres": ["Action, Adventure", "Movie (2019)"],
       "description": "A team of friends returns to Jumanji to rescue one of their own and must brave parts unknown in order to escape the world's most dangerous game...",
       "color": "25",
-      "image": "14",
+      "image": "13",
       "id": 512200
     },
     {
@@ -113,7 +113,7 @@
       "genres": ["Comedy", "Movie (2012)"],
       "description": "Gen. Aladeen (Sacha Baron Cohen) has ruled the oil-rich North African country of Wadiya since the age of six, when 97 stray bullets and a hand...",
       "color": "40",
-      "image": "15",
+      "image": "14",
       "id": 76493
     },
     {
@@ -121,7 +121,7 @@
       "genres": ["Action, Comedy", "Movie (2020)"],
       "description": "Criminals target marijuana kingpin as he tries to get out of the business.",
       "color": "0",
-      "image": "11",
+      "image": "15",
       "id": 522627
     }
   ]

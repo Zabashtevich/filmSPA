@@ -1,9 +1,10 @@
 import { act, render } from "@testing-library/react";
 import { ThemeProvider } from "styled-components";
+import userEvent from "@testing-library/user-event";
+import "@testing-library/jest-dom";
+
 import { TabsContainer } from "../../containers";
 import theme from "../../theme/theme";
-import "@testing-library/jest-dom";
-import userEvent from "@testing-library/user-event";
 
 function renderComponent(component) {
   return {

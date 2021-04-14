@@ -31,12 +31,14 @@ export default function SliderContainer() {
         ))}
       </Slider.Container>
       <Slider.ArrowLeft
-        limited={activeSlide === 0 && 1}
         onClick={() => setActiveSlide((prev) => prev - 1)}
+        disabled={activeSlide === 0 && 1}
+        data-testid="slider-left-arrow"
       />
       <Slider.ArrowRight
         onClick={() => setActiveSlide((prev) => prev + 1)}
-        limited={activeSlide === 2 && 1}
+        disabled={activeSlide === 2 && 1}
+        data-testid="slider-right-arrow"
       />
       <Slider.Footer>
         {slider.map((_, index) => (
@@ -44,6 +46,7 @@ export default function SliderContainer() {
             key={index}
             selected={index === activeSlide && 1}
             onClick={() => setActiveSlide(index)}
+            data-testid="slider-dot"
           />
         ))}
       </Slider.Footer>

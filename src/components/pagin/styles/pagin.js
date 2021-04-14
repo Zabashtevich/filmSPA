@@ -31,4 +31,10 @@ export const Item = styled.span`
   }
 `;
 
-export const Dummy = styled.span``;
+export const Dummy = styled.span`
+  font-size: ${({ theme }) => theme.font.aux.size.big};
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #f3f3f3;
+  padding: 0.2rem 0.6rem;
+  border-radius: 0.5rem;
+`;

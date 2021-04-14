@@ -14,8 +14,8 @@ export const Header = styled.div`
 
 export const Container = styled.div`
   justify-content: space-evenly;
-  margin-top: 1rem;
   flex-wrap: wrap;
+  margin: 1rem 0;
   display: flex;
 `;
 
@@ -23,10 +23,15 @@ export const Item = styled(ReactRouterLink)`
   box-shadow: rgba(0, 0, 0, 0.8) 0px 3px 12px;
   text-decoration: none;
   position: relative;
+  margin: 0.6rem 0;
   color: black;
 `;
 
-export const Poster = styled.img``;
+export const Poster = styled.img`
+  height: 450px;
+  display: flex;
+  width: 300px;
+`;
 
 export const Average = styled.span`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
@@ -36,13 +41,46 @@ export const Average = styled.span`
   padding: 0.3rem 0.4rem;
   border-radius: 0.5rem;
   position: absolute;
+  text-align: center;
   color: white;
+  width: 45px;
   left: 50%;
   top: 0;
 `;
 
-export const Wrapper = styled.div`
-  position: absolute;
+export const Title = styled.div`
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
+  font-size: ${({ theme }) => theme.font.aux.size.big};
+  background-color: rgba(0, 0, 0, 0.7);
+  text-overflow: ellipsis;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  text-align: center;
+  margin-top: auto;
+  overflow: hidden;
+  display: flex;
+  height: 30%;
+  color: white;
+  width: 100%;
+
+  transform: translateY(100%);
+  visibility: hidden;
+  opacity: 0;
 `;
 
-export const Title = styled.div``;
+export const Wrapper = styled.div`
+  position: absolute;
+  overflow-y: hidden;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  bottom: 0;
+
+  &:hover > ${Title} {
+    transform: translateY(0);
+    visibility: visible;
+    transition: 300ms;
+    opacity: 1;
+  }
+`;

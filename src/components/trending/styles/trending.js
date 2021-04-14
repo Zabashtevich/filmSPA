@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 import { Link as ReactRouterLink } from "react-router-dom";
 
 export const Section = styled.div`
@@ -26,6 +26,26 @@ export const Item = styled(ReactRouterLink)`
   position: relative;
   margin: 0.6rem 0;
   color: black;
+
+  &::after {
+    background-color: transparent;
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+  }
+
+  ${({ loading }) =>
+    loading &&
+    css`
+      &::after {
+        background-color: #ecebeb;
+        transition: 300ms;
+        z-index: 200;
+      }
+    `};
 `;
 
 export const Poster = styled.img`
@@ -43,6 +63,7 @@ export const Average = styled.span`
   border-radius: 0.5rem;
   position: absolute;
   text-align: center;
+  z-index: 300;
   color: white;
   width: 45px;
   left: 50%;
@@ -75,6 +96,7 @@ export const Wrapper = styled.div`
   overflow-y: hidden;
   display: flex;
   height: 100%;
+  z-index: 300;
   width: 100%;
   bottom: 0;
 

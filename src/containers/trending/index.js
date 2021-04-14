@@ -7,6 +7,7 @@ import { TrendingSkeleton } from "../../components/skeleton";
 import { usePaginContext } from "../../context";
 import { useTrending } from "../../hooks";
 import { range } from "../../utils";
+import TrendingItem from "./items/trending-item";
 
 export default function TrendingContainer() {
   const [{ active }, setPagin] = usePaginContext();
@@ -63,18 +64,12 @@ export default function TrendingContainer() {
         >
           <Trending.Container>
             {dataLoading &&
-              range(1, 20).map((item) => <TrendingSkeleton key={item} />)}
+              range(1, 20).map((item) => (
+                <TrendingSkeleton key={item} direction={activeType} />
+              ))}
             {!dataLoading &&
               data.results.map((item) => (
-                <Trending.Item key={item.id}>
-                  <Trending.Poster slug={item.poster_path} />
-                  {!!item.vote_average && (
-                    <Trending.Average>{item.vote_average}</Trending.Average>
-                  )}
-                  <Trending.Wrapper>
-                    <Trending.Title>{item.title || item.name}</Trending.Title>
-                  </Trending.Wrapper>
-                </Trending.Item>
+                <TrendingItem key={item.id} item={item} />
               ))}
           </Trending.Container>
         </CSSTransition>

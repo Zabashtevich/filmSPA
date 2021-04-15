@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
 import { useTrending } from "./../../hooks";
@@ -6,6 +6,9 @@ import { Trending } from "../../components";
 import { PaginContainer } from "..";
 import { usePaginContext } from "../../context";
 import TrendingItem from "./items/trending-item";
+import { range } from "../../utils";
+import { TrendingSkeleton } from "../../components/skeleton";
+import { CSSTransition, SwitchTransition } from "react-transition-group";
 
 export default function TrendingContainer() {
   const [{ active }, setPagination] = usePaginContext();
@@ -15,6 +18,16 @@ export default function TrendingContainer() {
   const { slug } = useParams();
 
   const [data, dataLoading] = useTrending(activeType, activePeriod, active);
+
+  useEffect(() => {
+    if (!dataLoading) {
+      setPagination((prev) => ({
+        ...prev,
+        loading: false,
+        amount: data.total_pages,
+      }));
+    }
+  }, [dataLoading]);
 
   return (
     <Trending>
@@ -38,13 +51,23 @@ export default function TrendingContainer() {
           ))}
         </Trending.Menu>
       </Trending.Column>
-      <Trending.Container>
-        {!dataLoading &&
-          data.results.map((item) => (
-            <TrendingItem key={item.id} item={item} />
-          ))}
-        <PaginContainer />
-      </Trending.Container>
+      <SwitchTransition mode={"out-in"}>
+        <CSSTransition
+          timeout={500}
+          classNames="fade"
+          key={`${dataLoading} ${active} ${activePeriod} ${activeType}`}
+        >
+          <Trending.Container>
+            {dataLoading &&
+              range(1, 20).map((item) => <TrendingSkeleton key={item} />)}
+            {!dataLoading &&
+              data.results.map((item) => (
+                <TrendingItem key={item.id} item={item} direction={slug} />
+              ))}
+            <PaginContainer />
+          </Trending.Container>
+        </CSSTransition>
+      </SwitchTransition>
     </Trending>
   );
 }

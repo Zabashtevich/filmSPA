@@ -10,6 +10,7 @@ import {
   Item,
   Container,
   Card,
+  Inner,
   Poster,
   Wrapper,
   Name,
@@ -46,6 +47,10 @@ Trending.Container = function TrendingContainer({ children, ...rest }) {
 
 Trending.Card = function TrendingCard({ children, ...rest }) {
   return <Card {...rest}>{children}</Card>;
+};
+
+Trending.Inner = function TrendingInner({ children, ...rest }) {
+  return <Inner {...rest}>{children}</Inner>;
 };
 
 Trending.Poster = function TrendingPoster({ slug, children, ...rest }) {

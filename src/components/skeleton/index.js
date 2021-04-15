@@ -134,15 +134,15 @@ export function TrendingSkeleton() {
   return (
     <ContentLoader
       speed={2}
-      width={300}
-      height={450}
-      viewBox="0 0 300 450"
+      width={200}
+      height={300}
+      viewBox="0 0 200 300"
       backgroundColor="#f3f3f3"
       foregroundColor="#ecebeb"
-      style={{ margin: "0.6rem 0" }}
+      style={{ margin: "0.8rem 0.4rem" }}
       data-testid="trending-skeleton"
     >
-      <rect x="0" y="0" rx="4" ry="4" width="300" height="450" />
+      <rect x="0" y="0" rx="4" ry="4" width="200" height="300" />
     </ContentLoader>
   );
 }

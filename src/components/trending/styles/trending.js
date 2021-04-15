@@ -1,4 +1,15 @@
-import styled, { css } from "styled-components/macro";
+import styled, { css, keyframes } from "styled-components/macro";
+import { Link as ReactRouterLink } from "react-router-dom";
+
+const linear = keyframes`
+    from {
+  
+    background-position: 0px 0px;
+    }
+    100% {
+    background-position: 230px 0px;
+     }
+}`;
 
 export const Section = styled.div`
   position: relative;
@@ -77,20 +88,89 @@ export const Item = styled.div`
 `;
 
 export const Container = styled.div`
+  ${({ theme }) => theme.animations.fade()};
   margin-top: 5rem;
   flex-wrap: wrap;
   width: 1200px;
   display: flex;
 `;
 
-export const Card = styled.div`
-  margin: 0.2rem 0.4rem;
+export const Card = styled(ReactRouterLink)`
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  margin: 0.8rem 0.4rem;
+  position: relative;
 `;
 
-export const Poster = styled.img``;
+export const Average = styled.span`
+  font-size: ${({ theme }) => theme.font.aux.size.big};
+  transform: translate(-50%, -50%);
+  background-color: #ffa500;
+  border-radius: 0.5rem;
+  position: absolute;
+  text-align: center;
+  color: white;
+  width: 45px;
+  left: 50%;
+  top: 0;
+`;
 
-export const Wrapper = styled.div``;
+export const Poster = styled.img`
+  display: flex;
+  height: 300px;
+  width: 200px;
+`;
 
-export const Name = styled.div``;
+export const Wrapper = styled.div`
+  background-color: rgba(0, 0, 0, 0.7);
+  transform: translateY(100%);
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  visibility: hidden;
+  display: flex;
+  height: 30%;
+  width: 100%;
+  opacity: 0;
+  top: 70%;
+`;
 
-export const Average = styled.div``;
+export const Inner = styled.div`
+  position: absolute;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+
+  &:hover ${Wrapper} {
+    transform: translateY(0);
+    visibility: visible;
+    transition: 500ms;
+    opacity: 1;
+  }
+
+  ${({ loading }) =>
+    loading &&
+    css`
+      background: linear-gradient(
+          to right,
+          rgb(243, 243, 243) 0%,
+          rgb(236, 235, 235) 50%,
+          rgb(243, 243, 243) 100%
+        )
+        0px 0px / 100% 100% rgb(236, 235, 235);
+      animation: ${linear} 2s infinite linear;
+    `};
+`;
+
+export const Name = styled.span`
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+  overflow: hidden;
+  width: 90%;
+
+  color: white;
+`;

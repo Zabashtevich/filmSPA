@@ -5,3 +5,4 @@ export { default as MainPage } from "./main-page";
 export { default as ActorPage } from "./actor-page";
 export { default as UserlistPage } from "./userlist-page";
 export { default as GalleryPage } from "./gallery-page";
+export { default as TrendingPage } from "./trending-page";

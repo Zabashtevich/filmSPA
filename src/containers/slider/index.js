@@ -10,9 +10,17 @@ export default function SliderContainer() {
     <Slider>
       <Slider.Container>
         {slider.map((slide, index) => (
-          <Slider.Inner slide={activeSlide} key={index}>
+          <Slider.Inner
+            key={index}
+            slide={activeSlide}
+            data-testid="slider-slide"
+          >
             {slide.map((item) => (
-              <Slider.Item color={item.color} to={`/details/${item.id}`}>
+              <Slider.Item
+                key={item.image}
+                color={item.color}
+                to={`/details/${item.id}`}
+              >
                 <Slider.Poster
                   src={`./assets/images/slider/${item.image}.jpg`}
                 />

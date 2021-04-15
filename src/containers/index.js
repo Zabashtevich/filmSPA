@@ -8,7 +8,6 @@ export { default as HeaderContainer } from "./header";
 export { default as PopularContainer } from "./popular";
 export { default as MainContainer } from "./main";
 export { default as TabsContainer } from "./tabs";
-export { default as TrendingContainer } from "./trending";
 export { default as AccountContainer } from "./account";
 export { default as MediaContainer } from "./media";
 export { default as GalleryContainer } from "./gallery";

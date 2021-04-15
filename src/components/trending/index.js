@@ -1,5 +1,5 @@
 import React from "react";
-import { w300miniature } from "../../constants/constants";
+import { w200miniature } from "../../constants/constants";
 
 import {
   Section,
@@ -54,7 +54,7 @@ Trending.Poster = function TrendingPoster({ slug, children, ...rest }) {
       {...rest}
       src={
         slug
-          ? `${w300miniature + slug}`
+          ? `${w200miniature + slug}`
           : "https://dummyimage.com/300x450/aaa/aaa"
       }
     />

@@ -21,16 +21,20 @@ export default function TrendingContainer() {
       <Trending.Title>TRENDING {slug.toUpperCase()}'s</Trending.Title>
       <Trending.Column>
         <Trending.Menu>
-          <Trending.Subtitle>CATEGORIES</Trending.Subtitle>
+          <Trending.Subtitle>CARD TYPE</Trending.Subtitle>
           {["all", "movie", "tv", "person"].map((item) => (
-            <Trending.Item key={item}>{item}</Trending.Item>
+            <Trending.Item key={item} selected={item === activeType && 1}>
+              {item}
+            </Trending.Item>
           ))}
         </Trending.Menu>
 
         <Trending.Menu>
-          <Trending.Subtitle>CATEGORIES</Trending.Subtitle>
+          <Trending.Subtitle>PERIOD</Trending.Subtitle>
           {["day", "week"].map((item) => (
-            <Trending.Item key={item}>{item}</Trending.Item>
+            <Trending.Item key={item} selected={item === activePeriod && 1}>
+              {item}
+            </Trending.Item>
           ))}
         </Trending.Menu>
       </Trending.Column>

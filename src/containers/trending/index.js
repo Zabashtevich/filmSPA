@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
 
 import { useTrending } from "./../../hooks";
 import { Trending } from "../../components";
@@ -15,8 +14,6 @@ export default function TrendingContainer() {
   const [activePeriod, setActivePeriod] = useState("day");
   const [activeType, setActiveType] = useState("all");
 
-  const { slug } = useParams();
-
   const [data, dataLoading] = useTrending(activeType, activePeriod, active);
 
   useEffect(() => {
@@ -31,12 +28,16 @@ export default function TrendingContainer() {
 
   return (
     <Trending>
-      <Trending.Title>TRENDING {slug.toUpperCase()}'s</Trending.Title>
+      <Trending.Title>TRENDING</Trending.Title>
       <Trending.Column>
         <Trending.Menu>
           <Trending.Subtitle>CARD TYPE</Trending.Subtitle>
           {["all", "movie", "tv", "person"].map((item) => (
-            <Trending.Item key={item} selected={item === activeType && 1}>
+            <Trending.Item
+              key={item}
+              selected={item === activeType && 1}
+              onClick={() => setActiveType(item)}
+            >
               {item}
             </Trending.Item>
           ))}
@@ -45,7 +46,11 @@ export default function TrendingContainer() {
         <Trending.Menu>
           <Trending.Subtitle>PERIOD</Trending.Subtitle>
           {["day", "week"].map((item) => (
-            <Trending.Item key={item} selected={item === activePeriod && 1}>
+            <Trending.Item
+              key={item}
+              selected={item === activePeriod && 1}
+              onClick={() => setActivePeriod(item)}
+            >
               {item}
             </Trending.Item>
           ))}
@@ -62,7 +67,11 @@ export default function TrendingContainer() {
               range(1, 20).map((item) => <TrendingSkeleton key={item} />)}
             {!dataLoading &&
               data.results.map((item) => (
-                <TrendingItem key={item.id} item={item} direction={slug} />
+                <TrendingItem
+                  key={item.id}
+                  item={item}
+                  direction={activeType}
+                />
               ))}
             <PaginContainer />
           </Trending.Container>

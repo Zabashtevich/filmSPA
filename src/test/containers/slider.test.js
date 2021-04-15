@@ -1,4 +1,4 @@
-import { act, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import "@testing-library/jest-dom";
@@ -6,7 +6,6 @@ import "@testing-library/jest-dom";
 import { SliderContainer } from "../../containers";
 import theme from "../../theme/theme";
 import { range } from "../../utils";
-import userEvent from "@testing-library/user-event";
 
 function renderComponent() {
   return {

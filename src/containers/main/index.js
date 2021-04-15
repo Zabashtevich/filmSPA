@@ -1,12 +1,7 @@
 import React from "react";
 
 import { Main } from "../../components";
-import {
-  ModalContainer,
-  PopularContainer,
-  SliderContainer,
-  TrendingContainer,
-} from "..";
+import { ModalContainer, PopularContainer, SliderContainer } from "..";
 
 export default function MainContainer() {
   return (
@@ -44,9 +39,6 @@ export default function MainContainer() {
             array: [{ title: "popular", value: "popular" }],
           }}
         />
-      </Main.Section>
-      <Main.Section>
-        <TrendingContainer />
       </Main.Section>
     </Main>
   );

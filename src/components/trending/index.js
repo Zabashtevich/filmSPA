@@ -1,4 +1,5 @@
 import React from "react";
+import { w300miniature } from "../../constants/constants";
 
 import {
   Section,
@@ -6,6 +7,7 @@ import {
   Column,
   Menu,
   Subtitle,
+  Item,
   Container,
   Card,
   Poster,
@@ -34,6 +36,10 @@ Trending.Subtitle = function TrendingSubtitle({ children, ...rest }) {
   return <Subtitle {...rest}>{children}</Subtitle>;
 };
 
+Trending.Item = function TrendingItem({ children, ...rest }) {
+  return <Item {...rest}>{children}</Item>;
+};
+
 Trending.Container = function TrendingContainer({ children, ...rest }) {
   return <Container {...rest}>{children}</Container>;
 };
@@ -42,8 +48,17 @@ Trending.Card = function TrendingCard({ children, ...rest }) {
   return <Card {...rest}>{children}</Card>;
 };
 
-Trending.Poster = function TrendingPoster({ children, ...rest }) {
-  return <Poster {...rest} />;
+Trending.Poster = function TrendingPoster({ slug, children, ...rest }) {
+  return (
+    <Poster
+      {...rest}
+      src={
+        slug
+          ? `${w300miniature + slug}`
+          : "https://dummyimage.com/300x450/aaa/aaa"
+      }
+    />
+  );
 };
 
 Trending.Wrapper = function TrendingWrapper({ children, ...rest }) {

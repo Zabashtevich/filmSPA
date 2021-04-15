@@ -9,6 +9,7 @@ import {
   ActorPage,
   UserlistPage,
   GalleryPage,
+  TrendingPage,
 } from "../pages";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           component={GalleryPage}
           exact
         />
+        <Route path="/trending/:slug" exact component={TrendingPage} />
       </Switch>
     </Router>
   );

@@ -2,6 +2,7 @@ import React from "react";
 
 import {
   Container,
+  Nav,
   Logo,
   Wrapper,
   Link,
@@ -19,6 +20,10 @@ import {
 export default function Header({ children, ...rest }) {
   return <Container {...rest}>{children}</Container>;
 }
+
+Header.Nav = function HeaderNav({ children, ...rest }) {
+  return <Nav {...rest}>{children}</Nav>;
+};
 
 Header.Logo = function HeaderLogo({ children, ...rest }) {
   return <Logo {...rest}>{children}</Logo>;

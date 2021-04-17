@@ -40,12 +40,12 @@ export default function SliderContainer() {
       </Slider.Container>
       <Slider.ArrowLeft
         onClick={() => setActiveSlide((prev) => prev - 1)}
-        limited={activeSlide === 0 && 1}
+        limited={activeSlide === 0 ? 1 : 0}
         data-testid="slider-left-arrow"
       />
       <Slider.ArrowRight
         onClick={() => setActiveSlide((prev) => prev + 1)}
-        limited={activeSlide === 2 && 1}
+        limited={activeSlide === 2 ? 1 : 0}
         data-testid="slider-right-arrow"
       />
       <Slider.Footer>

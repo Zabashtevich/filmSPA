@@ -61,8 +61,8 @@ describe("Credits container", () => {
     usePaginContext.mockReturnValue([{ active: null }, setPagination]);
 
     const initialStore = {
-      userData: { profileLoading: true, profile: null },
-      userProfile: { userDataLoading: true, votes: null },
+      userProfile: { profileLoading: true, profile: null },
+      userData: { userDataLoading: true, votes: null },
     };
     const { getAllByTestId, getByTestId } = renderComponent({
       initialState: initialStore,

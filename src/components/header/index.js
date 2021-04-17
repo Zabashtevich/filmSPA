@@ -55,8 +55,13 @@ Header.Profile = function HeaderProfile({ children, ...rest }) {
   return <Profile {...rest}>{children}</Profile>;
 };
 
-Header.Avatar = function HeaderAvatar({ children, ...rest }) {
-  return <Avatar {...rest} />;
+Header.Avatar = function HeaderAvatar({ src, children, ...rest }) {
+  return (
+    <Avatar
+      {...rest}
+      src={src ? src : "https://dummyimage.com/50x50/aaa/aaa"}
+    />
+  );
 };
 
 Header.Popup = function HeaderPopup({ visible, children, ...rest }) {

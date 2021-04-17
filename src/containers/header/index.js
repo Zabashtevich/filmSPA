@@ -48,16 +48,17 @@ export default function HeaderContainer() {
       </Header.Nav>
       <Header.Wrapper onClick={(e) => e.stopPropagation()}>
         {!profileLoading && checkObject.notEmty(profile) && (
-          <Header.Profile onClick={popupToggler}>
+          <Header.Profile onClick={popupToggler} data-testid="header-profile">
             <Header.Avatar
               src={profile?.photoURL}
               popupVisible={popupVisible && 1}
+              alt="user avatar"
             />
             <Header.Popup visible={popupVisible}>
               <Header.Nickname>{profile.displayName}</Header.Nickname>
               <Header.Mail>{profile.email}</Header.Mail>
               <Header.Item to="/acount">to Account</Header.Item>
-              <Header.Item to="/account/userlists">to Userlits</Header.Item>
+              <Header.Item to="/account/userlists">to Userlists</Header.Item>
               <Header.Logout>Logout</Header.Logout>
             </Header.Popup>
           </Header.Profile>
@@ -65,8 +66,8 @@ export default function HeaderContainer() {
         <SwitchTransition mode="out-in">
           <CSSTransition key={searchActive} classNames="fade" timeout={200}>
             <Header.Button onClick={() => setSearchActive((prev) => !prev)}>
-              {!searchActive && <Header.Search />}
-              {searchActive && <Header.Close />}
+              {!searchActive && <Header.Search data-testid="header-search" />}
+              {searchActive && <Header.Close data-testid="header-close" />}
             </Header.Button>
           </CSSTransition>
         </SwitchTransition>

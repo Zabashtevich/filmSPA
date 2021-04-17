@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { CSSTransition, SwitchTransition } from "react-transition-group";
 
+import { BarContainer } from "./../";
 import { checkObject } from "./../../utils";
 import { Header } from "../../components";
-import { CSSTransition, SwitchTransition } from "react-transition-group";
 
 export default function HeaderContainer() {
   const [headerVisible, setHeaderVisible] = useState(true);
@@ -74,6 +75,7 @@ export default function HeaderContainer() {
           </SwitchTransition>
         </Header.Wrapper>
       </Header.Inner>
+      <BarContainer />
     </Header>
   );
 }

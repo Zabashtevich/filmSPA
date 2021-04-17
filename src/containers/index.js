@@ -21,3 +21,4 @@ export { default as CreditsContainer } from "./credits";
 export { default as ProcessContainer } from "./process";
 export { default as SliderContainer } from "./slider";
 export { default as TrendingContainer } from "./trending";
+export { default as BarContainer } from "./bar";

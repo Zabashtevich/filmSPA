@@ -6,34 +6,41 @@ import { Header } from "../../components";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 
 export default function HeaderContainer() {
+  const [headerVisible, setHeaderVisible] = useState(true);
   const [searchActive, setSearchActive] = useState(false);
   const [popupVisible, setPopupVisible] = useState(false);
   const { profileLoading, profile } = useSelector((state) => state.userProfile);
+  let prevScrollPosition = 0;
 
-  // function headerToggler() {
-  //   const current = window.pageYOffset;
+  function headerToggler() {
+    const current = window.pageYOffset;
 
-  //   if (prevScrollPosition > current) {
-  //     setHeaderVisible(true);
-  //   } else {
-  //     setHeaderVisible(false);
-  //   }
-  //   prevScrollPosition = current;
-  // }
+    if (prevScrollPosition > current) {
+      setHeaderVisible(true);
+    } else {
+      setHeaderVisible(false);
+    }
+    prevScrollPosition = current;
+  }
 
   function popupToggler() {
     setPopupVisible((prev) => !prev);
   }
 
   useEffect(() => {
-    if (!popupVisible) {
+    if (popupVisible) {
       window.addEventListener("click", popupToggler);
     }
     return () => window.removeEventListener("click", popupToggler);
+  }, [popupVisible]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", headerToggler);
+    return () => window.removeEventListener("scroll", headerToggler);
   }, []);
 
   return (
-    <Header>
+    <Header headerHidden={!headerVisible}>
       <Header.Nav>
         <Header.Logo to="/">TMDB</Header.Logo>
         <Header.Link to="/trending/movie">Trending</Header.Link>

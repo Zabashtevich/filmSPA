@@ -6,7 +6,9 @@ import { BsSearch, BsX } from "react-icons/bs";
 export const Container = styled.div`
   background-color: ${({ theme }) => theme.colors.main};
   justify-content: space-between;
+  transform: translateY(0);
   align-items: center;
+  transition: 400ms;
   position: fixed;
   display: flex;
   z-index: 3000;
@@ -14,6 +16,12 @@ export const Container = styled.div`
   width: 100%;
   left: 0;
   top: 0;
+
+  ${({ headerHidden }) =>
+    headerHidden &&
+    css`
+      transform: translateY(-100%);
+    `}
 `;
 
 export const Nav = styled.div`

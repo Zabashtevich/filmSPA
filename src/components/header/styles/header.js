@@ -4,13 +4,9 @@ import { Link as ReactRouterLink } from "react-router-dom";
 import { BsSearch, BsX } from "react-icons/bs";
 
 export const Container = styled.div`
-  background-color: ${({ theme }) => theme.colors.main};
-  justify-content: space-between;
   transform: translateY(0);
-  align-items: center;
   transition: 400ms;
   position: fixed;
-  display: flex;
   z-index: 3000;
   height: 75px;
   width: 100%;
@@ -22,6 +18,15 @@ export const Container = styled.div`
     css`
       transform: translateY(-100%);
     `}
+`;
+
+export const Inner = styled.div`
+  background-color: ${({ theme }) => theme.colors.main};
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  height: 100%;
+  width: 100%;
 `;
 
 export const Nav = styled.div`

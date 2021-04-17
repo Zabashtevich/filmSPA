@@ -21,3 +21,4 @@ export { default as Credits } from "./credits";
 export { default as Process } from "./process";
 export { default as Slider } from "./slider";
 export { default as Trending } from "./trending";
+export { default as Bar } from "./bar";

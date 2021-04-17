@@ -41,37 +41,39 @@ export default function HeaderContainer() {
 
   return (
     <Header headerHidden={!headerVisible}>
-      <Header.Nav>
-        <Header.Logo to="/">TMDB</Header.Logo>
-        <Header.Link to="/trending/movie">Trending</Header.Link>
-        <Header.Link to="/search">Search</Header.Link>
-      </Header.Nav>
-      <Header.Wrapper onClick={(e) => e.stopPropagation()}>
-        {!profileLoading && checkObject.notEmty(profile) && (
-          <Header.Profile onClick={popupToggler} data-testid="header-profile">
-            <Header.Avatar
-              src={profile?.photoURL}
-              popupVisible={popupVisible && 1}
-              alt="user avatar"
-            />
-            <Header.Popup visible={popupVisible} data-testid="header-popup">
-              <Header.Nickname>{profile.displayName}</Header.Nickname>
-              <Header.Mail>{profile.email}</Header.Mail>
-              <Header.Item to="/acount">to Account</Header.Item>
-              <Header.Item to="/account/userlists">to Userlists</Header.Item>
-              <Header.Logout>Logout</Header.Logout>
-            </Header.Popup>
-          </Header.Profile>
-        )}
-        <SwitchTransition mode="out-in">
-          <CSSTransition key={searchActive} classNames="fade" timeout={200}>
-            <Header.Button onClick={() => setSearchActive((prev) => !prev)}>
-              {!searchActive && <Header.Search data-testid="header-search" />}
-              {searchActive && <Header.Close data-testid="header-close" />}
-            </Header.Button>
-          </CSSTransition>
-        </SwitchTransition>
-      </Header.Wrapper>
+      <Header.Inner>
+        <Header.Nav>
+          <Header.Logo to="/">TMDB</Header.Logo>
+          <Header.Link to="/trending/movie">Trending</Header.Link>
+          <Header.Link to="/search">Search</Header.Link>
+        </Header.Nav>
+        <Header.Wrapper onClick={(e) => e.stopPropagation()}>
+          {!profileLoading && checkObject.notEmty(profile) && (
+            <Header.Profile onClick={popupToggler} data-testid="header-profile">
+              <Header.Avatar
+                src={profile?.photoURL}
+                popupVisible={popupVisible && 1}
+                alt="user avatar"
+              />
+              <Header.Popup visible={popupVisible} data-testid="header-popup">
+                <Header.Nickname>{profile.displayName}</Header.Nickname>
+                <Header.Mail>{profile.email}</Header.Mail>
+                <Header.Item to="/acount">to Account</Header.Item>
+                <Header.Item to="/account/userlists">to Userlists</Header.Item>
+                <Header.Logout>Logout</Header.Logout>
+              </Header.Popup>
+            </Header.Profile>
+          )}
+          <SwitchTransition mode="out-in">
+            <CSSTransition key={searchActive} classNames="fade" timeout={200}>
+              <Header.Button onClick={() => setSearchActive((prev) => !prev)}>
+                {!searchActive && <Header.Search data-testid="header-search" />}
+                {searchActive && <Header.Close data-testid="header-close" />}
+              </Header.Button>
+            </CSSTransition>
+          </SwitchTransition>
+        </Header.Wrapper>
+      </Header.Inner>
     </Header>
   );
 }

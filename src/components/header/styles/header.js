@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 import { Link as ReactRouterLink } from "react-router-dom";
 
 import { BsSearch, BsX } from "react-icons/bs";
@@ -69,20 +69,68 @@ export const Search = styled(BsSearch)``;
 
 export const Close = styled(BsX)``;
 
-export const Profile = styled.div``;
+export const Profile = styled.div`
+  position: relative;
+  cursor: pointer;
+`;
 
 export const Avatar = styled.img`
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 50%;
   height: 50px;
+
+  ${({ popupVisible }) =>
+    popupVisible &&
+    css`
+      border: 1px solid rgba(255, 255, 255, 0.6);
+    `};
 `;
 
 export const Popup = styled.div`
-  display: none;
+  ${({ theme }) =>
+    theme.animations.slide({ x: -200, y: 0 }, { x: -200, y: 0 })};
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: white;
+  flex-direction: column;
+  top: calc(100% + 16px);
+  border-radius: 0.5rem;
+  position: absolute;
+  display: flex;
+  left: 0;
 `;
 
-export const Nickname = styled.div``;
+export const Nickname = styled.span`
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
+  padding: 0.4rem 0.6rem 0;
+  font-size: 1.3rem;
+`;
 
-export const Mail = styled.div``;
+export const Mail = styled.span`
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  padding: 0 0.6rem 0.4rem;
+`;
 
-export const Item = styled.div``;
+export const Item = styled(ReactRouterLink)`
+  padding: 0.3rem 0.6rem 0.3rem;
+  text-decoration: none;
+  color: black;
+
+  &:first-of-type {
+    margin-top: 0.5rem;
+  }
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    transition: 300ms;
+  }
+`;
+
+export const Logout = styled.span`
+  padding: 0.3rem 0.6rem 0.3rem;
+  margin-bottom: 0.5rem;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    transition: 300ms;
+  }
+`;

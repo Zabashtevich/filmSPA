@@ -1,4 +1,5 @@
 import React from "react";
+import { CSSTransition } from "react-transition-group";
 
 import {
   Container,
@@ -15,6 +16,7 @@ import {
   Nickname,
   Mail,
   Item,
+  Logout,
 } from "./styles/header";
 
 export default function Header({ children, ...rest }) {
@@ -57,8 +59,19 @@ Header.Avatar = function HeaderAvatar({ children, ...rest }) {
   return <Avatar {...rest} />;
 };
 
-Header.Popup = function HeaderPopup({ children, ...rest }) {
-  return <Popup {...rest}>{children}</Popup>;
+Header.Popup = function HeaderPopup({ visible, children, ...rest }) {
+  return (
+    <CSSTransition
+      in={visible}
+      appear={true}
+      mountOnEnter
+      unmountOnExit
+      timeout={500}
+      classNames="slide"
+    >
+      <Popup {...rest}>{children}</Popup>
+    </CSSTransition>
+  );
 };
 
 Header.Nickname = function HeaderNickname({ children, ...rest }) {
@@ -71,4 +84,8 @@ Header.Mail = function HeaderMail({ children, ...rest }) {
 
 Header.Item = function HeaderItem({ children, ...rest }) {
   return <Item {...rest}>{children}</Item>;
+};
+
+Header.Logout = function HeaderLogout({ children, ...rest }) {
+  return <Logout {...rest}>{children}</Logout>;
 };

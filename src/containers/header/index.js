@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 import { checkObject } from "./../../utils";
@@ -21,6 +21,17 @@ export default function HeaderContainer() {
   //   prevScrollPosition = current;
   // }
 
+  function popupToggler() {
+    setPopupVisible((prev) => !prev);
+  }
+
+  useEffect(() => {
+    if (!popupVisible) {
+      window.addEventListener("click", popupToggler);
+    }
+    return () => window.removeEventListener("click", popupToggler);
+  }, []);
+
   return (
     <Header>
       <Header.Nav>
@@ -28,19 +39,19 @@ export default function HeaderContainer() {
         <Header.Link to="/trending/movie">Trending</Header.Link>
         <Header.Link to="/search">Search</Header.Link>
       </Header.Nav>
-      <Header.Wrapper>
+      <Header.Wrapper onClick={(e) => e.stopPropagation()}>
         {!profileLoading && checkObject.notEmty(profile) && (
-          <Header.Profile>
+          <Header.Profile onClick={popupToggler}>
             <Header.Avatar
-              onClick={() => setPopupVisible((prev) => !prev)}
               src={profile?.photoURL}
+              popupVisible={popupVisible && 1}
             />
             <Header.Popup visible={popupVisible}>
               <Header.Nickname>{profile.displayName}</Header.Nickname>
-              <Header.Mail></Header.Mail>
-              <Header.Item to="">to Account</Header.Item>
-              <Header.Item>to Userlits</Header.Item>
-              <Header.Item>Logout</Header.Item>
+              <Header.Mail>{profile.email}</Header.Mail>
+              <Header.Item to="/acount">to Account</Header.Item>
+              <Header.Item to="/account/userlists">to Userlits</Header.Item>
+              <Header.Logout>Logout</Header.Logout>
             </Header.Popup>
           </Header.Profile>
         )}

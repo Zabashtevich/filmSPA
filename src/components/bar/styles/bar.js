@@ -4,13 +4,15 @@ import { BsSearch } from "react-icons/bs";
 import { HiTrendingUp } from "react-icons/hi";
 
 export const Inner = styled.div`
-  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   justify-content: center;
   background-color: white;
+  flex-direction: column;
+  align-items: center;
   position: absolute;
   display: flex;
+  height: auto;
   width: 100%;
-  top: 100%;
 `;
 
 export const Container = styled.div`
@@ -51,31 +53,66 @@ export const Input = styled.input`
 `;
 
 export const Header = styled.div`
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
   background-color: #ececec;
   justify-content: center;
-  position: absolute;
   display: flex;
   height: 40px;
   width: 100%;
-  top: 100%;
 `;
 
 export const Wrapper = styled.div`
   align-items: center;
+  position: relative;
   width: 1300px;
   display: flex;
   height: 100%;
 `;
 
-export const Trending = styled(HiTrendingUp)``;
+export const Trending = styled(HiTrendingUp)`
+  transform: translateY(-50%);
+  position: absolute;
+  font-size: 1.6rem;
+  top: 50%;
+`;
 
-export const Title = styled.div``;
+export const Title = styled.span`
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
+  font-size: ${({ theme }) => theme.font.aux.size.big};
+  margin-left: 30px;
+`;
 
-export const List = styled.div``;
+export const List = styled.div`
+  background-color: white;
+  width: 100%;
+`;
 
-export const Item = styled.div``;
+export const Item = styled.div`
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  height: 30px;
+  width: 100%;
+
+  &:first-of-type {
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+  }
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+`;
+
+export const Content = styled.div`
+  position: relative;
+  width: 1300px;
+`;
+
+export const Name = styled.span`
+  margin-left: 30px;
+`;
 
 export const Search = styled(BsSearch)`
   transform: translateY(-50%);

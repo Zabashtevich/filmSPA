@@ -12,6 +12,8 @@ import {
   Title,
   List,
   Item,
+  Content,
+  Name,
   Search,
   Movie,
   Person,
@@ -63,6 +65,14 @@ Bar.List = function BarList({ children, ...rest }) {
 
 Bar.Item = function BarItem({ children, ...rest }) {
   return <Item {...rest}>{children}</Item>;
+};
+
+Bar.Content = function BarContent({ children, ...rest }) {
+  return <Content {...rest}>{children}</Content>;
+};
+
+Bar.Name = function BarName({ children, ...rest }) {
+  return <Name {...rest}>{children}</Name>;
 };
 
 Bar.Search = function BarSearch({ ...rest }) {

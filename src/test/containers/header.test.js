@@ -1,4 +1,9 @@
-import { act, render, waitForElementToBeRemoved } from "@testing-library/react";
+import {
+  act,
+  render,
+  waitFor,
+  waitForElementToBeRemoved,
+} from "@testing-library/react";
 import { ThemeProvider } from "styled-components";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
@@ -113,12 +118,15 @@ describe("Header container", () => {
       userEvent.click(getByTestId(/header-profile/i));
     });
 
-    waitForElementToBeRemoved(getByText(/zabashtevich/i)).then(() => {
-      console.log("hi");
+    await waitFor(() => {
+      expect(queryByText(/dummy@email.ru/i)).toBeNull();
+      expect(queryByText(/to account/i)).toBeNull();
+      expect(queryByText(/to userlists/i)).toBeNull();
+      expect(queryByText(/logout/i)).toBeNull();
     });
   });
 
-  it("switch search active state on search/close click", () => {
+  it("switch search active state on search/close click", async () => {
     const mockedStore = {
       userProfile: {
         profile: {
@@ -129,13 +137,28 @@ describe("Header container", () => {
         profileLoading: false,
       },
     };
-    const {
-      getByTestId,
-      getByAltText,
-      getByText,
-      queryByText,
-    } = renderComponentwithRedux({
+    const { getByTestId, queryByTestId } = renderComponentwithRedux({
       initialState: mockedStore,
+    });
+
+    expect(getByTestId("header-search")).toBeTruthy();
+
+    await act(async () => {
+      userEvent.click(getByTestId("header-search"));
+    });
+
+    await waitForElementToBeRemoved(getByTestId("header-search")).then(() => {
+      expect(queryByTestId("header-search")).toBeNull();
+      expect(getByTestId("header-close")).toBeTruthy();
+    });
+
+    await act(async () => {
+      userEvent.click(getByTestId("header-close"));
+    });
+
+    await waitForElementToBeRemoved(getByTestId("header-close")).then(() => {
+      expect(queryByTestId("header-close")).toBeNull();
+      expect(getByTestId("header-search")).toBeTruthy();
     });
   });
 });

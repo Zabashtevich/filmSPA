@@ -75,7 +75,7 @@ export default function HeaderContainer() {
           </SwitchTransition>
         </Header.Wrapper>
       </Header.Inner>
-      <BarContainer />
+      <BarContainer visible={searchActive} />
     </Header>
   );
 }

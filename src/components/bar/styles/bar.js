@@ -7,6 +7,7 @@ import { RiMovie2Line } from "react-icons/ri";
 
 export const Inner = styled.div`
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  ${({ theme }) => theme.animations.fade()};
   justify-content: center;
   background-color: white;
   flex-direction: column;
@@ -18,8 +19,11 @@ export const Inner = styled.div`
 `;
 
 export const Container = styled.div`
+  align-items: center;
   position: relative;
   max-width: 1300px;
+  display: flex;
+  height: 40px;
   width: 100%;
 `;
 

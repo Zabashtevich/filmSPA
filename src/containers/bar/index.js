@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { useTrending } from "./../../hooks";
 import { Bar } from "../../components";
-import BarForm from "./items/bar-form";
 
 export default function BarContainer() {
+  const [inputValue, setInputValue] = useState("");
   const [data, dataLoading] = useTrending("movie", "day");
-  console.log(data, dataLoading);
+
+  function onChange(e) {
+    setInputValue(e.target.value);
+  }
+
   return (
     <Bar>
-      <BarForm />
+      <Bar.Container>
+        <Bar.Form>
+          <Bar.Input />
+          <Bar.Search value={inputValue} onChange={onChange} />
+          <Bar.Submit />
+        </Bar.Form>
+      </Bar.Container>
 
       <Bar.Header>
         <Bar.Wrapper>

@@ -5,26 +5,44 @@ import { Bar } from "../../components";
 import BarItem from "./items/bar-item";
 
 export default function BarContainer() {
-  const [{ loading, array }, setItems] = useState({
+  const [{ loading, array, type }, setItems] = useState({
     loading: true,
     array: null,
     type: null,
   });
   const [inputValue, setInputValue] = useState("");
-  const [trending, trendingLoading] = useTrending("movie", "day");
-  const [searchedData, searchedDataLoading] = useSearch(inputValue);
+  const [trendingData, trendingLoading] = useTrending("movie", "day");
+  const [searchData, searchDataLoading] = useSearch(inputValue);
 
   function onChange(e) {
     setInputValue(e.target.value);
   }
 
   useEffect(() => {
-    setItems({ loading: true, array: null, type: null });
+    setItems((prev) => ({ ...prev, loading: true, array: null }));
     if (inputValue.length === 0 && !trendingLoading) {
-      setItems({ loading: false, array: trending.results });
+      setItems({
+        loading: false,
+        array: trendingData.results.slice(0, 10),
+        type: "trending",
+      });
     }
-  }, [searchedData, searchedDataLoading, trending, trendingLoading]);
-
+    if (inputValue.length > 0 && !searchDataLoading) {
+      setItems({
+        loading: false,
+        array: searchData.results.slice(0, 10),
+        type: "search",
+      });
+    }
+    // eslint-disable-next-line
+  }, [
+    searchData,
+    searchDataLoading,
+    trendingData,
+    trendingLoading,
+    inputValue,
+  ]);
+  console.log(loading, searchData, array);
   return (
     <Bar>
       <Bar.Container>
@@ -37,13 +55,19 @@ export default function BarContainer() {
       <Bar.Header>
         <Bar.Wrapper>
           <Bar.Trending />
-          <Bar.Title>Trending</Bar.Title>
+          {(type === "trending" || !type) && <Bar.Title>Trending</Bar.Title>}
+          {type === "search" && <Bar.Title>Results</Bar.Title>}
         </Bar.Wrapper>
       </Bar.Header>
       <Bar.List>
+        {!loading && array.length === 0 && (
+          <Bar.Nodata>
+            <Bar.Subtitle>Nothing was found</Bar.Subtitle>
+          </Bar.Nodata>
+        )}
         {!loading &&
           array
-            .slice(1, 10)
+            .slice(0, 10)
             .map((item) => <BarItem key={item.id} item={item} />)}
       </Bar.List>
     </Bar>

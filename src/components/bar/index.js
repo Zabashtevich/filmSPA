@@ -1,4 +1,5 @@
 import React from "react";
+import { CSSTransition } from "react-transition-group";
 
 import {
   Inner,
@@ -46,7 +47,7 @@ Bar.Input = function BarInput({ ...rest }) {
   return <Input {...rest} />;
 };
 
-Bar.Header = function BarHeader({ children, ...rest }) {
+Bar.Header = function BarHeader({ visible, children, ...rest }) {
   return <Header {...rest}>{children}</Header>;
 };
 

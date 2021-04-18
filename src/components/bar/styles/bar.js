@@ -53,6 +53,7 @@ export const Input = styled.input`
 `;
 
 export const Header = styled.div`
+  ${({ theme }) => theme.animations.fade()};
   border-top: 1px solid rgba(0, 0, 0, 0.2);
   background-color: #ececec;
   justify-content: center;
@@ -126,6 +127,16 @@ export const Person = styled.div``;
 
 export const Refresh = styled.div``;
 
-export const Nodata = styled.div``;
+export const Nodata = styled.div`
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  height: 75px;
+  width: 100%;
+`;
 
-export const Subtitle = styled.div``;
+export const Subtitle = styled.span`
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
+  font-size: ${({ theme }) => theme.font.aux.size.big};
+  color: rgba(0, 0, 0, 0.6);
+`;

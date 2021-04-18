@@ -8,7 +8,7 @@ export default function useSearch(value) {
 
   useEffect(() => {
     let mounted = true;
-    if (mounted) {
+    if (mounted && value) {
       setData((prev) => ({ ...prev, loading: true }));
       fetch(
         `https://api.themoviedb.org/3/search/multi?api_key=${process.env.REACT_APP_API_KEY}&query=${value}`,

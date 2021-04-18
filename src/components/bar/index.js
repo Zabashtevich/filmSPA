@@ -18,7 +18,6 @@ import {
   Movie,
   Person,
   Refresh,
-  Loading,
   Nodata,
   Subtitle,
 } from "./styles/bar";
@@ -89,10 +88,6 @@ Bar.Person = function BarPerson({ ...rest }) {
 
 Bar.Refresh = function BarRefresh({ ...rest }) {
   return <Refresh {...rest} />;
-};
-
-Bar.Loading = function BarLoading({ ...rest }) {
-  return <Loading {...rest} />;
 };
 
 Bar.Nodata = function BarNodata({ children, ...rest }) {

@@ -126,8 +126,6 @@ export const Person = styled.div``;
 
 export const Refresh = styled.div``;
 
-export const Loading = styled.div``;
-
 export const Nodata = styled.div``;
 
 export const Subtitle = styled.div``;

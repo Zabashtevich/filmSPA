@@ -42,14 +42,12 @@ export default function BarContainer() {
     trendingLoading,
     inputValue,
   ]);
-  console.log(loading, searchData, array);
+
   return (
     <Bar>
       <Bar.Container>
-        <Bar.Form onSubmit={(e) => e.preventDefault()}>
-          <Bar.Input value={inputValue} onChange={onChange} />
-          <Bar.Search />
-        </Bar.Form>
+        <Bar.Search />
+        <Bar.Input value={inputValue} onChange={onChange} />
       </Bar.Container>
 
       <Bar.Header>

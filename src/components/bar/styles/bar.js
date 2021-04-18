@@ -1,7 +1,9 @@
 import styled from "styled-components/macro";
+import { Link as ReactRouterLink } from "react-router-dom";
 
-import { BsSearch } from "react-icons/bs";
+import { BsSearch, BsFillPersonFill } from "react-icons/bs";
 import { HiTrendingUp } from "react-icons/hi";
+import { RiMovie2Line } from "react-icons/ri";
 
 export const Inner = styled.div`
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -16,6 +18,7 @@ export const Inner = styled.div`
 `;
 
 export const Container = styled.div`
+  position: relative;
   max-width: 1300px;
   width: 100%;
 `;
@@ -88,9 +91,11 @@ export const List = styled.div`
   width: 100%;
 `;
 
-export const Item = styled.div`
+export const Item = styled(ReactRouterLink)`
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.8);
   justify-content: center;
+  text-decoration: none;
   align-items: center;
   cursor: pointer;
   display: flex;
@@ -121,11 +126,17 @@ export const Search = styled(BsSearch)`
   top: 50%;
 `;
 
-export const Movie = styled.div``;
+export const Movie = styled(RiMovie2Line)`
+  transform: translateY(-50%);
+  position: absolute;
+  top: 50%;
+`;
 
-export const Person = styled.div``;
-
-export const Refresh = styled.div``;
+export const Person = styled(BsFillPersonFill)`
+  transform: translateY(-50%);
+  position: absolute;
+  top: 50%;
+`;
 
 export const Nodata = styled.div`
   justify-content: center;

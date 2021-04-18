@@ -87,10 +87,6 @@ Bar.Person = function BarPerson({ ...rest }) {
   return <Person {...rest} />;
 };
 
-Bar.Refresh = function BarRefresh({ ...rest }) {
-  return <Refresh {...rest} />;
-};
-
 Bar.Nodata = function BarNodata({ children, ...rest }) {
   return <Nodata {...rest}>{children}</Nodata>;
 };

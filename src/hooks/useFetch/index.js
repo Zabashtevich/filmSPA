@@ -7,7 +7,8 @@ export default function useFetch(type, target, querries = false) {
   });
 
   const querryParams = {
-    details: "credits,recommendations,images,videos,reviews,account_states",
+    tv: "credits,recommendations,images,videos,reviews,account_states",
+    movie: "credits,recommendations,images,videos,reviews,account_states",
     person: "combined_credits,images",
   };
 

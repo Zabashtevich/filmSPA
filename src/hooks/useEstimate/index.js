@@ -11,8 +11,6 @@ export default function useEstimate(username, doc) {
   const { firebase } = useFirebaseContext();
   const [array, setArray] = useState(null);
 
-  console.log(username, doc, array);
-
   useEffect(() => {
     if (array) {
       setProcess({ processing: true, message: "Adding your vote..." });

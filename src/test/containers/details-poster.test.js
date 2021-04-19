@@ -29,17 +29,18 @@ describe("Details poster container", () => {
     title: "dummy title",
     overview: "dummy overview",
     release_date: "2100-10-10",
-    spoken_languages: ["dummyEn", "dummyRu"],
-    genres: ["dummyGenre1", "dummyGenre2"],
+    spoken_languages: [{ name: "dummyEn" }, { name: "dummyRu" }],
+    genres: [{ name: "dummyGenre1" }, { name: "dummyGenre2" }],
     tagline: "dummy tagline",
     credits: {
       crew: [
-        { name: "dummy director", job: "director" },
-        { name: "dummy story", job: "story" },
-        { name: "dummy producer", job: "producer" },
-        { name: "dummy productuin", job: "productuin" },
-        { name: "dummy orinal music composer", job: "orinal music composer" },
-        { name: "dummy editor", job: "editor" },
+        { name: "dummy director", job: "Director" },
+        { name: "dummy story", job: "Story" },
+        { name: "dummy producer", job: "Producer" },
+        { name: "dummy productuin", job: "Production" },
+        { name: "dummy orinal music composer", job: "Original Music Composer" },
+        { name: "dummy production design", job: "Production Design" },
+        { name: "dummy editor", job: "Editor" },
       ],
       cast: range(1, 10).map((item) => ({
         id: item,
@@ -91,5 +92,49 @@ describe("Details poster container", () => {
       "src",
       "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/postersrc",
     );
+  });
+
+  it("renders content column after loading", () => {
+    const { getByText, queryByTestId } = renderComponent({
+      data: mockedData,
+      loading: false,
+    });
+
+    expect(queryByTestId(/details-rows-skeleton/i)).toBeNull();
+
+    expect(getByText(/dummy title/i)).toBeTruthy();
+    expect(getByText(/dummy overview/i)).toBeTruthy();
+    expect(getByText(/about movie/i)).toBeTruthy();
+    expect(getByText(/2100/i)).toBeTruthy();
+    expect(getByText(/dummy title/i)).toBeTruthy();
+    expect(getByText(/dummyEn, dummyRu/i)).toBeTruthy();
+    expect(getByText(/dummyGenre1, dummyGenre2/i)).toBeTruthy();
+    expect(getByText(/dummy tagline/i)).toBeTruthy();
+    expect(getByText(/dummy director/i)).toBeTruthy();
+    expect(getByText(/dummy story/i)).toBeTruthy();
+    expect(getByText(/dummy producer/i)).toBeTruthy();
+    expect(getByText(/dummy production design/i)).toBeTruthy();
+    expect(getByText(/dummy orinal music composer/i)).toBeTruthy();
+    expect(getByText(/dummy editor/i)).toBeTruthy();
+    expect(getByText(/100 \$/i)).toBeTruthy();
+    expect(getByText(/200 \$/i)).toBeTruthy();
+    expect(getByText(/120/i)).toBeTruthy();
+  });
+
+  it("render cast column after loading", () => {
+    const { getAllByRole, queryByTestId } = renderComponent({
+      data: mockedData,
+      loading: false,
+    });
+
+    expect(queryByTestId(/details-cast-skeleton/i)).toBeNull();
+
+    const links = getAllByRole("link");
+    expect(links).toHaveLength(10);
+
+    range(1, 10).map((item) => {
+      expect(links[item - 1]).toHaveAttribute("href", `/actor/${item}`);
+      expect(links[item - 1]).toHaveTextContent(`dummy name ${item}`);
+    });
   });
 });

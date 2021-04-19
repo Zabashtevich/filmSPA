@@ -1,5 +1,4 @@
 import React from "react";
-import { useParams } from "react-router-dom";
 
 import { DetailsPoster } from "../../../components";
 import {
@@ -8,9 +7,7 @@ import {
   getYearFromString,
 } from "../../../utils";
 
-export default function DetailsPosterRows({ data }) {
-  const { direction } = useParams();
-
+export default function DetailsPosterRows({ data, direction }) {
   return (
     <>
       <DetailsPoster.Title>{data.title}</DetailsPoster.Title>

@@ -1,5 +1,6 @@
 import React from "react";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
+import { useParams } from "react-router-dom";
 
 import { DetailsPoster } from "../../components";
 import DetailsPosterRows from "./items/details-poster-rows";
@@ -10,6 +11,8 @@ import {
 } from "../../components/skeleton";
 
 export default function DetailsPosterContainer({ data, loading }) {
+  const { direction } = useParams();
+
   return (
     <DetailsPoster>
       <DetailsPoster.Inner visible={!loading}>
@@ -29,7 +32,9 @@ export default function DetailsPosterContainer({ data, loading }) {
         <CSSTransition key={loading} classNames="fade" timeout={500}>
           <DetailsPoster.Column type={"content"}>
             {loading && <PosterDetailsRowsSkeleton />}
-            {!loading && <DetailsPosterRows data={data} />}
+            {!loading && (
+              <DetailsPosterRows data={data} direction={direction} />
+            )}
           </DetailsPoster.Column>
         </CSSTransition>
       </SwitchTransition>

@@ -17,8 +17,8 @@ export default function DetailsPage() {
   return (
     <>
       <HeaderContainer />
-      <DetailsPosterContainer data={data} loading={loading} />
-      <DetailsPanelContainer data={data} loading={loading} />
+      {/* <DetailsPosterContainer data={data} loading={loading} /> */}
+      {/* <DetailsPanelContainer data={data} loading={loading} /> */}
       <FooterContainer />
     </>
   );

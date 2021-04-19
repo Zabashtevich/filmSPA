@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { useSearch, useTrending } from "./../../hooks";
 import { Bar } from "../../components";
 import BarItem from "./items/bar-item";
-import { CSSTransition } from "react-transition-group";
 
 export default function BarContainer({ visible }) {
   const [{ loading, array, type }, setItems] = useState({
@@ -35,7 +34,6 @@ export default function BarContainer({ visible }) {
         type: "search",
       });
     }
-    // eslint-disable-next-line
   }, [
     searchData,
     searchDataLoading,
@@ -45,39 +43,30 @@ export default function BarContainer({ visible }) {
   ]);
 
   return (
-    <CSSTransition
-      in={visible}
-      classNames="fade"
-      mountOnEnter
-      unmountOnExit
-      timeout={500}
-      appear={true}
-    >
-      <Bar>
-        <Bar.Container>
-          <Bar.Search />
-          <Bar.Input value={inputValue} onChange={onChange} />
-        </Bar.Container>
+    <Bar visible={visible} data-testid="bar-inner">
+      <Bar.Container data-testid="bar-container">
+        <Bar.Search />
+        <Bar.Input value={inputValue} onChange={onChange} />
+      </Bar.Container>
 
-        <Bar.Header>
-          <Bar.Wrapper>
-            <Bar.Trending />
-            {(type === "trending" || !type) && <Bar.Title>Trending</Bar.Title>}
-            {type === "search" && <Bar.Title>Results</Bar.Title>}
-          </Bar.Wrapper>
-        </Bar.Header>
-        <Bar.List>
-          {!loading && array.length === 0 && (
-            <Bar.Nodata>
-              <Bar.Subtitle>Nothing was found</Bar.Subtitle>
-            </Bar.Nodata>
-          )}
-          {!loading &&
-            array
-              .slice(0, 10)
-              .map((item) => <BarItem key={item.id} item={item} />)}
-        </Bar.List>
-      </Bar>
-    </CSSTransition>
+      <Bar.Header>
+        <Bar.Wrapper>
+          <Bar.Trending />
+          {(type === "trending" || !type) && <Bar.Title>Trending</Bar.Title>}
+          {type === "search" && <Bar.Title>Results</Bar.Title>}
+        </Bar.Wrapper>
+      </Bar.Header>
+      <Bar.List>
+        {!loading && array.length === 0 && (
+          <Bar.Nodata>
+            <Bar.Subtitle>Nothing was found</Bar.Subtitle>
+          </Bar.Nodata>
+        )}
+        {!loading &&
+          array
+            .slice(0, 10)
+            .map((item) => <BarItem key={item.id} item={item} />)}
+      </Bar.List>
+    </Bar>
   );
 }

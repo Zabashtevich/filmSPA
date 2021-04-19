@@ -13,11 +13,11 @@ export default function BarItem({ item }) {
     >
       <Bar.Content>
         {item.media_type === "movie" || item.media_type === "tv" ? (
-          <Bar.Movie />
+          <Bar.Movie data-testid="bar-movie" />
         ) : item.media_type === "person" ? (
-          <Bar.Person />
+          <Bar.Person data-testid="bar-person" />
         ) : (
-          <Bar.Search />
+          <Bar.Search data-testid="bar-search" />
         )}
         <Bar.Name>{item.title || item.name}</Bar.Name>
       </Bar.Content>

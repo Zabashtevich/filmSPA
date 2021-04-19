@@ -23,8 +23,19 @@ import {
   Subtitle,
 } from "./styles/bar";
 
-export default function Bar({ children, ...rest }) {
-  return <Inner {...rest}>{children}</Inner>;
+export default function Bar({ visible, children, ...rest }) {
+  return (
+    <CSSTransition
+      in={visible}
+      classNames="fade"
+      mountOnEnter
+      unmountOnExit
+      timeout={500}
+      appear={true}
+    >
+      <Inner {...rest}>{children}</Inner>
+    </CSSTransition>
+  );
 }
 
 Bar.Container = function BarContainer({ children, ...rest }) {

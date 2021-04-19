@@ -28,6 +28,7 @@ export function PosterDetailsRowsSkeleton() {
       viewBox="0 0 600 600"
       backgroundColor="#f3f3f3"
       foregroundColor="#ecebeb"
+      data-testid="details-rows-skeleton"
     >
       <rect x="0" y="0" rx="4" ry="4" width="270" height="35" />
       <rect x="0" y="45" rx="5" ry="5" width="580" height="15" />
@@ -59,6 +60,7 @@ export function PosterDetailsSkeleton() {
       viewBox="0 0 300 450"
       backgroundColor="#f3f3f3"
       foregroundColor="#ecebeb"
+      data-testid="details-poster-skeleton"
     >
       <rect x="0" y="0" rx="10" ry="10" width="300" height="450" />
     </ContentLoader>
@@ -74,6 +76,7 @@ export function CastListSkeleton() {
       viewBox="0 0 100 220"
       backgroundColor="#f3f3f3"
       foregroundColor="#ecebeb"
+      data-testid="details-cast-skeleton"
     >
       <rect x="0" y="8" rx="4" ry="4" width="200" height="5" />
       <rect x="0" y="30" rx="4" ry="4" width="200" height="5" />

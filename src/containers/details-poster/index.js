@@ -16,14 +16,22 @@ export default function DetailsPosterContainer({ data, loading }) {
   return (
     <DetailsPoster>
       <DetailsPoster.Inner visible={!loading}>
-        <DetailsPoster.Wallpaper src={data?.backdrop_path} />
+        <DetailsPoster.Wallpaper
+          src={data?.backdrop_path}
+          data-testid="details-wallpaper"
+        />
       </DetailsPoster.Inner>
 
       <SwitchTransition mode="out-in">
         <CSSTransition key={loading} classNames="fade" timeout={500}>
           <DetailsPoster.Column type={"poster"}>
             {loading && <PosterDetailsSkeleton />}
-            {!loading && <DetailsPoster.Poster src={data?.poster_path} />}
+            {!loading && (
+              <DetailsPoster.Poster
+                src={data?.poster_path}
+                data-testid="details-poster"
+              />
+            )}
           </DetailsPoster.Column>
         </CSSTransition>
       </SwitchTransition>

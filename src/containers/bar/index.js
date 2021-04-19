@@ -46,7 +46,11 @@ export default function BarContainer({ visible }) {
     <Bar visible={visible} data-testid="bar-inner">
       <Bar.Container data-testid="bar-container">
         <Bar.Search />
-        <Bar.Input value={inputValue} onChange={onChange} />
+        <Bar.Input
+          value={inputValue}
+          onChange={onChange}
+          placeholder="Search..."
+        />
       </Bar.Container>
 
       <Bar.Header>

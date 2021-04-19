@@ -19,3 +19,4 @@ export { default as Process } from "./process";
 export { default as Slider } from "./slider";
 export { default as Trending } from "./trending";
 export { default as Bar } from "./bar";
+export { default as DetailsPoster } from "./details-poster";

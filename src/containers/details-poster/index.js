@@ -1,0 +1,53 @@
+import React from "react";
+import { CSSTransition, SwitchTransition } from "react-transition-group";
+
+import { DetailsPoster } from "../../components";
+import DetailsPosterRows from "./items/details-poster-rows";
+import {
+  CastListSkeleton,
+  PosterDetailsRowsSkeleton,
+  PosterDetailsSkeleton,
+} from "../../components/skeleton";
+
+export default function DetailsPosterContainer({ data, loading }) {
+  return (
+    <DetailsPoster>
+      <DetailsPoster.Inner visible={!loading}>
+        <DetailsPoster.Wallpaper src={data?.backdrop_path} />
+      </DetailsPoster.Inner>
+
+      <SwitchTransition mode="out-in">
+        <CSSTransition key={loading} classNames="fade" timeout={500}>
+          <DetailsPoster.Column type={"poster"}>
+            {loading && <PosterDetailsSkeleton />}
+            {!loading && <DetailsPoster.Poster src={data?.poster_path} />}
+          </DetailsPoster.Column>
+        </CSSTransition>
+      </SwitchTransition>
+
+      <SwitchTransition mode="out-in">
+        <CSSTransition key={loading} classNames="fade" timeout={500}>
+          <DetailsPoster.Column type={"content"}>
+            {loading && <PosterDetailsRowsSkeleton />}
+            {!loading && <DetailsPosterRows data={data} />}
+          </DetailsPoster.Column>
+        </CSSTransition>
+      </SwitchTransition>
+
+      <SwitchTransition mode="out-in">
+        <CSSTransition key={loading} classNames="fade" timeout={500}>
+          <DetailsPoster.Column type={"cast"}>
+            <DetailsPoster.Subtitle>Cast:</DetailsPoster.Subtitle>
+            {loading && <CastListSkeleton />}
+            {!loading &&
+              data.credits.cast.slice(0, 10).map(({ name, id }) => (
+                <DetailsPoster.Link key={id} to={`/actor/${id}`}>
+                  {name}
+                </DetailsPoster.Link>
+              ))}
+          </DetailsPoster.Column>
+        </CSSTransition>
+      </SwitchTransition>
+    </DetailsPoster>
+  );
+}

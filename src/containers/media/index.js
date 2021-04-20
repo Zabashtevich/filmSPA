@@ -14,14 +14,14 @@ export default function MediaContainer({ data }) {
       <Media>
         <Media.Header>
           <Media.Title>Media</Media.Title>
-          <Media.All to={`${pathname}/gallery`}>{`See full gallery`}</Media.All>
+          <Media.All to={`${pathname}/gallery`}>See full gallery</Media.All>
         </Media.Header>
         <Media.Scroller
           onScroll={(e) => setScrollvalue(e.target.scrollLeft)}
           blured={scrollvalue !== 0 && 1}
         >
           {data.images.posters.slice(0, 10).map((item) => (
-            <Media.Poster key={item.file_path} file={item.file_path} />
+            <Media.Poster key={item.file_path} slug={item.file_path} />
           ))}
         </Media.Scroller>
       </Media>

@@ -70,10 +70,15 @@ export const Widget = styled.div`
 `;
 
 export const Column = styled.div`
+  align-content: flex-start;
+  box-sizing: border-box;
+  flex-direction: row;
+  min-height: 1000px;
   padding: 2rem 1rem;
   flex-wrap: wrap;
-  width: 1050px;
   display: flex;
+  width: 1050px;
+  gap: 1rem;
 `;
 
 export const Menu = styled.div`
@@ -146,7 +151,7 @@ export const Value = styled.div`
 `;
 
 export const Backdrop = styled.img`
-  ${({ theme }) => theme.animations.fade()};
+  ${({ theme }) => theme.animations.skeleton};
   border-radius: 0.3rem;
   position: relative;
   margin: 0.5rem;
@@ -170,7 +175,7 @@ export const Backdrop = styled.img`
 `;
 
 export const Poster = styled.img`
-  ${({ theme }) => theme.animations.fade()};
+  ${({ theme }) => theme.animations.skeleton};
   border-radius: 0.3rem;
   margin: 0.5rem;
   height: 300px;
@@ -184,11 +189,13 @@ export const Poster = styled.img`
 `;
 
 export const Video = styled.div`
-  ${({ theme }) => theme.animations.fade()};
+  ${({ theme }) => theme.animations.skeleton};
   border-radius: 0.3rem;
   position: relative;
   cursor: pointer;
   margin: 0.5rem;
+  height: 150px;
+  width: 300px;
   ${({ url }) =>
     url &&
     css`
@@ -196,8 +203,6 @@ export const Video = styled.div`
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
-      height: 150px;
-      width: 300px;
     `};
 `;
 

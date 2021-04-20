@@ -85,5 +85,12 @@ export default {
       transform: translate(0, 0);
       transition: 300ms;
     }`,
+    skeleton: `background: linear-gradient(
+      to right,
+      rgb(243, 242, 241) 0%,
+      rgb(237, 235, 233) 50%,
+      rgb(243, 242, 241) 100%
+    )
+    0px 0px / 90% 100% no-repeat rgb(243, 242, 241);`,
   },
 };

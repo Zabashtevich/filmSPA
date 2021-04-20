@@ -44,6 +44,14 @@ export default function GalleryContainer({ data, loading }) {
     }
   }, [categories, selected]);
 
+  function menuToggler(value) {
+    setCategories((prev) => ({
+      ...prev,
+      selected: value,
+    }));
+    setPagin((prev) => ({ ...prev, active: 1 }));
+  }
+
   return (
     <Gallery>
       <Gallery.Header>
@@ -85,12 +93,7 @@ export default function GalleryContainer({ data, loading }) {
                       <Gallery.Item
                         key={item}
                         selected={item === selected ? 1 : 0}
-                        onClick={() =>
-                          setCategories((prev) => ({
-                            ...prev,
-                            selected: item,
-                          }))
-                        }
+                        onClick={() => menuToggler(item)}
                       >
                         <Gallery.Value>{item}</Gallery.Value>
                         <Gallery.Amount>
@@ -112,7 +115,7 @@ export default function GalleryContainer({ data, loading }) {
                 ))}
               {categories &&
                 getSelectedArray(selected, content)
-                  .slice(active * 10 - 10, active * 10)
+                  .slice(active * 20 - 20, active * 20)
                   .map((item) => (
                     <GalleryItems
                       key={item.file_path || item.key}
@@ -128,4 +131,3 @@ export default function GalleryContainer({ data, loading }) {
     </Gallery>
   );
 }
-// setPagin(prev => ({...prev, loading: false, amount: }))

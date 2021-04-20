@@ -17,7 +17,7 @@ export default function DetailsPanelContainer({ data, dataLoading }) {
   const collection = data?.belongs_to_collection;
 
   const loading = dataLoading || profileLoading || userDataLoading;
-  console.dir(data);
+
   return (
     <DetailsPanel>
       <SwitchTransition mode={"out-in"}>

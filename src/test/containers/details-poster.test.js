@@ -1,10 +1,10 @@
 import { render } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { ThemeProvider } from "styled-components";
+import { MemoryRouter, Route } from "react-router-dom";
 
 import theme from "./../../theme/theme";
 import { DetailsPosterContainer } from "../../containers";
-import { MemoryRouter, Route } from "react-router-dom";
 import { range } from "../../utils";
 
 function renderComponent(mockedProps) {

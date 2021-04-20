@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
-import { checkCategories, getCategories } from "../../utils";
 import { Media } from "./../../components";
 import { useLocation } from "react-router";
 

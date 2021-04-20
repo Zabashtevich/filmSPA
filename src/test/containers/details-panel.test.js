@@ -3,12 +3,16 @@ import { Provider } from "react-redux";
 import { MemoryRouter, Route } from "react-router";
 import { combineReducers, createStore } from "redux";
 import { ThemeProvider } from "styled-components";
+import "@testing-library/jest-dom";
 
 import userData from "./../../reducers/user-data";
 import userProfile from "./../../reducers/user-profile";
 import { useEstimate } from "../../hooks";
 import { DetailsPanelContainer } from "./../../containers";
 import theme from "./../../theme/theme";
+import { ProcessContext } from "../../context/process-context/context";
+
+jest.mock("./../../containers/media", () => () => <div />);
 
 jest.mock("./../../hooks", () => ({
   useEstimate: jest.fn(),
@@ -24,10 +28,12 @@ function renderComponentWithRedux({
       <MemoryRouter initialEntries={[{ pathname: "/details/movie/123" }]}>
         <ThemeProvider theme={theme}>
           <Provider store={store}>
-            <Route
-              path="/details/:direction/:slug"
-              component={() => <DetailsPanelContainer {...initialprops} />}
-            />
+            <ProcessContext.Provider value={[{ processing: false }]}>
+              <Route
+                path="/details/:direction/:slug"
+                component={() => <DetailsPanelContainer {...initialprops} />}
+              />
+            </ProcessContext.Provider>
           </Provider>
         </ThemeProvider>
       </MemoryRouter>,
@@ -36,6 +42,23 @@ function renderComponentWithRedux({
 }
 
 describe("Details panel container", () => {
+  const initialState = {
+    backdrop_path: "/backdropsrc",
+    title: "dummy title",
+    release_date: "2100-10-10",
+    vote_average: 8.8,
+    vote_count: 1000,
+    popularity: 1,
+    belongs_to_collection: {
+      backdrop_path: "/collectionsrc",
+      id: 1,
+      name: "dummy collection",
+    },
+    images: { posters: [{ file_path: "/postersrc" }] },
+  };
+
+  const setEstimate = jest.fn();
+
   it("displays skeletons on loading", () => {
     const loadingStore = {
       userData: { dataLoading: true, votes: null },
@@ -56,6 +79,7 @@ describe("Details panel container", () => {
   });
 
   it("renders full content after loading", () => {
+    useEstimate.mockReturnValue([setEstimate]);
     const initialStore = {
       userData: {
         dataLoading: false,
@@ -66,19 +90,43 @@ describe("Details panel container", () => {
         profile: { displayName: "Zabashtevich" },
       },
     };
-    const { getByTestId, queryByTestId } = renderComponentWithRedux({
+    const {
+      getByTestId,
+      queryByTestId,
+      getByText,
+      getAllByTestId,
+    } = renderComponentWithRedux({
       initialprops: {
-        data: {
-          backdrop_path: "/backdropsrc",
-          belongs_to_collection: {
-            backdrop_path: "/collectionsrc",
-            id: 1,
-            name: "dummy collection",
-          },
-        },
-        dataLoading: true,
+        data: initialState,
+        dataLoading: false,
       },
       initialState: initialStore,
     });
+
+    expect(queryByTestId(/details-media-skeleton/i)).toBeNull();
+    expect(queryByTestId(/details-collection-skeleton/i)).toBeNull();
+
+    expect(getByTestId(/details-rating-container/i)).toBeTruthy();
+    expect(getByTestId(/details-collection-container/i)).toBeTruthy();
+
+    expect(getByText(/watch collection/i)).toBeTruthy();
+    expect(getByText(/belongs to dummy collection/i)).toBeTruthy();
+    expect(getByTestId(/details-collection-container/i)).toHaveAttribute(
+      "src",
+      "https://image.tmdb.org/t/p/original/collectionsrc",
+    );
+    expect(getByTestId(/collection-button/i)).toHaveAttribute(
+      "href",
+      "/collection/1",
+    );
+
+    expect(getAllByTestId(/star-rating/i)).toHaveLength(10);
+    expect(getByText(/8.8/i)).toBeTruthy();
+    expect(getByText(/1000/i)).toBeTruthy();
+    expect(getByText(/^10$/i)).toBeTruthy();
+    expect(getByText(/delete/i)).toBeTruthy();
+    expect(getByText(/1970/)).toBeTruthy();
+
+    expect(getByTestId(/rating-average/i)).toHaveStyle("color: green");
   });
 });

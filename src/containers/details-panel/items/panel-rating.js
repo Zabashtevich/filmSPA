@@ -32,7 +32,7 @@ export default function PanelRating({ data, profile, votes }) {
   function unVoteElement() {
     setEstimate(votes.filter((item) => item.id !== +slug));
   }
-
+  console.log(votes);
   return (
     <DetailsPanel.Subsection data-testid="details-rating-container">
       <DetailsPanel.Rating>
@@ -43,12 +43,16 @@ export default function PanelRating({ data, profile, votes }) {
             onMouseLeave={() => setHoverIndex(0)}
             selected={hoverIndex >= item && 1}
             onClick={() => handleEstimate(item)}
+            data-testid="star-rating"
           />
         ))}
       </DetailsPanel.Rating>
       {metaExist && (
         <DetailsPanel.Meta>
-          <DetailsPanel.Average value={data.vote_average}>
+          <DetailsPanel.Average
+            value={data.vote_average}
+            data-testid="rating-average"
+          >
             {data.vote_average}
           </DetailsPanel.Average>
           <DetailsPanel.Count>{data.vote_count}</DetailsPanel.Count>

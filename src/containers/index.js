@@ -19,3 +19,4 @@ export { default as SliderContainer } from "./slider";
 export { default as TrendingContainer } from "./trending";
 export { default as BarContainer } from "./bar";
 export { default as DetailsPosterContainer } from "./details-poster";
+export { default as DetailsPanelContainer } from "./details-panel";

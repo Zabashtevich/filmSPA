@@ -12,6 +12,7 @@ export const Container = styled.div`
   display: flex;
   z-index: 50;
   width: 100%;
+  margin-top: 4rem;
 `;
 
 export const Inner = styled.div`

@@ -13,8 +13,7 @@ import {
 } from "../../../utils";
 
 export default function PanelRating({ data, profile, votes }) {
-  const [{ processing }] = useProcessContext();
-  const [setEstimate] = useEstimate(profile?.displayName, "votes");
+  const [doEstimate] = useEstimate(profile?.displayName, "votes");
   const [hoverIndex, setHoverIndex] = useState(0);
   const { direction, slug } = useParams();
 
@@ -22,17 +21,15 @@ export default function PanelRating({ data, profile, votes }) {
   const metaExist = !!data.vote_count;
 
   function handleEstimate(value) {
-    if (!processing) {
-      setEstimate(
-        createUserlist(createEstimateItem(data, value, direction), votes),
-      );
-    }
+    doEstimate(
+      createUserlist(createEstimateItem(data, value, direction), votes),
+    );
   }
 
   function unVoteElement() {
-    setEstimate(votes.filter((item) => item.id !== +slug));
+    doEstimate(votes.filter((item) => item.id !== +slug));
   }
-  console.log(votes);
+
   return (
     <DetailsPanel.Subsection data-testid="details-rating-container">
       <DetailsPanel.Rating>

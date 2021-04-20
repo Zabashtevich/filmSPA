@@ -6,10 +6,16 @@ import {
 } from "../../context";
 
 export default function useEstimate(username, doc) {
-  const [, setProcess] = useProcessContext();
+  const [{ processing }, setProcess] = useProcessContext();
   const [, { showErrorModal }] = useModalContext();
   const { firebase } = useFirebaseContext();
   const [array, setArray] = useState(null);
+
+  function doEstimate(array) {
+    if (!processing) {
+      setArray(array);
+    }
+  }
 
   useEffect(() => {
     if (array) {
@@ -33,5 +39,5 @@ export default function useEstimate(username, doc) {
     }
   }, [array]);
 
-  return [setArray];
+  return [doEstimate];
 }

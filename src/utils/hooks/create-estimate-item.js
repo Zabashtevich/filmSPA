@@ -1,6 +1,6 @@
 export default function createEstimateItem(item, value = null, type = "Movie") {
   return {
-    date: new Date(),
+    date: Date.now(),
     id: item.id,
     type: item.media_type || type,
     title: item.orinal_name || item.title || item.name,

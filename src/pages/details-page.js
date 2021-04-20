@@ -6,6 +6,8 @@ import {
   DetailsPosterContainer,
   DetailsPanelContainer,
   HeaderContainer,
+  ProcessContainer,
+  ModalContainer,
 } from "../containers";
 import { useFetch } from "../hooks";
 
@@ -17,8 +19,10 @@ export default function DetailsPage() {
   return (
     <>
       <HeaderContainer />
-      <DetailsPosterContainer data={data} loading={loading} />
-      <DetailsPanelContainer data={data} loading={loading} />
+      <ProcessContainer />
+      <ModalContainer />
+      <DetailsPosterContainer data={data} dataLoading={loading} />
+      <DetailsPanelContainer data={data} dataLoading={loading} />
       <FooterContainer />
     </>
   );

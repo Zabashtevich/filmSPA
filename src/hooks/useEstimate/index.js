@@ -20,7 +20,9 @@ export default function useEstimate(username, doc) {
         .doc(`${doc}`)
         .update({ [doc]: array })
         .then(() => {
-          setProcess((prev) => ({ ...prev, processing: false }));
+          setTimeout(() => {
+            setProcess((prev) => ({ ...prev, processing: false }));
+          }, 1000);
           setArray(null);
         })
         .catch(() => {

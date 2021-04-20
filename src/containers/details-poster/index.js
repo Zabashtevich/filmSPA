@@ -10,12 +10,12 @@ import {
   PosterDetailsSkeleton,
 } from "../../components/skeleton";
 
-export default function DetailsPosterContainer({ data, loading }) {
+export default function DetailsPosterContainer({ data, dataLoading }) {
   const { direction } = useParams();
 
   return (
     <DetailsPoster>
-      <DetailsPoster.Inner visible={!loading}>
+      <DetailsPoster.Inner visible={!dataLoading}>
         <DetailsPoster.Wallpaper
           src={data?.backdrop_path}
           data-testid="details-wallpaper"
@@ -23,10 +23,10 @@ export default function DetailsPosterContainer({ data, loading }) {
       </DetailsPoster.Inner>
 
       <SwitchTransition mode="out-in">
-        <CSSTransition key={loading} classNames="fade" timeout={500}>
+        <CSSTransition key={dataLoading} classNames="fade" timeout={500}>
           <DetailsPoster.Column type={"poster"}>
-            {loading && <PosterDetailsSkeleton />}
-            {!loading && (
+            {dataLoading && <PosterDetailsSkeleton />}
+            {!dataLoading && (
               <DetailsPoster.Poster
                 src={data?.poster_path}
                 data-testid="details-poster"
@@ -37,10 +37,10 @@ export default function DetailsPosterContainer({ data, loading }) {
       </SwitchTransition>
 
       <SwitchTransition mode="out-in">
-        <CSSTransition key={loading} classNames="fade" timeout={500}>
+        <CSSTransition key={dataLoading} classNames="fade" timeout={500}>
           <DetailsPoster.Column type={"content"}>
-            {loading && <PosterDetailsRowsSkeleton />}
-            {!loading && (
+            {dataLoading && <PosterDetailsRowsSkeleton />}
+            {!dataLoading && (
               <DetailsPosterRows data={data} direction={direction} />
             )}
           </DetailsPoster.Column>
@@ -48,11 +48,11 @@ export default function DetailsPosterContainer({ data, loading }) {
       </SwitchTransition>
 
       <SwitchTransition mode="out-in">
-        <CSSTransition key={loading} classNames="fade" timeout={500}>
+        <CSSTransition key={dataLoading} classNames="fade" timeout={500}>
           <DetailsPoster.Column type={"cast"}>
             <DetailsPoster.Subtitle>Cast:</DetailsPoster.Subtitle>
-            {loading && <CastListSkeleton />}
-            {!loading &&
+            {dataLoading && <CastListSkeleton />}
+            {!dataLoading &&
               data.credits.cast.slice(0, 10).map(({ name, id }) => (
                 <DetailsPoster.Link key={id} to={`/actor/${id}`}>
                   {name}

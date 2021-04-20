@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 
 import { DetailsPanel } from "../../../components";
@@ -13,14 +12,13 @@ import {
   range,
 } from "../../../utils";
 
-export default function PanelRating({ data }) {
+export default function PanelRating({ data, profile, votes }) {
   const [{ processing }] = useProcessContext();
-  const [setEstimate] = useEstimate();
-  const { userDataLoading, votes } = useSelector((state) => state.userData);
+  const [setEstimate] = useEstimate(profile?.displayName, "votes");
   const [hoverIndex, setHoverIndex] = useState(0);
   const { direction, slug } = useParams();
 
-  const movieIsRated = !userDataLoading && checkMovieInList(votes, slug);
+  const movieIsRated = checkMovieInList(votes, slug);
   const metaExist = !!data.vote_count;
 
   function handleEstimate(value) {
@@ -29,6 +27,10 @@ export default function PanelRating({ data }) {
         createUserlist(createEstimateItem(data, value, direction), votes),
       );
     }
+  }
+
+  function unVoteElement() {
+    setEstimate(votes.filter((item) => item.id !== +slug));
   }
 
   return (
@@ -59,7 +61,9 @@ export default function PanelRating({ data }) {
             <DetailsPanel.Date>
               {getCorrectDate(movieIsRated.date)}
             </DetailsPanel.Date>
-            <DetailsPanel.Delete>DELETE</DetailsPanel.Delete>
+            <DetailsPanel.Delete onClick={unVoteElement}>
+              DELETE
+            </DetailsPanel.Delete>
           </DetailsPanel.Wrapper>
         </>
       )}

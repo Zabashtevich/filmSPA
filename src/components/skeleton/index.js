@@ -127,6 +127,7 @@ export function DetailsCollectionSkeleton() {
       viewBox="0 0 1300 300"
       backgroundColor="#f3f3f3"
       foregroundColor="#ecebeb"
+      data-testid="details-collection-skeleton"
     >
       <rect x="0" y="0" rx="10" ry="10" width="1300" height="300" />
     </ContentLoader>
@@ -176,6 +177,7 @@ export default function MediaSkeleton() {
       viewBox="0 0 1300 392"
       backgroundColor="#f3f3f3"
       foregroundColor="#ecebeb"
+      data-testid="details-media-skeleton"
     >
       <rect x="0" y="24" rx="4" ry="4" width="62" height="27" />
       <rect x="372" y="28" rx="4" ry="4" width="45" height="18" />

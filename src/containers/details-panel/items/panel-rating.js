@@ -34,7 +34,7 @@ export default function PanelRating({ data, profile, votes }) {
   }
 
   return (
-    <DetailsPanel.Subsection>
+    <DetailsPanel.Subsection data-testid="details-rating-container">
       <DetailsPanel.Rating>
         {range(1, 10).map((item) => (
           <DetailsPanel.Star

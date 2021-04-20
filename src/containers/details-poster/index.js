@@ -53,7 +53,7 @@ export default function DetailsPosterContainer({ data, dataLoading }) {
             <DetailsPoster.Subtitle>Cast:</DetailsPoster.Subtitle>
             {dataLoading && <CastListSkeleton />}
             {!dataLoading &&
-              data.credits.cast.slice(0, 10).map(({ name, id }) => (
+              data?.credits?.cast.slice(0, 10).map(({ name, id }) => (
                 <DetailsPoster.Link key={id} to={`/actor/${id}`}>
                   {name}
                 </DetailsPoster.Link>

@@ -59,7 +59,7 @@ describe("Details poster container", () => {
       queryByText,
     } = renderComponent({
       data: null,
-      loading: true,
+      dataLoading: true,
     });
 
     expect(queryByTestId(/details-wallpaper/i)).toBeNull();
@@ -77,7 +77,7 @@ describe("Details poster container", () => {
   it("renders poster column and wallpaper after loading", () => {
     const { getByTestId, queryByTestId } = renderComponent({
       data: mockedData,
-      loading: false,
+      dataLoading: false,
     });
 
     expect(queryByTestId(/details-poster-skeleton/i)).toBeNull();
@@ -97,7 +97,7 @@ describe("Details poster container", () => {
   it("renders content column after loading", () => {
     const { getByText, queryByTestId } = renderComponent({
       data: mockedData,
-      loading: false,
+      dataLoading: false,
     });
 
     expect(queryByTestId(/details-rows-skeleton/i)).toBeNull();
@@ -124,7 +124,7 @@ describe("Details poster container", () => {
   it("render cast column after loading", () => {
     const { getAllByRole, queryByTestId } = renderComponent({
       data: mockedData,
-      loading: false,
+      dataLoading: false,
     });
 
     expect(queryByTestId(/details-cast-skeleton/i)).toBeNull();

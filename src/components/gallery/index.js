@@ -1,5 +1,4 @@
 import React from "react";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { w200miniature, w300miniature } from "../../constants/constants";
 
 import {
@@ -35,18 +34,7 @@ Gallery.Header = function GalleryHeader({ children, ...rest }) {
 };
 
 Gallery.Wrapper = function GalleryWrapper({ visible, children, ...rest }) {
-  return (
-    <CSSTransition
-      in={visible}
-      mountOnEnter
-      unmountOnExit
-      appear={true}
-      timeout={{ enter: 500, exit: 0, appear: 500 }}
-      classNames="fade"
-    >
-      <Wrapper {...rest}>{children}</Wrapper>
-    </CSSTransition>
-  );
+  return <Wrapper {...rest}>{children}</Wrapper>;
 };
 
 Gallery.Folder = function GalleryFolder({ slug, ...rest }) {
@@ -78,11 +66,7 @@ Gallery.Widget = function GalleryWidget({ children, ...rest }) {
 };
 
 Gallery.Column = function GalleryColumn({ children, ...rest }) {
-  return (
-    <TransitionGroup component={Column} {...rest}>
-      {children}
-    </TransitionGroup>
-  );
+  return <Column {...rest}>{children}</Column>;
 };
 
 Gallery.Menu = function GalleryMenu({ children, ...rest }) {
@@ -94,11 +78,7 @@ Gallery.Subtitle = function GallerySubtitle({ children, ...rest }) {
 };
 
 Gallery.List = function GalleryList({ children, ...rest }) {
-  return (
-    <TransitionGroup component={List} {...rest}>
-      {children}
-    </TransitionGroup>
-  );
+  return <List {...rest}>{children}</List>;
 };
 
 Gallery.Value = function GalleryValue({ children, ...rest }) {

@@ -14,7 +14,7 @@ export const Header = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  ${({ theme }) => theme.animations.fade(500, 0, 500)};
+  ${({ theme }) => theme.animations.fade()};
   display: inline-flex;
   align-items: center;
   max-width: 1300px;
@@ -101,6 +101,7 @@ export const Subtitle = styled.div`
 `;
 
 export const List = styled.div`
+  ${({ theme }) => theme.animations.fade()};
   width: 100%;
 `;
 
@@ -115,7 +116,6 @@ export const Amount = styled.div`
 
 export const Item = styled.div`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
-  ${({ theme }) => theme.animations.fade(500, 0, 500)};
   justify-content: space-between;
   align-items: center;
   transition: 300ms;
@@ -146,7 +146,7 @@ export const Value = styled.div`
 `;
 
 export const Backdrop = styled.img`
-  ${({ theme }) => theme.animations.fade(500, 0, 500)};
+  ${({ theme }) => theme.animations.fade()};
   border-radius: 0.3rem;
   position: relative;
   margin: 0.5rem;
@@ -170,7 +170,7 @@ export const Backdrop = styled.img`
 `;
 
 export const Poster = styled.img`
-  ${({ theme }) => theme.animations.fade(500, 0, 500)};
+  ${({ theme }) => theme.animations.fade()};
   border-radius: 0.3rem;
   margin: 0.5rem;
   height: 300px;
@@ -184,7 +184,7 @@ export const Poster = styled.img`
 `;
 
 export const Video = styled.div`
-  ${({ theme }) => theme.animations.fade(500, 0, 500)};
+  ${({ theme }) => theme.animations.fade()};
   border-radius: 0.3rem;
   position: relative;
   cursor: pointer;

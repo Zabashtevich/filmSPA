@@ -12,6 +12,7 @@ export { default as transformArrayToObject } from "./shareable/transform-array-t
 
 export { default as createUserlist } from "./hooks/create-userlist";
 export { default as createEstimateItem } from "./hooks/create-estimate-item";
+export { default as getFetchUrl } from "./hooks/get-fetch-url";
 
 export { default as getMoneyFormat } from "./details/get-money-format";
 export { default as getCategories } from "./details/get-categories";

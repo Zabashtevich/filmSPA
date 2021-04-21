@@ -1,27 +1,17 @@
 import { useState, useEffect } from "react";
-import { querryParams } from "../../constants/constants";
+import { getFetchUrl } from "../../utils";
 
-export default function useFetch({
-  type,
-  target,
-  period = "",
-  querries = false,
-  page = null,
-}) {
+export default function useFetch({ target, type, period, page, querries }) {
   const [{ loading, data }, setData] = useState({
     loading: true,
     list: null,
   });
 
-  const url = `https://api.themoviedb.org/3/${type}/${target}/${period}?${
-    querries ? querryParams[type] : ""
-  }&api_key=${process.env.REACT_APP_API_KEY}${page ? `&page=${page}` : ""}`;
-
   useEffect(() => {
     let mounted = true;
-    if (mounted && url) {
+    if (mounted) {
       setData((prev) => ({ ...prev, loading: true }));
-      fetch(url)
+      fetch(getFetchUrl(target, type, period, page, querries))
         .then((response) => response.json())
         .then((data) => {
           if (data.success === false) {
@@ -33,7 +23,7 @@ export default function useFetch({
     return () => {
       mounted = false;
     };
-  }, [type, target, period, querries]);
+  }, [target, type, period, page, querries]);
 
   return [data, loading];
 }

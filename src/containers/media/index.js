@@ -7,7 +7,9 @@ export default function MediaContainer({ data }) {
   const [scrollvalue, setScrollvalue] = useState(0);
   const { pathname } = useLocation();
 
-  const visible = !!data.images.posters;
+  const visible = !!data?.images?.posters;
+
+  console.log(data);
 
   return (
     visible && (

@@ -147,4 +147,117 @@ describe("Gallery container", () => {
     });
     expect(menuItems[2]).toHaveStyle("background-color: rgba(0,0,0,0.05)");
   });
+
+  it("calls setPagin func after getting data from server", () => {
+    usePaginContext.mockReturnValue([{ active: 1 }, setPagin]);
+    usePopupContext.mockReturnValue([, setPopup]);
+
+    const {} = renderComponent({
+      data: mockedData,
+      loading: false,
+      slug: "dummyslug",
+      direction: "dummydirection",
+    });
+
+    expect(setPagin).toHaveBeenCalled();
+  });
+
+  it("calls setPopup on item click", async () => {
+    usePaginContext.mockReturnValue([{ active: 1 }, setPagin]);
+    usePopupContext.mockReturnValue([, setPopup]);
+
+    const { getAllByTestId, getByText } = renderComponent({
+      data: mockedData,
+      loading: false,
+      slug: "dummyslug",
+      direction: "dummydirection",
+    });
+
+    expect(setPopup).not.toHaveBeenCalled();
+
+    const posters = getAllByTestId(/gallery-poster/i);
+    await act(async () => {
+      userEvent.click(posters[0]);
+    });
+
+    expect(setPopup).toHaveBeenCalled();
+    expect(setPopup).toHaveBeenCalledTimes(1);
+    expect(setPopup).toHaveBeenLastCalledWith({
+      visible: true,
+      type: "image",
+      item: { file_path: "/dummyposter1" },
+    });
+
+    await act(async () => {
+      userEvent.click(posters[1]);
+    });
+
+    expect(setPopup).toHaveBeenCalled();
+    expect(setPopup).toHaveBeenCalledTimes(2);
+    expect(setPopup).toHaveBeenLastCalledWith({
+      visible: true,
+      type: "image",
+      item: { file_path: "/dummyposter2" },
+    });
+
+    await act(async () => {
+      userEvent.click(getByText(/videos/i));
+    });
+
+    const videos = getAllByTestId(/gallery-video/i);
+
+    await act(async () => {
+      userEvent.click(videos[0]);
+    });
+
+    expect(setPopup).toHaveBeenCalled();
+    expect(setPopup).toHaveBeenCalledTimes(3);
+    expect(setPopup).toHaveBeenLastCalledWith({
+      visible: true,
+      type: "video",
+      item: { key: "/dummyvideo1" },
+    });
+
+    await act(async () => {
+      userEvent.click(videos[1]);
+    });
+
+    expect(setPopup).toHaveBeenCalled();
+    expect(setPopup).toHaveBeenCalledTimes(4);
+    expect(setPopup).toHaveBeenLastCalledWith({
+      visible: true,
+      type: "video",
+      item: { key: "/dummyvideo2" },
+    });
+
+    await act(async () => {
+      userEvent.click(getByText(/backdrops/i));
+    });
+
+    const backdrops = getAllByTestId(/gallery-backdrop/i);
+
+    await act(async () => {
+      userEvent.click(backdrops[0]);
+    });
+
+    expect(setPopup).toHaveBeenCalled();
+    expect(setPopup).toHaveBeenCalledTimes(5);
+    expect(setPopup).toHaveBeenLastCalledWith({
+      visible: true,
+      type: "image",
+      item: { file_path: "/dummybackdrop1" },
+    });
+
+    await act(async () => {
+      userEvent.click(backdrops[1]);
+    });
+
+    expect(setPopup).toHaveBeenCalled();
+    expect(setPopup).toHaveBeenCalledTimes(6);
+    expect(setPopup).toHaveBeenLastCalledWith({
+      visible: true,
+      type: "image",
+      item: { file_path: "/dummybackdrop2" },
+    });
+  });
 });

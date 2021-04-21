@@ -23,6 +23,17 @@ export default function DetailsPanelContainer({ data, dataLoading }) {
       <SwitchTransition mode={"out-in"}>
         <CSSTransition key={loading} classNames="fade" timeout={500}>
           <DetailsPanel.Section>
+            <DetailsPanel.Title>Rating</DetailsPanel.Title>
+            {!loading && (
+              <PanelRating data={data} profile={profile} votes={votes} />
+            )}
+          </DetailsPanel.Section>
+        </CSSTransition>
+      </SwitchTransition>
+
+      <SwitchTransition mode={"out-in"}>
+        <CSSTransition key={loading} classNames="fade" timeout={500}>
+          <DetailsPanel.Section>
             {loading && <MediaSkeleton />}
             {!loading && <MediaContainer data={data} />}
           </DetailsPanel.Section>
@@ -35,17 +46,6 @@ export default function DetailsPanelContainer({ data, dataLoading }) {
             {loading && <DetailsCollectionSkeleton />}
             {!loading && !!collection && (
               <PanelCollection collection={collection} />
-            )}
-          </DetailsPanel.Section>
-        </CSSTransition>
-      </SwitchTransition>
-
-      <SwitchTransition mode={"out-in"}>
-        <CSSTransition key={loading} classNames="fade" timeout={500}>
-          <DetailsPanel.Section>
-            <DetailsPanel.Title>Rating</DetailsPanel.Title>
-            {!loading && (
-              <PanelRating data={data} profile={profile} votes={votes} />
             )}
           </DetailsPanel.Section>
         </CSSTransition>

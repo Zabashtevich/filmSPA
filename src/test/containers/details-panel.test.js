@@ -11,11 +11,16 @@ import { useEstimate } from "../../hooks";
 import { DetailsPanelContainer } from "./../../containers";
 import theme from "./../../theme/theme";
 import userEvent from "@testing-library/user-event";
+import { useModalContext } from "../../context";
 
 jest.mock("./../../containers/media", () => () => <div />);
 
 jest.mock("./../../hooks", () => ({
   useEstimate: jest.fn(),
+}));
+
+jest.mock("./../../context", () => ({
+  useModalContext: jest.fn(),
 }));
 
 function renderComponentWithRedux({
@@ -57,6 +62,7 @@ describe("Details panel container", () => {
   };
 
   const setEstimate = jest.fn();
+  const showErrorModal = jest.fn();
 
   it("displays skeletons on loading", () => {
     const loadingStore = {
@@ -78,6 +84,7 @@ describe("Details panel container", () => {
   });
 
   it("renders full content after loading", () => {
+    useModalContext.mockReturnValue([, { showErrorModal }]);
     useEstimate.mockReturnValue([setEstimate]);
     const initialStore = {
       userData: {
@@ -132,7 +139,9 @@ describe("Details panel container", () => {
   it("contains correctly working estimate logic", async () => {
     jest.spyOn(global.Date, "now").mockImplementation(() => new Date(0));
 
+    useModalContext.mockReturnValue([, { showErrorModal }]);
     useEstimate.mockReturnValue([setEstimate]);
+
     const initialStore = {
       userData: {
         dataLoading: false,

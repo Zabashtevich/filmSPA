@@ -5,7 +5,13 @@ import { getYearFromString } from "../../../utils";
 
 export default function PopularItem({ item, direction }) {
   return (
-    <Popular.Item to={`/details/${direction}/${item.id}`}>
+    <Popular.Item
+      to={
+        direction === "person"
+          ? `/actor/${item.id}`
+          : `/details/${direction}/${item.id}`
+      }
+    >
       <Popular.Poster slug={item.poster_path || item.profile_path} />
       <Popular.Description>
         <Popular.Row>

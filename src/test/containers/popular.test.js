@@ -92,7 +92,7 @@ describe("Popular container", () => {
 
     expect(links).toHaveLength(20);
     range(1, 20).map((item) => {
-      expect(links[item - 1]).toHaveAttribute("href", `/details/${item}`);
+      expect(links[item - 1]).toHaveAttribute("href", `/details/actor/${item}`);
     });
   });
 });

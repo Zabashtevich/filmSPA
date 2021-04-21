@@ -17,7 +17,12 @@ export default function GalleryPage() {
     <>
       <HeaderContainer />
       <PopupContainer />
-      <GalleryContainer data={data} loading={loading} />
+      <GalleryContainer
+        data={data}
+        loading={loading}
+        slug={slug}
+        direction={direction}
+      />
       <FooterContainer />
     </>
   );

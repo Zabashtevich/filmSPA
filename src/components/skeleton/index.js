@@ -199,6 +199,7 @@ export function GalleryPosterSkeleton() {
         viewBox="0 0 200 300"
         backgroundColor="#f3f3f3"
         foregroundColor="#ecebeb"
+        data-testid="gallery-poster-skeleton"
       >
         <rect x="0" y="0" rx="4" ry="4" width="200" height="300" />
       </ContentLoader>
@@ -215,6 +216,7 @@ export function GalleryMenuSkeleton() {
       viewBox="0 0 225 50"
       backgroundColor="#f3f3f3"
       foregroundColor="#ecebeb"
+      data-testid="gallery-menu-skeleton"
     >
       <rect x="16" y="16" rx="4" ry="4" width="75" height="18" />
       <rect x="177" y="8" rx="4" ry="4" width="40" height="34" />
@@ -231,6 +233,7 @@ export function GalleryHeaderSkeleton() {
       viewBox="0 0 373 100"
       backgroundColor="#f3f3f3"
       foregroundColor="#ecebeb"
+      data-testid="gallery-header-skeleton"
     >
       <rect x="0" y="0" rx="4" ry="4" width="66" height="100" />
       <rect x="78" y="16" rx="4" ry="4" width="290" height="34" />

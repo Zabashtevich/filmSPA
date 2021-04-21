@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 
 import { Gallery } from "../../components";
@@ -18,10 +17,9 @@ import {
 import { PaginContainer } from "./../";
 import GalleryItems from "./items/gallery-items";
 
-export default function GalleryContainer({ data, loading }) {
+export default function GalleryContainer({ data, loading, slug, direction }) {
   const [{ active }, setPagin] = usePaginContext();
 
-  const { slug, direction } = useParams();
   const [{ categories, content, selected }, setCategories] = useState({
     content: null,
     categories: null,

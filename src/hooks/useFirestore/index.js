@@ -4,19 +4,23 @@ import { firebase } from "../../libs/firebase";
 
 export default function useFirestore() {
   const { profile, profileLoading } = useSelector((state) => state.userProfile);
-  const [data, setData] = useState(null);
+  const [{ loading, data }, setData] = useState({ loading: true, data: null });
 
   useEffect(() => {
-    if (profileLoading || !profile?.displayName) return;
+    if (profileLoading) return;
+    if (!profile) return setData({ loading: false, data: null });
     const unsubscribe = firebase
       .firestore()
       .collection(`${profile.displayName}`)
       .onSnapshot((snapshot) => {
-        setData(snapshot.docs.map((doc) => doc.data()));
+        setData({
+          loading: false,
+          data: snapshot.docs.map((doc) => doc.data()),
+        });
       });
 
     return () => unsubscribe();
   }, [profileLoading, profile]);
 
-  return [data];
+  return [loading, data];
 }

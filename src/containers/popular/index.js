@@ -30,7 +30,13 @@ export default function PopularContainer({ tabs }) {
               range(1, 20).map((item) => <PopularSkeleton key={item} />)}
             {!dataLoading &&
               data.results.map((item) => {
-                return <PopularItem key={item.id} item={item} />;
+                return (
+                  <PopularItem
+                    key={item.id}
+                    item={item}
+                    direction={tabs.type}
+                  />
+                );
               })}
           </Popular.Container>
         </CSSTransition>

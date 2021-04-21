@@ -64,6 +64,7 @@ export const Item = styled(ReactRouterLink)`
 `;
 
 export const Poster = styled.img`
+  ${({ theme }) => theme.animations.skeleton};
   border-radius: 0.2rem;
   height: 375px;
   width: 250px;

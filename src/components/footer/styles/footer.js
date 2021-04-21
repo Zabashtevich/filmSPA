@@ -5,7 +5,7 @@ export const Container = styled.div`
   justify-content: space-between;
   margin: 0 auto;
   height: 300px;
-  background-color: ${({ theme }) => theme.colors.secondary};
+  background-color: ${({ theme }) => theme.colors.main};
 `;
 
 export const Section = styled.ul`

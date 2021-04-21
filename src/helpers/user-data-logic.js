@@ -11,7 +11,7 @@ export default function UserDataLogic({ children }) {
   const dispatch = useDispatch();
 
   const [user, userLoading] = useAuthListener();
-  const [data] = useFirestore();
+  const [loading, data] = useFirestore();
 
   useEffect(() => {
     if (!userLoading) {
@@ -20,11 +20,14 @@ export default function UserDataLogic({ children }) {
   }, [userLoading, dispatch, user]);
 
   useEffect(() => {
-    if (data) {
+    if (!loading && data) {
       dispatch(startLoading());
       dispatch(setData(transformArrayToObject(data)));
     }
-  }, [data]);
+    if (!loading && !data) {
+      dispatch(setData(null));
+    }
+  }, [data, loading]);
 
   return children;
 }

@@ -6,6 +6,7 @@ export default function useFetch({
   target,
   period = "",
   querries = false,
+  page = null,
 }) {
   const [{ loading, data }, setData] = useState({
     loading: true,
@@ -14,7 +15,7 @@ export default function useFetch({
 
   const url = `https://api.themoviedb.org/3/${type}/${target}/${period}?${
     querries ? querryParams[type] : ""
-  }&api_key=${process.env.REACT_APP_API_KEY}`;
+  }&api_key=${process.env.REACT_APP_API_KEY}${page ? `&page=${page}` : ""}`;
 
   useEffect(() => {
     let mounted = true;
@@ -34,8 +35,5 @@ export default function useFetch({
     };
   }, [type, target, period, querries]);
 
-  return [
-    { data, loading },
-    { getDetails, getTrendings },
-  ];
+  return [data, loading];
 }

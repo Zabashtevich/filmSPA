@@ -11,7 +11,7 @@ import { range } from "../../utils";
 export default function PopularContainer({ tabs }) {
   const [scrollvalue, setScrollvalue] = useState(0);
   const [activeTab, setActiveTab] = useState("popular");
-  const [data, dataLoading] = useFetch(tabs.type, activeTab);
+  const [data, dataLoading] = useFetch({ type: tabs.type, target: activeTab });
 
   return (
     <Popular data-testid="popular-container">

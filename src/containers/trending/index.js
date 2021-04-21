@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { useTrending } from "./../../hooks";
+import { useFetch } from "./../../hooks";
 import { Trending } from "../../components";
 import { PaginContainer } from "..";
 import { usePaginContext } from "../../context";
@@ -14,7 +14,12 @@ export default function TrendingContainer() {
   const [activePeriod, setActivePeriod] = useState("day");
   const [activeType, setActiveType] = useState("all");
 
-  const [data, dataLoading] = useTrending(activeType, activePeriod, active);
+  const [data, dataLoading] = useFetch({
+    type: "trending",
+    target: activeType,
+    period: activePeriod,
+    page: active,
+  });
 
   useEffect(() => {
     if (!dataLoading) {

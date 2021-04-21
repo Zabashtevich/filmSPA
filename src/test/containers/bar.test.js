@@ -2,15 +2,14 @@ import { act, fireEvent, render } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import "@testing-library/jest-dom";
-import userEvent from "@testing-library/user-event";
 
 import theme from "./../../theme/theme";
 import { BarContainer } from "../../containers";
-import { useSearch, useTrending } from "../../hooks";
+import { useSearch, useFetch } from "../../hooks";
 import { range } from "../../utils";
 
 jest.mock("./../../hooks", () => ({
-  useTrending: jest.fn(),
+  useFetch: jest.fn(),
   useSearch: jest.fn(),
 }));
 
@@ -28,7 +27,7 @@ function renderComponent() {
 
 describe("Bar container", () => {
   it("correctly render on loading", () => {
-    useTrending.mockReturnValue([null, true]);
+    useFetch.mockReturnValue([null, true]);
     useSearch.mockReturnValue([null, true]);
 
     const { getByTestId, getByText } = renderComponent();
@@ -39,7 +38,7 @@ describe("Bar container", () => {
   });
 
   it("displays trending items when loading done and user is not searching", () => {
-    useTrending.mockReturnValue([
+    useFetch.mockReturnValue([
       {
         results: range(1, 10).map((item) => ({
           id: item,
@@ -63,7 +62,7 @@ describe("Bar container", () => {
   });
 
   it("contains correctly working search input", async () => {
-    useTrending.mockReturnValue([null, true]);
+    useFetch.mockReturnValue([null, true]);
     useSearch.mockReturnValue([null, true]);
 
     const { getByRole } = renderComponent();
@@ -81,7 +80,7 @@ describe("Bar container", () => {
   });
 
   it("renders searched items after useSearch loading done", async () => {
-    useTrending.mockReturnValue([null, true]);
+    useFetch.mockReturnValue([null, true]);
     useSearch.mockReturnValue([
       {
         results: range(1, 10).map((item) => ({

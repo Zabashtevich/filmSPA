@@ -14,7 +14,11 @@ import { useFetch } from "../hooks";
 export default function DetailsPage() {
   const { direction, slug } = useParams();
 
-  const [data, loading] = useFetch(direction, slug, true);
+  const [data, loading] = useFetch({
+    type: direction,
+    target: slug,
+    querries: true,
+  });
 
   return (
     <>

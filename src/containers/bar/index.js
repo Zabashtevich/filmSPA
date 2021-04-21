@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { useSearch, useTrending } from "./../../hooks";
+import { useSearch, useFetch } from "./../../hooks";
 import { Bar } from "../../components";
 import BarItem from "./items/bar-item";
 
@@ -11,7 +11,11 @@ export default function BarContainer({ visible }) {
     type: null,
   });
   const [inputValue, setInputValue] = useState("");
-  const [trendingData, trendingLoading] = useTrending("movie", "day");
+  const [trendingData, trendingLoading] = useFetch({
+    type: "trending",
+    target: "movie",
+    period: "week",
+  });
   const [searchData, searchDataLoading] = useSearch(inputValue);
 
   function onChange(e) {

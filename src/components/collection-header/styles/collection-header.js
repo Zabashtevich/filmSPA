@@ -1,12 +1,12 @@
 import styled from "styled-components/macro";
 
-export const Container = styled.div``;
+export const Inner = styled.div``;
 
 export const Wallpaper = styled.div``;
 
 export const Gradient = styled.div``;
 
-export const Section = styled.div``;
+export const Container = styled.div``;
 
 export const Poster = styled.div``;
 
@@ -14,7 +14,7 @@ export const Info = styled.div``;
 
 export const Title = styled.div``;
 
-export const Genres = styled.div``;
+export const Subrow = styled.div``;
 
 export const Subtitle = styled.div``;
 

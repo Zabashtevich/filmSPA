@@ -1,23 +1,23 @@
 import React from "react";
 
 import {
-  Container,
+  Inner,
   Wallpaper,
   Gradient,
-  Section,
+  Container,
   Poster,
   Info,
   Title,
-  Genres,
+  Subrow,
   Subtitle,
   Overview,
   Row,
   Fieldname,
   Fieldvalue,
-} from "./styles/ColectionHeader";
+} from "./styles/collection-header";
 
 export default function ColectionHeader({ children, ...rest }) {
-  return <Container {...rest}>{children}</Container>;
+  return <Inner {...rest}>{children}</Inner>;
 }
 
 ColectionHeader.Wallpaper = function ColectionHeaderWallpaper({ ...rest }) {
@@ -28,11 +28,11 @@ ColectionHeader.Gradient = function ColectionHeaderGradient({ ...rest }) {
   return <Gradient {...rest} />;
 };
 
-ColectionHeader.Section = function ColectionHeaderSection({
+ColectionHeader.Container = function ColectionHeaderContainer({
   children,
   ...rest
 }) {
-  return <Section {...rest}>{children}</Section>;
+  return <Container {...rest}>{children}</Container>;
 };
 
 ColectionHeader.Poster = function ColectionHeaderPoster({ ...rest }) {
@@ -47,8 +47,8 @@ ColectionHeader.Title = function ColectionHeaderTitle({ children, ...rest }) {
   return <Title {...rest}>{children}</Title>;
 };
 
-ColectionHeader.Genres = function ColectionHeaderGenres({ children, ...rest }) {
-  return <Genres {...rest}>{children}</Genres>;
+ColectionHeader.Subrow = function ColectionHeaderSubrow({ children, ...rest }) {
+  return <Subrow {...rest}>{children}</Subrow>;
 };
 
 ColectionHeader.Subtitle = function ColectionHeaderSubtitle({

@@ -7,6 +7,7 @@ export const Container = styled.div`
   background: linear-gradient(180deg, #000 724px, #232323 99%);
   padding-bottom: 5rem;
   position: relative;
+  min-height: 860px;
   max-width: 1300px;
   margin: 0 auto;
   display: flex;

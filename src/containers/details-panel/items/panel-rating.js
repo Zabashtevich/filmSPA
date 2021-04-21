@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router";
 
 import { DetailsPanel } from "../../../components";
-import { useProcessContext } from "../../../context";
+import { useModalContext, useProcessContext } from "../../../context";
 import { useEstimate } from "../../../hooks";
 import {
   checkMovieInList,
@@ -13,6 +13,7 @@ import {
 } from "../../../utils";
 
 export default function PanelRating({ data, profile, votes }) {
+  const [, { showErrorModal }] = useModalContext();
   const [doEstimate] = useEstimate(profile?.displayName, "votes");
   const [hoverIndex, setHoverIndex] = useState(0);
   const { direction, slug } = useParams();
@@ -21,6 +22,9 @@ export default function PanelRating({ data, profile, votes }) {
   const metaExist = !!data.vote_count;
 
   function handleEstimate(value) {
+    if (!profile) {
+      showErrorModal("Please, login!");
+    }
     doEstimate(
       createUserlist(createEstimateItem(data, value, direction), votes),
     );

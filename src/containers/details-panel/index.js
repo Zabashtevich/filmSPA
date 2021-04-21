@@ -18,8 +18,6 @@ export default function DetailsPanelContainer({ data, dataLoading }) {
 
   const loading = dataLoading || profileLoading || userDataLoading;
 
-  console.log(loading, dataLoading, profileLoading, userDataLoading, votes);
-
   return (
     <DetailsPanel>
       <SwitchTransition mode={"out-in"}>

@@ -59,12 +59,18 @@ export default function GalleryContainer({ data, loading, slug, direction }) {
               {loading && <GalleryHeaderSkeleton />}
               {!loading && (
                 <>
-                  <Gallery.Folder slug={data?.poster_path ?? null} />
+                  <Gallery.Folder
+                    slug={data?.poster_path ?? null}
+                    data-testid="gallery-header-poster"
+                  />
                   <Gallery.Information>
                     <Gallery.Title>
                       {data?.title || data?.original_title || data?.name}
                     </Gallery.Title>
-                    <Gallery.Back to={`/details/${direction}/${slug}`}>
+                    <Gallery.Back
+                      to={`/details/${direction}/${slug}`}
+                      data-testid="gallery-back"
+                    >
                       <Gallery.Icon />
                       Back to main
                     </Gallery.Back>
@@ -92,6 +98,7 @@ export default function GalleryContainer({ data, loading, slug, direction }) {
                         key={item}
                         selected={item === selected ? 1 : 0}
                         onClick={() => menuToggler(item)}
+                        data-testid="gallery-menu-item"
                       >
                         <Gallery.Value>{item}</Gallery.Value>
                         <Gallery.Amount>

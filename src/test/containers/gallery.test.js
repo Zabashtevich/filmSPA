@@ -1,15 +1,20 @@
-import { render } from "@testing-library/react";
+import { act, render } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import "@testing-library/jest-dom";
 
 import theme from "./../../theme/theme";
 import { GalleryContainer } from "../../containers";
-import { usePaginContext } from "../../context";
+import { usePaginContext, usePopupContext } from "../../context";
+import { range } from "../../utils";
+import userEvent from "@testing-library/user-event";
+
+jest.mock("./../../containers/pagin", () => () => <div />);
 
 jest.mock("./../../context", () => ({
   __esModule: true,
   usePaginContext: jest.fn(),
+  usePopupContext: jest.fn(),
 }));
 
 function renderComponent(props) {
@@ -25,7 +30,26 @@ function renderComponent(props) {
 }
 
 describe("Gallery container", () => {
+  const setPopup = jest.fn();
   const setPagin = jest.fn();
+  const mockedData = {
+    title: "dummy title",
+    poster_path: "/dummyposterpath",
+    images: {
+      backdrops: range(1, 4).map((item) => ({
+        file_path: `/dummybackdrop${item}`,
+      })),
+      posters: range(1, 5).map((item) => ({
+        file_path: `/dummyposter${item}`,
+      })),
+    },
+    videos: {
+      results: range(1, 6).map((item) => ({
+        key: `/dummyvideo${item}`,
+      })),
+    },
+  };
+
   it("displays skeletons on loading", () => {
     usePaginContext.mockReturnValue([{ active: 1 }, setPagin]);
     const { getByTestId, getAllByTestId } = renderComponent({
@@ -36,5 +60,91 @@ describe("Gallery container", () => {
     expect(getByTestId(/gallery-header-skeleton/i)).toBeTruthy();
     expect(getAllByTestId(/gallery-menu-skeleton/i)).toHaveLength(3);
     expect(getAllByTestId(/gallery-poster-skeleton/i)).toHaveLength(20);
+  });
+
+  it("renders full content after loading is done", () => {
+    usePaginContext.mockReturnValue([{ active: 1 }, setPagin]);
+    usePopupContext.mockReturnValue([, setPopup]);
+
+    const { getByText, getAllByTestId, getByTestId } = renderComponent({
+      data: mockedData,
+      loading: false,
+      slug: "dummyslug",
+      direction: "dummydirection",
+    });
+
+    expect(getByText(/back to main/i)).toBeTruthy();
+    expect(getByText(/dummy title/i)).toBeTruthy();
+    expect(getByText(/back to main/i)).toBeTruthy();
+    expect(getByTestId(/gallery-header-poster/i)).toHaveAttribute(
+      "src",
+      "https://image.tmdb.org/t/p/w200/dummyposterpath",
+    );
+    expect(getByTestId(/gallery-back/i)).toHaveAttribute(
+      "href",
+      "/details/dummydirection/dummyslug",
+    );
+
+    expect(getByText(/menu/i)).toBeTruthy();
+    expect(getByText(/videos/i)).toBeTruthy();
+    expect(getByText(/^6$/i)).toBeTruthy();
+    expect(getByText(/backdrops/i)).toBeTruthy();
+    expect(getByText(/^4$/i)).toBeTruthy();
+    expect(getByText(/posters/i)).toBeTruthy();
+    expect(getByText(/^5$/i)).toBeTruthy();
+
+    const posters = getAllByTestId(/gallery-poster/i);
+    expect(posters).toHaveLength(5);
+
+    range(1, 5).map((item) => {
+      expect(posters[item - 1]).toHaveAttribute(
+        "src",
+        `https://image.tmdb.org/t/p/w200/dummyposter${item}`,
+      );
+    });
+  });
+
+  it("contains a menu switcher logic", async () => {
+    usePaginContext.mockReturnValue([{ active: 1 }, setPagin]);
+    usePopupContext.mockReturnValue([, setPopup]);
+
+    const { getByText, getAllByTestId, debug } = renderComponent({
+      data: mockedData,
+      loading: false,
+      slug: "dummyslug",
+      direction: "dummydirection",
+    });
+
+    const menuItems = getAllByTestId(/gallery-menu-item/i);
+
+    expect(getAllByTestId(/gallery-poster/i)).toHaveLength(5);
+    expect(menuItems[0]).toHaveStyle("background-color: rgba(0, 0, 0, 0.05);");
+
+    await act(async () => {
+      userEvent.click(getByText(/videos/i));
+    });
+
+    const videos = getAllByTestId(/gallery-video/i);
+    expect(videos).toHaveLength(6);
+    range(1, 6).map((item) => {
+      expect(videos[item - 1]).toHaveStyle(
+        `background-image: url(https://i.ytimg.com/vi//dummyvideo${item}/hqdefault.jpg)`,
+      );
+    });
+    expect(menuItems[1]).toHaveStyle("background-color: rgba(0,0,0,0.05)");
+
+    await act(async () => {
+      userEvent.click(getByText(/backdrops/i));
+    });
+
+    const backdrops = getAllByTestId(/gallery-backdrop/i);
+    expect(backdrops).toHaveLength(4);
+    range(1, 4).map((item) => {
+      expect(backdrops[item - 1]).toHaveAttribute(
+        "src",
+        `https://image.tmdb.org/t/p/w300/dummybackdrop${item}`,
+      );
+    });
+    expect(menuItems[2]).toHaveStyle("background-color: rgba(0,0,0,0.05)");
   });
 });

@@ -9,18 +9,21 @@ export default function GalleryItems({ item, selected }) {
     <>
       {selected === "Posters" && (
         <Gallery.Poster
+          data-testid="gallery-poster"
           slug={item.file_path}
           onClick={() => setPopupProps({ visible: true, type: "image", item })}
         />
       )}
       {selected === "Backdrops" && (
         <Gallery.Backdrop
+          data-testid="gallery-backdrop"
           slug={item.file_path}
           onClick={() => setPopupProps({ visible: true, type: "image", item })}
         />
       )}
       {selected === "Videos" && (
         <Gallery.Video
+          data-testid="gallery-video"
           slug={item.key}
           onClick={() => setPopupProps({ visible: true, type: "video", item })}
         >

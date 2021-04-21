@@ -1,4 +1,5 @@
 import React from "react";
+import { orinalImageSize, w300miniature } from "../../constants/constants";
 
 import {
   Inner,
@@ -20,8 +21,11 @@ export default function ColectionHeader({ children, ...rest }) {
   return <Inner {...rest}>{children}</Inner>;
 }
 
-ColectionHeader.Wallpaper = function ColectionHeaderWallpaper({ ...rest }) {
-  return <Wallpaper {...rest} />;
+ColectionHeader.Wallpaper = function ColectionHeaderWallpaper({
+  slug,
+  ...rest
+}) {
+  return <Wallpaper {...rest} url={`${orinalImageSize + slug}`} />;
 };
 
 ColectionHeader.Gradient = function ColectionHeaderGradient({ ...rest }) {
@@ -35,8 +39,8 @@ ColectionHeader.Container = function ColectionHeaderContainer({
   return <Container {...rest}>{children}</Container>;
 };
 
-ColectionHeader.Poster = function ColectionHeaderPoster({ ...rest }) {
-  return <Poster {...rest} />;
+ColectionHeader.Poster = function ColectionHeaderPoster({ slug, ...rest }) {
+  return <Poster {...rest} src={`${w300miniature + slug}`} />;
 };
 
 ColectionHeader.Info = function ColectionHeaderInfo({ children, ...rest }) {

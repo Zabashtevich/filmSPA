@@ -1,27 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { CollectionHeader } from "../../components";
+import { getCollectionDetails, getMoneyFormat } from "../../utils";
 
 export default function CollectionHeaderContainer({ data, dataLoading }) {
-  console.log(data);
+  const [{ revenue, loading }, setDetails] = useState({
+    revenue: null,
+    loading: true,
+  });
+
+  useEffect(() => {
+    if (!dataLoading) {
+      getCollectionDetails(data.parts);
+    }
+  }, [dataLoading]);
+
   return (
     <CollectionHeader>
-      <CollectionHeader.Wallpaper />
+      <CollectionHeader.Wallpaper slug={data?.backdrop_path} />
       <CollectionHeader.Gradient />
       <CollectionHeader.Container>
-        <CollectionHeader.Poster />
+        <CollectionHeader.Poster slug={data?.poster_path} />
         <CollectionHeader.Info>
-          <CollectionHeader.Title></CollectionHeader.Title>
-          <CollectionHeader.Subrow></CollectionHeader.Subrow>
-          <CollectionHeader.Subtitle></CollectionHeader.Subtitle>
-          <CollectionHeader.Subrow></CollectionHeader.Subrow>
+          <CollectionHeader.Title>
+            {data?.title || data?.name}
+          </CollectionHeader.Title>
+          <CollectionHeader.Subtitle>Overview</CollectionHeader.Subtitle>
+          <CollectionHeader.Subrow>{data?.overview}</CollectionHeader.Subrow>
           <CollectionHeader.Row>
-            <CollectionHeader.Fieldname></CollectionHeader.Fieldname>
-            <CollectionHeader.Fieldvalue></CollectionHeader.Fieldvalue>
+            <CollectionHeader.Fieldname>
+              Movie amount:
+            </CollectionHeader.Fieldname>
+            <CollectionHeader.Fieldvalue>
+              {data?.parts.length}
+            </CollectionHeader.Fieldvalue>
           </CollectionHeader.Row>
           <CollectionHeader.Row>
-            <CollectionHeader.Fieldname></CollectionHeader.Fieldname>
-            <CollectionHeader.Fieldvalue></CollectionHeader.Fieldvalue>
+            <CollectionHeader.Fieldname>Revenue:</CollectionHeader.Fieldname>
+            <CollectionHeader.Fieldvalue>
+              {!loading && getMoneyFormat(revenue)}
+            </CollectionHeader.Fieldvalue>
           </CollectionHeader.Row>
         </CollectionHeader.Info>
       </CollectionHeader.Container>

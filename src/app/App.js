@@ -11,6 +11,7 @@ import {
   UserlistPage,
   GalleryPage,
   TrendingPage,
+  CollectionPage,
 } from "../pages";
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           exact
         />
         <Route path="/trending/:slug" exact component={TrendingPage} />
+        <Route path="/collection/:slug" exact component={CollectionPage} />
       </Switch>
     </Router>
   );

@@ -2,12 +2,13 @@ import React from "react";
 
 import { CollectionHeader } from "../../components";
 
-export default function CollectionHeaderContainer() {
+export default function CollectionHeaderContainer({ data, dataLoading }) {
+  console.log(data);
   return (
     <CollectionHeader>
       <CollectionHeader.Wallpaper />
       <CollectionHeader.Gradient />
-      <CollectionHeader.Section>
+      <CollectionHeader.Container>
         <CollectionHeader.Poster />
         <CollectionHeader.Info>
           <CollectionHeader.Title></CollectionHeader.Title>
@@ -23,7 +24,7 @@ export default function CollectionHeaderContainer() {
             <CollectionHeader.Fieldvalue></CollectionHeader.Fieldvalue>
           </CollectionHeader.Row>
         </CollectionHeader.Info>
-      </CollectionHeader.Section>
+      </CollectionHeader.Container>
     </CollectionHeader>
   );
 }

@@ -4,7 +4,7 @@ import { getFetchUrl } from "../../utils";
 export default function useFetch({ target, type, period, page, querries }) {
   const [{ loading, data }, setData] = useState({
     loading: true,
-    list: null,
+    data: null,
   });
 
   useEffect(() => {

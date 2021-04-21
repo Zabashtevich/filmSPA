@@ -45,7 +45,7 @@ describe("Popular container", () => {
     );
 
     expect(useFetch).toHaveBeenCalled();
-    expect(useFetch).toHaveBeenCalledWith("actor", "popular");
+    expect(useFetch).toHaveBeenCalledWith({ target: "popular", type: "actor" });
   });
 
   it("render popular items after data loading is done", () => {

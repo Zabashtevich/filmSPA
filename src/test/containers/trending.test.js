@@ -92,19 +92,44 @@ describe("Trending container", () => {
 
     const { getByText } = renderComponent();
 
-    expect(useFetch).toHaveBeenCalledWith("all", "day", 1);
+    expect(useFetch).toHaveBeenCalledWith({
+      page: 1,
+      period: "day",
+      target: "all",
+      type: "trending",
+    });
 
     userEvent.click(getByText("movie"));
-    expect(useFetch).toHaveBeenCalledWith("movie", "day", 1);
+    expect(useFetch).toHaveBeenCalledWith({
+      page: 1,
+      period: "day",
+      target: "movie",
+      type: "trending",
+    });
 
     userEvent.click(getByText("week"));
-    expect(useFetch).toHaveBeenCalledWith("movie", "week", 1);
+    expect(useFetch).toHaveBeenCalledWith({
+      page: 1,
+      period: "week",
+      target: "movie",
+      type: "trending",
+    });
 
     userEvent.click(getByText("tv"));
-    expect(useFetch).toHaveBeenCalledWith("tv", "week", 1);
+    expect(useFetch).toHaveBeenCalledWith({
+      page: 1,
+      period: "week",
+      target: "tv",
+      type: "trending",
+    });
 
     userEvent.click(getByText("person"));
-    expect(useFetch).toHaveBeenCalledWith("person", "week", 1);
+    expect(useFetch).toHaveBeenCalledWith({
+      page: 1,
+      period: "week",
+      target: "person",
+      type: "trending",
+    });
   });
 
   it("calls setPagination after receiveng data from fetch", () => {

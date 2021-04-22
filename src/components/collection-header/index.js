@@ -2,9 +2,8 @@ import React from "react";
 import { orinalImageSize, w300miniature } from "../../constants/constants";
 
 import {
+  Outer,
   Inner,
-  Wallpaper,
-  Gradient,
   Container,
   Poster,
   Info,
@@ -17,19 +16,16 @@ import {
   Fieldvalue,
 } from "./styles/collection-header";
 
-export default function ColectionHeader({ children, ...rest }) {
-  return <Inner {...rest}>{children}</Inner>;
+export default function ColectionHeader({ slug, children, ...rest }) {
+  return (
+    <Outer {...rest} url={`${orinalImageSize + slug}`}>
+      {children}
+    </Outer>
+  );
 }
 
-ColectionHeader.Wallpaper = function ColectionHeaderWallpaper({
-  slug,
-  ...rest
-}) {
-  return <Wallpaper {...rest} url={`${orinalImageSize + slug}`} />;
-};
-
-ColectionHeader.Gradient = function ColectionHeaderGradient({ ...rest }) {
-  return <Gradient {...rest} />;
+ColectionHeader.Inner = function ColectionHeaderInner({ children, ...rest }) {
+  return <Inner {...rest}>{children}</Inner>;
 };
 
 ColectionHeader.Container = function ColectionHeaderContainer({

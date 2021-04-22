@@ -4,49 +4,56 @@ import { CollectionHeader } from "../../components";
 import { getCollectionDetails, getMoneyFormat } from "../../utils";
 
 export default function CollectionHeaderContainer({ data, dataLoading }) {
-  const [{ revenue, loading }, setDetails] = useState({
+  const [{ revenue, cast, crew, loading }, setDetails] = useState({
     revenue: null,
+    cast: null,
+    crew: null,
     loading: true,
   });
 
   useEffect(() => {
     if (!dataLoading) {
-      async function wrapper() {
-        const response = await getCollectionDetails(data.parts);
-        console.log(response);
+      async function asyncWrapper() {
+        const details = await getCollectionDetails(data.parts);
+        setDetails({
+          ...details,
+          loading: false,
+        });
       }
-      wrapper();
+      asyncWrapper();
     }
   }, [dataLoading, data]);
 
+  console.log(data);
+
   return (
-    <CollectionHeader>
-      <CollectionHeader.Wallpaper slug={data?.backdrop_path} />
-      <CollectionHeader.Gradient />
-      <CollectionHeader.Container>
-        <CollectionHeader.Poster slug={data?.poster_path} />
-        <CollectionHeader.Info>
-          <CollectionHeader.Title>
-            {data?.title || data?.name}
-          </CollectionHeader.Title>
-          <CollectionHeader.Subtitle>Overview</CollectionHeader.Subtitle>
-          <CollectionHeader.Subrow>{data?.overview}</CollectionHeader.Subrow>
-          <CollectionHeader.Row>
-            <CollectionHeader.Fieldname>
-              Movie amount:
-            </CollectionHeader.Fieldname>
-            <CollectionHeader.Fieldvalue>
-              {data?.parts.length}
-            </CollectionHeader.Fieldvalue>
-          </CollectionHeader.Row>
-          <CollectionHeader.Row>
-            <CollectionHeader.Fieldname>Revenue:</CollectionHeader.Fieldname>
-            <CollectionHeader.Fieldvalue>
-              {!loading && getMoneyFormat(revenue)}
-            </CollectionHeader.Fieldvalue>
-          </CollectionHeader.Row>
-        </CollectionHeader.Info>
-      </CollectionHeader.Container>
+    <CollectionHeader slug={data?.backdrop_path}>
+      <CollectionHeader.Inner>
+        <CollectionHeader.Container>
+          <CollectionHeader.Poster slug={data?.poster_path} />
+          <CollectionHeader.Info>
+            <CollectionHeader.Title>
+              {data?.title || data?.name}
+            </CollectionHeader.Title>
+            <CollectionHeader.Subtitle>Overview</CollectionHeader.Subtitle>
+            <CollectionHeader.Subrow>{data?.overview}</CollectionHeader.Subrow>
+            <CollectionHeader.Row>
+              <CollectionHeader.Fieldname>
+                Movies amount:
+              </CollectionHeader.Fieldname>
+              <CollectionHeader.Fieldvalue>
+                {data?.parts.length}
+              </CollectionHeader.Fieldvalue>
+            </CollectionHeader.Row>
+            <CollectionHeader.Row>
+              <CollectionHeader.Fieldname>Revenue:</CollectionHeader.Fieldname>
+              <CollectionHeader.Fieldvalue>
+                {!loading && getMoneyFormat(revenue)}
+              </CollectionHeader.Fieldvalue>
+            </CollectionHeader.Row>
+          </CollectionHeader.Info>
+        </CollectionHeader.Container>
+      </CollectionHeader.Inner>
     </CollectionHeader>
   );
 }

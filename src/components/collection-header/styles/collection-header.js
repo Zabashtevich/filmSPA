@@ -33,18 +33,40 @@ export const Poster = styled.img`
   border-radius: 0.4rem;
 `;
 
-export const Info = styled.div``;
+export const Info = styled.div`
+  align-self: center;
+  margin-left: 2rem;
+`;
 
-export const Title = styled.div``;
+export const Title = styled.span`
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
+  font-size: ${({ theme }) => theme.font.aux.size.huge};
+  margin-bottom: 2rem;
+  display: block;
+`;
 
-export const Subrow = styled.div``;
+export const Subtitle = styled.span`
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
+  font-size: ${({ theme }) => theme.font.aux.size.big};
+  display: block;
+`;
 
-export const Subtitle = styled.div``;
+export const Overview = styled.span`
+  font-weight: ${({ theme }) => theme.font.aux.weight.light};
+  font-size: ${({ theme }) => theme.font.aux.size.small};
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+  display: block;
+  width: 500px;
+`;
 
-export const Overview = styled.div``;
+export const Row = styled.div`
+  display: flex;
+`;
 
-export const Row = styled.div``;
+export const Fieldname = styled.span`
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
+  margin-right: 0.5rem;
+`;
 
-export const Fieldname = styled.div``;
-
-export const Fieldvalue = styled.div``;
+export const Fieldvalue = styled.span``;

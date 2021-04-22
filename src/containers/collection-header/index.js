@@ -36,7 +36,9 @@ export default function CollectionHeaderContainer({ data, dataLoading }) {
               {data?.title || data?.name}
             </CollectionHeader.Title>
             <CollectionHeader.Subtitle>Overview</CollectionHeader.Subtitle>
-            <CollectionHeader.Subrow>{data?.overview}</CollectionHeader.Subrow>
+            <CollectionHeader.Overview>
+              {data?.overview}
+            </CollectionHeader.Overview>
             <CollectionHeader.Row>
               <CollectionHeader.Fieldname>
                 Movies amount:

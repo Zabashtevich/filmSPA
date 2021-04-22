@@ -8,7 +8,6 @@ import {
   Poster,
   Info,
   Title,
-  Subrow,
   Subtitle,
   Overview,
   Row,
@@ -45,10 +44,6 @@ ColectionHeader.Info = function ColectionHeaderInfo({ children, ...rest }) {
 
 ColectionHeader.Title = function ColectionHeaderTitle({ children, ...rest }) {
   return <Title {...rest}>{children}</Title>;
-};
-
-ColectionHeader.Subrow = function ColectionHeaderSubrow({ children, ...rest }) {
-  return <Subrow {...rest}>{children}</Subrow>;
 };
 
 ColectionHeader.Subtitle = function ColectionHeaderSubtitle({

@@ -22,6 +22,7 @@ export const Inner = styled.div`
 `;
 
 export const Container = styled.div`
+  ${({ theme }) => theme.animations.fade()};
   padding: 2rem 0;
   display: flex;
   width: 1300px;

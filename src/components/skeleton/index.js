@@ -418,3 +418,25 @@ export function CreditsSkeleton() {
     </ContentLoader>
   );
 }
+
+export function CollectionHeaderSkeleton() {
+  return (
+    <ContentLoader
+      speed={2}
+      width={1300}
+      height={450}
+      viewBox="0 0 1300 450"
+      backgroundColor="#f3f3f3"
+      foregroundColor="#ecebeb"
+    >
+      <rect x="0" y="0" rx="4" ry="4" width="300" height="450" />
+      <rect x="332" y="105" rx="4" ry="4" width="350" height="55" />
+      <rect x="332" y="192" rx="4" ry="4" width="250" height="27" />
+      <rect x="332" y="235" rx="3" ry="3" width="230" height="16" />
+      <rect x="332" y="258" rx="3" ry="3" width="170" height="16" />
+      <rect x="332" y="285" rx="3" ry="3" width="270" height="16" />
+      <rect x="332" y="336" rx="3" ry="3" width="220" height="22" />
+      <rect x="332" y="365" rx="3" ry="3" width="220" height="22" />
+    </ContentLoader>
+  );
+}

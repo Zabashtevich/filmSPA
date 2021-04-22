@@ -6,10 +6,11 @@ import { CollectionHeaderSkeleton } from "../../components/skeleton";
 import { getMoneyFormat } from "../../utils";
 
 export default function CollectionHeaderContainer({ data, loading, details }) {
-  const { revenue } = details;
-
   return (
-    <CollectionHeader slug={data?.backdrop_path}>
+    <CollectionHeader
+      slug={data?.backdrop_path}
+      data-testid="collection-header-thumbnail"
+    >
       <CollectionHeader.Inner>
         <SwitchTransition mode={"out-in"}>
           <CSSTransition key={loading} classNames="fade" timeout={500}>
@@ -17,7 +18,10 @@ export default function CollectionHeaderContainer({ data, loading, details }) {
               {loading && <CollectionHeaderSkeleton />}
               {!loading && (
                 <>
-                  <CollectionHeader.Poster slug={data?.poster_path} />
+                  <CollectionHeader.Poster
+                    slug={data?.poster_path}
+                    data-testid="collection-header-poster"
+                  />
                   <CollectionHeader.Info>
                     <CollectionHeader.Title>
                       {data?.title || data?.name}
@@ -41,7 +45,7 @@ export default function CollectionHeaderContainer({ data, loading, details }) {
                         Revenue:
                       </CollectionHeader.Fieldname>
                       <CollectionHeader.Fieldvalue>
-                        {!loading && getMoneyFormat(revenue)}
+                        {!loading && getMoneyFormat(details.revenue)}
                       </CollectionHeader.Fieldvalue>
                     </CollectionHeader.Row>
                   </CollectionHeader.Info>

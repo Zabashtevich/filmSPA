@@ -428,6 +428,7 @@ export function CollectionHeaderSkeleton() {
       viewBox="0 0 1300 450"
       backgroundColor="#f3f3f3"
       foregroundColor="#ecebeb"
+      data-testid="collection-header-skeleton"
     >
       <rect x="0" y="0" rx="4" ry="4" width="300" height="450" />
       <rect x="332" y="105" rx="4" ry="4" width="350" height="55" />

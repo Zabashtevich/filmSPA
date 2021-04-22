@@ -10,6 +10,7 @@ export { default as checkReleaseStatus } from "./shareable/check-release-status"
 export { default as checkObject } from "./shareable/check-object";
 export { default as transformArrayToObject } from "./shareable/transform-array-to-object";
 export { default as getMoneyFormat } from "./shareable/get-money-format";
+export { default as getUniqueArray } from "./shareable/get-unique-array";
 
 export { default as createUserlist } from "./hooks/create-userlist";
 export { default as createEstimateItem } from "./hooks/create-estimate-item";

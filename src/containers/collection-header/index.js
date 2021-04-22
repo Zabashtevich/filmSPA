@@ -11,9 +11,13 @@ export default function CollectionHeaderContainer({ data, dataLoading }) {
 
   useEffect(() => {
     if (!dataLoading) {
-      getCollectionDetails(data.parts);
+      async function wrapper() {
+        const response = await getCollectionDetails(data.parts);
+        console.log(response);
+      }
+      wrapper();
     }
-  }, [dataLoading]);
+  }, [dataLoading, data]);
 
   return (
     <CollectionHeader>

@@ -6,7 +6,8 @@ export const Inner = styled.div`
 `;
 
 export const Container = styled.div`
-  margin-top: 3rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 2rem 0;
 `;
 
 export const Title = styled.span`

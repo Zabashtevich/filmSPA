@@ -7,12 +7,8 @@ export default function CollectionPartsContainer({ loading, data }) {
   return (
     <CollectionParts>
       <CollectionParts.Container>
+        <CollectionParts.Title>Collection movies</CollectionParts.Title>
         <CollectionParts.List>
-          {!loading && (
-            <CollectionParts.Title>
-              {data.parts.length} movies
-            </CollectionParts.Title>
-          )}
           {!loading &&
             data.parts.map((item) => {
               return (
@@ -25,10 +21,10 @@ export default function CollectionPartsContainer({ loading, data }) {
                     <CollectionParts.Date>
                       {getYearFromString(item.release_date)}
                     </CollectionParts.Date>
+                    <CollectionParts.Overview>
+                      {item.overview}
+                    </CollectionParts.Overview>
                   </CollectionParts.Wrapper>
-                  <CollectionParts.Overview>
-                    {item.overview}
-                  </CollectionParts.Overview>
                 </CollectionParts.Card>
               );
             })}

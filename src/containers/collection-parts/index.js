@@ -26,7 +26,10 @@ export default function CollectionPartsContainer({ loading, data }) {
                 data.parts.map((item) => {
                   return (
                     <CollectionParts.Card key={item.id}>
-                      <CollectionParts.Poster slug={item.poster_path} />
+                      <CollectionParts.Poster
+                        slug={item.poster_path}
+                        data-testid="collection-parts-poster"
+                      />
                       <CollectionParts.Wrapper>
                         <CollectionParts.Subtitle to={`/details/${item.id}`}>
                           {item.title}

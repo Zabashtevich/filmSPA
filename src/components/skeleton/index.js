@@ -471,6 +471,7 @@ export function CollectionPartsSkeleton() {
       backgroundColor="#f3f3f3"
       foregroundColor="#ecebeb"
       style={{ margin: "1rem 0" }}
+      data-testid="collection-parts-skeleton"
     >
       <rect x="0" y="1" rx="4" ry="4" width="100" height="150" />
       <rect x="120" y="20" rx="4" ry="4" width="145" height="20" />

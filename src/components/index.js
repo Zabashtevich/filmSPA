@@ -23,3 +23,4 @@ export { default as DetailsPoster } from "./details-poster";
 export { default as DetailsPanel } from "./details-panel";
 export { default as CollectionHeader } from "./collection-header";
 export { default as CollectionCast } from "./collection-cast";
+export { default as CollectionParts } from "./collection-parts";

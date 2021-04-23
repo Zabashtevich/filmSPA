@@ -7,6 +7,8 @@ import {
   HeaderContainer,
   CollectionHeaderContainer,
   CollectionCastContainer,
+  CollectionPartsContainer,
+  FooterContainer,
 } from "./../containers";
 
 export default function CollectionPage() {
@@ -41,6 +43,8 @@ export default function CollectionPage() {
         details={details}
       />
       <CollectionCastContainer loading={details.loading} details={details} />
+      <CollectionPartsContainer loading={dataLoading} data={data} />
+      <FooterContainer />
     </>
   );
 }

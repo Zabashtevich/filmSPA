@@ -16,8 +16,6 @@ export default async function getCollectionDetails(movies) {
     },
   );
 
-  console.log(reducedDetails);
-
   return {
     ...reducedDetails,
     cast: getUniqueArray(reducedDetails.cast),

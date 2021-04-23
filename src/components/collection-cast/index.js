@@ -46,7 +46,7 @@ CollectionCast.Poster = function CollectionCastPoster({
       src={
         slug
           ? `${w200miniature + slug}`
-          : "https://dummyimage.com/60x60/fff/fff"
+          : "https://dummyimage.com/60x60/aaa/aaa"
       }
       {...rest}
     >

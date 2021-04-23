@@ -17,7 +17,7 @@ import {
 
 export default function ColectionHeader({ slug, children, ...rest }) {
   return (
-    <Outer {...rest} url={`${orinalImageSize + slug}`}>
+    <Outer {...rest} url={slug ? `${orinalImageSize + slug}` : ""}>
       {children}
     </Outer>
   );

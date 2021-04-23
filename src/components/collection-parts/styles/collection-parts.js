@@ -7,7 +7,9 @@ export const Inner = styled.div`
   margin-top: 3rem;
 `;
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  ${({ theme }) => theme.animations.fade()};
+`;
 
 export const Title = styled.span`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
@@ -28,6 +30,7 @@ export const Card = styled.div`
 `;
 
 export const Poster = styled.img`
+  ${({ theme }) => theme.animations.skeleton};
   border-radius: 0.5rem 0 0 0.5rem;
 `;
 

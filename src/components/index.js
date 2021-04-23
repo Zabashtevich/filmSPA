@@ -11,7 +11,6 @@ export { default as Media } from "./media";
 export { default as Gallery } from "./gallery";
 export { default as Popup } from "./popup";
 export { default as Pagin } from "./pagin";
-export { default as Review } from "./review";
 export { default as Filter } from "./filter";
 export { default as Auth } from "./auth";
 export { default as Credits } from "./credits";

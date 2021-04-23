@@ -441,3 +441,21 @@ export function CollectionHeaderSkeleton() {
     </ContentLoader>
   );
 }
+
+export function CollectionCastSkeleton() {
+  return (
+    <ContentLoader
+      speed={2}
+      width={252}
+      height={62}
+      viewBox="0 0 252 62"
+      backgroundColor="#f3f3f3"
+      foregroundColor="#ecebeb"
+      style={{ margin: "0.5rem 0.2rem" }}
+    >
+      <rect x="1" y="1" rx="4" ry="4" width="60" height="60" />
+      <rect x="75" y="14" rx="4" ry="4" width="150" height="16" />
+      <rect x="75" y="35" rx="4" ry="4" width="150" height="12" />
+    </ContentLoader>
+  );
+}

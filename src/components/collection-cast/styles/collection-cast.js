@@ -15,6 +15,7 @@ export const Title = styled.span`
 `;
 
 export const List = styled.div`
+  ${({ theme }) => theme.animations.fade()};
   margin-top: 3rem;
   flex-wrap: wrap;
   display: flex;

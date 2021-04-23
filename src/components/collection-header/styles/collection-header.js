@@ -32,6 +32,8 @@ export const Container = styled.div`
 
 export const Poster = styled.img`
   border-radius: 0.4rem;
+  height: 450px;
+  width: 300px;
 `;
 
 export const Info = styled.div`

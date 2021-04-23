@@ -3,7 +3,11 @@ import { useParams } from "react-router";
 import { useFetch } from "../hooks";
 import { getCollectionDetails } from "../utils";
 
-import { HeaderContainer, CollectionHeaderContainer } from "./../containers";
+import {
+  HeaderContainer,
+  CollectionHeaderContainer,
+  CollectionCastContainer,
+} from "./../containers";
 
 export default function CollectionPage() {
   const [details, setDetails] = useState({
@@ -36,6 +40,7 @@ export default function CollectionPage() {
         loading={dataLoading || details.loading}
         details={details}
       />
+      <CollectionCastContainer loading={details.loading} details={details} />
     </>
   );
 }

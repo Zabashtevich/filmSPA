@@ -6,7 +6,7 @@ export default async function getCollectionDetails(movies) {
     (acc, item) => {
       acc.revenue = acc.revenue + (item?.revenue || 0);
       acc.cast.push(...item.credits.cast.slice(1, 15));
-      acc.crew.push(...item.credits.cast.slice(1, 15));
+      acc.crew.push(...item.credits.crew.slice(1, 15));
       return acc;
     },
     {
@@ -15,6 +15,8 @@ export default async function getCollectionDetails(movies) {
       crew: [],
     },
   );
+
+  console.log(reducedDetails);
 
   return {
     ...reducedDetails,

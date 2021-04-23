@@ -21,3 +21,4 @@ export { default as BarContainer } from "./bar";
 export { default as DetailsPosterContainer } from "./details-poster";
 export { default as DetailsPanelContainer } from "./details-panel";
 export { default as CollectionHeaderContainer } from "./collection-header";
+export { default as CollectionCastContainer } from "./collection-cast";

@@ -452,6 +452,7 @@ export function CollectionCastSkeleton() {
       backgroundColor="#f3f3f3"
       foregroundColor="#ecebeb"
       style={{ margin: "0.5rem 0.2rem" }}
+      data-testid="collection-cast-skeleton"
     >
       <rect x="1" y="1" rx="4" ry="4" width="60" height="60" />
       <rect x="75" y="14" rx="4" ry="4" width="150" height="16" />

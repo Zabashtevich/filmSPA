@@ -18,10 +18,16 @@ export default function CollectionCastContainer({ loading, details }) {
                   <CollectionCastSkeleton key={item} />
                 ))}
               {!loading &&
-                details.cast.slice(1, 15).map((item) => {
+                details.cast.slice(0, 15).map((item) => {
                   return (
-                    <CollectionCast.Card key={item.id}>
-                      <CollectionCast.Poster slug={item?.profile_path} />
+                    <CollectionCast.Card
+                      key={item.id}
+                      data-testid="collection-cast-actor"
+                    >
+                      <CollectionCast.Poster
+                        slug={item?.profile_path}
+                        data-testid="actor-poster"
+                      />
                       <CollectionCast.Info>
                         <CollectionCast.Name>{item.name}</CollectionCast.Name>
                         <CollectionCast.Role>
@@ -36,7 +42,7 @@ export default function CollectionCastContainer({ loading, details }) {
         </SwitchTransition>
       </CollectionCast.Container>
       <CollectionCast.Container>
-        <CollectionCast.Title>Actor list:</CollectionCast.Title>
+        <CollectionCast.Title>Crew list:</CollectionCast.Title>
         <SwitchTransition mode={"out-in"}>
           <CSSTransition key={loading} classNames="fade" timeout={500}>
             <CollectionCast.List>
@@ -45,11 +51,16 @@ export default function CollectionCastContainer({ loading, details }) {
                   <CollectionCastSkeleton key={item} />
                 ))}
               {!loading &&
-                details.crew.slice(1, 15).map((item) => {
-                  console.log(item);
+                details.crew.slice(0, 15).map((item) => {
                   return (
-                    <CollectionCast.Card key={item.id}>
-                      <CollectionCast.Poster slug={item?.profile_path} />
+                    <CollectionCast.Card
+                      key={item.id}
+                      data-testid="collection-cast-crew"
+                    >
+                      <CollectionCast.Poster
+                        slug={item?.profile_path}
+                        data-testid="crew-poster"
+                      />
                       <CollectionCast.Info>
                         <CollectionCast.Name>{item.name}</CollectionCast.Name>
                         <CollectionCast.Role>

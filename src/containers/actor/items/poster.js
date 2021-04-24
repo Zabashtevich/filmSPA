@@ -6,7 +6,7 @@ import { getYearFromString } from "../../../utils";
 export default function ActorPosterColumn({ data }) {
   return (
     <Actor.Wrapper>
-      <Actor.Poster slug={data.profile_path} />
+      <Actor.Poster slug={data?.profile_path} data-testid="actor-poster" />
       <Actor.Subtitle>Personal Information</Actor.Subtitle>
       <Actor.Row>
         <Actor.Fieldname>Filmography:</Actor.Fieldname>

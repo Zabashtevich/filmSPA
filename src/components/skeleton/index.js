@@ -283,6 +283,7 @@ export function ActorColumnSkeleton() {
       viewBox="0 0 300 750"
       backgroundColor="#f3f3f3"
       foregroundColor="#ecebeb"
+      data-testid="actor-column-skeleton"
     >
       <rect x="0" y="0" rx="4" ry="4" width="300" height="450" />
       <rect x="-1" y="472" rx="3" ry="3" width="230" height="22" />
@@ -309,6 +310,7 @@ export function ActorContentSkeleton() {
       viewBox="0 0 900 344"
       backgroundColor="#f3f3f3"
       foregroundColor="#ecebeb"
+      data-testid="actor-content-skeleton"
     >
       <rect x="0" y="0" rx="4" ry="4" width="200" height="40" />
       <rect x="0" y="110" rx="4" ry="4" width="130" height="20" />

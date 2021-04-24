@@ -1,6 +1,8 @@
 import styled from "styled-components/macro";
 import { Link as ReactRouterLink } from "react-router-dom";
 
+import { BsCardList } from "react-icons/bs";
+
 export const Outer = styled.div`
   background-color: ${({ theme }) => theme.colors.main};
   padding-left: 2rem;
@@ -39,18 +41,58 @@ export const Title = styled.span`
   }
 `;
 
-export const Subtitle = styled.span``;
+export const Subtitle = styled.span`
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
+  font-size: ${({ theme }) => theme.font.aux.size.large};
+  color: white;
+`;
 
-export const List = styled.div``;
+export const List = styled.div`
+  flex-direction: column;
+  margin-top: 2rem;
+  display: flex;
+`;
 
-export const Item = styled.div``;
+export const Item = styled.div`
+  background-color: white;
+  border-radius: 0.5rem;
+  align-items: center;
+  padding: 0.5rem;
+  display: flex;
+  cursor: grab;
+  width: 100%;
+`;
 
-export const Thumbnail = styled.div``;
+export const Thumbnail = styled(BsCardList)`
+  font-size: ${({ theme }) => theme.font.aux.size.huge};
+`;
 
-export const Name = styled.div``;
+export const Name = styled.span`
+  font-size: ${({ theme }) => theme.font.aux.size.big};
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-left: 1rem;
+  user-select: none;
+  overflow: hidden;
+  width: 140px;
+`;
 
 export const Arrow = styled.div``;
 
-export const Footer = styled.div``;
+export const Footer = styled.div`
+  margin-bottom: 5rem;
+  margin-top: auto;
+`;
 
-export const Link = styled(ReactRouterLink)``;
+export const Link = styled(ReactRouterLink)`
+  font-size: ${({ theme }) => theme.font.aux.size.big};
+  text-decoration: none;
+  display: block;
+  margin: 1rem 0;
+  color: white;
+
+  &:hover {
+    text-decoration: underline;
+    transition: 300ms;
+  }
+`;

@@ -483,3 +483,19 @@ export function CollectionPartsSkeleton() {
     </ContentLoader>
   );
 }
+
+export function MenuSkeleton() {
+  return (
+    <ContentLoader
+      speed={2}
+      width={236}
+      height={64}
+      viewBox="0 0 236 64"
+      backgroundColor="#f3f3f3"
+      foregroundColor="#ecebeb"
+      style={{ margin: "0.4rem 0" }}
+    >
+      <rect x="0" y="0" rx="4" ry="4" width="236" height="64" />
+    </ContentLoader>
+  );
+}

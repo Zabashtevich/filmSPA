@@ -1,16 +1,24 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 import { Link as ReactRouterLink } from "react-router-dom";
 
-import { BsCardList } from "react-icons/bs";
+import { BsCardList, BsChevronDoubleRight } from "react-icons/bs";
 
 export const Outer = styled.div`
   background-color: ${({ theme }) => theme.colors.main};
   padding-left: 2rem;
+  transition: 300ms;
+  user-select: none;
   position: fixed;
   width: 350px;
   bottom: 0;
   left: 0;
   top: 0;
+
+  ${({ visible }) =>
+    !visible &&
+    css`
+      transform: translateX(calc(-350px + -2rem));
+    `};
 `;
 
 export const Container = styled.div`
@@ -48,6 +56,7 @@ export const Subtitle = styled.span`
 `;
 
 export const List = styled.div`
+  ${({ theme }) => theme.animations.fade()};
   flex-direction: column;
   margin-top: 2rem;
   display: flex;
@@ -57,6 +66,7 @@ export const Item = styled.div`
   background-color: white;
   border-radius: 0.5rem;
   align-items: center;
+  margin: 0.4rem 0;
   padding: 0.5rem;
   display: flex;
   cursor: grab;
@@ -77,7 +87,17 @@ export const Name = styled.span`
   width: 140px;
 `;
 
-export const Arrow = styled.div``;
+export const Arrow = styled(BsChevronDoubleRight)`
+  font-size: ${({ theme }) => theme.font.aux.size.large};
+  background-color: ${({ theme }) => theme.colors.main};
+  border-radius: 0 0.5rem 0.5rem 0;
+  transform: translateY(-50%);
+  padding: 0.6rem 0.4rem;
+  position: absolute;
+  color: white;
+  left: 100%;
+  top: 50%;
+`;
 
 export const Footer = styled.div`
   margin-bottom: 5rem;

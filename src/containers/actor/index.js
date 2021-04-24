@@ -12,6 +12,7 @@ import ActorContent from "./items/content";
 import { CreditsContainer } from "./../";
 import { sortMoviesByDate } from "../../utils";
 import { useCreditsContext } from "../../context";
+import { CSSTransition, SwitchTransition } from "react-transition-group";
 
 export default function ActorContainer() {
   const { slug } = useParams();
@@ -21,6 +22,7 @@ export default function ActorContainer() {
     target: slug,
     querries: true,
   });
+
   const [, setCredits] = useCreditsContext();
 
   useEffect(() => {
@@ -34,15 +36,23 @@ export default function ActorContainer() {
 
   return (
     <Actor>
-      <Actor.Column>
-        {dataLoading && <ActorColumnSkeleton />}
-        {!dataLoading && <ActorPosterColumn data={data} />}
-      </Actor.Column>
-      <Actor.Content>
-        {dataLoading && <ActorContentSkeleton />}
-        {!dataLoading && <ActorContent data={data} />}
-        <CreditsContainer />
-      </Actor.Content>
+      <SwitchTransition mode={"out-in"}>
+        <CSSTransition key={dataLoading} classNames="fade" timeout={500}>
+          <Actor.Column>
+            {dataLoading && <ActorColumnSkeleton />}
+            {!dataLoading && <ActorPosterColumn data={data} />}
+          </Actor.Column>
+        </CSSTransition>
+      </SwitchTransition>
+      <SwitchTransition mode={"out-in"}>
+        <CSSTransition key={dataLoading} classNames="fade" timeout={500}>
+          <Actor.Content>
+            {dataLoading && <ActorContentSkeleton />}
+            {!dataLoading && <ActorContent data={data} />}
+            <CreditsContainer />
+          </Actor.Content>
+        </CSSTransition>
+      </SwitchTransition>
     </Actor>
   );
 }

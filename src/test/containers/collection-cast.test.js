@@ -1,5 +1,6 @@
 import "@testing-library/jest-dom";
 import { render } from "@testing-library/react";
+import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { range } from "../../utils";
 
@@ -9,9 +10,11 @@ import theme from "./../../theme/theme";
 function renderComponent(props) {
   return {
     ...render(
-      <ThemeProvider theme={theme}>
-        <CollectionCastContainer {...props} />
-      </ThemeProvider>,
+      <BrowserRouter>
+        <ThemeProvider theme={theme}>
+          <CollectionCastContainer {...props} />
+        </ThemeProvider>
+      </BrowserRouter>,
     ),
   };
 }

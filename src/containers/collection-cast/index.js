@@ -29,7 +29,9 @@ export default function CollectionCastContainer({ loading, details }) {
                         data-testid="actor-poster"
                       />
                       <CollectionCast.Info>
-                        <CollectionCast.Name>{item.name}</CollectionCast.Name>
+                        <CollectionCast.Name to={`/actor/${item.id}`}>
+                          {item.name}
+                        </CollectionCast.Name>
                         <CollectionCast.Role>
                           {item.character}
                         </CollectionCast.Role>
@@ -62,7 +64,9 @@ export default function CollectionCastContainer({ loading, details }) {
                         data-testid="crew-poster"
                       />
                       <CollectionCast.Info>
-                        <CollectionCast.Name>{item.name}</CollectionCast.Name>
+                        <CollectionCast.Name to={`/actor/${item.id}`}>
+                          {item.name}
+                        </CollectionCast.Name>
                         <CollectionCast.Role>
                           {item.department}
                         </CollectionCast.Role>

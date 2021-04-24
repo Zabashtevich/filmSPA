@@ -1,4 +1,5 @@
 import styled from "styled-components/macro";
+import { Link as ReactRouterLink } from "react-router-dom";
 
 export const Inner = styled.div`
   max-width: 1300px;
@@ -45,13 +46,20 @@ export const Info = styled.div`
   margin-left: 0.2rem;
 `;
 
-export const Name = styled.span`
+export const Name = styled(ReactRouterLink)`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   text-overflow: ellipsis;
+  text-decoration: none;
   white-space: nowrap;
   overflow: hidden;
   display: block;
   width: 170px;
+  color: black;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.aux};
+    transition: 300ms;
+  }
 `;
 
 export const Role = styled.span`

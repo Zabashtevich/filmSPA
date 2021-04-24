@@ -9,6 +9,7 @@ export const Container = styled.div`
 `;
 
 export const Column = styled.div`
+  ${({ theme }) => theme.animations.fade()};
   flex-direction: column;
   max-width: 300px;
   display: flex;
@@ -21,6 +22,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Content = styled.div`
+  ${({ theme }) => theme.animations.fade()};
   max-width: 900px;
   width: 100%;
 `;

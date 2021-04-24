@@ -31,7 +31,9 @@ export default function CollectionPartsContainer({ loading, data }) {
                         data-testid="collection-parts-poster"
                       />
                       <CollectionParts.Wrapper>
-                        <CollectionParts.Subtitle to={`/details/${item.id}`}>
+                        <CollectionParts.Subtitle
+                          to={`/details/movie/${item.id}`}
+                        >
                           {item.title}
                         </CollectionParts.Subtitle>
                         <CollectionParts.Date>

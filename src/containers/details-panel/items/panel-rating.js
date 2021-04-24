@@ -23,7 +23,7 @@ export default function PanelRating({ data, profile, votes }) {
 
   function handleEstimate(value) {
     if (!profile) {
-      showErrorModal("Please, login!");
+      return showErrorModal("Please, login!");
     }
     doEstimate(
       createUserlist(createEstimateItem(data, value, direction), votes),

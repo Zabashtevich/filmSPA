@@ -24,7 +24,7 @@ function App() {
         <Route path="/authentication/:slug" component={AuthPage} />
         <Route path="/account" component={AccountPage} exact />
         <Route path="/actor/:slug" exact component={ActorPage} />
-        <Route path="/userlist" component={UserlistPage} exact />
+        <Route path="/account/userlists" component={UserlistPage} exact />
         <Route
           path="/details/:direction/:slug/gallery"
           component={GalleryPage}

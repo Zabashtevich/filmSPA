@@ -23,3 +23,4 @@ export { default as DetailsPanelContainer } from "./details-panel";
 export { default as CollectionHeaderContainer } from "./collection-header";
 export { default as CollectionCastContainer } from "./collection-cast";
 export { default as CollectionPartsContainer } from "./collection-parts";
+export { default as MenuContainer } from "./menu";

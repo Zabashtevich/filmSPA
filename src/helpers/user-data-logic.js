@@ -4,7 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import useFirestore from "./../hooks/useFirestore";
 import useAuthListener from "./../hooks/useAuthListener";
 import { setData, startLoading } from "../reducers/user-data/actions";
-import { setUserProfile } from "../reducers/user-profile/actions";
+import {
+  profileNotExist,
+  setUserProfile,
+} from "../reducers/user-profile/actions";
 import { transformArrayToObject } from "../utils";
 
 export default function UserDataLogic({ children }) {
@@ -15,8 +18,11 @@ export default function UserDataLogic({ children }) {
   const [loading, data] = useFirestore(profile?.displayName);
 
   useEffect(() => {
-    if (!userLoading) {
+    if (!userLoading && user) {
       dispatch(setUserProfile(user));
+    }
+    if (!userLoading && !user) {
+      dispatch(profileNotExist());
     }
   }, [userLoading, dispatch, user]);
 

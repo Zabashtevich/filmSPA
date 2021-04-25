@@ -7,8 +7,16 @@ export default function UserlistPage() {
   const { userlists, userDataLoading } = useSelector((state) => state.userData);
   return (
     <>
-      <MenuContainer userlists={userlists} loading={userDataLoading} />
-      <UserlistContainer />
+      <div
+        style={{
+          display: "flex",
+          width: "100%",
+          height: "100vh",
+        }}
+      >
+        <MenuContainer userlists={userlists} loading={userDataLoading} />
+        <UserlistContainer />
+      </div>
     </>
   );
 }

@@ -1,11 +1,38 @@
 import styled from "styled-components/macro";
 
-export const Container = styled.div``;
+import { BsDownload } from "react-icons/bs";
 
-export const Header = styled.div``;
+export const Container = styled.div`
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+  height: 100%;
+  width: 100%;
+`;
 
-export const Dropzone = styled.div``;
+export const Header = styled.div`
+  margin-top: 5rem;
+`;
 
-export const Placeholder = styled.div``;
+export const Dropzone = styled.div`
+  border: 2px dashed rgba(0, 0, 0, 0.5);
+  background-color: #f3f3f3;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  user-select: none;
+  display: flex;
+  height: 250px;
+  width: 500px;
+`;
 
-export const Dropicon = styled.div``;
+export const Dropicon = styled(BsDownload)`
+  font-size: ${({ theme }) => theme.font.aux.size.huge};
+  color: rgba(0, 0, 0, 0.5);
+`;
+
+export const Placeholder = styled.span`
+  font-size: ${({ theme }) => theme.font.aux.size.big};
+  color: rgba(0, 0, 0, 0.5);
+  margin-top: 1rem;
+`;

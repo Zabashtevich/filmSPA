@@ -4,12 +4,10 @@ import { Link as ReactRouterLink } from "react-router-dom";
 import { BsCardList, BsChevronDoubleRight } from "react-icons/bs";
 
 export const Outer = styled.div`
+  padding-left: 2rem;
   user-select: none;
-  position: fixed;
+  height: 100%;
   width: 350px;
-  bottom: 0;
-  left: 0;
-  top: 0;
 `;
 
 export const Container = styled.div`
@@ -17,11 +15,13 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   padding-left: 2rem;
-  position: relative;
   transition: 300ms;
+  position: fixed;
   display: flex;
-  height: 100%;
-  width: 100%;
+  width: 350px;
+  bottom: 0;
+  left: 0;
+  top: 0;
 
   ${({ visible }) =>
     !visible &&

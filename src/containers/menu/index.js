@@ -8,6 +8,10 @@ import { range } from "./../../utils";
 export default function MenuContainer({ userlists, loading }) {
   const [visible, setVisible] = useState(true);
 
+  function dragStartHandler(event, id) {
+    event.dataTransfer.setData("id", id);
+  }
+
   return (
     <Menu>
       <Menu.Container visible={visible} data-testid="menu-container">
@@ -20,7 +24,11 @@ export default function MenuContainer({ userlists, loading }) {
                 range(1, 3).map((item) => <MenuSkeleton key={item} />)}
               {!loading &&
                 userlists.map((item) => (
-                  <Menu.Item key={item.id}>
+                  <Menu.Item
+                    key={item.id}
+                    draggable={true}
+                    onDragStart={(e) => dragStartHandler(e, item.id)}
+                  >
                     <Menu.Thumbnail />
                     <Menu.Name>{item.name}</Menu.Name>
                   </Menu.Item>

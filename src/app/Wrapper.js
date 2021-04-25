@@ -8,6 +8,7 @@ import FirebaseContextProvider from "../context/firebase-context/context";
 import AuthContextProvider from "../context/auth-context/context";
 import CreditsContextProvider from "../context/credits-context/context";
 import ProcessContextProvider from "../context/process-context/context";
+import DragContextProvider from "../context/drag-context/context";
 
 export default function Wrapper({ children }) {
   return (
@@ -18,7 +19,9 @@ export default function Wrapper({ children }) {
             <ModalContextProvider>
               <PopupContextProvider>
                 <ProcessContextProvider>
-                  <PaginContextProvider>{children}</PaginContextProvider>
+                  <DragContextProvider>
+                    <PaginContextProvider>{children}</PaginContextProvider>
+                  </DragContextProvider>
                 </ProcessContextProvider>
               </PopupContextProvider>
             </ModalContextProvider>

@@ -6,3 +6,4 @@ export { default as useFirebaseContext } from "./firebase-context";
 export { default as useAuthContext } from "./auth-context";
 export { default as useCreditsContext } from "./credits-context";
 export { default as useProcessContext } from "./process-context";
+export { default as useDragContext } from "./drag-context";

@@ -11,13 +11,11 @@ import {
 import { transformArrayToObject } from "../utils";
 
 export default function UserDataLogic({ children }) {
-  const { profile, profileExist } = useSelector((state) => state.userData);
+  const { profile } = useSelector((state) => state.userData);
   const dispatch = useDispatch();
 
   const [user, userLoading] = useAuthListener();
-  const [loading, data] = useFirestore(
-    (profileExist && profile.displayName) || null,
-  );
+  const [loading, data] = useFirestore(profile?.displayName);
 
   useEffect(() => {
     if (!userLoading && user) {
@@ -26,13 +24,10 @@ export default function UserDataLogic({ children }) {
     if (!userLoading && !user) {
       dispatch(profileNotExist());
     }
-  }, [userLoading, dispatch, user]);
-
-  useEffect(() => {
     if (!loading && data) {
       dispatch(setUserData(transformArrayToObject(data)));
     }
-  }, [data, loading]);
+  }, [data, loading, userLoading, user]);
 
   return children;
 }

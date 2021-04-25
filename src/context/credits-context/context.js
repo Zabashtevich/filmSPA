@@ -4,8 +4,9 @@ export const CreditsContext = createContext(null);
 
 export default function CreditsContextProvider({ children }) {
   const [state, setState] = useState({
-    creditsLoading: true,
-    array: null,
+    loading: true,
+    lists: null,
+    items: null,
   });
 
   return (

@@ -12,7 +12,7 @@ import {
   range,
 } from "../../../utils";
 
-export default function CreditsItem({ item, votes, profile, index }) {
+export default function CreditsItem({ item, index }) {
   const [setEstimate] = useEstimate(profile?.displayName, "votes");
   const [{ processing }] = useProcessContext();
   const [popupVisible, setPopupVisible] = useState(false);

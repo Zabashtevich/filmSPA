@@ -6,7 +6,7 @@ import {
 } from "./types";
 
 const initialState = {
-  loading: true,
+  userDataLoading: true,
   userDataExist: false,
   profileExist: false,
   profile: null,
@@ -32,7 +32,7 @@ export default function userData(state = initialState, { type, payload }) {
     case SET_USER_DATA:
       return {
         ...state,
-        loading: false,
+        userDataLoading: false,
         userDataExist: true,
         lists: {
           userlists: payload.userlists,
@@ -41,7 +41,7 @@ export default function userData(state = initialState, { type, payload }) {
         },
       };
     case PROFILE_NOT_EXIST:
-      return { ...state, profileExist: false };
+      return { ...state, profileExist: false, loading: false };
     default:
       return state;
   }

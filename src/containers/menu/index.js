@@ -29,7 +29,7 @@ export default function MenuContainer({ lists, loading }) {
               {loading &&
                 range(1, 3).map((item) => <MenuSkeleton key={item} />)}
               {!loading &&
-                userlists.map((item) => (
+                lists.userlists.map((item) => (
                   <Menu.Item
                     key={item.id}
                     draggable={true}

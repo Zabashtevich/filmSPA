@@ -4,29 +4,30 @@ import { Link as ReactRouterLink } from "react-router-dom";
 import { BsCardList, BsChevronDoubleRight } from "react-icons/bs";
 
 export const Outer = styled.div`
-  background-color: ${({ theme }) => theme.colors.main};
-  padding-left: 2rem;
-  transition: 300ms;
   user-select: none;
   position: fixed;
   width: 350px;
   bottom: 0;
   left: 0;
   top: 0;
+`;
+
+export const Container = styled.div`
+  background-color: ${({ theme }) => theme.colors.main};
+  flex-direction: column;
+  align-items: center;
+  padding-left: 2rem;
+  position: relative;
+  transition: 300ms;
+  display: flex;
+  height: 100%;
+  width: 100%;
 
   ${({ visible }) =>
     !visible &&
     css`
       transform: translateX(calc(-350px + -2rem));
     `};
-`;
-
-export const Container = styled.div`
-  flex-direction: column;
-  align-items: center;
-  display: flex;
-  height: 100%;
-  width: 100%;
 `;
 
 export const Title = styled.span`

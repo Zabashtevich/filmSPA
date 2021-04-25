@@ -24,3 +24,4 @@ export { default as CollectionHeaderContainer } from "./collection-header";
 export { default as CollectionCastContainer } from "./collection-cast";
 export { default as CollectionPartsContainer } from "./collection-parts";
 export { default as MenuContainer } from "./menu";
+export { default as UserlistContainer } from "./userlist";

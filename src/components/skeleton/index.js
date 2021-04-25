@@ -494,6 +494,7 @@ export function MenuSkeleton() {
       backgroundColor="#f3f3f3"
       foregroundColor="#ecebeb"
       style={{ margin: "0.4rem 0" }}
+      data-testid="menu-skeleton"
     >
       <rect x="0" y="0" rx="4" ry="4" width="236" height="64" />
     </ContentLoader>

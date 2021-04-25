@@ -9,7 +9,7 @@ export default function MenuContainer({ userlists, loading }) {
   const [visible, setVisible] = useState(true);
 
   return (
-    <Menu visible={visible}>
+    <Menu visible={visible} data-testid="menu-container">
       <Menu.Container>
         <Menu.Title>MENU</Menu.Title>
         <Menu.Subtitle>Your lists:</Menu.Subtitle>
@@ -29,11 +29,14 @@ export default function MenuContainer({ userlists, loading }) {
           </CSSTransition>
         </SwitchTransition>
         <Menu.Footer>
-          <Menu.Link>go to Main page</Menu.Link>
-          <Menu.Link>go to Account page</Menu.Link>
+          <Menu.Link to="/">go to Main page</Menu.Link>
+          <Menu.Link to="/account">go to Account page</Menu.Link>
         </Menu.Footer>
       </Menu.Container>
-      <Menu.Arrow onClick={() => setVisible((prev) => !prev)} />
+      <Menu.Arrow
+        onClick={() => setVisible((prev) => !prev)}
+        data-testid="menu-arrow"
+      />
     </Menu>
   );
 }

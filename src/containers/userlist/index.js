@@ -1,25 +1,22 @@
 import React, { useState } from "react";
 
 import { Userlist } from "../../components";
+import { useDragContext } from "../../context";
 
 export default function UserlistContainer() {
+  const [{ hovered, id }, setDragProps] = useDragContext();
+
   function dropHandler(e) {
-    console.log(e);
     e.preventDefault();
-    console.log(e.dataTransfer.getData("id"));
   }
 
   function dragOverHandler(e) {
     e.preventDefault();
-    console.log(e);
+    setDragProps((prev) => ({ ...prev, hovered: true }));
   }
 
-  function dragLeaveHandler(e) {
-    console.log("end");
-  }
-
-  function dragEndHandler() {
-    console.log("stop");
+  function dragLeaverHandler() {
+    setDragProps((prev) => ({ ...prev, hovered: false }));
   }
 
   return (
@@ -28,8 +25,8 @@ export default function UserlistContainer() {
         <Userlist.Dropzone
           onDrop={dropHandler}
           onDragOver={dragOverHandler}
-          onDragLeave={dragLeaveHandler}
-          onDragEnd={dragEndHandler}
+          onDragLeave={dragLeaverHandler}
+          hovered={hovered}
         >
           <Userlist.Dropicon />
           <Userlist.Placeholder>

@@ -1,16 +1,13 @@
-import React, { createContext, useState } from "react";
+import React, { useState, createContext } from "react";
 
-export const UserlistContext = createContext(null);
+export const DragContext = createContext(null);
 
-export default function UserlistContextProvider({ children }) {
-  const [state, setState] = useState({
-    value: null,
-    type: "createList",
-  });
+export default function DragContextProvider({ children }) {
+  const [drag, setDrag] = useState({ hovered: null, list: null });
 
   return (
-    <UserlistContext.Provider value={[state, setState]}>
+    <DragContext.Provider value={[drag, setDrag]}>
       {children}
-    </UserlistContext.Provider>
+    </DragContext.Provider>
   );
 }

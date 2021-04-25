@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 
 import { BsDownload } from "react-icons/bs";
 
@@ -21,9 +21,16 @@ export const Dropzone = styled.div`
   flex-direction: column;
   align-items: center;
   user-select: none;
+  transition: 300ms;
   display: flex;
   height: 250px;
   width: 500px;
+
+  ${({ hovered }) =>
+    hovered &&
+    css`
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    `};
 `;
 
 export const Dropicon = styled(BsDownload)`

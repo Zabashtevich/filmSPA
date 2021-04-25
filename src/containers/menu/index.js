@@ -1,15 +1,21 @@
 import React, { useState } from "react";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 
+import { useDragContext } from "./../../context";
 import { Menu } from "../../components";
 import { MenuSkeleton } from "../../components/skeleton";
 import { range } from "./../../utils";
 
 export default function MenuContainer({ userlists, loading }) {
+  const [, setDragProps] = useDragContext();
   const [visible, setVisible] = useState(true);
 
-  function dragStartHandler(event, id) {
-    event.dataTransfer.setData("id", id);
+  function dragStartHandler(list) {
+    setDragProps((prev) => ({ ...prev, list }));
+  }
+
+  function dragEndHandler() {
+    setDragProps((prev) => ({ ...prev, hovered: false }));
   }
 
   return (
@@ -27,7 +33,8 @@ export default function MenuContainer({ userlists, loading }) {
                   <Menu.Item
                     key={item.id}
                     draggable={true}
-                    onDragStart={(e) => dragStartHandler(e, item.id)}
+                    onDragStart={() => dragStartHandler(item)}
+                    onDragEnd={dragEndHandler}
                   >
                     <Menu.Thumbnail />
                     <Menu.Name>{item.name}</Menu.Name>

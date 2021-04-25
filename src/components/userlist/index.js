@@ -17,8 +17,10 @@ import {
   Subrow,
   Subtitle,
   Date,
+  Tools,
+  Inner,
   Edit,
-  Abort,
+  Delete,
 } from "./styles/userlist";
 
 export default function Userlist({ children, ...rest }) {
@@ -85,10 +87,18 @@ Userlist.Date = function UserlistDate({ children, ...rest }) {
   return <Date {...rest}>{children}</Date>;
 };
 
+Userlist.Tools = function UserlistTools({ children, ...rest }) {
+  return <Tools {...rest}>{children}</Tools>;
+};
+
+Userlist.Inner = function UserlistInner({ children, ...rest }) {
+  return <Inner {...rest}>{children}</Inner>;
+};
+
 Userlist.Edit = function UserlistEdit({ children, ...rest }) {
   return <Edit {...rest} />;
 };
 
-Userlist.Abort = function UserlistAbort({ children, ...rest }) {
-  return <Abort {...rest} />;
+Userlist.Delete = function UserlistDelete({ children, ...rest }) {
+  return <Delete {...rest} />;
 };

@@ -8,7 +8,7 @@ import { useCreditsContext } from "../../context";
 import { FilterSkeleton } from "../../components/skeleton";
 
 export default function FilterContainer() {
-  const { userDataLoading, votes } = useSelector((state) => state.userData);
+  const { userDataLoading, lists } = useSelector((state) => state.userData);
 
   const [state, setState] = useState({
     sortBy: "date",

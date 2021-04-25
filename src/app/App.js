@@ -1,7 +1,17 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { ProcessContainer } from "../containers";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import ProtectedRoute from "../helpers/private-routes";
+import useFirestore from "./../hooks/useFirestore";
+import useAuthListener from "./../hooks/useAuthListener";
+import {
+  profileNotExist,
+  setUserProfile,
+  setUserData,
+} from "../reducers/user-data/actions";
+import { transformArrayToObject } from "../utils";
 
 import {
   DetailsPage,
@@ -16,10 +26,27 @@ import {
 } from "../pages";
 
 function App() {
+  const { profile } = useSelector((state) => state.userData);
+  const dispatch = useDispatch();
+
+  const [user, userLoading] = useAuthListener();
+  const [loading, data] = useFirestore(profile?.displayName);
+
+  useEffect(() => {
+    if (!userLoading && user) {
+      dispatch(setUserProfile(user));
+    }
+    if (!userLoading && !user) {
+      dispatch(profileNotExist());
+    }
+    if (!loading && data) {
+      dispatch(setUserData(transformArrayToObject(data)));
+    }
+  }, [data, loading, userLoading, user, dispatch]);
+
   return (
     <Router>
       <Switch>
-        {/* <ProtectedRoute user={user} path="/details/:slug"></ProtectedRoute> */}
         <Route path="/" component={MainPage} exact />
         <Route path="/details/:direction/:slug" component={DetailsPage} exact />
         <Route path="/authentication/:slug" component={AuthPage} />

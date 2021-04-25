@@ -10,7 +10,7 @@ export default function HeaderContainer() {
   const [headerVisible, setHeaderVisible] = useState(true);
   const [searchActive, setSearchActive] = useState(false);
   const [popupVisible, setPopupVisible] = useState(false);
-  const { profileLoading, profile } = useSelector((state) => state.userProfile);
+  const { profile, profileExist } = useSelector((state) => state.userData);
   let prevScrollPosition = 0;
 
   function headerToggler() {
@@ -49,7 +49,7 @@ export default function HeaderContainer() {
           <Header.Link to="/search">Search</Header.Link>
         </Header.Nav>
         <Header.Wrapper onClick={(e) => e.stopPropagation()}>
-          {!profileLoading && checkObject.notEmty(profile) && (
+          {!profileExist && checkObject.notEmty(profile) && (
             <Header.Profile onClick={popupToggler} data-testid="header-profile">
               <Header.Avatar
                 src={profile?.photoURL}

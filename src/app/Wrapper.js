@@ -1,6 +1,5 @@
 import React from "react";
 
-import UserDataLogic from "../helpers/user-data-logic";
 import ModalContextProvider from "../context/modal-context/context";
 import PopupContextProvider from "../context/popup-context/context";
 import PaginContextProvider from "../context/pagin-context/context";
@@ -15,17 +14,15 @@ export default function Wrapper({ children }) {
     <FirebaseContextProvider>
       <AuthContextProvider>
         <CreditsContextProvider>
-          <UserDataLogic>
-            <ModalContextProvider>
-              <PopupContextProvider>
-                <ProcessContextProvider>
-                  <DragContextProvider>
-                    <PaginContextProvider>{children}</PaginContextProvider>
-                  </DragContextProvider>
-                </ProcessContextProvider>
-              </PopupContextProvider>
-            </ModalContextProvider>
-          </UserDataLogic>
+          <ModalContextProvider>
+            <PopupContextProvider>
+              <ProcessContextProvider>
+                <DragContextProvider>
+                  <PaginContextProvider>{children}</PaginContextProvider>
+                </DragContextProvider>
+              </ProcessContextProvider>
+            </PopupContextProvider>
+          </ModalContextProvider>
         </CreditsContextProvider>
       </AuthContextProvider>
     </FirebaseContextProvider>

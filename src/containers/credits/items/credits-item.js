@@ -11,8 +11,12 @@ import {
   getYearFromString,
   range,
 } from "../../../utils";
+import { useSelector } from "react-redux";
 
 export default function CreditsItem({ item, index }) {
+  const { userDataExist, lists, profile } = useSelector(
+    (state) => state.userData,
+  );
   const [setEstimate] = useEstimate(profile?.displayName, "votes");
   const [{ processing }] = useProcessContext();
   const [popupVisible, setPopupVisible] = useState(false);
@@ -20,16 +24,18 @@ export default function CreditsItem({ item, index }) {
   const [rated, setRated] = useState(null);
 
   useEffect(() => {
-    setRated(checkMovieInList(votes, item.id)?.value || null);
-  }, [votes]);
+    if (userDataExist) {
+      setRated(checkMovieInList(lists.votes, item.id)?.value || null);
+    }
+  }, [lists]);
 
   const metaVisible = !!item.vote_average && !!item.vote_count;
   const released = checkReleaseStatus(item.release_date || item.first_air_date);
   const typeSecondary = index % 2 === 0;
 
   function handleEstimate(value) {
-    if (!processing) {
-      setEstimate(createUserlist(createEstimateItem(item, value), votes));
+    if (!processing && userDataExist) {
+      setEstimate(createUserlist(createEstimateItem(item, value), lists.votes));
     }
   }
 

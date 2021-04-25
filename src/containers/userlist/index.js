@@ -1,39 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
+import { CSSTransition, SwitchTransition } from "react-transition-group";
 
 import { Userlist } from "../../components";
 import { useDragContext } from "../../context";
+import UserlistDropzone from "./items/userlist-dropzone";
 
 export default function UserlistContainer() {
-  const [{ hovered, id }, setDragProps] = useDragContext();
-
-  function dropHandler(e) {
-    e.preventDefault();
-  }
-
-  function dragOverHandler(e) {
-    e.preventDefault();
-    setDragProps((prev) => ({ ...prev, hovered: true }));
-  }
-
-  function dragLeaverHandler() {
-    setDragProps((prev) => ({ ...prev, hovered: false }));
-  }
+  const [{ type }] = useDragContext();
 
   return (
     <Userlist>
-      <Userlist.Header>
-        <Userlist.Dropzone
-          onDrop={dropHandler}
-          onDragOver={dragOverHandler}
-          onDragLeave={dragLeaverHandler}
-          hovered={hovered}
-        >
-          <Userlist.Dropicon />
-          <Userlist.Placeholder>
-            Move one of your lists here
-          </Userlist.Placeholder>
-        </Userlist.Dropzone>
-      </Userlist.Header>
+      <SwitchTransition mode={"out-in"}>
+        <CSSTransition key={type} classNames="fade" timeout={500}>
+          <Userlist.Header>
+            {type === "dropzone" && <UserlistDropzone />}
+          </Userlist.Header>
+        </CSSTransition>
+      </SwitchTransition>
     </Userlist>
   );
 }

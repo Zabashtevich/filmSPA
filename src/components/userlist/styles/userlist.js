@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components/macro";
 
-import { BsDownload } from "react-icons/bs";
+import { BsDownload, BsCardList } from "react-icons/bs";
 
 export const Container = styled.div`
   flex-direction: column;
@@ -11,6 +11,7 @@ export const Container = styled.div`
 `;
 
 export const Header = styled.div`
+  ${({ theme }) => theme.animations.fade()};
   margin-top: 5rem;
 `;
 
@@ -43,3 +44,23 @@ export const Placeholder = styled.span`
   color: rgba(0, 0, 0, 0.5);
   margin-top: 1rem;
 `;
+
+export const Description = styled.div``;
+
+export const Thumbnail = styled.div``;
+
+export const Inner = styled.div``;
+
+export const Row = styled.div``;
+
+export const Input = styled.div``;
+
+export const Wrapper = styled.div``;
+
+export const Cancel = styled.div``;
+
+export const Confirm = styled.div``;
+
+export const Edit = styled.div``;
+
+export const Abort = styled.div``;

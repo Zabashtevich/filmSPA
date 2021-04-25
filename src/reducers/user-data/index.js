@@ -1,9 +1,15 @@
+import {
+  SET_USER_PROFILE,
+  LOGOUT,
+  SET_USER_DATA,
+  PROFILE_NOT_EXIST,
+} from "./types";
+
 const initialState = {
-  userProfileLoading: true,
-  userDataLoading: true,
+  loading: true,
   userDataExist: false,
-  profile: null,
   profileExist: false,
+  profile: null,
   lists: { userlists: null, favorites: null, votes: null },
 };
 
@@ -13,7 +19,6 @@ export default function userData(state = initialState, { type, payload }) {
       return {
         ...state,
         profileExist: true,
-        profileLoading: false,
         profile: payload,
       };
     case LOGOUT:
@@ -21,13 +26,13 @@ export default function userData(state = initialState, { type, payload }) {
         ...state,
         profileExist: false,
         userDataExist: false,
-        profile: payload,
+        profile: null,
         lists: { userlists: null, favorites: null, votes: null },
       };
     case SET_USER_DATA:
       return {
         ...state,
-        userDataLoading: false,
+        loading: false,
         userDataExist: true,
         lists: {
           userlists: payload.userlists,
@@ -35,6 +40,8 @@ export default function userData(state = initialState, { type, payload }) {
           votes: payload.votes,
         },
       };
+    case PROFILE_NOT_EXIST:
+      return { ...state, profileExist: false };
     default:
       return state;
   }

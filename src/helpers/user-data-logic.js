@@ -3,19 +3,21 @@ import { useDispatch, useSelector } from "react-redux";
 
 import useFirestore from "./../hooks/useFirestore";
 import useAuthListener from "./../hooks/useAuthListener";
-import { setData, startLoading } from "../reducers/user-data/actions";
 import {
   profileNotExist,
   setUserProfile,
-} from "../reducers/user-profile/actions";
+  setUserData,
+} from "../reducers/user-data/actions";
 import { transformArrayToObject } from "../utils";
 
 export default function UserDataLogic({ children }) {
-  const { profile } = useSelector((state) => state.userProfile);
+  const { profile, profileExist } = useSelector((state) => state.userData);
   const dispatch = useDispatch();
 
   const [user, userLoading] = useAuthListener();
-  const [loading, data] = useFirestore(profile?.displayName);
+  const [loading, data] = useFirestore(
+    (profileExist && profile.displayName) || null,
+  );
 
   useEffect(() => {
     if (!userLoading && user) {
@@ -28,11 +30,7 @@ export default function UserDataLogic({ children }) {
 
   useEffect(() => {
     if (!loading && data) {
-      dispatch(startLoading());
-      dispatch(setData(transformArrayToObject(data)));
-    }
-    if (!loading && !data) {
-      dispatch(setData(null));
+      dispatch(setUserData(transformArrayToObject(data)));
     }
   }, [data, loading]);
 

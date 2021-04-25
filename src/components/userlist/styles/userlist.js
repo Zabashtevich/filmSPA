@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components/macro";
 
-import { BsDownload, BsCardList } from "react-icons/bs";
+import { BsDownload, BsList, BsCheck, BsX } from "react-icons/bs";
 
 export const Container = styled.div`
   flex-direction: column;
@@ -45,21 +45,64 @@ export const Placeholder = styled.span`
   margin-top: 1rem;
 `;
 
-export const Description = styled.div``;
+export const List = styled.div`
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 2rem;
+  align-items: center;
+  height: 200px;
+  display: flex;
+  width: 900px;
+`;
 
-export const Thumbnail = styled.div``;
+export const Thumbnail = styled(BsList)`
+  margin-left: 3rem;
+  font-size: 6rem;
+`;
 
-export const Inner = styled.div``;
+export const Outer = styled.div`
+  align-items: center;
+  margin-left: 2rem;
+  display: flex;
+`;
 
 export const Row = styled.div``;
 
-export const Input = styled.div``;
+export const Input = styled.input`
+  font-family: ${({ theme }) => theme.font.aux.family};
+  font-size: ${({ theme }) => theme.font.aux.size.big};
+  background-color: transparent;
+  padding: 0.2rem 0;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
 
-export const Wrapper = styled.div``;
+  &:disabled {
+    color: rgba(0, 0, 0, 0.3);
+  }
+`;
 
-export const Cancel = styled.div``;
+export const Wrapper = styled.div`
+  font-size: ${({ theme }) => theme.font.aux.size.large};
+  margin-left: 2rem;
+`;
 
-export const Confirm = styled.div``;
+export const Confirm = styled(BsCheck)``;
+
+export const Cancel = styled(BsX)`
+  margin-left: 1rem;
+`;
+
+export const Subrow = styled.div`
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
+  color: rgba(0, 0, 0, 0.5);
+  margin-top: 0.2rem;
+  display: flex;
+`;
+
+export const Subtitle = styled.div``;
+
+export const Date = styled.div`
+  margin-left: 0.5rem;
+`;
 
 export const Edit = styled.div``;
 

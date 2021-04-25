@@ -6,14 +6,17 @@ import {
   Dropzone,
   Placeholder,
   Dropicon,
-  Description,
+  List,
   Thumbnail,
-  Inner,
+  Outer,
   Row,
   Input,
   Wrapper,
-  Cancel,
   Confirm,
+  Cancel,
+  Subrow,
+  Subtitle,
+  Date,
   Edit,
   Abort,
 } from "./styles/userlist";
@@ -38,16 +41,16 @@ Userlist.Dropicon = function UserlistDropicon({ ...rest }) {
   return <Dropicon {...rest} />;
 };
 
-Userlist.Description = function UserlistDescription({ children, ...rest }) {
-  return <Description {...rest}>{children}</Description>;
+Userlist.List = function UserlistList({ children, ...rest }) {
+  return <List {...rest}>{children}</List>;
 };
 
 Userlist.Thumbnail = function UserlistThumbnail({ ...rest }) {
   return <Thumbnail {...rest} />;
 };
 
-Userlist.Inner = function UserlistInner({ children, ...rest }) {
-  return <Inner {...rest}>{children}</Inner>;
+Userlist.Outer = function UserlistOuter({ children, ...rest }) {
+  return <Outer {...rest}>{children}</Outer>;
 };
 
 Userlist.Row = function UserlistRow({ children, ...rest }) {
@@ -68,6 +71,18 @@ Userlist.Confirm = function UserlistConfirm({ children, ...rest }) {
 
 Userlist.Cancel = function UserlistCancel({ children, ...rest }) {
   return <Cancel {...rest} />;
+};
+
+Userlist.Subrow = function UserlistSubrow({ children, ...rest }) {
+  return <Subrow {...rest}>{children}</Subrow>;
+};
+
+Userlist.Subtitle = function UserlistSubtitle({ children, ...rest }) {
+  return <Subtitle {...rest}>{children}</Subtitle>;
+};
+
+Userlist.Date = function UserlistDate({ children, ...rest }) {
+  return <Date {...rest}>{children}</Date>;
 };
 
 Userlist.Edit = function UserlistEdit({ children, ...rest }) {

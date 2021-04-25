@@ -1,11 +1,8 @@
 import React from "react";
 
-import { useDragContext } from "../../../context";
 import { Userlist } from "../../../components";
 
-export default function UserlistDropzone() {
-  const [{ hovered }, setDragProps] = useDragContext();
-
+export default function UserlistDropzone({ setDragProps, hovered }) {
   function dropHandler(e) {
     e.preventDefault();
     setDragProps((prev) => ({ ...prev, type: "userlist" }));

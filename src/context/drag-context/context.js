@@ -1,4 +1,5 @@
 import React, { useState, createContext } from "react";
+import { firebase } from "../../libs/firebase";
 
 export const DragContext = createContext(null);
 

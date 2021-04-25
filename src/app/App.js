@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ProcessContainer } from "../containers";
+import ProtectedRoute from "../helpers/private-routes";
 
 import {
   DetailsPage,
@@ -23,8 +24,9 @@ function App() {
         <Route path="/details/:direction/:slug" component={DetailsPage} exact />
         <Route path="/authentication/:slug" component={AuthPage} />
         <Route path="/account" component={AccountPage} exact />
-        <Route path="/actor/:slug" exact component={ActorPage} />
-        <Route path="/account/userlists" component={UserlistPage} exact />
+        <ProtectedRoute path="/account/userlists" exact>
+          <UserlistPage />
+        </ProtectedRoute>
         <Route
           path="/details/:direction/:slug/gallery"
           component={GalleryPage}

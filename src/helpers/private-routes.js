@@ -1,11 +1,11 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 
-export function ProtectedRoute({ user, loggedInPath, children, ...rest }) {
+export default function ProtectedRoute({ user, children, ...rest }) {
   return (
     <Route
       {...rest}
-      render={({ location }) => {
+      render={() => {
         if (user) {
           return children;
         }
@@ -15,7 +15,6 @@ export function ProtectedRoute({ user, loggedInPath, children, ...rest }) {
             <Redirect
               to={{
                 pathname: "/",
-                state: { from: location },
               }}
             />
           );

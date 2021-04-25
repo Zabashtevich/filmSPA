@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 
 import { getCorrectDate } from "../../../utils";
@@ -9,6 +9,13 @@ export default function UserlistList({ list }) {
     value: list.name,
     inactive: true,
   });
+  const inputRef = useRef();
+
+  useEffect(() => {
+    if (!inactive) {
+      inputRef.current.focus();
+    }
+  }, [inactive]);
 
   return (
     <Userlist.List>
@@ -17,6 +24,7 @@ export default function UserlistList({ list }) {
         <Userlist.Row>
           <Userlist.Input
             disabled={inactive}
+            inputRef={inputRef}
             value={value}
             onChange={(e) =>
               setSettings((prev) => ({ ...prev, value: e.target.value }))

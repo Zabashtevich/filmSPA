@@ -59,8 +59,8 @@ Userlist.Row = function UserlistRow({ children, ...rest }) {
   return <Row {...rest}>{children}</Row>;
 };
 
-Userlist.Input = function UserlistInput({ ...rest }) {
-  return <Input {...rest} />;
+Userlist.Input = function UserlistInput({ inputRef, ...rest }) {
+  return <Input {...rest} ref={inputRef} />;
 };
 
 Userlist.Wrapper = function UserlistWrapper({ children, ...rest }) {

@@ -1,17 +1,14 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { firebase } from "../../libs/firebase";
 
-export default function useFirestore() {
-  const { profile, profileLoading } = useSelector((state) => state.userProfile);
+export default function useFirestore(nickname) {
   const [{ loading, data }, setData] = useState({ loading: true, data: null });
 
   useEffect(() => {
-    if (profileLoading) return;
-    if (!profile) return setData({ loading: false, data: null });
+    if (!nickname) return setData({ loading: false, data: null });
     const unsubscribe = firebase
       .firestore()
-      .collection(`${profile.displayName}`)
+      .collection(`${nickname}`)
       .onSnapshot((snapshot) => {
         setData({
           loading: false,
@@ -20,7 +17,7 @@ export default function useFirestore() {
       });
 
     return () => unsubscribe();
-  }, [profileLoading, profile]);
+  }, [nickname]);
 
   return [loading, data];
 }

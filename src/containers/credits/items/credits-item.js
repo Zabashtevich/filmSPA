@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { useEstimate } from "./../../../hooks";
+import { useList } from "./../../../hooks";
 import { Credits } from "../../../components";
 import { useProcessContext } from "./../../../context";
 import {
@@ -14,10 +14,8 @@ import {
 import { useSelector } from "react-redux";
 
 export default function CreditsItem({ item, index }) {
-  const { userDataExist, lists, profile } = useSelector(
-    (state) => state.userData,
-  );
-  const [setEstimate] = useEstimate(profile?.displayName, "votes");
+  const { lists, profile } = useSelector((state) => state.userData);
+  const [setList] = useList();
   const [{ processing }] = useProcessContext();
   const [popupVisible, setPopupVisible] = useState(false);
   const [hoverIndex, setHoverIndex] = useState(0);
@@ -35,7 +33,6 @@ export default function CreditsItem({ item, index }) {
 
   function handleEstimate(value) {
     if (!processing && userDataExist) {
-      setEstimate(createUserlist(createEstimateItem(item, value), lists.votes));
     }
   }
 

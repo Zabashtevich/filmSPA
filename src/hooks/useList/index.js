@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
-import { useProcessContext, useModalContext } from "./../../context";
+import { useProcessContext, useModalContext } from "../../context";
 import { firebase } from "../../libs/firebase";
 
-export default function useFirestore(nickname) {
-  const [{ nickname, array, listname, errorMesage }, setSettings] = useState({
+export default function useList() {
+  const [{ nickname, array, listname, errorMessage }, setList] = useState({
     nickname,
     array,
     listname,
@@ -28,9 +28,7 @@ export default function useFirestore(nickname) {
         setProcessProps({ processing: false, message: null });
         showErrorModal(errorMessage);
       });
+  }, [nickname, array, listname, errorMessage]);
 
-    return () => unsubscribe();
-  }, [nickname, array, listname, listname]);
-
-  return [setSettings];
+  return [setList];
 }

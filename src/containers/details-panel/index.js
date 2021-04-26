@@ -11,25 +11,22 @@ import PanelRating from "./items/panel-rating";
 import PanelCollection from "./items/panel-collection";
 
 export default function DetailsPanelContainer({ data, dataLoading }) {
-  const { userDataLoading, votes } = useSelector((state) => state.userData);
-  const { profile, profileLoading } = useSelector((state) => state.userProfile);
+  const { userDataLoading, lists, profile, profileExist } = useSelector(
+    (state) => state.userData,
+  );
 
   const collection = data?.belongs_to_collection;
 
-  const loading = dataLoading || profileLoading || userDataLoading;
+  const loading = dataLoading || userDataLoading;
 
   return (
     <DetailsPanel>
-      <SwitchTransition mode={"out-in"}>
-        <CSSTransition key={loading} classNames="fade" timeout={500}>
-          <DetailsPanel.Section>
-            <DetailsPanel.Title>Rating</DetailsPanel.Title>
-            {!loading && (
-              <PanelRating data={data} profile={profile} votes={votes} />
-            )}
-          </DetailsPanel.Section>
-        </CSSTransition>
-      </SwitchTransition>
+      <DetailsPanel.Section>
+        <DetailsPanel.Title>Rating</DetailsPanel.Title>
+        {profileExist && (
+          <PanelRating data={data} profile={profile} votes={lists.votes} />
+        )}
+      </DetailsPanel.Section>
 
       <SwitchTransition mode={"out-in"}>
         <CSSTransition key={loading} classNames="fade" timeout={500}>

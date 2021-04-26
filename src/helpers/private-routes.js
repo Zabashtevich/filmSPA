@@ -1,16 +1,17 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
 
-export default function ProtectedRoute({ user, children, ...rest }) {
+export default function ProtectedRoute({ children, ...rest }) {
+  const { profileExist, userDataLoading } = useSelector(
+    (state) => state.userData,
+  );
+
   return (
     <Route
       {...rest}
       render={() => {
-        if (user) {
-          return children;
-        }
-
-        if (!user) {
+        if (!profileExist && !userDataLoading) {
           return (
             <Redirect
               to={{
@@ -20,7 +21,7 @@ export default function ProtectedRoute({ user, children, ...rest }) {
           );
         }
 
-        return null;
+        return children;
       }}
     />
   );

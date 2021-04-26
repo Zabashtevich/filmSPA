@@ -4,7 +4,9 @@ import { useSelector } from "react-redux";
 import { MenuContainer, UserlistContainer } from "../containers";
 
 export default function UserlistPage() {
-  const { loading, profile, lists } = useSelector((state) => state.userData);
+  const { userDataLoading, profile, lists } = useSelector(
+    (state) => state.userData,
+  );
 
   return (
     <>
@@ -15,7 +17,7 @@ export default function UserlistPage() {
           height: "100vh",
         }}
       >
-        <MenuContainer lists={lists} loading={loading} />
+        <MenuContainer lists={lists} loading={userDataLoading} />
         <UserlistContainer />
       </div>
     </>

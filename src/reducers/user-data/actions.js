@@ -12,6 +12,6 @@ export const setUserProfile = (payload) => ({
 
 export const logout = () => ({ type: LOGOUT });
 
-export const setUserData = () => ({ type: SET_USER_DATA, payload });
+export const setUserData = (payload) => ({ type: SET_USER_DATA, payload });
 
 export const profileNotExist = () => ({ type: PROFILE_NOT_EXIST });

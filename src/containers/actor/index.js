@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router";
+import { CSSTransition, SwitchTransition } from "react-transition-group";
+import { useSelector } from "react-redux";
 
 import { useFetch } from "./../../hooks";
 import { Actor } from "../../components";
@@ -12,9 +14,9 @@ import ActorContent from "./items/content";
 import { CreditsContainer } from "./../";
 import { sortMoviesByDate } from "../../utils";
 import { useCreditsContext } from "../../context";
-import { CSSTransition, SwitchTransition } from "react-transition-group";
 
 export default function ActorContainer() {
+  const { userDataLoading } = useSelector((state) => state.userData);
   const { slug } = useParams();
 
   const [data, dataLoading] = useFetch({
@@ -26,13 +28,13 @@ export default function ActorContainer() {
   const [, setCredits] = useCreditsContext();
 
   useEffect(() => {
-    if (!dataLoading) {
+    if (!dataLoading && !userDataLoading) {
       setCredits({
-        creditsLoading: false,
-        array: sortMoviesByDate(data?.combined_credits?.cast) || [],
+        loading: false,
+        items: sortMoviesByDate(data?.combined_credits?.cast) || [],
       });
     }
-  }, [dataLoading]);
+  }, [dataLoading, userDataLoading]);
 
   return (
     <Actor>

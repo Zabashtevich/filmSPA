@@ -3,33 +3,34 @@ import { useEffect, useState } from "react";
 import { useProcessContext, useModalContext } from "../../context";
 import { firebase } from "../../libs/firebase";
 
-export default function useList() {
-  const [{ nickname, array, listname }, setList] = useState({
-    nickname,
-    array,
-    listname,
+export default function useList(listname) {
+  const [{ nickname, array }, setList] = useState({
+    nickname: null,
+    array: null,
   });
 
   const [{ processing }, setProcessProps] = useProcessContext();
   const [, { showErrorModal }] = useModalContext();
 
   useEffect(() => {
-    if (!processing) {
-      setProcessProps({ processing: true, message: "Something gone wrong" });
+    if (!processing && array) {
+      setProcessProps({ processing: true, message: "Process your vote" });
       firebase
         .firestore()
         .collection(`${nickname}`)
         .doc(`${listname}`)
         .update({ listname: array })
         .then(() => {
-          setProcessProps({ processing: false, message: null });
+          setList({ nickname: null, array: null });
+          setProcessProps((prev) => ({ ...prev, processing: false }));
         })
         .catch(() => {
-          setProcessProps({ processing: false, message: null });
-          showErrorModal(errorMessage);
+          setList({ nickname: null, array: null });
+          setProcessProps((prev) => ({ ...prev, processing: false }));
+          showErrorModal("Something gone wrong");
         });
     }
-  }, [nickname, array, listname, errorMessage]);
+  }, [nickname, array, listname]);
 
   return [setList];
 }

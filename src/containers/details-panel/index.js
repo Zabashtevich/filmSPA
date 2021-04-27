@@ -18,13 +18,17 @@ export default function DetailsPanelContainer({ data, dataLoading }) {
   const collection = data?.belongs_to_collection;
 
   const loading = dataLoading || userDataLoading;
-
   return (
     <DetailsPanel>
       <DetailsPanel.Section>
         <DetailsPanel.Title>Rating</DetailsPanel.Title>
-        {profileExist && (
-          <PanelRating data={data} profile={profile} votes={lists.votes} />
+        {!loading && (
+          <PanelRating
+            data={data}
+            profileExist={profileExist}
+            profile={profile}
+            votes={lists.votes}
+          />
         )}
       </DetailsPanel.Section>
 

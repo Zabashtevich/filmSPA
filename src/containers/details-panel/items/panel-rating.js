@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 
 import { DetailsPanel } from "../../../components";
 import { useModalContext, useProcessContext } from "../../../context";
-import { useEstimate } from "../../../hooks";
+import { useList } from "../../../hooks";
 import {
   checkMovieInList,
   getCorrectDate,
@@ -11,25 +11,34 @@ import {
   createVote,
 } from "../../../utils";
 
-export default function PanelRating({ data, profile, votes }) {
+export default function PanelRating({ data, profileExist, profile, votes }) {
+  const [{ processing }] = useProcessContext();
   const [, { showErrorModal }] = useModalContext();
-  const [doEstimate] = useEstimate(profile?.displayName, "votes");
+  const [doEstimate] = useList("votes");
   const [hoverIndex, setHoverIndex] = useState(0);
   const { direction, slug } = useParams();
 
   const movieIsRated = checkMovieInList(votes, slug);
-  const metaExist = !!data.vote_count;
+  const metaExist = data?.vote_count;
 
-  function handleEstimate(value) {
-    if (!profile) {
+  console.log(votes);
+
+  function voteElement(value) {
+    if (!profileExist) {
       return showErrorModal("Please, login!");
     }
-    doEstimate(
-      createUserlist(createEstimateItem(data, value, direction), votes),
-    );
+    if (!processing) {
+      doEstimate({
+        nickname: profile.displayName,
+        array: [
+          ...votes.filter((movie) => movie.id !== data.id),
+          createVote(data, value, direction),
+        ],
+      });
+    }
   }
 
-  function unVoteElement() {
+  function unvoteElement() {
     doEstimate(votes.filter((item) => item.id !== +slug));
   }
 
@@ -42,7 +51,7 @@ export default function PanelRating({ data, profile, votes }) {
             onMouseEnter={() => setHoverIndex(item)}
             onMouseLeave={() => setHoverIndex(0)}
             selected={hoverIndex >= item && 1}
-            onClick={() => handleEstimate(item)}
+            onClick={() => voteElement(item)}
             data-testid="star-rating"
           />
         ))}
@@ -65,7 +74,7 @@ export default function PanelRating({ data, profile, votes }) {
             <DetailsPanel.Date>
               {getCorrectDate(movieIsRated.date)}
             </DetailsPanel.Date>
-            <DetailsPanel.Delete onClick={unVoteElement}>
+            <DetailsPanel.Delete onClick={unvoteElement}>
               DELETE
             </DetailsPanel.Delete>
           </DetailsPanel.Wrapper>

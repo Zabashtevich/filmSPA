@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useParams } from "react-router";
 
 import { DetailsPanel } from "../../../components";
-import { useModalContext, useProcessContext } from "../../../context";
 import { useList } from "../../../hooks";
 import {
   checkMovieInList,
@@ -12,8 +11,6 @@ import {
 } from "../../../utils";
 
 export default function PanelRating({ data, profileExist, profile, votes }) {
-  const [{ processing }] = useProcessContext();
-  const [, { showErrorModal }] = useModalContext();
   const [doEstimate] = useList("votes");
   const [hoverIndex, setHoverIndex] = useState(0);
   const { direction, slug } = useParams();
@@ -21,25 +18,17 @@ export default function PanelRating({ data, profileExist, profile, votes }) {
   const movieIsRated = checkMovieInList(votes, slug);
   const metaExist = data?.vote_count;
 
-  console.log(votes);
-
   function voteElement(value) {
-    if (!profileExist) {
-      return showErrorModal("Please, login!");
-    }
-    if (!processing) {
-      doEstimate({
-        nickname: profile.displayName,
-        array: [
-          ...votes.filter((movie) => movie.id !== data.id),
-          createVote(data, value, direction),
-        ],
-      });
-    }
+    doEstimate({
+      votes: [
+        ...votes.filter((movie) => movie.id !== data.id),
+        createVote(data, value, direction),
+      ],
+    });
   }
 
   function unvoteElement() {
-    doEstimate(votes.filter((item) => item.id !== +slug));
+    doEstimate({ votes: votes.filter((item) => item.id !== +slug) });
   }
 
   return (

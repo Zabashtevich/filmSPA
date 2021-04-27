@@ -1,36 +1,41 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 import { useProcessContext, useModalContext } from "../../context";
 import { firebase } from "../../libs/firebase";
 
 export default function useList(listname) {
-  const [{ nickname, array }, setList] = useState({
-    nickname: null,
-    array: null,
-  });
+  const { profile, profileExist, isReady } = useSelector(
+    (state) => state.userData,
+  );
+  const [array, setArray] = useState(null);
 
   const [{ processing }, setProcessProps] = useProcessContext();
   const [, { showErrorModal }] = useModalContext();
 
   useEffect(() => {
+    if (!profileExist || !isReady) {
+      showErrorModal("Please, login");
+      setArray(null);
+    }
     if (!processing && array) {
       setProcessProps({ processing: true, message: "Process your vote" });
       firebase
         .firestore()
-        .collection(`${nickname}`)
+        .collection(`${profile.displayName}`)
         .doc(`${listname}`)
-        .update({ listname: array })
+        .update({ ...array })
         .then(() => {
-          setList({ nickname: null, array: null });
+          setArray(null);
           setProcessProps((prev) => ({ ...prev, processing: false }));
         })
         .catch(() => {
-          setList({ nickname: null, array: null });
+          setArray(null);
           setProcessProps((prev) => ({ ...prev, processing: false }));
           showErrorModal("Something gone wrong");
         });
     }
-  }, [nickname, array, listname]);
+  }, [array, listname]);
 
-  return [setList];
+  return [setArray];
 }

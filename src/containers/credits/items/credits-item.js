@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 
 import { useList } from "./../../../hooks";
 import { Credits } from "../../../components";
-import { useProcessContext } from "./../../../context";
 import {
   checkMovieInList,
   checkReleaseStatus,
@@ -13,17 +12,14 @@ import {
 import { useSelector } from "react-redux";
 
 export default function CreditsItem({ item, index }) {
-  const { lists, profile, profileExist } = useSelector(
-    (state) => state.userData,
-  );
-  const [setList] = useList();
-  const [{ processing }] = useProcessContext();
+  const { lists, isReady } = useSelector((state) => state.userData);
+  const [doEstimate] = useList();
   const [popupVisible, setPopupVisible] = useState(false);
   const [hoverIndex, setHoverIndex] = useState(0);
   const [rated, setRated] = useState(null);
 
   useEffect(() => {
-    if (userDataExist) {
+    if (isReady) {
       setRated(checkMovieInList(lists.votes, item.id)?.value || null);
     }
   }, [lists]);
@@ -33,16 +29,12 @@ export default function CreditsItem({ item, index }) {
   const typeSecondary = index % 2 === 0;
 
   function handleEstimate(value) {
-    if (!processing && profileExist) {
-      setList({
-        listname: "votes",
-        nickname: profile.displayName,
-        array: [
-          ...lists.votes.filter((movie) => movie.id !== item.id),
-          createVote(value, item),
-        ],
-      });
-    }
+    doEstimate({
+      votes: [
+        ...lists.votes.filter((movie) => movie.id !== item.id),
+        createVote(value, item),
+      ],
+    });
   }
 
   return (

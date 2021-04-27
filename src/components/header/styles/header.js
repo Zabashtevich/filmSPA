@@ -58,6 +58,7 @@ export const Logo = styled(ReactRouterLink)`
 `;
 
 export const Wrapper = styled.div`
+  ${({ theme }) => theme.animations.fade()};
   align-items: center;
   margin-right: 8rem;
   display: flex;
@@ -90,6 +91,7 @@ export const Profile = styled.div`
 export const Avatar = styled.img`
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 50%;
+  min-width: 50px;
   height: 50px;
 
   ${({ popupVisible }) =>

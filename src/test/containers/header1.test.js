@@ -11,14 +11,14 @@ import { combineReducers } from "redux";
 import { BrowserRouter } from "react-router-dom";
 import "@testing-library/jest-dom";
 
-import theme from "./../../theme/theme";
+import theme from "../../theme/theme";
 import { HeaderContainer } from "../../containers";
-import userProfile from "./../../reducers/user-profile";
+import userData from "../../reducers/user-data";
 import userEvent from "@testing-library/user-event";
 
 function renderComponentwithRedux({
   initialState,
-  store = createStore(combineReducers({ userProfile }), initialState),
+  store = createStore(combineReducers({ userData }), initialState),
 }) {
   return {
     ...render(
@@ -34,23 +34,42 @@ function renderComponentwithRedux({
 }
 
 describe("Header container", () => {
+  const loadingState = {
+    userData: {
+      userDataLoading: true,
+      userDataExist: false,
+      profileExist: false,
+      isReady: false,
+      profile: null,
+      lists: { userlists: null, favorites: null, votes: null },
+    },
+  };
+
+  const mockedState = {
+    userData: {
+      profile: {
+        displayName: "Zabashtevich",
+        photoURL: null,
+        email: "dummy@email.ru",
+      },
+      userDataLoading: false,
+      userDataExist: true,
+      profileExist: true,
+      isReady: true,
+      lists: { userlists: null, favorites: null, votes: null },
+    },
+  };
   it("doesnt render profile part when userProfile is loading or missing", () => {
-    const mockedStore = {
-      userProfile: { profile: null, profileLoading: true },
-    };
     const { queryByTestId } = renderComponentwithRedux({
-      initialState: mockedStore,
+      initialState: loadingState,
     });
 
     expect(queryByTestId("header-profile")).toBeNull();
   });
 
   it("render header without profile", () => {
-    const mockedStore = {
-      userProfile: { profile: null, profileLoading: true },
-    };
     const { getByText, getByTestId } = renderComponentwithRedux({
-      initialState: mockedStore,
+      initialState: loadingState,
     });
 
     expect(getByText(/tmdb/i)).toBeTruthy();
@@ -61,14 +80,8 @@ describe("Header container", () => {
   });
 
   it("render header with profile", () => {
-    const mockedStore = {
-      userProfile: {
-        profile: { displayName: "Zabashtevich", photoURL: null },
-        profileLoading: false,
-      },
-    };
     const { getByTestId, getByAltText } = renderComponentwithRedux({
-      initialState: mockedStore,
+      initialState: mockedState,
     });
 
     expect(getByTestId(/header-profile/i)).toBeTruthy();
@@ -80,24 +93,13 @@ describe("Header container", () => {
   });
 
   it("contains correctly working profile popup display logic", async () => {
-    const mockedStore = {
-      userProfile: {
-        profile: {
-          displayName: "Zabashtevich",
-          email: "dummy@email.ru",
-          photoURL: null,
-        },
-        profileLoading: false,
-      },
-    };
     const {
       getByTestId,
       getByAltText,
       getByText,
       queryByText,
-      findByText,
     } = renderComponentwithRedux({
-      initialState: mockedStore,
+      initialState: mockedState,
     });
 
     await act(async () => {
@@ -127,18 +129,8 @@ describe("Header container", () => {
   });
 
   it("switch search active state on search/close click", async () => {
-    const mockedStore = {
-      userProfile: {
-        profile: {
-          displayName: "Zabashtevich",
-          email: "dummy@email.ru",
-          photoURL: null,
-        },
-        profileLoading: false,
-      },
-    };
     const { getByTestId, queryByTestId } = renderComponentwithRedux({
-      initialState: mockedStore,
+      initialState: mockedState,
     });
 
     expect(getByTestId("header-search")).toBeTruthy();

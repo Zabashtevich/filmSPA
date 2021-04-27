@@ -2,16 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 
+import { firebase } from "./../../libs/firebase";
 import { BarContainer } from "./../";
 import { Header } from "../../components";
-import { useFirebaseContext } from "../../context";
 
 export default function HeaderContainer() {
-  const { firebase } = useFirebaseContext();
   const [headerVisible, setHeaderVisible] = useState(true);
   const [searchActive, setSearchActive] = useState(false);
   const [popupVisible, setPopupVisible] = useState(false);
-  const { profile, profileExist, loading } = useSelector(
+  const { profile, profileExist, userDataLoading } = useSelector(
     (state) => state.userData,
   );
   let prevScrollPosition = 0;
@@ -53,12 +52,12 @@ export default function HeaderContainer() {
         </Header.Nav>
         <SwitchTransition mode={"out-in"}>
           <CSSTransition
-            key={`${profileExist}${loading}`}
+            key={`${profileExist}${userDataLoading}`}
             classNames="fade"
             timeout={500}
           >
             <Header.Wrapper onClick={(e) => e.stopPropagation()}>
-              {!loading && profileExist && (
+              {!userDataLoading && profileExist && (
                 <Header.Profile
                   onClick={popupToggler}
                   data-testid="header-profile"
@@ -84,7 +83,7 @@ export default function HeaderContainer() {
                   </Header.Popup>
                 </Header.Profile>
               )}
-              {!loading && !profileExist && (
+              {!userDataLoading && !profileExist && (
                 <>
                   <Header.Link to="/authentication/login">Login</Header.Link>
                   <Header.Link to="/authentication/signup">Signup</Header.Link>

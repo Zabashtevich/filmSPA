@@ -10,7 +10,7 @@ import {
   createVote,
 } from "../../../utils";
 
-export default function PanelRating({ data, profileExist, profile, votes }) {
+export default function PanelRating({ data, votes }) {
   const [doEstimate] = useList("votes");
   const [hoverIndex, setHoverIndex] = useState(0);
   const { direction, slug } = useParams();

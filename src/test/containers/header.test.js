@@ -153,4 +153,32 @@ describe("Header container", () => {
       expect(getByTestId("header-search")).toBeTruthy();
     });
   });
+
+  it("displays auth links when user profile loaded but not exist", () => {
+    const { getByText, queryByAltText } = renderComponentwithRedux({
+      initialState: {
+        userData: {
+          profile: null,
+          userDataLoading: false,
+          userDataExist: false,
+          profileExist: false,
+          isReady: false,
+          lists: { userlists: null, favorites: null, votes: null },
+        },
+      },
+    });
+
+    expect(getByText(/login/i)).toBeTruthy();
+    expect(getByText(/signup/i)).toBeTruthy();
+    expect(getByText(/login/i)).toHaveAttribute(
+      "href",
+      "/authentication/login",
+    );
+    expect(getByText(/signup/i)).toHaveAttribute(
+      "href",
+      "/authentication/signup",
+    );
+
+    expect(queryByAltText(/user avatar/i)).toBeNull();
+  });
 });

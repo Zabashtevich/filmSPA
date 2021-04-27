@@ -15,7 +15,7 @@ import theme from "../../theme/theme";
 import { HeaderContainer } from "../../containers";
 import userData from "../../reducers/user-data";
 import userEvent from "@testing-library/user-event";
-import { firebase } from "./../../libs/firebase";
+import { firebase } from "../../libs/firebase";
 
 jest.mock("./../../containers/bar", () => () => <div />);
 jest.mock("./../../libs/firebase", () => ({ firebase: { auth: jest.fn() } }));

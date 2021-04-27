@@ -15,6 +15,10 @@ import theme from "../../theme/theme";
 import { HeaderContainer } from "../../containers";
 import userData from "../../reducers/user-data";
 import userEvent from "@testing-library/user-event";
+import { firebase } from "./../../libs/firebase";
+
+jest.mock("./../../containers/bar", () => () => <div />);
+jest.mock("./../../libs/firebase", () => ({ firebase: { auth: jest.fn() } }));
 
 function renderComponentwithRedux({
   initialState,
@@ -93,6 +97,9 @@ describe("Header container", () => {
   });
 
   it("contains correctly working profile popup display logic", async () => {
+    const mockedLogout = jest.fn();
+    firebase.auth.mockReturnValue({ signOut: mockedLogout });
+
     const {
       getByTestId,
       getByAltText,
@@ -117,10 +124,12 @@ describe("Header container", () => {
     expect(getByText(/logout/i)).toBeTruthy();
 
     await act(async () => {
-      userEvent.click(getByTestId(/header-profile/i));
+      userEvent.click(getByText(/logout/i));
     });
 
-    await waitFor(() => {
+    expect(mockedLogout).toHaveBeenCalled();
+
+    await waitForElementToBeRemoved(getByTestId(/header-popup/i)).then(() => {
       expect(queryByText(/dummy@email.ru/i)).toBeNull();
       expect(queryByText(/to account/i)).toBeNull();
       expect(queryByText(/to userlists/i)).toBeNull();
@@ -129,7 +138,7 @@ describe("Header container", () => {
   });
 
   it("switch search active state on search/close click", async () => {
-    const { getByTestId, queryByTestId } = renderComponentwithRedux({
+    const { getByTestId, queryByTestId, debug } = renderComponentwithRedux({
       initialState: mockedState,
     });
 

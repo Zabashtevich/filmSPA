@@ -70,6 +70,7 @@ Header.Avatar = function HeaderAvatar({ src, children, ...rest }) {
 };
 
 Header.Popup = function HeaderPopup({ visible, children, ...rest }) {
+  console.log(visible, "hi");
   return (
     <CSSTransition
       in={visible}

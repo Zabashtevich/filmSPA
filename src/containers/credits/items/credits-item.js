@@ -6,15 +6,16 @@ import { useProcessContext } from "./../../../context";
 import {
   checkMovieInList,
   checkReleaseStatus,
-  createEstimateItem,
-  createUserlist,
+  createVote,
   getYearFromString,
   range,
 } from "../../../utils";
 import { useSelector } from "react-redux";
 
 export default function CreditsItem({ item, index }) {
-  const { lists, profile } = useSelector((state) => state.userData);
+  const { lists, profile, profileExist } = useSelector(
+    (state) => state.userData,
+  );
   const [setList] = useList();
   const [{ processing }] = useProcessContext();
   const [popupVisible, setPopupVisible] = useState(false);
@@ -32,7 +33,15 @@ export default function CreditsItem({ item, index }) {
   const typeSecondary = index % 2 === 0;
 
   function handleEstimate(value) {
-    if (!processing && userDataExist) {
+    if (!processing && profileExist) {
+      setList({
+        listname: "votes",
+        nickname: profile.displayName,
+        array: [
+          ...lists.votes.filter((movie) => movie.id !== item.id),
+          createVote(value, item),
+        ],
+      });
     }
   }
 

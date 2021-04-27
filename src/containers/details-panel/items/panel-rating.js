@@ -6,10 +6,9 @@ import { useModalContext, useProcessContext } from "../../../context";
 import { useEstimate } from "../../../hooks";
 import {
   checkMovieInList,
-  createEstimateItem,
-  createUserlist,
   getCorrectDate,
   range,
+  createVote,
 } from "../../../utils";
 
 export default function PanelRating({ data, profile, votes }) {

@@ -13,6 +13,7 @@ export { default as getMoneyFormat } from "./shareable/get-money-format";
 export { default as getUniqueArray } from "./shareable/get-unique-array";
 
 export { default as getFetchUrl } from "./hooks/get-fetch-url";
+export { default as createVote } from "./hooks/create-vote";
 
 export { default as getCategories } from "./details/get-categories";
 export { default as checkCategories } from "./details/check-categories";

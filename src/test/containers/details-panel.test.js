@@ -224,6 +224,6 @@ describe("Details panel container", () => {
 
     expect(doEstimate).toHaveBeenCalled();
     expect(doEstimate).toHaveBeenCalledTimes(3);
-    expect(doEstimate).toHaveBeenCalledWith([]);
+    expect(doEstimate).toHaveBeenCalledWith({ votes: [] });
   });
 });

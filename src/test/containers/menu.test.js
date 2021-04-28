@@ -2,11 +2,14 @@ import { act, render } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import "@testing-library/jest-dom";
+import userEvent from "@testing-library/user-event";
 
 import theme from "./../../theme/theme";
 import { range } from "../../utils";
 import { MenuContainer } from "./../../containers";
-import userEvent from "@testing-library/user-event";
+import { useDragContext } from "../../context";
+
+jest.mock("./../../context", () => ({ useDragContext: jest.fn() }));
 
 function renderComponent(props) {
   return {
@@ -25,19 +28,24 @@ describe("Menu container", () => {
     id: item,
     name: `dummy name ${item}`,
   }));
+  const setDragProps = jest.fn();
+
   it("displays skeleton", () => {
-    const { getAllByTestId, getByText } = renderComponent({
+    useDragContext.mockReturnValue([, setDragProps]);
+    const { getAllByTestId } = renderComponent({
       loading: true,
-      userlists: null,
+      lists: null,
     });
 
     expect(getAllByTestId(/menu-skeleton/i)).toHaveLength(3);
   });
 
   it("renders full content after loading", () => {
+    useDragContext.mockReturnValue([, setDragProps]);
+
     const { getByText } = renderComponent({
       loading: false,
-      userlists: mockedData,
+      lists: { userlists: mockedData },
     });
 
     range(1, 3).map((item) => {
@@ -51,9 +59,11 @@ describe("Menu container", () => {
   });
 
   it("hides and shows menu on arrow button click", async () => {
+    useDragContext.mockReturnValue([, setDragProps]);
+
     const { getByTestId } = renderComponent({
       loading: false,
-      userlists: mockedData,
+      lists: { userlists: mockedData },
     });
 
     expect(getByTestId(/menu-container/i)).not.toHaveStyle(

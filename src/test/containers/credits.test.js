@@ -2,15 +2,17 @@ import "@testing-library/jest-dom";
 import { combineReducers, createStore } from "redux";
 import { ThemeProvider } from "styled-components";
 import { Provider } from "react-redux";
-import { render } from "@testing-library/react";
+import { act, render, waitForElementToBeRemoved } from "@testing-library/react";
+import { BrowserRouter } from "react-router-dom";
+import userEvent from "@testing-library/user-event";
 
 import theme from "./../../theme/theme";
 import userData from "./../../reducers/user-data/index";
 import { CreditsContainer } from "../../containers";
 import { useCreditsContext, usePaginContext } from "../../context";
-import { range } from "../../utils";
+import { checkReleaseStatus, createVote, range } from "../../utils";
 import { useList } from "../../hooks";
-import { BrowserRouter } from "react-router-dom";
+import * as utils from "./../../utils";
 
 jest.mock("./../../context", () => ({
   useCreditsContext: jest.fn(),
@@ -133,5 +135,112 @@ describe("Credits container", () => {
 
     expect(getAllByText(/^5000$/i)).toBeTruthy();
     expect(getAllByText(/^5000$/i)).toHaveLength(25);
+  });
+
+  it("renders item rated by user", () => {
+    useCreditsContext.mockReturnValue([
+      {
+        loading: false,
+        items: range(1000, 25).map((item) => ({
+          id: item,
+          vote_average: 5.5,
+          vote_count: 5000,
+          release_date: "2019-10-10",
+          title: `dummy title ${item}`,
+          type: "movie",
+        })),
+      },
+    ]);
+    usePaginContext.mockReturnValue([{ active: 1 }, setPagin]);
+    useList.mockReturnValue([doEstimate]);
+
+    const { getByText } = renderWithRedux({
+      initialState: initialState,
+    });
+  });
+
+  it("renders stars rating panel with correctly working popup and estimate logic", async () => {
+    jest.spyOn(global.Date, "now").mockImplementation(() => new Date(0));
+    useCreditsContext.mockReturnValue([
+      {
+        loading: false,
+        items: range(1000, 1).map((item) => ({
+          id: item,
+          vote_average: 5.5,
+          vote_count: 5000,
+          release_date: "1950-10-10",
+          title: `dummy title ${item}`,
+          type: "movie",
+        })),
+      },
+    ]);
+    usePaginContext.mockReturnValue([{ active: 1 }, setPagin]);
+    useList.mockReturnValue([doEstimate]);
+
+    const { getByTestId, queryByTestId, getAllByTestId } = renderWithRedux({
+      initialState: initialState,
+    });
+
+    expect(doEstimate).not.toHaveBeenCalled();
+
+    expect(getByTestId(/rating/i)).toBeTruthy();
+    expect(queryByTestId(/rating-container/i)).toBeNull();
+
+    await act(async () => {
+      userEvent.click(getByTestId(/rating/i));
+    });
+
+    expect(getByTestId(/rating-container/i)).toBeTruthy();
+    expect(getAllByTestId(/rating-star/i)).toHaveLength(10);
+
+    await act(async () => {
+      userEvent.click(getAllByTestId(/rating-star/i)[5]);
+    });
+
+    await waitForElementToBeRemoved(getByTestId(/rating-container/i)).then(
+      () => {
+        expect(queryByTestId(/rating-container/i)).toBeNull();
+      },
+    );
+
+    expect(doEstimate).toHaveBeenCalled();
+    expect(doEstimate).toHaveBeenCalledWith({
+      votes: [
+        createVote(4, {
+          id: 1000,
+          vote_average: 5.5,
+          vote_count: 5000,
+          release_date: "1950-10-10",
+          title: `dummy title ${1000}`,
+          type: "movie",
+        }),
+      ],
+    });
+  });
+
+  it("calls setPagin after loading", () => {
+    jest.spyOn(global.Date, "now").mockImplementation(() => new Date(0));
+
+    useCreditsContext.mockReturnValue([
+      {
+        loading: false,
+        items: range(1000, 1).map((item) => ({
+          id: item,
+          vote_average: 5.5,
+          vote_count: 5000,
+          release_date: "1950-10-10",
+          title: `dummy title ${item}`,
+          type: "movie",
+        })),
+      },
+    ]);
+    usePaginContext.mockReturnValue([{ active: 1 }, setPagin]);
+    useList.mockReturnValue([doEstimate]);
+
+    const {} = renderWithRedux({
+      initialState: initialState,
+    });
+
+    expect(setPagin).toHaveBeenCalled();
   });
 });

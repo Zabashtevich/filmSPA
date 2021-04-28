@@ -4,7 +4,7 @@ import { firebase } from "./../../libs/firebase";
 export default function useAuthListener() {
   const [data, setData] = useState({
     user: JSON.parse(localStorage.getItem("loggedUser")),
-    loading: true,
+    loading: JSON.parse(localStorage.getItem("loggedUser")) ? false : true,
   });
 
   useEffect(() => {

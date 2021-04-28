@@ -51,13 +51,9 @@ export default function HeaderContainer() {
           <Header.Link to="/search">Search</Header.Link>
         </Header.Nav>
         <SwitchTransition mode={"out-in"}>
-          <CSSTransition
-            key={`${loggedIn}${userDataLoading}`}
-            classNames="fade"
-            timeout={500}
-          >
+          <CSSTransition key={loggedIn} classNames="fade" timeout={500}>
             <Header.Wrapper onClick={(e) => e.stopPropagation()}>
-              {!userDataLoading && loggedIn && (
+              {loggedIn && (
                 <Header.Profile
                   onClick={popupToggler}
                   data-testid="header-profile"
@@ -67,10 +63,7 @@ export default function HeaderContainer() {
                     popupVisible={popupVisible && 1}
                     alt="user avatar"
                   />
-                  <Header.Popup
-                    visible={popupVisible}
-                    data-testid="header-popup"
-                  >
+                  <Header.Popup data-testid="header-popup">
                     <Header.Nickname>{profile.displayName}</Header.Nickname>
                     <Header.Mail>{profile.email}</Header.Mail>
                     <Header.Item to="/acount">to Account</Header.Item>

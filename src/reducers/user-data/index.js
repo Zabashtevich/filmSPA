@@ -19,6 +19,7 @@ export default function userData(state = initialState, { type, payload }) {
       return {
         ...state,
         profile: payload,
+        loggedIn: true,
       };
     case LOGOUT:
       return {

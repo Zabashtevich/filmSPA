@@ -69,20 +69,8 @@ Header.Avatar = function HeaderAvatar({ src, children, ...rest }) {
   );
 };
 
-Header.Popup = function HeaderPopup({ visible, children, ...rest }) {
-  console.log(visible, "hi");
-  return (
-    <CSSTransition
-      in={visible}
-      appear={true}
-      mountOnEnter
-      unmountOnExit
-      timeout={500}
-      classNames="slide"
-    >
-      <Popup {...rest}>{children}</Popup>
-    </CSSTransition>
-  );
+Header.Popup = function HeaderPopup({ children, ...rest }) {
+  return <Popup {...rest}>{children}</Popup>;
 };
 
 Header.Nickname = function HeaderNickname({ children, ...rest }) {

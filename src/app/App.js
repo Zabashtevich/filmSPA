@@ -43,6 +43,7 @@ function App() {
       dispatch(setUserData(transformArrayToObject(data)));
     }
   }, [data, loading, userLoading, user, dispatch]);
+
   return (
     <Router>
       <Switch>

@@ -12,7 +12,7 @@ export default function useList(listname) {
   const [, { showErrorModal }] = useModalContext();
 
   useEffect(() => {
-    if (!loggedIn) {
+    if (array && !loggedIn) {
       showErrorModal("Please, login");
       setArray(null);
     }

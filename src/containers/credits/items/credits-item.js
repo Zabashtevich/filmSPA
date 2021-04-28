@@ -38,7 +38,7 @@ export default function CreditsItem({ item, index }) {
   }
 
   return (
-    <Credits.Item typeSecondary={typeSecondary}>
+    <Credits.Item typeSecondary={typeSecondary} data-testid="credits-item">
       <Credits.Year>
         {getYearFromString(item.release_date || item.first_air_date) || "-"}
       </Credits.Year>

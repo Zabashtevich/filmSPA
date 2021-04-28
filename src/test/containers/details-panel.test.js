@@ -4,29 +4,28 @@ import { MemoryRouter, Route } from "react-router";
 import { combineReducers, createStore } from "redux";
 import { ThemeProvider } from "styled-components";
 import "@testing-library/jest-dom";
+import userEvent from "@testing-library/user-event";
 
 import userData from "./../../reducers/user-data";
-import userProfile from "./../../reducers/user-profile";
-import { useEstimate } from "../../hooks";
+import { useList } from "../../hooks";
 import { DetailsPanelContainer } from "./../../containers";
 import theme from "./../../theme/theme";
-import userEvent from "@testing-library/user-event";
 import { useModalContext } from "../../context";
 
 jest.mock("./../../containers/media", () => () => <div />);
 
 jest.mock("./../../hooks", () => ({
-  useEstimate: jest.fn(),
+  useList: jest.fn(),
 }));
 
 jest.mock("./../../context", () => ({
   useModalContext: jest.fn(),
 }));
 
-function renderComponentWithRedux({
+function renderWithRedux({
   initialprops,
   initialState,
-  store = createStore(combineReducers({ userData, userProfile }), initialState),
+  store = createStore(combineReducers({ userData }), initialState),
 }) {
   return {
     ...render(
@@ -61,17 +60,22 @@ describe("Details panel container", () => {
     images: { posters: [{ file_path: "/postersrc" }] },
   };
 
-  const setEstimate = jest.fn();
+  const doEstimate = jest.fn();
   const showErrorModal = jest.fn();
 
   it("displays skeletons on loading", () => {
-    const loadingStore = {
-      userData: { dataLoading: true, votes: null },
-      userProfile: { profileLoading: true, profile: null },
+    const loadingState = {
+      userData: {
+        userDataLoading: true,
+        userDataExist: false,
+        loggedIn: false,
+        profile: null,
+        lists: { userlists: null, favorites: null, votes: null },
+      },
     };
-    const { getByTestId, queryByTestId } = renderComponentWithRedux({
+    const { getByTestId, queryByTestId } = renderWithRedux({
       initialprops: { data: null, dataLoading: true },
-      initialState: loadingStore,
+      initialState: loadingState,
     });
 
     expect(getByTestId(/details-media-skeleton/i)).toBeTruthy();
@@ -80,20 +84,23 @@ describe("Details panel container", () => {
     expect(queryByTestId(/details-rating-container/i)).toBeNull();
     expect(queryByTestId(/details-collection-container/i)).toBeNull();
 
-    expect(useEstimate).not.toHaveBeenCalled();
+    expect(useList).not.toHaveBeenCalled();
   });
 
   it("renders full content after loading", () => {
     useModalContext.mockReturnValue([, { showErrorModal }]);
-    useEstimate.mockReturnValue([setEstimate]);
+    useList.mockReturnValue([doEstimate]);
     const initialStore = {
       userData: {
-        dataLoading: false,
-        votes: [{ id: 123, value: 10, date: new Date(0) }],
-      },
-      userProfile: {
-        profileLoading: false,
+        userDataLoading: false,
+        userDataExist: true,
+        loggedIn: true,
         profile: { displayName: "Zabashtevich" },
+        lists: {
+          userlists: null,
+          favorites: null,
+          votes: [{ id: 123, value: 10, date: new Date(0) }],
+        },
       },
     };
     const {
@@ -101,7 +108,7 @@ describe("Details panel container", () => {
       queryByTestId,
       getByText,
       getAllByTestId,
-    } = renderComponentWithRedux({
+    } = renderWithRedux({
       initialprops: {
         data: initialState,
         dataLoading: false,
@@ -140,27 +147,28 @@ describe("Details panel container", () => {
     jest.spyOn(global.Date, "now").mockImplementation(() => new Date(0));
 
     useModalContext.mockReturnValue([, { showErrorModal }]);
-    useEstimate.mockReturnValue([setEstimate]);
+    useList.mockReturnValue([doEstimate]);
 
     const initialStore = {
       userData: {
-        dataLoading: false,
-        votes: [{ id: 123, value: 5, date: new Date(0) }],
-      },
-      userProfile: {
-        profileLoading: false,
+        userDataLoading: false,
+        userDataExist: true,
+        loggedIn: true,
         profile: { displayName: "Zabashtevich" },
+        lists: {
+          userlists: null,
+          favorites: null,
+          votes: [{ id: 123, value: 5, date: new Date(0) }],
+        },
       },
     };
-    const { getAllByTestId, getByText, getByTestId } = renderComponentWithRedux(
-      {
-        initialprops: {
-          data: initialState,
-          dataLoading: false,
-        },
-        initialState: initialStore,
+    const { getAllByTestId, getByText } = renderWithRedux({
+      initialprops: {
+        data: initialState,
+        dataLoading: false,
       },
-    );
+      initialState: initialStore,
+    });
 
     expect(getByText(/^5$/)).toBeTruthy();
     expect(getByText(/1970/)).toBeTruthy();
@@ -171,47 +179,51 @@ describe("Details panel container", () => {
       userEvent.click(stars[4]);
     });
 
-    expect(setEstimate).toHaveBeenCalled();
-    expect(setEstimate).toHaveBeenCalledTimes(1);
-    expect(setEstimate).toHaveBeenLastCalledWith([
-      {
-        date: new Date(0),
-        id: 123,
-        popularity: 1,
-        release_date: "2100-10-10",
-        title: "dummy title",
-        type: "movie",
-        value: 5,
-        vote_average: 8.8,
-        vote_count: 1000,
-      },
-    ]);
+    expect(doEstimate).toHaveBeenCalled();
+    expect(doEstimate).toHaveBeenCalledTimes(1);
+    expect(doEstimate).toHaveBeenLastCalledWith({
+      votes: [
+        {
+          date: new Date(0),
+          id: 123,
+          popularity: 1,
+          release_date: "2100-10-10",
+          title: "dummy title",
+          type: "movie",
+          value: 5,
+          vote_average: 8.8,
+          vote_count: 1000,
+        },
+      ],
+    });
 
     await act(async () => {
       userEvent.click(stars[7]);
     });
 
-    expect(setEstimate).toHaveBeenCalledTimes(2);
-    expect(setEstimate).toHaveBeenLastCalledWith([
-      {
-        date: new Date(0),
-        id: 123,
-        popularity: 1,
-        release_date: "2100-10-10",
-        title: "dummy title",
-        type: "movie",
-        value: 8,
-        vote_average: 8.8,
-        vote_count: 1000,
-      },
-    ]);
+    expect(doEstimate).toHaveBeenCalledTimes(2);
+    expect(doEstimate).toHaveBeenLastCalledWith({
+      votes: [
+        {
+          date: new Date(0),
+          id: 123,
+          popularity: 1,
+          release_date: "2100-10-10",
+          title: "dummy title",
+          type: "movie",
+          value: 8,
+          vote_average: 8.8,
+          vote_count: 1000,
+        },
+      ],
+    });
 
     await act(async () => {
       userEvent.click(getByText(/delete/i));
     });
 
-    expect(setEstimate).toHaveBeenCalled();
-    expect(setEstimate).toHaveBeenCalledTimes(3);
-    expect(setEstimate).toHaveBeenCalledWith([]);
+    expect(doEstimate).toHaveBeenCalled();
+    expect(doEstimate).toHaveBeenCalledTimes(3);
+    expect(doEstimate).toHaveBeenCalledWith([]);
   });
 });

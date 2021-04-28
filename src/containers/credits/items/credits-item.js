@@ -20,7 +20,7 @@ export default function CreditsItem({ item, index }) {
 
   useEffect(() => {
     if (userDataExist) {
-      setRated(checkMovieInList(lists.votes, item.id)?.value || null);
+      setRated(checkMovieInList(lists.votes, item.id) || null);
     }
   }, [lists]);
 
@@ -56,7 +56,7 @@ export default function CreditsItem({ item, index }) {
         )}
         {metaVisible && <Credits.Count>{item.vote_count}</Credits.Count>}
       </Credits.Meta>
-      {rated && <Credits.Highscore>{rated}</Credits.Highscore>}
+      {rated && <Credits.Highscore>{rated.value}</Credits.Highscore>}
       {released && (
         <Credits.Rating
           onClick={() => setPopupVisible((prev) => !prev)}

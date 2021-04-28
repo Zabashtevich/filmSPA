@@ -8,6 +8,7 @@ import {
 const initialState = {
   userDataLoading: true,
   userDataExist: false,
+  loggedIn: false,
   profile: null,
   lists: { userlists: null, favorites: null, votes: null },
 };

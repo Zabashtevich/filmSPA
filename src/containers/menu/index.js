@@ -7,7 +7,7 @@ import { MenuSkeleton } from "../../components/skeleton";
 import { range } from "./../../utils";
 
 export default function MenuContainer({ lists, loading }) {
-  const [, setDragProps] = useDragContext();
+  const [{ list }, setDragProps] = useDragContext();
   const [visible, setVisible] = useState(true);
 
   function dragStartHandler(list) {

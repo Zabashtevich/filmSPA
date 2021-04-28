@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 
 import { Userlist } from "../../components";
-import { useDragContext } from "../../context";
+import { useCreditsContext, useDragContext } from "../../context";
 import UserlistDropzone from "./items/userlist-dropzone";
 import UserlistList from "./items/userlist-list";
+import { CreditsContainer } from "./../";
 
 export default function UserlistContainer() {
+  const [, setCredits] = useCreditsContext();
   const [{ type, hovered, list }, setDragProps] = useDragContext();
+
+  useEffect(() => {
+    if (type === "userlist") {
+      setCredits({ loading: false, items: list.content });
+    }
+  }, [type]);
+
+  console.log(list);
 
   return (
     <Userlist>
@@ -21,6 +31,7 @@ export default function UserlistContainer() {
           </Userlist.Header>
         </CSSTransition>
       </SwitchTransition>
+      {type === "userlist" && <CreditsContainer />}
     </Userlist>
   );
 }

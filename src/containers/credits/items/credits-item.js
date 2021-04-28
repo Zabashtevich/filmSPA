@@ -12,14 +12,14 @@ import {
 import { useSelector } from "react-redux";
 
 export default function CreditsItem({ item, index }) {
-  const { lists, isReady } = useSelector((state) => state.userData);
+  const { lists, userDataExist } = useSelector((state) => state.userData);
   const [doEstimate] = useList();
   const [popupVisible, setPopupVisible] = useState(false);
   const [hoverIndex, setHoverIndex] = useState(0);
   const [rated, setRated] = useState(null);
 
   useEffect(() => {
-    if (isReady) {
+    if (userDataExist) {
       setRated(checkMovieInList(lists.votes, item.id)?.value || null);
     }
   }, [lists]);

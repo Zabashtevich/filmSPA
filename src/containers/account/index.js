@@ -5,13 +5,13 @@ import { Account } from "../../components";
 import { FilterContainer } from "../";
 
 export default function AccountContainer() {
-  const { profile, userDataLoading, profileExist } = useSelector(
+  const { profile, userDataLoading, loggedIn } = useSelector(
     (state) => state.userData,
   );
 
   return (
     <Account data-testid="account-container">
-      {!userDataLoading && profileExist && (
+      {!userDataLoading && loggedIn && (
         <>
           <Account.Column>
             <Account.Poster src={profile?.photoURL} alt="profile image" />

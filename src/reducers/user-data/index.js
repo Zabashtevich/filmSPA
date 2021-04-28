@@ -8,8 +8,6 @@ import {
 const initialState = {
   userDataLoading: true,
   userDataExist: false,
-  profileExist: false,
-  isReady: false,
   profile: null,
   lists: { userlists: null, favorites: null, votes: null },
 };
@@ -19,15 +17,14 @@ export default function userData(state = initialState, { type, payload }) {
     case SET_USER_PROFILE:
       return {
         ...state,
-        profileExist: true,
         profile: payload,
       };
     case LOGOUT:
       return {
         ...state,
-        profileExist: false,
-        userDataExist: false,
+        loggedIn: false,
         profile: null,
+        userDataExist: false,
         lists: { userlists: null, favorites: null, votes: null },
       };
     case SET_USER_DATA:
@@ -35,7 +32,6 @@ export default function userData(state = initialState, { type, payload }) {
         ...state,
         userDataLoading: false,
         userDataExist: true,
-        isReady: true,
         lists: {
           userlists: payload.userlists,
           favorites: payload.favorites,
@@ -43,7 +39,7 @@ export default function userData(state = initialState, { type, payload }) {
         },
       };
     case PROFILE_NOT_EXIST:
-      return { ...state, profileExist: false, loading: false, isReady: false };
+      return { ...state, userDataExist: false, userDataLoading: false };
     default:
       return state;
   }

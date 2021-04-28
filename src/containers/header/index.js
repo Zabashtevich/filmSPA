@@ -10,7 +10,7 @@ export default function HeaderContainer() {
   const [headerVisible, setHeaderVisible] = useState(true);
   const [searchActive, setSearchActive] = useState(false);
   const [popupVisible, setPopupVisible] = useState(false);
-  const { profile, profileExist, userDataLoading } = useSelector(
+  const { profile, loggedIn, userDataLoading } = useSelector(
     (state) => state.userData,
   );
   let prevScrollPosition = 0;
@@ -52,12 +52,12 @@ export default function HeaderContainer() {
         </Header.Nav>
         <SwitchTransition mode={"out-in"}>
           <CSSTransition
-            key={`${profileExist}${userDataLoading}`}
+            key={`${loggedIn}${userDataLoading}`}
             classNames="fade"
             timeout={500}
           >
             <Header.Wrapper onClick={(e) => e.stopPropagation()}>
-              {!userDataLoading && profileExist && (
+              {!userDataLoading && loggedIn && (
                 <Header.Profile
                   onClick={popupToggler}
                   data-testid="header-profile"
@@ -83,7 +83,7 @@ export default function HeaderContainer() {
                   </Header.Popup>
                 </Header.Profile>
               )}
-              {!userDataLoading && !profileExist && (
+              {!userDataLoading && !loggedIn && (
                 <>
                   <Header.Link to="/authentication/login">Login</Header.Link>
                   <Header.Link to="/authentication/signup">Signup</Header.Link>

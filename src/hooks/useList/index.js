@@ -5,16 +5,14 @@ import { useProcessContext, useModalContext } from "../../context";
 import { firebase } from "../../libs/firebase";
 
 export default function useList(listname) {
-  const { profile, profileExist, isReady } = useSelector(
-    (state) => state.userData,
-  );
+  const { profile, loggedIn } = useSelector((state) => state.userData);
   const [array, setArray] = useState(null);
 
   const [{ processing }, setProcessProps] = useProcessContext();
   const [, { showErrorModal }] = useModalContext();
 
   useEffect(() => {
-    if (!profileExist || !isReady) {
+    if (!loggedIn) {
       showErrorModal("Please, login");
       setArray(null);
     }

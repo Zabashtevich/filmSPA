@@ -18,11 +18,25 @@ export default function UserlistList({ list, setDragProps }) {
 
   const inputRef = useRef();
 
-  // useEffect(() => {
-  //   if (!inactive) {
-  //     inputRef.current.focus();
-  //   }
-  // }, [inactive]);
+  useEffect(() => {
+    if (!inactive) {
+      inputRef.current.focus();
+    }
+  }, [inactive]);
+
+  function renameHandler(params) {
+    showConfirmModal({
+      message: "Are you shure you want to rename your list?",
+      callback: () => {
+        setList(
+          lists.userlists.map((item) =>
+            item.id === list.id ? { ...item, name: value } : item,
+          ),
+        );
+        setSettings((prev) => ({ ...prev, inactive: true }));
+      },
+    });
+  }
 
   return (
     <Userlist.List>
@@ -47,7 +61,7 @@ export default function UserlistList({ list, setDragProps }) {
             <Userlist.Wrapper>
               {!inactive && (
                 <>
-                  <Userlist.Confirm />
+                  <Userlist.Confirm onClick={renameHandler} />
                   <Userlist.Cancel
                     onClick={() =>
                       setSettings({ inactive: true, value: list.name })

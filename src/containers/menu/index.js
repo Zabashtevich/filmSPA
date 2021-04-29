@@ -17,7 +17,7 @@ export default function MenuContainer({ lists, loading }) {
   function dragEndHandler() {
     setDragProps((prev) => ({ ...prev, hovered: false }));
   }
-  console.log(lists);
+
   return (
     <Menu>
       <Menu.Container visible={visible} data-testid="menu-container">

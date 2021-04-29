@@ -87,6 +87,7 @@ export const Input = styled.input`
 
   &:disabled {
     color: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
 `;
 

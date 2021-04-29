@@ -17,7 +17,7 @@ export default function useList(listname) {
       setArray(null);
     }
     if (!processing && array) {
-      setProcessProps({ processing: true, message: "Process your vote" });
+      setProcessProps({ processing: true, message: "Processing..." });
       firebase
         .firestore()
         .collection(`${profile.displayName}`)

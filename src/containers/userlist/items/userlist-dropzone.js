@@ -5,6 +5,7 @@ import { Userlist } from "../../../components";
 export default function UserlistDropzone({ setDragProps, hovered }) {
   function dropHandler(e) {
     e.preventDefault();
+
     setDragProps((prev) => ({ ...prev, type: "userlist" }));
   }
 

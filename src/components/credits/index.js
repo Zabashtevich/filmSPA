@@ -22,6 +22,10 @@ export default function Credits({ children, ...rest }) {
   return <Section {...rest}>{children}</Section>;
 }
 
+Credits.Title = function CreditsTitle({ children, ...rest }) {
+  return <Title {...rest}>{children}</Title>;
+};
+
 Credits.Inner = function CreditsInner({ children, ...rest }) {
   return <Inner {...rest}>{children}</Inner>;
 };

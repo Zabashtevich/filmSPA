@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import {
   MenuContainer,
   ModalContainer,
+  ProcessContainer,
   UserlistContainer,
 } from "../containers";
 
@@ -12,6 +13,7 @@ export default function UserlistPage() {
 
   return (
     <>
+      <ProcessContainer />
       <ModalContainer />
       <div
         style={{

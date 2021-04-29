@@ -17,8 +17,6 @@ export default function UserlistContainer() {
     }
   }, [type]);
 
-  console.log(list);
-
   return (
     <Userlist>
       <SwitchTransition mode={"out-in"}>
@@ -27,7 +25,9 @@ export default function UserlistContainer() {
             {type === "dropzone" && (
               <UserlistDropzone setDragProps={setDragProps} hovered={hovered} />
             )}
-            {type === "userlist" && <UserlistList list={list} />}
+            {type === "userlist" && (
+              <UserlistList list={list} setDragProps={setDragProps} />
+            )}
           </Userlist.Header>
         </CSSTransition>
       </SwitchTransition>

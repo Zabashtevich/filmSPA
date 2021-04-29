@@ -25,7 +25,7 @@ export default function modalReducer(state = initialState, { type, payload }) {
         type: "confirm",
         message: payload.message,
         visible: true,
-        callback: payload.func,
+        callback: payload.callback,
       };
     case CLOSE_MODAL:
       return { ...initialState };

@@ -3,19 +3,26 @@ import { CSSTransition, SwitchTransition } from "react-transition-group";
 
 import { getCorrectDate } from "../../../utils";
 import { Userlist } from "../../../components";
+import { useModalContext } from "../../../context";
+import { useList } from "../../../hooks";
+import { useSelector } from "react-redux";
 
-export default function UserlistList({ list }) {
+export default function UserlistList({ list, setDragProps }) {
+  const [setList] = useList("userlists");
+  const { lists } = useSelector((state) => state.userData);
+  const [, { showConfirmModal }] = useModalContext();
   const [{ value, inactive }, setSettings] = useState({
     value: list.name,
     inactive: true,
   });
+
   const inputRef = useRef();
 
-  useEffect(() => {
-    if (!inactive) {
-      inputRef.current.focus();
-    }
-  }, [inactive]);
+  // useEffect(() => {
+  //   if (!inactive) {
+  //     inputRef.current.focus();
+  //   }
+  // }, [inactive]);
 
   return (
     <Userlist.List>
@@ -53,7 +60,22 @@ export default function UserlistList({ list }) {
         </SwitchTransition>
       </Userlist.Outer>
       <Userlist.Tools>
-        <Userlist.Inner type="delete">
+        <Userlist.Inner
+          type="delete"
+          onClick={() =>
+            showConfirmModal({
+              message: `Are you shure you want to delete your "${list.name}" list?`,
+              callback: () => {
+                setList(lists.userlists.filter((item) => item.id !== list.id));
+                setDragProps({
+                  hovered: null,
+                  list: null,
+                  type: "dropzone",
+                });
+              },
+            })
+          }
+        >
           <Userlist.Delete />
         </Userlist.Inner>
         <Userlist.Inner

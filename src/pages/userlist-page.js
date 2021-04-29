@@ -1,7 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import { MenuContainer, UserlistContainer } from "../containers";
+import {
+  MenuContainer,
+  ModalContainer,
+  UserlistContainer,
+} from "../containers";
 
 export default function UserlistPage() {
   const { userDataLoading, profile, lists } = useSelector(
@@ -10,6 +14,7 @@ export default function UserlistPage() {
 
   return (
     <>
+      <ModalContainer />
       <div
         style={{
           display: "flex",

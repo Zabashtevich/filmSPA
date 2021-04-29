@@ -17,12 +17,13 @@ export default function useList(listname) {
       setArray(null);
     }
     if (!processing && array) {
+      console.log(array);
       setProcessProps({ processing: true, message: "Process your vote" });
       firebase
         .firestore()
         .collection(`${profile.displayName}`)
         .doc(`${listname}`)
-        .update({ ...array })
+        .update({ [`${listname}`]: array })
         .then(() => {
           setArray(null);
           setProcessProps((prev) => ({ ...prev, processing: false }));

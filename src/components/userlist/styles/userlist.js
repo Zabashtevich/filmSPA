@@ -140,18 +140,36 @@ export const Inner = styled.div`
     type === "delete" &&
     css`
       background-color: ${({ theme }) => theme.colors.error};
+      &:hover {
+        background-color: white;
+        transition: 300ms;
+        color: black;
+      }
     `};
   ${({ type }) =>
     type === "edit" &&
     css`
-      background-color: ${({ theme }) => theme.colors.main};
+      color: black;
+      &:hover {
+        background-color: ${({ theme }) => theme.colors.main};
+        transition: 300ms;
+        color: white;
+      }
     `};
-
-  &:hover {
-    background-color: white;
-    transition: 300ms;
-    color: black;
-  }
+  ${({ type }) =>
+    type === "cancel" &&
+    css`
+      background-color: ${({ theme }) => theme.colors.main};
+      color: white;
+      & > * {
+        margin: 0;
+      }
+      &:hover {
+        background-color: white;
+        transition: 300ms;
+        color: black;
+      }
+    `}
 `;
 
 export const Edit = styled(BsWrench)``;

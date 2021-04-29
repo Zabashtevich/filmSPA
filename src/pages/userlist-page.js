@@ -10,7 +10,7 @@ import {
 
 export default function UserlistPage() {
   const { userDataLoading, lists } = useSelector((state) => state.userData);
-
+  console.log(userDataLoading, lists);
   return (
     <>
       <ProcessContainer />

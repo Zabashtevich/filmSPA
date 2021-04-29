@@ -12,14 +12,24 @@ export const Container = styled.div``;
 
 export const Item = styled.div``;
 
+export const Name = styled.div``;
+
+export const Link = styled.div``;
+
+export const Chain = styled.div``;
+
+export const Value = styled.div``;
+
+export const Thumbnail = styled.div``;
+
 export const Button = styled.div``;
 
 export const Close = styled.div``;
 
 export const List = styled.div``;
 
-export const Account = styled.div``;
-
-export const Return = styled.div``;
-
 export const Create = styled.div``;
+
+export const Arrow = styled.div``;
+
+export const Heart = styled.div``;

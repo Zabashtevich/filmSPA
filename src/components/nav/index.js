@@ -7,11 +7,14 @@ import {
   Subtitle,
   Container,
   Item,
+  Name,
+  Link,
+  Chain,
+  Value,
+  Thumbnail,
   Button,
   Close,
   List,
-  Account,
-  Return,
   Create,
 } from "./styles/nav";
 
@@ -39,6 +42,26 @@ Nav.Item = function NavItem({ children, ...rest }) {
   return <Item {...rest}>{children}</Item>;
 };
 
+Nav.Name = function NavName({ children, ...rest }) {
+  return <Name {...rest}>{children}</Name>;
+};
+
+Nav.Link = function NavLink({ children, ...rest }) {
+  return <Link {...rest}>{children}</Link>;
+};
+
+Nav.Chain = function NavChain({ children, ...rest }) {
+  return <Chain {...rest} />;
+};
+
+Nav.Value = function NavValue({ children, ...rest }) {
+  return <Value {...rest}>{children}</Value>;
+};
+
+Nav.Thumbnail = function NavThumbnail({ children, ...rest }) {
+  return <Thumbnail {...rest} />;
+};
+
 Nav.Button = function NavButton({ ...rest }) {
   return <Button {...rest} />;
 };
@@ -51,14 +74,14 @@ Nav.List = function NavList({ ...rest }) {
   return <List {...rest} />;
 };
 
-Nav.Account = function NavAccount({ ...rest }) {
-  return <Account {...rest} />;
-};
-
-Nav.Return = function NavReturn({ ...rest }) {
-  return <Return {...rest} />;
-};
-
 Nav.Create = function NavCreate({ ...rest }) {
   return <Create {...rest} />;
+};
+
+Nav.Heart = function NavHeart({ ...rest }) {
+  return <Heart {...rest} />;
+};
+
+Nav.Arrow = function NavArrow({ ...rest }) {
+  return <Arrow {...rest} />;
 };

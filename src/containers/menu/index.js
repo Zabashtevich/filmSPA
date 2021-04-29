@@ -17,7 +17,7 @@ export default function MenuContainer({ lists, loading }) {
   function dragEndHandler() {
     setDragProps((prev) => ({ ...prev, hovered: false }));
   }
-
+  console.log(lists);
   return (
     <Menu>
       <Menu.Container visible={visible} data-testid="menu-container">
@@ -29,7 +29,7 @@ export default function MenuContainer({ lists, loading }) {
               {loading &&
                 range(1, 3).map((item) => <MenuSkeleton key={item} />)}
               {!loading &&
-                lists.userlists.map((item) => (
+                lists?.userlists.map((item) => (
                   <Menu.Item
                     key={item.id}
                     draggable={true}

@@ -24,6 +24,7 @@ export default function CreditsContainer() {
 
   return (
     <Credits data-testid="credits-container">
+      <Credits.Title>Credits</Credits.Title>
       <SwitchTransition mode={"out-in"}>
         <CSSTransition key={loading} classNames="fade" timeout={500}>
           <Credits.Inner>

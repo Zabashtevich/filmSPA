@@ -6,11 +6,21 @@ import { BsFillStarFill, BsX } from "react-icons/bs";
 export const Section = styled.div`
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   font-family: ${({ theme }) => theme.font.aux.family};
+  justify-content: center;
+  flex-direction: column;
   border-radius: 0.5rem;
+  align-items: center;
 
   margin-top: 2rem;
   max-width: 900px;
+  display: flex;
   width: 100%;
+`;
+
+export const Title = styled.span`
+  font-size: ${({ theme }) => theme.font.aux.size.large};
+  padding: 0.4rem 0;
+  display: block;
 `;
 
 export const Inner = styled.div`
@@ -60,7 +70,7 @@ export const Year = styled.span`
   }
 `;
 
-export const Title = styled(ReactRouterLink)`
+export const Subtitle = styled(ReactRouterLink)`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   font-size: ${({ theme }) => theme.font.aux.size.small};
   text-overflow: ellipsis;

@@ -40,6 +40,7 @@ function App() {
       dispatch(profileNotExist());
     }
     if (!loading && data) {
+      console.log(data);
       dispatch(setUserData(transformArrayToObject(data)));
     }
   }, [data, loading, userLoading, user, dispatch]);

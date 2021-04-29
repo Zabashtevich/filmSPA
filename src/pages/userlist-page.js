@@ -8,9 +8,7 @@ import {
 } from "../containers";
 
 export default function UserlistPage() {
-  const { userDataLoading, profile, lists } = useSelector(
-    (state) => state.userData,
-  );
+  const { userDataLoading, lists } = useSelector((state) => state.userData);
 
   return (
     <>

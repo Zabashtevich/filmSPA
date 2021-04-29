@@ -3,10 +3,11 @@ import { CSSTransition } from "react-transition-group";
 
 import {
   Section,
+  Title,
   Inner,
   Item,
   Year,
-  Title,
+  Subtitle,
   Meta,
   Average,
   Count,
@@ -33,8 +34,8 @@ Credits.Year = function CreditsYear({ children, ...rest }) {
   return <Year {...rest}>{children}</Year>;
 };
 
-Credits.Title = function CreditsTitle({ children, ...rest }) {
-  return <Title {...rest}>{children}</Title>;
+Credits.Subtitle = function CreditsSubtitle({ children, ...rest }) {
+  return <Subtitle {...rest}>{children}</Subtitle>;
 };
 
 Credits.Meta = function CreditsMeta({ children, ...rest }) {

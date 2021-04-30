@@ -16,6 +16,9 @@ import {
   Close,
   List,
   Create,
+  Subcategory,
+  Arrow,
+  Heart,
 } from "./styles/nav";
 
 export default function Nav({ children, ...rest }) {
@@ -32,6 +35,10 @@ Nav.Category = function NavCategory({ children, ...rest }) {
 
 Nav.Subtitle = function NavSubtitle({ children, ...rest }) {
   return <Subtitle {...rest}>{children}</Subtitle>;
+};
+
+Nav.Subcategory = function NavSubcategory({ children, ...rest }) {
+  return <Subcategory {...rest}>{children}</Subcategory>;
 };
 
 Nav.Container = function NavContainer({ children, ...rest }) {

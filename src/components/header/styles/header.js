@@ -102,8 +102,7 @@ export const Avatar = styled.img`
 `;
 
 export const Popup = styled.div`
-  ${({ theme }) =>
-    theme.animations.slide({ x: -200, y: 0 }, { x: -200, y: 0 })};
+  ${({ theme }) => theme.animations.fade(500, 250, 500)};
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   background-color: white;
   flex-direction: column;

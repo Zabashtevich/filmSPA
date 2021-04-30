@@ -63,7 +63,10 @@ export default function HeaderContainer() {
                     popupVisible={popupVisible && 1}
                     alt="user avatar"
                   />
-                  <Header.Popup data-testid="header-popup">
+                  <Header.Popup
+                    data-testid="header-popup"
+                    visible={popupVisible}
+                  >
                     <Header.Nickname>{profile.displayName}</Header.Nickname>
                     <Header.Mail>{profile.email}</Header.Mail>
                     <Header.Item to="/acount">to Account</Header.Item>

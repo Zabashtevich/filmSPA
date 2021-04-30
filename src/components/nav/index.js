@@ -8,15 +8,12 @@ import {
   Container,
   Item,
   Name,
+  Footer,
   Link,
   Chain,
   Value,
-  Thumbnail,
-  Button,
-  Close,
   List,
   Create,
-  Subcategory,
   Arrow,
   Heart,
 } from "./styles/nav";
@@ -37,10 +34,6 @@ Nav.Subtitle = function NavSubtitle({ children, ...rest }) {
   return <Subtitle {...rest}>{children}</Subtitle>;
 };
 
-Nav.Subcategory = function NavSubcategory({ children, ...rest }) {
-  return <Subcategory {...rest}>{children}</Subcategory>;
-};
-
 Nav.Container = function NavContainer({ children, ...rest }) {
   return <Container {...rest}>{children}</Container>;
 };
@@ -51,6 +44,10 @@ Nav.Item = function NavItem({ children, ...rest }) {
 
 Nav.Name = function NavName({ children, ...rest }) {
   return <Name {...rest}>{children}</Name>;
+};
+
+Nav.Footer = function NavFooter({ children, ...rest }) {
+  return <Footer {...rest}>{children}</Footer>;
 };
 
 Nav.Link = function NavLink({ children, ...rest }) {
@@ -65,19 +62,7 @@ Nav.Value = function NavValue({ children, ...rest }) {
   return <Value {...rest}>{children}</Value>;
 };
 
-Nav.Thumbnail = function NavThumbnail({ children, ...rest }) {
-  return <Thumbnail {...rest} />;
-};
-
-Nav.Button = function NavButton({ ...rest }) {
-  return <Button {...rest} />;
-};
-
-Nav.Close = function NavClose({ ...rest }) {
-  return <Close {...rest} />;
-};
-
-Nav.List = function NavList({ ...rest }) {
+Nav.List = function NavList({ children, ...rest }) {
   return <List {...rest} />;
 };
 

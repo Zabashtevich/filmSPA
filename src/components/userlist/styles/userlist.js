@@ -2,6 +2,7 @@ import styled from "styled-components/macro";
 
 export const Outer = styled.div`
   display: flex;
+  width: 100%;
 `;
 
 export const Container = styled.div``;

@@ -3,7 +3,6 @@ import {
   BsFillPlusSquareFill,
   BsDot,
   BsHeartFill,
-  BsListTask,
   BsLink,
 } from "react-icons/bs";
 import { Link as ReactRouterLink } from "react-router-dom";
@@ -17,7 +16,7 @@ export const Inner = styled.div`
 
   height: 100vh;
   display: flex;
-  width: 300px;
+  min-width: 300px;
 `;
 
 export const Title = styled.span`

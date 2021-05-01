@@ -9,9 +9,7 @@ export default function UserlistContainer() {
     activeCategory: "createList",
     activeList: null,
   });
-  const { userDataLoading, loggedIn, lists } = useSelector(
-    (state) => state.userData,
-  );
+  const { userDataLoading, lists } = useSelector((state) => state.userData);
 
   return (
     <Userlist>
@@ -21,7 +19,9 @@ export default function UserlistContainer() {
         setBar={setBar}
         bar={bar}
       />
-      {bar.activeCategory === "createList" && <CreateListContainer />}
+      {bar.activeCategory === "createList" && (
+        <CreateListContainer loading={userDataLoading} lists={lists} />
+      )}
     </Userlist>
   );
 }

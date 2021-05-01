@@ -1,7 +1,11 @@
 import React from "react";
 import { CreateList } from "../../components";
+import { useProcessContext } from "../../context";
 
-export default function CreateListContainer() {
+export default function CreateListContainer({ loading, lists }) {
+  const [{ processing }] = useProcessContext();
+  const disabled = processing || loading;
+
   return (
     <CreateList>
       <CreateList.Container>
@@ -9,8 +13,8 @@ export default function CreateListContainer() {
         <CreateList.Header>
           <CreateList.Row>
             <CreateList.Input placeholder={"Enter a name"} />
-            <CreateList.Confirm>Confirm</CreateList.Confirm>
-            <CreateList.Loading />
+            <CreateList.Confirm disabled={disabled}>Confirm</CreateList.Confirm>
+            <CreateList.Loading visible={disabled} />
           </CreateList.Row>
         </CreateList.Header>
         <CreateList.Info>

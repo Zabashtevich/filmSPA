@@ -1,4 +1,6 @@
 import React from "react";
+import { CSSTransition } from "react-transition-group";
+import spinnerCreateList from "./../../assets/spinner-create-list.svg";
 
 import {
   Inner,
@@ -41,8 +43,18 @@ CreateList.Confirm = function CreateListConfirm({ children, ...rest }) {
   return <Confirm {...rest}>{children}</Confirm>;
 };
 
-CreateList.Loading = function CreateListLoading({ ...rest }) {
-  return <Loading {...rest} />;
+CreateList.Loading = function CreateListLoading({ visible, ...rest }) {
+  return (
+    <CSSTransition
+      in={visible}
+      classNames="fade"
+      timeout={250}
+      mountOnEnter
+      unmountOnExit
+    >
+      <Loading {...rest} src={spinnerCreateList} />
+    </CSSTransition>
+  );
 };
 
 CreateList.Info = function CreateListInfo({ ...rest }) {

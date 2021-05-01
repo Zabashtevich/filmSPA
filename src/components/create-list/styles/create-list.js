@@ -30,7 +30,10 @@ export const Header = styled.div`
   display: flex;
 `;
 
-export const Row = styled.div``;
+export const Row = styled.div`
+  position: relative;
+  display: flex;
+`;
 
 export const Input = styled.input`
   font-size: ${({ theme }) => theme.font.aux.size.big};
@@ -49,20 +52,33 @@ export const Confirm = styled.button`
   border-radius: 0.5rem;
   padding: 0.2rem 1rem;
   margin-left: 1rem;
-  cursor: pointer;
   outline: none;
   color: white;
 
-  &:hover {
+  &:enabled:hover {
     background-color: white;
     transition: 300ms;
+    cursor: pointer;
     color: black;
+  }
+
+  &:disabled {
+    background-color: gray;
+    cursor: not-allowed;
   }
 `;
 
-export const Loading = styled.div``;
+export const Loading = styled.img`
+  ${({ theme }) => theme.animations.fade(250, 250, 250)};
+  transform: translate(50%, -50%);
+  margin-left: 0.2rem;
+  position: absolute;
+  left: 100%;
+  top: 50%;
+`;
 
 export const Info = styled.ul`
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   background-color: ${({ theme }) => theme.colors.main};
   font-size: ${({ theme }) => theme.font.aux.size.big};
   box-sizing: border-box;

@@ -4,12 +4,16 @@ export const Inner = styled.div`
   font-family: ${({ theme }) => theme.font.aux.family};
   flex-direction: column;
   align-items: center;
-  padding: 3rem 0;
+  padding: 10rem 0;
   display: flex;
   width: 100%;
 `;
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+`;
 
 export const Title = styled.span`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
@@ -17,6 +21,7 @@ export const Title = styled.span`
 `;
 
 export const Header = styled.div`
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   align-items: center;
   border-radius: 1rem;
@@ -57,6 +62,19 @@ export const Confirm = styled.button`
 
 export const Loading = styled.div``;
 
-export const Info = styled.div``;
+export const Info = styled.ul`
+  background-color: ${({ theme }) => theme.colors.main};
+  font-size: ${({ theme }) => theme.font.aux.size.big};
+  box-sizing: border-box;
+  border: 2px solid gray;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+  border-radius: 1rem;
+  margin-top: 5rem;
+  color: white;
+  width: 100%;
+`;
 
-export const Message = styled.div``;
+export const Message = styled.li`
+  margin: 1rem 0;
+`;

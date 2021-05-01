@@ -25,4 +25,4 @@ export { default as CollectionCastContainer } from "./collection-cast";
 export { default as CollectionPartsContainer } from "./collection-parts";
 export { default as UserlistContainer } from "./userlist";
 export { default as NavContainer } from "./nav";
-export { default as CreateUserlist } from "./create-userlist";
+export { default as CreateUserlistContainer } from "./create-userlist";

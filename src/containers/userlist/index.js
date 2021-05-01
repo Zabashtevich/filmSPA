@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { CreateListContainer, NavContainer } from "./../";
+import { CreateUserlistContainer, NavContainer } from "./../";
 import { Userlist } from "../../components";
 import { useSelector } from "react-redux";
 
@@ -20,7 +20,7 @@ export default function UserlistContainer() {
         bar={bar}
       />
       {bar.activeCategory === "createList" && (
-        <CreateListContainer loading={userDataLoading} lists={lists} />
+        <CreateUserlistContainer loading={userDataLoading} lists={lists} />
       )}
     </Userlist>
   );

@@ -13,7 +13,7 @@ import {
   Loading,
   Info,
   Message,
-} from "./styles/create-list";
+} from "./styles/create-userlist";
 
 export default function CreateUserlist({ children, ...rest }) {
   return <Inner {...rest}>{children}</Inner>;

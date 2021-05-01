@@ -32,7 +32,7 @@ export default function CreateUserlistContainer({ loading, lists }) {
   }, [error]);
 
   return (
-    <CreateUserlist>
+    <CreateUserlist data-testid="create-userlist-inner">
       <CreateUserlist.Container>
         <CreateUserlist.Title>Create new list</CreateUserlist.Title>
         <CreateUserlist.Header>

@@ -15,35 +15,38 @@ import {
   Message,
 } from "./styles/create-list";
 
-export default function CreateList({ children, ...rest }) {
+export default function CreateUserlist({ children, ...rest }) {
   return <Inner {...rest}>{children}</Inner>;
 }
 
-CreateList.Container = function CreateListContainer({ children, ...rest }) {
+CreateUserlist.Container = function CreateUserlistContainer({
+  children,
+  ...rest
+}) {
   return <Container {...rest}>{children}</Container>;
 };
 
-CreateList.Title = function CreateListTitle({ children, ...rest }) {
+CreateUserlist.Title = function CreateUserlistTitle({ children, ...rest }) {
   return <Title {...rest}>{children}</Title>;
 };
 
-CreateList.Header = function CreateListHeader({ children, ...rest }) {
+CreateUserlist.Header = function CreateUserlistHeader({ children, ...rest }) {
   return <Header {...rest}>{children}</Header>;
 };
 
-CreateList.Row = function CreateListRow({ children, ...rest }) {
+CreateUserlist.Row = function CreateUserlistRow({ children, ...rest }) {
   return <Row {...rest}>{children}</Row>;
 };
 
-CreateList.Input = function CreateListInput({ ...rest }) {
+CreateUserlist.Input = function CreateUserlistInput({ ...rest }) {
   return <Input {...rest} />;
 };
 
-CreateList.Confirm = function CreateListConfirm({ children, ...rest }) {
+CreateUserlist.Confirm = function CreateUserlistConfirm({ children, ...rest }) {
   return <Confirm {...rest}>{children}</Confirm>;
 };
 
-CreateList.Loading = function CreateListLoading({ visible, ...rest }) {
+CreateUserlist.Loading = function CreateUserlistLoading({ visible, ...rest }) {
   return (
     <CSSTransition
       in={visible}
@@ -57,10 +60,10 @@ CreateList.Loading = function CreateListLoading({ visible, ...rest }) {
   );
 };
 
-CreateList.Info = function CreateListInfo({ ...rest }) {
+CreateUserlist.Info = function CreateUserlistInfo({ ...rest }) {
   return <Info {...rest} />;
 };
 
-CreateList.Message = function CreateListMessage({ ...rest }) {
+CreateUserlist.Message = function CreateUserlistMessage({ ...rest }) {
   return <Message {...rest} />;
 };

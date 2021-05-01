@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { NavContainer } from "./../";
+import { CreateListContainer, NavContainer } from "./../";
 import { Userlist } from "../../components";
 import { useSelector } from "react-redux";
 
@@ -21,6 +21,7 @@ export default function UserlistContainer() {
         setBar={setBar}
         bar={bar}
       />
+      {bar.activeCategory === "createList" && <CreateListContainer />}
     </Userlist>
   );
 }

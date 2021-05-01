@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { Nav } from "../../components";
 
@@ -26,10 +26,9 @@ export default function NavContainer({ loading, lists, setBar, bar }) {
         <Nav.Heart />
         <Nav.Subtitle>Favorites</Nav.Subtitle>
       </Nav.Category>
-      <Nav.Category>
-        <Nav.Arrow />
+      <Nav.Devider>
         <Nav.Subtitle>Your lists</Nav.Subtitle>
-      </Nav.Category>
+      </Nav.Devider>
       {!loading && (
         <Nav.Container>
           {lists.userlists.map((item) => (
@@ -39,7 +38,7 @@ export default function NavContainer({ loading, lists, setBar, bar }) {
                 setBar({ activeCategory: "userlists", activeList: item.id })
               }
             >
-              <Nav.List />
+              <Nav.Dot />
               <Nav.Subtitle>{item.name}</Nav.Subtitle>
             </Nav.Category>
           ))}

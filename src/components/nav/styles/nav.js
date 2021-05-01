@@ -3,7 +3,7 @@ import {
   BsFillPlusSquareFill,
   BsDot,
   BsHeartFill,
-  BsChevronUp,
+  BsListTask,
   BsLink,
 } from "react-icons/bs";
 import { Link as ReactRouterLink } from "react-router-dom";
@@ -13,6 +13,7 @@ export const Inner = styled.div`
   background-color: #404040;
   flex-direction: column;
   align-items: center;
+  user-select: none;
 
   height: 100vh;
   display: flex;
@@ -63,6 +64,21 @@ export const Category = styled.div`
     `};
 `;
 
+export const Devider = styled.div`
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 0.9rem 0 0.9rem 2rem;
+  background-color: #262626;
+  box-sizing: border-box;
+  align-items: center;
+  position: relative;
+  font-size: 1rem;
+  display: flex;
+  color: white;
+  width: 100%;
+`;
+
 export const Subtitle = styled.div`
   margin-left: 1rem;
 `;
@@ -104,20 +120,10 @@ export const Create = styled(BsFillPlusSquareFill)`
   font-size: 1.3rem;
 `;
 
-export const Arrow = styled(BsChevronUp)`
-  transform: rotate(180deg);
-  transition: 300ms;
-  font-size: 1.3rem;
-
-  ${({ selected }) =>
-    selected &&
-    css`
-      transform: rotate(0);
-    `};
-`;
-
 export const Heart = styled(BsHeartFill)`
   font-size: 1.3rem;
 `;
 
-export const List = styled(BsDot)``;
+export const Dot = styled(BsDot)`
+  font-size: 1.3rem;
+`;

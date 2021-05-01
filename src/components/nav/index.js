@@ -4,15 +4,15 @@ import {
   Inner,
   Title,
   Category,
+  Devider,
   Subtitle,
   Container,
   Footer,
   Link,
   Chain,
   Value,
-  List,
+  Dot,
   Create,
-  Arrow,
   Heart,
 } from "./styles/nav";
 
@@ -26,6 +26,10 @@ Nav.Title = function NavTitle({ children, ...rest }) {
 
 Nav.Category = function NavCategory({ children, ...rest }) {
   return <Category {...rest}>{children}</Category>;
+};
+
+Nav.Devider = function NavDevider({ children, ...rest }) {
+  return <Devider {...rest}>{children}</Devider>;
 };
 
 Nav.Subtitle = function NavSubtitle({ children, ...rest }) {
@@ -52,8 +56,8 @@ Nav.Value = function NavValue({ children, ...rest }) {
   return <Value {...rest}>{children}</Value>;
 };
 
-Nav.List = function NavList({ children, ...rest }) {
-  return <List {...rest} />;
+Nav.Dot = function NavDot({ children, ...rest }) {
+  return <Dot {...rest} />;
 };
 
 Nav.Create = function NavCreate({ ...rest }) {
@@ -62,8 +66,4 @@ Nav.Create = function NavCreate({ ...rest }) {
 
 Nav.Heart = function NavHeart({ ...rest }) {
   return <Heart {...rest} />;
-};
-
-Nav.Arrow = function NavArrow({ ...rest }) {
-  return <Arrow {...rest} />;
 };

@@ -6,8 +6,6 @@ import {
   Category,
   Subtitle,
   Container,
-  Item,
-  Name,
   Footer,
   Link,
   Chain,
@@ -36,14 +34,6 @@ Nav.Subtitle = function NavSubtitle({ children, ...rest }) {
 
 Nav.Container = function NavContainer({ children, ...rest }) {
   return <Container {...rest}>{children}</Container>;
-};
-
-Nav.Item = function NavItem({ children, ...rest }) {
-  return <Item {...rest}>{children}</Item>;
-};
-
-Nav.Name = function NavName({ children, ...rest }) {
-  return <Name {...rest}>{children}</Name>;
 };
 
 Nav.Footer = function NavFooter({ children, ...rest }) {

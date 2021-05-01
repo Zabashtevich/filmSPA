@@ -1,16 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Nav } from "../../components";
 
-export default function NavContainer({ loading, lists }) {
+export default function NavContainer({ loading, lists, setBar, bar }) {
+  const { activeCategory, activeList } = bar;
+
   return (
     <Nav>
       <Nav.Title>Side Menu</Nav.Title>
-      <Nav.Category>
+      <Nav.Category
+        selected={activeCategory === "createList" && 1}
+        onClick={() =>
+          setBar({ activeCategory: "createList", activeList: null })
+        }
+      >
         <Nav.Create />
         <Nav.Subtitle>Create list</Nav.Subtitle>
       </Nav.Category>
-      <Nav.Category>
+      <Nav.Category
+        selected={activeCategory === "favorites" && 1}
+        onClick={() =>
+          setBar({ activeCategory: "favorites", activeList: null })
+        }
+      >
         <Nav.Heart />
         <Nav.Subtitle>Favorites</Nav.Subtitle>
       </Nav.Category>
@@ -21,10 +33,15 @@ export default function NavContainer({ loading, lists }) {
       {!loading && (
         <Nav.Container>
           {lists.userlists.map((item) => (
-            <Nav.Item>
+            <Nav.Category
+              selected={activeList === item.id && 1}
+              onClick={() =>
+                setBar({ activeCategory: "userlists", activeList: item.id })
+              }
+            >
               <Nav.List />
-              <Nav.Name>{item.name}</Nav.Name>
-            </Nav.Item>
+              <Nav.Subtitle>{item.name}</Nav.Subtitle>
+            </Nav.Category>
           ))}
         </Nav.Container>
       )}

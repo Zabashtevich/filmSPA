@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 import {
   BsFillPlusSquareFill,
   BsDot,
@@ -38,6 +38,7 @@ export const Category = styled.div`
   background-color: #404040;
   box-sizing: border-box;
   align-items: center;
+  position: relative;
   cursor: pointer;
   font-size: 1rem;
   display: flex;
@@ -46,6 +47,20 @@ export const Category = styled.div`
   &:hover {
     filter: brightness(115%);
   }
+
+  ${({ selected }) =>
+    selected &&
+    css`
+      &::before {
+        background-color: lightblue;
+        position: absolute;
+        height: 100%;
+        content: "";
+        width: 5px;
+        left: 0;
+        top: 0;
+      }
+    `};
 `;
 
 export const Subtitle = styled.div`
@@ -55,22 +70,6 @@ export const Subtitle = styled.div`
 export const Container = styled.div`
   background-color: #262626;
   width: 100%;
-`;
-
-export const Item = styled.div`
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  padding: 0.5rem 0 0.5rem 2rem;
-  cursor: pointer;
-  display: flex;
-  color: white;
-
-  &:hover {
-    filter: brightness(115%);
-  }
-`;
-
-export const Name = styled.div`
-  margin-left: 1rem;
 `;
 
 export const Footer = styled.div`
@@ -107,7 +106,14 @@ export const Create = styled(BsFillPlusSquareFill)`
 
 export const Arrow = styled(BsChevronUp)`
   transform: rotate(180deg);
+  transition: 300ms;
   font-size: 1.3rem;
+
+  ${({ selected }) =>
+    selected &&
+    css`
+      transform: rotate(0);
+    `};
 `;
 
 export const Heart = styled(BsHeartFill)`

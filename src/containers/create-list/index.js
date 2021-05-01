@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+
 import { CreateList } from "../../components";
 import { useProcessContext } from "../../context";
 import { useList } from "../../hooks";
+import { createUserlist } from "../../utils";
 
 export default function CreateListContainer({ loading, lists }) {
   const [setList] = useList("userlists");
@@ -10,14 +12,14 @@ export default function CreateListContainer({ loading, lists }) {
   const [error, setError] = useState(false);
   const [value, setValue] = useState("");
 
-  const disabled = processing || loading;
-
   function createListHandler() {
-    if (value.length >= 5 && value.length <= 10) {
-      //todo
+    if (value.length >= 5 && value.length <= 10 && lists.userlists.length < 7) {
+      return setList([...lists.userlists, createUserlist(value)]);
     }
     setError(true);
   }
+
+  const disabled = processing || loading;
 
   useEffect(() => {
     let timeout;

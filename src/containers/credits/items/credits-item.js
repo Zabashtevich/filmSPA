@@ -42,12 +42,12 @@ export default function CreditsItem({ item, index }) {
       <Credits.Year>
         {getYearFromString(item.release_date || item.first_air_date) || "-"}
       </Credits.Year>
-      <Credits.Title
+      <Credits.Subtitle
         title={item.name || item.title}
         to={`/details/${item.type}/${item.id}`}
       >
         {item.name || item.title}
-      </Credits.Title>
+      </Credits.Subtitle>
       <Credits.Meta>
         {metaVisible && (
           <Credits.Average value={item.vote_average}>

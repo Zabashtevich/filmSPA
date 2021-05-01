@@ -21,6 +21,7 @@ export default function CreditsContainer() {
       }));
     }
   }, [loading]);
+  console.log(items);
 
   return (
     <Credits data-testid="credits-container">

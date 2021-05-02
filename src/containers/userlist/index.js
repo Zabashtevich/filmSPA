@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 import { CreateUserlistContainer, NavContainer } from "./../";
 import { Userlist } from "../../components";
-import { useSelector } from "react-redux";
 import UserlistFavorite from "./items/userlist-favorite";
+import UserlistItem from "./items/userlist-item";
 
 export default function UserlistContainer() {
   const [bar, setBar] = useState({
@@ -25,6 +26,11 @@ export default function UserlistContainer() {
       )}
       {bar.activeCategory === "favorites" && (
         <UserlistFavorite loading={userDataLoading} lists={lists} />
+      )}
+      {bar.activeCategory === "userlists" && (
+        <UserlistItem
+          list={lists.userlists.find((item) => item.id === bar.activeList)}
+        />
       )}
     </Userlist>
   );

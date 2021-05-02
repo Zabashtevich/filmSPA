@@ -7,7 +7,7 @@ import {
   Placeholder,
   Header,
   Thumbnail,
-  Inner,
+  List,
   Input,
   Info,
   Subtitle,
@@ -16,6 +16,7 @@ import {
   Confirm,
   Cancel,
   Tools,
+  Inner,
   Delete,
   Edit,
 } from "./styles/userlist";
@@ -46,8 +47,8 @@ Userlist.Thumbnail = function UserlistThumbnail({ ...rest }) {
   return <Thumbnail {...rest} />;
 };
 
-Userlist.Inner = function UserlistInner({ children, ...rest }) {
-  return <Inner {...rest}>{children}</Inner>;
+Userlist.List = function UserlistList({ children, ...rest }) {
+  return <List {...rest}>{children}</List>;
 };
 
 Userlist.Input = function UserlistInput({ children, ...rest }) {
@@ -80,6 +81,10 @@ Userlist.Cancel = function UserlistCancel({ children, ...rest }) {
 
 Userlist.Tools = function UserlistTools({ children, ...rest }) {
   return <Tools {...rest}>{children}</Tools>;
+};
+
+Userlist.Inner = function UserlistInner({ children, ...rest }) {
+  return <Inner {...rest}>{children}</Inner>;
 };
 
 Userlist.Delete = function UserlistDelete({ children, ...rest }) {

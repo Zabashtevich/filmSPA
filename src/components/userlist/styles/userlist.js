@@ -1,13 +1,32 @@
 import styled from "styled-components/macro";
 
 export const Outer = styled.div`
+  font-family: ${({ theme }) => theme.font.aux.family};
   display: flex;
   width: 100%;
 `;
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+  padding-top: 2rem;
+  max-height: 100vh;
+  display: flex;
+  width: 100%;
+`;
 
-export const Title = styled.div``;
+export const Title = styled.span`
+  font-size: ${({ theme }) => theme.font.aux.size.huge};
+`;
+
+export const Placeholder = styled.span`
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
+  font-size: ${({ theme }) => theme.font.aux.size.big};
+  color: rgba(0, 0, 0, 0.5);
+
+  margin-top: 2rem;
+`;
 
 export const Header = styled.div``;
 

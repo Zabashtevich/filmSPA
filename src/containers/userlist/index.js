@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { CreateUserlistContainer, NavContainer } from "./../";
 import { Userlist } from "../../components";
 import { useSelector } from "react-redux";
+import UserlistFavorite from "./items/userlist-favorite";
 
 export default function UserlistContainer() {
   const [bar, setBar] = useState({
@@ -21,6 +22,9 @@ export default function UserlistContainer() {
       />
       {bar.activeCategory === "createList" && (
         <CreateUserlistContainer loading={userDataLoading} lists={lists} />
+      )}
+      {bar.activeCategory === "favorites" && (
+        <UserlistFavorite loading={userDataLoading} lists={lists} />
       )}
     </Userlist>
   );

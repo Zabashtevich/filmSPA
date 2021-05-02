@@ -26,7 +26,7 @@ export const Title = styled.span`
 export const Inner = styled.div`
   ${({ theme }) => theme.animations.fade()};
   flex-direction: column;
-  min-height: 1350px;
+  min-height: 800px;
   display: flex;
   width: 100%;
 `;

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { getCorrectDate } from "../../../utils";
 
 import { Userlist } from "./../../../components";
 
@@ -12,14 +13,10 @@ export default function UserlistItem({ list }) {
         <Userlist.Thumbnail />
         <Userlist.List>
           <Userlist.Input disabled={disabled} value={list.name} />
-          <Userlist.Info>
-            <Userlist.Subtitle>created at:</Userlist.Subtitle>
-            <Userlist.Date></Userlist.Date>
-          </Userlist.Info>
         </Userlist.List>
         <Userlist.Wrapper>
-          <Userlist.Confirm />
-          <Userlist.Cancel />
+          <Userlist.Button type="confirm">Create</Userlist.Button>
+          <Userlist.Button type="abort">Abort</Userlist.Button>
         </Userlist.Wrapper>
         <Userlist.Tools>
           <Userlist.Inner type="delete">

@@ -9,14 +9,12 @@ import {
   Thumbnail,
   List,
   Input,
-  Info,
-  Subtitle,
-  Date,
   Wrapper,
   Confirm,
   Cancel,
   Tools,
   Inner,
+  Button,
   Delete,
   Edit,
 } from "./styles/userlist";
@@ -55,20 +53,12 @@ Userlist.Input = function UserlistInput({ children, ...rest }) {
   return <Input {...rest} />;
 };
 
-Userlist.Info = function UserlistInfo({ children, ...rest }) {
-  return <Info {...rest}>{children}</Info>;
-};
-
-Userlist.Subtitle = function UserlistSubtitle({ children, ...rest }) {
-  return <Subtitle {...rest}>{children}</Subtitle>;
-};
-
-Userlist.Date = function UserlistDate({ children, ...rest }) {
-  return <Date {...rest}>{children}</Date>;
-};
-
 Userlist.Wrapper = function UserlistWrapper({ children, ...rest }) {
   return <Wrapper {...rest}>{children}</Wrapper>;
+};
+
+Userlist.Button = function UserlistButton({ children, ...rest }) {
+  return <Button {...rest}>{children}</Button>;
 };
 
 Userlist.Confirm = function UserlistConfirm({ children, ...rest }) {

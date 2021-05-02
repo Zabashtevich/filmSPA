@@ -1,6 +1,12 @@
 import styled, { css } from "styled-components/macro";
 
-import { BsList, BsFillTrashFill, BsWrench } from "react-icons/bs";
+import {
+  BsList,
+  BsFillTrashFill,
+  BsWrench,
+  BsCheck,
+  BsX,
+} from "react-icons/bs";
 
 export const Outer = styled.div`
   font-family: ${({ theme }) => theme.font.aux.family};
@@ -44,7 +50,7 @@ export const Thumbnail = styled(BsList)`
 `;
 
 export const List = styled.div`
-  margin-right: 4rem;
+  margin-right: 3rem;
   margin-left: 3rem;
 `;
 
@@ -53,7 +59,7 @@ export const Input = styled.input`
   font-size: ${({ theme }) => theme.font.aux.size.big};
   padding: 0.2rem;
   outline: none;
-  width: 300px;
+  width: 350px;
   height: 30px;
   border: none;
 
@@ -69,22 +75,54 @@ export const Input = styled.input`
   }
 `;
 
-export const Info = styled.div`
-  margin-top: 0.3rem;
+export const Wrapper = styled.div`
+  font-size: ${({ theme }) => theme.font.aux.size.large};
+  margin-right: 5rem;
+  display: flex;
 `;
 
-export const Subtitle = styled.span`
-  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
-  color: rgba(0, 0, 0, 0.5);
+export const Button = styled.button`
+  font-size: ${({ theme }) => theme.font.aux.size.big};
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0.2rem 0.6rem;
+  border-radius: 0.5rem;
+  align-items: center;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+
+  ${({ type }) =>
+    type === "confirm" &&
+    css`
+      background-color: ${({ theme }) => theme.colors.aux};
+      margin-right: 1rem;
+      color: white;
+
+      &:hover {
+        background-color: white;
+        transition: 300ms;
+        color: black;
+      }
+    `};
+
+  ${({ type }) =>
+    type === "abort" &&
+    css`
+      background-color: white;
+      margin-right: 0.5rem;
+      color: black;
+
+      &:hover {
+        background-color: ${({ theme }) => theme.colors.main};
+        transition: 300ms;
+        color: white;
+      }
+    `};
 `;
 
-export const Date = styled.div``;
+export const Confirm = styled(BsCheck)``;
 
-export const Wrapper = styled.div``;
-
-export const Confirm = styled.div``;
-
-export const Cancel = styled.div``;
+export const Cancel = styled(BsX)``;
 
 export const Tools = styled.div`
   flex-direction: column;

@@ -6,7 +6,9 @@ import { CreateUserlistContainer } from "../../containers";
 import { useProcessContext } from "../../context";
 import { useList } from "../../hooks";
 import theme from "../../theme/theme";
+import { createUserlist } from "../../utils";
 
+jest.mock("./../../utils", () => ({ createUserlist: jest.fn() }));
 jest.mock("./../../context", () => ({ useProcessContext: jest.fn() }));
 jest.mock("./../../hooks", () => ({ useList: jest.fn() }));
 
@@ -22,16 +24,24 @@ function renderComponent(props) {
 
 describe("Create userlist container", () => {
   const setList = jest.fn();
-  it("renders basic content", () => {
+
+  beforeEach(() => {
     useProcessContext.mockReturnValue([{ processing: false }]);
     useList.mockReturnValue([setList]);
+  });
 
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it("renders basic content", () => {
     const { getByTestId, getByText, getByPlaceholderText } = renderComponent({
       loading: true,
       lists: {},
     });
 
     expect(getByTestId(/create-userlist-inner/i)).toBeTruthy();
+    expect(getByTestId(/create-userlist-spinner/i)).toBeTruthy();
     expect(getByText(/create new list/i)).toBeTruthy();
     expect(getByText(/confirm/i)).toBeTruthy();
     expect(getByPlaceholderText(/enter a name/i)).toBeTruthy();
@@ -41,9 +51,6 @@ describe("Create userlist container", () => {
   });
 
   it("contains correctly working input", async () => {
-    useProcessContext.mockReturnValue([{ processing: false }]);
-    useList.mockReturnValue([setList]);
-
     const { getByPlaceholderText, getByDisplayValue } = renderComponent({
       loading: true,
       lists: {},
@@ -59,5 +66,71 @@ describe("Create userlist container", () => {
     });
 
     expect(getByDisplayValue(/dummy input text/i)).toBeTruthy();
+  });
+
+  it("contains correctly working create userlist handler", async () => {
+    createUserlist.mockReturnValue({ name: "dummy name" });
+
+    const { getByText, getByPlaceholderText } = renderComponent({
+      loading: false,
+      lists: { userlists: [] },
+    });
+
+    expect(setList).not.toHaveBeenCalled();
+
+    await act(async () => {
+      userEvent.click(getByText(/confirm/i));
+    });
+
+    expect(setList).not.toHaveBeenCalled();
+
+    await act(async () => {
+      fireEvent.change(getByPlaceholderText(/enter a name/i), {
+        target: { value: "dummy too long name" },
+      });
+    });
+
+    expect(setList).not.toHaveBeenCalled();
+
+    await act(async () => {
+      fireEvent.change(getByPlaceholderText(/enter a name/i), {
+        target: { value: "dummy name" },
+      });
+    });
+
+    await act(async () => {
+      userEvent.click(getByText(/confirm/i));
+    });
+
+    expect(setList).toHaveBeenCalled();
+    expect(setList).toHaveBeenCalledTimes(1);
+    expect(setList).toHaveBeenCalledWith([{ name: "dummy name" }]);
+  });
+
+  it("do not creating new list with maximum amount of userlists", async () => {
+    const { getByText, getByPlaceholderText } = renderComponent({
+      loading: false,
+      lists: { userlists: [{}, {}, {}, {}, {}, {}, {}] },
+    });
+
+    expect(setList).not.toHaveBeenCalled();
+
+    await act(async () => {
+      userEvent.click(getByText(/confirm/i));
+    });
+
+    expect(setList).not.toHaveBeenCalled();
+
+    await act(async () => {
+      fireEvent.change(getByPlaceholderText(/enter a name/i), {
+        target: { value: "dummy  name" },
+      });
+    });
+
+    await act(async () => {
+      userEvent.click(getByText(/confirm/i));
+    });
+
+    expect(setList).not.toHaveBeenCalled();
   });
 });

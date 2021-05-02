@@ -48,7 +48,10 @@ export default function CreateUserlistContainer({ loading, lists }) {
             >
               Confirm
             </CreateUserlist.Confirm>
-            <CreateUserlist.Loading visible={disabled} />
+            <CreateUserlist.Loading
+              visible={disabled}
+              data-testid="create-userlist-spinner"
+            />
           </CreateUserlist.Row>
         </CreateUserlist.Header>
         <CreateUserlist.Info error={error && 1}>

@@ -181,42 +181,38 @@ describe("Details panel container", () => {
 
     expect(doEstimate).toHaveBeenCalled();
     expect(doEstimate).toHaveBeenCalledTimes(1);
-    expect(doEstimate).toHaveBeenLastCalledWith({
-      votes: [
-        {
-          date: new Date(0),
-          id: 123,
-          popularity: 1,
-          release_date: "2100-10-10",
-          title: "dummy title",
-          type: "movie",
-          value: 5,
-          vote_average: 8.8,
-          vote_count: 1000,
-        },
-      ],
-    });
+    expect(doEstimate).toHaveBeenLastCalledWith([
+      {
+        date: new Date(0),
+        id: 123,
+        popularity: 1,
+        release_date: "2100-10-10",
+        title: "dummy title",
+        type: "movie",
+        value: 5,
+        vote_average: 8.8,
+        vote_count: 1000,
+      },
+    ]);
 
     await act(async () => {
       userEvent.click(stars[7]);
     });
 
     expect(doEstimate).toHaveBeenCalledTimes(2);
-    expect(doEstimate).toHaveBeenLastCalledWith({
-      votes: [
-        {
-          date: new Date(0),
-          id: 123,
-          popularity: 1,
-          release_date: "2100-10-10",
-          title: "dummy title",
-          type: "movie",
-          value: 8,
-          vote_average: 8.8,
-          vote_count: 1000,
-        },
-      ],
-    });
+    expect(doEstimate).toHaveBeenLastCalledWith([
+      {
+        date: new Date(0),
+        id: 123,
+        popularity: 1,
+        release_date: "2100-10-10",
+        title: "dummy title",
+        type: "movie",
+        value: 8,
+        vote_average: 8.8,
+        vote_count: 1000,
+      },
+    ]);
 
     await act(async () => {
       userEvent.click(getByText(/delete/i));
@@ -224,6 +220,6 @@ describe("Details panel container", () => {
 
     expect(doEstimate).toHaveBeenCalled();
     expect(doEstimate).toHaveBeenCalledTimes(3);
-    expect(doEstimate).toHaveBeenCalledWith({ votes: [] });
+    expect(doEstimate).toHaveBeenCalledWith([]);
   });
 });

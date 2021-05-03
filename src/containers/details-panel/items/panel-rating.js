@@ -19,16 +19,14 @@ export default function PanelRating({ data, votes }) {
   const metaExist = data?.vote_count;
 
   function voteElement(value) {
-    doEstimate({
-      votes: [
-        ...votes.filter((movie) => movie.id !== data.id),
-        createVote(data, value, direction),
-      ],
-    });
+    doEstimate([
+      ...votes.filter((movie) => movie.id !== data.id),
+      createVote(data, value, direction),
+    ]);
   }
 
   function unvoteElement() {
-    doEstimate({ votes: votes.filter((item) => item.id !== +slug) });
+    doEstimate(votes.filter((item) => item.id !== +slug));
   }
 
   return (

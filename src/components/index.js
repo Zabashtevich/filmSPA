@@ -26,3 +26,4 @@ export { default as CollectionParts } from "./collection-parts";
 export { default as Nav } from "./nav";
 export { default as Userlist } from "./userlist";
 export { default as CreateUserlist } from "./create-userlist";
+export { default as Widget } from "./widget";

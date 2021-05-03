@@ -18,6 +18,6 @@ export default function useFirestore(nickname) {
 
     return () => unsubscribe();
   }, [nickname]);
-  console.log(data);
+
   return [loading, data];
 }

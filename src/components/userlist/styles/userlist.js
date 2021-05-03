@@ -57,6 +57,7 @@ export const List = styled.div`
 export const Input = styled.input`
   font-family: ${({ theme }) => theme.font.aux.family};
   font-size: ${({ theme }) => theme.font.aux.size.big};
+  transition: 300ms;
   padding: 0.2rem;
   outline: none;
   width: 350px;
@@ -78,7 +79,17 @@ export const Input = styled.input`
 export const Wrapper = styled.div`
   font-size: ${({ theme }) => theme.font.aux.size.large};
   margin-right: 5rem;
+  visibility: hidden;
+  transition: 300ms;
   display: flex;
+  opacity: 0;
+
+  ${({ visible }) =>
+    visible &&
+    css`
+      visibility: visible;
+      opacity: 1;
+    `};
 `;
 
 export const Button = styled.button`

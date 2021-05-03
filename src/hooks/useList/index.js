@@ -10,7 +10,7 @@ export default function useList(listname) {
 
   const [{ processing }, setProcessProps] = useProcessContext();
   const [, { showErrorModal }] = useModalContext();
-
+  console.log(array);
   useEffect(() => {
     if (array && !loggedIn) {
       showErrorModal("Please, login");

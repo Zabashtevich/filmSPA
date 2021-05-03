@@ -29,7 +29,11 @@ export default function UserlistContainer() {
       )}
       {bar.activeCategory === "userlists" && (
         <UserlistItem
-          list={lists.userlists.find((item) => item.id === bar.activeList)}
+          lists={lists}
+          activeList={lists.userlists.find(
+            (item) => item.id === bar.activeList,
+          )}
+          setBar={setBar}
         />
       )}
     </Userlist>

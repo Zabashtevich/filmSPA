@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 
 import {
@@ -12,9 +13,10 @@ import {
 import { useFetch } from "../hooks";
 
 export default function DetailsPage() {
+  const { userDataLoading, lists } = useSelector((state) => state.userData);
   const { direction, slug } = useParams();
 
-  const [data, loading] = useFetch({
+  const [data, dataLoading] = useFetch({
     type: direction,
     target: slug,
     querries: true,
@@ -25,8 +27,12 @@ export default function DetailsPage() {
       <HeaderContainer />
       <ProcessContainer />
       <ModalContainer />
-      <DetailsPosterContainer data={data} dataLoading={loading} />
-      <DetailsPanelContainer data={data} dataLoading={loading} />
+      <DetailsPosterContainer
+        data={data}
+        loading={dataLoading || userDataLoading}
+        lists={lists}
+      />
+      <DetailsPanelContainer data={data} dataLoading={dataLoading} />
       <FooterContainer />
     </>
   );

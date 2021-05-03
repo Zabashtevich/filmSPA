@@ -2,7 +2,7 @@ import React from "react";
 
 import { Widget } from "../../components";
 
-export default function WidgetContainet({ lists }) {
+export default function WidgetContainer({ lists }) {
   return (
     <Widget>
       <Widget.Title>Add to list</Widget.Title>

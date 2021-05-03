@@ -9,13 +9,14 @@ import {
   PosterDetailsRowsSkeleton,
   PosterDetailsSkeleton,
 } from "../../components/skeleton";
+import { WidgetContainer } from "../";
 
-export default function DetailsPosterContainer({ data, dataLoading }) {
+export default function DetailsPosterContainer({ data, loading, lists }) {
   const { direction } = useParams();
 
   return (
     <DetailsPoster>
-      <DetailsPoster.Inner visible={!dataLoading}>
+      <DetailsPoster.Inner visible={!loading}>
         <DetailsPoster.Wallpaper
           src={data?.backdrop_path}
           data-testid="details-wallpaper"
@@ -23,24 +24,27 @@ export default function DetailsPosterContainer({ data, dataLoading }) {
       </DetailsPoster.Inner>
 
       <SwitchTransition mode="out-in">
-        <CSSTransition key={dataLoading} classNames="fade" timeout={500}>
+        <CSSTransition key={loading} classNames="fade" timeout={500}>
           <DetailsPoster.Column type={"poster"}>
-            {dataLoading && <PosterDetailsSkeleton />}
-            {!dataLoading && (
-              <DetailsPoster.Poster
-                src={data?.poster_path}
-                data-testid="details-poster"
-              />
+            {loading && <PosterDetailsSkeleton />}
+            {!loading && (
+              <>
+                <DetailsPoster.Poster
+                  src={data?.poster_path}
+                  data-testid="details-poster"
+                />
+                <WidgetContainer lists={lists} />
+              </>
             )}
           </DetailsPoster.Column>
         </CSSTransition>
       </SwitchTransition>
 
       <SwitchTransition mode="out-in">
-        <CSSTransition key={dataLoading} classNames="fade" timeout={500}>
+        <CSSTransition key={loading} classNames="fade" timeout={500}>
           <DetailsPoster.Column type={"content"}>
-            {dataLoading && <PosterDetailsRowsSkeleton />}
-            {!dataLoading && (
+            {loading && <PosterDetailsRowsSkeleton />}
+            {!loading && (
               <DetailsPosterRows data={data} direction={direction} />
             )}
           </DetailsPoster.Column>
@@ -48,11 +52,11 @@ export default function DetailsPosterContainer({ data, dataLoading }) {
       </SwitchTransition>
 
       <SwitchTransition mode="out-in">
-        <CSSTransition key={dataLoading} classNames="fade" timeout={500}>
+        <CSSTransition key={loading} classNames="fade" timeout={500}>
           <DetailsPoster.Column type={"cast"}>
             <DetailsPoster.Subtitle>Cast:</DetailsPoster.Subtitle>
-            {dataLoading && <CastListSkeleton />}
-            {!dataLoading &&
+            {loading && <CastListSkeleton />}
+            {!loading &&
               data?.credits?.cast.slice(0, 10).map(({ name, id }) => (
                 <DetailsPoster.Link key={id} to={`/actor/${id}`}>
                   {name}

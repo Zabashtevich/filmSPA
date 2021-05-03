@@ -14,7 +14,7 @@ export default function UserlistFavorite({ loading, lists }) {
   }, [loading]);
 
   return (
-    <Userlist.Container>
+    <>
       <Userlist.Title>Your favorite movies</Userlist.Title>
       {!loading && lists.favorites.length > 0 && <CreditsContainer />}
       {!loading && lists.favorites.length === 0 && (
@@ -22,6 +22,6 @@ export default function UserlistFavorite({ loading, lists }) {
           You did not add any movies to list
         </Userlist.Placeholder>
       )}
-    </Userlist.Container>
+    </>
   );
 }

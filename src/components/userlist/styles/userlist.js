@@ -15,6 +15,7 @@ export const Outer = styled.div`
 `;
 
 export const Container = styled.div`
+  ${({ theme }) => theme.animations.fade()};
   flex-direction: column;
   align-items: center;
   overflow-y: scroll;

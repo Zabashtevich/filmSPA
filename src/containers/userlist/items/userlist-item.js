@@ -1,14 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useList } from "./../../../hooks";
 import { Userlist } from "./../../../components";
-import { useModalContext } from "../../../context";
+import { useCreditsContext, useModalContext } from "../../../context";
+import { CreditsContainer } from "./../../";
 
 export default function UserlistItem({ lists, activeList, setBar }) {
   const [, { showErrorModal, showConfirmModal }] = useModalContext();
+  const [, setCreditsProps] = useCreditsContext();
+
   const [inputValue, setInputValue] = useState(activeList.name);
-  const [setList] = useList("userlists");
   const [disabled, setDisabled] = useState(true);
+
+  const [setList] = useList("userlists");
+
+  const creditsActive = activeList.content.length > 0;
 
   function renameListHandler() {
     if (inputValue.length < 5 && inputValue.length > 10) {
@@ -35,15 +41,20 @@ export default function UserlistItem({ lists, activeList, setBar }) {
     });
   }
 
+  useEffect(() => {
+    if (creditsActive) {
+      setCreditsProps({ loading: false, items: activeList.content });
+    }
+  }, [creditsActive]);
+
   return (
-    <Userlist.Container>
+    <>
       <Userlist.Title>{`Your list ${activeList.name}`}</Userlist.Title>
       <Userlist.Header>
         <Userlist.Thumbnail />
         <Userlist.List>
           <Userlist.Input
             disabled={disabled}
-            value={activeList.name}
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
           />
@@ -68,6 +79,12 @@ export default function UserlistItem({ lists, activeList, setBar }) {
           </Userlist.Inner>
         </Userlist.Tools>
       </Userlist.Header>
-    </Userlist.Container>
+      {!creditsActive && (
+        <Userlist.Placeholder>
+          You did not add any movies to list
+        </Userlist.Placeholder>
+      )}
+      {creditsActive && <CreditsContainer />}
+    </>
   );
 }

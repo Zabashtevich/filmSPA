@@ -21,21 +21,25 @@ export default function UserlistContainer() {
         setBar={setBar}
         bar={bar}
       />
-      {bar.activeCategory === "createList" && (
-        <CreateUserlistContainer loading={userDataLoading} lists={lists} />
-      )}
-      {bar.activeCategory === "favorites" && (
-        <UserlistFavorite loading={userDataLoading} lists={lists} />
-      )}
-      {bar.activeCategory === "userlists" && (
-        <UserlistItem
-          lists={lists}
-          activeList={lists.userlists.find(
-            (item) => item.id === bar.activeList,
-          )}
-          setBar={setBar}
-        />
-      )}
+      <Userlist.Container
+        transitionKey={`${bar.activeCategory + bar.activeList}`}
+      >
+        {bar.activeCategory === "createList" && (
+          <CreateUserlistContainer loading={userDataLoading} lists={lists} />
+        )}
+        {bar.activeCategory === "favorites" && (
+          <UserlistFavorite loading={userDataLoading} lists={lists} />
+        )}
+        {bar.activeCategory === "userlists" && (
+          <UserlistItem
+            lists={lists}
+            activeList={lists.userlists.find(
+              (item) => item.id === bar.activeList,
+            )}
+            setBar={setBar}
+          />
+        )}
+      </Userlist.Container>
     </Userlist>
   );
 }

@@ -6,9 +6,10 @@ export default function NavContainer({ loading, lists, setBar, bar }) {
   const { activeCategory, activeList } = bar;
 
   return (
-    <Nav>
+    <Nav data-testid="nav-outer">
       <Nav.Title>Side Menu</Nav.Title>
       <Nav.Category
+        data-testid="nav-create-list"
         selected={activeCategory === "createList" && 1}
         onClick={() =>
           setBar({ activeCategory: "createList", activeList: null })
@@ -33,6 +34,7 @@ export default function NavContainer({ loading, lists, setBar, bar }) {
         <Nav.Container>
           {lists.userlists.map((item) => (
             <Nav.Category
+              key={item.id}
               selected={activeList === item.id && 1}
               onClick={() =>
                 setBar({ activeCategory: "userlists", activeList: item.id })
@@ -45,11 +47,11 @@ export default function NavContainer({ loading, lists, setBar, bar }) {
         </Nav.Container>
       )}
       <Nav.Footer>
-        <Nav.Link>
+        <Nav.Link to="/">
           <Nav.Chain />
           <Nav.Value>Home</Nav.Value>
         </Nav.Link>
-        <Nav.Link>
+        <Nav.Link to="/account">
           <Nav.Chain />
           <Nav.Value>Account</Nav.Value>
         </Nav.Link>

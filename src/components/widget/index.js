@@ -1,4 +1,5 @@
 import React from "react";
+import { CSSTransition } from "react-transition-group";
 
 import {
   Outer,
@@ -24,8 +25,18 @@ Widget.Arrow = function WidgetArrow({ children, ...rest }) {
   return <Arrow {...rest} />;
 };
 
-Widget.Popup = function WidgetPopup({ children, ...rest }) {
-  return <Popup {...rest}>{children}</Popup>;
+Widget.Popup = function WidgetPopup({ visible, children, ...rest }) {
+  return (
+    <CSSTransition
+      in={visible}
+      classNames="fade"
+      timeout={500}
+      mountOnEnter
+      unmountOnExit
+    >
+      <Popup {...rest}>{children}</Popup>
+    </CSSTransition>
+  );
 };
 
 Widget.Subtitle = function WidgetSubtitle({ children, ...rest }) {

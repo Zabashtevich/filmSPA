@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Widget } from "../../components";
 
 export default function WidgetContainer({ lists }) {
+  const [visible, setVisible] = useState(false);
+
   return (
-    <Widget>
+    <Widget onClick={() => setVisible((prev) => !prev)}>
       <Widget.Title>Add to list</Widget.Title>
-      <Widget.Arrow />
-      <Widget.Popup>
+      <Widget.Arrow rotated={visible && 1} />
+      <Widget.Popup visible={visible} onClick={(e) => e.stopPropagation()}>
         <Widget.Item>
           <Widget.Name>Favorites</Widget.Name>
           <Widget.Heart />

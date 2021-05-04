@@ -16,7 +16,12 @@ export default function WidgetContainer({ lists, data }) {
         <Widget.Subtitle>Your lists:</Widget.Subtitle>
         <Widget.Container>
           {lists.userlists.map((item) => (
-            <WidgetList key={item.id} item={item} data={data} lists={lists} />
+            <WidgetList
+              key={item.id}
+              item={item}
+              data={data}
+              userlists={lists.userlists}
+            />
           ))}
         </Widget.Container>
       </Widget.Popup>

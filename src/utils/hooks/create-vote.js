@@ -1,4 +1,4 @@
-export default function createVote(item, value, type = "movie") {
+export default function createVote(item, value = null, type = "movie") {
   return {
     date: Date.now(),
     id: item.id,

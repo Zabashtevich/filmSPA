@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 
+import { useList } from "./../../../hooks";
 import { Widget } from "../../../components";
 import { checkMovieInList } from "../../../utils";
 
-export default function WidgetList({ item, data }) {
+export default function WidgetList({ item, data, lists }) {
+  const [setList] = useList("userlists");
   const [rated, setRated] = useState(false);
 
   useEffect(() => {
@@ -15,7 +17,7 @@ export default function WidgetList({ item, data }) {
   }, [data, item]);
 
   return (
-    <Widget.Item>
+    <Widget.Item onClick={estimateHandler}>
       <Widget.Name>{item.name}</Widget.Name>
       <Widget.Heart visible={rated} />
     </Widget.Item>

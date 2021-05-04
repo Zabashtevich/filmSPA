@@ -55,6 +55,16 @@ Widget.Name = function WidgetName({ children, ...rest }) {
   return <Name {...rest}>{children}</Name>;
 };
 
-Widget.Heart = function WidgetHeart({ children, ...rest }) {
-  return <Heart {...rest} />;
+Widget.Heart = function WidgetHeart({ visible, children, ...rest }) {
+  return (
+    <CSSTransition
+      in={visible}
+      classNames="fade"
+      timeout={500}
+      mountOnEnter
+      unmountOnExit
+    >
+      <Heart {...rest} />
+    </CSSTransition>
+  );
 };

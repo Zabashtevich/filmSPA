@@ -68,6 +68,7 @@ export const Item = styled.div`
 export const Name = styled.span``;
 
 export const Heart = styled(BsHeartFill)`
+  ${({ theme }) => theme.animations.fade()};
   transform: translateY(-50%);
   position: absolute;
   color: pink;

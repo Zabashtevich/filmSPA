@@ -33,7 +33,7 @@ export default function DetailsPosterContainer({ data, loading, lists }) {
                   src={data?.poster_path}
                   data-testid="details-poster"
                 />
-                <WidgetContainer lists={lists} />
+                <WidgetContainer lists={lists} data={data} />
               </>
             )}
           </DetailsPoster.Column>

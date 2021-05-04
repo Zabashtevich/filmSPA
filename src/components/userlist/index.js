@@ -5,7 +5,6 @@ import {
   Outer,
   Container,
   Title,
-  Placeholder,
   Header,
   Thumbnail,
   List,
@@ -40,10 +39,6 @@ Userlist.Container = function UserlistContainer({
 
 Userlist.Title = function UserlistTitle({ children, ...rest }) {
   return <Title {...rest}>{children}</Title>;
-};
-
-Userlist.Placeholder = function UserlistPlaceholder({ children, ...rest }) {
-  return <Placeholder {...rest}>{children}</Placeholder>;
 };
 
 //description

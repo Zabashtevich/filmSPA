@@ -33,6 +33,7 @@ export default function CreditsContainer() {
               {loading &&
                 range(1, 25).map((item) => <CreditsSkeleton key={item} />)}
               {!loading &&
+                items.length &&
                 items
                   .slice(active * 25 - 25, active * 25)
                   .map((item, index) => {
@@ -40,6 +41,9 @@ export default function CreditsContainer() {
                       <CreditsItem key={item.id} item={item} index={index} />
                     );
                   })}
+              {!loading && !items.length && (
+                <Credits.Placeholder>Credits is empty</Credits.Placeholder>
+              )}
               <PaginContainer />
             </Credits.Inner>
           </CSSTransition>

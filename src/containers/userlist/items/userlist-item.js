@@ -14,8 +14,6 @@ export default function UserlistItem({ lists, activeList, setBar }) {
 
   const [setList] = useList("userlists");
 
-  const creditsActive = activeList.content.length > 0;
-
   function renameListHandler() {
     if (inputValue.length < 5 && inputValue.length > 10) {
       return showErrorModal("Your list name must be min 5 and max 10 symbols");
@@ -42,10 +40,8 @@ export default function UserlistItem({ lists, activeList, setBar }) {
   }
 
   useEffect(() => {
-    if (creditsActive) {
-      setCreditsProps({ loading: false, items: activeList.content });
-    }
-  }, [creditsActive]);
+    setCreditsProps({ loading: false, items: activeList.content });
+  }, []);
 
   return (
     <>
@@ -79,12 +75,7 @@ export default function UserlistItem({ lists, activeList, setBar }) {
           </Userlist.Inner>
         </Userlist.Tools>
       </Userlist.Header>
-      {!creditsActive && (
-        <Userlist.Placeholder>
-          You did not add any movies to list
-        </Userlist.Placeholder>
-      )}
-      {creditsActive && <CreditsContainer />}
+      <CreditsContainer />
     </>
   );
 }

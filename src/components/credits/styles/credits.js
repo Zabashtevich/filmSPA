@@ -172,3 +172,9 @@ export const Star = styled(BsFillStarFill)`
 `;
 
 export const Close = styled(BsX)``;
+
+export const Placeholder = styled.span`
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
+  font-size: ${({ theme }) => theme.font.aux.size.big};
+  color: rgba(0, 0, 0, 0.5);
+`;

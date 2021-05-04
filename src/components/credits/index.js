@@ -16,6 +16,7 @@ import {
   Star,
   Container,
   Close,
+  Placeholder,
 } from "./styles/credits";
 
 export default function Credits({ children, ...rest }) {
@@ -83,4 +84,8 @@ Credits.Container = function CreditsContainer({ visible, children, ...rest }) {
 
 Credits.Close = function CreditsClose({ children, ...rest }) {
   return <Close {...rest} />;
+};
+
+Credits.Placeholder = function CreditsPlaceholder({ children, ...rest }) {
+  return <Placeholder {...rest}>{children}</Placeholder>;
 };

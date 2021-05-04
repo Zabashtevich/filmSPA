@@ -69,7 +69,7 @@ export default function HeaderContainer() {
                   >
                     <Header.Nickname>{profile.displayName}</Header.Nickname>
                     <Header.Mail>{profile.email}</Header.Mail>
-                    <Header.Item to="/acount">to Account</Header.Item>
+                    <Header.Item to="/account">to Account</Header.Item>
                     <Header.Item to="/account/userlists">
                       to Userlists
                     </Header.Item>

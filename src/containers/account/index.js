@@ -1,25 +1,21 @@
 import React from "react";
-import { useSelector } from "react-redux";
 
 import { Account } from "../../components";
-import { FilterContainer } from "../";
+import { CreditsContainer, FilterContainer } from "../";
 
-export default function AccountContainer() {
-  const { profile, userDataLoading, loggedIn } = useSelector(
-    (state) => state.userData,
-  );
-
+export default function AccountContainer({ loading, profile }) {
   return (
     <Account data-testid="account-container">
-      {!userDataLoading && loggedIn && (
+      {!loading && (
         <>
           <Account.Column>
             <Account.Poster src={profile?.photoURL} alt="profile image" />
-            <Account.Nickname>{profile?.displayName}</Account.Nickname>
+            <Account.Nickname>{profile.displayName}</Account.Nickname>
           </Account.Column>
           <Account.Content>
             <Account.Title>YOUR PROFILE ACTIVITY</Account.Title>
             <FilterContainer />
+            <CreditsContainer />
           </Account.Content>
         </>
       )}

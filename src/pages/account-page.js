@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 import {
   AccountContainer,
@@ -7,10 +8,12 @@ import {
 } from "../containers";
 
 export default function AccountPage() {
+  const { userDataLoading, profile } = useSelector((state) => state.userData);
+
   return (
     <>
       <HeaderContainer />
-      <AccountContainer />
+      <AccountContainer loading={userDataLoading} profile={profile} />
       <FooterContainer />
     </>
   );

@@ -8,12 +8,18 @@ import {
 } from "../containers";
 
 export default function AccountPage() {
-  const { userDataLoading, profile } = useSelector((state) => state.userData);
+  const { userDataLoading, profile, lists } = useSelector(
+    (state) => state.userData,
+  );
 
   return (
     <>
       <HeaderContainer />
-      <AccountContainer loading={userDataLoading} profile={profile} />
+      <AccountContainer
+        loading={userDataLoading}
+        profile={profile}
+        votes={lists.votes}
+      />
       <FooterContainer />
     </>
   );

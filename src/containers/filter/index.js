@@ -3,7 +3,9 @@ import React from "react";
 import { range } from "./../../utils";
 import { Filter } from "../../components";
 
-export default function FilterContainer() {
+export default function FilterContainer({ filterSettings, setFilterSettings }) {
+  const { sortBy, type, period } = filterSettings;
+
   return (
     <Filter data-testid="filter-container">
       <Filter.Title>Customize your activity list</Filter.Title>
@@ -18,7 +20,12 @@ export default function FilterContainer() {
               { name: "AMOUNT OF VOTES", value: "voteCount" },
               { name: "VOTE AVERAGE", value: "voteAverage" },
             ].map((item) => (
-              <Filter.Value key={item.value}>{item.name}</Filter.Value>
+              <Filter.Value
+                key={item.value}
+                selected={sortBy === item.value && 1}
+              >
+                {item.name}
+              </Filter.Value>
             ))}
           </Filter.Row>
           <Filter.Row>
@@ -28,7 +35,12 @@ export default function FilterContainer() {
               { name: "MOVIE", value: "movie" },
               { name: "TV", value: "tv" },
             ].map((item) => (
-              <Filter.Value key={item.value}>{item.name}</Filter.Value>
+              <Filter.Value
+                key={item.value}
+                selected={type === item.value && 1}
+              >
+                {item.name}
+              </Filter.Value>
             ))}
           </Filter.Row>
           <Filter.Row>
@@ -44,12 +56,12 @@ export default function FilterContainer() {
             </Filter.Select>
             <Filter.Subtitle>to</Filter.Subtitle>
             <Filter.Select>
-              {/* <Filter.Option>all</Filter.Option>
-                    {range(offset.date, offset.amount).map((item) => (
-                      <Filter.Option key={item} value={item}>
-                        {item}
-                      </Filter.Option>
-                    ))} */}
+              <Filter.Option>all</Filter.Option>
+              {range(1950, 72).map((item) => (
+                <Filter.Option key={item} value={item}>
+                  {item}
+                </Filter.Option>
+              ))}
             </Filter.Select>
           </Filter.Row>
         </Filter.Wrapper>

@@ -7,6 +7,7 @@ import {
   Nickname,
   Content,
   Title,
+  Placeholder,
 } from "./styles/account";
 
 export default function Account({ children, ...rest }) {
@@ -31,4 +32,8 @@ Account.Content = function AccountContent({ children, ...rest }) {
 
 Account.Title = function AccountTitle({ children, ...rest }) {
   return <Title>{children}</Title>;
+};
+
+Account.Placeholder = function AccountPlaceholder({ children, ...rest }) {
+  return <Placeholder>{children}</Placeholder>;
 };

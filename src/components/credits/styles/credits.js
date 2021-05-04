@@ -26,6 +26,7 @@ export const Title = styled.span`
 export const Inner = styled.div`
   ${({ theme }) => theme.animations.fade()};
   flex-direction: column;
+  align-items: center;
   min-height: 800px;
   display: flex;
   width: 100%;
@@ -177,4 +178,5 @@ export const Placeholder = styled.span`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   font-size: ${({ theme }) => theme.font.aux.size.big};
   color: rgba(0, 0, 0, 0.5);
+  margin-top: 2rem;
 `;

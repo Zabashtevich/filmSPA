@@ -14,10 +14,12 @@ export default function AccountContainer({ loading, profile, votes }) {
   });
 
   useEffect(() => {
-    setCredits({
-      loading: false,
-      items: getFiltredArray(votes, filterSettings),
-    });
+    if (!loading) {
+      setCredits({
+        loading: false,
+        items: getFiltredArray(votes, filterSettings),
+      });
+    }
   }, [filterSettings]);
 
   return (

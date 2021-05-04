@@ -30,7 +30,8 @@ export { default as getOffsetStart } from "./pagin/get-offset-start";
 
 export { default as validateAvatarUrl } from "./review/validate-avatar-url";
 
-export { default as getFiltredArray } from "./filter/getFiltredArray";
+export { default as getFiltredArray } from "./filter/get-filtred-array";
+export { default as calculateOffset } from "./filter/calculate-offset";
 
 export { default as getErrorList } from "./modal/get-error-list";
 

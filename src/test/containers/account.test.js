@@ -1,63 +1,54 @@
 import { render } from "@testing-library/react";
-import { Provider } from "react-redux";
-import { createStore } from "redux";
 import { ThemeProvider } from "styled-components";
-import { combineReducers } from "redux";
 import "@testing-library/jest-dom";
 
 import { AccountContainer } from "../../containers";
-import userData from "../../reducers/user-data";
-import theme from "../../theme/theme";
+import { useCreditsContext } from "../../context";
+import theme from "./../../theme/theme";
 
-function renderWithRedux({
-  initialState,
-  store = createStore(combineReducers({ userData }), initialState),
-} = {}) {
+jest.mock("./../../containers/credits", () => () => <div />);
+jest.mock("./../../containers/filter", () => () => <div />);
+jest.mock("./../../context", () => ({ useCreditsContext: jest.fn() }));
+
+function renderComponent(props) {
   return {
     ...render(
       <ThemeProvider theme={theme}>
-        <Provider store={store}>
-          <AccountContainer />
-        </Provider>
+        <AccountContainer {...props} />
       </ThemeProvider>,
     ),
-    store,
   };
 }
 
-// jest.mock("../../containers/credits", () => () => <div />);
-jest.mock("../../containers/filter", () => () => <div />);
-
 describe("Account container", () => {
-  it("correctly mounting while profile loading", () => {
-    const loadingState = {
-      userDataLoading: true,
-      userDataExist: false,
-      loggedIn: false,
+  const setCreditsProps = jest.fn();
+
+  it("is not rendering on loading", () => {
+    useCreditsContext.mockReturnValue([, setCreditsProps]);
+
+    const { getByTestId, queryByTestId } = renderComponent({
+      loading: true,
       profile: null,
-      lists: { userlists: null, favorites: null, votes: null },
-    };
-    const { getByTestId } = renderWithRedux({
-      initialState: { userData: { ...loadingState } },
+      votes: null,
     });
 
-    expect(getByTestId("account-container")).toBeTruthy();
+    expect(getByTestId(/account-container/i)).toBeTruthy();
+    expect(queryByTestId(/account-column/i)).toBeNull();
   });
 
-  it("render content after sucess loading", () => {
-    const loadingState = {
-      userDataLoading: false,
-      userDataExist: true,
-      loggedIn: true,
-      profile: { displayName: "dummy name", photoURL: "/dummysrc" },
-      lists: { userlists: null, favorites: null, votes: null },
-    };
-    const { getByText, getByRole } = renderWithRedux({
-      initialState: { userData: { ...loadingState } },
+  it("renders poster and content columns", () => {
+    useCreditsContext.mockReturnValue([, setCreditsProps]);
+
+    const { getByTestId, getByRole, getByText } = renderComponent({
+      loading: false,
+      profile: { displayName: "dummy name", photoURL: "www.dummysrc.com" },
+      votes: [],
     });
 
+    expect(getByTestId(/account-column/i)).toBeTruthy();
+    expect(getByRole("img")).toBeTruthy();
+    expect(getByRole("img")).toHaveAttribute("src", "www.dummysrc.com");
+    expect(getByText(/dummy name/i)).toBeTruthy();
     expect(getByText(/your profile activity/i)).toBeTruthy();
-    expect(getByRole("img")).toHaveAttribute("src", "/dummysrc");
-    expect(getByText("dummy name")).toBeTruthy();
   });
 });

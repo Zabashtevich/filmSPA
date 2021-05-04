@@ -14,7 +14,7 @@ export default function Account({ children, ...rest }) {
 }
 
 Account.Column = function AccountColumn({ children, ...rest }) {
-  return <Column>{children}</Column>;
+  return <Column {...rest}>{children}</Column>;
 };
 
 Account.Poster = function AccountPoster({ ...rest }) {
@@ -22,13 +22,13 @@ Account.Poster = function AccountPoster({ ...rest }) {
 };
 
 Account.Nickname = function AccountNickname({ children, ...rest }) {
-  return <Nickname>{children}</Nickname>;
+  return <Nickname {...rest}>{children}</Nickname>;
 };
 
 Account.Content = function AccountContent({ children, ...rest }) {
-  return <Content>{children}</Content>;
+  return <Content {...rest}>{children}</Content>;
 };
 
 Account.Title = function AccountTitle({ children, ...rest }) {
-  return <Title>{children}</Title>;
+  return <Title {...rest}>{children}</Title>;
 };

@@ -26,7 +26,7 @@ export default function AccountContainer({ loading, profile, votes }) {
     <Account data-testid="account-container">
       {!loading && (
         <>
-          <Account.Column>
+          <Account.Column data-testid="account-column">
             <Account.Poster src={profile?.photoURL} alt="profile image" />
             <Account.Nickname>{profile.displayName}</Account.Nickname>
           </Account.Column>

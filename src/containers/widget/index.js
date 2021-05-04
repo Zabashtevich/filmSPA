@@ -11,7 +11,11 @@ export default function WidgetContainer({ lists, data }) {
     <Widget onClick={() => setVisible((prev) => !prev)}>
       <Widget.Title>Add to list</Widget.Title>
       <Widget.Arrow rotated={visible ? 1 : 0} />
-      <Widget.Popup visible={visible} onClick={(e) => e.stopPropagation()}>
+      <Widget.Popup
+        visible={visible}
+        onClick={(e) => e.stopPropagation()}
+        data-testid="widget-popup"
+      >
         <WidgetFavorite favorites={lists.favorites} data={data} />
         <Widget.Subtitle>Your lists:</Widget.Subtitle>
         <Widget.Container>

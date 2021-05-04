@@ -2,15 +2,23 @@ import React, { useEffect, useState } from "react";
 
 import { Account } from "../../components";
 import { CreditsContainer, FilterContainer } from "../";
+import { useCreditsContext } from "../../context";
+import { getFiltredArray } from "../../utils";
 
 export default function AccountContainer({ loading, profile, votes }) {
+  const [, setCredits] = useCreditsContext();
   const [filterSettings, setFilterSettings] = useState({
     sortBy: "date",
     type: "all",
     period: { start: "all", end: "all" },
   });
 
-  useEffect(() => {}, [filterSettings]);
+  useEffect(() => {
+    setCredits({
+      loading: false,
+      items: getFiltredArray(votes, filterSettings),
+    });
+  }, [filterSettings]);
 
   return (
     <Account data-testid="account-container">
@@ -26,12 +34,7 @@ export default function AccountContainer({ loading, profile, votes }) {
               filterSettings={filterSettings}
               setFilterSettings={setFilterSettings}
             />
-            {votes.length === 0 && (
-              <Account.Placeholder>
-                You have not any rated movies
-              </Account.Placeholder>
-            )}
-            {votes.length > 0 && <CreditsContainer />}
+            <CreditsContainer />
           </Account.Content>
         </>
       )}

@@ -23,21 +23,28 @@ export default function CreditsContainer() {
   }, [loading]);
 
   return (
-    <Credits data-testid="credits-container">
+    <>
       <Credits.Title>Credits</Credits.Title>
-      <SwitchTransition mode={"out-in"}>
-        <CSSTransition key={loading} classNames="fade" timeout={500}>
-          <Credits.Inner>
-            {loading &&
-              range(1, 25).map((item) => <CreditsSkeleton key={item} />)}
-            {!loading &&
-              items.slice(active * 25 - 25, active * 25).map((item, index) => {
-                return <CreditsItem key={item.id} item={item} index={index} />;
-              })}
-            <PaginContainer />
-          </Credits.Inner>
-        </CSSTransition>
-      </SwitchTransition>
-    </Credits>
+
+      <Credits data-testid="credits-container">
+        <SwitchTransition mode={"out-in"}>
+          <CSSTransition key={loading} classNames="fade" timeout={500}>
+            <Credits.Inner>
+              {loading &&
+                range(1, 25).map((item) => <CreditsSkeleton key={item} />)}
+              {!loading &&
+                items
+                  .slice(active * 25 - 25, active * 25)
+                  .map((item, index) => {
+                    return (
+                      <CreditsItem key={item.id} item={item} index={index} />
+                    );
+                  })}
+              <PaginContainer />
+            </Credits.Inner>
+          </CSSTransition>
+        </SwitchTransition>
+      </Credits>
+    </>
   );
 }

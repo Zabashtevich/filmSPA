@@ -34,10 +34,3 @@ export const Title = styled.span`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   font-size: ${({ theme }) => theme.font.aux.size.large};
 `;
-
-export const Placeholder = styled.span`
-  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
-  font-size: ${({ theme }) => theme.font.aux.size.big};
-  color: rgba(0, 0, 0, 0.5);
-  margin-top: 5rem;
-`;

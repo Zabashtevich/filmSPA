@@ -16,7 +16,7 @@ export default function CreditsContainer() {
     if (!loading) {
       setPagination((prev) => ({
         ...prev,
-        amount: Math.ceil(items.length || 1 / 25),
+        amount: Math.ceil((items.length || 1) / 25),
         loading: false,
       }));
     }

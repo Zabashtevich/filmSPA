@@ -13,7 +13,9 @@ import {
 import { useFetch } from "../hooks";
 
 export default function DetailsPage() {
-  const { userDataLoading, lists } = useSelector((state) => state.userData);
+  const { userDataLoading, lists, loggedIn } = useSelector(
+    (state) => state.userData,
+  );
   const { direction, slug } = useParams();
 
   const [data, dataLoading] = useFetch({
@@ -31,6 +33,7 @@ export default function DetailsPage() {
         data={data}
         loading={dataLoading || userDataLoading}
         lists={lists}
+        loggedIn={loggedIn}
       />
       <DetailsPanelContainer data={data} dataLoading={dataLoading} />
       <FooterContainer />

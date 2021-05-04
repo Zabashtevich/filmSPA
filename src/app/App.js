@@ -61,6 +61,7 @@ function App() {
         />
         <Route path="/trending/:slug" exact component={TrendingPage} />
         <Route path="/collection/:slug" exact component={CollectionPage} />
+        <Route path="/actor/:slug" exact component={ActorPage} />
       </Switch>
     </Router>
   );

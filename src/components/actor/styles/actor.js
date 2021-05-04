@@ -30,6 +30,7 @@ export const Content = styled.div`
 export const Poster = styled.img`
   border-radius: 0.5rem;
   margin-bottom: 1rem;
+  height: 450px;
   width: 300px;
 `;
 

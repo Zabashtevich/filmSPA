@@ -11,7 +11,12 @@ import {
 } from "../../components/skeleton";
 import { WidgetContainer } from "../";
 
-export default function DetailsPosterContainer({ data, loading, lists }) {
+export default function DetailsPosterContainer({
+  data,
+  loading,
+  lists,
+  loggedId,
+}) {
   const { direction } = useParams();
 
   return (
@@ -33,7 +38,7 @@ export default function DetailsPosterContainer({ data, loading, lists }) {
                   src={data?.poster_path}
                   data-testid="details-poster"
                 />
-                <WidgetContainer lists={lists} data={data} />
+                {loggedId && <WidgetContainer lists={lists} data={data} />}
               </>
             )}
           </DetailsPoster.Column>

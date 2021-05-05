@@ -1,13 +1,12 @@
-export default function calculateOffset(period) {
-  console.log(period);
+export default function calculateOffset(primaryYear) {
   let year, amount;
 
-  if (period.start === "all") {
+  if (primaryYear === "all") {
     year = 1950;
     amount = 72;
   } else {
-    year = period.start;
-    amount = 2022 - period.start;
+    year = primaryYear;
+    amount = 2022 - primaryYear;
   }
 
   return { year, amount };

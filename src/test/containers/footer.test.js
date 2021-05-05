@@ -1,8 +1,8 @@
 import { ThemeProvider } from "styled-components";
+import { render } from "@testing-library/react";
 
 import theme from "./../../theme/theme";
 import { FooterContainer } from "../../containers";
-import { render } from "@testing-library/react";
 
 function renderComponent() {
   return {

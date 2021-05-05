@@ -7,20 +7,25 @@ import { getFiltredArray } from "../../utils";
 
 export default function AccountContainer({ loading, profile, votes }) {
   const [, setCredits] = useCreditsContext();
-  const [filterSettings, setFilterSettings] = useState({
-    sortBy: "date",
-    type: "all",
-    period: { start: "all", end: "all" },
-  });
+
+  const [sortBy, setSortBy] = useState("date");
+  const [type, setType] = useState("all");
+  const [primaryYear, setPrimaryYear] = useState("all");
+  const [secondaryYear, setSecondaryYear] = useState("all");
 
   useEffect(() => {
     if (!loading) {
       setCredits({
         loading: false,
-        items: getFiltredArray(votes, filterSettings),
+        items: getFiltredArray(votes, {
+          sortBy,
+          type,
+          primaryYear,
+          secondaryYear,
+        }),
       });
     }
-  }, [filterSettings]);
+  }, [sortBy, type, primaryYear, secondaryYear]);
 
   return (
     <Account data-testid="account-container">
@@ -33,8 +38,11 @@ export default function AccountContainer({ loading, profile, votes }) {
           <Account.Content>
             <Account.Title>YOUR PROFILE ACTIVITY</Account.Title>
             <FilterContainer
-              filterSettings={filterSettings}
-              setFilterSettings={setFilterSettings}
+              filterSettings={{ sortBy, type, primaryYear }}
+              setPrimaryYear={setPrimaryYear}
+              setSecondaryYear={setSecondaryYear}
+              setSortBy={setSortBy}
+              setType={setType}
             />
             <CreditsContainer />
           </Account.Content>

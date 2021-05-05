@@ -2,12 +2,12 @@ import { act, render } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import "@testing-library/jest-dom";
+import userEvent from "@testing-library/user-event";
 
 import theme from "./../../theme/theme";
 import { GalleryContainer } from "../../containers";
 import { usePaginContext, usePopupContext } from "../../context";
 import { range } from "../../utils";
-import userEvent from "@testing-library/user-event";
 
 jest.mock("./../../containers/pagin", () => () => <div />);
 

@@ -1,7 +1,7 @@
 import { getYearFromString, sortMoviesByDate } from "..";
 
 export default function getFiltredArray(array, state) {
-  const { sortBy, type, period } = state;
+  const { sortBy, type, primaryYear, secondaryYear } = state;
 
   let result = null;
 
@@ -37,9 +37,9 @@ export default function getFiltredArray(array, state) {
   result = result.filter(
     (item) =>
       +getYearFromString(item.release_date) >=
-        ((period.start === "all" && 1950) || period.start) &&
+        ((primaryYear === "all" && 1950) || primaryYear) &&
       +getYearFromString(item.release_date) <=
-        ((period.end === "all" && 2021) || period.end),
+        ((secondaryYear === "all" && 2021) || secondaryYear),
   );
   return result;
 }

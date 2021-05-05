@@ -3,10 +3,16 @@ import React, { useMemo } from "react";
 import { calculateOffset, range } from "./../../utils";
 import { Filter } from "../../components";
 
-export default function FilterContainer({ filterSettings, setFilterSettings }) {
-  const { sortBy, type, period } = filterSettings;
+export default function FilterContainer({
+  filterSettings,
+  setPrimaryYear,
+  setSecondaryYear,
+  setSortBy,
+  setType,
+}) {
+  const { sortBy, type, primaryYear } = filterSettings;
 
-  const offset = useMemo(() => calculateOffset(period), [period.start]);
+  const offset = useMemo(() => calculateOffset({ primaryYear }), [primaryYear]);
 
   return (
     <Filter data-testid="filter-container">
@@ -25,9 +31,7 @@ export default function FilterContainer({ filterSettings, setFilterSettings }) {
               <Filter.Value
                 key={item.value}
                 selected={sortBy === item.value && 1}
-                onClick={() =>
-                  setFilterSettings((prev) => ({ ...prev, sortBy: item.value }))
-                }
+                onClick={() => setSortBy(item.value)}
               >
                 {item.name}
               </Filter.Value>
@@ -43,9 +47,7 @@ export default function FilterContainer({ filterSettings, setFilterSettings }) {
               <Filter.Value
                 key={item.value}
                 selected={type === item.value && 1}
-                onClick={() =>
-                  setFilterSettings((prev) => ({ ...prev, type: item.value }))
-                }
+                onClick={() => setType(item.value)}
               >
                 {item.name}
               </Filter.Value>
@@ -54,14 +56,7 @@ export default function FilterContainer({ filterSettings, setFilterSettings }) {
           <Filter.Row>
             <Filter.Name>Period:</Filter.Name>
             <Filter.Subtitle>from</Filter.Subtitle>
-            <Filter.Select
-              onChange={(e) =>
-                setFilterSettings((prev) => ({
-                  ...prev,
-                  period: { start: e.target.value, end: prev.period.end },
-                }))
-              }
-            >
+            <Filter.Select onChange={(e) => setPrimaryYear(e.target.value)}>
               <Filter.Option value={"all"}>all</Filter.Option>
               {range(1950, 72).map((item) => (
                 <Filter.Option key={item} value={item}>
@@ -70,14 +65,7 @@ export default function FilterContainer({ filterSettings, setFilterSettings }) {
               ))}
             </Filter.Select>
             <Filter.Subtitle>to</Filter.Subtitle>
-            <Filter.Select
-              onChange={(e) =>
-                setFilterSettings((prev) => ({
-                  ...prev,
-                  period: { end: e.target.value, start: prev.period.start },
-                }))
-              }
-            >
+            <Filter.Select onChange={(e) => setSecondaryYear(e.target.value)}>
               <Filter.Option>all</Filter.Option>
               {range(offset.year, offset.amount).map((item) => (
                 <Filter.Option key={item} value={item}>

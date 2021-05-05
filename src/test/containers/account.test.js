@@ -51,4 +51,16 @@ describe("Account container", () => {
     expect(getByText(/dummy name/i)).toBeTruthy();
     expect(getByText(/your profile activity/i)).toBeTruthy();
   });
+
+  it("calls setCredits after loading", () => {
+    useCreditsContext.mockReturnValue([, setCreditsProps]);
+
+    const {} = renderComponent({
+      loading: false,
+      profile: { displayName: "dummy name", photoURL: "www.dummysrc.com" },
+      votes: [],
+    });
+
+    expect(setCreditsProps).toHaveBeenCalled();
+  });
 });

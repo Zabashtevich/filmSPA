@@ -16,14 +16,40 @@ export const Container = styled.div`
   z-index: 2000;
   top: 80%;
   left: 5%;
+
+  @media (max-width: 800px) {
+    min-height: 100px;
+    min-width: 150px;
+    top: 85%;
+    left: 4%;
+  }
+
+  @media (max-width: 450px) {
+    min-height: 80px;
+    width: 80px;
+    top: 88%;
+    left: 4%;
+  }
 `;
 
 export const Message = styled.span`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   font-size: ${({ theme }) => theme.font.aux.size.big};
   color: white;
+
+  @media (max-width: 450px) {
+    font-size: 0.9rem;
+  }
 `;
 
 export const Spinner = styled.img`
   margin-left: 1rem;
+
+  @media (max-width: 800px) {
+    width: 50px;
+  }
+
+  @media (max-width: 450px) {
+    width: 40px;
+  }
 `;

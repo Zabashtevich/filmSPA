@@ -16,15 +16,23 @@ function renderComponent(props) {
 }
 
 describe("Filter container", () => {
-  const setFilterSettings = jest.fn();
+  const setPrimaryYear = jest.fn();
+  const setSecondaryYear = jest.fn();
+  const setSortBy = jest.fn();
+  const setType = jest.fn();
+
   it("renders full content", () => {
     const { getByText, getByTestId, getAllByText } = renderComponent({
       filterSettings: {
         sortBy: "date",
         type: "all",
-        period: { start: "all", end: "all" },
+        primaryYear: "all",
+        secondaryYear: "all",
       },
-      setFilterSettings,
+      setPrimaryYear,
+      setSecondaryYear,
+      setSortBy,
+      setType,
     });
 
     expect(getByTestId(/filter-container/i)).toBeTruthy();
@@ -46,18 +54,5 @@ describe("Filter container", () => {
     expect(getAllByText(/1952/i)).toHaveLength(2);
     expect(getAllByText(/1953/i)).toHaveLength(2);
     expect(getAllByText(/1954/i)).toHaveLength(2);
-  });
-
-  it("contains correctly working filter switcher logic", () => {
-    const { getByText, getByTestId, getAllByText } = renderComponent({
-      filterSettings: {
-        sortBy: "date",
-        type: "all",
-        period: { start: "all", end: "all" },
-      },
-      setFilterSettings,
-    });
-
-    expect(setFilterSettings).not.toHaveBeenCalled();
   });
 });

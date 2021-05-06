@@ -12,7 +12,7 @@ export default function FilterContainer({
 }) {
   const { sortBy, type, primaryYear } = filterSettings;
 
-  const offset = useMemo(() => calculateOffset({ primaryYear }), [primaryYear]);
+  const offset = useMemo(() => calculateOffset(primaryYear), [primaryYear]);
 
   return (
     <Filter data-testid="filter-container">

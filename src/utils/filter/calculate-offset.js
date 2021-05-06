@@ -6,7 +6,7 @@ export default function calculateOffset(primaryYear) {
     amount = 72;
   } else {
     year = primaryYear;
-    amount = 2022 - primaryYear;
+    amount = 2022 - +primaryYear;
   }
 
   return { year, amount };

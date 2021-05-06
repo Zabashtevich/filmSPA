@@ -50,10 +50,6 @@ function App() {
         <Route path="/" component={MainPage} exact />
         <Route path="/details/:direction/:slug" component={DetailsPage} exact />
         <Route path="/authentication/:slug" component={AuthPage} />
-        <Route path="/account" component={AccountPage} exact />
-        <ProtectedRoute path="/account/userlists" exact>
-          <UserlistPage />
-        </ProtectedRoute>
         <Route
           path="/details/:direction/:slug/gallery"
           component={GalleryPage}
@@ -62,6 +58,13 @@ function App() {
         <Route path="/trending/:slug" exact component={TrendingPage} />
         <Route path="/collection/:slug" exact component={CollectionPage} />
         <Route path="/actor/:slug" exact component={ActorPage} />
+
+        <ProtectedRoute path="/account/userlists" exact>
+          <AccountPage />
+        </ProtectedRoute>
+        <ProtectedRoute path="/account/userlists" exact>
+          <UserlistPage />
+        </ProtectedRoute>
       </Switch>
     </Router>
   );

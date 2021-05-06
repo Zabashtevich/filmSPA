@@ -48,7 +48,6 @@ export default function HeaderContainer() {
         <Header.Nav>
           <Header.Logo to="/">TMDB</Header.Logo>
           <Header.Link to="/trending/movie">Trending</Header.Link>
-          <Header.Link to="/search">Search</Header.Link>
         </Header.Nav>
         <SwitchTransition mode={"out-in"}>
           <CSSTransition key={loggedIn} classNames="fade" timeout={500}>

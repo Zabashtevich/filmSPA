@@ -1,7 +1,6 @@
 export { default as FooterContainer } from "./footer";
 export { default as ModalContainer } from "./modal";
 export { default as ActorContainer } from "./actor";
-export { default as MovieListContainer } from "./movie-list";
 export { default as HeaderContainer } from "./header";
 export { default as PopularContainer } from "./popular";
 export { default as MainContainer } from "./main";

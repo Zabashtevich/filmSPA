@@ -35,6 +35,10 @@ export const Nav = styled.div`
   margin-left: 5rem;
   display: flex;
   color: white;
+
+  @media (max-width: 647px) {
+    margin-left: 1rem;
+  }
 `;
 
 export const Logo = styled(ReactRouterLink)`
@@ -55,6 +59,24 @@ export const Logo = styled(ReactRouterLink)`
     width: 50px;
     top: 50%;
   }
+
+  @media (max-width: 647px) {
+    font-size: ${({ theme }) => theme.font.aux.size.big};
+    margin-right: 3rem;
+
+    &::after {
+      height: 8px;
+      width: 25px;
+    }
+
+    @media (max-width: 500px) {
+      margin-right: 0.5rem;
+
+      &::after {
+        display: none;
+      }
+    }
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -62,6 +84,10 @@ export const Wrapper = styled.div`
   align-items: center;
   margin-right: 8rem;
   display: flex;
+
+  @media (max-width: 1100px) {
+    margin-right: 2rem;
+  }
 `;
 
 export const Link = styled(ReactRouterLink)`
@@ -69,6 +95,10 @@ export const Link = styled(ReactRouterLink)`
   margin-right: 1rem;
   font-size: 1rem;
   color: white;
+
+  @media (max-width: 450px) {
+    font-size: 0.8rem;
+  }
 `;
 
 export const Button = styled.div`
@@ -77,6 +107,10 @@ export const Button = styled.div`
   margin: 0 2rem;
   display: flex;
   color: white;
+
+  @media (max-width: 500px) {
+    margin: 0 0.2rem;
+  }
 `;
 
 export const Search = styled(BsSearch)``;
@@ -86,6 +120,10 @@ export const Close = styled(BsX)``;
 export const Profile = styled.div`
   position: relative;
   cursor: pointer;
+
+  @media (max-width: 500px) {
+    margin-right: 1rem;
+  }
 `;
 
 export const Avatar = styled.img`
@@ -111,6 +149,10 @@ export const Popup = styled.div`
   position: absolute;
   display: flex;
   left: 0;
+
+  @media (max-width: 500px) {
+    left: -200%;
+  }
 `;
 
 export const Nickname = styled.span`

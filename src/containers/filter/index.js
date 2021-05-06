@@ -56,7 +56,10 @@ export default function FilterContainer({
           <Filter.Row>
             <Filter.Name>Period:</Filter.Name>
             <Filter.Subtitle>from</Filter.Subtitle>
-            <Filter.Select onChange={(e) => setPrimaryYear(e.target.value)}>
+            <Filter.Select
+              onChange={(e) => setPrimaryYear(e.target.value)}
+              data-testid="primary-year-select"
+            >
               <Filter.Option value={"all"}>all</Filter.Option>
               {range(1950, 72).map((item) => (
                 <Filter.Option key={item} value={item}>
@@ -65,7 +68,10 @@ export default function FilterContainer({
               ))}
             </Filter.Select>
             <Filter.Subtitle>to</Filter.Subtitle>
-            <Filter.Select onChange={(e) => setSecondaryYear(e.target.value)}>
+            <Filter.Select
+              onChange={(e) => setSecondaryYear(e.target.value)}
+              data-testid="secondary-year-select"
+            >
               <Filter.Option>all</Filter.Option>
               {range(offset.year, offset.amount).map((item) => (
                 <Filter.Option key={item} value={item}>

@@ -2,8 +2,8 @@ import { act, fireEvent, render } from "@testing-library/react";
 import { ThemeProvider } from "styled-components";
 import "@testing-library/jest-dom";
 
-import theme from "./../../theme/theme";
-import { FilterContainer } from "../../containers";
+import theme from "../../../theme/theme";
+import { FilterContainer } from "../../../containers";
 import userEvent from "@testing-library/user-event";
 
 function renderComponent(props) {

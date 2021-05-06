@@ -6,9 +6,9 @@ import {
 } from "./types";
 
 export const initialState = {
-  visible: true,
-  type: "error",
-  message: "Something gone wrong",
+  visible: false,
+  type: null,
+  message: null,
   callback: null,
   list: null,
 };

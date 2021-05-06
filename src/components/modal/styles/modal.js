@@ -8,7 +8,7 @@ export const Container = styled.div`
   align-items: center;
   user-select: none;
   position: fixed;
-  z-index: 1000;
+  z-index: 4000;
   display: flex;
   bottom: 0;
   right: 0;
@@ -31,6 +31,11 @@ export const Close = styled(BsX)`
   color: white;
   right: 3%;
   top: 4%;
+
+  @media (max-width: 500px) {
+    right: 5%;
+    top: 20%;
+  }
 `;
 
 export const Window = styled.div`
@@ -128,8 +133,8 @@ export const List = styled.ul`
   color: ${({ theme }) => theme.colors.aux};
   flex-direction: column;
   box-sizing: border-box;
-  padding-left: 10rem;
   margin-top: 1.5rem;
+  margin-left: 1rem;
   display: flex;
   width: 100%;
 
@@ -139,8 +144,6 @@ export const List = styled.ul`
 `;
 
 export const Item = styled.li`
-  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
-  font-size: ${({ theme }) => theme.font.aux.size.big};
   margin: 0.3rem 0;
 
   &:last-child {

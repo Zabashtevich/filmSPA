@@ -70,6 +70,7 @@ export const Logo = styled(ReactRouterLink)`
     }
 
     @media (max-width: 500px) {
+      font-size: ${({ theme }) => theme.font.aux.size.big};
       margin-right: 0.5rem;
 
       &::after {
@@ -95,6 +96,10 @@ export const Link = styled(ReactRouterLink)`
   margin-right: 1rem;
   font-size: 1rem;
   color: white;
+
+  @media (max-width: 500px) {
+    font-size: 0.9rem;
+  }
 `;
 
 export const Button = styled.div`

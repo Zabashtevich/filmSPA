@@ -40,6 +40,18 @@ export const Window = styled.div`
   z-index: 2000;
   display: flex;
   width: 900px;
+
+  @media (max-width: 1100px) {
+    width: 650px;
+  }
+
+  @media (max-width: 800px) {
+    width: 450px;
+  }
+
+  @media (max-width: 500px) {
+    width: 300px;
+  }
 `;
 
 export const Header = styled.div`
@@ -60,6 +72,18 @@ export const Header = styled.div`
     css`
       background-color: ${({ theme }) => theme.colors.error};
     `};
+
+  @media (max-width: 1100px) {
+    min-height: 200px;
+  }
+
+  @media (max-width: 800px) {
+    min-height: 120px;
+  }
+
+  @media (max-width: 500px) {
+    min-height: 100px;
+  }
 `;
 
 export const Icon = styled(BsFillQuestionCircleFill)`
@@ -69,6 +93,14 @@ export const Icon = styled(BsFillQuestionCircleFill)`
   color: white;
   left: 50%;
   top: 50%;
+
+  @media (max-width: 1100px) {
+    font-size: 7rem;
+  }
+
+  @media (max-width: 800px) {
+    font-size: 4rem;
+  }
 `;
 
 export const Body = styled.div`
@@ -84,6 +116,10 @@ export const Title = styled.span`
   font-size: ${({ theme }) => theme.font.aux.size.huge};
   color: ${({ theme }) => theme.colors.aux};
   margin-top: 1rem;
+
+  @media (max-width: 1100px) {
+    font-size: ${({ theme }) => theme.font.aux.size.large};
+  }
 `;
 
 export const List = styled.ul`
@@ -96,6 +132,10 @@ export const List = styled.ul`
   margin-top: 1.5rem;
   display: flex;
   width: 100%;
+
+  @media (max-width: 1100px) {
+    font-size: ${({ theme }) => theme.font.aux.size.normal};
+  }
 `;
 
 export const Item = styled.li`
@@ -115,6 +155,10 @@ export const Message = styled.span`
   text-align: center;
   margin-bottom: 2rem;
   margin-top: 1rem;
+
+  @media (max-width: 1100px) {
+    font-size: ${({ theme }) => theme.font.aux.size.normal};
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -150,6 +194,15 @@ export const Cancel = styled.button`
     css`
       background-color: ${({ theme }) => theme.colors.error};
     `};
+
+  @media (max-width: 1100px) {
+    padding: 0.3rem 1rem;
+  }
+
+  @media (max-width: 500px) {
+    padding: 0.2rem 0.5rem;
+    font-size: 1.1rem;
+  }
 `;
 
 export const Confirm = styled(Cancel)`

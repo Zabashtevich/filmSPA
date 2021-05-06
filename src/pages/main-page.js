@@ -12,8 +12,8 @@ export default function MainPage() {
   return (
     <>
       <HeaderContainer />
-      {/* <ModalContainer />
-      <ProcessContainer />
+      <ModalContainer />
+      {/* <ProcessContainer />
       <MainContainer />
       <FooterContainer /> */}
     </>

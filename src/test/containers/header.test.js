@@ -1,9 +1,4 @@
-import {
-  act,
-  render,
-  waitFor,
-  waitForElementToBeRemoved,
-} from "@testing-library/react";
+import { act, render, waitForElementToBeRemoved } from "@testing-library/react";
 import { ThemeProvider } from "styled-components";
 import { Provider } from "react-redux";
 import { createStore } from "redux";

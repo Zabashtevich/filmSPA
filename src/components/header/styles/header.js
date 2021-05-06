@@ -61,7 +61,7 @@ export const Logo = styled(ReactRouterLink)`
   }
 
   @media (max-width: 647px) {
-    font-size: ${({ theme }) => theme.font.aux.size.big};
+    font-size: ${({ theme }) => theme.font.aux.size.large};
     margin-right: 3rem;
 
     &::after {
@@ -95,10 +95,6 @@ export const Link = styled(ReactRouterLink)`
   margin-right: 1rem;
   font-size: 1rem;
   color: white;
-
-  @media (max-width: 450px) {
-    font-size: 0.8rem;
-  }
 `;
 
 export const Button = styled.div`
@@ -169,6 +165,7 @@ export const Mail = styled.span`
 export const Item = styled(ReactRouterLink)`
   padding: 0.3rem 0.6rem 0.3rem;
   text-decoration: none;
+  display: block;
   color: black;
 
   &:first-of-type {
@@ -176,8 +173,11 @@ export const Item = styled(ReactRouterLink)`
   }
 
   &:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-    transition: 300ms;
+    color: red;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 1.1rem;
   }
 `;
 
@@ -188,5 +188,9 @@ export const Logout = styled.span`
   &:hover {
     background-color: rgba(0, 0, 0, 0.1);
     transition: 300ms;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 1.1rem;
   }
 `;

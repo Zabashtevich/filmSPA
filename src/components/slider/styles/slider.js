@@ -14,6 +14,18 @@ export const Section = styled.div`
   @media (min-width: 320px) {
     max-width: 240px;
   }
+
+  @media (min-width: 510px) {
+    max-width: 420px;
+  }
+
+  @media (min-width: 800px) {
+    max-width: 725px;
+  }
+
+  @media (min-width: 1200px) {
+    max-width: 1100px;
+  }
 `;
 
 export const Container = styled.div`
@@ -28,6 +40,18 @@ export const Inner = styled.div`
 
   @media (min-width: 320px) {
     ${({ slide }) => slide && `transform: translateX(${slide * -240}px)`};
+  }
+
+  @media (min-width: 510px) {
+    ${({ slide }) => slide && `transform: translateX(${slide * -420}px)`};
+  }
+
+  @media (min-width: 800px) {
+    ${({ slide }) => slide && `transform: translateX(${slide * -725}px)`};
+  }
+
+  @media (min-width: 1200px) {
+    ${({ slide }) => slide && `transform: translateX(${slide * -1100}px)`};
   }
 `;
 
@@ -45,6 +69,14 @@ export const Info = styled.div`
   visibility: hidden;
   margin-top: 1rem;
   opacity: 0;
+
+  @media (min-width: 510px) {
+    font-size: 0.7rem;
+  }
+
+  @media (min-width: 1200px) {
+    font-size: 1rem;
+  }
 `;
 
 export const Item = styled(ReactRouterLink)`
@@ -82,7 +114,7 @@ export const Item = styled(ReactRouterLink)`
     top: 0;
   }
 
-  @media (min-width: 1000px) {
+  @media (min-width: 510px) {
     &:hover {
       ${Wrapper} {
         transform: translateY(-50%);
@@ -109,6 +141,18 @@ export const Poster = styled.img`
   @media (min-width: 320px) {
     width: 80px;
   }
+
+  @media (min-width: 510px) {
+    width: 140px;
+  }
+
+  @media (min-width: 800px) {
+    width: 145px;
+  }
+
+  @media (min-width: 1200px) {
+    width: 220px;
+  }
 `;
 
 export const Title = styled.span`
@@ -119,14 +163,26 @@ export const Title = styled.span`
   @media (min-width: 320px) {
     font-size: 0.8rem;
   }
+
+  @media (min-width: 510px) {
+    font-size: 1rem;
+  }
+
+  @media (min-width: 1200px) {
+    font-size: 1.3rem;
+  }
 `;
 
 export const Row = styled.div`
   margin-top: 0.5rem;
-  display: flex;
 
   @media (min-width: 320px) {
     display: none;
+  }
+
+  @media (min-width: 510px) {
+    font-size: 0.8rem;
+    display: flex;
   }
 `;
 
@@ -170,6 +226,11 @@ export const ArrowLeft = styled(BsFillCaretLeftFill)`
     font-size: 0.8rem;
     padding: 0.2rem;
   }
+
+  @media (min-width: 1200px) {
+    font-size: 1.2rem;
+    padding: 0.4rem;
+  }
 `;
 
 export const ArrowRight = styled(BsFillCaretRightFill)`
@@ -207,14 +268,22 @@ export const ArrowRight = styled(BsFillCaretRightFill)`
     font-size: 0.8rem;
     padding: 0.2rem;
   }
+
+  @media (min-width: 1200px) {
+    font-size: 1.2rem;
+    padding: 0.4rem;
+  }
 `;
 
 export const Footer = styled.div`
   margin: 0 auto;
-  display: flex;
 
   @media (min-width: 320px) {
     display: none;
+  }
+
+  @media (min-width: 800px) {
+    display: flex;
   }
 `;
 
@@ -234,8 +303,7 @@ export const Dot = styled.div`
     position: absolute;
     border-radius: 50%;
     visibility: hidden;
-    height: 10px;
-    width: 10px;
+
     content: "";
     opacity: 0;
     left: 50%;
@@ -251,4 +319,24 @@ export const Dot = styled.div`
         opacity: 1;
       }
     `};
+
+  @media (min-width: 800px) {
+    height: 15px;
+    width: 15px;
+
+    &::after {
+      height: 8px;
+      width: 8px;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    height: 20px;
+    width: 20px;
+
+    &::after {
+      height: 10px;
+      width: 10px;
+    }
+  }
 `;

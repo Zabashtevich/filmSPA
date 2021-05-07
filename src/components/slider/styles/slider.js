@@ -3,38 +3,15 @@ import { BsFillCaretLeftFill, BsFillCaretRightFill } from "react-icons/bs";
 import { Link as ReactRouterLink } from "react-router-dom";
 
 export const Section = styled.div`
+  box-sizing: border-box;
   flex-direction: column;
   position: relative;
-  padding-top: 5rem;
   max-width: 1500px;
   margin: 0 auto;
+  margin-top: 5rem;
   display: flex;
 
-  @media (max-width: 1700px) {
-    max-width: 1200px;
-  }
-
-  @media (max-width: 1400px) {
-    max-width: 1000px;
-  }
-
-  @media (max-width: 1200px) {
-    max-width: 800px;
-  }
-
-  @media (max-width: 1000px) {
-    max-width: 600px;
-  }
-
-  @media (max-width: 800px) {
-    max-width: 450px;
-  }
-
-  @media (max-width: 600px) {
-    max-width: 300px;
-  }
-
-  @media (max-width: 410px) {
+  @media (min-width: 320px) {
     max-width: 240px;
   }
 `;
@@ -49,31 +26,7 @@ export const Inner = styled.div`
   transition: 300ms;
   display: flex;
 
-  @media (max-width: 1700px) {
-    ${({ slide }) => slide && `transform: translateX(${slide * -1200}px)`};
-  }
-
-  @media (max-width: 1400px) {
-    ${({ slide }) => slide && `transform: translateX(${slide * -1000}px)`};
-  }
-
-  @media (max-width: 1200px) {
-    ${({ slide }) => slide && `transform: translateX(${slide * -800}px)`};
-  }
-
-  @media (max-width: 1000px) {
-    ${({ slide }) => slide && `transform: translateX(${slide * -600}px)`};
-  }
-
-  @media (max-width: 800px) {
-    ${({ slide }) => slide && `transform: translateX(${slide * -450}px)`};
-  }
-
-  @media (max-width: 600px) {
-    ${({ slide }) => slide && `transform: translateX(${slide * -300}px)`};
-  }
-
-  @media (max-width: 400px) {
+  @media (min-width: 320px) {
     ${({ slide }) => slide && `transform: translateX(${slide * -240}px)`};
   }
 `;
@@ -92,10 +45,6 @@ export const Info = styled.div`
   visibility: hidden;
   margin-top: 1rem;
   opacity: 0;
-
-  @media (max-width: 1200px) {
-    font-size: 0.8rem;
-  }
 `;
 
 export const Item = styled(ReactRouterLink)`
@@ -133,37 +82,22 @@ export const Item = styled(ReactRouterLink)`
     top: 0;
   }
 
-  &:hover {
-    ${Wrapper} {
-      transform: translateY(-50%);
-      transition: 500ms;
-    }
-    ${Info} {
-      visibility: visible;
-      transition: 500ms;
-      opacity: 1;
-    }
-
-    &::before {
-      visibility: visible;
-      transition: 300ms;
-      opacity: 1;
-    }
-  }
-
-  @media (max-width: 1100px) {
+  @media (min-width: 1000px) {
     &:hover {
       ${Wrapper} {
-        transform: translateY(0);
+        transform: translateY(-50%);
+        transition: 500ms;
       }
       ${Info} {
-        visibility: hidden;
-        opacity: 0;
+        visibility: visible;
+        transition: 500ms;
+        opacity: 1;
       }
 
       &::before {
-        visibility: hidden;
-        opacity: 0;
+        visibility: visible;
+        transition: 300ms;
+        opacity: 1;
       }
     }
   }
@@ -172,31 +106,7 @@ export const Item = styled(ReactRouterLink)`
 export const Poster = styled.img`
   width: 300px;
 
-  @media (max-width: 1700px) {
-    width: 240px;
-  }
-
-  @media (max-width: 1400px) {
-    width: 200px;
-  }
-
-  @media (max-width: 1200px) {
-    width: 160px;
-  }
-
-  @media (max-width: 1000px) {
-    width: 120px;
-  }
-
-  @media (max-width: 800px) {
-    width: 150px;
-  }
-
-  @media (max-width: 600px) {
-    width: 100px;
-  }
-
-  @media (max-width: 400px) {
+  @media (min-width: 320px) {
     width: 80px;
   }
 `;
@@ -206,11 +116,7 @@ export const Title = styled.span`
   font-size: ${({ theme }) => theme.font.aux.size.big};
   word-break: break-all;
 
-  @media (max-width: 1400px) {
-    font-size: 1.1rem;
-  }
-
-  @media (max-width: 1000px) {
+  @media (min-width: 320px) {
     font-size: 0.8rem;
   }
 `;
@@ -218,23 +124,15 @@ export const Title = styled.span`
 export const Row = styled.div`
   margin-top: 0.5rem;
   display: flex;
+
+  @media (min-width: 320px) {
+    display: none;
+  }
 `;
 
 export const Value = styled.span`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   margin-right: 1rem;
-
-  @media (max-width: 1400px) {
-    font-size: 0.8rem;
-  }
-
-  @media (max-width: 1000px) {
-    font-size: 0.6rem;
-  }
-
-  @media (max-width: 600px) {
-    display: none;
-  }
 `;
 
 export const ArrowLeft = styled(BsFillCaretLeftFill)`
@@ -268,19 +166,9 @@ export const ArrowLeft = styled(BsFillCaretLeftFill)`
       transition: 300ms;
     `};
 
-  @media (max-width: 1200px) {
-    padding: 0.4rem;
-    font-size: 1rem;
-  }
-
-  @media (max-width: 850px) {
-    padding: 0.2rem;
+  @media (min-width: 320px) {
     font-size: 0.8rem;
-  }
-
-  @media (max-width: 400px) {
-    padding: 0.1rem;
-    font-size: 0.6rem;
+    padding: 0.2rem;
   }
 `;
 
@@ -315,25 +203,19 @@ export const ArrowRight = styled(BsFillCaretRightFill)`
       transition: 300ms;
     `};
 
-  @media (max-width: 1200px) {
-    padding: 0.4rem;
-    font-size: 1rem;
-  }
-
-  @media (max-width: 850px) {
-    padding: 0.2rem;
+  @media (min-width: 320px) {
     font-size: 0.8rem;
-  }
-
-  @media (max-width: 400px) {
-    padding: 0.1rem;
-    font-size: 0.6rem;
+    padding: 0.2rem;
   }
 `;
 
 export const Footer = styled.div`
   margin: 0 auto;
   display: flex;
+
+  @media (min-width: 320px) {
+    display: none;
+  }
 `;
 
 export const Dot = styled.div`
@@ -369,19 +251,4 @@ export const Dot = styled.div`
         opacity: 1;
       }
     `};
-
-  @media (max-width: 1200px) {
-    height: 15px;
-    width: 15px;
-
-    &::after {
-      height: 8px;
-      width: 8px;
-    }
-  }
-
-  @media (max-width: 850px) {
-    visibility: hidden;
-    opacity: 0;
-  }
 `;

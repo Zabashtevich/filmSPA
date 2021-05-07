@@ -5,7 +5,7 @@ import PopularItem from "./items/popular-item";
 import { TabsContainer } from "..";
 import { Popular } from "../../components";
 import { useFetch } from "../../hooks";
-import { PopularSkeleton } from "../../components/skeleton";
+import { PopularSkeleton } from "../../skeletons/popular";
 import { range } from "../../utils";
 
 export default function PopularContainer({ tabs }) {

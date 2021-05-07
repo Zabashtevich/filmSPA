@@ -1,10 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import slider from "./../../constants/data.json";
 import { Slider } from "../../components";
 
 export default function SliderContainer() {
   const [activeSlide, setActiveSlide] = useState(0);
+  const [amount, setAmount] = useState(5);
+
+  const mql = window.matchMedia("(max-width: 800px)");
+
+  function resizeScreen(e) {
+    const mobileView = e.matches;
+    if (mobileView) {
+      setAmount(3);
+    } else {
+      setAmount(5);
+    }
+  }
+
+  useEffect(() => {
+    mql.addEventListener("change", resizeScreen);
+    return () => mql.removeEventListener("change", resizeScreen);
+  }, [mql]);
 
   return (
     <Slider>
@@ -15,7 +32,7 @@ export default function SliderContainer() {
             slide={activeSlide}
             data-testid="slider-slide"
           >
-            {slide.map((item) => (
+            {slide.slice(0, amount).map((item) => (
               <Slider.Item
                 key={item.image}
                 color={item.color}

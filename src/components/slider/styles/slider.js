@@ -25,6 +25,18 @@ export const Section = styled.div`
   @media (max-width: 1000px) {
     max-width: 600px;
   }
+
+  @media (max-width: 800px) {
+    max-width: 450px;
+  }
+
+  @media (max-width: 600px) {
+    max-width: 300px;
+  }
+
+  @media (max-width: 410px) {
+    max-width: 240px;
+  }
 `;
 
 export const Container = styled.div`
@@ -52,13 +64,27 @@ export const Inner = styled.div`
   @media (max-width: 1000px) {
     ${({ slide }) => slide && `transform: translateX(${slide * -600}px)`};
   }
+
+  @media (max-width: 800px) {
+    ${({ slide }) => slide && `transform: translateX(${slide * -450}px)`};
+  }
+
+  @media (max-width: 600px) {
+    ${({ slide }) => slide && `transform: translateX(${slide * -300}px)`};
+  }
+
+  @media (max-width: 400px) {
+    ${({ slide }) => slide && `transform: translateX(${slide * -240}px)`};
+  }
 `;
 
 export const Wrapper = styled.div`
+  box-sizing: border-box;
   position: absolute;
   padding: 0 0.6rem;
   z-index: 2000;
   color: white;
+  width: 100%;
   top: 50%;
 `;
 
@@ -161,11 +187,24 @@ export const Poster = styled.img`
   @media (max-width: 1000px) {
     width: 120px;
   }
+
+  @media (max-width: 800px) {
+    width: 150px;
+  }
+
+  @media (max-width: 600px) {
+    width: 100px;
+  }
+
+  @media (max-width: 400px) {
+    width: 80px;
+  }
 `;
 
 export const Title = styled.span`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   font-size: ${({ theme }) => theme.font.aux.size.big};
+  word-break: break-all;
 
   @media (max-width: 1400px) {
     font-size: 1.1rem;
@@ -191,6 +230,10 @@ export const Value = styled.span`
 
   @media (max-width: 1000px) {
     font-size: 0.6rem;
+  }
+
+  @media (max-width: 600px) {
+    display: none;
   }
 `;
 
@@ -234,6 +277,11 @@ export const ArrowLeft = styled(BsFillCaretLeftFill)`
     padding: 0.2rem;
     font-size: 0.8rem;
   }
+
+  @media (max-width: 400px) {
+    padding: 0.1rem;
+    font-size: 0.6rem;
+  }
 `;
 
 export const ArrowRight = styled(BsFillCaretRightFill)`
@@ -275,6 +323,11 @@ export const ArrowRight = styled(BsFillCaretRightFill)`
   @media (max-width: 850px) {
     padding: 0.2rem;
     font-size: 0.8rem;
+  }
+
+  @media (max-width: 400px) {
+    padding: 0.1rem;
+    font-size: 0.6rem;
   }
 `;
 

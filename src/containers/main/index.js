@@ -1,14 +1,13 @@
 import React from "react";
 
 import { Main } from "../../components";
-import { ModalContainer, PopularContainer, SliderContainer } from "..";
+import { PopularContainer, SliderContainer } from "..";
 
 export default function MainContainer() {
   return (
     <Main>
-      <ModalContainer />
       <SliderContainer />
-      <Main.Section>
+      {/* <Main.Section>
         <PopularContainer
           tabs={{
             type: "tv",
@@ -39,7 +38,7 @@ export default function MainContainer() {
             array: [{ title: "popular", value: "popular" }],
           }}
         />
-      </Main.Section>
+      </Main.Section> */}
     </Main>
   );
 }

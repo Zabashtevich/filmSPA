@@ -5,10 +5,18 @@ import { Link as ReactRouterLink } from "react-router-dom";
 export const Section = styled.div`
   flex-direction: column;
   position: relative;
-  max-width: 1500px;
   padding-top: 5rem;
+  max-width: 1500px;
   margin: 0 auto;
   display: flex;
+
+  @media (max-width: 1700px) {
+    max-width: 1200px;
+  }
+
+  @media (max-width: 1400px) {
+    max-width: 1000px;
+  }
 `;
 
 export const Container = styled.div`
@@ -20,10 +28,17 @@ export const Inner = styled.div`
   ${({ slide }) => slide && `transform: translateX(${slide * -1500}px)`};
   transition: 300ms;
   display: flex;
+
+  @media (max-width: 1700px) {
+    ${({ slide }) => slide && `transform: translateX(${slide * -1200}px)`};
+  }
+
+  @media (max-width: 1400px) {
+    ${({ slide }) => slide && `transform: translateX(${slide * -1000}px)`};
+  }
 `;
 
 export const Wrapper = styled.div`
-  transform: translateY(120px);
   position: absolute;
   padding: 0 0.6rem;
   z-index: 2000;
@@ -33,7 +48,7 @@ export const Wrapper = styled.div`
 
 export const Info = styled.div`
   visibility: hidden;
-  margin-top: 2rem;
+  margin-top: 1rem;
   opacity: 0;
 `;
 
@@ -59,9 +74,22 @@ export const Item = styled(ReactRouterLink)`
       `}
   }
 
+  &::before {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    visibility: hidden;
+    z-index: 1100;
+    content: "";
+    opacity: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 0;
+  }
+
   &:hover {
     ${Wrapper} {
-      transform: translateY(0);
+      transform: translateY(-50%);
       transition: 500ms;
     }
     ${Info} {
@@ -69,16 +97,34 @@ export const Item = styled(ReactRouterLink)`
       transition: 500ms;
       opacity: 1;
     }
+
+    &::before {
+      visibility: visible;
+      transition: 300ms;
+      opacity: 1;
+    }
   }
 `;
 
 export const Poster = styled.img`
   width: 300px;
+
+  @media (max-width: 1700px) {
+    width: 240px;
+  }
+
+  @media (max-width: 1400px) {
+    width: 200px;
+  }
 `;
 
 export const Title = styled.span`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   font-size: ${({ theme }) => theme.font.aux.size.big};
+
+  @media (max-width: 1400px) {
+    font-size: 1.1rem;
+  }
 `;
 
 export const Row = styled.div`
@@ -88,6 +134,10 @@ export const Row = styled.div`
 export const Value = styled.span`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   margin-right: 1rem;
+
+  @media (max-width: 1400px) {
+    font-size: 0.8rem;
+  }
 `;
 
 export const ArrowLeft = styled(BsFillCaretLeftFill)`

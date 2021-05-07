@@ -11,11 +11,11 @@ import {
 export default function MainPage() {
   return (
     <>
-      <HeaderContainer />
+      {/* <HeaderContainer /> */}
       {/* <ModalContainer />
-      <ProcessContainer />
-      <MainContainer /> */}
-      <FooterContainer />
+      <ProcessContainer /> */}
+      <MainContainer />
+      {/* <FooterContainer /> */}
     </>
   );
 }

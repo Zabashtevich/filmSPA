@@ -19,7 +19,7 @@ export const Container = styled.div`
   display: flex;
 
   &::-webkit-scrollbar {
-    width: 1em;
+    width: 0.75rem;
   }
   &::-webkit-scrollbar-track {
     box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
@@ -53,6 +53,20 @@ export const Container = styled.div`
         opacity: 0;
       }
     `};
+
+  @media (max-width: 750px) {
+    &::-webkit-scrollbar {
+      height: 0.5rem;
+    }
+    &::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: ${({ theme }) => theme.colors.main};
+      border-radius: 10px;
+    }
+  }
 `;
 
 export const Item = styled(ReactRouterLink)`
@@ -61,6 +75,19 @@ export const Item = styled(ReactRouterLink)`
   margin: 0 0.1rem;
   display: flex;
   color: black;
+  width: 250px;
+
+  @media (max-width: 1100px) {
+    width: 200px;
+  }
+
+  @media (max-width: 750px) {
+    width: 150px;
+  }
+
+  @media (max-width: 500px) {
+    width: 100px;
+  }
 `;
 
 export const Poster = styled.img`
@@ -68,6 +95,21 @@ export const Poster = styled.img`
   border-radius: 0.2rem;
   height: 375px;
   width: 250px;
+
+  @media (max-width: 1100px) {
+    height: 300px;
+    width: 200px;
+  }
+
+  @media (max-width: 750px) {
+    height: 225px;
+    width: 150px;
+  }
+
+  @media (max-width: 500px) {
+    height: 150px;
+    width: 100px;
+  }
 `;
 
 export const Description = styled.div`
@@ -75,7 +117,7 @@ export const Description = styled.div`
   flex-direction: column;
   padding: 0.3rem 0.5rem;
   display: flex;
-  height: 75px;
+  max-height: 75px;
   width: 100%;
 `;
 
@@ -93,6 +135,10 @@ export const Title = styled.span`
   white-space: nowrap;
   max-width: 180px;
   overflow: hidden;
+
+  @media (max-width: 750px) {
+    font-size: 0.7rem;
+  }
 `;
 
 export const Average = styled.span`
@@ -114,6 +160,14 @@ export const Average = styled.span`
     css`
       color: ${({ theme }) => theme.colors.negative};
     `};
+
+  @media (max-width: 1100px) {
+    font-size: 1.2rem;
+  }
+
+  @media (max-width: 750px) {
+    font-size: 0.8rem;
+  }
 `;
 
 export const Year = styled.span``;
@@ -121,4 +175,12 @@ export const Year = styled.span``;
 export const Count = styled.span`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   color: rgba(0, 0, 0, 0.5);
+
+  @media (max-width: 1100px) {
+    font-size: 1rem;
+  }
+
+  @media (max-width: 750px) {
+    font-size: 0.6rem;
+  }
 `;

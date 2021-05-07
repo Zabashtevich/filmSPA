@@ -20,7 +20,7 @@ export default function PopularContainer({ tabs }) {
         setActiveTab={setActiveTab}
         active={activeTab}
       />
-      <SwitchTransition mode={"out-in"}>
+      {/* <SwitchTransition mode={"out-in"}>
         <CSSTransition key={dataLoading} classNames="fade" timeout={500}>
           <Popular.Container
             onScroll={(e) => setScrollvalue(e.target.scrollLeft)}
@@ -40,7 +40,7 @@ export default function PopularContainer({ tabs }) {
               })}
           </Popular.Container>
         </CSSTransition>
-      </SwitchTransition>
+      </SwitchTransition> */}
     </Popular>
   );
 }

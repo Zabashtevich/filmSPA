@@ -12,6 +12,10 @@ export const Title = styled.span`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   font-size: ${({ theme }) => theme.font.aux.size.large};
   text-transform: uppercase;
+
+  @media (max-width: 1100px) {
+    font-size: ${({ theme }) => theme.font.aux.size.big};
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -63,4 +67,13 @@ export const Item = styled.div`
         color: black;
       }
     `};
+
+  @media (max-width: 1100px) {
+    font-size: 1.2rem;
+  }
+
+  @media (max-width: 500px) {
+    padding: 0.2rem;
+    font-size: 0.8rem;
+  }
 `;

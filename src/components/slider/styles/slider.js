@@ -17,6 +17,14 @@ export const Section = styled.div`
   @media (max-width: 1400px) {
     max-width: 1000px;
   }
+
+  @media (max-width: 1200px) {
+    max-width: 800px;
+  }
+
+  @media (max-width: 1000px) {
+    max-width: 600px;
+  }
 `;
 
 export const Container = styled.div`
@@ -36,6 +44,14 @@ export const Inner = styled.div`
   @media (max-width: 1400px) {
     ${({ slide }) => slide && `transform: translateX(${slide * -1000}px)`};
   }
+
+  @media (max-width: 1200px) {
+    ${({ slide }) => slide && `transform: translateX(${slide * -800}px)`};
+  }
+
+  @media (max-width: 1000px) {
+    ${({ slide }) => slide && `transform: translateX(${slide * -600}px)`};
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -50,6 +66,10 @@ export const Info = styled.div`
   visibility: hidden;
   margin-top: 1rem;
   opacity: 0;
+
+  @media (max-width: 1200px) {
+    font-size: 0.8rem;
+  }
 `;
 
 export const Item = styled(ReactRouterLink)`
@@ -104,6 +124,23 @@ export const Item = styled(ReactRouterLink)`
       opacity: 1;
     }
   }
+
+  @media (max-width: 1100px) {
+    &:hover {
+      ${Wrapper} {
+        transform: translateY(0);
+      }
+      ${Info} {
+        visibility: hidden;
+        opacity: 0;
+      }
+
+      &::before {
+        visibility: hidden;
+        opacity: 0;
+      }
+    }
+  }
 `;
 
 export const Poster = styled.img`
@@ -116,6 +153,14 @@ export const Poster = styled.img`
   @media (max-width: 1400px) {
     width: 200px;
   }
+
+  @media (max-width: 1200px) {
+    width: 160px;
+  }
+
+  @media (max-width: 1000px) {
+    width: 120px;
+  }
 `;
 
 export const Title = styled.span`
@@ -125,10 +170,15 @@ export const Title = styled.span`
   @media (max-width: 1400px) {
     font-size: 1.1rem;
   }
+
+  @media (max-width: 1000px) {
+    font-size: 0.8rem;
+  }
 `;
 
 export const Row = styled.div`
   margin-top: 0.5rem;
+  display: flex;
 `;
 
 export const Value = styled.span`
@@ -137,6 +187,10 @@ export const Value = styled.span`
 
   @media (max-width: 1400px) {
     font-size: 0.8rem;
+  }
+
+  @media (max-width: 1000px) {
+    font-size: 0.6rem;
   }
 `;
 
@@ -170,6 +224,16 @@ export const ArrowLeft = styled(BsFillCaretLeftFill)`
       pointer-events: none;
       transition: 300ms;
     `};
+
+  @media (max-width: 1200px) {
+    padding: 0.4rem;
+    font-size: 1rem;
+  }
+
+  @media (max-width: 850px) {
+    padding: 0.2rem;
+    font-size: 0.8rem;
+  }
 `;
 
 export const ArrowRight = styled(BsFillCaretRightFill)`
@@ -202,6 +266,16 @@ export const ArrowRight = styled(BsFillCaretRightFill)`
       pointer-events: none;
       transition: 300ms;
     `};
+
+  @media (max-width: 1200px) {
+    padding: 0.4rem;
+    font-size: 1rem;
+  }
+
+  @media (max-width: 850px) {
+    padding: 0.2rem;
+    font-size: 0.8rem;
+  }
 `;
 
 export const Footer = styled.div`
@@ -242,4 +316,19 @@ export const Dot = styled.div`
         opacity: 1;
       }
     `};
+
+  @media (max-width: 1200px) {
+    height: 15px;
+    width: 15px;
+
+    &::after {
+      height: 8px;
+      width: 8px;
+    }
+  }
+
+  @media (max-width: 850px) {
+    visibility: hidden;
+    opacity: 0;
+  }
 `;

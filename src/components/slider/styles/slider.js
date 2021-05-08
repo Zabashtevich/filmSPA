@@ -26,6 +26,10 @@ export const Section = styled.div`
   @media (min-width: 1200px) {
     max-width: 1100px;
   }
+
+  @media (min-width: 1400px) {
+    max-width: 1300px;
+  }
 `;
 
 export const Container = styled.div`
@@ -53,6 +57,10 @@ export const Inner = styled.div`
   @media (min-width: 1200px) {
     ${({ slide }) => slide && `transform: translateX(${slide * -1100}px)`};
   }
+
+  @media (min-width: 1400px) {
+    ${({ slide }) => slide && `transform: translateX(${slide * -1300}px)`};
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -76,6 +84,10 @@ export const Info = styled.div`
 
   @media (min-width: 1200px) {
     font-size: 1rem;
+  }
+
+  @media (min-width: 1400px) {
+    font-size: 1.2rem;
   }
 `;
 
@@ -153,6 +165,10 @@ export const Poster = styled.img`
   @media (min-width: 1200px) {
     width: 220px;
   }
+
+  @media (min-width: 1400px) {
+    width: 260px;
+  }
 `;
 
 export const Title = styled.span`
@@ -170,6 +186,10 @@ export const Title = styled.span`
 
   @media (min-width: 1200px) {
     font-size: 1.3rem;
+  }
+
+  @media (min-width: 1400px) {
+    font-size: 1.5rem;
   }
 `;
 
@@ -231,6 +251,11 @@ export const ArrowLeft = styled(BsFillCaretLeftFill)`
     font-size: 1.2rem;
     padding: 0.4rem;
   }
+
+  @media (min-width: 1400px) {
+    font-size: 1.4rem;
+    padding: 0.6rem;
+  }
 `;
 
 export const ArrowRight = styled(BsFillCaretRightFill)`
@@ -272,6 +297,11 @@ export const ArrowRight = styled(BsFillCaretRightFill)`
   @media (min-width: 1200px) {
     font-size: 1.2rem;
     padding: 0.4rem;
+  }
+
+  @media (min-width: 1400px) {
+    font-size: 1.4rem;
+    padding: 0.6rem;
   }
 `;
 

@@ -6,7 +6,7 @@ import { PopularContainer, SliderContainer } from "..";
 export default function MainContainer() {
   return (
     <Main>
-      {/* <SliderContainer /> */}
+      <SliderContainer />
       <Main.Section>
         <PopularContainer
           tabs={{
@@ -19,7 +19,7 @@ export default function MainContainer() {
           }}
         />
       </Main.Section>
-      {/* <Main.Section>
+      <Main.Section>
         <PopularContainer
           tabs={{
             type: "movie",
@@ -38,7 +38,7 @@ export default function MainContainer() {
             array: [{ title: "popular", value: "popular" }],
           }}
         />
-      </Main.Section> */}
+      </Main.Section>
     </Main>
   );
 }

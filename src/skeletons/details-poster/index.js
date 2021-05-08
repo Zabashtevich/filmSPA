@@ -35,23 +35,25 @@ export function PosterDetailsRowsSkeleton() {
         foregroundColor="#ecebeb"
         data-testid="details-rows-skeleton"
       >
-        <rect x="0" y="0" rx="4" ry="4" width="270" height="35" />
-        <rect x="0" y="45" rx="5" ry="5" width="580" height="15" />
-        <rect x="0" y="65" rx="5" ry="5" width="580" height="15" />
-        <rect x="0" y="120" rx="3" ry="3" width="100" height="20" />
-        <rect x="0" y="180" rx="5" ry="5" width="300" height="15" />
-        <rect x="0" y="215" rx="5" ry="5" width="300" height="15" />
-        <rect x="0" y="250" rx="5" ry="5" width="300" height="15" />
-        <rect x="0" y="285" rx="5" ry="5" width="300" height="15" />
-        <rect x="0" y="320" rx="5" ry="5" width="300" height="15" />
-        <rect x="0" y="355" rx="5" ry="5" width="300" height="15" />
-        <rect x="0" y="390" rx="5" ry="5" width="300" height="15" />
-        <rect x="0" y="425" rx="5" ry="5" width="300" height="15" />
-        <rect x="0" y="460" rx="5" ry="5" width="300" height="15" />
-        <rect x="0" y="425" rx="5" ry="5" width="300" height="15" />
-        <rect x="0" y="495" rx="5" ry="5" width="300" height="15" />
-        <rect x="1" y="530" rx="5" ry="5" width="300" height="15" />
-        <rect x="0" y="565" rx="5" ry="5" width="300" height="15" />
+        <rect x="0" y="0" rx="4" ry="4" width="270" height="25" />
+        <rect x="0" y="35" rx="5" ry="5" width="580" height="7" />
+        <rect x="0" y="45" rx="5" ry="5" width="580" height="7" />
+        <rect x="0" y="55" rx="5" ry="5" width="580" height="7" />
+        <rect x="0" y="65" rx="5" ry="5" width="580" height="7" />
+        <rect x="0" y="100" rx="3" ry="3" width="100" height="20" />
+        <rect x="0" y="160" rx="5" ry="5" width="300" height="15" />
+        <rect x="0" y="195" rx="5" ry="5" width="300" height="15" />
+        <rect x="0" y="230" rx="5" ry="5" width="300" height="15" />
+        <rect x="0" y="265" rx="5" ry="5" width="300" height="15" />
+        <rect x="0" y="300" rx="5" ry="5" width="300" height="15" />
+        <rect x="0" y="335" rx="5" ry="5" width="300" height="15" />
+        <rect x="0" y="370" rx="5" ry="5" width="300" height="15" />
+        <rect x="0" y="405" rx="5" ry="5" width="300" height="15" />
+        <rect x="0" y="440" rx="5" ry="5" width="300" height="15" />
+        <rect x="0" y="475" rx="5" ry="5" width="300" height="15" />
+        <rect x="0" y="510" rx="5" ry="5" width="300" height="15" />
+        <rect x="1" y="545" rx="5" ry="5" width="300" height="15" />
+        <rect x="0" y="580" rx="5" ry="5" width="300" height="15" />
       </ContentLoader>
     </RowsWrapper>
   );
@@ -64,7 +66,6 @@ export function CastListSkeleton() {
         speed={2}
         width={100}
         height={220}
-        viewBox="0 0 100 220"
         backgroundColor="#f3f3f3"
         foregroundColor="#ecebeb"
         data-testid="details-cast-skeleton"

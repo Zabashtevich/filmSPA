@@ -35,12 +35,24 @@ export const RowsWrapper = styled.div`
     }
   }
 
-  @media (max-width: 620px) {
+  @media (max-width: 750px) {
     margin-top: 2rem;
-    & > {
+    & > * {
       width: 320px;
     }
   }
 `;
 
-export const CardWrapper = styled.div``;
+export const CardWrapper = styled.div`
+  @media (max-width: 1000px) {
+    & > {
+      max-width: 80px;
+    }
+  }
+
+  @media (max-width: 750px) {
+    & > * {
+      max-width: 150px;
+    }
+  }
+`;

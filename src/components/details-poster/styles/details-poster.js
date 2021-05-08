@@ -16,7 +16,7 @@ export const Container = styled.div`
   z-index: 50;
   width: 100%;
 
-  @media (max-width: 620px) {
+  @media (max-width: 750px) {
     justify-content: center;
     flex-direction: column;
     align-items: center;
@@ -73,7 +73,7 @@ export const Column = styled.div`
       margin: 0 1rem;
       margin-top: 15rem;
 
-      @media (max-width: 620px) {
+      @media (max-width: 750px) {
         margin-top: 20rem;
       }
     `};
@@ -96,7 +96,7 @@ export const Column = styled.div`
         width: 400px;
       }
 
-      @media (max-width: 620px) {
+      @media (max-width: 750px) {
         margin-top: 2rem;
         width: 320px;
       }
@@ -107,7 +107,7 @@ export const Column = styled.div`
       margin: 0 1rem;
       margin-top: 15rem;
 
-      @media (max-width: 620px) {
+      @media (max-width: 750px) {
         justify-content: center;
         align-items: center;
         margin-top: 1rem;
@@ -141,7 +141,7 @@ export const Title = styled.div`
     width: 500px;
   }
 
-  @media (max-width: 620px) {
+  @media (max-width: 750px) {
     font-size: 1.2rem;
   }
 
@@ -168,7 +168,7 @@ export const Overview = styled.div`
     width: 400px;
   }
 
-  @media (max-width: 620px) {
+  @media (max-width: 750px) {
     font-size: 0.6rem;
     width: 320px;
   }
@@ -180,7 +180,7 @@ export const Subtitle = styled.div`
   align-self: flex-start;
   margin: 2rem 0;
 
-  @media (max-width: 620px) {
+  @media (max-width: 750px) {
     align-self: center;
   }
 `;
@@ -204,7 +204,7 @@ export const Row = styled.div`
     width: 400px;
   }
 
-  @media (max-width: 620px) {
+  @media (max-width: 750px) {
     font-size: 0.8rem;
     width: 300px;
   }
@@ -250,7 +250,7 @@ export const Link = styled(ReactRouterLink)`
     max-width: 80px;
   }
 
-  @media (max-width: 620px) {
+  @media (max-width: 750px) {
     overflow: visible;
     font-size: 1rem;
     max-width: 150px;

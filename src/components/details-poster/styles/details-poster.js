@@ -81,7 +81,6 @@ export const Column = styled.div`
   ${({ type }) =>
     type === "content" &&
     css`
-      align-items: center;
       margin: 0 1rem;
       margin-top: 15rem;
 
@@ -133,12 +132,21 @@ export const Title = styled.div`
   font-size: ${({ theme }) => theme.font.aux.size.big};
   align-self: flex-start;
 
+  @media (min-width: 1200px) {
+    width: 700px;
+  }
+
   @media (max-width: 1200px) {
     font-size: 1.4rem;
+    width: 500px;
   }
 
   @media (max-width: 620px) {
     font-size: 1.2rem;
+  }
+
+  @media (max-width: 900px) {
+    width: 300px;
   }
 `;
 
@@ -147,12 +155,22 @@ export const Overview = styled.div`
   font-size: ${({ theme }) => theme.font.aux.size.normal};
   align-self: flex-start;
 
-  @media (max-width: 1200px) {
-    font-size: 0.8rem;
+  @media (min-width: 1200px) {
+    width: 700px;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 1200px) {
+    font-size: 0.8rem;
+    width: 500px;
+  }
+
+  @media (max-width: 900px) {
+    width: 400px;
+  }
+
+  @media (max-width: 620px) {
     font-size: 0.6rem;
+    width: 320px;
   }
 `;
 
@@ -183,11 +201,12 @@ export const Row = styled.div`
   }
 
   @media (max-width: 900px) {
-    width: 300px;
+    width: 400px;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 620px) {
     font-size: 0.8rem;
+    width: 300px;
   }
 `;
 

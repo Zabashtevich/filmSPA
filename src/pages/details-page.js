@@ -26,17 +26,17 @@ export default function DetailsPage() {
 
   return (
     <>
-      <HeaderContainer />
+      {/* <HeaderContainer />
       <ProcessContainer />
-      <ModalContainer />
+      <ModalContainer /> */}
       <DetailsPosterContainer
         data={data}
         loading={dataLoading || userDataLoading}
         lists={lists}
         loggedIn={loggedIn}
       />
-      <DetailsPanelContainer data={data} dataLoading={dataLoading} />
-      <FooterContainer />
+      {/* <DetailsPanelContainer data={data} dataLoading={dataLoading} /> */}
+      {/* <FooterContainer /> */}
     </>
   );
 }

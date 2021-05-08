@@ -14,6 +14,12 @@ export const Container = styled.div`
   z-index: 50;
   width: 100%;
   margin-top: 4rem;
+
+  @media (max-width: 550px) {
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 export const Inner = styled.div`
@@ -38,11 +44,21 @@ export const Inner = styled.div`
 `;
 
 export const Wallpaper = styled.img`
+  margin-top: 100px;
   width: 675px;
+
+  @media (max-width: 900px) {
+    width: 400px;
+  }
+
+  @media (max-width: 400px) {
+    width: 320px;
+  }
 `;
 
 export const Column = styled.div`
   ${({ theme }) => theme.animations.fade()};
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -53,35 +69,77 @@ export const Column = styled.div`
     type === "poster" &&
     css`
       align-items: center;
-      width: 300px;
+      margin: 0 1rem;
+      margin-top: 15rem;
+
+      @media (max-width: 550px) {
+        margin-top: 20rem;
+      }
     `};
+
   ${({ type }) =>
     type === "content" &&
     css`
-      width: 600px;
+      align-items: center;
+      margin: 0 1rem;
+      margin-top: 15rem;
+
+      @media (max-width: 550px) {
+        margin-top: 2rem;
+      }
     `};
   ${({ type }) =>
     type === "cast" &&
     css`
-      margin: 15rem 1rem;
-      width: 200px;
+      margin: 0 1rem;
+      margin-top: 15rem;
+
+      @media (max-width: 550px) {
+        justify-content: center;
+        align-items: center;
+        margin-top: 1rem;
+      }
     `};
 `;
 
 export const Poster = styled.img`
   border-radius: 0.4rem;
+
+  @media (max-width: 1150px) {
+    height: 350px;
+  }
+
+  @media (max-width: 700px) {
+    height: 250px;
+  }
 `;
 
 export const Title = styled.div`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   font-size: ${({ theme }) => theme.font.aux.size.big};
   align-self: flex-start;
+
+  @media (max-width: 1150px) {
+    font-size: 1.4rem;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 1.2rem;
+  }
 `;
 
 export const Overview = styled.div`
   font-weight: ${({ theme }) => theme.font.aux.weight.light};
   font-size: ${({ theme }) => theme.font.aux.size.normal};
   align-self: flex-start;
+
+  @media (max-width: 1150px) {
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 0.6rem;
+  }
 `;
 
 export const Subtitle = styled.div`
@@ -89,6 +147,10 @@ export const Subtitle = styled.div`
   font-size: ${({ theme }) => theme.font.aux.size.normal};
   align-self: flex-start;
   margin: 2rem 0;
+
+  @media (max-width: 550px) {
+    align-self: center;
+  }
 `;
 
 export const Row = styled.div`
@@ -97,6 +159,10 @@ export const Row = styled.div`
   padding: 10px 0;
   display: flex;
   color: white;
+
+  @media (max-width: 600px) {
+    font-size: 0.8rem;
+  }
 `;
 
 export const Fieldname = styled.div`
@@ -104,22 +170,44 @@ export const Fieldname = styled.div`
   user-select: none;
   text-align: left;
   width: 150px;
+
+  @media (max-width: 900px) {
+    width: 80px;
+  }
 `;
 
 export const Fieldvalue = styled.div`
   font-weight: ${({ theme }) => theme.font.aux.weight.light};
   width: 350px;
+
+  @media (max-width: 900px) {
+    width: 200px;
+  }
 `;
 
 export const Link = styled(ReactRouterLink)`
   font-weight: ${({ theme }) => theme.font.aux.weight.light};
   font-size: ${({ theme }) => theme.font.aux.size.small};
+  text-overflow: ellipsis;
   text-decoration: none;
+  white-space: nowrap;
   margin-top: 0.5rem;
+  overflow: hidden;
   display: block;
   color: white;
   &:hover {
     color: ${({ theme }) => theme.colors.aux};
     transition: 300ms;
+  }
+
+  @media (max-width: 700px) {
+    font-size: 0.7rem;
+    max-width: 80px;
+  }
+
+  @media (max-width: 550px) {
+    overflow: visible;
+    font-size: 1rem;
+    max-width: 150px;
   }
 `;

@@ -5,7 +5,9 @@ import { Link as ReactRouterLink } from "react-router-dom";
 export const Container = styled.div`
   font-family: ${({ theme }) => theme.font.aux.family};
   background: linear-gradient(180deg, #000 724px, #232323 99%);
+  justify-content: center;
   padding-bottom: 5rem;
+  padding-top: 4rem;
   position: relative;
   min-height: 860px;
   max-width: 1300px;
@@ -13,9 +15,8 @@ export const Container = styled.div`
   display: flex;
   z-index: 50;
   width: 100%;
-  margin-top: 4rem;
 
-  @media (max-width: 550px) {
+  @media (max-width: 620px) {
     justify-content: center;
     flex-direction: column;
     align-items: center;
@@ -72,7 +73,7 @@ export const Column = styled.div`
       margin: 0 1rem;
       margin-top: 15rem;
 
-      @media (max-width: 550px) {
+      @media (max-width: 620px) {
         margin-top: 20rem;
       }
     `};
@@ -84,8 +85,21 @@ export const Column = styled.div`
       margin: 0 1rem;
       margin-top: 15rem;
 
-      @media (max-width: 550px) {
+      @media (min-width: 1200px) {
+        width: 700px;
+      }
+
+      @media (max-width: 1200px) {
+        width: 500px;
+      }
+
+      @media (max-width: 900px) {
+        width: 400px;
+      }
+
+      @media (max-width: 620px) {
         margin-top: 2rem;
+        width: 320px;
       }
     `};
   ${({ type }) =>
@@ -94,7 +108,7 @@ export const Column = styled.div`
       margin: 0 1rem;
       margin-top: 15rem;
 
-      @media (max-width: 550px) {
+      @media (max-width: 620px) {
         justify-content: center;
         align-items: center;
         margin-top: 1rem;
@@ -105,11 +119,11 @@ export const Column = styled.div`
 export const Poster = styled.img`
   border-radius: 0.4rem;
 
-  @media (max-width: 1150px) {
+  @media (max-width: 1200px) {
     height: 350px;
   }
 
-  @media (max-width: 700px) {
+  @media (max-width: 900px) {
     height: 250px;
   }
 `;
@@ -119,11 +133,11 @@ export const Title = styled.div`
   font-size: ${({ theme }) => theme.font.aux.size.big};
   align-self: flex-start;
 
-  @media (max-width: 1150px) {
+  @media (max-width: 1200px) {
     font-size: 1.4rem;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 620px) {
     font-size: 1.2rem;
   }
 `;
@@ -133,7 +147,7 @@ export const Overview = styled.div`
   font-size: ${({ theme }) => theme.font.aux.size.normal};
   align-self: flex-start;
 
-  @media (max-width: 1150px) {
+  @media (max-width: 1200px) {
     font-size: 0.8rem;
   }
 
@@ -148,7 +162,7 @@ export const Subtitle = styled.div`
   align-self: flex-start;
   margin: 2rem 0;
 
-  @media (max-width: 550px) {
+  @media (max-width: 620px) {
     align-self: center;
   }
 `;
@@ -159,6 +173,18 @@ export const Row = styled.div`
   padding: 10px 0;
   display: flex;
   color: white;
+
+  @media (min-width: 1200px) {
+    width: 700px;
+  }
+
+  @media (max-width: 1200px) {
+    width: 500px;
+  }
+
+  @media (max-width: 900px) {
+    width: 300px;
+  }
 
   @media (max-width: 600px) {
     font-size: 0.8rem;
@@ -200,12 +226,12 @@ export const Link = styled(ReactRouterLink)`
     transition: 300ms;
   }
 
-  @media (max-width: 700px) {
+  @media (max-width: 1000px) {
     font-size: 0.7rem;
     max-width: 80px;
   }
 
-  @media (max-width: 550px) {
+  @media (max-width: 620px) {
     overflow: visible;
     font-size: 1rem;
     max-width: 150px;

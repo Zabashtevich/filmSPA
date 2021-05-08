@@ -71,7 +71,6 @@ describe("Header container", () => {
 
     expect(getByText(/tmdb/i)).toBeTruthy();
     expect(getByText(/trending/i)).toBeTruthy();
-    expect(getByText(/search/i)).toBeTruthy();
 
     expect(getByTestId(/header-search/i)).toBeTruthy();
   });

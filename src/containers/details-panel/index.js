@@ -4,9 +4,8 @@ import { CSSTransition, SwitchTransition } from "react-transition-group";
 
 import { DetailsPanel } from "./../../components";
 import { MediaContainer } from "./../";
-import MediaSkeleton, {
-  DetailsCollectionSkeleton,
-} from "../../components/skeleton";
+import { MediaSkeleton } from "./../../skeletons/media";
+import { DetailsCollectionSkeleton } from "../../components/skeleton";
 import PanelRating from "./items/panel-rating";
 import PanelCollection from "./items/panel-collection";
 
@@ -23,14 +22,7 @@ export default function DetailsPanelContainer({ data, dataLoading }) {
         {!loading && <PanelRating data={data} votes={lists.votes} />}
       </DetailsPanel.Section>
 
-      <SwitchTransition mode={"out-in"}>
-        <CSSTransition key={loading} classNames="fade" timeout={500}>
-          <DetailsPanel.Section>
-            {loading && <MediaSkeleton />}
-            {!loading && <MediaContainer data={data} />}
-          </DetailsPanel.Section>
-        </CSSTransition>
-      </SwitchTransition>
+      <MediaContainer data={data} loading={loading} />
 
       {/* <SwitchTransition mode={"out-in"}>
         <CSSTransition key={loading} classNames="fade" timeout={500}>

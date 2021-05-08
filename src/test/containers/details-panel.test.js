@@ -78,7 +78,6 @@ describe("Details panel container", () => {
       initialState: loadingState,
     });
 
-    expect(getByTestId(/details-media-skeleton/i)).toBeTruthy();
     expect(getByTestId(/details-collection-skeleton/i)).toBeTruthy();
 
     expect(queryByTestId(/details-rating-container/i)).toBeNull();
@@ -116,7 +115,6 @@ describe("Details panel container", () => {
       initialState: initialStore,
     });
 
-    expect(queryByTestId(/details-media-skeleton/i)).toBeNull();
     expect(queryByTestId(/details-collection-skeleton/i)).toBeNull();
 
     expect(getByTestId(/details-rating-container/i)).toBeTruthy();

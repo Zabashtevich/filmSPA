@@ -29,6 +29,7 @@ export const All = styled(ReactRouterLink)`
 `;
 
 export const Scroller = styled.div`
+  ${({ theme }) => theme.animations.fade()};
   position: relative;
   overflow-x: scroll;
   transition: 300ms;

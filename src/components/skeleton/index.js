@@ -95,27 +95,6 @@ export function AccountPosterSkeleton() {
   );
 }
 
-export default function MediaSkeleton() {
-  return (
-    <ContentLoader
-      speed={2}
-      width={1300}
-      height={392}
-      viewBox="0 0 1300 392"
-      backgroundColor="#f3f3f3"
-      foregroundColor="#ecebeb"
-      data-testid="details-media-skeleton"
-    >
-      <rect x="0" y="24" rx="4" ry="4" width="62" height="27" />
-      <rect x="372" y="28" rx="4" ry="4" width="45" height="18" />
-      <rect x="447" y="28" rx="4" ry="4" width="50" height="18" />
-      <rect x="527" y="28" rx="4" ry="4" width="72" height="18" />
-      <rect x="1210" y="28" rx="4" ry="4" width="90" height="18" />
-      <rect x="0" y="75" rx="6" ry="6" width="1300" height="300" />
-    </ContentLoader>
-  );
-}
-
 export function GalleryPosterSkeleton() {
   return (
     <GalleryPosterWrapper>

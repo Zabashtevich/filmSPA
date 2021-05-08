@@ -9,6 +9,7 @@ export const Container = styled.div`
 
 export const Header = styled.div`
   align-items: center;
+  padding: 0 2rem;
   display: flex;
   height: 75px;
 `;
@@ -31,7 +32,6 @@ export const Scroller = styled.div`
   position: relative;
   overflow-x: scroll;
   transition: 300ms;
-  min-height: 300px;
   display: flex;
   &::after {
     background-image: linear-gradient(
@@ -72,4 +72,21 @@ export const Scroller = styled.div`
 
 export const Poster = styled.img`
   ${({ theme }) => theme.animations.fade(500, 0, 500)};
+  height: 300px;
+  width: 200px;
+
+  @media (max-width: 1200px) {
+    height: 240px;
+    width: 160px;
+  }
+
+  @media (max-width: 800px) {
+    height: 198px;
+    width: 132px;
+  }
+
+  @media (max-width: 500px) {
+    height: 150px;
+    width: 100px;
+  }
 `;

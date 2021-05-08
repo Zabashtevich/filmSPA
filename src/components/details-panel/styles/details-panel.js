@@ -18,6 +18,11 @@ export const Section = styled.div`
 export const Title = styled.div`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   font-size: ${({ theme }) => theme.font.aux.size.large};
+  padding: 0 1rem;
+
+  @media (max-width: 500px) {
+    font-size: 1.5rem;
+  }
 `;
 
 export const Collection = styled.div`
@@ -87,6 +92,11 @@ export const Star = styled(GoStar)`
     css`
       color: ${({ theme }) => theme.colors.aux};
     `};
+
+  @media (max-width: 500px) {
+    font-size: 1.5rem;
+    margin: 0 0.05rem;
+  }
 `;
 
 export const Value = styled.span`
@@ -130,6 +140,11 @@ export const Meta = styled.div`
   align-items: center;
   margin-left: 2rem;
   display: flex;
+
+  @media (max-width: 500px) {
+    margin-left: 1rem;
+    font-size: 1rem;
+  }
 `;
 
 export const Average = styled.span`

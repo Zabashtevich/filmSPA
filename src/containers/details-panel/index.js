@@ -32,7 +32,7 @@ export default function DetailsPanelContainer({ data, dataLoading }) {
         </CSSTransition>
       </SwitchTransition>
 
-      <SwitchTransition mode={"out-in"}>
+      {/* <SwitchTransition mode={"out-in"}>
         <CSSTransition key={loading} classNames="fade" timeout={500}>
           <DetailsPanel.Section>
             {loading && <DetailsCollectionSkeleton />}
@@ -41,7 +41,7 @@ export default function DetailsPanelContainer({ data, dataLoading }) {
             )}
           </DetailsPanel.Section>
         </CSSTransition>
-      </SwitchTransition>
+      </SwitchTransition> */}
     </DetailsPanel>
   );
 }

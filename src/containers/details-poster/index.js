@@ -8,7 +8,7 @@ import {
   CastListSkeleton,
   PosterDetailsRowsSkeleton,
   PosterDetailsSkeleton,
-} from "../../components/skeleton";
+} from "../../skeletons/details-poster";
 import { WidgetContainer } from "../";
 
 export default function DetailsPosterContainer({

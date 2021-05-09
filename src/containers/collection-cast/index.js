@@ -48,10 +48,10 @@ export default function CollectionCastContainer({ loading, details }) {
         <SwitchTransition mode={"out-in"}>
           <CSSTransition key={loading} classNames="fade" timeout={500}>
             <CollectionCast.List>
-              {loading &&
+              {/* {loading &&
                 range(1, 15).map((item) => (
                   <CollectionCastSkeleton key={item} />
-                ))}
+                ))} */}
               {!loading &&
                 details.crew.slice(0, 15).map((item) => {
                   return (

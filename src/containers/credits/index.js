@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 
+import CreditsSkeletonItem from "./skeleton/credits-skeleton";
 import { PaginContainer } from "./../";
 import CreditsItem from "./items/credits-item";
 import { Credits } from "../../components";
 import { useCreditsContext, usePaginContext } from "../../context";
 import { range } from "../../utils";
-// import { CreditsSkeleton } from "../../components/skeleton";
 
 export default function CreditsContainer() {
   const [{ active }, setPagination] = usePaginContext();
@@ -30,8 +30,8 @@ export default function CreditsContainer() {
         <SwitchTransition mode={"out-in"}>
           <CSSTransition key={loading} classNames="fade" timeout={500}>
             <Credits.Inner>
-              {/* {loading &&
-                range(1, 25).map((item) => <CreditsSkeleton key={item} />)} */}
+              {loading &&
+                range(1, 25).map((item) => <CreditsSkeletonItem key={item} />)}
               {!loading &&
                 items.length > 0 &&
                 items

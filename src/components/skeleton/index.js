@@ -164,58 +164,6 @@ export function ReviewSkeleton() {
   );
 }
 
-export function ActorColumnSkeleton() {
-  return (
-    <ContentLoader
-      speed={2}
-      width={300}
-      height={750}
-      viewBox="0 0 300 750"
-      backgroundColor="#f3f3f3"
-      foregroundColor="#ecebeb"
-      data-testid="actor-column-skeleton"
-    >
-      <rect x="0" y="0" rx="4" ry="4" width="300" height="450" />
-      <rect x="-1" y="472" rx="3" ry="3" width="230" height="22" />
-      <rect x="0" y="512" rx="4" ry="4" width="140" height="16" />
-      <rect x="0" y="534" rx="4" ry="4" width="120" height="12" />
-      <rect x="0" y="560" rx="4" ry="4" width="140" height="16" />
-      <rect x="0" y="582" rx="4" ry="4" width="120" height="12" />
-      <rect x="0" y="610" rx="4" ry="4" width="140" height="16" />
-      <rect x="0" y="632" rx="4" ry="4" width="120" height="12" />
-      <rect x="0" y="660" rx="4" ry="4" width="140" height="16" />
-      <rect x="0" y="682" rx="4" ry="4" width="120" height="12" />
-      <rect x="0" y="710" rx="4" ry="4" width="140" height="16" />
-      <rect x="0" y="732" rx="4" ry="4" width="120" height="12" />
-    </ContentLoader>
-  );
-}
-
-export function ActorContentSkeleton() {
-  return (
-    <ContentLoader
-      speed={2}
-      width={900}
-      height={344}
-      viewBox="0 0 900 344"
-      backgroundColor="#f3f3f3"
-      foregroundColor="#ecebeb"
-      data-testid="actor-content-skeleton"
-    >
-      <rect x="0" y="0" rx="4" ry="4" width="200" height="40" />
-      <rect x="0" y="110" rx="4" ry="4" width="130" height="20" />
-      <rect x="0" y="150" rx="4" ry="4" width="850" height="14" />
-      <rect x="0" y="170" rx="4" ry="4" width="770" height="14" />
-      <rect x="0" y="190" rx="4" ry="4" width="900" height="14" />
-      <rect x="0" y="210" rx="4" ry="4" width="620" height="14" />
-      <rect x="0" y="250" rx="4" ry="4" width="620" height="14" />
-      <rect x="0" y="270" rx="4" ry="4" width="800" height="14" />
-      <rect x="0" y="290" rx="4" ry="4" width="720" height="14" />
-      <rect x="0" y="310" rx="4" ry="4" width="890" height="14" />
-    </ContentLoader>
-  );
-}
-
 export function PaginSkeleton() {
   return (
     <ContentLoader

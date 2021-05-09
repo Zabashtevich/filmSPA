@@ -8,7 +8,7 @@ export const Container = styled.div`
   margin-top: 100px;
   display: flex;
 
-  @media (max-width: 650px) {
+  @media (max-width: 750px) {
     flex-direction: column;
     align-items: center;
   }
@@ -26,11 +26,18 @@ export const Wrapper = styled.div`
   ${({ theme }) => theme.animations.fade(1000, 1000, 1000)};
   flex-direction: column;
   display: flex;
+
+  @media (max-width: 750px) {
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 export const Content = styled.div`
   ${({ theme }) => theme.animations.fade()};
-  max-width: 900px;
+  flex-direction: column;
+  display: flex;
+  width: 100%;
 `;
 
 export const Poster = styled.img`
@@ -39,14 +46,14 @@ export const Poster = styled.img`
   height: 450px;
   width: 300px;
 
-  @media (max-width: 650px) {
-    height: 270px;
-    width: 180px;
-  }
-
   @media (max-width: 900px) {
     height: 360px;
     width: 240px;
+  }
+
+  @media (max-width: 750px) {
+    height: 270px;
+    width: 180px;
   }
 `;
 
@@ -58,7 +65,7 @@ export const Subtitle = styled.span`
     font-size: 1rem;
   }
 
-  @media (max-width: 650px) {
+  @media (max-width: 750px) {
     text-align: center;
     margin: 1rem 0;
   }
@@ -68,6 +75,10 @@ export const Row = styled.div`
   flex-direction: column;
   margin: 0.5rem 0;
   display: flex;
+
+  @media (max-width: 750px) {
+    align-self: flex-start;
+  }
 `;
 
 export const Fieldname = styled.span`
@@ -94,7 +105,7 @@ export const Title = styled.span`
     font-size: 1.5rem;
   }
 
-  @media (max-width: 650px) {
+  @media (max-width: 750px) {
     font-size: ${({ theme }) => theme.font.aux.size.big};
     margin: 1rem 0;
   }
@@ -120,7 +131,7 @@ export const Overview = styled.span`
     width: 350px;
   }
 
-  @media (max-width: 650px) {
+  @media (max-width: 750px) {
     font-size: 0.8rem;
     width: 400px;
   }

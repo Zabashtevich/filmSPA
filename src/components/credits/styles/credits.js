@@ -21,6 +21,10 @@ export const Title = styled.span`
   padding: 0.4rem 0;
   margin-top: 2rem;
   display: block;
+
+  @media (max-width: 1100px) {
+    font-size: ${({ theme }) => theme.font.aux.size.large};
+  }
 `;
 
 export const Inner = styled.div`
@@ -48,6 +52,14 @@ export const Item = styled.div`
     css`
       background-color: ${({ theme }) => theme.colors.neutral};
     `};
+
+  @media (max-width: 1000px) {
+    height: 40px;
+  }
+
+  @media (max-width: 400px) {
+    height: 30px;
+  }
 `;
 
 export const Year = styled.span`
@@ -57,6 +69,7 @@ export const Year = styled.span`
   text-align: center;
   position: relative;
   user-select: none;
+  display: block;
   width: 50px;
 
   &::after {
@@ -68,6 +81,25 @@ export const Year = styled.span`
     width: 1px;
     left: 120%;
     top: 50%;
+  }
+
+  @media (max-width: 1000px) {
+    font-size: 0.8rem;
+    width: 40px;
+
+    &::after {
+      height: 30px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    margin-right: 1rem;
+    font-size: 0.6rem;
+    width: 30px;
+
+    &::after {
+      height: 20px;
+    }
   }
 `;
 
@@ -81,6 +113,21 @@ export const Subtitle = styled(ReactRouterLink)`
   cursor: pointer;
   color: black;
   width: 300px;
+
+  @media (max-width: 1000px) {
+    font-size: 0.7rem;
+    width: 200px;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 0.7rem;
+    width: 100px;
+  }
+
+  @media (max-width: 400px) {
+    font-size: 0.6rem;
+    width: 80px;
+  }
 `;
 
 export const Meta = styled.div`
@@ -89,6 +136,10 @@ export const Meta = styled.div`
   margin-left: 3rem;
   display: flex;
   width: 100px;
+
+  @media (max-width: 1000px) {
+    margin-left: 1rem;
+  }
 `;
 
 export const Average = styled.span`
@@ -110,6 +161,10 @@ export const Average = styled.span`
     css`
       color: #3f3f3f;
     `};
+
+  @media (max-width: 1000px) {
+    font-size: 1rem;
+  }
 `;
 
 export const Count = styled.span`
@@ -117,6 +172,10 @@ export const Count = styled.span`
   font-size: ${({ theme }) => theme.font.aux.size.small};
   color: rgba(0, 0, 0, 0.6);
   margin-left: 0.5rem;
+
+  @media (max-width: 1000px) {
+    font-size: 0.7rem;
+  }
 `;
 
 export const Highscore = styled.span`
@@ -129,6 +188,10 @@ export const Highscore = styled.span`
   margin-left: 10rem;
   color: white;
   width: 40px;
+
+  @media (max-width: 1000px) {
+    font-size: 1rem;
+  }
 `;
 
 export const Rating = styled.div`
@@ -144,6 +207,10 @@ export const Rating = styled.div`
     background-color: ${({ theme }) => theme.colors.aux};
     transition: 200ms;
     color: white;
+  }
+
+  @media (max-width: 1000px) {
+    padding: 0.1rem 0.2rem;
   }
 `;
 
@@ -170,6 +237,10 @@ export const Star = styled(BsFillStarFill)`
     css`
       color: lightblue;
     `};
+
+  @media (max-width: 1000px) {
+    font-size: 0.9rem;
+  }
 `;
 
 export const Close = styled(BsX)``;

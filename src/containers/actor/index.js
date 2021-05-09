@@ -5,10 +5,6 @@ import { useSelector } from "react-redux";
 
 import { useFetch } from "./../../hooks";
 import { Actor } from "../../components";
-import {
-  ActorColumnSkeleton,
-  ActorContentSkeleton,
-} from "./../../components/skeleton";
 import ActorPosterColumn from "./items/poster";
 import ActorContent from "./items/content";
 import { CreditsContainer } from "./../";
@@ -38,23 +34,17 @@ export default function ActorContainer() {
 
   return (
     <Actor>
-      <SwitchTransition mode={"out-in"}>
-        <CSSTransition key={dataLoading} classNames="fade" timeout={500}>
-          <Actor.Column>
-            {dataLoading && <ActorColumnSkeleton />}
-            {!dataLoading && <ActorPosterColumn data={data} />}
-          </Actor.Column>
-        </CSSTransition>
-      </SwitchTransition>
-      <SwitchTransition mode={"out-in"}>
-        <CSSTransition key={dataLoading} classNames="fade" timeout={500}>
-          <Actor.Content>
-            {dataLoading && <ActorContentSkeleton />}
-            {!dataLoading && <ActorContent data={data} />}
-            {/* <CreditsContainer /> */}
-          </Actor.Content>
-        </CSSTransition>
-      </SwitchTransition>
+      <CSSTransition in={!dataLoading} classNames="fade" timeout={500}>
+        <Actor.Column>
+          {!dataLoading && <ActorPosterColumn data={data} />}
+        </Actor.Column>
+      </CSSTransition>
+      <CSSTransition in={!dataLoading} classNames="fade" timeout={500}>
+        <Actor.Content>
+          {!dataLoading && <ActorContent data={data} />}
+          <CreditsContainer />
+        </Actor.Content>
+      </CSSTransition>
     </Actor>
   );
 }

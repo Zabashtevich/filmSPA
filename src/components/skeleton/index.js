@@ -45,22 +45,6 @@ export function ListPosterSkeleton({ visible }) {
   );
 }
 
-export function DetailsCollectionSkeleton() {
-  return (
-    <ContentLoader
-      speed={2}
-      width={1300}
-      height={300}
-      viewBox="0 0 1300 300"
-      backgroundColor="#f3f3f3"
-      foregroundColor="#ecebeb"
-      data-testid="details-collection-skeleton"
-    >
-      <rect x="0" y="0" rx="10" ry="10" width="1300" height="300" />
-    </ContentLoader>
-  );
-}
-
 export function TrendingSkeleton() {
   return (
     <ContentLoader

@@ -51,7 +51,7 @@ export default function ActorContainer() {
           <Actor.Content>
             {dataLoading && <ActorContentSkeleton />}
             {!dataLoading && <ActorContent data={data} />}
-            <CreditsContainer />
+            {/* <CreditsContainer /> */}
           </Actor.Content>
         </CSSTransition>
       </SwitchTransition>

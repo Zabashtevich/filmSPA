@@ -45,7 +45,7 @@ export const Inner = styled.div`
 `;
 
 export const Wallpaper = styled.img`
-  margin-top: 100px;
+  margin-top: 70px;
   width: 675px;
 
   @media (max-width: 900px) {

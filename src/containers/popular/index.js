@@ -5,7 +5,7 @@ import PopularItem from "./items/popular-item";
 import { TabsContainer } from "..";
 import { Popular } from "../../components";
 import { useFetch } from "../../hooks";
-import { PopularSkeleton } from "../../skeletons/popular";
+// import { PopularSkeleton } from "../../skeletons/popular";
 import { range } from "../../utils";
 
 export default function PopularContainer({ tabs }) {
@@ -26,8 +26,8 @@ export default function PopularContainer({ tabs }) {
             onScroll={(e) => setScrollvalue(e.target.scrollLeft)}
             disabled={scrollvalue !== 0 && 1}
           >
-            {dataLoading &&
-              range(1, 20).map((item) => <PopularSkeleton key={item} />)}
+            {/* {dataLoading &&
+              range(1, 20).map((item) => <PopularSkeleton key={item} />)} */}
             {!dataLoading &&
               data.results.map((item) => {
                 return (

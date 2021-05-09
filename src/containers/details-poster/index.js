@@ -4,11 +4,11 @@ import { useParams } from "react-router-dom";
 
 import { DetailsPoster } from "../../components";
 import DetailsPosterRows from "./items/details-poster-rows";
-import {
-  CastListSkeleton,
-  PosterDetailsRowsSkeleton,
-  PosterDetailsSkeleton,
-} from "../../skeletons/details-poster";
+// import {
+//   CastListSkeleton,
+//   PosterDetailsRowsSkeleton,
+//   PosterDetailsSkeleton,
+// } from "../../skeletons/details-poster";
 import { WidgetContainer } from "../";
 
 export default function DetailsPosterContainer({
@@ -31,7 +31,7 @@ export default function DetailsPosterContainer({
       <SwitchTransition mode="out-in">
         <CSSTransition key={loading} classNames="fade" timeout={500}>
           <DetailsPoster.Column type={"poster"}>
-            {loading && <PosterDetailsSkeleton />}
+            {/* {loading && <PosterDetailsSkeleton />} */}
             {!loading && (
               <>
                 <DetailsPoster.Poster
@@ -48,7 +48,7 @@ export default function DetailsPosterContainer({
       <SwitchTransition mode="out-in">
         <CSSTransition key={loading} classNames="fade" timeout={500}>
           <DetailsPoster.Column type={"content"}>
-            {loading && <PosterDetailsRowsSkeleton />}
+            {/* {loading && <PosterDetailsRowsSkeleton />} */}
             {!loading && (
               <DetailsPosterRows data={data} direction={direction} />
             )}
@@ -60,7 +60,7 @@ export default function DetailsPosterContainer({
         <CSSTransition key={loading} classNames="fade" timeout={500}>
           <DetailsPoster.Column type={"cast"}>
             <DetailsPoster.Subtitle>Cast:</DetailsPoster.Subtitle>
-            {loading && <CastListSkeleton />}
+            {/* {loading && <CastListSkeleton />} */}
             {!loading &&
               data?.credits?.cast.slice(0, 10).map(({ name, id }) => (
                 <DetailsPoster.Link key={id} to={`/actor/${id}`}>

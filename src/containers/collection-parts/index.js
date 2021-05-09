@@ -2,7 +2,7 @@ import React from "react";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 
 import { CollectionParts } from "../../components";
-import { CollectionPartsSkeleton } from "../../components/skeleton";
+// import { CollectionPartsSkeleton } from "../../components/skeleton";
 import { getYearFromString, range } from "../../utils";
 
 export default function CollectionPartsContainer({ loading, data }) {
@@ -18,10 +18,10 @@ export default function CollectionPartsContainer({ loading, data }) {
         >
           <CollectionParts.Container>
             <CollectionParts.List>
-              {loading &&
+              {/* {loading &&
                 range(1, 3).map((item) => (
                   <CollectionPartsSkeleton key={item} />
-                ))}
+                ))} */}
               {!loading &&
                 data.parts.map((item) => {
                   return (

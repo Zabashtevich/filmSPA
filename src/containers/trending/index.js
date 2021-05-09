@@ -6,7 +6,7 @@ import { PaginContainer } from "..";
 import { usePaginContext } from "../../context";
 import TrendingItem from "./items/trending-item";
 import { range } from "../../utils";
-import { TrendingSkeleton } from "../../components/skeleton";
+// import { TrendingSkeleton } from "../../components/skeleton";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 
 export default function TrendingContainer() {
@@ -68,8 +68,8 @@ export default function TrendingContainer() {
           key={`${dataLoading} ${active} ${activePeriod} ${activeType}`}
         >
           <Trending.Container>
-            {dataLoading &&
-              range(1, 20).map((item) => <TrendingSkeleton key={item} />)}
+            {/* {dataLoading &&
+              range(1, 20).map((item) => <TrendingSkeleton key={item} />)} */}
             {!dataLoading &&
               data.results.map((item) => (
                 <TrendingItem

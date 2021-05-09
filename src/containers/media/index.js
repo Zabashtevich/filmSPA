@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import { SwitchTransition, CSSTransition } from "react-transition-group";
 
-import { MediaSkeleton } from "../../skeletons/media";
+// import { MediaSkeleton } from "../../skeletons/media";
 import { range } from "../../utils";
 import { Media } from "./../../components";
 
@@ -36,8 +36,8 @@ export default function MediaContainer({ data, loading }) {
                   .map((item) => (
                     <Media.Poster key={item.file_path} slug={item.file_path} />
                   ))}
-              {loading &&
-                range(1, 10).map((item) => <MediaSkeleton key={item} />)}
+              {/* {loading &&
+                range(1, 10).map((item) => <MediaSkeleton key={item} />)} */}
             </Media.Scroller>
           </CSSTransition>
         </SwitchTransition>

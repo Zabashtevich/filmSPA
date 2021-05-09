@@ -2,7 +2,7 @@ import React from "react";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 
 import { CollectionHeader } from "../../components";
-import { CollectionHeaderSkeleton } from "../../components/skeleton";
+// import { CollectionHeaderSkeleton } from "../../components/skeleton";
 import { getMoneyFormat } from "../../utils";
 
 export default function CollectionHeaderContainer({ data, loading, details }) {
@@ -15,7 +15,7 @@ export default function CollectionHeaderContainer({ data, loading, details }) {
         <SwitchTransition mode={"out-in"}>
           <CSSTransition key={loading} classNames="fade" timeout={500}>
             <CollectionHeader.Container>
-              {loading && <CollectionHeaderSkeleton />}
+              {/* {loading && <CollectionHeaderSkeleton />} */}
               {!loading && (
                 <>
                   <CollectionHeader.Poster

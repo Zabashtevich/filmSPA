@@ -165,6 +165,10 @@ export const Average = styled.span`
   @media (max-width: 1000px) {
     font-size: 1rem;
   }
+
+  @media (max-width: 500px) {
+    font-size: 0.7rem;
+  }
 `;
 
 export const Count = styled.span`
@@ -175,6 +179,10 @@ export const Count = styled.span`
 
   @media (max-width: 1000px) {
     font-size: 0.7rem;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 0.5rem;
   }
 `;
 

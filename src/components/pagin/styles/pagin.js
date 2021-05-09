@@ -31,6 +31,11 @@ export const Item = styled.span`
   &:active {
     transform: scale(0.98);
   }
+
+  @media (max-width: 850px) {
+    padding: 0.1rem 0.3rem;
+    font-size: 0.8rem;
+  }
 `;
 
 export const Dummy = styled.span`

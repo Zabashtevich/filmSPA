@@ -42,6 +42,10 @@ export const Collection = styled.div`
       background-size: cover;
       background-position: 50% 50%;
     `};
+
+  @media (max-width: 1300px) {
+    width: 100%;
+  }
 `;
 
 export const Info = styled.div`
@@ -51,12 +55,28 @@ export const Info = styled.div`
   display: flex;
   left: 5%;
   top: 40%;
+
+  @media (max-width: 850px) {
+    transform: translateX(-50%);
+    align-items: center;
+    left: 50%;
+  }
 `;
 
 export const Subtitle = styled.span`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   font-size: ${({ theme }) => theme.font.aux.size.large};
+  box-sizing: border-box;
+  white-space: nowrap;
   color: white;
+
+  @media (max-width: 750px) {
+    font-size: ${({ theme }) => theme.font.aux.size.big};
+  }
+
+  @media (max-width: 500px) {
+    font-size: ${({ theme }) => theme.font.aux.size.normal};
+  }
 `;
 
 export const Button = styled(ReactRouterLink)`
@@ -72,6 +92,11 @@ export const Button = styled(ReactRouterLink)`
     background-color: ${({ theme }) => theme.colors.main};
     transition: 300ms;
     color: white;
+  }
+
+  @media (max-width: 750px) {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
   }
 `;
 

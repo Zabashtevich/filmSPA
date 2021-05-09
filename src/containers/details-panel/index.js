@@ -17,14 +17,14 @@ export default function DetailsPanelContainer({ data, dataLoading }) {
   const loading = dataLoading || userDataLoading;
   return (
     <DetailsPanel>
-      <DetailsPanel.Section>
+      {/* <DetailsPanel.Section>
         <DetailsPanel.Title>Rating</DetailsPanel.Title>
         {!loading && <PanelRating data={data} votes={lists.votes} />}
       </DetailsPanel.Section>
 
-      <MediaContainer data={data} loading={loading} />
+      <MediaContainer data={data} loading={loading} /> */}
 
-      {/* <SwitchTransition mode={"out-in"}>
+      <SwitchTransition mode={"out-in"}>
         <CSSTransition key={loading} classNames="fade" timeout={500}>
           <DetailsPanel.Section>
             {loading && <DetailsCollectionSkeleton />}
@@ -33,7 +33,7 @@ export default function DetailsPanelContainer({ data, dataLoading }) {
             )}
           </DetailsPanel.Section>
         </CSSTransition>
-      </SwitchTransition> */}
+      </SwitchTransition>
     </DetailsPanel>
   );
 }

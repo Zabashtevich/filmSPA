@@ -138,11 +138,7 @@ export const Overview = styled.span`
   white-space: pre-line;
   margin-top: 1rem;
 
-  @media (max-width: 750px) {
-    font-size: 1rem;
-  }
-
-  @media (max-width: 750px) {
+  @media (min-width: 500px) {
     font-size: 1rem;
   }
 

@@ -47,8 +47,8 @@ export default function ActorContainer() {
 
       <CSSTransition in={!dataLoading} classNames="fade" timeout={500}>
         <Actor.Content>
-          {true && <ActorSkeletonContent />}
-          {!true && <ActorContent data={data} />}
+          {dataLoading && <ActorSkeletonContent />}
+          {!dataLoading && <ActorContent data={data} />}
           <CreditsContainer />
         </Actor.Content>
       </CSSTransition>

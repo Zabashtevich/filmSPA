@@ -36,7 +36,7 @@ export const Subtitle = styled.div`
   }
 
   @media (max-width: 750px) {
-    margin: 1rem 0;
+    margin: 1rem auto;
   }
 `;
 
@@ -79,6 +79,14 @@ export const Title = styled.div`
   margin-bottom: 3rem;
   height: 55px;
   width: 250px;
+
+  @media (max-width: 950px) {
+    height: 27px;
+  }
+
+  @media (max-width: 750px) {
+    margin: 1rem auto;
+  }
 `;
 
 export const List = styled.div`
@@ -92,6 +100,10 @@ export const Overview = styled.div`
   margin: 0.2rem 0;
   height: 18px;
   width: 100%;
+
+  @media (max-width: 500px) {
+    height: 14px;
+  }
 `;
 
 export const Devider = styled.div`

@@ -3,16 +3,17 @@ import React from "react";
 import { ActorSkeleton } from "../../../skeletons";
 import { range } from "../../../utils";
 
-export default function ActorSkeletonColumn() {
+export default function ActorSkeletonContent() {
   return (
     <ActorSkeleton>
-      <ActorSkeleton.Poster />
+      <ActorSkeleton.Title />
       <ActorSkeleton.Subtitle />
+      {range(1, 3).map((item) => (
+        <ActorSkeleton.Overview key={item} />
+      ))}
+      <ActorSkeleton.Devider />
       {range(1, 5).map((item) => (
-        <ActorSkeleton.Row key={item}>
-          <ActorSkeleton.Fieldname />
-          <ActorSkeleton.Fieldvalue />
-        </ActorSkeleton.Row>
+        <ActorSkeleton.Overview key={item} />
       ))}
     </ActorSkeleton>
   );

@@ -12,9 +12,19 @@ export const Poster = styled.div`
   margin-bottom: 1rem;
   height: 450px;
   width: 300px;
+
+  @media (max-width: 950px) {
+    height: 360px;
+    width: 240px;
+  }
+
+  @media (max-width: 750px) {
+    height: 270px;
+    width: 180px;
+  }
 `;
 
-export const Title = styled.div`
+export const Subtitle = styled.div`
   ${({ theme }) => theme.animations.skeleton};
   border-radius: 0.2rem;
   height: 27px;
@@ -23,6 +33,10 @@ export const Title = styled.div`
   @media (max-width: 950px) {
     height: 18px;
     width: 150px;
+  }
+
+  @media (max-width: 750px) {
+    margin: 1rem 0;
   }
 `;
 
@@ -56,4 +70,20 @@ export const Fieldvalue = styled.div`
     height: 14px;
     width: 40px;
   }
+`;
+
+export const Title = styled.div`
+  ${({ theme }) => theme.animations.skeleton};
+  height: 55px;
+  width: 250px;
+`;
+
+export const Overview = styled.div`
+  ${({ theme }) => theme.animations.skeleton};
+  height: 18px;
+  width: 100%;
+`;
+
+export const Devider = styled.div`
+  ${({ theme }) => theme.animations.skeleton};
 `;

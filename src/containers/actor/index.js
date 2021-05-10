@@ -11,6 +11,7 @@ import ActorContent from "./items/content";
 import { CreditsContainer } from "./../";
 import { sortMoviesByDate } from "../../utils";
 import { useCreditsContext } from "../../context";
+import ActorSkeletonContent from "./skeleton/actor-skeleton-content";
 
 export default function ActorContainer() {
   const { userDataLoading } = useSelector((state) => state.userData);
@@ -46,6 +47,7 @@ export default function ActorContainer() {
 
       <CSSTransition in={!dataLoading} classNames="fade" timeout={500}>
         <Actor.Content>
+          {dataLoading && <ActorSkeletonContent />}
           {!dataLoading && <ActorContent data={data} />}
           <CreditsContainer />
         </Actor.Content>

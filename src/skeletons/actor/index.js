@@ -3,10 +3,13 @@ import React from "react";
 import {
   Poster,
   Container,
-  Title,
+  Subtitle,
   Row,
   Fieldname,
   Fieldvalue,
+  Title,
+  Overview,
+  Devider,
 } from "./styles/actor";
 
 export default function ActorSkeleton({ children }) {
@@ -17,8 +20,8 @@ ActorSkeleton.Poster = function ActorSkeletonPoster() {
   return <Poster />;
 };
 
-ActorSkeleton.Title = function ActorSkeletonTitle() {
-  return <Title />;
+ActorSkeleton.Subtitle = function ActorSkeletonSubtitle() {
+  return <Subtitle />;
 };
 
 ActorSkeleton.Row = function ActorSkeletonRow({ children }) {
@@ -31,4 +34,16 @@ ActorSkeleton.Fieldname = function ActorSkeletonFieldname() {
 
 ActorSkeleton.Fieldvalue = function ActorSkeletonFieldvalue() {
   return <Fieldvalue />;
+};
+
+ActorSkeleton.Title = function ActorSkeletonTitle() {
+  return <Title />;
+};
+
+ActorSkeleton.Overview = function ActorSkeletonOverview() {
+  return <Overview />;
+};
+
+ActorSkeleton.Devider = function ActorSkeletonDevider() {
+  return <Devider />;
 };

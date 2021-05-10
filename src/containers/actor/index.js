@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 import { useSelector } from "react-redux";
 
+import ActorSkeletonColumn from "./skeleton/actor-skeleton-column";
 import { useFetch } from "./../../hooks";
 import { Actor } from "../../components";
 import ActorPosterColumn from "./items/poster";
@@ -34,11 +35,15 @@ export default function ActorContainer() {
 
   return (
     <Actor>
-      <CSSTransition in={!dataLoading} classNames="fade" timeout={500}>
-        <Actor.Column>
-          {!dataLoading && <ActorPosterColumn data={data} />}
-        </Actor.Column>
-      </CSSTransition>
+      <SwitchTransition mode={"out-in"}>
+        <CSSTransition key={dataLoading} classNames="fade" timeout={500}>
+          <Actor.Column>
+            {dataLoading && <ActorSkeletonColumn />}
+            {!dataLoading && <ActorPosterColumn data={data} />}
+          </Actor.Column>
+        </CSSTransition>
+      </SwitchTransition>
+
       <CSSTransition in={!dataLoading} classNames="fade" timeout={500}>
         <Actor.Content>
           {!dataLoading && <ActorContent data={data} />}

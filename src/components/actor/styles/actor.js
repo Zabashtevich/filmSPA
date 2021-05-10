@@ -36,8 +36,8 @@ export const Wrapper = styled.div`
 export const Content = styled.div`
   ${({ theme }) => theme.animations.fade()};
   flex-direction: column;
+  max-width: 1000px;
   display: flex;
-  width: 100%;
 `;
 
 export const Poster = styled.img`
@@ -46,7 +46,7 @@ export const Poster = styled.img`
   height: 450px;
   width: 300px;
 
-  @media (max-width: 900px) {
+  @media (max-width: 950px) {
     height: 360px;
     width: 240px;
   }
@@ -115,29 +115,15 @@ export const Overview = styled.span`
   white-space: pre-line;
   margin-top: 1rem;
 
-  @media (max-width: 1300px) {
-    width: 800px;
-  }
-
-  @media (max-width: 1150px) {
-    width: 600px;
-  }
-
-  @media (max-width: 950px) {
-    width: 480px;
+  @media (max-width: 750px) {
+    font-size: 1rem;
   }
 
   @media (max-width: 750px) {
-    width: 350px;
+    font-size: 1rem;
   }
 
-  @media (max-width: 750px) {
+  @media (max-width: 500px) {
     font-size: 0.8rem;
-    width: 400px;
-  }
-
-  @media (max-width: 450px) {
-    font-size: 0.8rem;
-    width: 300px;
   }
 `;

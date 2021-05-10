@@ -21,8 +21,8 @@ ActorSkeleton.Title = function ActorSkeletonTitle() {
   return <Title />;
 };
 
-ActorSkeleton.Row = function ActorSkeletonRow() {
-  return <Row />;
+ActorSkeleton.Row = function ActorSkeletonRow({ children }) {
+  return <Row>{children}</Row>;
 };
 
 ActorSkeleton.Fieldname = function ActorSkeletonFieldname() {

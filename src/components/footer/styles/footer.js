@@ -23,6 +23,10 @@ export const Section = styled.ul`
 
 export const Item = styled.li`
   margin: 0.5rem;
+
+  @media (max-width: 500px) {
+    margin: 0.1rem;
+  }
 `;
 
 export const ItemLink = styled.a`
@@ -38,6 +42,6 @@ export const ItemLink = styled.a`
   }
 
   @media (max-width: 500px) {
-    font-size: 0.9rem;
+    font-size: 0.6rem;
   }
 `;

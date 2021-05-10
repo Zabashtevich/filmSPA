@@ -3,6 +3,7 @@ import styled, { css } from "styled-components/macro";
 export const Container = styled.div`
   ${({ theme }) => theme.animations.fade()};
   justify-content: center;
+  align-items: center;
   margin-bottom: 1rem;
   padding-top: 1rem;
   margin-top: auto;
@@ -33,8 +34,9 @@ export const Item = styled.span`
   }
 
   @media (max-width: 850px) {
-    padding: 0.1rem 0.3rem;
-    font-size: 0.8rem;
+    padding: 0.3rem 0.4rem;
+    font-size: 0.6rem;
+    margin: 0 0.1rem;
   }
 `;
 
@@ -44,4 +46,10 @@ export const Dummy = styled.span`
   background-color: #f3f3f3;
   padding: 0.2rem 0.6rem;
   border-radius: 0.5rem;
+
+  @media (max-width: 850px) {
+    padding: 0.3rem 0.4rem;
+    font-size: 0.6rem;
+    margin: 0 0.1rem;
+  }
 `;

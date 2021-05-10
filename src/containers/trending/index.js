@@ -34,54 +34,56 @@ export default function TrendingContainer() {
   return (
     <Trending>
       <Trending.Title>TRENDING</Trending.Title>
-      <Trending.Column>
-        <Trending.Menu>
-          <Trending.Subtitle>CARD TYPE</Trending.Subtitle>
-          {["all", "movie", "tv", "person"].map((item) => (
-            <Trending.Item
-              key={item}
-              selected={item === activeType && 1}
-              onClick={() => setActiveType(item)}
-            >
-              {item}
-            </Trending.Item>
-          ))}
-        </Trending.Menu>
+      <Trending.Outer>
+        <Trending.Column>
+          <Trending.Menu>
+            <Trending.Subtitle>CARD TYPE</Trending.Subtitle>
+            {["all", "movie", "tv", "person"].map((item) => (
+              <Trending.Item
+                key={item}
+                selected={item === activeType && 1}
+                onClick={() => setActiveType(item)}
+              >
+                {item}
+              </Trending.Item>
+            ))}
+          </Trending.Menu>
 
-        <Trending.Menu>
-          <Trending.Subtitle>PERIOD</Trending.Subtitle>
-          {["day", "week"].map((item) => (
-            <Trending.Item
-              key={item}
-              selected={item === activePeriod && 1}
-              onClick={() => setActivePeriod(item)}
-            >
-              {item}
-            </Trending.Item>
-          ))}
-        </Trending.Menu>
-      </Trending.Column>
-      <SwitchTransition mode={"out-in"}>
-        <CSSTransition
-          timeout={500}
-          classNames="fade"
-          key={`${dataLoading} ${active} ${activePeriod} ${activeType}`}
-        >
-          <Trending.Container>
-            {/* {dataLoading &&
+          <Trending.Menu>
+            <Trending.Subtitle>PERIOD</Trending.Subtitle>
+            {["day", "week"].map((item) => (
+              <Trending.Item
+                key={item}
+                selected={item === activePeriod && 1}
+                onClick={() => setActivePeriod(item)}
+              >
+                {item}
+              </Trending.Item>
+            ))}
+          </Trending.Menu>
+        </Trending.Column>
+        <SwitchTransition mode={"out-in"}>
+          <CSSTransition
+            timeout={500}
+            classNames="fade"
+            key={`${dataLoading} ${active} ${activePeriod} ${activeType}`}
+          >
+            <Trending.Container>
+              {/* {dataLoading &&
               range(1, 20).map((item) => <TrendingSkeleton key={item} />)} */}
-            {!dataLoading &&
-              data.results.map((item) => (
-                <TrendingItem
-                  key={item.id}
-                  item={item}
-                  direction={activeType}
-                />
-              ))}
-            <PaginContainer />
-          </Trending.Container>
-        </CSSTransition>
-      </SwitchTransition>
+              {!dataLoading &&
+                data.results.map((item) => (
+                  <TrendingItem
+                    key={item.id}
+                    item={item}
+                    direction={activeType}
+                  />
+                ))}
+              <PaginContainer />
+            </Trending.Container>
+          </CSSTransition>
+        </SwitchTransition>
+      </Trending.Outer>
     </Trending>
   );
 }

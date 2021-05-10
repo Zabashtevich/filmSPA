@@ -4,6 +4,7 @@ import { w200miniature } from "../../constants/constants";
 import {
   Section,
   Title,
+  Outer,
   Column,
   Menu,
   Subtitle,
@@ -23,6 +24,10 @@ export default function Trending({ children, ...rest }) {
 
 Trending.Title = function TrendingTitle({ children, ...rest }) {
   return <Title {...rest}>{children}</Title>;
+};
+
+Trending.Outer = function TrendingOuter({ children, ...rest }) {
+  return <Outer {...rest}>{children}</Outer>;
 };
 
 Trending.Column = function TrendingColumn({ children, ...rest }) {

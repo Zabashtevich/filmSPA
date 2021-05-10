@@ -8,13 +8,15 @@ export default function ActorSkeletonContent() {
     <ActorSkeleton>
       <ActorSkeleton.Title />
       <ActorSkeleton.Subtitle />
-      {range(1, 3).map((item) => (
-        <ActorSkeleton.Overview key={item} />
-      ))}
-      <ActorSkeleton.Devider />
-      {range(1, 5).map((item) => (
-        <ActorSkeleton.Overview key={item} />
-      ))}
+      <ActorSkeleton.List>
+        {range(1, 3).map((item) => (
+          <ActorSkeleton.Overview key={item} />
+        ))}
+        <ActorSkeleton.Devider />
+        {range(1, 5).map((item) => (
+          <ActorSkeleton.Overview key={item} />
+        ))}
+      </ActorSkeleton.List>
     </ActorSkeleton>
   );
 }

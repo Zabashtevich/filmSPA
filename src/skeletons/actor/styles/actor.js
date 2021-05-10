@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 
 export const Container = styled.div`
   flex-direction: column;
@@ -74,16 +74,29 @@ export const Fieldvalue = styled.div`
 
 export const Title = styled.div`
   ${({ theme }) => theme.animations.skeleton};
+  border-radius: 0.2rem;
+  margin: 0 auto;
+  margin-bottom: 3rem;
   height: 55px;
   width: 250px;
 `;
 
+export const List = styled.div`
+  margin-top: 1rem;
+  width: 100%;
+`;
+
 export const Overview = styled.div`
   ${({ theme }) => theme.animations.skeleton};
+  border-radius: 0.2rem;
+  margin: 0.2rem 0;
   height: 18px;
   width: 100%;
 `;
 
 export const Devider = styled.div`
   ${({ theme }) => theme.animations.skeleton};
+  border-radius: 0.2rem;
+  margin: 1rem 0;
+  width: 100%;
 `;

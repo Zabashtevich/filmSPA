@@ -8,6 +8,7 @@ import {
   Fieldname,
   Fieldvalue,
   Title,
+  List,
   Overview,
   Devider,
 } from "./styles/actor";
@@ -38,6 +39,10 @@ ActorSkeleton.Fieldvalue = function ActorSkeletonFieldvalue() {
 
 ActorSkeleton.Title = function ActorSkeletonTitle() {
   return <Title />;
+};
+
+ActorSkeleton.List = function ActorSkeletonList({ children }) {
+  return <List>{children}</List>;
 };
 
 ActorSkeleton.Overview = function ActorSkeletonOverview() {

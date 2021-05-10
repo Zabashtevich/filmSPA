@@ -8,6 +8,7 @@ export const Section = styled.div`
 `;
 
 export const Container = styled.div`
+  font-family: ${({ theme }) => theme.font.aux.family};
   ${({ theme }) => theme.animations.fade()};
   border-radius: 0.4rem;
   align-items: center;
@@ -74,18 +75,22 @@ export const Item = styled(ReactRouterLink)`
   text-decoration: none;
   margin: 0 0.1rem;
   display: flex;
+  height: 450px;
   color: black;
   width: 250px;
 
   @media (max-width: 1100px) {
+    height: 375px;
     width: 200px;
   }
 
   @media (max-width: 750px) {
+    height: 275px;
     width: 150px;
   }
 
   @media (max-width: 500px) {
+    height: 200px;
     width: 100px;
   }
 `;
@@ -170,7 +175,15 @@ export const Average = styled.span`
   }
 `;
 
-export const Year = styled.span``;
+export const Year = styled.span`
+  @media (max-width: 750px) {
+    font-size: ${({ theme }) => theme.font.aux.size.small};
+  }
+
+  @media (max-width: 500px) {
+    font-size: 0.7rem;
+  }
+`;
 
 export const Count = styled.span`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};

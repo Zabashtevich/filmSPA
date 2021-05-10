@@ -45,13 +45,15 @@ export default function ActorContainer() {
         </CSSTransition>
       </SwitchTransition>
 
-      <CSSTransition in={!dataLoading} classNames="fade" timeout={500}>
-        <Actor.Content>
-          {dataLoading && <ActorSkeletonContent />}
-          {!dataLoading && <ActorContent data={data} />}
-          <CreditsContainer />
-        </Actor.Content>
-      </CSSTransition>
+      <SwitchTransition mode={"out-in"}>
+        <CSSTransition key={dataLoading} classNames="fade" timeout={500}>
+          <Actor.Content>
+            {dataLoading && <ActorSkeletonContent />}
+            {!dataLoading && <ActorContent data={data} />}
+            <CreditsContainer />
+          </Actor.Content>
+        </CSSTransition>
+      </SwitchTransition>
     </Actor>
   );
 }

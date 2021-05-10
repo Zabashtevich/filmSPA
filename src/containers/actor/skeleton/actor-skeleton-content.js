@@ -4,6 +4,8 @@ import { ActorSkeleton } from "../../../skeletons";
 import { range } from "../../../utils";
 
 export default function ActorSkeletonContent() {
+  const auxRowsVisible = window.innerWidth < 750;
+
   return (
     <ActorSkeleton>
       <ActorSkeleton.Title />
@@ -13,9 +15,17 @@ export default function ActorSkeletonContent() {
           <ActorSkeleton.Overview key={item} />
         ))}
         <ActorSkeleton.Devider />
-        {range(1, 5).map((item) => (
+        {range(1, 7).map((item) => (
           <ActorSkeleton.Overview key={item} />
         ))}
+        {auxRowsVisible && (
+          <>
+            <ActorSkeleton.Devider />
+            {range(1, 3).map((item) => (
+              <ActorSkeleton.Overview key={item} />
+            ))}
+          </>
+        )}
       </ActorSkeleton.List>
     </ActorSkeleton>
   );

@@ -2,9 +2,9 @@ import styled from "styled-components/macro";
 
 export const Poster = styled.div`
   animation: ${({ theme }) => theme.animations.skeleton} 2s infinite linear;
+  background: ${({ theme }) => theme.colors.skeleton};
   box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
     rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-  background: ${({ theme }) => theme.colors.skeleton};
   margin: 0.8rem 0.4rem;
   height: 300px;
   width: 200px;

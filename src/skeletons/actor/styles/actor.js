@@ -7,7 +7,8 @@ export const Container = styled.div`
 `;
 
 export const Poster = styled.div`
-  ${({ theme }) => theme.animations.skeleton};
+  animation: ${({ theme }) => theme.animations.skeleton} 2s infinite linear;
+  background: ${({ theme }) => theme.colors.skeleton};
   border-radius: 0.5rem;
   margin-bottom: 1rem;
   height: 450px;
@@ -25,7 +26,8 @@ export const Poster = styled.div`
 `;
 
 export const Subtitle = styled.div`
-  ${({ theme }) => theme.animations.skeleton};
+  animation: ${({ theme }) => theme.animations.skeleton} 2s infinite linear;
+  background: ${({ theme }) => theme.colors.skeleton};
   border-radius: 0.2rem;
   height: 27px;
   width: 250px;
@@ -48,7 +50,8 @@ export const Row = styled.div`
 `;
 
 export const Fieldname = styled.div`
-  ${({ theme }) => theme.animations.skeleton};
+  animation: ${({ theme }) => theme.animations.skeleton} 2s infinite linear;
+  background: ${({ theme }) => theme.colors.skeleton};
   border-radius: 0.2rem;
   margin: 0.1rem 0;
   height: 18px;
@@ -61,7 +64,8 @@ export const Fieldname = styled.div`
 `;
 
 export const Fieldvalue = styled.div`
-  ${({ theme }) => theme.animations.skeleton};
+  animation: ${({ theme }) => theme.animations.skeleton} 2s infinite linear;
+  background: ${({ theme }) => theme.colors.skeleton};
   border-radius: 0.2rem;
   height: 18px;
   width: 60px;
@@ -73,7 +77,8 @@ export const Fieldvalue = styled.div`
 `;
 
 export const Title = styled.div`
-  ${({ theme }) => theme.animations.skeleton};
+  animation: ${({ theme }) => theme.animations.skeleton} 2s infinite linear;
+  background: ${({ theme }) => theme.colors.skeleton};
   border-radius: 0.2rem;
   margin: 0 auto;
   margin-bottom: 3rem;
@@ -95,7 +100,8 @@ export const List = styled.div`
 `;
 
 export const Overview = styled.div`
-  ${({ theme }) => theme.animations.skeleton};
+  animation: ${({ theme }) => theme.animations.skeleton} 2s infinite linear;
+  background: ${({ theme }) => theme.colors.skeleton};
   border-radius: 0.2rem;
   margin: 0.2rem 0;
   height: 18px;
@@ -107,7 +113,8 @@ export const Overview = styled.div`
 `;
 
 export const Devider = styled.div`
-  ${({ theme }) => theme.animations.skeleton};
+  animation: ${({ theme }) => theme.animations.skeleton} 2s infinite linear;
+  background: ${({ theme }) => theme.colors.skeleton};
   border-radius: 0.2rem;
   margin: 1rem 0;
   width: 100%;

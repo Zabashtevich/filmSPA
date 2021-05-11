@@ -1,7 +1,8 @@
 import styled from "styled-components/macro";
 
 export const Year = styled.div`
-  ${({ theme }) => theme.animations.skeleton};
+  animation: ${({ theme }) => theme.animations.skeleton} 2s infinite linear;
+  background: ${({ theme }) => theme.colors.skeleton};
   border-radius: 0.5rem;
   margin-left: 0.1rem;
   margin-right: 3rem;
@@ -20,7 +21,8 @@ export const Year = styled.div`
 `;
 
 export const Subtitle = styled.div`
-  ${({ theme }) => theme.animations.skeleton};
+  animation: ${({ theme }) => theme.animations.skeleton} 2s infinite linear;
+  background: ${({ theme }) => theme.colors.skeleton};
   border-radius: 0.5rem;
   height: 15px;
   width: 300px;
@@ -42,7 +44,8 @@ export const Subtitle = styled.div`
 `;
 
 export const Meta = styled.div`
-  ${({ theme }) => theme.animations.skeleton};
+  animation: ${({ theme }) => theme.animations.skeleton} 2s infinite linear;
+  background: ${({ theme }) => theme.colors.skeleton};
   border-radius: 0.5rem;
   margin-left: 3rem;
   height: 27px;
@@ -59,7 +62,8 @@ export const Meta = styled.div`
 `;
 
 export const Rating = styled.div`
-  ${({ theme }) => theme.animations.skeleton};
+  animation: ${({ theme }) => theme.animations.skeleton} 2s infinite linear;
+  background: ${({ theme }) => theme.colors.skeleton};
   border-radius: 0.5rem;
   margin-right: 1rem;
   margin-left: auto;

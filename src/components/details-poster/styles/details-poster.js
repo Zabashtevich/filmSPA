@@ -15,6 +15,11 @@ export const Container = styled.div`
   display: flex;
   z-index: 50;
   width: 100%;
+
+  @media (max-width: 850px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 export const Inner = styled.div`
@@ -40,14 +45,18 @@ export const Inner = styled.div`
 
 export const Wallpaper = styled.img`
   margin-top: 70px;
-  width: 675px;
+  max-width: 675px;
+
+  @media (max-width: 650px) {
+    max-width: 320px;
+  }
 `;
 
 export const Column = styled.div`
   ${({ theme }) => theme.animations.fade()};
+  flex-direction: column;
   box-sizing: border-box;
   display: flex;
-  flex-direction: column;
   margin: 0 auto;
   margin-top: 15rem;
   z-index: 200;
@@ -65,30 +74,74 @@ export const Column = styled.div`
     css`
       margin: 0 1rem;
       margin-top: 15rem;
+
+      @media (max-width: 850px) {
+        margin-top: 5rem;
+      }
+
+      @media (min-width: 850px) {
+        max-width: 400px;
+      }
+
+      @media (min-width: 1000px) {
+        max-width: 600px;
+      }
+
+      @media (min-width: 1300px) {
+        max-width: 800px;
+      }
     `};
   ${({ type }) =>
     type === "cast" &&
     css`
       margin: 0 1rem;
       margin-top: 15rem;
+
+      @media (max-width: 850px) {
+        align-items: center;
+        margin-top: 2rem;
+      }
+
+      @media (max-width: 500px) {
+        margin-top: 1rem;
+      }
     `};
 `;
 
 export const Poster = styled.img`
   border-radius: 0.4rem;
+  height: 450px;
+  width: 300px;
+
+  @media (max-width: 1000px) {
+    height: 300px;
+    width: 200px;
+  }
+
+  @media (max-width: 850px) {
+    height: 450px;
+    width: 300px;
+  }
 `;
 
 export const Title = styled.div`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   font-size: ${({ theme }) => theme.font.aux.size.big};
   align-self: flex-start;
-  width: 100%;
+
+  @media (max-width: 850px) {
+    font-size: 1rem;
+  }
 `;
 
 export const Overview = styled.div`
   font-weight: ${({ theme }) => theme.font.aux.weight.light};
   font-size: ${({ theme }) => theme.font.aux.size.normal};
   align-self: flex-start;
+
+  @media (max-width: 850px) {
+    font-size: 0.8rem;
+  }
 `;
 
 export const Subtitle = styled.div`
@@ -96,6 +149,12 @@ export const Subtitle = styled.div`
   font-size: ${({ theme }) => theme.font.aux.size.normal};
   align-self: flex-start;
   margin: 2rem 0;
+
+  @media (max-width: 850px) {
+    font-size: ${({ theme }) => theme.font.aux.size.big};
+    margin: 0 auto;
+    margin-top: 1rem;
+  }
 `;
 
 export const Row = styled.div`
@@ -104,6 +163,10 @@ export const Row = styled.div`
   padding: 10px 0;
   display: flex;
   color: white;
+
+  @media (max-width: 850px) {
+    font-size: 0.8rem;
+  }
 `;
 
 export const Fieldname = styled.div`
@@ -115,7 +178,16 @@ export const Fieldname = styled.div`
 
 export const Fieldvalue = styled.div`
   font-weight: ${({ theme }) => theme.font.aux.weight.light};
-  width: 350px;
+  white-space: wrap;
+  max-width: 350px;
+
+  @media (max-width: 600px) {
+    max-width: 250px;
+  }
+
+  @media (max-width: 450px) {
+    max-width: 125px;
+  }
 `;
 
 export const Link = styled(ReactRouterLink)`
@@ -131,5 +203,13 @@ export const Link = styled(ReactRouterLink)`
   &:hover {
     color: ${({ theme }) => theme.colors.aux};
     transition: 300ms;
+  }
+
+  @media (max-width: 850px) {
+    font-size: ${({ theme }) => theme.font.aux.size.normal};
+  }
+
+  @media (max-width: 500px) {
+    font-size: ${({ theme }) => theme.font.aux.size.small};
   }
 `;

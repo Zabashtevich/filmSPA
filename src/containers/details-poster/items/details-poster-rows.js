@@ -10,7 +10,7 @@ import {
 export default function DetailsPosterRows({ data, direction }) {
   return (
     <>
-      <DetailsPoster.Title>{data.title}</DetailsPoster.Title>
+      <DetailsPoster.Title>{data.title || data.name}</DetailsPoster.Title>
       <DetailsPoster.Overview>{data.overview}</DetailsPoster.Overview>
       <DetailsPoster.Subtitle>About {direction}</DetailsPoster.Subtitle>
       <DetailsPoster.Row>

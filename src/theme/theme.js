@@ -36,8 +36,8 @@ export default {
     backdrop: "linear-gradient(to bottom,rgba(0,0,0,0.8),rgba(0,0,0,0.95))",
     skeleton: `linear-gradient(
       to right,
-      rgb(214, 214, 214) 0%,
-      rgb(173, 173, 173) 50%,
+      rgb(243, 242, 241) 0%,
+      rgb(237, 235, 233) 50%,
       rgb(243, 242, 241) 100%
     )
     0px 0px / 90% 100% no-repeat rgb(243, 242, 241)`,

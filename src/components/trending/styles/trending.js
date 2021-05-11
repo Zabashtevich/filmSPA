@@ -157,6 +157,10 @@ export const Card = styled(ReactRouterLink)`
     rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
   margin: 0.8rem 0.4rem;
   position: relative;
+
+  @media (max-width: 750px) {
+    margin: 0.4rem 0.2rem;
+  }
 `;
 
 export const Average = styled.span`

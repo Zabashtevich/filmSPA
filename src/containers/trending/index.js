@@ -69,9 +69,9 @@ export default function TrendingContainer() {
             key={`${dataLoading} ${active} ${activePeriod} ${activeType}`}
           >
             <Trending.Container>
-              {true &&
+              {dataLoading &&
                 range(1, 20).map((item) => <TrendingSkeleton key={item} />)}
-              {!true &&
+              {!dataLoading &&
                 data.results.map((item) => (
                   <TrendingItem
                     key={item.id}

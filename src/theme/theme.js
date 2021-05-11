@@ -34,6 +34,13 @@ export default {
     positive: "#d9f0e1",
     aux: "#3e495f",
     backdrop: "linear-gradient(to bottom,rgba(0,0,0,0.8),rgba(0,0,0,0.95))",
+    skeleton: `linear-gradient(
+      to right,
+      rgb(214, 214, 214) 0%,
+      rgb(173, 173, 173) 50%,
+      rgb(243, 242, 241) 100%
+    )
+    0px 0px / 90% 100% no-repeat rgb(243, 242, 241)`,
   },
   animations: {
     fade: (enter = 500, exit = 500, appear = 500) => `
@@ -87,13 +94,13 @@ export default {
       transform: translate(0, 0);
       transition: 300ms;
     }`,
-    skeleton: `background: linear-gradient(
-      to right,
-      rgb(243, 242, 241) 0%,
-      rgb(237, 235, 233) 50%,
-      rgb(243, 242, 241) 100%
-    )
-    0px 0px / 90% 100% no-repeat rgb(243, 242, 241);`,
+    skeleton: keyframes`
+      from {
+    background-position: 0px 0px;
+      }
+      100% {
+    background-position: 230px 0px;
+       }`,
     shake: keyframes`
      10%, 90% {
     transform: translate3d(-1px, 0, 0);

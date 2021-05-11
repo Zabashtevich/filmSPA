@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { CSSTransition, SwitchTransition } from "react-transition-group";
 
+import { TrendingSkeleton } from "../../skeletons";
 import { useFetch } from "./../../hooks";
 import { Trending } from "../../components";
 import { PaginContainer } from "..";
 import { usePaginContext } from "../../context";
 import TrendingItem from "./items/trending-item";
 import { range } from "../../utils";
-// import { TrendingSkeleton } from "../../components/skeleton";
-import { CSSTransition, SwitchTransition } from "react-transition-group";
 
 export default function TrendingContainer() {
   const [{ active }, setPagination] = usePaginContext();
@@ -69,9 +69,9 @@ export default function TrendingContainer() {
             key={`${dataLoading} ${active} ${activePeriod} ${activeType}`}
           >
             <Trending.Container>
-              {/* {dataLoading &&
-              range(1, 20).map((item) => <TrendingSkeleton key={item} />)} */}
-              {!dataLoading &&
+              {true &&
+                range(1, 20).map((item) => <TrendingSkeleton key={item} />)}
+              {!true &&
                 data.results.map((item) => (
                   <TrendingItem
                     key={item.id}

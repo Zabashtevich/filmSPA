@@ -1,16 +1,6 @@
 import styled, { css, keyframes } from "styled-components/macro";
 import { Link as ReactRouterLink } from "react-router-dom";
 
-const linear = keyframes`
-    from {
-  
-    background-position: 0px 0px;
-    }
-    100% {
-    background-position: 230px 0px;
-     }
-}`;
-
 export const Section = styled.div`
   flex-direction: column;
   align-items: center;
@@ -239,14 +229,8 @@ export const Inner = styled.div`
   ${({ loading }) =>
     loading &&
     css`
-      background: linear-gradient(
-          to right,
-          rgb(243, 243, 243) 0%,
-          rgb(236, 235, 235) 50%,
-          rgb(243, 243, 243) 100%
-        )
-        0px 0px / 100% 100% rgb(236, 235, 235);
-      animation: ${linear} 2s infinite linear;
+      background: ${({ theme }) => theme.colors.skeleton};
+      animation: ${({ theme }) => theme.animations.skeleton} 2s infinite linear;
     `};
 `;
 

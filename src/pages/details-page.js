@@ -29,13 +29,13 @@ export default function DetailsPage() {
       <HeaderContainer />
       <ProcessContainer />
       <ModalContainer />
-      <DetailsPosterContainer
+      {/* <DetailsPosterContainer
         data={data}
         loading={dataLoading || userDataLoading}
         lists={lists}
         loggedIn={loggedIn}
-      />
-      {/* <DetailsPanelContainer data={data} dataLoading={dataLoading} /> */}
+      /> */}
+      <DetailsPanelContainer data={data} dataLoading={dataLoading} />
       <FooterContainer />
     </>
   );

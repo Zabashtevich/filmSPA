@@ -72,7 +72,7 @@ export const Scroller = styled.div`
 `;
 
 export const Poster = styled.img`
-  ${({ theme }) => theme.animations.fade(500, 0, 500)};
+  ${({ theme }) => theme.animations.fade()};
   height: 300px;
   width: 200px;
 

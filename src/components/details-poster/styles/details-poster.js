@@ -47,7 +47,7 @@ export const Wallpaper = styled.img`
   margin-top: 70px;
   max-width: 675px;
 
-  @media (max-width: 650px) {
+  @media (max-width: 675px) {
     max-width: 320px;
   }
 `;
@@ -74,21 +74,18 @@ export const Column = styled.div`
     css`
       margin: 0 1rem;
       margin-top: 15rem;
+      width: 700px;
 
-      @media (max-width: 850px) {
-        margin-top: 5rem;
+      @media (max-width: 1200px) {
+        width: 500px;
       }
 
-      @media (min-width: 850px) {
-        max-width: 400px;
+      @media (max-width: 900px) {
+        width: 400px;
       }
 
-      @media (min-width: 1000px) {
-        max-width: 600px;
-      }
-
-      @media (min-width: 1300px) {
-        max-width: 800px;
+      @media (max-width: 500px) {
+        width: 300px;
       }
     `};
   ${({ type }) =>

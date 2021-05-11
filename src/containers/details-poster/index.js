@@ -6,6 +6,7 @@ import { DetailsPoster } from "../../components";
 import DetailsPosterRows from "./items/details-poster-rows";
 import { WidgetContainer } from "../";
 import DetailsColumnSkeleton from "./skeletons/details-column-skeleton";
+import DetailsContentSkeleton from "./skeletons/details-content-skeleton";
 
 export default function DetailsPosterContainer({
   data,
@@ -44,7 +45,7 @@ export default function DetailsPosterContainer({
       <SwitchTransition mode="out-in">
         <CSSTransition key={loading} classNames="fade" timeout={500}>
           <DetailsPoster.Column type={"content"}>
-            {/* {loading && <PosterDetailsRowsSkeleton />} */}
+            {loading && <DetailsContentSkeleton />}
             {!loading && (
               <DetailsPosterRows data={data} direction={direction} />
             )}

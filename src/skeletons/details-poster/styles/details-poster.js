@@ -61,3 +61,22 @@ export const Row = styled.div`
   height: 31px;
   width: 100%;
 `;
+
+export const Link = styled.div`
+  animation: ${({ theme }) => theme.animations.skeleton} 2s infinite linear;
+  background: ${({ theme }) => theme.colors.skeleton};
+  border-radius: 0.2rem;
+  margin-top: 0.5rem;
+  height: 14px;
+  width: 100px;
+
+  @media (max-width: 850px) {
+    height: 18px;
+    width: 150px;
+  }
+
+  @media (max-width: 500px) {
+    height: 14px;
+    width: 150px;
+  }
+`;

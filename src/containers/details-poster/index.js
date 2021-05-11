@@ -7,6 +7,8 @@ import DetailsPosterRows from "./items/details-poster-rows";
 import { WidgetContainer } from "../";
 import DetailsColumnSkeleton from "./skeletons/details-column-skeleton";
 import DetailsContentSkeleton from "./skeletons/details-content-skeleton";
+import DetailsCreditsSkeleton from "./skeletons/details-credits-skeleton";
+import { range } from "../../utils";
 
 export default function DetailsPosterContainer({
   data,
@@ -57,7 +59,8 @@ export default function DetailsPosterContainer({
         <CSSTransition key={loading} classNames="fade" timeout={500}>
           <DetailsPoster.Column type={"cast"}>
             <DetailsPoster.Subtitle>Cast:</DetailsPoster.Subtitle>
-            {/* {loading && <CastListSkeleton />} */}
+            {loading &&
+              range(1, 10).map((item) => <DetailsCreditsSkeleton key={item} />)}
             {!loading &&
               data?.credits?.cast.slice(0, 10).map(({ name, id }) => (
                 <DetailsPoster.Link key={id} to={`/actor/${id}`}>

@@ -6,6 +6,7 @@ import {
   Overview,
   Subtitle,
   Row,
+  Link,
 } from "./styles/details-poster";
 
 export default function DetailsPosterSkeleton({ children }) {
@@ -30,4 +31,8 @@ DetailsPosterSkeleton.Subtitle = function DetailsPosterSkeletonSubtitle() {
 
 DetailsPosterSkeleton.Row = function DetailsPosterSkeletonRow() {
   return <Row />;
+};
+
+DetailsPosterSkeleton.Link = function DetailsPosterSkeletonLink() {
+  return <Link />;
 };

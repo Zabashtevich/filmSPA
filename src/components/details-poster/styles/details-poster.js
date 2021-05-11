@@ -88,6 +88,7 @@ export const Column = styled.div`
         width: 300px;
       }
     `};
+
   ${({ type }) =>
     type === "cast" &&
     css`
@@ -194,6 +195,7 @@ export const Link = styled(ReactRouterLink)`
   text-decoration: none;
   white-space: nowrap;
   margin-top: 0.5rem;
+  max-width: 100px;
   overflow: hidden;
   display: block;
   color: white;
@@ -204,6 +206,7 @@ export const Link = styled(ReactRouterLink)`
 
   @media (max-width: 850px) {
     font-size: ${({ theme }) => theme.font.aux.size.normal};
+    max-width: 150px;
   }
 
   @media (max-width: 500px) {

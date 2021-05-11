@@ -35,7 +35,7 @@ export default function DetailsPage() {
         lists={lists}
         loggedIn={loggedIn}
       />
-      <DetailsPanelContainer data={data} dataLoading={dataLoading} />
+      {/* <DetailsPanelContainer data={data} dataLoading={dataLoading} /> */}
       <FooterContainer />
     </>
   );

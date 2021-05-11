@@ -4,12 +4,8 @@ import { useParams } from "react-router-dom";
 
 import { DetailsPoster } from "../../components";
 import DetailsPosterRows from "./items/details-poster-rows";
-// import {
-//   CastListSkeleton,
-//   PosterDetailsRowsSkeleton,
-//   PosterDetailsSkeleton,
-// } from "../../skeletons/details-poster";
 import { WidgetContainer } from "../";
+import DetailsColumnSkeleton from "./skeletons/details-column-skeleton";
 
 export default function DetailsPosterContainer({
   data,
@@ -31,7 +27,7 @@ export default function DetailsPosterContainer({
       <SwitchTransition mode="out-in">
         <CSSTransition key={loading} classNames="fade" timeout={500}>
           <DetailsPoster.Column type={"poster"}>
-            {/* {loading && <PosterDetailsSkeleton />} */}
+            {loading && <DetailsColumnSkeleton />}
             {!loading && (
               <>
                 <DetailsPoster.Poster

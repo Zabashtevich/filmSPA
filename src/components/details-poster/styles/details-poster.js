@@ -15,12 +15,6 @@ export const Container = styled.div`
   display: flex;
   z-index: 50;
   width: 100%;
-
-  @media (max-width: 750px) {
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-  }
 `;
 
 export const Inner = styled.div`
@@ -47,14 +41,6 @@ export const Inner = styled.div`
 export const Wallpaper = styled.img`
   margin-top: 70px;
   width: 675px;
-
-  @media (max-width: 900px) {
-    width: 400px;
-  }
-
-  @media (max-width: 400px) {
-    width: 320px;
-  }
 `;
 
 export const Column = styled.div`
@@ -72,10 +58,6 @@ export const Column = styled.div`
       align-items: center;
       margin: 0 1rem;
       margin-top: 15rem;
-
-      @media (max-width: 750px) {
-        margin-top: 20rem;
-      }
     `};
 
   ${({ type }) =>
@@ -83,95 +65,30 @@ export const Column = styled.div`
     css`
       margin: 0 1rem;
       margin-top: 15rem;
-
-      @media (min-width: 1200px) {
-        width: 700px;
-      }
-
-      @media (max-width: 1200px) {
-        width: 500px;
-      }
-
-      @media (max-width: 900px) {
-        width: 400px;
-      }
-
-      @media (max-width: 750px) {
-        margin-top: 2rem;
-        width: 320px;
-      }
     `};
   ${({ type }) =>
     type === "cast" &&
     css`
       margin: 0 1rem;
       margin-top: 15rem;
-
-      @media (max-width: 750px) {
-        justify-content: center;
-        align-items: center;
-        margin-top: 1rem;
-      }
     `};
 `;
 
 export const Poster = styled.img`
   border-radius: 0.4rem;
-
-  @media (max-width: 1200px) {
-    height: 350px;
-  }
-
-  @media (max-width: 900px) {
-    height: 250px;
-  }
 `;
 
 export const Title = styled.div`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   font-size: ${({ theme }) => theme.font.aux.size.big};
   align-self: flex-start;
-
-  @media (min-width: 1200px) {
-    width: 700px;
-  }
-
-  @media (max-width: 1200px) {
-    font-size: 1.4rem;
-    width: 500px;
-  }
-
-  @media (max-width: 750px) {
-    font-size: 1.2rem;
-  }
-
-  @media (max-width: 900px) {
-    width: 300px;
-  }
+  width: 100%;
 `;
 
 export const Overview = styled.div`
   font-weight: ${({ theme }) => theme.font.aux.weight.light};
   font-size: ${({ theme }) => theme.font.aux.size.normal};
   align-self: flex-start;
-
-  @media (min-width: 1200px) {
-    width: 700px;
-  }
-
-  @media (max-width: 1200px) {
-    font-size: 0.8rem;
-    width: 500px;
-  }
-
-  @media (max-width: 900px) {
-    width: 400px;
-  }
-
-  @media (max-width: 750px) {
-    font-size: 0.6rem;
-    width: 320px;
-  }
 `;
 
 export const Subtitle = styled.div`
@@ -179,10 +96,6 @@ export const Subtitle = styled.div`
   font-size: ${({ theme }) => theme.font.aux.size.normal};
   align-self: flex-start;
   margin: 2rem 0;
-
-  @media (max-width: 750px) {
-    align-self: center;
-  }
 `;
 
 export const Row = styled.div`
@@ -191,23 +104,6 @@ export const Row = styled.div`
   padding: 10px 0;
   display: flex;
   color: white;
-
-  @media (min-width: 1200px) {
-    width: 700px;
-  }
-
-  @media (max-width: 1200px) {
-    width: 500px;
-  }
-
-  @media (max-width: 900px) {
-    width: 400px;
-  }
-
-  @media (max-width: 750px) {
-    font-size: 0.8rem;
-    width: 300px;
-  }
 `;
 
 export const Fieldname = styled.div`
@@ -215,19 +111,11 @@ export const Fieldname = styled.div`
   user-select: none;
   text-align: left;
   width: 150px;
-
-  @media (max-width: 900px) {
-    width: 80px;
-  }
 `;
 
 export const Fieldvalue = styled.div`
   font-weight: ${({ theme }) => theme.font.aux.weight.light};
   width: 350px;
-
-  @media (max-width: 900px) {
-    width: 200px;
-  }
 `;
 
 export const Link = styled(ReactRouterLink)`
@@ -243,16 +131,5 @@ export const Link = styled(ReactRouterLink)`
   &:hover {
     color: ${({ theme }) => theme.colors.aux};
     transition: 300ms;
-  }
-
-  @media (max-width: 1000px) {
-    font-size: 0.7rem;
-    max-width: 80px;
-  }
-
-  @media (max-width: 750px) {
-    overflow: visible;
-    font-size: 1rem;
-    max-width: 150px;
   }
 `;

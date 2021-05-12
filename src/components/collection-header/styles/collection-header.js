@@ -29,6 +29,11 @@ export const Container = styled.div`
   height: 100%;
   color: white;
   width: 100%;
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 export const Poster = styled.img`
@@ -50,6 +55,11 @@ export const Poster = styled.img`
     height: 240px;
     width: 160px;
   }
+
+  @media (max-width: 500px) {
+    height: 300px;
+    width: 200px;
+  }
 `;
 
 export const Info = styled.div`
@@ -57,6 +67,10 @@ export const Info = styled.div`
   align-self: center;
   margin-left: 2rem;
   display: flex;
+
+  @media (max-width: 500px) {
+    margin-top: 2rem;
+  }
 `;
 
 export const Title = styled.span`
@@ -75,6 +89,14 @@ export const Title = styled.span`
   @media (max-width: 600px) {
     font-size: 1rem;
   }
+
+  @media (max-width: 500px) {
+    font-size: 1.2rem;
+  }
+
+  @media (max-width: 400px) {
+    font-size: 1rem;
+  }
 `;
 
 export const Subtitle = styled.span`
@@ -88,6 +110,14 @@ export const Subtitle = styled.span`
   @media (max-width: 600px) {
     font-size: 0.8rem;
   }
+
+  @media (max-width: 500px) {
+    font-size: 1rem;
+  }
+
+  @media (max-width: 400px) {
+    font-size: 0.8rem;
+  }
 `;
 
 export const Overview = styled.span`
@@ -99,32 +129,37 @@ export const Overview = styled.span`
   @media (max-width: 600px) {
     font-size: 0.7rem;
   }
+
+  @media (max-width: 500px) {
+    font-size: 0.9rem;
+    max-width: 320px;
+  }
+
+  @media (max-width: 400px) {
+    font-size: 0.8rem;
+  }
 `;
 
 export const Row = styled.div`
   align-items: center;
   display: flex;
+
+  @media (max-width: 900px) {
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 0.7rem;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 0.9rem;
+  }
 `;
 
 export const Fieldname = styled.span`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   margin-right: 0.5rem;
-
-  @media (max-width: 900px) {
-    font-size: 0.8rem;
-  }
-
-  @media (max-width: 600px) {
-    font-size: 0.7rem;
-  }
 `;
 
-export const Fieldvalue = styled.span`
-  @media (max-width: 900px) {
-    font-size: 0.8rem;
-  }
-
-  @media (max-width: 600px) {
-    font-size: 0.7rem;
-  }
-`;
+export const Fieldvalue = styled.span``;

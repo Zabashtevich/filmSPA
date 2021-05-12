@@ -2,8 +2,8 @@ import React from "react";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 
 import { CollectionCast } from "../../components";
-// import { CollectionCastSkeleton } from "../../components/skeleton";
 import { range } from "../../utils";
+import CollectionCardSkeleton from "./skeleton/collection-card-skeleton";
 
 export default function CollectionCastContainer({ loading, details }) {
   return (
@@ -13,10 +13,10 @@ export default function CollectionCastContainer({ loading, details }) {
         <SwitchTransition mode={"out-in"}>
           <CSSTransition key={loading} classNames="fade" timeout={500}>
             <CollectionCast.List>
-              {/* {loading &&
+              {loading &&
                 range(1, 15).map((item) => (
-                  <CollectionCastSkeleton key={item} />
-                ))} */}
+                  <CollectionCardSkeleton key={item} />
+                ))}
               {!loading &&
                 details.cast.slice(0, 15).map((item) => {
                   return (

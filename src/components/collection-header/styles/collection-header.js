@@ -24,6 +24,7 @@ export const Container = styled.div`
   ${({ theme }) => theme.animations.fade()};
   box-sizing: border-box;
   max-width: 1300px;
+  min-height: 550px;
   padding: 2rem;
   display: flex;
   height: 100%;

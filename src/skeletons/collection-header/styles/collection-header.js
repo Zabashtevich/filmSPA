@@ -32,6 +32,7 @@ export const Wrapper = styled.div`
   border-radius: 0.2rem;
   align-self: center;
   margin-left: 2rem;
+  width: 100%;
 
   @media (min-width: 1300px) {
     max-width: 700px;
@@ -72,7 +73,7 @@ export const Title = styled.div`
     margin: 0 auto;
     margin-bottom: 2rem;
 
-    width: 320px;
+    width: 200px;
     height: 22px;
   }
 `;
@@ -86,6 +87,10 @@ export const Subtitle = styled.div`
 
   @media (max-width: 900px) {
     height: 22px;
+  }
+
+  @media (max-width: 750px) {
+    height: 18px;
   }
 `;
 
@@ -104,7 +109,7 @@ export const Overview = styled.div`
   }
 
   @media (max-width: 900px) {
-    width: 320px;
+    width: 190px;
     height: 14px;
   }
 `;

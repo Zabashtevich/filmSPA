@@ -5,6 +5,7 @@ export const Inner = styled.div`
   max-width: 1300px;
   margin: 0 auto;
   margin-top: 3rem;
+  padding: 0 1rem;
 `;
 
 export const Container = styled.div`
@@ -27,11 +28,20 @@ export const Card = styled.div`
   margin: 1rem 0;
   display: flex;
   height: 150px;
+
+  @media (max-width: 550px) {
+    height: 100px;
+  }
 `;
 
 export const Poster = styled.img`
-  ${({ theme }) => theme.animations.skeleton};
   border-radius: 0.5rem 0 0 0.5rem;
+  object-fit: cover;
+  object-position: top left;
+
+  @media (max-width: 550px) {
+    width: 100px;
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -51,6 +61,10 @@ export const Subtitle = styled(ReactRouterLink)`
     color: ${({ theme }) => theme.colors.aux};
     cursor: pointer;
   }
+
+  @media (max-width: 550px) {
+    font-size: ${({ theme }) => theme.font.aux.size.normal};
+  }
 `;
 
 export const Date = styled.span`
@@ -58,6 +72,10 @@ export const Date = styled.span`
   color: rgba(0, 0, 0, 0.5);
   margin-top: 0.2rem;
   user-select: none;
+
+  @media (max-width: 550px) {
+    font-size: ${({ theme }) => theme.font.aux.size.small};
+  }
 `;
 
 export const Overview = styled.div`
@@ -68,4 +86,8 @@ export const Overview = styled.div`
   user-select: none;
   margin-top: auto;
   overflow: hidden;
+
+  @media (max-width: 550px) {
+    font-size: ${({ theme }) => theme.font.aux.size.small};
+  }
 `;

@@ -30,7 +30,7 @@ export const Container = styled.div`
   color: white;
   width: 100%;
 
-  @media (max-width: 500px) {
+  @media (max-width: 750px) {
     flex-direction: column;
     align-items: center;
   }
@@ -56,7 +56,7 @@ export const Poster = styled.img`
     width: 160px;
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: 750px) {
     height: 300px;
     width: 200px;
   }
@@ -68,8 +68,26 @@ export const Info = styled.div`
   margin-left: 2rem;
   display: flex;
 
-  @media (max-width: 500px) {
+  @media (min-width: 1300px) {
+    max-width: 700px;
+  }
+
+  @media (max-width: 1300px) {
+    max-width: 700px;
+  }
+
+  @media (max-width: 1000px) {
+    max-width: 600px;
+  }
+
+  @media (max-width: 750px) {
     margin-top: 2rem;
+    margin-left: 0;
+    max-width: 450px;
+  }
+
+  @media (max-width: 450px) {
+    max-width: 320px;
   }
 `;
 
@@ -78,24 +96,13 @@ export const Title = styled.span`
   font-size: ${({ theme }) => theme.font.aux.size.huge};
   margin-bottom: 2rem;
 
-  @media (max-width: 1100px) {
+  @media (max-width: 1000px) {
     font-size: ${({ theme }) => theme.font.aux.size.large};
   }
 
-  @media (max-width: 900px) {
-    font-size: ${({ theme }) => theme.font.aux.size.big};
-  }
-
-  @media (max-width: 600px) {
-    font-size: 1rem;
-  }
-
   @media (max-width: 500px) {
+    text-align: center;
     font-size: 1.2rem;
-  }
-
-  @media (max-width: 400px) {
-    font-size: 1rem;
   }
 `;
 
@@ -103,20 +110,12 @@ export const Subtitle = styled.span`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   font-size: ${({ theme }) => theme.font.aux.size.big};
 
-  @media (max-width: 900px) {
-    font-size: 1rem;
-  }
-
-  @media (max-width: 600px) {
-    font-size: 0.8rem;
+  @media (max-width: 1000px) {
+    font-size: 1.2rem;
   }
 
   @media (max-width: 500px) {
     font-size: 1rem;
-  }
-
-  @media (max-width: 400px) {
-    font-size: 0.8rem;
   }
 `;
 
@@ -125,35 +124,14 @@ export const Overview = styled.span`
   font-size: ${({ theme }) => theme.font.aux.size.small};
   margin-bottom: 2rem;
   margin-top: 1rem;
-
-  @media (max-width: 600px) {
-    font-size: 0.7rem;
-  }
-
-  @media (max-width: 500px) {
-    font-size: 0.9rem;
-    max-width: 320px;
-  }
-
-  @media (max-width: 400px) {
-    font-size: 0.8rem;
-  }
 `;
 
 export const Row = styled.div`
   align-items: center;
   display: flex;
 
-  @media (max-width: 900px) {
+  @media (max-width: 1000px) {
     font-size: 0.8rem;
-  }
-
-  @media (max-width: 600px) {
-    font-size: 0.7rem;
-  }
-
-  @media (max-width: 500px) {
-    font-size: 0.9rem;
   }
 `;
 

@@ -43,7 +43,7 @@ export default function CollectionPage() {
         details={details}
       />
       <CollectionCastContainer loading={details.loading} details={details} />
-      <CollectionPartsContainer loading={dataLoading} data={data} />
+      {/* <CollectionPartsContainer loading={dataLoading} data={data} /> */}
       <FooterContainer />
     </>
   );

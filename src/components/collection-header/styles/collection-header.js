@@ -8,7 +8,6 @@ export const Outer = styled.div`
   background-size: cover;
   position: relative;
   margin-top: 100px;
-  width: 100%;
 `;
 
 export const Inner = styled.div`
@@ -23,35 +22,72 @@ export const Inner = styled.div`
 
 export const Container = styled.div`
   ${({ theme }) => theme.animations.fade()};
-  padding: 2rem 0;
+  box-sizing: border-box;
+  max-width: 1300px;
+  padding: 2rem;
   display: flex;
-  width: 1300px;
   height: 100%;
   color: white;
+  width: 100%;
 `;
 
 export const Poster = styled.img`
   border-radius: 0.4rem;
   height: 450px;
   width: 300px;
+
+  @media (max-width: 1100px) {
+    height: 390px;
+    width: 260px;
+  }
+
+  @media (max-width: 900px) {
+    height: 300px;
+    width: 200px;
+  }
+
+  @media (max-width: 600px) {
+    height: 240px;
+    width: 160px;
+  }
 `;
 
 export const Info = styled.div`
+  flex-direction: column;
   align-self: center;
   margin-left: 2rem;
+  display: flex;
 `;
 
 export const Title = styled.span`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   font-size: ${({ theme }) => theme.font.aux.size.huge};
   margin-bottom: 2rem;
-  display: block;
+
+  @media (max-width: 1100px) {
+    font-size: ${({ theme }) => theme.font.aux.size.large};
+  }
+
+  @media (max-width: 900px) {
+    font-size: ${({ theme }) => theme.font.aux.size.big};
+  }
+
+  @media (max-width: 600px) {
+    font-size: 1rem;
+  }
 `;
 
 export const Subtitle = styled.span`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   font-size: ${({ theme }) => theme.font.aux.size.big};
-  display: block;
+
+  @media (max-width: 900px) {
+    font-size: 1rem;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 0.8rem;
+  }
 `;
 
 export const Overview = styled.span`
@@ -59,17 +95,36 @@ export const Overview = styled.span`
   font-size: ${({ theme }) => theme.font.aux.size.small};
   margin-bottom: 2rem;
   margin-top: 1rem;
-  display: block;
-  width: 500px;
+
+  @media (max-width: 600px) {
+    font-size: 0.7rem;
+  }
 `;
 
 export const Row = styled.div`
+  align-items: center;
   display: flex;
 `;
 
 export const Fieldname = styled.span`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   margin-right: 0.5rem;
+
+  @media (max-width: 900px) {
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 0.7rem;
+  }
 `;
 
-export const Fieldvalue = styled.span``;
+export const Fieldvalue = styled.span`
+  @media (max-width: 900px) {
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 0.7rem;
+  }
+`;

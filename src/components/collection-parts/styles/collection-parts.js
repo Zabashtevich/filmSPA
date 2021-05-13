@@ -36,8 +36,9 @@ export const Card = styled.div`
 
 export const Poster = styled.img`
   border-radius: 0.5rem 0 0 0.5rem;
-  object-fit: cover;
   object-position: top left;
+  object-fit: cover;
+  width: 200px;
 
   @media (max-width: 550px) {
     width: 100px;

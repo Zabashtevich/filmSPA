@@ -2,26 +2,19 @@ import React from "react";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 
 import { CollectionParts } from "../../components";
-// import { CollectionPartsSkeleton } from "../../components/skeleton";
 import { getYearFromString, range } from "../../utils";
+import PartSkeleton from "./skeleton/part-skeleton";
 
 export default function CollectionPartsContainer({ loading, data }) {
   return (
     <CollectionParts>
       <CollectionParts.Title>Collection movies</CollectionParts.Title>
       <SwitchTransition mode={"out-in"}>
-        <CSSTransition
-          classNames="fade"
-          appear={true}
-          timeout={500}
-          key={loading}
-        >
+        <CSSTransition classNames="fade" timeout={500} key={loading}>
           <CollectionParts.Container>
             <CollectionParts.List>
-              {/* {loading &&
-                range(1, 3).map((item) => (
-                  <CollectionPartsSkeleton key={item} />
-                ))} */}
+              {loading &&
+                range(1, 3).map((item) => <PartSkeleton key={item} />)}
               {!loading &&
                 data.parts.map((item) => {
                   return (

@@ -6,3 +6,4 @@ export { default as DetailsPosterSkeleton } from "./details-poster";
 export { default as MediaSkeleton } from "./media";
 export { default as CollectionHeaderSkeleton } from "./collection-header";
 export { default as CollectionCastSkeleton } from "./collection-cast";
+export { default as CollectionPartsSkeleton } from "./collection-parts";

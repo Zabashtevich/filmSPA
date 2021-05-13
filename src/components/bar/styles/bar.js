@@ -47,10 +47,12 @@ export const Input = styled.input`
   font-family: ${({ theme }) => theme.font.aux.family};
   margin-left: 30px;
   font-size: 1.1rem;
+  max-width: 1200px;
   outline: none;
-  width: 1200px;
   border: none;
   height: 30px;
+  width: 100%;
+
   border-bottom: 1px solid rgba(0, 0, 0, 0);
 
   &:focus {
@@ -92,6 +94,8 @@ export const Title = styled.span`
 
 export const List = styled.div`
   background-color: white;
+  flex-direction: column;
+  display: flex;
   width: 100%;
 `;
 
@@ -99,12 +103,15 @@ export const Item = styled(ReactRouterLink)`
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   color: rgba(0, 0, 0, 0.8);
   justify-content: center;
+  text-overflow: ellipsis;
   text-decoration: none;
+  white-space: nowrap;
   align-items: center;
+  overflow: hidden;
+  padding: 0 1rem;
   cursor: pointer;
   display: flex;
   height: 30px;
-  width: 100%;
 
   &:first-of-type {
     border-top: 1px solid rgba(0, 0, 0, 0.2);
@@ -121,7 +128,14 @@ export const Content = styled.div`
 `;
 
 export const Name = styled.span`
+  text-overflow: ellipsis;
+  white-space: nowrap;
   margin-left: 30px;
+  overflow: hidden;
+  display: block;
+  @media (max-width: 750px) {
+    max-width: 270px;
+  }
 `;
 
 export const Search = styled(BsSearch)`

@@ -33,7 +33,10 @@ function App() {
   const [loading, data] = useFirestore(profile?.displayName);
 
   useEffect(() => {
+    console.log(user, "haha");
+
     if (!userLoading && user) {
+      console.log(user);
       dispatch(setUserProfile(user));
     }
     if (!userLoading && !user) {

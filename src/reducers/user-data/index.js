@@ -41,7 +41,12 @@ export default function userData(state = initialState, { type, payload }) {
         },
       };
     case PROFILE_NOT_EXIST:
-      return { ...state, userDataExist: false, userDataLoading: false };
+      return {
+        ...state,
+        userDataExist: false,
+        userDataLoading: false,
+        loggedIn: false,
+      };
     default:
       return state;
   }

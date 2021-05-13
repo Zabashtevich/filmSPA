@@ -5,6 +5,7 @@ import { CSSTransition, SwitchTransition } from "react-transition-group";
 import { firebase } from "./../../libs/firebase";
 import { BarContainer } from "./../";
 import { Header } from "../../components";
+import { useHistory } from "react-router-dom";
 
 export default function HeaderContainer() {
   const [headerVisible, setHeaderVisible] = useState(true);
@@ -14,6 +15,7 @@ export default function HeaderContainer() {
     (state) => state.userData,
   );
   let prevScrollPosition = 0;
+  const history = useHistory();
 
   function headerToggler() {
     const current = window.pageYOffset;
@@ -72,7 +74,12 @@ export default function HeaderContainer() {
                     <Header.Item to="/account/userlists">
                       to Userlists
                     </Header.Item>
-                    <Header.Logout onClick={() => firebase.auth().signOut()}>
+                    <Header.Logout
+                      onClick={() => {
+                        firebase.auth().signOut();
+                        history.push("/");
+                      }}
+                    >
                       Logout
                     </Header.Logout>
                   </Header.Popup>

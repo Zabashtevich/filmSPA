@@ -9,9 +9,9 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   user-select: none;
+  padding: 0 1rem;
   display: flex;
   height: 100vh;
-  width: 100%;
 `;
 
 export const Form = styled.form`
@@ -20,8 +20,9 @@ export const Form = styled.form`
   flex-direction: column;
   align-items: center;
   padding: 4rem 2rem;
+  max-width: 350px;
   display: flex;
-  width: 350px;
+  width: 100%;
 
   ${({ type }) =>
     type === "signup" &&
@@ -44,9 +45,6 @@ export const Header = styled.div`
     css`
       margin-bottom: 1rem;
       font-size: 1.5rem;
-      &::before {
-        width: 50%;
-      }
     `};
 `;
 
@@ -61,6 +59,14 @@ export const Title = styled.span`
     content: "";
     left: 50%;
     top: 140%;
+  }
+
+  @media (max-width: 650px) {
+    font-size: 2rem;
+
+    &::before {
+      width: calc(100% + 50px);
+    }
   }
 `;
 
@@ -137,6 +143,11 @@ export const Back = styled.button`
     background-color: rgba(0, 0, 0, 0.05);
     transition: 300ms;
   }
+
+  @media (max-width: 650px) {
+    font-size: 1.2rem;
+    padding: 0.1rem 0;
+  }
 `;
 
 export const Button = styled(Back)`
@@ -164,6 +175,10 @@ export const Button = styled(Back)`
 export const Message = styled.span`
   margin-top: 1rem;
   display: flex;
+
+  @media (max-width: 500px) {
+    font-size: 0.8rem;
+  }
 `;
 
 export const Subtitle = styled.div`
@@ -179,9 +194,15 @@ export const Link = styled(ReactRouterLink)`
   &:hover {
     color: black;
   }
+
+  @media (max-width: 500px) {
+    font-size: 0.8rem;
+  }
 `;
 
 export const Avatar = styled.img`
+  object-position: top left;
+  object-fit: cover;
   visibility: visible;
   transition: 300ms;
   margin: 3rem 0;
@@ -200,4 +221,9 @@ export const Avatar = styled.img`
 export const File = styled.input`
   font-size: ${({ theme }) => theme.font.aux.size.normal};
   font-family: ${({ theme }) => theme.font.aux.family};
+  width: 100%;
+
+  @media (max-width: 400px) {
+    font-size: 0.8rem;
+  }
 `;

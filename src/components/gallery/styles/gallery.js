@@ -10,17 +10,21 @@ export const Container = styled.div`
 
 export const Header = styled.div`
   background-color: ${({ theme }) => theme.colors.main};
-  padding: 0 20rem;
+  display: flex;
 `;
 
 export const Wrapper = styled.div`
   ${({ theme }) => theme.animations.fade()};
-  display: inline-flex;
   align-items: center;
+  margin-left: 10rem;
   max-width: 1300px;
   padding: 1rem 0;
-  margin: 0 auto;
+  display: flex;
   color: white;
+
+  @media (max-width: 750px) {
+    margin-left: 3rem;
+  }
 `;
 
 export const Folder = styled.img`
@@ -58,6 +62,7 @@ export const Icon = styled(BsArrowLeftShort)`
 
 export const Body = styled.div`
   max-width: 1300px;
+  padding: 0 2rem;
   margin: 0 auto;
   display: flex;
 `;
@@ -65,12 +70,25 @@ export const Body = styled.div`
 export const Widget = styled.div`
   flex-direction: column;
   align-items: center;
+  max-width: 225px;
   display: flex;
-  width: 250px;
+  height: 100%;
+  width: 100%;
+
+  @media (max-width: 900px) {
+    max-width: 150px;
+    position: sticky;
+    top: 10%;
+  }
+
+  @media (max-width: 600px) {
+    max-width: 100px;
+  }
 `;
 
 export const Column = styled.div`
   align-content: flex-start;
+  justify-content: center;
   box-sizing: border-box;
   flex-direction: row;
   min-height: 1000px;
@@ -79,6 +97,10 @@ export const Column = styled.div`
   display: flex;
   width: 1050px;
   gap: 1rem;
+
+  @media (max-width: 700px) {
+    padding: 2rem 1rem;
+  }
 `;
 
 export const Menu = styled.div`
@@ -88,9 +110,8 @@ export const Menu = styled.div`
   padding-bottom: 1rem;
   align-items: center;
   margin-top: 2rem;
-  height: 225px;
   display: flex;
-  width: 225px;
+  width: 100%;
 `;
 
 export const Subtitle = styled.div`
@@ -103,6 +124,10 @@ export const Subtitle = styled.div`
   padding: 1rem 0;
   color: white;
   width: 100%;
+
+  @media (max-width: 900px) {
+    font-size: ${({ theme }) => theme.font.aux.size.normal};
+  }
 `;
 
 export const List = styled.div`
@@ -117,6 +142,11 @@ export const Amount = styled.div`
   text-align: center;
   padding: 0.5rem;
   width: 25px;
+
+  @media (max-width: 900px) {
+    font-size: 0.8rem;
+    padding: 0.3rem;
+  }
 `;
 
 export const Item = styled.div`
@@ -148,6 +178,15 @@ export const Item = styled.div`
 export const Value = styled.div`
   padding: 1rem;
   width: 75px;
+
+  @media (max-width: 900px) {
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 0.7rem;
+    padding: 0.5rem;
+  }
 `;
 
 export const Backdrop = styled.img`
@@ -185,6 +224,22 @@ export const Poster = styled.img`
     transform: scale(1.02);
     transition: 200ms;
     cursor: pointer;
+  }
+
+  @media (max-width: 1200px) {
+    height: 240px;
+    width: 160px;
+  }
+
+  @media (max-width: 900px) {
+    height: 180px;
+    width: 120px;
+  }
+
+  @media (max-width: 700px) {
+    margin: 0.1rem 0;
+    height: 150px;
+    width: 100px;
   }
 `;
 

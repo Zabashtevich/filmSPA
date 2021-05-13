@@ -2,11 +2,6 @@ import React, { useEffect, useState } from "react";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 
 import { Gallery } from "../../components";
-// import {
-//   GalleryHeaderSkeleton,
-//   GalleryMenuSkeleton,
-//   GalleryPosterSkeleton,
-// } from "../../components/skeleton";
 import { usePaginContext } from "../../context";
 import {
   checkCategories,

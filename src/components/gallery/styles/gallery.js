@@ -196,6 +196,7 @@ export const Backdrop = styled.img`
   max-height: 169px;
   margin: 0.5rem;
   width: 300px;
+
   &:hover {
     box-shadow: 0 2px 8px rgb(0 0 0 / 40%);
     transform: scale(1.02);

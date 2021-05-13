@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 
 import { BsX } from "react-icons/bs";
 
@@ -7,7 +7,7 @@ export const Backdrop = styled.div`
   justify-content: center;
   align-items: center;
   position: fixed;
-  z-index: 1000;
+  z-index: 3000;
   display: flex;
   bottom: 0;
   right: 0;
@@ -24,7 +24,8 @@ export const Close = styled(BsX)`
 `;
 
 export const Image = styled.img`
-  height: 90%;
+  max-height: 90%;
+  max-width: 90%;
 `;
 
 export const Video = styled.iframe``;

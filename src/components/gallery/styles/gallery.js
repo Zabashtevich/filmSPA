@@ -193,8 +193,8 @@ export const Backdrop = styled.img`
   ${({ theme }) => theme.animations.skeleton};
   border-radius: 0.3rem;
   position: relative;
+  max-height: 169px;
   margin: 0.5rem;
-  height: 169px;
   width: 300px;
   &:hover {
     box-shadow: 0 2px 8px rgb(0 0 0 / 40%);
@@ -202,14 +202,22 @@ export const Backdrop = styled.img`
     transition: 200ms;
     cursor: pointer;
   }
-  &::after {
-    background-color: #f3f3f3;
-    position: absolute;
-    height: 169px;
-    content: "";
-    width: 300px;
-    left: 0;
-    top: 0;
+
+  @media (max-width: 1300px) {
+    margin: 0.1rem 0.3rem;
+    width: 250px;
+  }
+
+  @media (max-width: 1000px) {
+    width: 200px;
+  }
+
+  @media (max-width: 700px) {
+    width: 120px;
+  }
+
+  @media (max-width: 500px) {
+    max-width: 200px;
   }
 `;
 
@@ -259,6 +267,22 @@ export const Video = styled.div`
       background-repeat: no-repeat;
       background-size: cover;
     `};
+
+  @media (max-width: 1000px) {
+    margin: 0 0.2rem;
+    height: 120px;
+    width: 240px;
+  }
+
+  @media (max-width: 800px) {
+    height: 80px;
+    width: 160px;
+  }
+
+  @media (max-width: 400px) {
+    height: 70px;
+    width: 140px;
+  }
 `;
 
 export const Play = styled(BsFillPlayFill)`
@@ -271,4 +295,9 @@ export const Play = styled(BsFillPlayFill)`
   color: white;
   left: 50%;
   top: 50%;
+
+  @media (max-width: 1000px) {
+    font-size: ${({ theme }) => theme.font.aux.size.big};
+    padding: 0.4rem;
+  }
 `;

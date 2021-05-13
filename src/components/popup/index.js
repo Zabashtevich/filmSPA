@@ -1,7 +1,7 @@
 import React from "react";
 
 import { orinalImageSize } from "./../../constants/constants";
-import { Backdrop, Close, Image, Video } from "./styles/popup";
+import { Backdrop, Close, Image, Video, Inner } from "./styles/popup";
 
 export default function Popup({ children, ...rest }) {
   return <Backdrop {...rest}>{children}</Backdrop>;
@@ -17,4 +17,8 @@ Popup.Image = function PopupImage({ slug, ...rest }) {
 
 Popup.Video = function PopupVideo({ ...rest }) {
   return <Video {...rest} />;
+};
+
+Popup.Inner = function PopupInner({ children, ...rest }) {
+  return <Inner {...rest}>{children}</Inner>;
 };

@@ -11,6 +11,9 @@ import {
 } from "../../utils";
 import { PaginContainer } from "./../";
 import GalleryItems from "./items/gallery-items";
+import GalleryHeaderSkeleton from "./skeleton/gallery-header-skeleton";
+import GalleryPosterSkeleton from "./skeleton/gallery-poster-skeleton";
+import GalleryMenuSkeleton from "./skeleton/gallery-menu-skeleton";
 
 export default function GalleryContainer({ data, loading, slug, direction }) {
   const [{ active }, setPagin] = usePaginContext();
@@ -51,7 +54,7 @@ export default function GalleryContainer({ data, loading, slug, direction }) {
         <SwitchTransition mode={"out-in"}>
           <CSSTransition key={loading} classNames="fade" timeout={500}>
             <Gallery.Wrapper>
-              {/* {loading && <GalleryHeaderSkeleton />} */}
+              {loading && <GalleryHeaderSkeleton />}
               {!loading && (
                 <>
                   <Gallery.Folder
@@ -83,10 +86,10 @@ export default function GalleryContainer({ data, loading, slug, direction }) {
             <SwitchTransition mode={"out-in"}>
               <CSSTransition key={loading} classNames="fade" timeout={500}>
                 <Gallery.List>
-                  {/* {loading &&
+                  {loading &&
                     range(0, 3).map((item) => (
                       <GalleryMenuSkeleton key={item} />
-                    ))} */}
+                    ))}
                   {!loading &&
                     categories?.map((item) => (
                       <Gallery.Item
@@ -109,10 +112,10 @@ export default function GalleryContainer({ data, loading, slug, direction }) {
         <SwitchTransition mode={"out-in"}>
           <CSSTransition classNames="fade" timeout={500} key={loading}>
             <Gallery.Column>
-              {/* {loading &&
+              {loading &&
                 range(1, 20).map((item) => (
                   <GalleryPosterSkeleton key={item} />
-                ))} */}
+                ))}
               {categories &&
                 getSelectedArray(selected, content)
                   .slice(active * 20 - 20, active * 20)

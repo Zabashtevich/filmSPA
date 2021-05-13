@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { createPortal } from "react-dom";
 
 import { Popup } from "../../components";
@@ -26,14 +26,14 @@ export default function PopupContainer() {
       >
         <Popup.Close />
         {type === "video" && (
-          <Popup.Video
-            width="1280"
-            height="720"
-            src={`https://www.youtube.com/embed/${item.key}`}
-            title="YouTube video player"
-            frameborder="0"
-            allowfullscreen={true}
-          />
+          <Popup.Inner>
+            <Popup.Video
+              src={`https://www.youtube.com/embed/${item.key}`}
+              title="YouTube video player"
+              frameborder="0"
+              allowfullscreen={true}
+            />
+          </Popup.Inner>
         )}
         {type === "image" && <Popup.Image slug={item.file_path} />}
       </Popup>,

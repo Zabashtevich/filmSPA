@@ -33,10 +33,7 @@ function App() {
   const [loading, data] = useFirestore(profile?.displayName);
 
   useEffect(() => {
-    console.log(user, "haha");
-
     if (!userLoading && user) {
-      console.log(user);
       dispatch(setUserProfile(user));
     }
     if (!userLoading && !user) {
@@ -62,7 +59,7 @@ function App() {
         <Route path="/collection/:slug" exact component={CollectionPage} />
         <Route path="/actor/:slug" exact component={ActorPage} />
 
-        <ProtectedRoute path="/account/userlists" exact>
+        <ProtectedRoute path="/account" exact>
           <AccountPage />
         </ProtectedRoute>
         <ProtectedRoute path="/account/userlists" exact>

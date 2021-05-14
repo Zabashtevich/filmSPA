@@ -1,10 +1,11 @@
 import React from "react";
 
 import {
-  Container,
+  Outer,
   Title,
   Wrapper,
   Inner,
+  List,
   Row,
   Name,
   Value,
@@ -14,7 +15,7 @@ import {
 } from "./styles/filter";
 
 export default function Filter({ children, ...rest }) {
-  return <Container {...rest}>{children}</Container>;
+  return <Outer {...rest}>{children}</Outer>;
 }
 
 Filter.Title = function FilterTitle({ children, ...rest }) {
@@ -27,6 +28,10 @@ Filter.Wrapper = function FilterWrapper({ children, ...rest }) {
 
 Filter.Inner = function FilterInner({ children, ...rest }) {
   return <Inner {...rest}>{children}</Inner>;
+};
+
+Filter.List = function FilterList({ children, ...rest }) {
+  return <List {...rest}>{children}</List>;
 };
 
 Filter.Row = function FilterRow({ children, ...rest }) {

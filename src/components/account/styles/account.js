@@ -5,18 +5,32 @@ export const Container = styled.div`
   padding: 6rem 0;
   margin: 0 auto;
   display: flex;
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 export const Column = styled.div`
   flex-direction: column;
   align-items: center;
+  max-width: 300px;
   display: flex;
-  width: 300px;
+  width: 100%;
 `;
 
 export const Poster = styled.img`
+  object-position: top left;
   border-radius: 0.5rem;
-  max-width: 200px;
+  object-fit: cover;
+  height: 200px;
+  width: 200px;
+
+  @media (max-width: 1000px) {
+    height: 150px;
+    width: 150px;
+  }
 `;
 
 export const Nickname = styled.span`
@@ -26,8 +40,9 @@ export const Nickname = styled.span`
 export const Content = styled.div`
   flex-direction: column;
   align-items: center;
+  max-width: 900px;
+  padding: 0 1rem;
   display: flex;
-  width: 900px;
 `;
 
 export const Title = styled.span`

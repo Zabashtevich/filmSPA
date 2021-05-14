@@ -17,8 +17,13 @@ Account.Column = function AccountColumn({ children, ...rest }) {
   return <Column {...rest}>{children}</Column>;
 };
 
-Account.Poster = function AccountPoster({ ...rest }) {
-  return <Poster {...rest} />;
+Account.Poster = function AccountPoster({ src, ...rest }) {
+  return (
+    <Poster
+      {...rest}
+      src={src ? src : "https://dummyimage.com/200x200/aaa/aaa"}
+    />
+  );
 };
 
 Account.Nickname = function AccountNickname({ children, ...rest }) {

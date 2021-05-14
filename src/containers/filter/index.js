@@ -21,21 +21,23 @@ export default function FilterContainer({
         <Filter.Wrapper>
           <Filter.Row>
             <Filter.Name>Sort by:</Filter.Name>
-            {[
-              { name: "DATE", value: "date" },
-              { name: "POPULARITY", value: "popularity" },
-              { name: "YOUR VOTE VALUE", value: "yourVoteValue" },
-              { name: "AMOUNT OF VOTES", value: "voteCount" },
-              { name: "VOTE AVERAGE", value: "voteAverage" },
-            ].map((item) => (
-              <Filter.Value
-                key={item.value}
-                selected={sortBy === item.value && 1}
-                onClick={() => setSortBy(item.value)}
-              >
-                {item.name}
-              </Filter.Value>
-            ))}
+            <Filter.List>
+              {[
+                { name: "DATE", value: "date" },
+                { name: "POPULARITY", value: "popularity" },
+                { name: "YOUR VOTE VALUE", value: "yourVoteValue" },
+                { name: "AMOUNT OF VOTES", value: "voteCount" },
+                { name: "VOTE AVERAGE", value: "voteAverage" },
+              ].map((item) => (
+                <Filter.Value
+                  key={item.value}
+                  selected={sortBy === item.value && 1}
+                  onClick={() => setSortBy(item.value)}
+                >
+                  {item.name}
+                </Filter.Value>
+              ))}
+            </Filter.List>
           </Filter.Row>
           <Filter.Row>
             <Filter.Name>Item type:</Filter.Name>

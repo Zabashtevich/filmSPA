@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components/macro";
 
-export const Container = styled.div`
+export const Outer = styled.div`
   flex-direction: column;
   align-items: center;
   user-select: none;
@@ -33,6 +33,11 @@ export const Row = styled.div`
   display: flex;
 `;
 
+export const List = styled.div`
+  flex-wrap: wrap;
+  display: flex;
+`;
+
 export const Name = styled.span`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   background-color: rgba(0, 0, 0, 0.05);
@@ -41,6 +46,12 @@ export const Name = styled.span`
   margin-right: 0.5rem;
   white-space: nowrap;
   width: 70px;
+
+  @media (max-width: 1000px) {
+    padding: 0.1rem 0.3rem;
+    font-size: 0.9rem;
+    width: 60px;
+  }
 `;
 
 export const Value = styled.span`
@@ -48,8 +59,8 @@ export const Value = styled.span`
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   padding: 0.3rem 0.45rem;
+  margin: 0.1rem 0.3rem;
   transition: 300ms;
-  margin: 0 0.3rem;
   cursor: pointer;
   color: black;
 
@@ -66,10 +77,19 @@ export const Value = styled.span`
     transition: 300ms;
     color: white;
   }
+
+  @media (max-width: 1000px) {
+    padding: 0.1rem 0.3rem;
+    font-size: 0.9rem;
+  }
 `;
 
 export const Subtitle = styled.span`
   font-weight: ${({ theme }) => theme.font.aux.weight.light};
+
+  @media (max-width: 1000px) {
+    font-size: 0.9rem;
+  }
 `;
 
 export const Select = styled.select`
@@ -79,6 +99,10 @@ export const Select = styled.select`
   margin: 0 0.6rem;
   cursor: pointer;
   width: 80px;
+
+  @media (max-width: 1000px) {
+    font-size: 0.9rem;
+  }
 `;
 
 export const Option = styled.option``;

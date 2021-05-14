@@ -44,7 +44,7 @@ export default function AccountContainer({ loading, profile, votes }) {
               setSortBy={setSortBy}
               setType={setType}
             />
-            <CreditsContainer />
+            {/* <CreditsContainer /> */}
           </Account.Content>
         </>
       )}

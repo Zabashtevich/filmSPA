@@ -6,34 +6,35 @@ import { firebase } from "../../libs/firebase";
 
 export default function useList(listname) {
   const { profile, loggedIn } = useSelector((state) => state.userData);
-  const [array, setArray] = useState(null);
+  const [data, setData] = useState(null);
 
   const [{ processing }, setProcessProps] = useProcessContext();
   const [, { showErrorModal }] = useModalContext();
 
   useEffect(() => {
-    if (array && !loggedIn) {
+    if (data && !loggedIn) {
       showErrorModal("Please, login");
-      setArray(null);
+      setData(null);
     }
-    if (!processing && array) {
+    if (!processing && data) {
+      console.log(data);
       setProcessProps({ processing: true, message: "Processing..." });
       firebase
         .firestore()
         .collection(`${profile.displayName}`)
         .doc(`${listname}`)
-        .update({ [`${listname}`]: array })
+        .update({ [`${listname}`]: data })
         .then(() => {
-          setArray(null);
+          setData(null);
           setProcessProps((prev) => ({ ...prev, processing: false }));
         })
         .catch(() => {
-          setArray(null);
+          setData(null);
           setProcessProps((prev) => ({ ...prev, processing: false }));
           showErrorModal("Something gone wrong");
         });
     }
-  }, [array, listname]);
+  }, [data, listname]);
 
-  return [setArray];
+  return [setData];
 }

@@ -14,7 +14,7 @@ export default function DetailsPosterContainer({
   data,
   loading,
   lists,
-  loggedId,
+  loggedIn,
 }) {
   const { direction } = useParams();
 
@@ -37,7 +37,7 @@ export default function DetailsPosterContainer({
                   src={data?.poster_path}
                   data-testid="details-poster"
                 />
-                {loggedId && <WidgetContainer lists={lists} data={data} />}
+                {loggedIn && <WidgetContainer lists={lists} data={data} />}
               </>
             )}
           </DetailsPoster.Column>

@@ -12,14 +12,16 @@ import {
 import { useSelector } from "react-redux";
 
 export default function CreditsItem({ item, index }) {
-  const { lists, userDataExist } = useSelector((state) => state.userData);
-  const [doEstimate] = useList();
+  const { lists, userDataExist, loggedIn } = useSelector(
+    (state) => state.userData,
+  );
+  const [doEstimate] = useList("votes");
   const [popupVisible, setPopupVisible] = useState(false);
   const [hoverIndex, setHoverIndex] = useState(0);
   const [rated, setRated] = useState(null);
 
   useEffect(() => {
-    if (userDataExist) {
+    if (userDataExist && loggedIn) {
       setRated(checkMovieInList(lists.votes, item.id) || null);
     }
   }, [lists]);
@@ -29,12 +31,10 @@ export default function CreditsItem({ item, index }) {
   const typeSecondary = index % 2 === 0;
 
   function handleEstimate(value) {
-    doEstimate({
-      votes: [
-        ...lists.votes.filter((movie) => movie.id !== item.id),
-        createVote(value, item),
-      ],
-    });
+    doEstimate([
+      ...lists.votes.filter((movie) => movie.id !== item.id),
+      createVote(item, value),
+    ]);
   }
 
   return (
@@ -44,7 +44,7 @@ export default function CreditsItem({ item, index }) {
       </Credits.Year>
       <Credits.Subtitle
         title={item.name || item.title}
-        to={`/details/${item.type}/${item.id}`}
+        to={`/details/${item.type || "movie"}/${item.id}`}
       >
         {item.name || item.title}
       </Credits.Subtitle>

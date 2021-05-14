@@ -206,14 +206,17 @@ describe("Credits container", () => {
     expect(doEstimate).toHaveBeenCalled();
     expect(doEstimate).toHaveBeenCalledWith({
       votes: [
-        createVote(4, {
-          id: 1000,
-          vote_average: 5.5,
-          vote_count: 5000,
-          release_date: "1950-10-10",
-          title: `dummy title ${1000}`,
-          type: "movie",
-        }),
+        createVote(
+          {
+            id: 1000,
+            vote_average: 5.5,
+            vote_count: 5000,
+            release_date: "1950-10-10",
+            title: `dummy title ${1000}`,
+            type: "movie",
+          },
+          4,
+        ),
       ],
     });
   });

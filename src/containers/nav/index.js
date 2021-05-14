@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Nav } from "../../components";
 
 export default function NavContainer({ loading, lists, setBar, bar }) {
+  const [visible, setVisible] = useState(true);
   const { activeCategory, activeList } = bar;
 
+  function menuToggler() {
+    setVisible((prev) => !prev);
+  }
+
   return (
-    <Nav data-testid="nav-outer">
+    <Nav data-testid="nav-outer" visible={visible}>
       <Nav.Title>Side Menu</Nav.Title>
       <Nav.Category
         data-testid="nav-create-list"
@@ -56,6 +61,7 @@ export default function NavContainer({ loading, lists, setBar, bar }) {
           <Nav.Value>Account</Nav.Value>
         </Nav.Link>
       </Nav.Footer>
+      <Nav.Arrow onClick={menuToggler} />
     </Nav>
   );
 }

@@ -14,6 +14,7 @@ import {
   Dot,
   Create,
   Heart,
+  Arrow,
 } from "./styles/nav";
 
 export default function Nav({ children, ...rest }) {
@@ -66,4 +67,8 @@ Nav.Create = function NavCreate({ ...rest }) {
 
 Nav.Heart = function NavHeart({ ...rest }) {
   return <Heart {...rest} />;
+};
+
+Nav.Arrow = function NavArrow({ ...rest }) {
+  return <Arrow {...rest} />;
 };

@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components/macro";
 import {
   BsFillPlusSquareFill,
+  BsChevronDoubleRight,
   BsDot,
   BsHeartFill,
   BsLink,
@@ -13,10 +14,17 @@ export const Inner = styled.div`
   flex-direction: column;
   align-items: center;
   user-select: none;
-
+  transition: 300ms;
+  min-width: 300px;
+  position: fixed;
   height: 100vh;
   display: flex;
-  min-width: 300px;
+
+  ${({ visible }) =>
+    !visible &&
+    css`
+      transform: translateX(-100%);
+    `};
 `;
 
 export const Title = styled.span`
@@ -125,4 +133,16 @@ export const Heart = styled(BsHeartFill)`
 
 export const Dot = styled(BsDot)`
   font-size: 1.3rem;
+`;
+
+export const Arrow = styled(BsChevronDoubleRight)`
+  border-radius: 0 1rem 1rem 0;
+  transform: translateY(-50%);
+  background-color: #404040;
+  padding: 0.4rem 0.2rem;
+  position: absolute;
+  font-size: 3rem;
+  color: white;
+  left: 100%;
+  top: 50%;
 `;

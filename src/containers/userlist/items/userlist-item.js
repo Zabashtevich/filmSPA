@@ -57,7 +57,7 @@ export default function UserlistItem({ lists, activeList, setBar }) {
         </Userlist.List>
         <Userlist.Wrapper visible={!disabled}>
           <Userlist.Button type="confirm" onClick={renameListHandler}>
-            Rename
+            OK
           </Userlist.Button>
           <Userlist.Button type="abort" onClick={() => setDisabled(true)}>
             Abort

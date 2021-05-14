@@ -19,8 +19,8 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   overflow-y: scroll;
+  padding: 0 1rem;
   padding-top: 2rem;
-  max-height: 100vh;
   display: flex;
   width: 100%;
 `;
@@ -42,19 +42,39 @@ export const Header = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 1rem;
   align-items: center;
-  padding: 1rem 3rem;
   position: relative;
   margin-top: 2rem;
   display: flex;
+  height: 125px;
+
+  @media (max-width: 650px) {
+    height: 80px;
+  }
 `;
 
 export const Thumbnail = styled(BsList)`
+  margin-left: 2rem;
   font-size: 6rem;
+
+  @media (max-width: 1000px) {
+    font-size: 3rem;
+  }
+
+  @media (max-width: 650px) {
+    font-size: 2rem;
+  }
+
+  @media (max-width: 400px) {
+    margin-left: 1rem;
+  }
 `;
 
 export const List = styled.div`
-  margin-right: 3rem;
-  margin-left: 3rem;
+  margin: 0 3rem;
+
+  @media (max-width: 1000px) {
+    margin: 0 1rem;
+  }
 `;
 
 export const Input = styled.input`
@@ -72,10 +92,22 @@ export const Input = styled.input`
     background-color: transparent;
     color: rgba(0, 0, 0, 0.5);
   }
+
   &:enabled {
     border-bottom: solid 1px rgba(0, 0, 0, 0.5);
     background-color: transparent;
     color: black;
+  }
+
+  @media (max-width: 1000px) {
+    width: 300px;
+  }
+
+  @media (max-width: 650px) {
+    font-size: ${({ theme }) => theme.font.aux.size.normal};
+    padding: 0.1rem 0;
+    width: 100px;
+    height: 20px;
   }
 `;
 
@@ -93,6 +125,18 @@ export const Wrapper = styled.div`
       visibility: visible;
       opacity: 1;
     `};
+
+  @media (max-width: 1000px) {
+    margin-right: 2rem;
+  }
+
+  @media (max-width: 650px) {
+    margin-right: 1rem;
+  }
+
+  @media (max-width: 400px) {
+    margin-right: 0.5rem;
+  }
 `;
 
 export const Button = styled.button`
@@ -117,6 +161,10 @@ export const Button = styled.button`
         transition: 300ms;
         color: black;
       }
+
+      @media (max-width: 650px) {
+        margin-right: 0.5rem;
+      }
     `};
 
   ${({ type }) =>
@@ -132,6 +180,16 @@ export const Button = styled.button`
         color: white;
       }
     `};
+
+  @media (max-width: 1000px) {
+    font-size: ${({ theme }) => theme.font.aux.size.normal};
+    padding: 0.3rem;
+  }
+
+  @media (max-width: 650px) {
+    font-size: 0.8rem;
+    padding: 0.2rem;
+  }
 `;
 
 export const Confirm = styled(BsCheck)``;
@@ -140,11 +198,8 @@ export const Cancel = styled(BsX)``;
 
 export const Tools = styled.div`
   flex-direction: column;
-  position: absolute;
   display: flex;
   height: 100%;
-  width: 10%;
-  right: 0;
 `;
 
 export const Inner = styled.div`
@@ -187,10 +242,29 @@ export const Inner = styled.div`
 
 export const Delete = styled(BsFillTrashFill)`
   font-size: 1.3rem;
+  padding: 0 2rem;
+
+  @media (max-width: 1000px) {
+    font-size: 1rem;
+  }
+
+  @media (max-width: 650px) {
+    padding: 0 1.5rem;
+    font-size: 1rem;
+  }
+
+  @media (max-width: 400px) {
+    padding: 0 0.8rem;
+    font-size: 1rem;
+  }
 `;
 
 export const Edit = styled(BsWrench)`
   font-size: 1.3rem;
+
+  @media (max-width: 1000px) {
+    font-size: 1rem;
+  }
 `;
 
 export const Placeholder = styled.span`

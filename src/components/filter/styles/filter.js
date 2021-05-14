@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components/macro";
 
 export const Outer = styled.div`
+  justify-content: center;
   flex-direction: column;
   align-items: center;
   user-select: none;
@@ -47,7 +48,7 @@ export const Name = styled.span`
   white-space: nowrap;
   width: 70px;
 
-  @media (max-width: 1000px) {
+  @media (max-width: 400px) {
     padding: 0.1rem 0.3rem;
     font-size: 0.9rem;
     width: 60px;
@@ -78,7 +79,7 @@ export const Value = styled.span`
     color: white;
   }
 
-  @media (max-width: 1000px) {
+  @media (max-width: 400px) {
     padding: 0.1rem 0.3rem;
     font-size: 0.9rem;
   }

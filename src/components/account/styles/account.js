@@ -43,9 +43,22 @@ export const Content = styled.div`
   max-width: 900px;
   padding: 0 1rem;
   display: flex;
+
+  @media (max-width: 400px) {
+    box-sizing: border-box;
+    max-width: 320px;
+  }
 `;
 
 export const Title = styled.span`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   font-size: ${({ theme }) => theme.font.aux.size.large};
+
+  @media (max-width: 800px) {
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 600px) {
+    font-size: ${({ theme }) => theme.font.aux.size.big};
+  }
 `;

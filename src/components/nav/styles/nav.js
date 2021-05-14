@@ -15,16 +15,24 @@ export const Inner = styled.div`
   align-items: center;
   user-select: none;
   transition: 300ms;
-  min-width: 300px;
   position: fixed;
   height: 100vh;
   display: flex;
+  width: 300px;
 
   ${({ visible }) =>
     !visible &&
     css`
       transform: translateX(-100%);
     `};
+
+  @media (max-width: 1000px) {
+    width: 200px;
+  }
+
+  @media (max-width: 500px) {
+    width: 150px;
+  }
 `;
 
 export const Title = styled.span`
@@ -37,6 +45,14 @@ export const Title = styled.span`
   display: block;
   color: white;
   width: 100%;
+
+  @media (max-width: 1000px) {
+    font-size: ${({ theme }) => theme.font.aux.size.big};
+  }
+
+  @media (max-width: 500px) {
+    font-size: ${({ theme }) => theme.font.aux.size.normal};
+  }
 `;
 
 export const Category = styled.div`
@@ -68,7 +84,17 @@ export const Category = styled.div`
         left: 0;
         top: 0;
       }
+
+      @media (max-width: 1000px) {
+        &::before {
+          width: 3px;
+        }
+      }
     `};
+
+  @media (max-width: 500px) {
+    padding: 0.9rem 0 0.9rem 1.2rem;
+  }
 `;
 
 export const Devider = styled.div`
@@ -88,6 +114,14 @@ export const Devider = styled.div`
 
 export const Subtitle = styled.div`
   margin-left: 1rem;
+
+  @media (max-width: 1000px) {
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 0.7rem;
+  }
 `;
 
 export const Container = styled.div`
@@ -107,16 +141,25 @@ export const Link = styled(ReactRouterLink)`
   background-color: #404040;
   box-sizing: border-box;
   text-decoration: none;
-  display: block;
+  align-items: center;
+  display: flex;
   color: white;
 
   &:hover {
     filter: brightness(115%);
   }
+
+  @media (max-width: 1000px) {
+    font-size: 0.8rem;
+  }
 `;
 
 export const Chain = styled(BsLink)`
   font-size: 1.3rem;
+
+  @media (max-width: 1000px) {
+    font-size: 1rem;
+  }
 `;
 
 export const Value = styled.span`
@@ -125,24 +168,44 @@ export const Value = styled.span`
 
 export const Create = styled(BsFillPlusSquareFill)`
   font-size: 1.3rem;
+
+  @media (max-width: 1000px) {
+    font-size: 1rem;
+  }
 `;
 
 export const Heart = styled(BsHeartFill)`
   font-size: 1.3rem;
+
+  @media (max-width: 1000px) {
+    font-size: 1rem;
+  }
 `;
 
 export const Dot = styled(BsDot)`
   font-size: 1.3rem;
 `;
 
-export const Arrow = styled(BsChevronDoubleRight)`
+export const Button = styled.button`
   border-radius: 0 1rem 1rem 0;
   transform: translateY(-50%);
   background-color: #404040;
   padding: 0.4rem 0.2rem;
   position: absolute;
   font-size: 3rem;
+  display: flex;
+  border: none;
   color: white;
   left: 100%;
   top: 50%;
+
+  @media (max-width: 1000px) {
+    font-size: 2rem;
+  }
+
+  @media (max-width: 1000px) {
+    font-size: 1.5rem;
+  }
 `;
+
+export const Arrow = styled(BsChevronDoubleRight)``;

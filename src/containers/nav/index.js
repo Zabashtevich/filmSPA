@@ -61,7 +61,7 @@ export default function NavContainer({ loading, lists, setBar, bar }) {
           <Nav.Value>Account</Nav.Value>
         </Nav.Link>
       </Nav.Footer>
-      <Nav.Arrow onClick={menuToggler} />
+      <Nav.Button onClick={menuToggler} />
     </Nav>
   );
 }

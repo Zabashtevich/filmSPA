@@ -14,6 +14,7 @@ import {
   Dot,
   Create,
   Heart,
+  Button,
   Arrow,
 } from "./styles/nav";
 
@@ -69,6 +70,10 @@ Nav.Heart = function NavHeart({ ...rest }) {
   return <Heart {...rest} />;
 };
 
-Nav.Arrow = function NavArrow({ ...rest }) {
-  return <Arrow {...rest} />;
+Nav.Button = function NavButton({ ...rest }) {
+  return (
+    <Button {...rest}>
+      <Arrow />
+    </Button>
+  );
 };

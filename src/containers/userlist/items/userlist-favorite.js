@@ -13,6 +13,8 @@ export default function UserlistFavorite({ loading, lists }) {
     }
   }, [loading]);
 
+  console.log(lists);
+
   return (
     <>
       <Userlist.Title>Your favorite movies</Userlist.Title>

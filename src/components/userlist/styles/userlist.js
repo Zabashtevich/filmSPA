@@ -26,7 +26,16 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.span`
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   font-size: ${({ theme }) => theme.font.aux.size.huge};
+
+  @media (max-width: 800px) {
+    font-size: ${({ theme }) => theme.font.aux.size.large};
+  }
+
+  @media (max-width: 500px) {
+    font-size: ${({ theme }) => theme.font.aux.size.big};
+  }
 `;
 
 export const Header = styled.div`
@@ -182,4 +191,10 @@ export const Delete = styled(BsFillTrashFill)`
 
 export const Edit = styled(BsWrench)`
   font-size: 1.3rem;
+`;
+
+export const Placeholder = styled.span`
+  font-weight: ${({ theme }) => theme.font.aux.weight.bold};
+  color: rgba(0, 0, 0, 0.6);
+  margin-top: 2rem;
 `;

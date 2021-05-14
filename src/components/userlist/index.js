@@ -17,6 +17,7 @@ import {
   Button,
   Delete,
   Edit,
+  Placeholder,
 } from "./styles/userlist";
 
 export default function Userlist({ children, ...rest }) {
@@ -89,4 +90,8 @@ Userlist.Delete = function UserlistDelete({ children, ...rest }) {
 
 Userlist.Edit = function UserlistEdit({ children, ...rest }) {
   return <Edit {...rest} />;
+};
+
+Userlist.Placeholder = function UserlistPlaceholder({ children, ...rest }) {
+  return <Placeholder {...rest}>{children}</Placeholder>;
 };

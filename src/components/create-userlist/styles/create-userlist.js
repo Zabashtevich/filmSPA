@@ -18,6 +18,14 @@ export const Container = styled.div`
 export const Title = styled.span`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   font-size: ${({ theme }) => theme.font.aux.size.huge};
+
+  @media (max-width: 800px) {
+    font-size: ${({ theme }) => theme.font.aux.size.large};
+  }
+
+  @media (max-width: 500px) {
+    font-size: ${({ theme }) => theme.font.aux.size.big};
+  }
 `;
 
 export const Header = styled.div`
@@ -28,6 +36,14 @@ export const Header = styled.div`
   padding: 4rem 5rem;
   margin-top: 5rem;
   display: flex;
+
+  @media (max-width: 800px) {
+    padding: 2rem 2.5rem;
+  }
+
+  @media (max-width: 500px) {
+    padding: 1rem;
+  }
 `;
 
 export const Row = styled.div`
@@ -43,6 +59,16 @@ export const Input = styled.input`
   padding: 0.2rem 1rem;
   outline: none;
   width: 300px;
+
+  @media (max-width: 800px) {
+    font-size: ${({ theme }) => theme.font.aux.size.normal};
+    padding: 0.2rem 0.5rem;
+    width: 200px;
+  }
+
+  @media (max-width: 500px) {
+    width: 150px;
+  }
 `;
 
 export const Confirm = styled.button`
@@ -66,6 +92,16 @@ export const Confirm = styled.button`
     background-color: gray;
     cursor: not-allowed;
   }
+
+  @media (max-width: 800px) {
+    font-size: ${({ theme }) => theme.font.aux.size.normal};
+    padding: 0.2rem 0.5rem;
+  }
+
+  @media (max-width: 500px) {
+    padding: 0.2rem 0.5rem;
+    font-size: 0.8rem;
+  }
 `;
 
 export const Loading = styled.img`
@@ -77,39 +113,23 @@ export const Loading = styled.img`
   top: 50%;
 `;
 
-const animation = keyframes`10%, 90% {
-  transform: translate3d(-1px, 0, 0);
-}
-
-20%, 80% {
-  transform: translate3d(2px, 0, 0);
-}
-
-30%, 50%, 70% {
-  transform: translate3d(-4px, 0, 0);
-}
-
-40%, 60% {
-  transform: translate3d(4px, 0, 0);
-}`;
-
 export const Info = styled.ul`
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   background-color: ${({ theme }) => theme.colors.main};
-  font-size: ${({ theme }) => theme.font.aux.size.big};
+  flex-direction: column;
   box-sizing: border-box;
   border: 2px solid gray;
-  padding-bottom: 1rem;
-  padding-top: 1rem;
+  padding: 0.2rem 1rem 0.2rem 2rem;
   border-radius: 1rem;
   margin-top: 5rem;
+  display: flex;
   color: white;
-  width: 100%;
 
   ${({ error }) =>
     error &&
     css`
-      animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+      animation: ${({ theme }) => theme.animations.shake} 0.82s
+        cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
       background-color: ${({ theme }) => theme.colors.error};
       transition: background-color 500ms;
       transform: translate3d(0, 0, 0);
@@ -139,8 +159,25 @@ export const Info = styled.ul`
       transform: translate3d(4px, 0, 0);
     }
   }
+
+  @media (max-width: 800px) {
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 500px) {
+    margin-top: 1rem;
+  }
 `;
 
 export const Message = styled.li`
-  margin: 1rem 0;
+  font-size: ${({ theme }) => theme.font.aux.size.big};
+  margin: 0.6rem 0;
+
+  @media (max-width: 800px) {
+    font-size: ${({ theme }) => theme.font.aux.size.normal};
+  }
+
+  @media (max-width: 500px) {
+    font-size: 0.9rem;
+  }
 `;

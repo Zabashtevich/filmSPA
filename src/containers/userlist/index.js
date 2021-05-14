@@ -21,7 +21,7 @@ export default function UserlistContainer() {
         setBar={setBar}
         bar={bar}
       />
-      {/* <Userlist.Container
+      <Userlist.Container
         transitionKey={`${bar.activeCategory + bar.activeList}`}
       >
         {bar.activeCategory === "createList" && (
@@ -39,7 +39,7 @@ export default function UserlistContainer() {
             setBar={setBar}
           />
         )}
-      </Userlist.Container> */}
+      </Userlist.Container>
     </Userlist>
   );
 }

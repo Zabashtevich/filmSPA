@@ -16,6 +16,7 @@ export const Inner = styled.div`
   user-select: none;
   transition: 300ms;
   position: fixed;
+  z-index: 2000;
   height: 100vh;
   display: flex;
   width: 300px;

@@ -153,10 +153,6 @@ describe("Credits container", () => {
     ]);
     usePaginContext.mockReturnValue([{ active: 1 }, setPagin]);
     useList.mockReturnValue([doEstimate]);
-
-    const { getByText } = renderWithRedux({
-      initialState: initialState,
-    });
   });
 
   it("renders stars rating panel with correctly working popup and estimate logic", async () => {
@@ -194,7 +190,7 @@ describe("Credits container", () => {
     expect(getAllByTestId(/rating-star/i)).toHaveLength(10);
 
     await act(async () => {
-      userEvent.click(getAllByTestId(/rating-star/i)[5]);
+      userEvent.click(getAllByTestId(/rating-star/i)[3]);
     });
 
     await waitForElementToBeRemoved(getByTestId(/rating-container/i)).then(
@@ -204,21 +200,19 @@ describe("Credits container", () => {
     );
 
     expect(doEstimate).toHaveBeenCalled();
-    expect(doEstimate).toHaveBeenCalledWith({
-      votes: [
-        createVote(
-          {
-            id: 1000,
-            vote_average: 5.5,
-            vote_count: 5000,
-            release_date: "1950-10-10",
-            title: `dummy title ${1000}`,
-            type: "movie",
-          },
-          4,
-        ),
-      ],
-    });
+    expect(doEstimate).toHaveBeenCalledWith([
+      createVote(
+        {
+          id: 1000,
+          vote_average: 5.5,
+          vote_count: 5000,
+          release_date: "1950-10-10",
+          title: `dummy title ${1000}`,
+          type: "movie",
+        },
+        4,
+      ),
+    ]);
   });
 
   it("calls setPagin after loading", () => {

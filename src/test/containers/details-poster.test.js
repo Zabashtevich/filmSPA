@@ -59,6 +59,7 @@ describe("Details poster container", () => {
       queryByTestId,
       queryByRole,
       queryByText,
+      getAllByTestId,
     } = renderComponent({
       data: null,
       loading: true,
@@ -73,7 +74,7 @@ describe("Details poster container", () => {
 
     expect(getByTestId(/details-poster-skeleton/i)).toBeTruthy();
     expect(getByTestId(/details-rows-skeleton/i)).toBeTruthy();
-    expect(getByTestId(/details-cast-skeleton/i)).toBeTruthy();
+    expect(getAllByTestId(/details-cast-skeleton/i)).toBeTruthy();
   });
 
   it("renders poster column and wallpaper after loading", () => {

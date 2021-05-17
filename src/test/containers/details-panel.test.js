@@ -63,7 +63,7 @@ describe("Details panel container", () => {
   const doEstimate = jest.fn();
   const showErrorModal = jest.fn();
 
-  it("displays skeletons on loading", () => {
+  it("doesnt render content on loading", () => {
     const loadingState = {
       userData: {
         userDataLoading: true,
@@ -77,8 +77,6 @@ describe("Details panel container", () => {
       initialprops: { data: null, dataLoading: true },
       initialState: loadingState,
     });
-
-    expect(getByTestId(/details-collection-skeleton/i)).toBeTruthy();
 
     expect(queryByTestId(/details-rating-container/i)).toBeNull();
     expect(queryByTestId(/details-collection-container/i)).toBeNull();
@@ -102,18 +100,14 @@ describe("Details panel container", () => {
         },
       },
     };
-    const {
-      getByTestId,
-      queryByTestId,
-      getByText,
-      getAllByTestId,
-    } = renderWithRedux({
-      initialprops: {
-        data: initialState,
-        dataLoading: false,
-      },
-      initialState: initialStore,
-    });
+    const { getByTestId, queryByTestId, getByText, getAllByTestId } =
+      renderWithRedux({
+        initialprops: {
+          data: initialState,
+          dataLoading: false,
+        },
+        initialState: initialStore,
+      });
 
     expect(queryByTestId(/details-collection-skeleton/i)).toBeNull();
 

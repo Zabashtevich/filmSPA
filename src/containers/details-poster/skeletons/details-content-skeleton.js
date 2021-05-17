@@ -6,7 +6,7 @@ import { DetailsPosterSkeleton } from "./../../../skeletons";
 export default function DetailsContentSkeleton() {
   return (
     <>
-      <DetailsPosterSkeleton.Title />
+      <DetailsPosterSkeleton.Title data-testid="details-rows-skeleton" />
       {range(0, 3).map((item) => (
         <DetailsPosterSkeleton.Overview key={item} />
       ))}

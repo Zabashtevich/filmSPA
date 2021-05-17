@@ -5,7 +5,7 @@ import { CreditsSkeleton } from "../../../skeletons";
 
 export default function CreditsSkeletonItem() {
   return (
-    <Credits.Item>
+    <Credits.Item data-testid="credits-skeleton">
       <CreditsSkeleton.Year />
       <CreditsSkeleton.Subtitle />
       <CreditsSkeleton.Meta />

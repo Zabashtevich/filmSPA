@@ -6,18 +6,18 @@ export default function CreditsSkeleton({ children }) {
   return children;
 }
 
-CreditsSkeleton.Year = function CreditsSkeletonYear() {
-  return <Year />;
+CreditsSkeleton.Year = function CreditsSkeletonYear({ ...rest }) {
+  return <Year {...rest} />;
 };
 
-CreditsSkeleton.Subtitle = function CreditsSkeletonSubtitle() {
-  return <Subtitle />;
+CreditsSkeleton.Subtitle = function CreditsSkeletonSubtitle({ ...rest }) {
+  return <Subtitle {...rest} />;
 };
 
-CreditsSkeleton.Meta = function CreditsSkeletonMeta() {
-  return <Meta />;
+CreditsSkeleton.Meta = function CreditsSkeletonMeta({ ...rest }) {
+  return <Meta {...rest} />;
 };
 
-CreditsSkeleton.Rating = function CreditsSkeletonRating() {
-  return <Rating />;
+CreditsSkeleton.Rating = function CreditsSkeletonRating({ ...rest }) {
+  return <Rating {...rest} />;
 };

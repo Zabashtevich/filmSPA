@@ -2,7 +2,7 @@ import React from "react";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 
 import { CollectionParts } from "../../components";
-import { getYearFromString, range } from "../../utils";
+import { range } from "../../utils";
 import PartSkeleton from "./skeleton/part-skeleton";
 
 export default function CollectionPartsContainer({ loading, data }) {
@@ -30,7 +30,7 @@ export default function CollectionPartsContainer({ loading, data }) {
                           {item.title}
                         </CollectionParts.Subtitle>
                         <CollectionParts.Date>
-                          {getYearFromString(item.release_date)}
+                          {new Date(item.release_date).getFullYear()}
                         </CollectionParts.Date>
                         <CollectionParts.Overview>
                           {item.overview}

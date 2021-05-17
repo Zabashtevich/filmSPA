@@ -1,11 +1,7 @@
 import React from "react";
 
 import { DetailsPoster } from "../../../components";
-import {
-  getPersonRole,
-  getMoneyFormat,
-  getYearFromString,
-} from "../../../utils";
+import { getPersonRole, getMoneyFormat } from "../../../utils";
 
 export default function DetailsPosterRows({ data, direction }) {
   return (
@@ -16,7 +12,7 @@ export default function DetailsPosterRows({ data, direction }) {
       <DetailsPoster.Row>
         <DetailsPoster.Fieldname>Year:</DetailsPoster.Fieldname>
         <DetailsPoster.Fieldvalue>
-          {getYearFromString(data.release_date)}
+          {new Date(data.release_date).getFullYear() || "unknown"}
         </DetailsPoster.Fieldvalue>
       </DetailsPoster.Row>
       <DetailsPoster.Row>

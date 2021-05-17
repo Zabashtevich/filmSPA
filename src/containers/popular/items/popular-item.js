@@ -1,7 +1,6 @@
 import React from "react";
 
 import { Popular } from "../../../components";
-import { getYearFromString } from "../../../utils";
 
 export default function PopularItem({ item, direction }) {
   return (
@@ -21,7 +20,9 @@ export default function PopularItem({ item, direction }) {
           </Popular.Average>
         </Popular.Row>
         <Popular.Row>
-          <Popular.Year>{getYearFromString(item.release_date)}</Popular.Year>
+          <Popular.Year>
+            {new Date(item.release_date).getFullYear() || null}
+          </Popular.Year>
           <Popular.Count>{item.vote_count}</Popular.Count>
         </Popular.Row>
       </Popular.Description>

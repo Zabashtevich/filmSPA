@@ -1,10 +1,8 @@
-import { getYearFromString } from "..";
-
 export default function sortMoviesByDate(array) {
   const result = array.sort(
     (a, b) =>
-      getYearFromString(b.release_date || b.first_air_date) -
-      getYearFromString(a.release_date || a.first_air_date),
+      new Date(b.release_date || b.first_air_date).getFullYear() -
+      new Date(a.release_date || a.first_air_date).getFullYear(),
   );
 
   return [

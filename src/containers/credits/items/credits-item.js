@@ -6,7 +6,6 @@ import {
   checkMovieInList,
   checkReleaseStatus,
   createVote,
-  getYearFromString,
   range,
 } from "../../../utils";
 import { useSelector } from "react-redux";
@@ -40,7 +39,8 @@ export default function CreditsItem({ item, index }) {
   return (
     <Credits.Item typeSecondary={typeSecondary} data-testid="credits-item">
       <Credits.Year>
-        {getYearFromString(item.release_date || item.first_air_date) || "-"}
+        {new Date(item.release_date || item.first_air_date).getFullYear() ||
+          "-"}
       </Credits.Year>
       <Credits.Subtitle
         title={item.name || item.title}

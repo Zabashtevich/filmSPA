@@ -1,7 +1,6 @@
 import React from "react";
 
 import { Actor } from "../../../components";
-import { getYearFromString } from "../../../utils";
 
 export default function ActorPosterColumn({ data }) {
   return (
@@ -23,7 +22,7 @@ export default function ActorPosterColumn({ data }) {
       <Actor.Row>
         <Actor.Fieldname>Birthdate:</Actor.Fieldname>
         <Actor.Fieldvalue>
-          {getYearFromString(data.birthday) || "unknown"}
+          {new Date(data.birthday).getFullYear() || "unknown"}
         </Actor.Fieldvalue>
       </Actor.Row>
       {!!data.deathday && (

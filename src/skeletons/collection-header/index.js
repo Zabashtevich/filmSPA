@@ -13,30 +13,39 @@ export default function CollectionHeaderSkeleton({ children }) {
   return children;
 }
 
-CollectionHeaderSkeleton.Poster = function CollectionHeaderSkeletonPoster() {
-  return <Poster />;
+CollectionHeaderSkeleton.Poster = function CollectionHeaderSkeletonPoster({
+  ...rest
+}) {
+  return <Poster {...rest} />;
 };
 
 CollectionHeaderSkeleton.Wrapper = function CollectionHeaderSkeletonWrapper({
   children,
+  ...rest
 }) {
-  return <Wrapper>{children}</Wrapper>;
+  return <Wrapper {...rest}>{children}</Wrapper>;
 };
 
-CollectionHeaderSkeleton.Title = function CollectionHeaderSkeletonTitle() {
-  return <Title />;
+CollectionHeaderSkeleton.Title = function CollectionHeaderSkeletonTitle({
+  ...rest
+}) {
+  return <Title {...rest} />;
 };
 
-CollectionHeaderSkeleton.Subtitle =
-  function CollectionHeaderSkeletonSubtitle() {
-    return <Subtitle />;
-  };
+CollectionHeaderSkeleton.Subtitle = function CollectionHeaderSkeletonSubtitle({
+  ...rest
+}) {
+  return <Subtitle {...rest} />;
+};
 
-CollectionHeaderSkeleton.Overview =
-  function CollectionHeaderSkeletonOverview() {
-    return <Overview />;
-  };
+CollectionHeaderSkeleton.Overview = function CollectionHeaderSkeletonOverview({
+  ...rest
+}) {
+  return <Overview {...rest} />;
+};
 
-CollectionHeaderSkeleton.Row = function CollectionHeaderSkeletonRow() {
-  return <Row />;
+CollectionHeaderSkeleton.Row = function CollectionHeaderSkeletonRow({
+  ...rest
+}) {
+  return <Row {...rest} />;
 };

@@ -35,7 +35,7 @@ describe("Collection parts container", () => {
       parts: range(1, 3).map((item) => ({
         id: item,
         title: `dummy title ${item}`,
-        release_date: `2100-100-100`,
+        release_date: `2100-10-10`,
         overview: `dummy overview ${item}`,
         poster_path: `/dummysrc${item}`,
       })),

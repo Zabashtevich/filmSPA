@@ -4,7 +4,7 @@ import { CollectionCastSkeleton } from "./../../../skeletons";
 
 export default function CollectionCardSkeleton() {
   return (
-    <CollectionCastSkeleton>
+    <CollectionCastSkeleton data-testid="collection-cast-skeleton">
       <CollectionCastSkeleton.Poster />
       <CollectionCastSkeleton.Info />
     </CollectionCastSkeleton>

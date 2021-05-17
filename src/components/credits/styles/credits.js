@@ -18,9 +18,14 @@ export const Section = styled.div`
 export const Title = styled.span`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   font-size: ${({ theme }) => theme.font.aux.size.huge};
-  padding: 0.4rem 0;
+  text-align: center;
+  padding: 1rem 0;
   margin-top: 2rem;
   display: block;
+
+  @media (max-width: 1000px) {
+    font-size: ${({ theme }) => theme.font.aux.size.big};
+  }
 `;
 
 export const Inner = styled.div`
@@ -71,7 +76,14 @@ export const Year = styled.span`
     top: 50%;
   }
 
+  @media (max-width: 1000px) {
+    margin-right: 1rem;
+    font-size: 0.9rem;
+    width: 40px;
+  }
 
+  @media (max-width: 500px) {
+    font-size: 0.7rem;
   }
 `;
 
@@ -85,14 +97,28 @@ export const Subtitle = styled(ReactRouterLink)`
   cursor: pointer;
   color: black;
   width: 300px;
+
+  @media (max-width: 1000px) {
+    font-size: 0.7rem;
+    width: 200px;
+  }
+
+  @media (max-width: 750px) {
+    white-space: pre-line;
+    width: 100px;
+  }
 `;
 
 export const Meta = styled.div`
   align-items: center;
   user-select: none;
-  margin-left: 3rem;
+  margin-left: 1rem;
   display: flex;
   width: 100px;
+
+  @media (max-width: 1000px) {
+    width: 80px;
+  }
 `;
 
 export const Average = styled.span`
@@ -114,6 +140,10 @@ export const Average = styled.span`
     css`
       color: #3f3f3f;
     `};
+
+  @media (max-width: 1000px) {
+    font-size: ${({ theme }) => theme.font.aux.size.normal};
+  }
 `;
 
 export const Count = styled.span`
@@ -121,6 +151,10 @@ export const Count = styled.span`
   font-size: ${({ theme }) => theme.font.aux.size.small};
   color: rgba(0, 0, 0, 0.6);
   margin-left: 0.5rem;
+
+  @media (max-width: 1000px) {
+    margin-left: 0.2rem;
+  }
 `;
 
 export const Highscore = styled.span`
@@ -129,9 +163,13 @@ export const Highscore = styled.span`
   background-color: ${({ theme }) => theme.colors.aux};
   border-radius: 0.6rem;
   text-align: center;
-  padding: 0.3rem 0;
+  padding: 0.3rem;
   color: white;
-  width: 40px;
+
+  @media (max-width: 1000px) {
+    font-size: ${({ theme }) => theme.font.aux.size.normal};
+    padding: 0.2rem;
+  }
 `;
 
 export const Rating = styled.div`
@@ -147,6 +185,15 @@ export const Rating = styled.div`
     background-color: ${({ theme }) => theme.colors.aux};
     transition: 200ms;
     color: white;
+  }
+
+  @media (max-width: 1000px) {
+    padding: 0.2rem;
+  }
+
+  @media (max-width: 500px) {
+    margin-right: 0.1rem;
+    padding: 0.1rem;
   }
 `;
 

@@ -9,9 +9,9 @@ import {
 export default function ActorPage() {
   return (
     <>
-      {/* <HeaderContainer /> */}
+      <HeaderContainer />
       <ActorContainer />
-      {/* <FooterContainer /> */}
+      <FooterContainer />
     </>
   );
 }

@@ -7,12 +7,12 @@ import { MediaContainer } from "./../../containers";
 import theme from "../../theme/theme";
 import { range } from "../../utils";
 
-function renderComponent(data) {
+function renderComponent(props) {
   return {
     ...render(
       <ThemeProvider theme={theme}>
         <BrowserRouter>
-          <MediaContainer data={data} />
+          <MediaContainer {...props} />
         </BrowserRouter>
       </ThemeProvider>,
     ),
@@ -20,15 +20,27 @@ function renderComponent(data) {
 }
 
 describe("Media container", () => {
+  it("renders skeletons on loading", () => {
+    const { getAllByTestId } = renderComponent({
+      data: null,
+      loading: true,
+    });
+
+    expect(getAllByTestId(/media-skeleton/i)).toBeTruthy();
+  });
+
   it("renders full content", () => {
     const mockedData = range(1, 10).map((item) => ({
       file_path: `/dummysrc${item}`,
     }));
 
     const { getByText, getAllByRole } = renderComponent({
-      images: {
-        posters: mockedData,
+      data: {
+        images: {
+          posters: mockedData,
+        },
       },
+      loading: false,
     });
 
     expect(getByText(/media/i)).toBeTruthy();

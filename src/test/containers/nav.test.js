@@ -32,7 +32,6 @@ describe("Nav container", () => {
     expect(getByTestId(/nav-outer/i)).toBeTruthy();
     expect(getByText(/side menu/i)).toBeTruthy();
     expect(getByText(/create list/i)).toBeTruthy();
-    expect(getByText(/favorites/i)).toBeTruthy();
     expect(getByText(/your lists/i)).toBeTruthy();
     expect(getByText(/home/i)).toBeTruthy();
     expect(getByText(/account/i)).toBeTruthy();

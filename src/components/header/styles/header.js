@@ -129,9 +129,11 @@ export const Profile = styled.div`
 
 export const Avatar = styled.img`
   border: 1px solid rgba(255, 255, 255, 0.2);
+  object-position: top left;
   border-radius: 50%;
-  min-width: 50px;
+  object-fit: cover;
   height: 50px;
+  width: 50px;
 
   ${({ popupVisible }) =>
     popupVisible &&

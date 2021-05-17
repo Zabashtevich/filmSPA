@@ -1,5 +1,4 @@
 import React from "react";
-import { CSSTransition, SwitchTransition } from "react-transition-group";
 
 import {
   Outer,
@@ -29,13 +28,7 @@ Userlist.Container = function UserlistContainer({
   children,
   ...rest
 }) {
-  return (
-    <SwitchTransition mode={"out-in"}>
-      <CSSTransition key={transitionKey} classNames="fade" timeout={500}>
-        <Container {...rest}>{children}</Container>
-      </CSSTransition>
-    </SwitchTransition>
-  );
+  return <Container {...rest}>{children}</Container>;
 };
 
 Userlist.Title = function UserlistTitle({ children, ...rest }) {

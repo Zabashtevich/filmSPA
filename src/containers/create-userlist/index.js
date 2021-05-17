@@ -14,7 +14,7 @@ export default function CreateUserlistContainer({ loading, lists }) {
 
   function CreateUserlistHandler() {
     if (value.length >= 5 && value.length <= 10 && lists.userlists.length < 7) {
-      return setList([...lists.userlists, createUserlist(value)]);
+      setList([...lists.userlists, createUserlist(value)]);
       setValue("");
     }
     setError(true);

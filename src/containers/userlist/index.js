@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { SwitchTransition, CSSTransition } from "react-transition-group";
 
 import { CreateUserlistContainer, NavContainer } from "./../";
 import { Userlist } from "../../components";
@@ -21,25 +22,34 @@ export default function UserlistContainer() {
         setBar={setBar}
         bar={bar}
       />
-      <Userlist.Container
-        transitionKey={`${bar.activeCategory + bar.activeList}`}
-      >
-        {bar.activeCategory === "createList" && (
-          <CreateUserlistContainer loading={userDataLoading} lists={lists} />
-        )}
-        {bar.activeCategory === "favorites" && (
-          <UserlistFavorite loading={userDataLoading} lists={lists} />
-        )}
-        {bar.activeCategory === "userlists" && (
-          <UserlistItem
-            lists={lists}
-            activeList={lists.userlists.find(
-              (item) => item.id === bar.activeList,
+      <SwitchTransition mode={"out-in"}>
+        <CSSTransition
+          key={`${bar.activeCategory + bar.activeList}`}
+          classNames="fade"
+          timeout={500}
+        >
+          <Userlist.Container>
+            {bar.activeCategory === "createList" && (
+              <CreateUserlistContainer
+                loading={userDataLoading}
+                lists={lists}
+              />
             )}
-            setBar={setBar}
-          />
-        )}
-      </Userlist.Container>
+            {bar.activeCategory === "favorites" && (
+              <UserlistFavorite loading={userDataLoading} lists={lists} />
+            )}
+            {bar.activeCategory === "userlists" && (
+              <UserlistItem
+                lists={lists}
+                activeList={lists.userlists.find(
+                  (item) => item.id === bar.activeList,
+                )}
+                setBar={setBar}
+              />
+            )}
+          </Userlist.Container>
+        </CSSTransition>
+      </SwitchTransition>
     </Userlist>
   );
 }

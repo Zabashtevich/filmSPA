@@ -23,15 +23,17 @@ export default function NavContainer({ loading, lists, setBar, bar }) {
         <Nav.Create />
         <Nav.Subtitle>Create list</Nav.Subtitle>
       </Nav.Category>
-      <Nav.Category
-        selected={activeCategory === "favorites" && 1}
-        onClick={() =>
-          setBar({ activeCategory: "favorites", activeList: null })
-        }
-      >
-        <Nav.Heart />
-        <Nav.Subtitle>Favorites</Nav.Subtitle>
-      </Nav.Category>
+      {!loading && (
+        <Nav.Category
+          selected={activeCategory === "favorites" && 1}
+          onClick={() =>
+            setBar({ activeCategory: "favorites", activeList: null })
+          }
+        >
+          <Nav.Heart />
+          <Nav.Subtitle>Favorites</Nav.Subtitle>
+        </Nav.Category>
+      )}
       <Nav.Devider>
         <Nav.Subtitle>Your lists</Nav.Subtitle>
       </Nav.Devider>

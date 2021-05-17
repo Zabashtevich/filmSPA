@@ -6,6 +6,6 @@ export default function MediaSkeleton({ children }) {
   return children;
 }
 
-MediaSkeleton.Poster = function MediaSkeletonPoster() {
-  return <Poster />;
+MediaSkeleton.Poster = function MediaSkeletonPoster({ ...rest }) {
+  return <Poster {...rest} />;
 };

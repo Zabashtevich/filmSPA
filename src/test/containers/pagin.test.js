@@ -20,20 +20,11 @@ function renderPaginContainer(state, fn = null) {
 }
 
 describe("Pagin container", () => {
-  it("render correctly while loading", () => {
-    const loadingContextState = { loading: true, amount: null, active: 1 };
-
-    const { getAllByTestId } = renderPaginContainer(loadingContextState);
-    expect(getAllByTestId("pagin-skeleton")).toBeTruthy();
-    expect(getAllByTestId("pagin-skeleton")).toHaveLength(10);
-  });
-
   it("render correct amount of elements", () => {
     const afterLoadingState = { loading: false, amount: 10, active: 1 };
 
-    const { getByText, queryAllByTestId } = renderPaginContainer(
-      afterLoadingState,
-    );
+    const { getByText, queryAllByTestId } =
+      renderPaginContainer(afterLoadingState);
     expect(queryAllByTestId("pagin-skeleton")).toHaveLength(0);
     range(1, 10).map((item) => {
       expect(getByText(`${item}`)).toBeTruthy();

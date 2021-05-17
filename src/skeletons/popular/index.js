@@ -6,6 +6,6 @@ export default function PopularSkeleton({ children }) {
   return children;
 }
 
-PopularSkeleton.Poster = function PopularSkeletonPoster() {
-  return <Poster />;
+PopularSkeleton.Poster = function PopularSkeletonPoster({ ...rest }) {
+  return <Poster {...rest} />;
 };

@@ -41,7 +41,7 @@ describe("Actor container", () => {
     profile_path: "/dummyposter",
     combined_credits: { cast: [{}, {}, {}] },
     gender: 0,
-    birthday: "2100-100-100",
+    birthday: "2100-10-10",
     place_of_birth: "dummy place",
     known_for_department: "dummy department",
   };
@@ -52,6 +52,7 @@ describe("Actor container", () => {
     profile: null,
     lists: { userlists: null, favorites: null, votes: null },
   };
+
   const initialState = {
     userDataLoading: false,
     userDataExist: true,

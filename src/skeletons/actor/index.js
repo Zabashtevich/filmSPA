@@ -13,32 +13,32 @@ import {
   Devider,
 } from "./styles/actor";
 
-export default function ActorSkeleton({ children }) {
-  return <Container>{children}</Container>;
+export default function ActorSkeleton({ children, ...rest }) {
+  return <Container {...rest}>{children}</Container>;
 }
 
-ActorSkeleton.Poster = function ActorSkeletonPoster() {
-  return <Poster />;
+ActorSkeleton.Poster = function ActorSkeletonPoster({ ...rest }) {
+  return <Poster {...rest} />;
 };
 
-ActorSkeleton.Subtitle = function ActorSkeletonSubtitle() {
-  return <Subtitle />;
+ActorSkeleton.Subtitle = function ActorSkeletonSubtitle({ ...rest }) {
+  return <Subtitle {...rest} />;
 };
 
-ActorSkeleton.Row = function ActorSkeletonRow({ children }) {
-  return <Row>{children}</Row>;
+ActorSkeleton.Row = function ActorSkeletonRow({ children, ...rest }) {
+  return <Row {...rest}>{children}</Row>;
 };
 
-ActorSkeleton.Fieldname = function ActorSkeletonFieldname() {
-  return <Fieldname />;
+ActorSkeleton.Fieldname = function ActorSkeletonFieldname({ ...rest }) {
+  return <Fieldname {...rest} />;
 };
 
-ActorSkeleton.Fieldvalue = function ActorSkeletonFieldvalue() {
-  return <Fieldvalue />;
+ActorSkeleton.Fieldvalue = function ActorSkeletonFieldvalue({ ...rest }) {
+  return <Fieldvalue {...rest} />;
 };
 
-ActorSkeleton.Title = function ActorSkeletonTitle() {
-  return <Title />;
+ActorSkeleton.Title = function ActorSkeletonTitle({ ...rest }) {
+  return <Title {...rest} />;
 };
 
 ActorSkeleton.List = function ActorSkeletonList({ children }) {

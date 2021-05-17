@@ -5,7 +5,7 @@ import { range } from "../../../utils";
 
 export default function ActorSkeletonColumn() {
   return (
-    <ActorSkeleton>
+    <ActorSkeleton data-testid="actor-column-skeleton">
       <ActorSkeleton.Poster />
       <ActorSkeleton.Subtitle />
       {range(1, 5).map((item) => (

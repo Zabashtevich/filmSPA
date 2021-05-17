@@ -7,7 +7,7 @@ export default function ActorSkeletonContent() {
   const auxRowsVisible = window.innerWidth < 750;
 
   return (
-    <ActorSkeleton>
+    <ActorSkeleton data-testid="actor-content-skeleton">
       <ActorSkeleton.Title />
       <ActorSkeleton.Subtitle />
       <ActorSkeleton.List>

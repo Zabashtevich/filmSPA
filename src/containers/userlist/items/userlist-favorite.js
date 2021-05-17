@@ -15,7 +15,9 @@ export default function UserlistFavorite({ loading, lists }) {
 
   return (
     <>
-      <Userlist.Title>Your favorite movies</Userlist.Title>
+      <Userlist.Title data-testid="userlist-favorite">
+        Your favorite movies
+      </Userlist.Title>
       {!loading && lists.favorites.length > 0 && <CreditsContainer />}
       {!loading && lists.favorites.length === 0 && (
         <Userlist.Placeholder>

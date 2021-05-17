@@ -45,7 +45,7 @@ export default function UserlistItem({ lists, activeList, setBar }) {
 
   return (
     <>
-      <Userlist.Title>{`Your list ${activeList.name}`}</Userlist.Title>
+      <Userlist.Title data-testid="userlist-item">{`Your list ${activeList.name}`}</Userlist.Title>
       <Userlist.Header>
         <Userlist.Thumbnail />
         <Userlist.List>

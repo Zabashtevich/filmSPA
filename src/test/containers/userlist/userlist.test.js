@@ -11,7 +11,7 @@ import { UserlistContainer } from "../../../containers";
 import { useModalContext, useProcessContext } from "../../../context";
 import userEvent from "@testing-library/user-event";
 
-jest.mock("./../../context", () => ({
+jest.mock("./../../../context", () => ({
   useProcessContext: jest.fn(),
   useModalContext: jest.fn(),
   useCreditsContext: jest.fn(),

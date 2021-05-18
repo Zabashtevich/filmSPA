@@ -15,7 +15,7 @@ export default function UserlistItem({ lists, activeList, setBar }) {
   const [setList] = useList("userlists");
 
   function renameListHandler() {
-    if (inputValue.length < 5 && inputValue.length > 10) {
+    if (inputValue.length < 5 || inputValue.length > 10) {
       return showErrorModal("Your list name must be min 5 and max 10 symbols");
     }
     setList(
@@ -55,24 +55,39 @@ export default function UserlistItem({ lists, activeList, setBar }) {
             onChange={(e) => setInputValue(e.target.value)}
           />
         </Userlist.List>
-        <Userlist.Wrapper visible={!disabled}>
-          <Userlist.Button type="confirm" onClick={renameListHandler}>
-            OK
-          </Userlist.Button>
-          <Userlist.Button type="abort" onClick={() => setDisabled(true)}>
-            Abort
-          </Userlist.Button>
-        </Userlist.Wrapper>
+        {!disabled && (
+          <Userlist.Wrapper>
+            <Userlist.Button
+              type="confirm"
+              onClick={renameListHandler}
+              data-testid="confirm button"
+            >
+              OK
+            </Userlist.Button>
+            <Userlist.Button
+              type="abort"
+              onClick={() => setDisabled(true)}
+              data-testid="abort-button"
+            >
+              Abort
+            </Userlist.Button>
+          </Userlist.Wrapper>
+        )}
         <Userlist.Tools>
-          <Userlist.Inner type="delete" onClick={deleteHandler}>
+          <Userlist.EditButton
+            type="delete"
+            onClick={deleteHandler}
+            data-testid="delete button"
+          >
             <Userlist.Delete />
-          </Userlist.Inner>
-          <Userlist.Inner
+          </Userlist.EditButton>
+          <Userlist.EditButton
             type="edit"
             onClick={() => setDisabled((prev) => !prev)}
+            data-testid="edit button"
           >
             <Userlist.Edit />
-          </Userlist.Inner>
+          </Userlist.EditButton>
         </Userlist.Tools>
       </Userlist.Header>
       <CreditsContainer />

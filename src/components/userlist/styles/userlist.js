@@ -202,7 +202,7 @@ export const Tools = styled.div`
   height: 100%;
 `;
 
-export const Inner = styled.div`
+export const EditButton = styled.button`
   justify-content: center;
   box-sizing: border-box;
   align-items: center;

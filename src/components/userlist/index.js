@@ -12,7 +12,7 @@ import {
   Confirm,
   Cancel,
   Tools,
-  Inner,
+  EditButton,
   Button,
   Delete,
   Edit,
@@ -73,8 +73,8 @@ Userlist.Tools = function UserlistTools({ children, ...rest }) {
   return <Tools {...rest}>{children}</Tools>;
 };
 
-Userlist.Inner = function UserlistInner({ children, ...rest }) {
-  return <Inner {...rest}>{children}</Inner>;
+Userlist.EditButton = function UserlistEditButton({ children, ...rest }) {
+  return <EditButton {...rest}>{children}</EditButton>;
 };
 
 Userlist.Delete = function UserlistDelete({ children, ...rest }) {

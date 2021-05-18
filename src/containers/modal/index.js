@@ -9,20 +9,20 @@ modalRoot.setAttribute("id", "modal-root");
 document.body.appendChild(modalRoot);
 
 export default function ModalContainer() {
-  const [
-    { visible, type, message, list },
-    { closeModal, confirmModal },
-  ] = useModalContext();
+  const [{ visible, type, message, list }, { closeModal, confirmModal }] =
+    useModalContext();
 
   const el = document.createElement("div");
 
   useEffect(() => {
+    modalRoot.appendChild(el);
+
     if (visible) {
       document.body.style.overflow = "hidden";
-      modalRoot.appendChild(el);
     } else {
       document.body.style.overflow = "auto";
     }
+    return () => modalRoot.removeChild(el);
   }, [visible]);
 
   return (

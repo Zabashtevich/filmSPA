@@ -1,4 +1,4 @@
-import { createVote } from "../../utils";
+import { createVote } from "../../../utils";
 
 it("Creating correct user vote", () => {
   jest.spyOn(global.Date, "now").mockImplementation(() => new Date(0));

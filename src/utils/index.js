@@ -30,3 +30,4 @@ export { default as calculateOffset } from "./filter/calculate-offset";
 export { default as getErrorList } from "./modal/get-error-list";
 
 export { default as getCollectionDetails } from "./collection/get-collection-details";
+export { default as getMoviesData } from "./collection/get-movies-data";

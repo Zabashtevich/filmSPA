@@ -1,5 +1,5 @@
-import { act, fireEvent, render, waitFor } from "@testing-library/react";
-import { MemoryRouter, Route, useHistory } from "react-router";
+import { act, render } from "@testing-library/react";
+import { MemoryRouter, Route } from "react-router";
 import { ThemeProvider } from "styled-components";
 import theme from "./../../../theme/theme";
 import { AuthContainer } from "./../../../containers";

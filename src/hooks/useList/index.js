@@ -17,7 +17,6 @@ export default function useList(listname) {
       setData(null);
     }
     if (!processing && data) {
-      console.log(data);
       setProcessProps({ processing: true, message: "Processing..." });
       firebase
         .firestore()
@@ -34,6 +33,7 @@ export default function useList(listname) {
           showErrorModal("Something gone wrong");
         });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, listname]);
 
   return [setData];

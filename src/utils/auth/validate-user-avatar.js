@@ -2,7 +2,7 @@ export default function validateUserAvatar(event) {
   return new Promise((resolve, reject) => {
     const file = event.target.files[0];
     if (parseFloat(file.size / (1024 * 1024)) >= 3) {
-      reject();
+      return reject();
     }
     let img = new Image();
     img.src = window.URL.createObjectURL(file);

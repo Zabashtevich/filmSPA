@@ -27,6 +27,7 @@ export default function getFiltredArray(array, state) {
       );
       break;
     default:
+      result = array;
       break;
   }
 

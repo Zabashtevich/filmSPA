@@ -23,6 +23,7 @@ import {
   GalleryPage,
   TrendingPage,
   CollectionPage,
+  NomatchPage,
 } from "../pages";
 
 function App() {
@@ -47,24 +48,44 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/" component={MainPage} exact />
-        <Route path="/details/:direction/:slug" component={DetailsPage} exact />
-        <Route path="/authentication/:slug" component={AuthPage} />
-        <Route
-          path="/details/:direction/:slug/gallery"
-          component={GalleryPage}
-          exact
-        />
-        <Route path="/trending/:slug" exact component={TrendingPage} />
-        <Route path="/collection/:slug" exact component={CollectionPage} />
-        <Route path="/actor/:slug" exact component={ActorPage} />
+        <Route path="/" exact>
+          <MainPage />
+        </Route>
+
+        <Route path="/details/:direction/:slug" exact>
+          <DetailsPage />
+        </Route>
+
+        <Route path="/authentication/:slug" exact>
+          <AuthPage />
+        </Route>
+
+        <Route path="/details/:direction/:slug/gallery" exact>
+          <GalleryPage />
+        </Route>
+
+        <Route path="/trending/:slug" exact>
+          <TrendingPage />
+        </Route>
+
+        <Route path="/collection/:slug" exact>
+          <CollectionPage />
+        </Route>
+        <Route path="/actor/:slug" exact>
+          <ActorPage />
+        </Route>
 
         <ProtectedRoute path="/account" exact>
           <AccountPage />
         </ProtectedRoute>
+
         <ProtectedRoute path="/account/userlists" exact>
           <UserlistPage />
         </ProtectedRoute>
+
+        <Route path="*">
+          <NomatchPage />
+        </Route>
       </Switch>
     </Router>
   );

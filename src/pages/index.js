@@ -7,3 +7,4 @@ export { default as UserlistPage } from "./userlist-page";
 export { default as GalleryPage } from "./gallery-page";
 export { default as TrendingPage } from "./trending-page";
 export { default as CollectionPage } from "./collection-page";
+export { default as NomatchPage } from "./nomatch-page";

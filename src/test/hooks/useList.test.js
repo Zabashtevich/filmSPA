@@ -7,8 +7,6 @@ import userData from "./../../reducers/user-data";
 import { useModalContext, useProcessContext } from "../../context";
 import { useList } from "../../hooks";
 
-const firestore = jest.fn();
-
 jest.mock("./../../libs/firebase", () => ({
   firebase: { firestore: jest.fn() },
 }));

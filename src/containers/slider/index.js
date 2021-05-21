@@ -40,6 +40,7 @@ export default function SliderContainer() {
               >
                 <Slider.Poster
                   src={`./assets/images/slider/${item.image}.jpg`}
+                  alt={`${item.film}`}
                 />
                 <Slider.Wrapper>
                   <Slider.Title>{item.film}</Slider.Title>

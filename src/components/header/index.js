@@ -3,10 +3,12 @@ import { CSSTransition } from "react-transition-group";
 
 import {
   Container,
-  Inner,
   Nav,
-  Logo,
+  List,
   Wrapper,
+  Item,
+  Logo,
+  Inner,
   Link,
   Button,
   Close,
@@ -16,7 +18,7 @@ import {
   Popup,
   Nickname,
   Mail,
-  Item,
+  Category,
   Logout,
 } from "./styles/header";
 
@@ -24,20 +26,28 @@ export default function Header({ children, ...rest }) {
   return <Container {...rest}>{children}</Container>;
 }
 
-Header.Inner = function HeaderInner({ children, ...rest }) {
-  return <Inner {...rest}>{children}</Inner>;
-};
-
 Header.Nav = function HeaderNav({ children, ...rest }) {
   return <Nav {...rest}>{children}</Nav>;
+};
+
+Header.List = function HeaderList({ children, ...rest }) {
+  return <List {...rest}>{children}</List>;
+};
+
+Header.Wrapper = function HeaderWrapper({ children, ...rest }) {
+  return <Wrapper {...rest}>{children}</Wrapper>;
+};
+
+Header.Item = function HeaderItem({ children, ...rest }) {
+  return <Item {...rest}>{children}</Item>;
 };
 
 Header.Logo = function HeaderLogo({ children, ...rest }) {
   return <Logo {...rest}>{children}</Logo>;
 };
 
-Header.Wrapper = function HeaderWrapper({ children, ...rest }) {
-  return <Wrapper {...rest}>{children}</Wrapper>;
+Header.Inner = function HeaderInner({ children, ...rest }) {
+  return <Inner {...rest}>{children}</Inner>;
 };
 
 Header.Link = function HeaderLink({ children, ...rest }) {
@@ -92,8 +102,8 @@ Header.Mail = function HeaderMail({ children, ...rest }) {
   return <Mail {...rest}>{children}</Mail>;
 };
 
-Header.Item = function HeaderItem({ children, ...rest }) {
-  return <Item {...rest}>{children}</Item>;
+Header.Category = function HeaderCategory({ children, ...rest }) {
+  return <Category {...rest}>{children}</Category>;
 };
 
 Header.Logout = function HeaderLogout({ children, ...rest }) {

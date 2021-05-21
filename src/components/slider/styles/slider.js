@@ -148,25 +148,28 @@ export const Item = styled(ReactRouterLink)`
 `;
 
 export const Poster = styled.img`
-  width: 300px;
-
   @media (min-width: 320px) {
+    height: 123px;
     width: 80px;
   }
 
   @media (min-width: 510px) {
+    height: 216px;
     width: 140px;
   }
 
   @media (min-width: 800px) {
+    height: 220px;
     width: 145px;
   }
 
   @media (min-width: 1200px) {
+    height: 333px;
     width: 220px;
   }
 
   @media (min-width: 1400px) {
+    height: 393px;
     width: 260px;
   }
 `;

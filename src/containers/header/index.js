@@ -46,73 +46,76 @@ export default function HeaderContainer() {
 
   return (
     <Header headerHidden={!headerVisible}>
-      <Header.Inner>
-        <Header.Nav>
-          <Header.Logo to="/">TMDB</Header.Logo>
-          <Header.Link to="/trending/movie">Trending</Header.Link>
-        </Header.Nav>
-        <SwitchTransition mode={"out-in"}>
-          <CSSTransition key={loggedIn} classNames="fade" timeout={500}>
-            <Header.Wrapper onClick={(e) => e.stopPropagation()}>
-              {loggedIn && (
-                <Header.Profile
-                  onClick={popupToggler}
-                  data-testid="header-profile"
-                >
-                  <Header.Avatar
-                    src={profile?.photoURL}
-                    popupVisible={popupVisible && 1}
-                    alt="user avatar"
-                  />
-                  <Header.Popup
-                    data-testid="header-popup"
-                    visible={popupVisible}
+      <Header.Nav>
+        <Header.List>
+          <Header.Item>
+            <Header.Logo to="/">TMDB</Header.Logo>
+          </Header.Item>
+          <Header.Item>
+            <Header.Link to="/trending/movie">Trending</Header.Link>
+          </Header.Item>
+        </Header.List>
+
+        <Header.List>
+          {!userDataLoading && !loggedIn && (
+            <>
+              <Header.Item>
+                <Header.Link to="/authentication/login">Login</Header.Link>
+              </Header.Item>
+              <Header.Item>
+                <Header.Link to="/authentication/signup">Signup</Header.Link>
+              </Header.Item>
+            </>
+          )}
+          <SwitchTransition mode="out-in">
+            <CSSTransition key={searchActive} classNames="fade" timeout={200}>
+              <Header.Button onClick={() => setSearchActive((prev) => !prev)}>
+                {!searchActive && <Header.Search data-testid="header-search" />}
+                {searchActive && <Header.Close data-testid="header-close" />}
+              </Header.Button>
+            </CSSTransition>
+          </SwitchTransition>
+          <SwitchTransition mode={"out-in"}>
+            <CSSTransition key={loggedIn} classNames="fade" timeout={500}>
+              <Header.Inner onClick={(e) => e.stopPropagation()}>
+                {loggedIn && (
+                  <Header.Profile
+                    onClick={popupToggler}
+                    data-testid="header-profile"
                   >
-                    <Header.Nickname>{profile.displayName}</Header.Nickname>
-                    <Header.Mail>{profile.email}</Header.Mail>
-                    <Header.Item to="/account">to Account</Header.Item>
-                    <Header.Item to="/account/userlists">
-                      to Userlists
-                    </Header.Item>
-                    <Header.Logout
-                      onClick={() => {
-                        firebase.auth().signOut();
-                        history.push("/");
-                      }}
+                    <Header.Avatar
+                      src={profile?.photoURL}
+                      popupVisible={popupVisible && 1}
+                      alt="user avatar"
+                    />
+                    <Header.Popup
+                      data-testid="header-popup"
+                      visible={popupVisible}
                     >
-                      Logout
-                    </Header.Logout>
-                  </Header.Popup>
-                </Header.Profile>
-              )}
-              {!userDataLoading && !loggedIn && (
-                <>
-                  <Header.Link to="/authentication/login">Login</Header.Link>
-                  <Header.Link to="/authentication/signup">Signup</Header.Link>
-                </>
-              )}
-              <SwitchTransition mode="out-in">
-                <CSSTransition
-                  key={searchActive}
-                  classNames="fade"
-                  timeout={200}
-                >
-                  <Header.Button
-                    onClick={() => setSearchActive((prev) => !prev)}
-                  >
-                    {!searchActive && (
-                      <Header.Search data-testid="header-search" />
-                    )}
-                    {searchActive && (
-                      <Header.Close data-testid="header-close" />
-                    )}
-                  </Header.Button>
-                </CSSTransition>
-              </SwitchTransition>
-            </Header.Wrapper>
-          </CSSTransition>
-        </SwitchTransition>
-      </Header.Inner>
+                      <Header.Nickname>{profile.displayName}</Header.Nickname>
+                      <Header.Mail>{profile.email}</Header.Mail>
+                      <Header.Category to="/account">
+                        to Account
+                      </Header.Category>
+                      <Header.Category to="/account/userlists">
+                        to Userlists
+                      </Header.Category>
+                      <Header.Logout
+                        onClick={() => {
+                          firebase.auth().signOut();
+                          history.push("/");
+                        }}
+                      >
+                        Logout
+                      </Header.Logout>
+                    </Header.Popup>
+                  </Header.Profile>
+                )}
+              </Header.Inner>
+            </CSSTransition>
+          </SwitchTransition>
+        </Header.List>
+      </Header.Nav>
       <BarContainer visible={searchActive} />
     </Header>
   );

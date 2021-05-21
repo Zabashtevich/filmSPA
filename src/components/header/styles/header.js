@@ -20,7 +20,7 @@ export const Container = styled.div`
     `}
 `;
 
-export const Inner = styled.div`
+export const Nav = styled.nav`
   background-color: ${({ theme }) => theme.colors.main};
   justify-content: space-between;
   align-items: center;
@@ -29,16 +29,22 @@ export const Inner = styled.div`
   width: 100%;
 `;
 
-export const Nav = styled.div`
+export const List = styled.ul`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   align-items: center;
-  margin-left: 5rem;
   display: flex;
   color: white;
+  padding: 0;
 
-  @media (max-width: 647px) {
-    margin-left: 1rem;
+  &:first-of-type {
+    padding-left: 10px;
   }
+`;
+
+export const Wrapper = styled.div``;
+
+export const Item = styled.li`
+  list-style: none;
 `;
 
 export const Logo = styled(ReactRouterLink)`
@@ -60,7 +66,7 @@ export const Logo = styled(ReactRouterLink)`
     top: 50%;
   }
 
-  @media (max-width: 647px) {
+  @media (max-width: 650px) {
     font-size: ${({ theme }) => theme.font.aux.size.large};
     margin-right: 3rem;
 
@@ -69,7 +75,7 @@ export const Logo = styled(ReactRouterLink)`
       width: 25px;
     }
 
-    @media (max-width: 500px) {
+    @media (max-width: 550px) {
       font-size: ${({ theme }) => theme.font.aux.size.big};
       margin-right: 0.5rem;
 
@@ -80,7 +86,7 @@ export const Logo = styled(ReactRouterLink)`
   }
 `;
 
-export const Wrapper = styled.div`
+export const Inner = styled.div`
   ${({ theme }) => theme.animations.fade()};
   align-items: center;
   margin-right: 8rem;
@@ -169,7 +175,7 @@ export const Mail = styled.span`
   padding: 0 0.6rem 0.4rem;
 `;
 
-export const Item = styled(ReactRouterLink)`
+export const Category = styled(ReactRouterLink)`
   padding: 0.3rem 0.6rem 0.3rem;
   text-decoration: none;
   display: block;

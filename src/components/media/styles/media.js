@@ -73,6 +73,8 @@ export const Scroller = styled.div`
 
 export const Poster = styled.img`
   ${({ theme }) => theme.animations.fade()};
+  object-position: top left;
+  object-fit: cover;
   height: 300px;
   width: 200px;
 

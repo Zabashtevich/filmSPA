@@ -13,6 +13,7 @@ export default function TrendingItem({ item, direction }) {
       <Trending.Poster
         slug={item.poster_path}
         onLoad={() => setLoading(false)}
+        alt="movie poster"
       />
       <Trending.Inner loading={loading && 1}>
         <Trending.Wrapper>

@@ -48,8 +48,11 @@ export const Header = styled.div`
     `};
 `;
 
-export const Title = styled.span`
+export const Title = styled.h1`
+  font-size: ${({ theme }) => theme.font.aux.size.huge};
   position: relative;
+  margin: 0;
+
   &::before {
     background-color: rgba(0, 0, 0, 0.5);
     transform: translateX(-50%);
@@ -90,6 +93,12 @@ export const Input = styled.input`
   outline: none;
   height: 30px;
   width: 85%;
+
+  &:focus {
+    box-shadow: 0 0 0 2px #ffffff, 0 0 3px 5px #3f3f3f,
+      rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    outline: none;
+  }
 `;
 
 export const Key = styled(MdLockOutline)`
@@ -129,13 +138,12 @@ export const Wrapper = styled.div`
   width: 100%;
 `;
 
-export const Back = styled.button`
-  border: 1px solid rgba(0, 0, 0, 0.2);
+export const Back = styled(ReactRouterLink)`
+  border: 1px solid rgba(0, 0, 0, 0.1);
   background-color: white;
+  text-decoration: none;
   border-radius: 0.2rem;
-  padding: 0.3rem 0;
-  cursor: pointer;
-  outline: none;
+  text-align: center;
   color: black;
   width: 100%;
 
@@ -146,13 +154,22 @@ export const Back = styled.button`
 
   @media (max-width: 650px) {
     font-size: 1.2rem;
-    padding: 0.1rem 0;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 2px #ffffff, 0 0 3px 5px #3f3f3f,
+      rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    outline: none;
   }
 `;
 
-export const Button = styled(Back)`
+export const Button = styled.button`
   background-color: ${({ theme }) => theme.colors.main};
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.2rem;
   margin: 0.5rem 0;
+  cursor: pointer;
+  outline: none;
   color: white;
   width: 100%;
 
@@ -169,6 +186,12 @@ export const Button = styled(Back)`
   &:disabled {
     background-color: rgba(0, 0, 0, 0.4);
     pointer-events: none;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 2px #ffffff, 0 0 3px 5px #3f3f3f,
+      rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    outline: none;
   }
 `;
 

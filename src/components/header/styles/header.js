@@ -4,6 +4,7 @@ import { Link as ReactRouterLink } from "react-router-dom";
 import { BsSearch, BsX } from "react-icons/bs";
 
 export const Container = styled.div`
+  font-family: ${({ theme }) => theme.font.aux.family};
   transform: translateY(0);
   transition: 400ms;
   position: fixed;
@@ -46,6 +47,7 @@ export const Wrapper = styled.div``;
 
 export const Item = styled.li`
   ${({ theme }) => theme.animations.fade(200, 200, 200)};
+  position: relative;
   list-style: none;
 `;
 
@@ -91,7 +93,8 @@ export const Logo = styled(ReactRouterLink)`
 export const Inner = styled.li`
   ${({ theme }) => theme.animations.fade()};
   align-items: center;
-  margin-right: 8rem;
+  margin-right: 2rem;
+  position: relative;
   display: flex;
 
   @media (max-width: 1100px) {
@@ -126,7 +129,6 @@ export const Search = styled(BsSearch)``;
 export const Close = styled(BsX)``;
 
 export const Profile = styled.div`
-  position: relative;
   cursor: pointer;
 
   @media (max-width: 500px) {
@@ -152,17 +154,15 @@ export const Avatar = styled.img`
 export const Popup = styled.div`
   ${({ theme }) => theme.animations.fade(500, 250, 500)};
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  transform: translateX(-50%);
   background-color: white;
   flex-direction: column;
   top: calc(100% + 16px);
   border-radius: 0.5rem;
   position: absolute;
   display: flex;
-  left: 0;
-
-  @media (max-width: 500px) {
-    left: -200%;
-  }
+  color: black;
+  left: -100%;
 `;
 
 export const Nickname = styled.span`
@@ -177,6 +177,7 @@ export const Mail = styled.span`
 `;
 
 export const Category = styled(ReactRouterLink)`
+  font-weight: ${({ theme }) => theme.font.aux.weight.normal};
   padding: 0.3rem 0.6rem 0.3rem;
   text-decoration: none;
   display: block;
@@ -196,6 +197,7 @@ export const Category = styled(ReactRouterLink)`
 `;
 
 export const Logout = styled.span`
+  font-weight: ${({ theme }) => theme.font.aux.weight.normal};
   padding: 0.3rem 0.6rem 0.3rem;
   margin-bottom: 0.5rem;
 

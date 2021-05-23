@@ -32,6 +32,7 @@ export default function Signup({ register, handleSubmit }) {
   }
 
   function onSubmit(data) {
+    setLoading(true);
     loadUserAvatar(file)
       .then((url) => {
         return signup({ ...data, url });
@@ -59,8 +60,14 @@ export default function Signup({ register, handleSubmit }) {
           disabled={url === null && 1}
           previewRef={previewRef}
           data-testid="auth-avatar"
+          alt="user avatar"
         />
-        <Auth.File type="file" onChange={onFileChange} placeholder="file" />
+        <Auth.File
+          type="file"
+          onChange={onFileChange}
+          placeholder="file"
+          accept=".jpg, .jpeg, .png"
+        />
       </Auth.Header>
       <Auth.Row>
         <Auth.Input
@@ -114,7 +121,7 @@ export default function Signup({ register, handleSubmit }) {
         <Auth.Button type="submit" disabled={loading && 1}>
           REGISTER
         </Auth.Button>
-        <Auth.Back>BACK</Auth.Back>
+        <Auth.Back to="/">BACK</Auth.Back>
       </Auth.Wrapper>
       <Auth.Message>
         <Auth.Subtitle>Already have an account ?</Auth.Subtitle>

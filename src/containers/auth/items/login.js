@@ -69,7 +69,7 @@ export default function Login({ register, handleSubmit }) {
         <Auth.Button type="submit" disabled={loading && 1}>
           LOGIN
         </Auth.Button>
-        <Auth.Back>BACK</Auth.Back>
+        <Auth.Back to="/">BACK</Auth.Back>
       </Auth.Wrapper>
       <Auth.Message>
         <Auth.Subtitle>Do not have an account?</Auth.Subtitle>

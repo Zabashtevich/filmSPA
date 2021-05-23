@@ -1,4 +1,4 @@
-import styled, { css, keyframes } from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 import { Link as ReactRouterLink } from "react-router-dom";
 
 export const Section = styled.div`
@@ -74,7 +74,7 @@ export const Menu = styled.div`
   }
 `;
 
-export const Subtitle = styled.h3`
+export const Subtitle = styled.h2`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   background-color: ${({ theme }) => theme.colors.main};
   font-size: ${({ theme }) => theme.font.aux.size.big};
@@ -181,6 +181,8 @@ export const Average = styled.span`
 `;
 
 export const Poster = styled.img`
+  object-position: top left;
+  object-fit: cover;
   display: flex;
   height: 300px;
   width: 200px;

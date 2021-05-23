@@ -148,6 +148,9 @@ export const Item = styled(ReactRouterLink)`
 `;
 
 export const Poster = styled.img`
+  object-position: top left;
+  object-fit: cover;
+
   @media (min-width: 320px) {
     height: 123px;
     width: 80px;
@@ -214,99 +217,109 @@ export const Value = styled.span`
   margin-right: 1rem;
 `;
 
-export const ArrowLeft = styled(BsFillCaretLeftFill)`
-  font-size: ${({ theme }) => theme.font.aux.size.large};
-  background-color: ${({ theme }) => theme.colors.main};
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  transform: translate(-150%, -50%);
-  border-radius: 50%;
-  position: absolute;
-  padding: 0.6rem;
-  display: flex;
-  color: white;
-  top: 50%;
-  left: 0;
-
-  &:hover {
-    background-color: transparent;
-    transition: 300ms;
-    color: black;
-  }
-
-  &:active {
-    transform: translate(-150%, 10%) scale(0.8);
-  }
-
-  ${({ limited }) =>
-    limited &&
+export const Button = styled.button`
+  ${({ arrowLeft }) =>
+    arrowLeft &&
     css`
-      background-color: rgba(0, 0, 0, 0.3);
-      pointer-events: none;
-      transition: 300ms;
+      font-size: ${({ theme }) => theme.font.aux.size.large};
+      background-color: ${({ theme }) => theme.colors.main};
+      border: 1px solid rgba(0, 0, 0, 0.5);
+      transform: translate(-150%, -50%);
+      border-radius: 50%;
+      position: absolute;
+      padding: 0.6rem;
+      display: flex;
+      color: white;
+      top: 50%;
+      left: 0;
+
+      &:hover {
+        background-color: transparent;
+        transition: 300ms;
+        color: black;
+      }
+
+      &:active {
+        transform: translate(-150%, 10%) scale(0.8);
+      }
+
+      ${({ limited }) =>
+        limited &&
+        css`
+          background-color: rgba(0, 0, 0, 0.3);
+          pointer-events: none;
+          transition: 300ms;
+        `};
+
+      @media (min-width: 320px) {
+        font-size: 0.8rem;
+        padding: 0.2rem;
+      }
+
+      @media (min-width: 1200px) {
+        font-size: 1.2rem;
+        padding: 0.4rem;
+      }
+
+      @media (min-width: 1400px) {
+        font-size: 1.4rem;
+        padding: 0.6rem;
+      }
     `};
 
-  @media (min-width: 320px) {
-    font-size: 0.8rem;
-    padding: 0.2rem;
-  }
-
-  @media (min-width: 1200px) {
-    font-size: 1.2rem;
-    padding: 0.4rem;
-  }
-
-  @media (min-width: 1400px) {
-    font-size: 1.4rem;
-    padding: 0.6rem;
-  }
-`;
-
-export const ArrowRight = styled(BsFillCaretRightFill)`
-  font-size: ${({ theme }) => theme.font.aux.size.large};
-  background-color: ${({ theme }) => theme.colors.main};
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  transform: translate(150%, -50%);
-  border-radius: 50%;
-  position: absolute;
-  padding: 0.6rem;
-  display: flex;
-  color: white;
-  top: 50%;
-  right: 0;
-
-  &:hover {
-    background-color: transparent;
-    transition: 300ms;
-    color: black;
-  }
-
-  &:active {
-    transform: translate(150%, 10%) scale(0.8);
-  }
-
-  ${({ limited }) =>
-    limited &&
+  ${({ arrowRight }) =>
+    arrowRight &&
     css`
-      background-color: rgba(0, 0, 0, 0.3);
-      pointer-events: none;
-      transition: 300ms;
+      font-size: ${({ theme }) => theme.font.aux.size.large};
+      background-color: ${({ theme }) => theme.colors.main};
+      border: 1px solid rgba(0, 0, 0, 0.5);
+      transform: translate(150%, -50%);
+      border-radius: 50%;
+      position: absolute;
+      padding: 0.6rem;
+      display: flex;
+      color: white;
+      top: 50%;
+      right: 0;
+
+      &:hover {
+        background-color: transparent;
+        transition: 300ms;
+        color: black;
+      }
+
+      &:active {
+        transform: translate(150%, 10%) scale(0.8);
+      }
+
+      ${({ limited }) =>
+        limited &&
+        css`
+          background-color: rgba(0, 0, 0, 0.3);
+          pointer-events: none;
+          transition: 300ms;
+        `};
+
+      @media (min-width: 320px) {
+        font-size: 0.8rem;
+        padding: 0.2rem;
+      }
+
+      @media (min-width: 1200px) {
+        font-size: 1.2rem;
+        padding: 0.4rem;
+      }
+
+      @media (min-width: 1400px) {
+        font-size: 1.4rem;
+        padding: 0.6rem;
+      }
     `};
-
-  @media (min-width: 320px) {
-    font-size: 0.8rem;
-    padding: 0.2rem;
-  }
-
-  @media (min-width: 1200px) {
-    font-size: 1.2rem;
-    padding: 0.4rem;
-  }
-
-  @media (min-width: 1400px) {
-    font-size: 1.4rem;
-    padding: 0.6rem;
-  }
 `;
+
+export const ArrowLeft = styled(BsFillCaretLeftFill)``;
+
+export const ArrowRight = styled(BsFillCaretRightFill)``;
 
 export const Footer = styled.div`
   margin: 0 auto;

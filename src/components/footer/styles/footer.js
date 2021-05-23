@@ -19,9 +19,11 @@ export const Section = styled.ul`
   flex-direction: column;
   list-style: none;
   display: flex;
+  width: 120px;
 `;
 
 export const Item = styled.li`
+  display: flex;
   margin: 0.5rem;
 
   @media (max-width: 500px) {
@@ -32,8 +34,7 @@ export const Item = styled.li`
 export const ItemLink = styled.a`
   font-size: ${({ theme }) => theme.font.aux.size.normal};
   text-decoration: none;
-  display: block;
-  width: 120px;
+
   color: #fff;
 
   &:hover {

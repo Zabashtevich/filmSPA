@@ -11,10 +11,13 @@ export default function PopularItem({ item, direction }) {
           : `/details/${direction}/${item.id}`
       }
     >
-      <Popular.Poster slug={item.poster_path || item.profile_path} />
+      <Popular.Poster
+        slug={item.poster_path || item.profile_path}
+        alt={item.title || item.name}
+      />
       <Popular.Description>
         <Popular.Row>
-          <Popular.Title>{item.title || item.name}</Popular.Title>
+          <Popular.Title>{item.title || item.name || "poster"}</Popular.Title>
           <Popular.Average value={item.vote_average}>
             {item.vote_average}
           </Popular.Average>

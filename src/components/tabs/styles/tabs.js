@@ -76,4 +76,10 @@ export const Item = styled.div`
     padding: 0.2rem;
     font-size: 0.8rem;
   }
+
+  &:focus {
+    box-shadow: 0 0 0 2px #ffffff, 0 0 3px 5px #3f3f3f,
+      rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    outline: none;
+  }
 `;

@@ -56,16 +56,20 @@ export default function SliderContainer() {
           </Slider.Inner>
         ))}
       </Slider.Container>
-      <Slider.ArrowLeft
-        onClick={() => setActiveSlide((prev) => prev - 1)}
-        limited={activeSlide === 0 ? 1 : 0}
-        data-testid="slider-left-arrow"
-      />
-      <Slider.ArrowRight
-        onClick={() => setActiveSlide((prev) => prev + 1)}
-        limited={activeSlide === 2 ? 1 : 0}
-        data-testid="slider-right-arrow"
-      />
+      <Slider.Button arrowLeft={1} aria-label="previous slide">
+        <Slider.ArrowLeft
+          onClick={() => setActiveSlide((prev) => prev - 1)}
+          limited={activeSlide === 0 ? 1 : 0}
+          data-testid="slider-left-arrow"
+        />
+      </Slider.Button>
+      <Slider.Button arrowRight={1} aria-label="next slide">
+        <Slider.ArrowRight
+          onClick={() => setActiveSlide((prev) => prev + 1)}
+          limited={activeSlide === 2 ? 1 : 0}
+          data-testid="slider-right-arrow"
+        />
+      </Slider.Button>
       <Slider.Footer>
         {slider.map((_, index) => (
           <Slider.Dot

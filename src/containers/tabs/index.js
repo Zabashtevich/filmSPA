@@ -9,6 +9,7 @@ export default function TabsContainer({ tabs, setActiveTab, active }) {
       <Tabs.Wrapper>
         {tabs.array.map((item, index) => (
           <Tabs.Item
+            tabIndex="0"
             key={item.value}
             onClick={() => setActiveTab(item.value)}
             leftTab={index === 0 && 1}

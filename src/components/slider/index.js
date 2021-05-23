@@ -11,6 +11,7 @@ import {
   Row,
   Value,
   Info,
+  Button,
   ArrowLeft,
   ArrowRight,
   Footer,
@@ -55,6 +56,10 @@ Slider.Value = function SliderValue({ children, ...rest }) {
 
 Slider.Info = function SliderInfo({ children, ...rest }) {
   return <Info {...rest}>{children}</Info>;
+};
+
+Slider.Button = function SliderButton({ children, ...rest }) {
+  return <Button {...rest}>{children}</Button>;
 };
 
 Slider.ArrowLeft = function SliderArrowLeft({ children, ...rest }) {

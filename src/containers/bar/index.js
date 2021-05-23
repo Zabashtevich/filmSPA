@@ -4,7 +4,7 @@ import { useSearch, useFetch } from "./../../hooks";
 import { Bar } from "../../components";
 import BarItem from "./items/bar-item";
 
-export default function BarContainer({ visible }) {
+export default function BarContainer({ visible, setSearchActive }) {
   const [{ loading, array, type }, setItems] = useState({
     loading: true,
     array: null,
@@ -73,7 +73,13 @@ export default function BarContainer({ visible }) {
         {!loading &&
           array
             .slice(0, 10)
-            .map((item) => <BarItem key={item.id} item={item} />)}
+            .map((item) => (
+              <BarItem
+                key={item.id}
+                item={item}
+                setSearchActive={setSearchActive}
+              />
+            ))}
       </Bar.List>
     </Bar>
   );

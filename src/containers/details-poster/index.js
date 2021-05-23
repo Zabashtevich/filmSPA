@@ -24,6 +24,7 @@ export default function DetailsPosterContainer({
         <DetailsPoster.Wallpaper
           src={data?.backdrop_path}
           data-testid="details-wallpaper"
+          alt="background wallpaper"
         />
       </DetailsPoster.Inner>
 
@@ -36,6 +37,7 @@ export default function DetailsPosterContainer({
                 <DetailsPoster.Poster
                   src={data?.poster_path}
                   data-testid="details-poster"
+                  alt="movie poster"
                 />
                 {loggedIn && <WidgetContainer lists={lists} data={data} />}
               </>

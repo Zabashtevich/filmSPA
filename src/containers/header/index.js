@@ -69,10 +69,14 @@ export default function HeaderContainer() {
           )}
           <SwitchTransition mode="out-in">
             <CSSTransition key={searchActive} classNames="fade" timeout={200}>
-              <Header.Button onClick={() => setSearchActive((prev) => !prev)}>
-                {!searchActive && <Header.Search data-testid="header-search" />}
-                {searchActive && <Header.Close data-testid="header-close" />}
-              </Header.Button>
+              <Header.Item>
+                <Header.Button onClick={() => setSearchActive((prev) => !prev)}>
+                  {!searchActive && (
+                    <Header.Search data-testid="header-search" />
+                  )}
+                  {searchActive && <Header.Close data-testid="header-close" />}
+                </Header.Button>
+              </Header.Item>
             </CSSTransition>
           </SwitchTransition>
           <SwitchTransition mode={"out-in"}>
@@ -116,7 +120,7 @@ export default function HeaderContainer() {
           </SwitchTransition>
         </Header.List>
       </Header.Nav>
-      <BarContainer visible={searchActive} />
+      <BarContainer visible={searchActive} setSearchActive={setSearchActive} />
     </Header>
   );
 }

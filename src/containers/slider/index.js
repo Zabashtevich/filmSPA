@@ -36,7 +36,7 @@ export default function SliderContainer() {
               <Slider.Item
                 key={item.image}
                 color={item.color}
-                to={`/details/${item.id}`}
+                to={`/details/movie/${item.id}`}
               >
                 <Slider.Poster
                   src={`./assets/images/slider/${item.image}.jpg`}

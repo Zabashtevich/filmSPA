@@ -7,6 +7,7 @@ export default function PanelCollection({ collection }) {
     <DetailsPanel.Collection
       src={collection.backdrop_path}
       data-testid="details-collection-container"
+      alt="collection thumbnail"
     >
       <DetailsPanel.Info>
         <DetailsPanel.Subtitle>{`Belongs to ${collection.name}`}</DetailsPanel.Subtitle>

@@ -34,7 +34,11 @@ export default function MediaContainer({ data, loading }) {
                 data.images.posters
                   .slice(0, 10)
                   .map((item) => (
-                    <Media.Poster key={item.file_path} slug={item.file_path} />
+                    <Media.Poster
+                      key={item.file_path}
+                      slug={item.file_path}
+                      alt="movie poster"
+                    />
                   ))}
               {loading &&
                 range(1, 10).map((item) => <MediaItemSkeleton key={item} />)}

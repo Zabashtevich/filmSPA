@@ -45,10 +45,12 @@ export const Inner = styled.div`
 
 export const Wallpaper = styled.img`
   margin-top: 70px;
-  max-width: 675px;
+  height: 400px;
+  width: 710px;
 
   @media (max-width: 675px) {
-    max-width: 320px;
+    height: 320px;
+    width: 568px;
   }
 `;
 
@@ -122,10 +124,11 @@ export const Poster = styled.img`
   }
 `;
 
-export const Title = styled.div`
+export const Title = styled.h1`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   font-size: ${({ theme }) => theme.font.aux.size.big};
   align-self: flex-start;
+  margin: 0;
 
   @media (max-width: 850px) {
     font-size: 1rem;

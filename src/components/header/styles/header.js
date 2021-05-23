@@ -24,6 +24,7 @@ export const Nav = styled.nav`
   background-color: ${({ theme }) => theme.colors.main};
   justify-content: space-between;
   align-items: center;
+  padding: 0 1rem;
   display: flex;
   height: 100%;
   width: 100%;
@@ -44,6 +45,7 @@ export const List = styled.ul`
 export const Wrapper = styled.div``;
 
 export const Item = styled.li`
+  ${({ theme }) => theme.animations.fade(200, 200, 200)};
   list-style: none;
 `;
 
@@ -86,7 +88,7 @@ export const Logo = styled(ReactRouterLink)`
   }
 `;
 
-export const Inner = styled.div`
+export const Inner = styled.li`
   ${({ theme }) => theme.animations.fade()};
   align-items: center;
   margin-right: 8rem;
@@ -110,7 +112,6 @@ export const Link = styled(ReactRouterLink)`
 
 export const Button = styled.div`
   font-size: ${({ theme }) => theme.font.aux.size.big};
-  ${({ theme }) => theme.animations.fade(200, 200, 200)};
   margin: 0 2rem;
   display: flex;
   color: white;

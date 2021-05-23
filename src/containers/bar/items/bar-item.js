@@ -1,7 +1,7 @@
 import React from "react";
 import { Bar } from "../../../components";
 
-export default function BarItem({ item }) {
+export default function BarItem({ item, setSearchActive }) {
   return (
     <Bar.Item
       key={item.id}
@@ -10,6 +10,7 @@ export default function BarItem({ item }) {
           ? `/actor/${item.id}`
           : `/details/${item.media_type}/${item.id}`
       }
+      onClick={() => setSearchActive(false)}
     >
       <Bar.Content>
         {item.media_type === "movie" || item.media_type === "tv" ? (

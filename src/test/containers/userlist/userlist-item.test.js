@@ -65,9 +65,6 @@ describe("Userlist item", () => {
     expect(getByTestId(/delete button/i)).toBeTruthy();
     expect(getByTestId(/edit button/i)).toBeTruthy();
 
-    expect(queryByText(/confirm/i)).toBeNull();
-    expect(queryByText(/abort/i)).toBeNull();
-
     expect(useList).toHaveBeenCalledWith("userlists");
     expect(setCredits).toHaveBeenCalled();
     expect(setCredits).toHaveBeenCalledWith({
@@ -88,7 +85,6 @@ describe("Userlist item", () => {
     expect(showErrorModal).not.toHaveBeenCalled();
     expect(setList).not.toHaveBeenCalled();
 
-    expect(queryByText(/ok/i)).toBeNull();
     expect(queryByText(/confirm/i)).toBeNull();
 
     await act(async () => {
@@ -123,7 +119,6 @@ describe("Userlist item", () => {
     expect(showErrorModal).toHaveBeenCalledTimes(1);
     expect(setList).toHaveBeenCalled();
 
-    expect(queryByText(/ok/i)).toBeNull();
     expect(queryByText(/confirm/i)).toBeNull();
   });
 

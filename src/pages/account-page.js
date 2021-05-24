@@ -5,6 +5,8 @@ import {
   AccountContainer,
   FooterContainer,
   HeaderContainer,
+  ModalContainer,
+  ProcessContainer,
 } from "../containers";
 
 export default function AccountPage() {
@@ -14,6 +16,8 @@ export default function AccountPage() {
 
   return (
     <>
+      <ProcessContainer />
+      <ModalContainer />
       <HeaderContainer />
       <AccountContainer
         loading={userDataLoading}

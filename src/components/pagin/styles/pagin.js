@@ -33,6 +33,12 @@ export const Item = styled.span`
     transform: scale(0.98);
   }
 
+  &:focus {
+    box-shadow: 0 0 0 2px #ffffff, 0 0 3px 5px #3f3f3f,
+      rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    outline: none;
+  }
+
   @media (max-width: 850px) {
     padding: 0.3rem 0.4rem;
     font-size: 0.6rem;

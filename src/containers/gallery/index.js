@@ -98,6 +98,8 @@ export default function GalleryContainer({ data, loading, slug, direction }) {
                         selected={item === selected ? 1 : 0}
                         onClick={() => menuToggler(item)}
                         data-testid="gallery-menu-item"
+                        arial-label={`menu category ${item}`}
+                        tabIndex="0"
                       >
                         <Gallery.Value>{item}</Gallery.Value>
                         <Gallery.Amount>

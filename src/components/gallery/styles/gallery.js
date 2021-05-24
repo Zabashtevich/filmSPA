@@ -203,6 +203,12 @@ export const Backdrop = styled.img`
   margin: 0.5rem;
   width: 300px;
 
+  &:focus {
+    box-shadow: 0 0 0 2px #ffffff, 0 0 3px 5px #3f3f3f,
+      rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    outline: none;
+  }
+
   &:hover {
     box-shadow: 0 2px 8px rgb(0 0 0 / 40%);
     transform: scale(1.02);
@@ -241,6 +247,12 @@ export const Poster = styled.img`
     transform: scale(1.02);
     transition: 200ms;
     cursor: pointer;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 2px #ffffff, 0 0 3px 5px #3f3f3f,
+      rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    outline: none;
   }
 
   @media (max-width: 1200px) {

@@ -6,7 +6,6 @@ import { getCollectionDetails } from "../utils";
 import {
   HeaderContainer,
   CollectionHeaderContainer,
-  CollectionCastContainer,
   CollectionPartsContainer,
   FooterContainer,
 } from "./../containers";
@@ -42,7 +41,6 @@ export default function CollectionPage() {
         loading={dataLoading || details.loading}
         details={details}
       />
-      {/* <CollectionCastContainer loading={details.loading} details={details} /> */}
       <CollectionPartsContainer loading={dataLoading} data={data} />
       <FooterContainer />
     </>

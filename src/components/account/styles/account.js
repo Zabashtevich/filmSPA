@@ -50,9 +50,10 @@ export const Content = styled.div`
   }
 `;
 
-export const Title = styled.span`
+export const Title = styled.h1`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   font-size: ${({ theme }) => theme.font.aux.size.large};
+  margin: 0;
 
   @media (max-width: 800px) {
     margin-top: 2rem;

@@ -80,9 +80,10 @@ export const Poster = styled.img`
   }
 `;
 
-export const Subtitle = styled.span`
+export const Subtitle = styled.h2`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   font-size: ${({ theme }) => theme.font.aux.size.big};
+  margin: 0;
 
   @media (max-width: 950px) {
     font-size: 1rem;
@@ -118,9 +119,10 @@ export const Fieldvalue = styled.span`
   }
 `;
 
-export const Title = styled.span`
+export const Title = styled.h1`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   font-size: ${({ theme }) => theme.font.aux.size.huge};
+  margin: 0;
   margin-bottom: 3rem;
   text-align: center;
 

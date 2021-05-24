@@ -12,6 +12,7 @@ export default function GalleryItems({ item, selected }) {
           data-testid="gallery-poster"
           slug={item.file_path}
           onClick={() => setPopupProps({ visible: true, type: "image", item })}
+          alt={"gallery poster"}
         />
       )}
       {selected === "Backdrops" && (
@@ -19,6 +20,7 @@ export default function GalleryItems({ item, selected }) {
           data-testid="gallery-backdrop"
           slug={item.file_path}
           onClick={() => setPopupProps({ visible: true, type: "image", item })}
+          alt={"gallery backdrop"}
         />
       )}
       {selected === "Videos" && (

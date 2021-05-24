@@ -28,8 +28,11 @@ export const Wrapper = styled.div`
 `;
 
 export const Folder = styled.img`
+  object-position: top left;
   border-radius: 0.3rem;
+  object-fit: cover;
   height: 100px;
+  width: 66px;
 `;
 
 export const Information = styled.div`
@@ -38,9 +41,10 @@ export const Information = styled.div`
   display: flex;
 `;
 
-export const Title = styled.span`
+export const Title = styled.h1`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   font-size: ${({ theme }) => theme.font.aux.size.large};
+  margin: 0;
 `;
 
 export const Back = styled(ReactRouterLink)`
@@ -191,9 +195,11 @@ export const Value = styled.div`
 
 export const Backdrop = styled.img`
   ${({ theme }) => theme.animations.skeleton};
+  object-position: top left;
   border-radius: 0.3rem;
   position: relative;
   max-height: 169px;
+  object-fit: cover;
   margin: 0.5rem;
   width: 300px;
 
@@ -224,7 +230,9 @@ export const Backdrop = styled.img`
 
 export const Poster = styled.img`
   ${({ theme }) => theme.animations.skeleton};
+  object-position: top left;
   border-radius: 0.3rem;
+  object-fit: cover;
   margin: 0.5rem;
   height: 300px;
   width: 200px;

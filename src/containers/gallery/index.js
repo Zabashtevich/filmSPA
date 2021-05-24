@@ -60,6 +60,7 @@ export default function GalleryContainer({ data, loading, slug, direction }) {
                   <Gallery.Folder
                     slug={data?.poster_path ?? null}
                     data-testid="gallery-header-poster"
+                    alt="movie main poster"
                   />
                   <Gallery.Information>
                     <Gallery.Title>

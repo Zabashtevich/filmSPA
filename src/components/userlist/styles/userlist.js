@@ -1,12 +1,6 @@
 import styled, { css } from "styled-components/macro";
 
-import {
-  BsList,
-  BsFillTrashFill,
-  BsWrench,
-  BsCheck,
-  BsX,
-} from "react-icons/bs";
+import { BsFillTrashFill, BsWrench, BsCheck, BsX } from "react-icons/bs";
 
 export const Outer = styled.div`
   font-family: ${({ theme }) => theme.font.aux.family};
@@ -25,9 +19,10 @@ export const Container = styled.div`
   width: 100%;
 `;
 
-export const Title = styled.span`
+export const Title = styled.h1`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   font-size: ${({ theme }) => theme.font.aux.size.huge};
+  margin: 0;
 
   @media (max-width: 800px) {
     font-size: ${({ theme }) => theme.font.aux.size.large};
@@ -39,6 +34,7 @@ export const Title = styled.span`
 `;
 
 export const Header = styled.div`
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 1rem;
   align-items: center;
@@ -52,27 +48,14 @@ export const Header = styled.div`
   }
 `;
 
-export const Thumbnail = styled(BsList)`
-  margin-left: 2rem;
-  font-size: 6rem;
-
-  @media (max-width: 1000px) {
-    font-size: 3rem;
-  }
-
-  @media (max-width: 650px) {
-    font-size: 2rem;
-  }
-
-  @media (max-width: 400px) {
-    margin-left: 1rem;
-  }
-`;
-
 export const List = styled.div`
-  margin: 0 3rem;
+  margin: 0 5rem;
 
   @media (max-width: 1000px) {
+    margin: 0 2rem;
+  }
+
+  @media (max-width: 500px) {
     margin: 0 1rem;
   }
 `;
@@ -114,7 +97,6 @@ export const Input = styled.input`
 export const Wrapper = styled.div`
   font-size: ${({ theme }) => theme.font.aux.size.large};
   margin-right: 5rem;
-  visibility: hidden;
   transition: 300ms;
   display: flex;
   opacity: 0;
@@ -122,7 +104,6 @@ export const Wrapper = styled.div`
   ${({ visible }) =>
     visible &&
     css`
-      visibility: visible;
       opacity: 1;
     `};
 
@@ -197,26 +178,33 @@ export const Confirm = styled(BsCheck)``;
 export const Cancel = styled(BsX)``;
 
 export const Tools = styled.div`
-  flex-direction: column;
+  align-items: center;
   display: flex;
   height: 100%;
 `;
 
 export const EditButton = styled.button`
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   justify-content: center;
   box-sizing: border-box;
+  margin-right: 0.5rem;
+  border-radius: 1rem;
   align-items: center;
+  padding: 0.7rem;
   cursor: pointer;
   display: flex;
+  outline: none;
   color: white;
-  height: 50%;
+
+  &:last-of-type {
+    margin-right: 2rem;
+  }
 
   ${({ type }) =>
     type === "delete" &&
     css`
       background-color: ${({ theme }) => theme.colors.error};
-      border-left: 1px solid rgba(0, 0, 0, 0.2);
-      border-radius: 0 1rem 0 0;
 
       &:hover {
         background-color: white;
@@ -229,8 +217,6 @@ export const EditButton = styled.button`
     type === "edit" &&
     css`
       background-color: ${({ theme }) => theme.colors.main};
-      border-left: 1px solid rgba(0, 0, 0, 0.2);
-      border-radius: 0 0 1rem 0;
 
       &:hover {
         background-color: white;
@@ -238,24 +224,35 @@ export const EditButton = styled.button`
         color: black;
       }
     `};
+
+  @media (max-width: 750px) {
+    &:last-of-type {
+      margin-right: 1rem;
+    }
+  }
+
+  @media (max-width: 500px) {
+    padding: 0.5rem;
+
+    &:last-of-type {
+      margin-right: 0.5rem;
+    }
+  }
 `;
 
 export const Delete = styled(BsFillTrashFill)`
   font-size: 1.3rem;
-  padding: 0 2rem;
 
   @media (max-width: 1000px) {
     font-size: 1rem;
   }
 
   @media (max-width: 650px) {
-    padding: 0 1.5rem;
     font-size: 1rem;
   }
 
   @media (max-width: 400px) {
-    padding: 0 0.8rem;
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
 `;
 
@@ -264,6 +261,10 @@ export const Edit = styled(BsWrench)`
 
   @media (max-width: 1000px) {
     font-size: 1rem;
+  }
+
+  @media (max-width: 400px) {
+    font-size: 0.81rem;
   }
 `;
 

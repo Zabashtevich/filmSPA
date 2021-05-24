@@ -16,8 +16,9 @@ export default function CreateUserlistContainer({ loading, lists }) {
     if (value.length >= 5 && value.length <= 10 && lists.userlists.length < 7) {
       setList([...lists.userlists, createUserlist(value)]);
       setValue("");
+    } else {
+      setError(true);
     }
-    setError(true);
   }
 
   const disabled = processing || loading;
@@ -46,6 +47,7 @@ export default function CreateUserlistContainer({ loading, lists }) {
             <CreateUserlist.Confirm
               disabled={disabled}
               onClick={CreateUserlistHandler}
+              aria-label="create new userlist"
             >
               Confirm
             </CreateUserlist.Confirm>

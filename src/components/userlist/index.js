@@ -5,7 +5,6 @@ import {
   Container,
   Title,
   Header,
-  Thumbnail,
   List,
   Input,
   Wrapper,
@@ -39,10 +38,6 @@ Userlist.Title = function UserlistTitle({ children, ...rest }) {
 
 Userlist.Header = function UserlistHeader({ children, ...rest }) {
   return <Header {...rest}>{children}</Header>;
-};
-
-Userlist.Thumbnail = function UserlistThumbnail({ ...rest }) {
-  return <Thumbnail {...rest} />;
 };
 
 Userlist.List = function UserlistList({ children, ...rest }) {

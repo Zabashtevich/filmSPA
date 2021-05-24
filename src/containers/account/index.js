@@ -25,7 +25,7 @@ export default function AccountContainer({ loading, profile, votes }) {
         }),
       });
     }
-  }, [sortBy, type, primaryYear, secondaryYear, loading]);
+  }, [sortBy, type, primaryYear, secondaryYear, loading, votes]);
 
   return (
     <Account data-testid="account-container">

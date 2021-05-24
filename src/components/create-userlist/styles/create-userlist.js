@@ -15,9 +15,10 @@ export const Container = styled.div`
   display: flex;
 `;
 
-export const Title = styled.span`
+export const Title = styled.h1`
   font-weight: ${({ theme }) => theme.font.aux.weight.bold};
   font-size: ${({ theme }) => theme.font.aux.size.huge};
+  margin: 0;
 
   @media (max-width: 800px) {
     font-size: ${({ theme }) => theme.font.aux.size.large};

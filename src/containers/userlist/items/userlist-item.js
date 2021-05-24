@@ -47,7 +47,6 @@ export default function UserlistItem({ lists, activeList, setBar }) {
     <>
       <Userlist.Title data-testid="userlist-item">{`Your list ${activeList.name}`}</Userlist.Title>
       <Userlist.Header>
-        <Userlist.Thumbnail />
         <Userlist.List>
           <Userlist.Input
             disabled={disabled}
@@ -55,24 +54,24 @@ export default function UserlistItem({ lists, activeList, setBar }) {
             onChange={(e) => setInputValue(e.target.value)}
           />
         </Userlist.List>
-        {!disabled && (
-          <Userlist.Wrapper>
-            <Userlist.Button
-              type="confirm"
-              onClick={renameListHandler}
-              data-testid="confirm button"
-            >
-              OK
-            </Userlist.Button>
-            <Userlist.Button
-              type="abort"
-              onClick={() => setDisabled(true)}
-              data-testid="abort-button"
-            >
-              Abort
-            </Userlist.Button>
-          </Userlist.Wrapper>
-        )}
+
+        <Userlist.Wrapper visible={!disabled}>
+          <Userlist.Button
+            type="confirm"
+            onClick={renameListHandler}
+            data-testid="confirm button"
+          >
+            OK
+          </Userlist.Button>
+          <Userlist.Button
+            type="abort"
+            onClick={() => setDisabled(true)}
+            data-testid="abort-button"
+          >
+            Abort
+          </Userlist.Button>
+        </Userlist.Wrapper>
+
         <Userlist.Tools>
           <Userlist.EditButton
             type="delete"

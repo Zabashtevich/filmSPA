@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+import ScrollTop from "./../helpers/scroll-top";
 import ProtectedRoute from "../helpers/private-routes";
 import useFirestore from "./../hooks/useFirestore";
 import useAuthListener from "./../hooks/useAuthListener";
@@ -47,46 +48,49 @@ function App() {
 
   return (
     <Router>
-      <Switch>
-        <Route path="/" exact>
-          <MainPage />
-        </Route>
+      {" "}
+      <ScrollTop>
+        <Switch>
+          <Route path="/" exact>
+            <MainPage />
+          </Route>
 
-        <Route path="/details/:direction/:slug" exact>
-          <DetailsPage />
-        </Route>
+          <Route path="/details/:direction/:slug" exact>
+            <DetailsPage />
+          </Route>
 
-        <Route path="/authentication/:slug" exact>
-          <AuthPage />
-        </Route>
+          <Route path="/authentication/:slug" exact>
+            <AuthPage />
+          </Route>
 
-        <Route path="/details/:direction/:slug/gallery" exact>
-          <GalleryPage />
-        </Route>
+          <Route path="/details/:direction/:slug/gallery" exact>
+            <GalleryPage />
+          </Route>
 
-        <Route path="/trending/:slug" exact>
-          <TrendingPage />
-        </Route>
+          <Route path="/trending/:slug" exact>
+            <TrendingPage />
+          </Route>
 
-        <Route path="/collection/:slug" exact>
-          <CollectionPage />
-        </Route>
-        <Route path="/actor/:slug" exact>
-          <ActorPage />
-        </Route>
+          <Route path="/collection/:slug" exact>
+            <CollectionPage />
+          </Route>
+          <Route path="/actor/:slug" exact>
+            <ActorPage />
+          </Route>
 
-        <ProtectedRoute path="/account" exact>
-          <AccountPage />
-        </ProtectedRoute>
+          <ProtectedRoute path="/account" exact>
+            <AccountPage />
+          </ProtectedRoute>
 
-        <ProtectedRoute path="/account/userlists" exact>
-          <UserlistPage />
-        </ProtectedRoute>
+          <ProtectedRoute path="/account/userlists" exact>
+            <UserlistPage />
+          </ProtectedRoute>
 
-        <Route path="*">
-          <NomatchPage />
-        </Route>
-      </Switch>
+          <Route path="*">
+            <NomatchPage />
+          </Route>
+        </Switch>
+      </ScrollTop>
     </Router>
   );
 }
